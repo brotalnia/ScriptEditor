@@ -110,6 +110,13 @@
             this.cmbMoveToType = new System.Windows.Forms.ComboBox();
             this.lblMoveToTooltip = new System.Windows.Forms.Label();
             this.frmCommandTeleport = new System.Windows.Forms.Panel();
+            this.grpTeleportOptions = new System.Windows.Forms.GroupBox();
+            this.chkTeleportOptions32 = new System.Windows.Forms.CheckBox();
+            this.chkTeleportOptions16 = new System.Windows.Forms.CheckBox();
+            this.chkTeleportOptions8 = new System.Windows.Forms.CheckBox();
+            this.chkTeleportOptions4 = new System.Windows.Forms.CheckBox();
+            this.chkTeleportOptions2 = new System.Windows.Forms.CheckBox();
+            this.chkTeleportOptions1 = new System.Windows.Forms.CheckBox();
             this.lblTeleportO = new System.Windows.Forms.Label();
             this.lblTeleportZ = new System.Windows.Forms.Label();
             this.lblTeleportY = new System.Windows.Forms.Label();
@@ -121,6 +128,12 @@
             this.txtTeleportY = new System.Windows.Forms.TextBox();
             this.txtTeleportX = new System.Windows.Forms.TextBox();
             this.lblTeleportTooltip = new System.Windows.Forms.Label();
+            this.frmCommandQuestComplete = new System.Windows.Forms.Panel();
+            this.lblQuestCompleteId = new System.Windows.Forms.Label();
+            this.lblQuestCompleteDistance = new System.Windows.Forms.Label();
+            this.txtQuestCompleteDistance = new System.Windows.Forms.TextBox();
+            this.btnQuestCompleteId = new System.Windows.Forms.Button();
+            this.lblQuestCompleteTooltip = new System.Windows.Forms.Label();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -130,6 +143,8 @@
             this.frmCommandMoveTo.SuspendLayout();
             this.grpMoveToOptions.SuspendLayout();
             this.frmCommandTeleport.SuspendLayout();
+            this.grpTeleportOptions.SuspendLayout();
+            this.frmCommandQuestComplete.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstActions
@@ -162,7 +177,7 @@
             // columnComment
             // 
             this.columnComment.Text = "Comment";
-            this.columnComment.Width = 240;
+            this.columnComment.Width = 235;
             // 
             // lblId
             // 
@@ -954,6 +969,7 @@
             // frmCommandTeleport
             // 
             this.frmCommandTeleport.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandTeleport.Controls.Add(this.grpTeleportOptions);
             this.frmCommandTeleport.Controls.Add(this.lblTeleportO);
             this.frmCommandTeleport.Controls.Add(this.lblTeleportZ);
             this.frmCommandTeleport.Controls.Add(this.lblTeleportY);
@@ -970,6 +986,87 @@
             this.frmCommandTeleport.Size = new System.Drawing.Size(495, 332);
             this.frmCommandTeleport.TabIndex = 14;
             this.frmCommandTeleport.Visible = false;
+            // 
+            // grpTeleportOptions
+            // 
+            this.grpTeleportOptions.Controls.Add(this.chkTeleportOptions32);
+            this.grpTeleportOptions.Controls.Add(this.chkTeleportOptions16);
+            this.grpTeleportOptions.Controls.Add(this.chkTeleportOptions8);
+            this.grpTeleportOptions.Controls.Add(this.chkTeleportOptions4);
+            this.grpTeleportOptions.Controls.Add(this.chkTeleportOptions2);
+            this.grpTeleportOptions.Controls.Add(this.chkTeleportOptions1);
+            this.grpTeleportOptions.Location = new System.Drawing.Point(273, 61);
+            this.grpTeleportOptions.Name = "grpTeleportOptions";
+            this.grpTeleportOptions.Size = new System.Drawing.Size(200, 171);
+            this.grpTeleportOptions.TabIndex = 12;
+            this.grpTeleportOptions.TabStop = false;
+            this.grpTeleportOptions.Text = "Teleport Options";
+            // 
+            // chkTeleportOptions32
+            // 
+            this.chkTeleportOptions32.AutoSize = true;
+            this.chkTeleportOptions32.Location = new System.Drawing.Point(10, 140);
+            this.chkTeleportOptions32.Name = "chkTeleportOptions32";
+            this.chkTeleportOptions32.Size = new System.Drawing.Size(142, 17);
+            this.chkTeleportOptions32.TabIndex = 5;
+            this.chkTeleportOptions32.Text = "FORCE_MAP_CHANGE";
+            this.chkTeleportOptions32.UseVisualStyleBackColor = true;
+            this.chkTeleportOptions32.CheckedChanged += new System.EventHandler(this.chkTeleportOptions32_CheckedChanged);
+            // 
+            // chkTeleportOptions16
+            // 
+            this.chkTeleportOptions16.AutoSize = true;
+            this.chkTeleportOptions16.Location = new System.Drawing.Point(10, 117);
+            this.chkTeleportOptions16.Name = "chkTeleportOptions16";
+            this.chkTeleportOptions16.Size = new System.Drawing.Size(87, 17);
+            this.chkTeleportOptions16.TabIndex = 4;
+            this.chkTeleportOptions16.Text = "FOR_SPELL";
+            this.chkTeleportOptions16.UseVisualStyleBackColor = true;
+            this.chkTeleportOptions16.CheckedChanged += new System.EventHandler(this.chkTeleportOptions16_CheckedChanged);
+            // 
+            // chkTeleportOptions8
+            // 
+            this.chkTeleportOptions8.AutoSize = true;
+            this.chkTeleportOptions8.Location = new System.Drawing.Point(10, 94);
+            this.chkTeleportOptions8.Name = "chkTeleportOptions8";
+            this.chkTeleportOptions8.Size = new System.Drawing.Size(147, 17);
+            this.chkTeleportOptions8.TabIndex = 3;
+            this.chkTeleportOptions8.Text = "NOT_UNSUMMON_PET";
+            this.chkTeleportOptions8.UseVisualStyleBackColor = true;
+            this.chkTeleportOptions8.CheckedChanged += new System.EventHandler(this.chkTeleportOptions8_CheckedChanged);
+            // 
+            // chkTeleportOptions4
+            // 
+            this.chkTeleportOptions4.AutoSize = true;
+            this.chkTeleportOptions4.Location = new System.Drawing.Point(10, 71);
+            this.chkTeleportOptions4.Name = "chkTeleportOptions4";
+            this.chkTeleportOptions4.Size = new System.Drawing.Size(140, 17);
+            this.chkTeleportOptions4.TabIndex = 2;
+            this.chkTeleportOptions4.Text = "NOT_LEAVE_COMBAT";
+            this.chkTeleportOptions4.UseVisualStyleBackColor = true;
+            this.chkTeleportOptions4.CheckedChanged += new System.EventHandler(this.chkTeleportOptions4_CheckedChanged);
+            // 
+            // chkTeleportOptions2
+            // 
+            this.chkTeleportOptions2.AutoSize = true;
+            this.chkTeleportOptions2.Location = new System.Drawing.Point(10, 48);
+            this.chkTeleportOptions2.Name = "chkTeleportOptions2";
+            this.chkTeleportOptions2.Size = new System.Drawing.Size(162, 17);
+            this.chkTeleportOptions2.TabIndex = 1;
+            this.chkTeleportOptions2.Text = "NOT_LEAVE_TRANSPORT";
+            this.chkTeleportOptions2.UseVisualStyleBackColor = true;
+            this.chkTeleportOptions2.CheckedChanged += new System.EventHandler(this.chkTeleportOptions2_CheckedChanged);
+            // 
+            // chkTeleportOptions1
+            // 
+            this.chkTeleportOptions1.AutoSize = true;
+            this.chkTeleportOptions1.Location = new System.Drawing.Point(10, 25);
+            this.chkTeleportOptions1.Name = "chkTeleportOptions1";
+            this.chkTeleportOptions1.Size = new System.Drawing.Size(81, 17);
+            this.chkTeleportOptions1.TabIndex = 0;
+            this.chkTeleportOptions1.Text = "GM_MODE";
+            this.chkTeleportOptions1.UseVisualStyleBackColor = true;
+            this.chkTeleportOptions1.CheckedChanged += new System.EventHandler(this.chkTeleportOptions1_CheckedChanged);
             // 
             // lblTeleportO
             // 
@@ -1068,11 +1165,72 @@
             this.lblTeleportTooltip.Text = "Teleports the source unit to the specified coordinates. Creatures can only be tel" +
     "eported on the same map.";
             // 
+            // frmCommandQuestComplete
+            // 
+            this.frmCommandQuestComplete.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandQuestComplete.Controls.Add(this.lblQuestCompleteId);
+            this.frmCommandQuestComplete.Controls.Add(this.lblQuestCompleteDistance);
+            this.frmCommandQuestComplete.Controls.Add(this.txtQuestCompleteDistance);
+            this.frmCommandQuestComplete.Controls.Add(this.btnQuestCompleteId);
+            this.frmCommandQuestComplete.Controls.Add(this.lblQuestCompleteTooltip);
+            this.frmCommandQuestComplete.Location = new System.Drawing.Point(409, 239);
+            this.frmCommandQuestComplete.Name = "frmCommandQuestComplete";
+            this.frmCommandQuestComplete.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandQuestComplete.TabIndex = 15;
+            this.frmCommandQuestComplete.Visible = false;
+            // 
+            // lblQuestCompleteId
+            // 
+            this.lblQuestCompleteId.AutoSize = true;
+            this.lblQuestCompleteId.Location = new System.Drawing.Point(66, 71);
+            this.lblQuestCompleteId.Name = "lblQuestCompleteId";
+            this.lblQuestCompleteId.Size = new System.Drawing.Size(50, 13);
+            this.lblQuestCompleteId.TabIndex = 4;
+            this.lblQuestCompleteId.Text = "Quest Id:";
+            // 
+            // lblQuestCompleteDistance
+            // 
+            this.lblQuestCompleteDistance.AutoSize = true;
+            this.lblQuestCompleteDistance.Location = new System.Drawing.Point(16, 103);
+            this.lblQuestCompleteDistance.Name = "lblQuestCompleteDistance";
+            this.lblQuestCompleteDistance.Size = new System.Drawing.Size(99, 13);
+            this.lblQuestCompleteDistance.TabIndex = 3;
+            this.lblQuestCompleteDistance.Text = "Maximum Distance:";
+            // 
+            // txtQuestCompleteDistance
+            // 
+            this.txtQuestCompleteDistance.Location = new System.Drawing.Point(118, 100);
+            this.txtQuestCompleteDistance.Name = "txtQuestCompleteDistance";
+            this.txtQuestCompleteDistance.Size = new System.Drawing.Size(355, 20);
+            this.txtQuestCompleteDistance.TabIndex = 2;
+            this.txtQuestCompleteDistance.Leave += new System.EventHandler(this.txtQuestCompleteDistance_Leave);
+            // 
+            // btnQuestCompleteId
+            // 
+            this.btnQuestCompleteId.Location = new System.Drawing.Point(118, 66);
+            this.btnQuestCompleteId.Name = "btnQuestCompleteId";
+            this.btnQuestCompleteId.Size = new System.Drawing.Size(355, 23);
+            this.btnQuestCompleteId.TabIndex = 1;
+            this.btnQuestCompleteId.Text = "-NONE-";
+            this.btnQuestCompleteId.UseVisualStyleBackColor = true;
+            this.btnQuestCompleteId.Click += new System.EventHandler(this.btnQuestCompleteId_Click);
+            // 
+            // lblQuestCompleteTooltip
+            // 
+            this.lblQuestCompleteTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblQuestCompleteTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblQuestCompleteTooltip.Name = "lblQuestCompleteTooltip";
+            this.lblQuestCompleteTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblQuestCompleteTooltip.TabIndex = 0;
+            this.lblQuestCompleteTooltip.Text = "Completes the specified quest for the player. If a maximum distance is provided, " +
+    "but the player is out of range, the quest will be marked as failed instead.";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 608);
+            this.Controls.Add(this.frmCommandQuestComplete);
             this.Controls.Add(this.frmCommandTeleport);
             this.Controls.Add(this.frmCommandMoveTo);
             this.Controls.Add(this.frmCommandFieldSet);
@@ -1110,6 +1268,10 @@
             this.grpMoveToOptions.PerformLayout();
             this.frmCommandTeleport.ResumeLayout(false);
             this.frmCommandTeleport.PerformLayout();
+            this.grpTeleportOptions.ResumeLayout(false);
+            this.grpTeleportOptions.PerformLayout();
+            this.frmCommandQuestComplete.ResumeLayout(false);
+            this.frmCommandQuestComplete.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1209,6 +1371,19 @@
         private System.Windows.Forms.Label lblTeleportY;
         private System.Windows.Forms.Label lblTeleportX;
         private System.Windows.Forms.Label lblTeleportMapId;
+        private System.Windows.Forms.GroupBox grpTeleportOptions;
+        private System.Windows.Forms.CheckBox chkTeleportOptions32;
+        private System.Windows.Forms.CheckBox chkTeleportOptions16;
+        private System.Windows.Forms.CheckBox chkTeleportOptions8;
+        private System.Windows.Forms.CheckBox chkTeleportOptions4;
+        private System.Windows.Forms.CheckBox chkTeleportOptions2;
+        private System.Windows.Forms.CheckBox chkTeleportOptions1;
+        private System.Windows.Forms.Panel frmCommandQuestComplete;
+        private System.Windows.Forms.Label lblQuestCompleteId;
+        private System.Windows.Forms.Label lblQuestCompleteDistance;
+        private System.Windows.Forms.TextBox txtQuestCompleteDistance;
+        private System.Windows.Forms.Button btnQuestCompleteId;
+        private System.Windows.Forms.Label lblQuestCompleteTooltip;
     }
 }
 

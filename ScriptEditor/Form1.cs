@@ -22,6 +22,7 @@ namespace ScriptEditor
         public static uint currentScriptId = 0;
 
         public static List<BroadcastText> BroadcastTextsList = new List<BroadcastText>();
+        public static List<QuestInfo> QuestInfoList = new List<QuestInfo>();
         List<ComboboxPair> UpdateFieldsList = new List<ComboboxPair>();
         List<ComboboxPair> FlagFieldsList = new List<ComboboxPair>();
 
@@ -44,6 +45,21 @@ namespace ScriptEditor
                 Text = text;
                 ChatType = chattype;
                 Language = language;
+            }
+        }
+
+        public struct QuestInfo
+        {
+            public uint ID;
+            public uint MinLevel;
+            public uint QuestLevel;
+            public string Title;
+            public QuestInfo(uint id, uint minlevel, uint questlevel, string title)
+            {
+                ID = id;
+                Title = title;
+                MinLevel = minlevel;
+                QuestLevel = questlevel;
             }
         }
 
@@ -122,6 +138,7 @@ namespace ScriptEditor
             LoadControls();
             LoadConfig();
             LoadBroadcastTexts();
+            LoadQuests();
         }
 
         public class ComboboxPair
@@ -663,7 +680,31 @@ namespace ScriptEditor
             }
             conn.Close();
         }
+        private void LoadQuests()
+        {
+            QuestInfoList.Clear();
 
+            MySqlConnection conn = new MySqlConnection(connString);
+            MySqlCommand command = conn.CreateCommand();
+            command.CommandText = "SELECT entry, MinLevel, QuestLevel, Title FROM quest_template t1 WHERE patch=(SELECT max(patch) FROM quest_template t2 WHERE t1.entry=t2.entry) ORDER BY entry";
+            try
+            {
+                conn.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    // Add the new quest entry to the list.
+                    QuestInfoList.Add(new QuestInfo(reader.GetUInt32(0), reader.GetUInt32(1), reader.GetUInt32(2), reader.GetString(3)));
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            conn.Close();
+        }
         private void btnFind_Click(object sender, EventArgs e)
         {
             dontUpdate = true;
@@ -809,7 +850,18 @@ namespace ScriptEditor
             txtTeleportZ.Text = "";
             txtTeleportO.Text = "";
             cmbTeleportMap.SelectedIndex = 0;
+            chkTeleportOptions1.Checked = false;
+            chkTeleportOptions2.Checked = false;
+            chkTeleportOptions4.Checked = false;
+            chkTeleportOptions8.Checked = false;
+            chkTeleportOptions16.Checked = false;
+            chkTeleportOptions32.Checked = false;
             frmCommandTeleport.Visible = false;
+
+            // Quest Complete Command (7)
+            btnQuestCompleteId.Text = "-NONE-";
+            txtQuestCompleteDistance.Text = "";
+            frmCommandQuestComplete.Visible = false;
 
             dontUpdate = false;
         }
@@ -984,7 +1036,28 @@ namespace ScriptEditor
                     txtTeleportZ.Text = selectedAction.Z.ToString();
                     txtTeleportO.Text = selectedAction.O.ToString();
                     cmbTeleportMap.SelectedIndex = FindIndexOfMap(selectedAction.Datalong);
+                    if ((selectedAction.Datalong2 & 1) != 0)
+                        chkTeleportOptions1.Checked = true;
+                    if ((selectedAction.Datalong2 & 2) != 0)
+                        chkTeleportOptions2.Checked = true;
+                    if ((selectedAction.Datalong2 & 4) != 0)
+                        chkTeleportOptions4.Checked = true;
+                    if ((selectedAction.Datalong2 & 8) != 0)
+                        chkTeleportOptions8.Checked = true;
+                    if ((selectedAction.Datalong2 & 16) != 0)
+                        chkTeleportOptions16.Checked = true;
+                    if ((selectedAction.Datalong2 & 32) != 0)
+                        chkTeleportOptions32.Checked = true;
                     frmCommandTeleport.Visible = true;
+                    break;
+                }
+                case 7: // Complete Quest
+                {
+                    uint questId = (uint)selectedAction.Datalong;
+                    if (questId > 0)
+                        btnQuestCompleteId.Text = FindQuestTitle(questId) + " (" + questId.ToString() + ")";
+                    txtQuestCompleteDistance.Text = selectedAction.Datalong2.ToString();
+                    frmCommandQuestComplete.Visible = true;
                     break;
                 }
             }
@@ -1074,9 +1147,20 @@ namespace ScriptEditor
             return "";
         }
 
+        public string FindQuestTitle(uint id)
+        {
+            foreach (QuestInfo quest in QuestInfoList)
+            {
+                if (quest.ID == id)
+                    return quest.Title;
+            }
+
+            return "";
+        }
+
         private void btnTalkText1_Click(object sender, EventArgs e)
         {
-            FormTextSearcher frm = new FormTextSearcher();
+            FormTextFinder frm = new FormTextFinder();
             if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 uint textId = frm.ReturnValue;
@@ -1107,7 +1191,7 @@ namespace ScriptEditor
 
         private void btnTalkText2_Click(object sender, EventArgs e)
         {
-            FormTextSearcher frm = new FormTextSearcher();
+            FormTextFinder frm = new FormTextFinder();
             if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 uint textId = frm.ReturnValue;
@@ -1137,7 +1221,7 @@ namespace ScriptEditor
 
         private void btnTalkText3_Click(object sender, EventArgs e)
         {
-            FormTextSearcher frm = new FormTextSearcher();
+            FormTextFinder frm = new FormTextFinder();
             if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 uint textId = frm.ReturnValue;
@@ -1167,7 +1251,7 @@ namespace ScriptEditor
 
         private void btnTalkText4_Click(object sender, EventArgs e)
         {
-            FormTextSearcher frm = new FormTextSearcher();
+            FormTextFinder frm = new FormTextFinder();
             if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 uint textId = frm.ReturnValue;
@@ -1483,7 +1567,8 @@ namespace ScriptEditor
             }
         }
 
-        private void txtFieldSetValue_Leave(object sender, EventArgs e)
+        // Generic function for setting datalong2 value from a textbox.
+        private void SetDatalong2FromTextbox(TextBox ctrl)
         {
             if (lstActions.SelectedItems.Count > 0)
             {
@@ -1494,11 +1579,15 @@ namespace ScriptEditor
                 ScriptAction currentAction = (ScriptAction)currentItem.Tag;
 
                 uint fieldValue;
-                UInt32.TryParse(txtFieldSetValue.Text, out fieldValue);
+                UInt32.TryParse(ctrl.Text, out fieldValue);
 
-                // Updating field value.
+                // Updating datalong value.
                 currentAction.Datalong2 = fieldValue;
             }
+        }
+        private void txtFieldSetValue_Leave(object sender, EventArgs e)
+        {
+            SetDatalong2FromTextbox(txtFieldSetValue);
         }
 
         private void SetCoordinateX(TextBox ctrl)
@@ -1633,6 +1722,26 @@ namespace ScriptEditor
                     currentAction.Datalong3 -= value;
             }
         }
+
+        private void SetDatalong2FlagsFromCheckbox(CheckBox ctrl, uint value)
+        {
+            if (dontUpdate)
+                return;
+
+            if (lstActions.SelectedItems.Count > 0)
+            {
+                // Get the selected item in the listview.
+                ListViewItem currentItem = lstActions.SelectedItems[0];
+
+                // Get the associated ScriptAction.
+                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
+
+                if (ctrl.Checked)
+                    currentAction.Datalong2 += value;
+                else
+                    currentAction.Datalong2 -= value;
+            }
+        }
         private void chkMoveOptions1_CheckedChanged(object sender, EventArgs e)
         {
             SetDatalong3FlagsFromCheckbox(chkMoveOptions1, 1);
@@ -1700,23 +1809,23 @@ namespace ScriptEditor
                 {
                     case 0: // SO_MOVETO_COORDINATES_NORMAL
                     case 1: // SO_MOVETO_COORDINATES_RELATIVE_TO_TARGET
-                        {
-                            lblMoveToX.Text = "X coordinate:";
-                            txtMoveToY.Enabled = true;
-                            txtMoveToZ.Enabled = true;
-                            break;
-                        }
+                    {
+                        lblMoveToX.Text = "X coordinate:";
+                        txtMoveToY.Enabled = true;
+                        txtMoveToZ.Enabled = true;
+                        break;
+                    }
                     case 2: // SO_MOVETO_COORDINATES_DISTANCE_FROM_TARGET
-                        {
-                            lblMoveToX.Text = "Distance:";
-                            txtMoveToY.Enabled = false;
-                            txtMoveToY.Text = "";
-                            currentAction.Y = 0;
-                            txtMoveToZ.Enabled = false;
-                            txtMoveToZ.Text = "";
-                            currentAction.Z = 0;
-                            break;
-                        }
+                    {
+                        lblMoveToX.Text = "Distance:";
+                        txtMoveToY.Enabled = false;
+                        txtMoveToY.Text = "";
+                        currentAction.Y = 0;
+                        txtMoveToZ.Enabled = false;
+                        txtMoveToZ.Text = "";
+                        currentAction.Z = 0;
+                        break;
+                    }
                 }
             }
         }
@@ -1805,6 +1914,67 @@ namespace ScriptEditor
         private void txtTeleportO_Leave(object sender, EventArgs e)
         {
             SetCoordinateO(txtTeleportO);
+        }
+
+        private void chkTeleportOptions1_CheckedChanged(object sender, EventArgs e)
+        {
+            SetDatalong2FlagsFromCheckbox(chkTeleportOptions1, 1);
+        }
+
+        private void chkTeleportOptions2_CheckedChanged(object sender, EventArgs e)
+        {
+            SetDatalong2FlagsFromCheckbox(chkTeleportOptions2, 2);
+        }
+
+        private void chkTeleportOptions4_CheckedChanged(object sender, EventArgs e)
+        {
+            SetDatalong2FlagsFromCheckbox(chkTeleportOptions4, 4);
+        }
+
+        private void chkTeleportOptions8_CheckedChanged(object sender, EventArgs e)
+        {
+            SetDatalong2FlagsFromCheckbox(chkTeleportOptions8, 8);
+        }
+
+        private void chkTeleportOptions16_CheckedChanged(object sender, EventArgs e)
+        {
+            SetDatalong2FlagsFromCheckbox(chkTeleportOptions16, 16);
+        }
+
+        private void chkTeleportOptions32_CheckedChanged(object sender, EventArgs e)
+        {
+            SetDatalong2FlagsFromCheckbox(chkTeleportOptions32, 32);
+        }
+
+        private void btnQuestCompleteId_Click(object sender, EventArgs e)
+        {
+            FormQuestFinder frm = new FormQuestFinder();
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                uint questId = frm.ReturnValue;
+                if (questId > 0)
+                    btnQuestCompleteId.Text = FindQuestTitle(questId) + " (" + questId.ToString() + ")";
+                else
+                    btnQuestCompleteId.Text = "-NONE-";
+
+                if (lstActions.SelectedItems.Count > 0)
+                {
+                    // Get the selected item in the listview.
+                    ListViewItem currentItem = lstActions.SelectedItems[0];
+
+                    // Get the associated ScriptAction.
+                    ScriptAction currentAction = (ScriptAction)currentItem.Tag;
+
+                    // QuestId = datalong;
+                    currentAction.Datalong = questId;
+                }
+
+            }
+        }
+
+        private void txtQuestCompleteDistance_Leave(object sender, EventArgs e)
+        {
+            SetDatalong2FromTextbox(txtQuestCompleteDistance);
         }
     }
 

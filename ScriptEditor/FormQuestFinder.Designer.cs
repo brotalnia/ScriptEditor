@@ -1,6 +1,6 @@
 ﻿namespace ScriptEditor
 {
-    partial class FormTextSearcher
+    partial class FormQuestFinder
     {
         /// <summary>
         /// Required designer variable.
@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lstBroadcastTexts = new System.Windows.Forms.ListView();
+            this.lstQuests = new System.Windows.Forms.ListView();
             this.columnID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnText = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnChatType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnLanguage = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnMinLevel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnQuestLevel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnSelectNone = new System.Windows.Forms.Button();
@@ -41,43 +41,43 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // lstBroadcastTexts
+            // lstQuests
             // 
-            this.lstBroadcastTexts.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lstQuests.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnID,
-            this.columnText,
-            this.columnChatType,
-            this.columnLanguage});
-            this.lstBroadcastTexts.FullRowSelect = true;
-            this.lstBroadcastTexts.GridLines = true;
-            this.lstBroadcastTexts.HideSelection = false;
-            this.lstBroadcastTexts.Location = new System.Drawing.Point(12, 56);
-            this.lstBroadcastTexts.Name = "lstBroadcastTexts";
-            this.lstBroadcastTexts.Size = new System.Drawing.Size(650, 300);
-            this.lstBroadcastTexts.TabIndex = 0;
-            this.lstBroadcastTexts.UseCompatibleStateImageBehavior = false;
-            this.lstBroadcastTexts.View = System.Windows.Forms.View.Details;
-            this.lstBroadcastTexts.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lstBroadcastTexts_ColumnClick);
+            this.columnMinLevel,
+            this.columnQuestLevel,
+            this.columnTitle});
+            this.lstQuests.FullRowSelect = true;
+            this.lstQuests.GridLines = true;
+            this.lstQuests.HideSelection = false;
+            this.lstQuests.Location = new System.Drawing.Point(12, 56);
+            this.lstQuests.Name = "lstQuests";
+            this.lstQuests.Size = new System.Drawing.Size(650, 300);
+            this.lstQuests.TabIndex = 0;
+            this.lstQuests.UseCompatibleStateImageBehavior = false;
+            this.lstQuests.View = System.Windows.Forms.View.Details;
+            this.lstQuests.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lstQuests_ColumnClick);
             // 
             // columnID
             // 
             this.columnID.Text = "ID";
             this.columnID.Width = 49;
             // 
-            // columnText
+            // columnMinLevel
             // 
-            this.columnText.Text = "Text";
-            this.columnText.Width = 415;
+            this.columnMinLevel.Text = "Minimum Level";
+            this.columnMinLevel.Width = 90;
             // 
-            // columnChatType
+            // columnQuestLevel
             // 
-            this.columnChatType.Text = "Chat Type";
-            this.columnChatType.Width = 90;
+            this.columnQuestLevel.Text = "Quest Level";
+            this.columnQuestLevel.Width = 90;
             // 
-            // columnLanguage
+            // columnTitle
             // 
-            this.columnLanguage.Text = "Language";
-            this.columnLanguage.Width = 90;
+            this.columnTitle.Text = "Title";
+            this.columnTitle.Width = 415;
             // 
             // txtSearch
             // 
@@ -121,9 +121,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(9, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(172, 13);
+            this.label1.Size = new System.Drawing.Size(160, 13);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Enter partial text or Id to search for:";
+            this.label1.Text = "Enter title text or Id to search for:";
             // 
             // btnCancel
             // 
@@ -135,7 +135,7 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // FormTextSearcher
+            // FormQuestFinder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -147,11 +147,11 @@
             this.Controls.Add(this.btnSelectNone);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.lstBroadcastTexts);
+            this.Controls.Add(this.lstQuests);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "FormTextSearcher";
-            this.Text = "Text Finder";
+            this.Name = "FormQuestFinder";
+            this.Text = "Quest Finder";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -159,11 +159,11 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView lstBroadcastTexts;
+        private System.Windows.Forms.ListView lstQuests;
         private System.Windows.Forms.ColumnHeader columnID;
-        private System.Windows.Forms.ColumnHeader columnText;
-        private System.Windows.Forms.ColumnHeader columnChatType;
-        private System.Windows.Forms.ColumnHeader columnLanguage;
+        private System.Windows.Forms.ColumnHeader columnTitle;
+        private System.Windows.Forms.ColumnHeader columnMinLevel;
+        private System.Windows.Forms.ColumnHeader columnQuestLevel;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnSelectNone;

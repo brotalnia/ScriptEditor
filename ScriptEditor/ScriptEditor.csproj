@@ -56,19 +56,29 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormTextSearcher.cs">
+    <Compile Include="FormQuestFinder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormTextSearcher.Designer.cs">
-      <DependentUpon>FormTextSearcher.cs</DependentUpon>
+    <Compile Include="FormQuestFinder.Designer.cs">
+      <DependentUpon>FormQuestFinder.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormTextFinder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTextFinder.Designer.cs">
+      <DependentUpon>FormTextFinder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MixedListSorter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormTextSearcher.resx">
-      <DependentUpon>FormTextSearcher.cs</DependentUpon>
+    <EmbeddedResource Include="FormQuestFinder.resx">
+      <DependentUpon>FormQuestFinder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTextFinder.resx">
+      <DependentUpon>FormTextFinder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
