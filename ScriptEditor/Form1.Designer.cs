@@ -140,6 +140,38 @@
             this.lblKillCreditType = new System.Windows.Forms.Label();
             this.btnKillCreditCreatureId = new System.Windows.Forms.Button();
             this.lblKillCreditTooltip = new System.Windows.Forms.Label();
+            this.frmCommandRespawnGameobject = new System.Windows.Forms.Panel();
+            this.lblRespawnGameobjectDelay = new System.Windows.Forms.Label();
+            this.lblRespawnGameobjectGuid = new System.Windows.Forms.Label();
+            this.txtRespawnGameobjectDelay = new System.Windows.Forms.TextBox();
+            this.txtRespawnGameobjectGuid = new System.Windows.Forms.TextBox();
+            this.lblRespawnGameobjectTooltip = new System.Windows.Forms.Label();
+            this.frmCommandSummonCreature = new System.Windows.Forms.Panel();
+            this.lblSummonCreatureO = new System.Windows.Forms.Label();
+            this.lblSummonCreatureZ = new System.Windows.Forms.Label();
+            this.lblSummonCreatureY = new System.Windows.Forms.Label();
+            this.lblSummonCreatureX = new System.Windows.Forms.Label();
+            this.txtSummonCreatureO = new System.Windows.Forms.TextBox();
+            this.txtSummonCreatureZ = new System.Windows.Forms.TextBox();
+            this.txtSummonCreatureY = new System.Windows.Forms.TextBox();
+            this.txtSummonCreatureX = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblSummonCreatureUniqueLimit = new System.Windows.Forms.Label();
+            this.txtSummonCreatureUniqueRange = new System.Windows.Forms.TextBox();
+            this.txtSummonCreatureUniqueLimit = new System.Windows.Forms.TextBox();
+            this.lblSummonCreatureSetRun = new System.Windows.Forms.Label();
+            this.cmbSummonCreatureSetRun = new System.Windows.Forms.ComboBox();
+            this.lblSummonCreatureFacingOptions = new System.Windows.Forms.Label();
+            this.cmbSummonCreatureFacingOptions = new System.Windows.Forms.ComboBox();
+            this.lblSummonCreatureDelay = new System.Windows.Forms.Label();
+            this.txtSummonCreatureDelay = new System.Windows.Forms.TextBox();
+            this.lblSummonCreatureId = new System.Windows.Forms.Label();
+            this.grpSummonCreatureFlags = new System.Windows.Forms.GroupBox();
+            this.chkSummonCreatureFlags64 = new System.Windows.Forms.CheckBox();
+            this.chkSummonCreatureFlags32 = new System.Windows.Forms.CheckBox();
+            this.chkSummonCreatureFlags16 = new System.Windows.Forms.CheckBox();
+            this.btnSummonCreatureId = new System.Windows.Forms.Button();
+            this.lblSummonCreatureTooltip = new System.Windows.Forms.Label();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -152,6 +184,9 @@
             this.grpTeleportOptions.SuspendLayout();
             this.frmCommandQuestComplete.SuspendLayout();
             this.frmCommandKillCredit.SuspendLayout();
+            this.frmCommandRespawnGameobject.SuspendLayout();
+            this.frmCommandSummonCreature.SuspendLayout();
+            this.grpSummonCreatureFlags.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstActions
@@ -1293,11 +1328,340 @@
             this.lblKillCreditTooltip.TabIndex = 0;
             this.lblKillCreditTooltip.Text = "Gives the player or his group credit for killing the specified creature.";
             // 
+            // frmCommandRespawnGameobject
+            // 
+            this.frmCommandRespawnGameobject.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandRespawnGameobject.Controls.Add(this.lblRespawnGameobjectDelay);
+            this.frmCommandRespawnGameobject.Controls.Add(this.lblRespawnGameobjectGuid);
+            this.frmCommandRespawnGameobject.Controls.Add(this.txtRespawnGameobjectDelay);
+            this.frmCommandRespawnGameobject.Controls.Add(this.txtRespawnGameobjectGuid);
+            this.frmCommandRespawnGameobject.Controls.Add(this.lblRespawnGameobjectTooltip);
+            this.frmCommandRespawnGameobject.Location = new System.Drawing.Point(409, 239);
+            this.frmCommandRespawnGameobject.Name = "frmCommandRespawnGameobject";
+            this.frmCommandRespawnGameobject.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandRespawnGameobject.TabIndex = 17;
+            this.frmCommandRespawnGameobject.Visible = false;
+            // 
+            // lblRespawnGameobjectDelay
+            // 
+            this.lblRespawnGameobjectDelay.AutoSize = true;
+            this.lblRespawnGameobjectDelay.Location = new System.Drawing.Point(19, 98);
+            this.lblRespawnGameobjectDelay.Name = "lblRespawnGameobjectDelay";
+            this.lblRespawnGameobjectDelay.Size = new System.Drawing.Size(85, 13);
+            this.lblRespawnGameobjectDelay.TabIndex = 4;
+            this.lblRespawnGameobjectDelay.Text = "Despawn Delay:";
+            // 
+            // lblRespawnGameobjectGuid
+            // 
+            this.lblRespawnGameobjectGuid.AutoSize = true;
+            this.lblRespawnGameobjectGuid.Location = new System.Drawing.Point(67, 68);
+            this.lblRespawnGameobjectGuid.Name = "lblRespawnGameobjectGuid";
+            this.lblRespawnGameobjectGuid.Size = new System.Drawing.Size(37, 13);
+            this.lblRespawnGameobjectGuid.TabIndex = 3;
+            this.lblRespawnGameobjectGuid.Text = "GUID:";
+            // 
+            // txtRespawnGameobjectDelay
+            // 
+            this.txtRespawnGameobjectDelay.Location = new System.Drawing.Point(107, 95);
+            this.txtRespawnGameobjectDelay.Name = "txtRespawnGameobjectDelay";
+            this.txtRespawnGameobjectDelay.Size = new System.Drawing.Size(100, 20);
+            this.txtRespawnGameobjectDelay.TabIndex = 2;
+            this.txtRespawnGameobjectDelay.Leave += new System.EventHandler(this.txtRespawnGameobjectDelay_Leave);
+            // 
+            // txtRespawnGameobjectGuid
+            // 
+            this.txtRespawnGameobjectGuid.Location = new System.Drawing.Point(107, 65);
+            this.txtRespawnGameobjectGuid.Name = "txtRespawnGameobjectGuid";
+            this.txtRespawnGameobjectGuid.Size = new System.Drawing.Size(100, 20);
+            this.txtRespawnGameobjectGuid.TabIndex = 1;
+            this.txtRespawnGameobjectGuid.Leave += new System.EventHandler(this.txtRespawnGameobjectGuid_Leave);
+            // 
+            // lblRespawnGameobjectTooltip
+            // 
+            this.lblRespawnGameobjectTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblRespawnGameobjectTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblRespawnGameobjectTooltip.Name = "lblRespawnGameobjectTooltip";
+            this.lblRespawnGameobjectTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblRespawnGameobjectTooltip.TabIndex = 0;
+            this.lblRespawnGameobjectTooltip.Text = "Respawns the gameobject with the specified GUID, and then despawns it again when " +
+    "the delay expires.";
+            // 
+            // frmCommandSummonCreature
+            // 
+            this.frmCommandSummonCreature.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandSummonCreature.Controls.Add(this.lblSummonCreatureO);
+            this.frmCommandSummonCreature.Controls.Add(this.lblSummonCreatureZ);
+            this.frmCommandSummonCreature.Controls.Add(this.lblSummonCreatureY);
+            this.frmCommandSummonCreature.Controls.Add(this.lblSummonCreatureX);
+            this.frmCommandSummonCreature.Controls.Add(this.txtSummonCreatureO);
+            this.frmCommandSummonCreature.Controls.Add(this.txtSummonCreatureZ);
+            this.frmCommandSummonCreature.Controls.Add(this.txtSummonCreatureY);
+            this.frmCommandSummonCreature.Controls.Add(this.txtSummonCreatureX);
+            this.frmCommandSummonCreature.Controls.Add(this.label4);
+            this.frmCommandSummonCreature.Controls.Add(this.lblSummonCreatureUniqueLimit);
+            this.frmCommandSummonCreature.Controls.Add(this.txtSummonCreatureUniqueRange);
+            this.frmCommandSummonCreature.Controls.Add(this.txtSummonCreatureUniqueLimit);
+            this.frmCommandSummonCreature.Controls.Add(this.lblSummonCreatureSetRun);
+            this.frmCommandSummonCreature.Controls.Add(this.cmbSummonCreatureSetRun);
+            this.frmCommandSummonCreature.Controls.Add(this.lblSummonCreatureFacingOptions);
+            this.frmCommandSummonCreature.Controls.Add(this.cmbSummonCreatureFacingOptions);
+            this.frmCommandSummonCreature.Controls.Add(this.lblSummonCreatureDelay);
+            this.frmCommandSummonCreature.Controls.Add(this.txtSummonCreatureDelay);
+            this.frmCommandSummonCreature.Controls.Add(this.lblSummonCreatureId);
+            this.frmCommandSummonCreature.Controls.Add(this.grpSummonCreatureFlags);
+            this.frmCommandSummonCreature.Controls.Add(this.btnSummonCreatureId);
+            this.frmCommandSummonCreature.Controls.Add(this.lblSummonCreatureTooltip);
+            this.frmCommandSummonCreature.Location = new System.Drawing.Point(409, 239);
+            this.frmCommandSummonCreature.Name = "frmCommandSummonCreature";
+            this.frmCommandSummonCreature.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandSummonCreature.TabIndex = 18;
+            this.frmCommandSummonCreature.Visible = false;
+            // 
+            // lblSummonCreatureO
+            // 
+            this.lblSummonCreatureO.AutoSize = true;
+            this.lblSummonCreatureO.Location = new System.Drawing.Point(64, 286);
+            this.lblSummonCreatureO.Name = "lblSummonCreatureO";
+            this.lblSummonCreatureO.Size = new System.Drawing.Size(61, 13);
+            this.lblSummonCreatureO.TabIndex = 21;
+            this.lblSummonCreatureO.Text = "Orientation:";
+            // 
+            // lblSummonCreatureZ
+            // 
+            this.lblSummonCreatureZ.AutoSize = true;
+            this.lblSummonCreatureZ.Location = new System.Drawing.Point(55, 257);
+            this.lblSummonCreatureZ.Name = "lblSummonCreatureZ";
+            this.lblSummonCreatureZ.Size = new System.Drawing.Size(70, 13);
+            this.lblSummonCreatureZ.TabIndex = 20;
+            this.lblSummonCreatureZ.Text = "Z coordinate:";
+            // 
+            // lblSummonCreatureY
+            // 
+            this.lblSummonCreatureY.AutoSize = true;
+            this.lblSummonCreatureY.Location = new System.Drawing.Point(55, 229);
+            this.lblSummonCreatureY.Name = "lblSummonCreatureY";
+            this.lblSummonCreatureY.Size = new System.Drawing.Size(70, 13);
+            this.lblSummonCreatureY.TabIndex = 19;
+            this.lblSummonCreatureY.Text = "Y coordinate:";
+            // 
+            // lblSummonCreatureX
+            // 
+            this.lblSummonCreatureX.AutoSize = true;
+            this.lblSummonCreatureX.Location = new System.Drawing.Point(55, 197);
+            this.lblSummonCreatureX.Name = "lblSummonCreatureX";
+            this.lblSummonCreatureX.Size = new System.Drawing.Size(70, 13);
+            this.lblSummonCreatureX.TabIndex = 18;
+            this.lblSummonCreatureX.Text = "X coordinate:";
+            // 
+            // txtSummonCreatureO
+            // 
+            this.txtSummonCreatureO.Location = new System.Drawing.Point(131, 285);
+            this.txtSummonCreatureO.Name = "txtSummonCreatureO";
+            this.txtSummonCreatureO.Size = new System.Drawing.Size(143, 20);
+            this.txtSummonCreatureO.TabIndex = 17;
+            this.txtSummonCreatureO.Leave += new System.EventHandler(this.txtSummonCreatureO_Leave);
+            // 
+            // txtSummonCreatureZ
+            // 
+            this.txtSummonCreatureZ.Location = new System.Drawing.Point(132, 254);
+            this.txtSummonCreatureZ.Name = "txtSummonCreatureZ";
+            this.txtSummonCreatureZ.Size = new System.Drawing.Size(142, 20);
+            this.txtSummonCreatureZ.TabIndex = 16;
+            this.txtSummonCreatureZ.Leave += new System.EventHandler(this.txtSummonCreatureZ_Leave);
+            // 
+            // txtSummonCreatureY
+            // 
+            this.txtSummonCreatureY.Location = new System.Drawing.Point(131, 225);
+            this.txtSummonCreatureY.Name = "txtSummonCreatureY";
+            this.txtSummonCreatureY.Size = new System.Drawing.Size(143, 20);
+            this.txtSummonCreatureY.TabIndex = 15;
+            this.txtSummonCreatureY.Leave += new System.EventHandler(this.txtSummonCreatureY_Leave);
+            // 
+            // txtSummonCreatureX
+            // 
+            this.txtSummonCreatureX.Location = new System.Drawing.Point(131, 194);
+            this.txtSummonCreatureX.Name = "txtSummonCreatureX";
+            this.txtSummonCreatureX.Size = new System.Drawing.Size(143, 20);
+            this.txtSummonCreatureX.TabIndex = 14;
+            this.txtSummonCreatureX.Leave += new System.EventHandler(this.txtSummonCreatureX_Leave);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(386, 181);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(74, 13);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Unique range:";
+            // 
+            // lblSummonCreatureUniqueLimit
+            // 
+            this.lblSummonCreatureUniqueLimit.AutoSize = true;
+            this.lblSummonCreatureUniqueLimit.Location = new System.Drawing.Point(293, 181);
+            this.lblSummonCreatureUniqueLimit.Name = "lblSummonCreatureUniqueLimit";
+            this.lblSummonCreatureUniqueLimit.Size = new System.Drawing.Size(64, 13);
+            this.lblSummonCreatureUniqueLimit.TabIndex = 12;
+            this.lblSummonCreatureUniqueLimit.Text = "Unique limit:";
+            // 
+            // txtSummonCreatureUniqueRange
+            // 
+            this.txtSummonCreatureUniqueRange.Location = new System.Drawing.Point(387, 200);
+            this.txtSummonCreatureUniqueRange.Name = "txtSummonCreatureUniqueRange";
+            this.txtSummonCreatureUniqueRange.Size = new System.Drawing.Size(85, 20);
+            this.txtSummonCreatureUniqueRange.TabIndex = 11;
+            this.txtSummonCreatureUniqueRange.Leave += new System.EventHandler(this.txtSummonCreatureUniqueRange_Leave);
+            // 
+            // txtSummonCreatureUniqueLimit
+            // 
+            this.txtSummonCreatureUniqueLimit.Location = new System.Drawing.Point(292, 200);
+            this.txtSummonCreatureUniqueLimit.Name = "txtSummonCreatureUniqueLimit";
+            this.txtSummonCreatureUniqueLimit.Size = new System.Drawing.Size(85, 20);
+            this.txtSummonCreatureUniqueLimit.TabIndex = 10;
+            this.txtSummonCreatureUniqueLimit.Leave += new System.EventHandler(this.txtSummonCreatureUniqueLimit_Leave);
+            // 
+            // lblSummonCreatureSetRun
+            // 
+            this.lblSummonCreatureSetRun.AutoSize = true;
+            this.lblSummonCreatureSetRun.Location = new System.Drawing.Point(41, 167);
+            this.lblSummonCreatureSetRun.Name = "lblSummonCreatureSetRun";
+            this.lblSummonCreatureSetRun.Size = new System.Drawing.Size(84, 13);
+            this.lblSummonCreatureSetRun.TabIndex = 9;
+            this.lblSummonCreatureSetRun.Text = "Runs by default:";
+            // 
+            // cmbSummonCreatureSetRun
+            // 
+            this.cmbSummonCreatureSetRun.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSummonCreatureSetRun.FormattingEnabled = true;
+            this.cmbSummonCreatureSetRun.Items.AddRange(new object[] {
+            "False",
+            "True"});
+            this.cmbSummonCreatureSetRun.Location = new System.Drawing.Point(131, 164);
+            this.cmbSummonCreatureSetRun.Name = "cmbSummonCreatureSetRun";
+            this.cmbSummonCreatureSetRun.Size = new System.Drawing.Size(143, 21);
+            this.cmbSummonCreatureSetRun.TabIndex = 8;
+            this.cmbSummonCreatureSetRun.SelectedIndexChanged += new System.EventHandler(this.cmbSummonCreatureSetRun_SelectedIndexChanged);
+            // 
+            // lblSummonCreatureFacingOptions
+            // 
+            this.lblSummonCreatureFacingOptions.AutoSize = true;
+            this.lblSummonCreatureFacingOptions.Location = new System.Drawing.Point(46, 136);
+            this.lblSummonCreatureFacingOptions.Name = "lblSummonCreatureFacingOptions";
+            this.lblSummonCreatureFacingOptions.Size = new System.Drawing.Size(79, 13);
+            this.lblSummonCreatureFacingOptions.TabIndex = 7;
+            this.lblSummonCreatureFacingOptions.Text = "Facing options:";
+            // 
+            // cmbSummonCreatureFacingOptions
+            // 
+            this.cmbSummonCreatureFacingOptions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSummonCreatureFacingOptions.FormattingEnabled = true;
+            this.cmbSummonCreatureFacingOptions.Items.AddRange(new object[] {
+            "Provided Orientation",
+            "Face Summoner",
+            "Face Target"});
+            this.cmbSummonCreatureFacingOptions.Location = new System.Drawing.Point(131, 133);
+            this.cmbSummonCreatureFacingOptions.Name = "cmbSummonCreatureFacingOptions";
+            this.cmbSummonCreatureFacingOptions.Size = new System.Drawing.Size(143, 21);
+            this.cmbSummonCreatureFacingOptions.TabIndex = 6;
+            this.cmbSummonCreatureFacingOptions.SelectedIndexChanged += new System.EventHandler(this.cmbSummonCreatureFacingOptions_SelectedIndexChanged);
+            // 
+            // lblSummonCreatureDelay
+            // 
+            this.lblSummonCreatureDelay.AutoSize = true;
+            this.lblSummonCreatureDelay.Location = new System.Drawing.Point(20, 106);
+            this.lblSummonCreatureDelay.Name = "lblSummonCreatureDelay";
+            this.lblSummonCreatureDelay.Size = new System.Drawing.Size(105, 13);
+            this.lblSummonCreatureDelay.TabIndex = 5;
+            this.lblSummonCreatureDelay.Text = "Despawn delay (ms):";
+            // 
+            // txtSummonCreatureDelay
+            // 
+            this.txtSummonCreatureDelay.Location = new System.Drawing.Point(131, 103);
+            this.txtSummonCreatureDelay.Name = "txtSummonCreatureDelay";
+            this.txtSummonCreatureDelay.Size = new System.Drawing.Size(143, 20);
+            this.txtSummonCreatureDelay.TabIndex = 4;
+            this.txtSummonCreatureDelay.Leave += new System.EventHandler(this.txtSummonCreatureDelay_Leave);
+            // 
+            // lblSummonCreatureId
+            // 
+            this.lblSummonCreatureId.AutoSize = true;
+            this.lblSummonCreatureId.Location = new System.Drawing.Point(20, 72);
+            this.lblSummonCreatureId.Name = "lblSummonCreatureId";
+            this.lblSummonCreatureId.Size = new System.Drawing.Size(62, 13);
+            this.lblSummonCreatureId.TabIndex = 3;
+            this.lblSummonCreatureId.Text = "Creature Id:";
+            // 
+            // grpSummonCreatureFlags
+            // 
+            this.grpSummonCreatureFlags.Controls.Add(this.chkSummonCreatureFlags64);
+            this.grpSummonCreatureFlags.Controls.Add(this.chkSummonCreatureFlags32);
+            this.grpSummonCreatureFlags.Controls.Add(this.chkSummonCreatureFlags16);
+            this.grpSummonCreatureFlags.Location = new System.Drawing.Point(292, 58);
+            this.grpSummonCreatureFlags.Name = "grpSummonCreatureFlags";
+            this.grpSummonCreatureFlags.Size = new System.Drawing.Size(181, 114);
+            this.grpSummonCreatureFlags.TabIndex = 2;
+            this.grpSummonCreatureFlags.TabStop = false;
+            this.grpSummonCreatureFlags.Text = "Summon Flags";
+            // 
+            // chkSummonCreatureFlags64
+            // 
+            this.chkSummonCreatureFlags64.AutoSize = true;
+            this.chkSummonCreatureFlags64.Location = new System.Drawing.Point(10, 80);
+            this.chkSummonCreatureFlags64.Name = "chkSummonCreatureFlags64";
+            this.chkSummonCreatureFlags64.Size = new System.Drawing.Size(149, 17);
+            this.chkSummonCreatureFlags64.TabIndex = 2;
+            this.chkSummonCreatureFlags64.Text = "Unique Temporary Spawn";
+            this.chkSummonCreatureFlags64.UseVisualStyleBackColor = true;
+            this.chkSummonCreatureFlags64.CheckStateChanged += new System.EventHandler(this.chkSummonCreatureFlags64_CheckStateChanged);
+            // 
+            // chkSummonCreatureFlags32
+            // 
+            this.chkSummonCreatureFlags32.AutoSize = true;
+            this.chkSummonCreatureFlags32.Location = new System.Drawing.Point(10, 54);
+            this.chkSummonCreatureFlags32.Name = "chkSummonCreatureFlags32";
+            this.chkSummonCreatureFlags32.Size = new System.Drawing.Size(96, 17);
+            this.chkSummonCreatureFlags32.TabIndex = 1;
+            this.chkSummonCreatureFlags32.Text = "Unique Spawn";
+            this.chkSummonCreatureFlags32.UseVisualStyleBackColor = true;
+            this.chkSummonCreatureFlags32.CheckedChanged += new System.EventHandler(this.chkSummonCreatureFlags32_CheckedChanged);
+            // 
+            // chkSummonCreatureFlags16
+            // 
+            this.chkSummonCreatureFlags16.AutoSize = true;
+            this.chkSummonCreatureFlags16.Location = new System.Drawing.Point(11, 28);
+            this.chkSummonCreatureFlags16.Name = "chkSummonCreatureFlags16";
+            this.chkSummonCreatureFlags16.Size = new System.Drawing.Size(120, 17);
+            this.chkSummonCreatureFlags16.TabIndex = 0;
+            this.chkSummonCreatureFlags16.Text = "Make Active Object";
+            this.chkSummonCreatureFlags16.UseVisualStyleBackColor = true;
+            this.chkSummonCreatureFlags16.CheckedChanged += new System.EventHandler(this.chkSummonCreatureFlags16_CheckedChanged);
+            // 
+            // btnSummonCreatureId
+            // 
+            this.btnSummonCreatureId.Location = new System.Drawing.Point(83, 67);
+            this.btnSummonCreatureId.Name = "btnSummonCreatureId";
+            this.btnSummonCreatureId.Size = new System.Drawing.Size(191, 23);
+            this.btnSummonCreatureId.TabIndex = 1;
+            this.btnSummonCreatureId.Text = "-NONE-";
+            this.btnSummonCreatureId.UseVisualStyleBackColor = true;
+            this.btnSummonCreatureId.Click += new System.EventHandler(this.btnSummonCreatureId_Click);
+            // 
+            // lblSummonCreatureTooltip
+            // 
+            this.lblSummonCreatureTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblSummonCreatureTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblSummonCreatureTooltip.Name = "lblSummonCreatureTooltip";
+            this.lblSummonCreatureTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblSummonCreatureTooltip.TabIndex = 0;
+            this.lblSummonCreatureTooltip.Text = "Temporarily summons a creature at the given coordinates. It despawns after the sp" +
+    "ecified delay.";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(924, 608);
+            this.ClientSize = new System.Drawing.Size(926, 610);
+            this.Controls.Add(this.frmCommandSummonCreature);
+            this.Controls.Add(this.frmCommandRespawnGameobject);
             this.Controls.Add(this.frmCommandKillCredit);
             this.Controls.Add(this.frmCommandQuestComplete);
             this.Controls.Add(this.frmCommandTeleport);
@@ -1345,6 +1709,12 @@
             this.frmCommandQuestComplete.PerformLayout();
             this.frmCommandKillCredit.ResumeLayout(false);
             this.frmCommandKillCredit.PerformLayout();
+            this.frmCommandRespawnGameobject.ResumeLayout(false);
+            this.frmCommandRespawnGameobject.PerformLayout();
+            this.frmCommandSummonCreature.ResumeLayout(false);
+            this.frmCommandSummonCreature.PerformLayout();
+            this.grpSummonCreatureFlags.ResumeLayout(false);
+            this.grpSummonCreatureFlags.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1463,6 +1833,38 @@
         private System.Windows.Forms.Label lblKillCreditType;
         private System.Windows.Forms.Button btnKillCreditCreatureId;
         private System.Windows.Forms.Label lblKillCreditTooltip;
+        private System.Windows.Forms.Panel frmCommandRespawnGameobject;
+        private System.Windows.Forms.Label lblRespawnGameobjectDelay;
+        private System.Windows.Forms.Label lblRespawnGameobjectGuid;
+        private System.Windows.Forms.TextBox txtRespawnGameobjectDelay;
+        private System.Windows.Forms.TextBox txtRespawnGameobjectGuid;
+        private System.Windows.Forms.Label lblRespawnGameobjectTooltip;
+        private System.Windows.Forms.Panel frmCommandSummonCreature;
+        private System.Windows.Forms.Label lblSummonCreatureId;
+        private System.Windows.Forms.GroupBox grpSummonCreatureFlags;
+        private System.Windows.Forms.CheckBox chkSummonCreatureFlags64;
+        private System.Windows.Forms.CheckBox chkSummonCreatureFlags32;
+        private System.Windows.Forms.CheckBox chkSummonCreatureFlags16;
+        private System.Windows.Forms.Button btnSummonCreatureId;
+        private System.Windows.Forms.Label lblSummonCreatureTooltip;
+        private System.Windows.Forms.Label lblSummonCreatureDelay;
+        private System.Windows.Forms.TextBox txtSummonCreatureDelay;
+        private System.Windows.Forms.TextBox txtSummonCreatureY;
+        private System.Windows.Forms.TextBox txtSummonCreatureX;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblSummonCreatureUniqueLimit;
+        private System.Windows.Forms.TextBox txtSummonCreatureUniqueRange;
+        private System.Windows.Forms.TextBox txtSummonCreatureUniqueLimit;
+        private System.Windows.Forms.Label lblSummonCreatureSetRun;
+        private System.Windows.Forms.ComboBox cmbSummonCreatureSetRun;
+        private System.Windows.Forms.Label lblSummonCreatureFacingOptions;
+        private System.Windows.Forms.ComboBox cmbSummonCreatureFacingOptions;
+        private System.Windows.Forms.Label lblSummonCreatureO;
+        private System.Windows.Forms.Label lblSummonCreatureZ;
+        private System.Windows.Forms.Label lblSummonCreatureY;
+        private System.Windows.Forms.Label lblSummonCreatureX;
+        private System.Windows.Forms.TextBox txtSummonCreatureO;
+        private System.Windows.Forms.TextBox txtSummonCreatureZ;
     }
 }
 

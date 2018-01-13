@@ -116,7 +116,7 @@ namespace ScriptEditor
             }
         }
 
-        private void lstQuests_ColumnClick(object sender, ColumnClickEventArgs e)
+        private void lstCreatures_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             if (lstCreatures.ListViewItemSorter == null)
                 return;

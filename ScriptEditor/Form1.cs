@@ -128,7 +128,11 @@ namespace ScriptEditor
             cmbKillCreditType.Items.Add(new ComboboxPair("Personal credit", 0));
             cmbKillCreditType.Items.Add(new ComboboxPair("Group credit", 1));
 
+            // Setting default selection for combo boxes.
+            cmbSummonCreatureFacingOptions.SelectedIndex = 0;
+            cmbSummonCreatureSetRun.SelectedIndex = 0;
             cmbTable.SelectedIndex = 0;
+
             //MessageBox.Show((cmbCommandId.SelectedItem as ComboboxPair).Value.ToString());
             dontUpdate = false;
         }
@@ -324,6 +328,27 @@ namespace ScriptEditor
             btnKillCreditCreatureId.Text = "-NONE-";
             cmbKillCreditType.SelectedIndex = 0;
             frmCommandKillCredit.Visible = false;
+
+            // Respawn GameObject Command (9)
+            txtRespawnGameobjectDelay.Text = "";
+            txtRespawnGameobjectGuid.Text = "";
+            frmCommandRespawnGameobject.Visible = false;
+
+            // Summon Creature Command (10)
+            btnSummonCreatureId.Text = "-NONE-";
+            txtSummonCreatureDelay.Text = "";
+            txtSummonCreatureUniqueLimit.Text = "";
+            txtSummonCreatureUniqueRange.Text = "";
+            txtSummonCreatureX.Text = "";
+            txtSummonCreatureY.Text = "";
+            txtSummonCreatureZ.Text = "";
+            txtSummonCreatureO.Text = "";
+            cmbSummonCreatureSetRun.SelectedIndex = 0;
+            cmbSummonCreatureFacingOptions.SelectedIndex = 0;
+            chkSummonCreatureFlags16.Checked = false;
+            chkSummonCreatureFlags32.Checked = false;
+            chkSummonCreatureFlags64.Checked = false;
+            frmCommandSummonCreature.Visible = false;
 
             dontUpdate = false;
         }
@@ -529,6 +554,41 @@ namespace ScriptEditor
                         btnKillCreditCreatureId.Text = GameData.FindCreatureName(creatureId) + " (" + creatureId.ToString() + ")";
                     cmbKillCreditType.SelectedIndex = (int)selectedAction.Datalong2;
                     frmCommandKillCredit.Visible = true;
+                    break;
+                }
+                case 9: // Respawn GameObject
+                {
+                    txtRespawnGameobjectDelay.Text = selectedAction.Datalong2.ToString();
+                    txtRespawnGameobjectGuid.Text = selectedAction.Datalong.ToString();
+                    frmCommandRespawnGameobject.Visible = true;
+                    break;
+                }
+                case 10: // Summon Creature
+                {
+                    uint creatureId = selectedAction.Datalong;
+                    if (creatureId > 0)
+                        btnSummonCreatureId.Text = GameData.FindCreatureName(creatureId) + " (" + creatureId.ToString() + ")";
+                    txtSummonCreatureDelay.Text = selectedAction.Datalong2.ToString();
+                    txtSummonCreatureUniqueLimit.Text = selectedAction.Datalong3.ToString();
+                    txtSummonCreatureUniqueRange.Text = selectedAction.Datalong4.ToString();
+                    txtSummonCreatureX.Text = selectedAction.X.ToString();
+                    txtSummonCreatureY.Text = selectedAction.Y.ToString();
+                    txtSummonCreatureZ.Text = selectedAction.Z.ToString();
+                    txtSummonCreatureO.Text = selectedAction.O.ToString();
+                    cmbSummonCreatureSetRun.SelectedIndex = selectedAction.Dataint;
+                    cmbSummonCreatureFacingOptions.SelectedIndex = selectedAction.Dataint2;
+                    if ((selectedAction.DataFlags & 16) != 0)
+                        chkSummonCreatureFlags16.Checked = true;
+                    if ((selectedAction.DataFlags & 32) != 0)
+                        chkSummonCreatureFlags32.Checked = true;
+                    if ((selectedAction.DataFlags & 64) != 0)
+                        chkSummonCreatureFlags64.Checked = true;
+                    if (!chkSummonCreatureFlags32.Checked && !chkSummonCreatureFlags64.Checked)
+                    {
+                        txtSummonCreatureUniqueLimit.Enabled = false;
+                        txtSummonCreatureUniqueRange.Enabled = false;
+                    }
+                    frmCommandSummonCreature.Visible = true;
                     break;
                 }
             }
@@ -841,7 +901,7 @@ namespace ScriptEditor
             }
         }
 
-        private void chkSwapInitial_CheckedChanged(object sender, EventArgs e)
+        private void SetDataFlagsFromCheckbox(CheckBox ctrl, uint value)
         {
             if (dontUpdate)
                 return;
@@ -855,11 +915,31 @@ namespace ScriptEditor
                 ScriptAction currentAction = (ScriptAction)currentItem.Tag;
 
                 // Updating data flags.
-                if (chkSwapInitial.Checked)
-                    currentAction.DataFlags += 1;
+                if (ctrl.Checked)
+                    currentAction.DataFlags += value;
                 else
-                    currentAction.DataFlags -= 1;
+                    currentAction.DataFlags -= value;
             }
+        }
+
+        private void chkSwapInitial_CheckedChanged(object sender, EventArgs e)
+        {
+            SetDataFlagsFromCheckbox(chkSwapInitial, 1);
+        }
+
+        private void chkSwapFinal_CheckedChanged(object sender, EventArgs e)
+        {
+            SetDataFlagsFromCheckbox(chkSwapFinal, 2);
+        }
+
+        private void chkTargetSelf_CheckedChanged(object sender, EventArgs e)
+        {
+            SetDataFlagsFromCheckbox(chkTargetSelf, 4);
+        }
+
+        private void chkAbortScript_CheckedChanged(object sender, EventArgs e)
+        {
+            SetDataFlagsFromCheckbox(chkAbortScript, 8);
         }
 
         private void cmbEmoteId_SelectedIndexChanged(object sender, EventArgs e)
@@ -898,69 +978,6 @@ namespace ScriptEditor
             lstActions.Items.Add(lvi);
         }
 
-        private void chkSwapFinal_CheckedChanged(object sender, EventArgs e)
-        {
-            if (dontUpdate)
-                return;
-
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                // Updating data flags.
-                if (chkSwapFinal.Checked)
-                    currentAction.DataFlags += 2;
-                else
-                    currentAction.DataFlags -= 2;
-            }
-        }
-
-        private void chkTargetSelf_CheckedChanged(object sender, EventArgs e)
-        {
-            if (dontUpdate)
-                return;
-
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                // Updating data flags.
-                if (chkTargetSelf.Checked)
-                    currentAction.DataFlags += 4;
-                else
-                    currentAction.DataFlags -= 4;
-            }
-        }
-
-        private void chkAbortScript_CheckedChanged(object sender, EventArgs e)
-        {
-            if (dontUpdate)
-                return;
-
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                // Updating data flags.
-                if (chkAbortScript.Checked)
-                    currentAction.DataFlags += 8;
-                else
-                    currentAction.DataFlags -= 8;
-            }
-        }
-
         private void cmbFieldSetFields_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (dontUpdate)
@@ -979,8 +996,8 @@ namespace ScriptEditor
             }
         }
 
-        // Generic function for setting datalong2 value from a textbox.
-        private void SetDatalong2FromTextbox(TextBox ctrl)
+        // Generic function for setting datalong value from a textbox.
+        private void SetDatalongFromTextbox(TextBox ctrl)
         {
             if (lstActions.SelectedItems.Count > 0)
             {
@@ -994,9 +1011,63 @@ namespace ScriptEditor
                 UInt32.TryParse(ctrl.Text, out fieldValue);
 
                 // Updating datalong value.
+                currentAction.Datalong = fieldValue;
+            }
+        }
+        private void SetDatalong2FromTextbox(TextBox ctrl)
+        {
+            if (lstActions.SelectedItems.Count > 0)
+            {
+                // Get the selected item in the listview.
+                ListViewItem currentItem = lstActions.SelectedItems[0];
+
+                // Get the associated ScriptAction.
+                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
+
+                uint fieldValue;
+                UInt32.TryParse(ctrl.Text, out fieldValue);
+
+                // Updating datalong2 value.
                 currentAction.Datalong2 = fieldValue;
             }
         }
+
+        private void SetDatalong3FromTextbox(TextBox ctrl)
+        {
+            if (lstActions.SelectedItems.Count > 0)
+            {
+                // Get the selected item in the listview.
+                ListViewItem currentItem = lstActions.SelectedItems[0];
+
+                // Get the associated ScriptAction.
+                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
+
+                uint fieldValue;
+                UInt32.TryParse(ctrl.Text, out fieldValue);
+
+                // Updating datalong3 value.
+                currentAction.Datalong3 = fieldValue;
+            }
+        }
+
+        private void SetDatalong4FromTextbox(TextBox ctrl)
+        {
+            if (lstActions.SelectedItems.Count > 0)
+            {
+                // Get the selected item in the listview.
+                ListViewItem currentItem = lstActions.SelectedItems[0];
+
+                // Get the associated ScriptAction.
+                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
+
+                uint fieldValue;
+                UInt32.TryParse(ctrl.Text, out fieldValue);
+
+                // Updating datalong4 value.
+                currentAction.Datalong4 = fieldValue;
+            }
+        }
+
         private void txtFieldSetValue_Leave(object sender, EventArgs e)
         {
             SetDatalong2FromTextbox(txtFieldSetValue);
@@ -1407,16 +1478,16 @@ namespace ScriptEditor
             }
         }
 
-        private void btnKillCreditCreatureId_Click(object sender, EventArgs e)
+        private void SetDatalongCreatureIdFromButton(Button ctrl)
         {
             FormCreatureFinder frm = new FormCreatureFinder();
             if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 uint creatureId = frm.ReturnValue;
                 if (creatureId > 0)
-                    btnKillCreditCreatureId.Text = GameData.FindCreatureName(creatureId) + " (" + creatureId.ToString() + ")";
+                    ctrl.Text = GameData.FindCreatureName(creatureId) + " (" + creatureId.ToString() + ")";
                 else
-                    btnKillCreditCreatureId.Text = "-NONE-";
+                    ctrl.Text = "-NONE-";
 
                 if (lstActions.SelectedItems.Count > 0)
                 {
@@ -1426,10 +1497,189 @@ namespace ScriptEditor
                     // Get the associated ScriptAction.
                     ScriptAction currentAction = (ScriptAction)currentItem.Tag;
 
-                    // QuestId = datalong;
+                    // CreatureId = datalong;
                     currentAction.Datalong = creatureId;
                 }
 
+            }
+        }
+        private void btnKillCreditCreatureId_Click(object sender, EventArgs e)
+        {
+            SetDatalongCreatureIdFromButton(btnKillCreditCreatureId);
+        }
+
+        private void txtRespawnGameobjectDelay_Leave(object sender, EventArgs e)
+        {
+            SetDatalong2FromTextbox(txtRespawnGameobjectDelay);
+        }
+
+        private void txtRespawnGameobjectGuid_Leave(object sender, EventArgs e)
+        {
+            SetDatalongFromTextbox(txtRespawnGameobjectGuid);
+        }
+
+        private void btnSummonCreatureId_Click(object sender, EventArgs e)
+        {
+            SetDatalongCreatureIdFromButton(btnSummonCreatureId);
+        }
+
+        private void txtSummonCreatureDelay_Leave(object sender, EventArgs e)
+        {
+            SetDatalong2FromTextbox(txtSummonCreatureDelay);
+        }
+
+        private void txtSummonCreatureX_Leave(object sender, EventArgs e)
+        {
+            SetCoordinateX(txtSummonCreatureX);
+        }
+
+        private void txtSummonCreatureY_Leave(object sender, EventArgs e)
+        {
+            SetCoordinateY(txtSummonCreatureY);
+        }
+
+        private void txtSummonCreatureZ_Leave(object sender, EventArgs e)
+        {
+            SetCoordinateZ(txtSummonCreatureZ);
+        }
+
+        private void txtSummonCreatureO_Leave(object sender, EventArgs e)
+        {
+            SetCoordinateO(txtSummonCreatureO);
+        }
+
+        private void cmbSummonCreatureFacingOptions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (dontUpdate)
+                return;
+
+            if (lstActions.SelectedItems.Count > 0)
+            {
+                // Get the selected item in the listview.
+                ListViewItem currentItem = lstActions.SelectedItems[0];
+
+                // Get the associated ScriptAction.
+                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
+
+                // Facing Options = Dataint2
+                currentAction.Dataint2 = cmbSummonCreatureFacingOptions.SelectedIndex;
+
+                // If facing source/target orientation is not needed.
+                if (cmbSummonCreatureFacingOptions.SelectedIndex > 0)
+                {
+                    currentAction.O = 0;
+                    txtSummonCreatureO.Text = "0";
+                    txtSummonCreatureO.Enabled = false;
+                }
+                else
+                    txtSummonCreatureO.Enabled = true;
+            }
+        }
+
+        private void cmbSummonCreatureSetRun_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (dontUpdate)
+                return;
+
+            if (lstActions.SelectedItems.Count > 0)
+            {
+                // Get the selected item in the listview.
+                ListViewItem currentItem = lstActions.SelectedItems[0];
+
+                // Get the associated ScriptAction.
+                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
+
+                // Set Run = Dataint
+                currentAction.Dataint = cmbSummonCreatureSetRun.SelectedIndex;
+            }
+        }
+
+        private void txtSummonCreatureUniqueLimit_Leave(object sender, EventArgs e)
+        {
+            SetDatalong3FromTextbox(txtSummonCreatureUniqueLimit);
+        }
+
+        private void txtSummonCreatureUniqueRange_Leave(object sender, EventArgs e)
+        {
+            SetDatalong4FromTextbox(txtSummonCreatureUniqueRange);
+        }
+
+        private void chkSummonCreatureFlags16_CheckedChanged(object sender, EventArgs e)
+        {
+            SetDataFlagsFromCheckbox(chkSummonCreatureFlags16, 16);
+        }
+
+        private void chkSummonCreatureFlags32_CheckedChanged(object sender, EventArgs e)
+        {
+            if (dontUpdate)
+                return;
+
+            if (lstActions.SelectedItems.Count > 0)
+            {
+                // Get the selected item in the listview.
+                ListViewItem currentItem = lstActions.SelectedItems[0];
+
+                // Get the associated ScriptAction.
+                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
+
+                // Updating data flags.
+                if (chkSummonCreatureFlags32.Checked)
+                {
+                    currentAction.DataFlags += 32;
+                    chkSummonCreatureFlags64.Checked = false;
+                    txtSummonCreatureUniqueLimit.Enabled = true;
+                    txtSummonCreatureUniqueRange.Enabled = true;
+                }
+                else
+                {
+                    currentAction.DataFlags -= 32;
+                    if (!chkSummonCreatureFlags64.Checked)
+                    {
+                        txtSummonCreatureUniqueLimit.Enabled = false;
+                        txtSummonCreatureUniqueLimit.Text = "0";
+                        currentAction.Datalong3 = 0;
+                        txtSummonCreatureUniqueRange.Enabled = false;
+                        txtSummonCreatureUniqueRange.Text = "0";
+                        currentAction.Datalong4 = 0;
+                    }
+                }
+            }
+        }
+
+        private void chkSummonCreatureFlags64_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (dontUpdate)
+                return;
+
+            if (lstActions.SelectedItems.Count > 0)
+            {
+                // Get the selected item in the listview.
+                ListViewItem currentItem = lstActions.SelectedItems[0];
+
+                // Get the associated ScriptAction.
+                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
+
+                // Updating data flags.
+                if (chkSummonCreatureFlags64.Checked)
+                {
+                    currentAction.DataFlags += 64;
+                    chkSummonCreatureFlags32.Checked = false;
+                    txtSummonCreatureUniqueLimit.Enabled = true;
+                    txtSummonCreatureUniqueRange.Enabled = true;
+                }
+                else
+                {
+                    currentAction.DataFlags -= 64;
+                    if (!chkSummonCreatureFlags32.Checked)
+                    {
+                        txtSummonCreatureUniqueLimit.Enabled = false;
+                        txtSummonCreatureUniqueLimit.Text = "0";
+                        currentAction.Datalong3 = 0;
+                        txtSummonCreatureUniqueRange.Enabled = false;
+                        txtSummonCreatureUniqueRange.Text = "0";
+                        currentAction.Datalong4 = 0;
+                    }
+                }
             }
         }
     }

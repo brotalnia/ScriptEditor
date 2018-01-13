@@ -57,7 +57,7 @@
             this.lstCreatures.TabIndex = 0;
             this.lstCreatures.UseCompatibleStateImageBehavior = false;
             this.lstCreatures.View = System.Windows.Forms.View.Details;
-            this.lstCreatures.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lstQuests_ColumnClick);
+            this.lstCreatures.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lstCreatures_ColumnClick);
             // 
             // columnID
             // 
