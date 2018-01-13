@@ -90,7 +90,7 @@ namespace ScriptEditor
             {
                 lstBroadcastTexts.ListViewItemSorter = null; // disable sorter or it will take forever
                 lstBroadcastTexts.Columns[1].Width = 400; // to avoid horizontal scrollbar
-                foreach (Form1.BroadcastText bc in Form1.BroadcastTextsList)
+                foreach (BroadcastText bc in GameData.BroadcastTextsList)
                 {
                     ListViewItem lvi = new ListViewItem();
                     lvi.Text = bc.ID.ToString();
@@ -104,7 +104,7 @@ namespace ScriptEditor
             }
             else if (UInt32.TryParse(txtSearch.Text, out textId))
             {
-                foreach (Form1.BroadcastText bc in Form1.BroadcastTextsList)
+                foreach (BroadcastText bc in GameData.BroadcastTextsList)
                 {
                     // If content is numeric search for id.
                     if (bc.ID == textId)
@@ -124,7 +124,7 @@ namespace ScriptEditor
             }
             else
             {
-                foreach (Form1.BroadcastText bc in Form1.BroadcastTextsList)
+                foreach (BroadcastText bc in GameData.BroadcastTextsList)
                 {
                     // If content is not numeric search for text.
                     if (bc.Text.Contains(txtSearch.Text))

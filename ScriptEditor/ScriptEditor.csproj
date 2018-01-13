@@ -56,6 +56,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormCreatureFinder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCreatureFinder.Designer.cs">
+      <DependentUpon>FormCreatureFinder.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormQuestFinder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,11 +74,16 @@
     <Compile Include="FormTextFinder.Designer.cs">
       <DependentUpon>FormTextFinder.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameData.cs" />
     <Compile Include="MixedListSorter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScriptAction.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCreatureFinder.resx">
+      <DependentUpon>FormCreatureFinder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormQuestFinder.resx">
       <DependentUpon>FormQuestFinder.cs</DependentUpon>

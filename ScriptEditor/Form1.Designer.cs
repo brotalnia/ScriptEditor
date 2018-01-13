@@ -134,6 +134,12 @@
             this.txtQuestCompleteDistance = new System.Windows.Forms.TextBox();
             this.btnQuestCompleteId = new System.Windows.Forms.Button();
             this.lblQuestCompleteTooltip = new System.Windows.Forms.Label();
+            this.frmCommandKillCredit = new System.Windows.Forms.Panel();
+            this.cmbKillCreditType = new System.Windows.Forms.ComboBox();
+            this.lblKillCreditCreatureId = new System.Windows.Forms.Label();
+            this.lblKillCreditType = new System.Windows.Forms.Label();
+            this.btnKillCreditCreatureId = new System.Windows.Forms.Button();
+            this.lblKillCreditTooltip = new System.Windows.Forms.Label();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -145,6 +151,7 @@
             this.frmCommandTeleport.SuspendLayout();
             this.grpTeleportOptions.SuspendLayout();
             this.frmCommandQuestComplete.SuspendLayout();
+            this.frmCommandKillCredit.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstActions
@@ -1182,7 +1189,7 @@
             // lblQuestCompleteId
             // 
             this.lblQuestCompleteId.AutoSize = true;
-            this.lblQuestCompleteId.Location = new System.Drawing.Point(66, 71);
+            this.lblQuestCompleteId.Location = new System.Drawing.Point(64, 71);
             this.lblQuestCompleteId.Name = "lblQuestCompleteId";
             this.lblQuestCompleteId.Size = new System.Drawing.Size(50, 13);
             this.lblQuestCompleteId.TabIndex = 4;
@@ -1191,7 +1198,7 @@
             // lblQuestCompleteDistance
             // 
             this.lblQuestCompleteDistance.AutoSize = true;
-            this.lblQuestCompleteDistance.Location = new System.Drawing.Point(16, 103);
+            this.lblQuestCompleteDistance.Location = new System.Drawing.Point(15, 103);
             this.lblQuestCompleteDistance.Name = "lblQuestCompleteDistance";
             this.lblQuestCompleteDistance.Size = new System.Drawing.Size(99, 13);
             this.lblQuestCompleteDistance.TabIndex = 3;
@@ -1225,11 +1232,73 @@
             this.lblQuestCompleteTooltip.Text = "Completes the specified quest for the player. If a maximum distance is provided, " +
     "but the player is out of range, the quest will be marked as failed instead.";
             // 
+            // frmCommandKillCredit
+            // 
+            this.frmCommandKillCredit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandKillCredit.Controls.Add(this.cmbKillCreditType);
+            this.frmCommandKillCredit.Controls.Add(this.lblKillCreditCreatureId);
+            this.frmCommandKillCredit.Controls.Add(this.lblKillCreditType);
+            this.frmCommandKillCredit.Controls.Add(this.btnKillCreditCreatureId);
+            this.frmCommandKillCredit.Controls.Add(this.lblKillCreditTooltip);
+            this.frmCommandKillCredit.Location = new System.Drawing.Point(409, 239);
+            this.frmCommandKillCredit.Name = "frmCommandKillCredit";
+            this.frmCommandKillCredit.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandKillCredit.TabIndex = 16;
+            this.frmCommandKillCredit.Visible = false;
+            // 
+            // cmbKillCreditType
+            // 
+            this.cmbKillCreditType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbKillCreditType.FormattingEnabled = true;
+            this.cmbKillCreditType.Location = new System.Drawing.Point(118, 100);
+            this.cmbKillCreditType.Name = "cmbKillCreditType";
+            this.cmbKillCreditType.Size = new System.Drawing.Size(355, 21);
+            this.cmbKillCreditType.TabIndex = 5;
+            this.cmbKillCreditType.SelectedIndexChanged += new System.EventHandler(this.cmbKillCreditType_SelectedIndexChanged);
+            // 
+            // lblKillCreditCreatureId
+            // 
+            this.lblKillCreditCreatureId.AutoSize = true;
+            this.lblKillCreditCreatureId.Location = new System.Drawing.Point(52, 71);
+            this.lblKillCreditCreatureId.Name = "lblKillCreditCreatureId";
+            this.lblKillCreditCreatureId.Size = new System.Drawing.Size(62, 13);
+            this.lblKillCreditCreatureId.TabIndex = 4;
+            this.lblKillCreditCreatureId.Text = "Creature Id:";
+            // 
+            // lblKillCreditType
+            // 
+            this.lblKillCreditType.AutoSize = true;
+            this.lblKillCreditType.Location = new System.Drawing.Point(80, 103);
+            this.lblKillCreditType.Name = "lblKillCreditType";
+            this.lblKillCreditType.Size = new System.Drawing.Size(34, 13);
+            this.lblKillCreditType.TabIndex = 3;
+            this.lblKillCreditType.Text = "Type:";
+            // 
+            // btnKillCreditCreatureId
+            // 
+            this.btnKillCreditCreatureId.Location = new System.Drawing.Point(118, 66);
+            this.btnKillCreditCreatureId.Name = "btnKillCreditCreatureId";
+            this.btnKillCreditCreatureId.Size = new System.Drawing.Size(355, 23);
+            this.btnKillCreditCreatureId.TabIndex = 1;
+            this.btnKillCreditCreatureId.Text = "-NONE-";
+            this.btnKillCreditCreatureId.UseVisualStyleBackColor = true;
+            this.btnKillCreditCreatureId.Click += new System.EventHandler(this.btnKillCreditCreatureId_Click);
+            // 
+            // lblKillCreditTooltip
+            // 
+            this.lblKillCreditTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblKillCreditTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblKillCreditTooltip.Name = "lblKillCreditTooltip";
+            this.lblKillCreditTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblKillCreditTooltip.TabIndex = 0;
+            this.lblKillCreditTooltip.Text = "Gives the player or his group credit for killing the specified creature.";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 608);
+            this.Controls.Add(this.frmCommandKillCredit);
             this.Controls.Add(this.frmCommandQuestComplete);
             this.Controls.Add(this.frmCommandTeleport);
             this.Controls.Add(this.frmCommandMoveTo);
@@ -1246,7 +1315,9 @@
             this.Controls.Add(this.cmbTable);
             this.Controls.Add(this.lblId);
             this.Controls.Add(this.lstActions);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Script Editor";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -1272,6 +1343,8 @@
             this.grpTeleportOptions.PerformLayout();
             this.frmCommandQuestComplete.ResumeLayout(false);
             this.frmCommandQuestComplete.PerformLayout();
+            this.frmCommandKillCredit.ResumeLayout(false);
+            this.frmCommandKillCredit.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1384,6 +1457,12 @@
         private System.Windows.Forms.TextBox txtQuestCompleteDistance;
         private System.Windows.Forms.Button btnQuestCompleteId;
         private System.Windows.Forms.Label lblQuestCompleteTooltip;
+        private System.Windows.Forms.Panel frmCommandKillCredit;
+        private System.Windows.Forms.ComboBox cmbKillCreditType;
+        private System.Windows.Forms.Label lblKillCreditCreatureId;
+        private System.Windows.Forms.Label lblKillCreditType;
+        private System.Windows.Forms.Button btnKillCreditCreatureId;
+        private System.Windows.Forms.Label lblKillCreditTooltip;
     }
 }
 

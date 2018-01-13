@@ -61,7 +61,7 @@ namespace ScriptEditor
             {
                 lstQuests.ListViewItemSorter = null; // disable sorter or it will take forever
                 lstQuests.Columns[3].Width = 400; // to avoid horizontal scrollbar
-                foreach (Form1.QuestInfo quest in Form1.QuestInfoList)
+                foreach (QuestInfo quest in GameData.QuestInfoList)
                 {
                     ListViewItem lvi = new ListViewItem();
                     lvi.Text = quest.ID.ToString();
@@ -75,7 +75,7 @@ namespace ScriptEditor
             }
             else if (UInt32.TryParse(txtSearch.Text, out questId))
             {
-                foreach (Form1.QuestInfo quest in Form1.QuestInfoList)
+                foreach (QuestInfo quest in GameData.QuestInfoList)
                 {
                     // If content is numeric search for id.
                     if (quest.ID == questId)
@@ -95,7 +95,7 @@ namespace ScriptEditor
             }
             else
             {
-                foreach (Form1.QuestInfo quest in Form1.QuestInfoList)
+                foreach (QuestInfo quest in GameData.QuestInfoList)
                 {
                     // If content is not numeric search for title text.
                     if (quest.Title.Contains(txtSearch.Text))
