@@ -11,6 +11,7 @@ namespace ScriptEditor
         public static readonly List<BroadcastText> BroadcastTextsList = new List<BroadcastText>();
         public static readonly List<QuestInfo> QuestInfoList = new List<QuestInfo>();
         public static readonly List<CreatureInfo> CreatureInfoList = new List<CreatureInfo>();
+        public static readonly List<SpellInfo> SpellInfoList = new List<SpellInfo>();
         public static readonly List<ComboboxPair> UpdateFieldsList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> FlagFieldsList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> MapsList = new List<ComboboxPair>();
@@ -85,7 +86,16 @@ namespace ScriptEditor
 
             return "";
         }
+        public static string FindSpellName(uint id)
+        {
+            foreach (SpellInfo spell in SpellInfoList)
+            {
+                if (spell.ID == id)
+                    return spell.Name;
+            }
 
+            return "";
+        }
         public static void LoadBroadcastTexts(string connString)
         {
             BroadcastTextsList.Clear();
@@ -157,6 +167,31 @@ namespace ScriptEditor
                 {
                     // Add the new creature entry to the list.
                     CreatureInfoList.Add(new CreatureInfo(reader.GetUInt32(0), reader.GetUInt32(1), reader.GetUInt32(2), reader.GetUInt32(3), reader.GetString(4)));
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+            conn.Close();
+        }
+        public static void LoadSpells(string connString)
+        {
+            CreatureInfoList.Clear();
+
+            MySqlConnection conn = new MySqlConnection(connString);
+            MySqlCommand command = conn.CreateCommand();
+            command.CommandText = "SELECT ID, effect1, effect2, effect3, name1, description1 FROM spell_template ORDER BY ID";
+            try
+            {
+                conn.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    // Add the spell entry to the list.
+                    SpellInfoList.Add(new SpellInfo(reader.GetUInt32(0), reader.GetUInt32(1), reader.GetUInt32(2), reader.GetUInt32(3), reader.GetString(4), reader.GetString(5)));
                 }
                 reader.Close();
             }
@@ -606,6 +641,24 @@ namespace ScriptEditor
             MinLevel = minlevel;
             MaxLevel = maxlevel;
             Rank = rank;
+        }
+    }
+    public struct SpellInfo
+    {
+        public uint ID;
+        public uint Effect1;
+        public uint Effect2;
+        public uint Effect3;
+        public string Name;
+        public string Description;
+        public SpellInfo(uint id, uint effect1, uint effect2, uint effect3, string name, string description)
+        {
+            ID = id;
+            Effect1 = effect1;
+            Effect2 = effect2;
+            Effect3 = effect3;
+            Name = name;
+            Description = description;
         }
     }
     public class ComboboxPair

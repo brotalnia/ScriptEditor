@@ -57,20 +57,13 @@ namespace ScriptEditor
 
             uint questId;
 
-            if (txtSearch.Text == "") // display all texts
+            if (txtSearch.Text == "") // display all quests
             {
                 lstQuests.ListViewItemSorter = null; // disable sorter or it will take forever
                 lstQuests.Columns[3].Width = 400; // to avoid horizontal scrollbar
                 foreach (QuestInfo quest in GameData.QuestInfoList)
                 {
-                    ListViewItem lvi = new ListViewItem();
-                    lvi.Text = quest.ID.ToString();
-                    lvi.SubItems.Add(quest.MinLevel.ToString());
-                    lvi.SubItems.Add(quest.QuestLevel.ToString());
-                    lvi.SubItems.Add(quest.Title);
-                    
-                    // Add this quest to the listview.
-                    lstQuests.Items.Add(lvi);
+                    AddQuestToListView(quest);
                 }
             }
             else if (UInt32.TryParse(txtSearch.Text, out questId))
@@ -79,17 +72,7 @@ namespace ScriptEditor
                 {
                     // If content is numeric search for id.
                     if (quest.ID == questId)
-                    {
-                        ListViewItem lvi = new ListViewItem();
-                        lvi.Text = quest.ID.ToString();
-                        lvi.SubItems.Add(quest.MinLevel.ToString());
-                        lvi.SubItems.Add(quest.QuestLevel.ToString());
-                        lvi.SubItems.Add(quest.Title);
-
-                        // Add this quest to the listview.
-                        lstQuests.Items.Add(lvi);
-                        break;
-                    }
+                        AddQuestToListView(quest);
                 }
                 lstQuests.ListViewItemSorter = textComparer;
             }
@@ -99,23 +82,24 @@ namespace ScriptEditor
                 {
                     // If content is not numeric search for title text.
                     if (quest.Title.Contains(txtSearch.Text))
-                    {
-                        ListViewItem lvi = new ListViewItem();
-                        lvi.Text = quest.ID.ToString();
-                        lvi.SubItems.Add(quest.MinLevel.ToString());
-                        lvi.SubItems.Add(quest.QuestLevel.ToString());
-                        lvi.SubItems.Add(quest.Title);
-
-                        // Add this quest to the listview.
-                        lstQuests.Items.Add(lvi);
-                    }
+                        AddQuestToListView(quest);
                 }
                 if (lstQuests.Items.Count > 20)
                     lstQuests.Columns[3].Width = 400; // to avoid horizontal scrollbar
                 lstQuests.ListViewItemSorter = textComparer;
             }
         }
+        private void AddQuestToListView(QuestInfo quest)
+        {
+            ListViewItem lvi = new ListViewItem();
+            lvi.Text = quest.ID.ToString();
+            lvi.SubItems.Add(quest.MinLevel.ToString());
+            lvi.SubItems.Add(quest.QuestLevel.ToString());
+            lvi.SubItems.Add(quest.Title);
 
+            // Add this quest to the listview.
+            lstQuests.Items.Add(lvi);
+        }
         private void lstQuests_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             if (lstQuests.ListViewItemSorter == null)

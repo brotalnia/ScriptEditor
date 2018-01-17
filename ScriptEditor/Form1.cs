@@ -40,6 +40,7 @@ namespace ScriptEditor
             GameData.LoadBroadcastTexts(connString);
             GameData.LoadQuests(connString);
             GameData.LoadCreatures(connString);
+            GameData.LoadSpells(connString);
         }
 
         private void LoadControls()
@@ -350,6 +351,15 @@ namespace ScriptEditor
             chkSummonCreatureFlags64.Checked = false;
             frmCommandSummonCreature.Visible = false;
 
+            // Open/Close Door and Activate GameObject Commands (11, 12, 13)
+            txtDoorGuid.Text = "";
+            txtDoorResetDelay.Text = "";
+            frmCommandDoor.Visible = false;
+
+            // Remove Aura Command (14)
+            btnRemoveAuraSpellId.Text = "-NONE-";
+            frmCommandRemoveAura.Visible = false;
+
             dontUpdate = false;
         }
         private void ShowCommandSpecificForm(ScriptAction selectedAction)
@@ -589,6 +599,40 @@ namespace ScriptEditor
                         txtSummonCreatureUniqueRange.Enabled = false;
                     }
                     frmCommandSummonCreature.Visible = true;
+                    break;
+                }
+                case 11: // Open Door
+                case 12: // Close Door
+                {
+                    txtDoorGuid.Text = selectedAction.Datalong.ToString();
+                    txtDoorResetDelay.Text = selectedAction.Datalong2.ToString();
+                    txtDoorGuid.Visible = true;
+                    txtDoorResetDelay.Visible = true;
+                    lblDoorGuid.Visible = true;
+                    lblDoorResetDelay.Visible = true;
+                    if (selectedAction.Command == 11)
+                        lblDoorTooltip.Text = "Opens the specified door GameObject, then resets it back to its original state after the delay expires. If the provided target is a button, it gets toggled as well.";
+                    else
+                        lblDoorTooltip.Text = "Closes the specified door GameObject, then resets it back to its original state after the delay expires. If the provided target is a button, it gets toggled as well.";
+                    frmCommandDoor.Visible = true;
+                    break;
+                }
+                case 13: // Activate object
+                {
+                    txtDoorGuid.Visible = false;
+                    txtDoorResetDelay.Visible = false;
+                    lblDoorGuid.Visible = false;
+                    lblDoorResetDelay.Visible = false;
+                    lblDoorTooltip.Text = "The source GameObject is used by the provided Unit target. This command has no additional parameters.";
+                    frmCommandDoor.Visible = true;
+                    break;
+                }
+                case 14: // Remove Aura
+                {
+                    uint spellId = selectedAction.Datalong;
+                    if (spellId > 0)
+                        btnRemoveAuraSpellId.Text = GameData.FindSpellName(spellId) + " (" + spellId.ToString() + ")";
+                    frmCommandRemoveAura.Visible = true;
                     break;
                 }
             }
@@ -1681,6 +1725,45 @@ namespace ScriptEditor
                     }
                 }
             }
+        }
+
+        private void txtDoorGuid_Leave(object sender, EventArgs e)
+        {
+            SetDatalongFromTextbox(txtDoorGuid);
+        }
+
+        private void txtDoorResetDelay_Leave(object sender, EventArgs e)
+        {
+            SetDatalong2FromTextbox(txtDoorResetDelay);
+        }
+        private void SetDatalongSpellIdFromButton(Button ctrl)
+        {
+            FormSpellFinder frm = new FormSpellFinder();
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                uint spellId = frm.ReturnValue;
+                if (spellId > 0)
+                    ctrl.Text = GameData.FindSpellName(spellId) + " (" + spellId.ToString() + ")";
+                else
+                    ctrl.Text = "-NONE-";
+
+                if (lstActions.SelectedItems.Count > 0)
+                {
+                    // Get the selected item in the listview.
+                    ListViewItem currentItem = lstActions.SelectedItems[0];
+
+                    // Get the associated ScriptAction.
+                    ScriptAction currentAction = (ScriptAction)currentItem.Tag;
+
+                    // CreatureId = datalong;
+                    currentAction.Datalong = spellId;
+                }
+
+            }
+        }
+        private void btnRemoveAuraSpellId_Click(object sender, EventArgs e)
+        {
+            SetDatalongSpellIdFromButton(btnRemoveAuraSpellId);
         }
     }
 

@@ -151,6 +151,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "FormQuestFinder";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "Quest Finder";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -68,6 +68,12 @@
     <Compile Include="FormQuestFinder.Designer.cs">
       <DependentUpon>FormQuestFinder.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSpellFinder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSpellFinder.Designer.cs">
+      <DependentUpon>FormSpellFinder.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormTextFinder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormQuestFinder.resx">
       <DependentUpon>FormQuestFinder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSpellFinder.resx">
+      <DependentUpon>FormSpellFinder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTextFinder.resx">
       <DependentUpon>FormTextFinder.cs</DependentUpon>

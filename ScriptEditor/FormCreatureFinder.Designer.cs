@@ -151,6 +151,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "FormCreatureFinder";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "Creature Finder";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -92,14 +92,7 @@ namespace ScriptEditor
                 lstBroadcastTexts.Columns[1].Width = 400; // to avoid horizontal scrollbar
                 foreach (BroadcastText bc in GameData.BroadcastTextsList)
                 {
-                    ListViewItem lvi = new ListViewItem();
-                    lvi.Text = bc.ID.ToString();
-                    lvi.SubItems.Add(bc.Text);
-                    lvi.SubItems.Add(chattypes[bc.ChatType]);
-                    lvi.SubItems.Add(languages[bc.Language]);
-
-                    // Add this broadcast text to the listview.
-                    lstBroadcastTexts.Items.Add(lvi);
+                    AddTextToListView(bc);
                 }
             }
             else if (UInt32.TryParse(txtSearch.Text, out textId))
@@ -108,17 +101,7 @@ namespace ScriptEditor
                 {
                     // If content is numeric search for id.
                     if (bc.ID == textId)
-                    {
-                        ListViewItem lvi = new ListViewItem();
-                        lvi.Text = bc.ID.ToString();
-                        lvi.SubItems.Add(bc.Text);
-                        lvi.SubItems.Add(chattypes[bc.ChatType]);
-                        lvi.SubItems.Add(languages[bc.Language]);
-
-                        // Add this broadcast text to the listview.
-                        lstBroadcastTexts.Items.Add(lvi);
-                        break;
-                    }
+                        AddTextToListView(bc);
                 }
                 lstBroadcastTexts.ListViewItemSorter = textComparer;
             }
@@ -128,23 +111,24 @@ namespace ScriptEditor
                 {
                     // If content is not numeric search for text.
                     if (bc.Text.Contains(txtSearch.Text))
-                    {
-                        ListViewItem lvi = new ListViewItem();
-                        lvi.Text = bc.ID.ToString();
-                        lvi.SubItems.Add(bc.Text);
-                        lvi.SubItems.Add(chattypes[bc.ChatType]);
-                        lvi.SubItems.Add(languages[bc.Language]);
-
-                        // Add this broadcast text to the listview.
-                        lstBroadcastTexts.Items.Add(lvi);
-                    }
+                        AddTextToListView(bc);
                 }
                 if (lstBroadcastTexts.Items.Count > 20)
                     lstBroadcastTexts.Columns[1].Width = 400; // to avoid horizontal scrollbar
                 lstBroadcastTexts.ListViewItemSorter = textComparer;
             }
         }
+        private void AddTextToListView(BroadcastText bc)
+        {
+            ListViewItem lvi = new ListViewItem();
+            lvi.Text = bc.ID.ToString();
+            lvi.SubItems.Add(bc.Text);
+            lvi.SubItems.Add(chattypes[bc.ChatType]);
+            lvi.SubItems.Add(languages[bc.Language]);
 
+            // Add this broadcast text to the listview.
+            lstBroadcastTexts.Items.Add(lvi);
+        }
         private void lstBroadcastTexts_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             if (lstBroadcastTexts.ListViewItemSorter == null)

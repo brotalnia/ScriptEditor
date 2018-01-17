@@ -57,20 +57,13 @@ namespace ScriptEditor
 
             uint creatureId;
 
-            if (txtSearch.Text == "") // display all texts
+            if (txtSearch.Text == "") // display all creatures
             {
                 lstCreatures.ListViewItemSorter = null; // disable sorter or it will take forever
                 lstCreatures.Columns[3].Width = 400; // to avoid horizontal scrollbar
                 foreach (CreatureInfo creature in GameData.CreatureInfoList)
                 {
-                    ListViewItem lvi = new ListViewItem();
-                    lvi.Text = creature.ID.ToString();
-                    lvi.SubItems.Add(creature.MinLevel.ToString() + " - " + creature.MaxLevel.ToString());
-                    lvi.SubItems.Add(GameData.CreatureRanksList[(int)creature.Rank].Text);
-                    lvi.SubItems.Add(creature.Name);
-                    
-                    // Add this quest to the listview.
-                    lstCreatures.Items.Add(lvi);
+                    AddCreatureToListView(creature);
                 }
             }
             else if (UInt32.TryParse(txtSearch.Text, out creatureId))
@@ -79,17 +72,7 @@ namespace ScriptEditor
                 {
                     // If content is numeric search for id.
                     if (creature.ID == creatureId)
-                    {
-                        ListViewItem lvi = new ListViewItem();
-                        lvi.Text = creature.ID.ToString();
-                        lvi.SubItems.Add(creature.MinLevel.ToString() + " - " + creature.MaxLevel.ToString());
-                        lvi.SubItems.Add(GameData.CreatureRanksList[(int)creature.Rank].Text);
-                        lvi.SubItems.Add(creature.Name);
-
-                        // Add this quest to the listview.
-                        lstCreatures.Items.Add(lvi);
-                        break;
-                    }
+                        AddCreatureToListView(creature);
                 }
                 lstCreatures.ListViewItemSorter = listSorter;
             }
@@ -99,23 +82,24 @@ namespace ScriptEditor
                 {
                     // If content is not numeric search for title text.
                     if (creature.Name.Contains(txtSearch.Text))
-                    {
-                        ListViewItem lvi = new ListViewItem();
-                        lvi.Text = creature.ID.ToString();
-                        lvi.SubItems.Add(creature.MinLevel.ToString() + " - " + creature.MaxLevel.ToString());
-                        lvi.SubItems.Add(GameData.CreatureRanksList[(int)creature.Rank].Text);
-                        lvi.SubItems.Add(creature.Name);
-
-                        // Add this quest to the listview.
-                        lstCreatures.Items.Add(lvi);
-                    }
+                        AddCreatureToListView(creature);
                 }
                 if (lstCreatures.Items.Count > 20)
                     lstCreatures.Columns[3].Width = 400; // to avoid horizontal scrollbar
                 lstCreatures.ListViewItemSorter = listSorter;
             }
         }
+        private void AddCreatureToListView(CreatureInfo creature)
+        {
+            ListViewItem lvi = new ListViewItem();
+            lvi.Text = creature.ID.ToString();
+            lvi.SubItems.Add(creature.MinLevel.ToString() + " - " + creature.MaxLevel.ToString());
+            lvi.SubItems.Add(GameData.CreatureRanksList[(int)creature.Rank].Text);
+            lvi.SubItems.Add(creature.Name);
 
+            // Add this quest to the listview.
+            lstCreatures.Items.Add(lvi);
+        }
         private void lstCreatures_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             if (lstCreatures.ListViewItemSorter == null)

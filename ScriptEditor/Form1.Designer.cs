@@ -172,6 +172,16 @@
             this.chkSummonCreatureFlags16 = new System.Windows.Forms.CheckBox();
             this.btnSummonCreatureId = new System.Windows.Forms.Button();
             this.lblSummonCreatureTooltip = new System.Windows.Forms.Label();
+            this.frmCommandDoor = new System.Windows.Forms.Panel();
+            this.lblDoorResetDelay = new System.Windows.Forms.Label();
+            this.lblDoorGuid = new System.Windows.Forms.Label();
+            this.txtDoorResetDelay = new System.Windows.Forms.TextBox();
+            this.txtDoorGuid = new System.Windows.Forms.TextBox();
+            this.lblDoorTooltip = new System.Windows.Forms.Label();
+            this.frmCommandRemoveAura = new System.Windows.Forms.Panel();
+            this.btnRemoveAuraSpellId = new System.Windows.Forms.Button();
+            this.lblRemoveAuraSpellId = new System.Windows.Forms.Label();
+            this.lblRemoveAuraTooltip = new System.Windows.Forms.Label();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -187,6 +197,8 @@
             this.frmCommandRespawnGameobject.SuspendLayout();
             this.frmCommandSummonCreature.SuspendLayout();
             this.grpSummonCreatureFlags.SuspendLayout();
+            this.frmCommandDoor.SuspendLayout();
+            this.frmCommandRemoveAura.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstActions
@@ -1655,11 +1667,112 @@
             this.lblSummonCreatureTooltip.Text = "Temporarily summons a creature at the given coordinates. It despawns after the sp" +
     "ecified delay.";
             // 
+            // frmCommandDoor
+            // 
+            this.frmCommandDoor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandDoor.Controls.Add(this.lblDoorResetDelay);
+            this.frmCommandDoor.Controls.Add(this.lblDoorGuid);
+            this.frmCommandDoor.Controls.Add(this.txtDoorResetDelay);
+            this.frmCommandDoor.Controls.Add(this.txtDoorGuid);
+            this.frmCommandDoor.Controls.Add(this.lblDoorTooltip);
+            this.frmCommandDoor.Location = new System.Drawing.Point(409, 239);
+            this.frmCommandDoor.Name = "frmCommandDoor";
+            this.frmCommandDoor.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandDoor.TabIndex = 19;
+            this.frmCommandDoor.Visible = false;
+            // 
+            // lblDoorResetDelay
+            // 
+            this.lblDoorResetDelay.AutoSize = true;
+            this.lblDoorResetDelay.Location = new System.Drawing.Point(32, 96);
+            this.lblDoorResetDelay.Name = "lblDoorResetDelay";
+            this.lblDoorResetDelay.Size = new System.Drawing.Size(68, 13);
+            this.lblDoorResetDelay.TabIndex = 4;
+            this.lblDoorResetDelay.Text = "Reset Delay:";
+            // 
+            // lblDoorGuid
+            // 
+            this.lblDoorGuid.AutoSize = true;
+            this.lblDoorGuid.Location = new System.Drawing.Point(37, 67);
+            this.lblDoorGuid.Name = "lblDoorGuid";
+            this.lblDoorGuid.Size = new System.Drawing.Size(63, 13);
+            this.lblDoorGuid.TabIndex = 3;
+            this.lblDoorGuid.Text = "Door GUID:";
+            // 
+            // txtDoorResetDelay
+            // 
+            this.txtDoorResetDelay.Location = new System.Drawing.Point(101, 93);
+            this.txtDoorResetDelay.Name = "txtDoorResetDelay";
+            this.txtDoorResetDelay.Size = new System.Drawing.Size(121, 20);
+            this.txtDoorResetDelay.TabIndex = 2;
+            this.txtDoorResetDelay.Leave += new System.EventHandler(this.txtDoorResetDelay_Leave);
+            // 
+            // txtDoorGuid
+            // 
+            this.txtDoorGuid.Location = new System.Drawing.Point(101, 64);
+            this.txtDoorGuid.Name = "txtDoorGuid";
+            this.txtDoorGuid.Size = new System.Drawing.Size(121, 20);
+            this.txtDoorGuid.TabIndex = 1;
+            this.txtDoorGuid.Leave += new System.EventHandler(this.txtDoorGuid_Leave);
+            // 
+            // lblDoorTooltip
+            // 
+            this.lblDoorTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblDoorTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblDoorTooltip.Name = "lblDoorTooltip";
+            this.lblDoorTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblDoorTooltip.TabIndex = 0;
+            this.lblDoorTooltip.Text = "Opens the specified door GameObject, then resets it back to its original state af" +
+    "ter the delay expires. If the provided target is a button, it gets toggled as we" +
+    "ll.";
+            // 
+            // frmCommandRemoveAura
+            // 
+            this.frmCommandRemoveAura.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandRemoveAura.Controls.Add(this.btnRemoveAuraSpellId);
+            this.frmCommandRemoveAura.Controls.Add(this.lblRemoveAuraSpellId);
+            this.frmCommandRemoveAura.Controls.Add(this.lblRemoveAuraTooltip);
+            this.frmCommandRemoveAura.Location = new System.Drawing.Point(409, 239);
+            this.frmCommandRemoveAura.Name = "frmCommandRemoveAura";
+            this.frmCommandRemoveAura.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandRemoveAura.TabIndex = 20;
+            this.frmCommandRemoveAura.Visible = false;
+            // 
+            // btnRemoveAuraSpellId
+            // 
+            this.btnRemoveAuraSpellId.Location = new System.Drawing.Point(69, 57);
+            this.btnRemoveAuraSpellId.Name = "btnRemoveAuraSpellId";
+            this.btnRemoveAuraSpellId.Size = new System.Drawing.Size(404, 23);
+            this.btnRemoveAuraSpellId.TabIndex = 2;
+            this.btnRemoveAuraSpellId.Text = "-NONE-";
+            this.btnRemoveAuraSpellId.UseVisualStyleBackColor = true;
+            this.btnRemoveAuraSpellId.Click += new System.EventHandler(this.btnRemoveAuraSpellId_Click);
+            // 
+            // lblRemoveAuraSpellId
+            // 
+            this.lblRemoveAuraSpellId.AutoSize = true;
+            this.lblRemoveAuraSpellId.Location = new System.Drawing.Point(23, 61);
+            this.lblRemoveAuraSpellId.Name = "lblRemoveAuraSpellId";
+            this.lblRemoveAuraSpellId.Size = new System.Drawing.Size(45, 13);
+            this.lblRemoveAuraSpellId.TabIndex = 1;
+            this.lblRemoveAuraSpellId.Text = "Spell Id:";
+            // 
+            // lblRemoveAuraTooltip
+            // 
+            this.lblRemoveAuraTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblRemoveAuraTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblRemoveAuraTooltip.Name = "lblRemoveAuraTooltip";
+            this.lblRemoveAuraTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblRemoveAuraTooltip.TabIndex = 0;
+            this.lblRemoveAuraTooltip.Text = "Removes any auras from the source Unit caused by the specified spell.";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(926, 610);
+            this.Controls.Add(this.frmCommandRemoveAura);
+            this.Controls.Add(this.frmCommandDoor);
             this.Controls.Add(this.frmCommandSummonCreature);
             this.Controls.Add(this.frmCommandRespawnGameobject);
             this.Controls.Add(this.frmCommandKillCredit);
@@ -1715,6 +1828,10 @@
             this.frmCommandSummonCreature.PerformLayout();
             this.grpSummonCreatureFlags.ResumeLayout(false);
             this.grpSummonCreatureFlags.PerformLayout();
+            this.frmCommandDoor.ResumeLayout(false);
+            this.frmCommandDoor.PerformLayout();
+            this.frmCommandRemoveAura.ResumeLayout(false);
+            this.frmCommandRemoveAura.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1865,6 +1982,16 @@
         private System.Windows.Forms.Label lblSummonCreatureX;
         private System.Windows.Forms.TextBox txtSummonCreatureO;
         private System.Windows.Forms.TextBox txtSummonCreatureZ;
+        private System.Windows.Forms.Panel frmCommandDoor;
+        private System.Windows.Forms.Label lblDoorResetDelay;
+        private System.Windows.Forms.Label lblDoorGuid;
+        private System.Windows.Forms.TextBox txtDoorResetDelay;
+        private System.Windows.Forms.TextBox txtDoorGuid;
+        private System.Windows.Forms.Label lblDoorTooltip;
+        private System.Windows.Forms.Panel frmCommandRemoveAura;
+        private System.Windows.Forms.Button btnRemoveAuraSpellId;
+        private System.Windows.Forms.Label lblRemoveAuraSpellId;
+        private System.Windows.Forms.Label lblRemoveAuraTooltip;
     }
 }
 
