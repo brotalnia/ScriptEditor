@@ -3,90 +3,38 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace ScriptEditor
 {
-    public partial class FormCreatureFinder : Form
+    public partial class FormCreatureFinder : ScriptEditor.FormDataFinder
     {
-        public uint ReturnValue { get; set; } // we return the chosen id in this
-
-        System.Collections.IComparer listSorter;
-
         public FormCreatureFinder()
         {
             InitializeComponent();
-
-            // Create a sorter.
-            listSorter = new MixedListSorter();
         }
-
-        private void btnCancel_Click(object sender, EventArgs e)
+        protected override void AddAllData()
         {
-            ReturnValue = 0;
-            DialogResult = DialogResult.Cancel;
-            Close();
-        }
-
-        private void btnSelect_Click(object sender, EventArgs e)
-        {
-            if (lstCreatures.SelectedItems.Count > 0)
+            foreach (CreatureInfo creature in GameData.CreatureInfoList)
             {
-                ListViewItem selectedQuest = lstCreatures.SelectedItems[0];
-                uint creatureId;
-                UInt32.TryParse(selectedQuest.Text, out creatureId);
-                ReturnValue = creatureId;
-                DialogResult = DialogResult.OK;
-                Close();
+                AddCreatureToListView(creature);
             }
         }
-
-        private void btnSelectNone_Click(object sender, EventArgs e)
+        protected override void AddById(uint id)
         {
-            ReturnValue = 0;
-            DialogResult = DialogResult.OK;
-            Close();
-        }
-
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            lstCreatures.Items.Clear();
-
-            uint creatureId;
-
-            if (txtSearch.Text == "") // display all creatures
+            foreach (CreatureInfo creature in GameData.CreatureInfoList)
             {
-                lstCreatures.ListViewItemSorter = null; // disable sorter or it will take forever
-                lstCreatures.Columns[3].Width = 400; // to avoid horizontal scrollbar
-                foreach (CreatureInfo creature in GameData.CreatureInfoList)
-                {
+                if (creature.ID == id)
                     AddCreatureToListView(creature);
-                }
             }
-            else if (UInt32.TryParse(txtSearch.Text, out creatureId))
+        }
+        protected override void AddByText(string searchText)
+        {
+            foreach (CreatureInfo creature in GameData.CreatureInfoList)
             {
-                foreach (CreatureInfo creature in GameData.CreatureInfoList)
-                {
-                    // If content is numeric search for id.
-                    if (creature.ID == creatureId)
-                        AddCreatureToListView(creature);
-                }
-                lstCreatures.ListViewItemSorter = listSorter;
-            }
-            else
-            {
-                foreach (CreatureInfo creature in GameData.CreatureInfoList)
-                {
-                    // If content is not numeric search for title text.
-                    if (creature.Name.Contains(txtSearch.Text))
-                        AddCreatureToListView(creature);
-                }
-                if (lstCreatures.Items.Count > 20)
-                    lstCreatures.Columns[3].Width = 400; // to avoid horizontal scrollbar
-                lstCreatures.ListViewItemSorter = listSorter;
+                if (creature.Name.Contains(searchText))
+                    AddCreatureToListView(creature);
             }
         }
         private void AddCreatureToListView(CreatureInfo creature)
@@ -98,22 +46,12 @@ namespace ScriptEditor
             lvi.SubItems.Add(creature.Name);
 
             // Add this quest to the listview.
-            lstCreatures.Items.Add(lvi);
+            lstData.Items.Add(lvi);
         }
-        private void lstCreatures_ColumnClick(object sender, ColumnClickEventArgs e)
+
+        private void FormCreatureFinder_ResizeEnd(object sender, EventArgs e)
         {
-            if (lstCreatures.ListViewItemSorter == null)
-                return;
-
-            // Sort the texts when column is clicked.
-            MixedListSorter s = (MixedListSorter)lstCreatures.ListViewItemSorter;
-            s.Column = e.Column;
-
-            if (s.Order == System.Windows.Forms.SortOrder.Ascending)
-                s.Order = System.Windows.Forms.SortOrder.Descending;
-            else
-                s.Order = System.Windows.Forms.SortOrder.Ascending;
-            lstCreatures.Sort();
+            lstData.Columns[3].Width = lstData.ClientSize.Width - lstData.Columns[0].Width - lstData.Columns[1].Width - lstData.Columns[2].Width;
         }
     }
 }

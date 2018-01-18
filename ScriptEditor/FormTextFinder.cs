@@ -3,29 +3,20 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace ScriptEditor
 {
-    public partial class FormTextFinder : Form
+    public partial class FormTextFinder : ScriptEditor.FormDataFinder
     {
-        public uint ReturnValue { get; set; } // we return the chosen id in this
-
         public string[] languages;
         public string[] chattypes;
-        System.Collections.IComparer textComparer;
-
         public FormTextFinder()
         {
             InitializeComponent();
 
-            // Create a sorter.
-            textComparer = new MixedListSorter();
-
-            // Handling language names this way so i don't have to make a switch case.
+            // Language Names
             languages = new string[34];
             languages[0] = "Universal";
             languages[1] = "Orcish";
@@ -42,7 +33,7 @@ namespace ScriptEditor
             languages[14] = "Troll";
             languages[33] = "Gutterspeak";
 
-            // Same for chat type.
+            // Chat Type Names
             chattypes = new string[7];
             chattypes[0] = "Say";
             chattypes[1] = "Yell";
@@ -52,70 +43,28 @@ namespace ScriptEditor
             chattypes[5] = "Boss Whisper";
             chattypes[6] = "Zone Yell";
         }
-
-        private void btnCancel_Click(object sender, EventArgs e)
+        protected override void AddAllData()
         {
-            ReturnValue = 0;
-            DialogResult = DialogResult.Cancel;
-            Close();
-        }
-
-        private void btnSelect_Click(object sender, EventArgs e)
-        {
-            if (lstBroadcastTexts.SelectedItems.Count > 0)
+            foreach (BroadcastText bc in GameData.BroadcastTextsList)
             {
-                ListViewItem selectedText = lstBroadcastTexts.SelectedItems[0];
-                uint textId;
-                UInt32.TryParse(selectedText.Text, out textId);
-                ReturnValue = textId;
-                DialogResult = DialogResult.OK;
-                Close();
+                AddTextToListView(bc);
             }
         }
-
-        private void btnSelectNone_Click(object sender, EventArgs e)
+        protected override void AddById(uint id)
         {
-            ReturnValue = 0;
-            DialogResult = DialogResult.OK;
-            Close();
-        }
-
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            lstBroadcastTexts.Items.Clear();
-
-            uint textId;
-
-            if (txtSearch.Text == "") // display all texts
+            foreach (BroadcastText bc in GameData.BroadcastTextsList)
             {
-                lstBroadcastTexts.ListViewItemSorter = null; // disable sorter or it will take forever
-                lstBroadcastTexts.Columns[1].Width = 400; // to avoid horizontal scrollbar
-                foreach (BroadcastText bc in GameData.BroadcastTextsList)
-                {
+                if (bc.ID == id)
                     AddTextToListView(bc);
-                }
             }
-            else if (UInt32.TryParse(txtSearch.Text, out textId))
+        }
+        protected override void AddByText(string searchText)
+        {
+            foreach (BroadcastText bc in GameData.BroadcastTextsList)
             {
-                foreach (BroadcastText bc in GameData.BroadcastTextsList)
-                {
-                    // If content is numeric search for id.
-                    if (bc.ID == textId)
-                        AddTextToListView(bc);
-                }
-                lstBroadcastTexts.ListViewItemSorter = textComparer;
-            }
-            else
-            {
-                foreach (BroadcastText bc in GameData.BroadcastTextsList)
-                {
-                    // If content is not numeric search for text.
-                    if (bc.Text.Contains(txtSearch.Text))
-                        AddTextToListView(bc);
-                }
-                if (lstBroadcastTexts.Items.Count > 20)
-                    lstBroadcastTexts.Columns[1].Width = 400; // to avoid horizontal scrollbar
-                lstBroadcastTexts.ListViewItemSorter = textComparer;
+                // If content is not numeric search for text.
+                if (bc.Text.Contains(searchText))
+                    AddTextToListView(bc);
             }
         }
         private void AddTextToListView(BroadcastText bc)
@@ -127,22 +76,12 @@ namespace ScriptEditor
             lvi.SubItems.Add(languages[bc.Language]);
 
             // Add this broadcast text to the listview.
-            lstBroadcastTexts.Items.Add(lvi);
+            lstData.Items.Add(lvi);
         }
-        private void lstBroadcastTexts_ColumnClick(object sender, ColumnClickEventArgs e)
+
+        private void FormTextFinder_ResizeEnd(object sender, EventArgs e)
         {
-            if (lstBroadcastTexts.ListViewItemSorter == null)
-                return;
-
-            // Sort the texts when column is clicked.
-            MixedListSorter s = (MixedListSorter)lstBroadcastTexts.ListViewItemSorter;
-            s.Column = e.Column;
-
-            if (s.Order == System.Windows.Forms.SortOrder.Ascending)
-                s.Order = System.Windows.Forms.SortOrder.Descending;
-            else
-                s.Order = System.Windows.Forms.SortOrder.Ascending;
-            lstBroadcastTexts.Sort();
+            lstData.Columns[1].Width = lstData.ClientSize.Width - lstData.Columns[0].Width - lstData.Columns[2].Width - lstData.Columns[3].Width;
         }
     }
 }

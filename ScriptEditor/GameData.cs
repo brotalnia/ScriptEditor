@@ -178,7 +178,7 @@ namespace ScriptEditor
         }
         public static void LoadSpells(string connString)
         {
-            CreatureInfoList.Clear();
+            SpellInfoList.Clear();
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();

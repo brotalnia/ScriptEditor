@@ -3,26 +3,17 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace ScriptEditor
 {
-    public partial class FormSpellFinder : Form
+    public partial class FormSpellFinder : ScriptEditor.FormDataFinder
     {
-        public uint ReturnValue { get; set; } // we return the chosen id in this
-
         public string[] effects;
-        System.Collections.IComparer textComparer;
-
         public FormSpellFinder()
         {
             InitializeComponent();
-
-            // Create a sorter.
-            textComparer = new MixedListSorter();
 
             // Effect Names
             effects = new string[130];
@@ -157,67 +148,28 @@ namespace ScriptEditor
             effects[128] = "APPLY_AREA_AURA_FRIEND";
             effects[129] = "APPLY_AREA_AURA_ENEMY";
         }
-
-        private void btnCancel_Click(object sender, EventArgs e)
+        protected override void AddAllData()
         {
-            ReturnValue = 0;
-            DialogResult = DialogResult.Cancel;
-            Close();
-        }
-
-        private void btnSelect_Click(object sender, EventArgs e)
-        {
-            if (lstSpells.SelectedItems.Count > 0)
+            foreach (SpellInfo spell in GameData.SpellInfoList)
             {
-                ListViewItem selectedText = lstSpells.SelectedItems[0];
-                uint textId;
-                UInt32.TryParse(selectedText.Text, out textId);
-                ReturnValue = textId;
-                DialogResult = DialogResult.OK;
-                Close();
+                AddSpellToListView(spell);
             }
         }
-
-        private void btnSelectNone_Click(object sender, EventArgs e)
+        protected override void AddById(uint id)
         {
-            ReturnValue = 0;
-            DialogResult = DialogResult.OK;
-            Close();
-        }
-
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            lstSpells.Items.Clear();
-
-            uint spellId;
-
-            if (txtSearch.Text == "") // display all spells
+            foreach (SpellInfo spell in GameData.SpellInfoList)
             {
-                lstSpells.ListViewItemSorter = null; // disable sorter or it will take forever
-                foreach (SpellInfo spell in GameData.SpellInfoList)
-                {
+                if (spell.ID == id)
                     AddSpellToListView(spell);
-                }
             }
-            else if (UInt32.TryParse(txtSearch.Text, out spellId))
+        }
+        protected override void AddByText(string searchText)
+        {
+            foreach (SpellInfo spell in GameData.SpellInfoList)
             {
-                foreach (SpellInfo spell in GameData.SpellInfoList)
-                {
-                    // If content is numeric search for id.
-                    if (spell.ID == spellId)
-                        AddSpellToListView(spell);
-                }
-                lstSpells.ListViewItemSorter = textComparer;
-            }
-            else
-            {
-                foreach (SpellInfo spell in GameData.SpellInfoList)
-                {
-                    // If content is not numeric search for text.
-                    if (spell.Name.Contains(txtSearch.Text) || spell.Description.Contains(txtSearch.Text))
-                        AddSpellToListView(spell);
-                }
-                lstSpells.ListViewItemSorter = textComparer;
+                // If content is not numeric search for text.
+                if (spell.Name.Contains(searchText) || spell.Description.Contains(searchText))
+                    AddSpellToListView(spell);
             }
         }
         private void AddSpellToListView(SpellInfo spell)
@@ -231,22 +183,11 @@ namespace ScriptEditor
             lvi.SubItems.Add(spell.Description);
 
             // Add this spell to the listview.
-            lstSpells.Items.Add(lvi);
+            lstData.Items.Add(lvi);
         }
-        private void lstBroadcastTexts_ColumnClick(object sender, ColumnClickEventArgs e)
+        private void FormSpellFinder_ResizeEnd(object sender, EventArgs e)
         {
-            if (lstSpells.ListViewItemSorter == null)
-                return;
-
-            // Sort the texts when column is clicked.
-            MixedListSorter s = (MixedListSorter)lstSpells.ListViewItemSorter;
-            s.Column = e.Column;
-
-            if (s.Order == System.Windows.Forms.SortOrder.Ascending)
-                s.Order = System.Windows.Forms.SortOrder.Descending;
-            else
-                s.Order = System.Windows.Forms.SortOrder.Ascending;
-            lstSpells.Sort();
+            lstData.Columns[5].Width = lstData.ClientSize.Width - lstData.Columns[0].Width - lstData.Columns[1].Width - lstData.Columns[2].Width - lstData.Columns[3].Width - lstData.Columns[4].Width;
         }
     }
 }

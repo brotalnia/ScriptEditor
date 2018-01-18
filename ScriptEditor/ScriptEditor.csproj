@@ -62,6 +62,12 @@
     <Compile Include="FormCreatureFinder.Designer.cs">
       <DependentUpon>FormCreatureFinder.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormDataFinder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDataFinder.Designer.cs">
+      <DependentUpon>FormDataFinder.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormQuestFinder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCreatureFinder.resx">
       <DependentUpon>FormCreatureFinder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDataFinder.resx">
+      <DependentUpon>FormDataFinder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormQuestFinder.resx">
       <DependentUpon>FormQuestFinder.cs</DependentUpon>

@@ -3,90 +3,39 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace ScriptEditor
 {
-    public partial class FormQuestFinder : Form
+    public partial class FormQuestFinder : ScriptEditor.FormDataFinder
     {
-        public uint ReturnValue { get; set; } // we return the chosen id in this
-
-        System.Collections.IComparer textComparer;
-
         public FormQuestFinder()
         {
             InitializeComponent();
-
-            // Create a sorter.
-            textComparer = new MixedListSorter();
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        protected override void AddAllData()
         {
-            ReturnValue = 0;
-            DialogResult = DialogResult.Cancel;
-            Close();
-        }
-
-        private void btnSelect_Click(object sender, EventArgs e)
-        {
-            if (lstQuests.SelectedItems.Count > 0)
+            foreach (QuestInfo quest in GameData.QuestInfoList)
             {
-                ListViewItem selectedQuest = lstQuests.SelectedItems[0];
-                uint questId;
-                UInt32.TryParse(selectedQuest.Text, out questId);
-                ReturnValue = questId;
-                DialogResult = DialogResult.OK;
-                Close();
+                AddQuestToListView(quest);
             }
         }
-
-        private void btnSelectNone_Click(object sender, EventArgs e)
+        protected override void AddById(uint id)
         {
-            ReturnValue = 0;
-            DialogResult = DialogResult.OK;
-            Close();
-        }
-
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            lstQuests.Items.Clear();
-
-            uint questId;
-
-            if (txtSearch.Text == "") // display all quests
+            foreach (QuestInfo quest in GameData.QuestInfoList)
             {
-                lstQuests.ListViewItemSorter = null; // disable sorter or it will take forever
-                lstQuests.Columns[3].Width = 400; // to avoid horizontal scrollbar
-                foreach (QuestInfo quest in GameData.QuestInfoList)
-                {
+                if (quest.ID == id)
                     AddQuestToListView(quest);
-                }
             }
-            else if (UInt32.TryParse(txtSearch.Text, out questId))
+        }
+        protected override void AddByText(string searchText)
+        {
+            foreach (QuestInfo quest in GameData.QuestInfoList)
             {
-                foreach (QuestInfo quest in GameData.QuestInfoList)
-                {
-                    // If content is numeric search for id.
-                    if (quest.ID == questId)
-                        AddQuestToListView(quest);
-                }
-                lstQuests.ListViewItemSorter = textComparer;
-            }
-            else
-            {
-                foreach (QuestInfo quest in GameData.QuestInfoList)
-                {
-                    // If content is not numeric search for title text.
-                    if (quest.Title.Contains(txtSearch.Text))
-                        AddQuestToListView(quest);
-                }
-                if (lstQuests.Items.Count > 20)
-                    lstQuests.Columns[3].Width = 400; // to avoid horizontal scrollbar
-                lstQuests.ListViewItemSorter = textComparer;
+                if (quest.Title.Contains(searchText))
+                    AddQuestToListView(quest);
             }
         }
         private void AddQuestToListView(QuestInfo quest)
@@ -98,22 +47,12 @@ namespace ScriptEditor
             lvi.SubItems.Add(quest.Title);
 
             // Add this quest to the listview.
-            lstQuests.Items.Add(lvi);
+            lstData.Items.Add(lvi);
         }
-        private void lstQuests_ColumnClick(object sender, ColumnClickEventArgs e)
+
+        private void FormQuestFinder_ResizeEnd(object sender, EventArgs e)
         {
-            if (lstQuests.ListViewItemSorter == null)
-                return;
-
-            // Sort the texts when column is clicked.
-            MixedListSorter s = (MixedListSorter)lstQuests.ListViewItemSorter;
-            s.Column = e.Column;
-
-            if (s.Order == System.Windows.Forms.SortOrder.Ascending)
-                s.Order = System.Windows.Forms.SortOrder.Descending;
-            else
-                s.Order = System.Windows.Forms.SortOrder.Ascending;
-            lstQuests.Sort();
+            lstData.Columns[3].Width = lstData.ClientSize.Width - lstData.Columns[0].Width - lstData.Columns[1].Width - lstData.Columns[2].Width;
         }
     }
 }

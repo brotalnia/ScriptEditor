@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
-
+using System.Reflection;
 
 namespace ScriptEditor
 {
@@ -27,6 +27,9 @@ namespace ScriptEditor
 
         // Used to prevent control events triggering when reseting data.
         bool dontUpdate = false;
+
+        // Used to get the name of quests, creatures, etc.
+        public delegate string NameFinder(uint id);
 
         public Form1()
         {
@@ -673,182 +676,6 @@ namespace ScriptEditor
 
             dontUpdate = false;
         }
-
-        private void btnTalkText1_Click(object sender, EventArgs e)
-        {
-            FormTextFinder frm = new FormTextFinder();
-            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                uint textId = frm.ReturnValue;
-                if (textId > 0)
-                    btnTalkText1.Text = textId.ToString();
-                else
-                {
-                    btnTalkText1.Text = "-NONE-";
-                    txtTalkText1.Text = "";
-                }
-
-                if (lstActions.SelectedItems.Count > 0)
-                {
-                    // Get the selected item in the listview.
-                    ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                    // Get the associated ScriptAction.
-                    ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                    // TextId1 = dataint;
-                    currentAction.Dataint = (int)textId;
-                    txtTalkText1.Text = GameData.FindTextWithId(textId);
-                }
-
-            }
-
-        }
-
-        private void btnTalkText2_Click(object sender, EventArgs e)
-        {
-            FormTextFinder frm = new FormTextFinder();
-            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                uint textId = frm.ReturnValue;
-                if (textId > 0)
-                    btnTalkText2.Text = textId.ToString();
-                else
-                {
-                    btnTalkText2.Text = "-NONE-";
-                    txtTalkText2.Text = "";
-                }
-
-                if (lstActions.SelectedItems.Count > 0)
-                {
-                    // Get the selected item in the listview.
-                    ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                    // Get the associated ScriptAction.
-                    ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                    // TextId2 = dataint2;
-                    currentAction.Dataint2 = (int)textId;
-                    txtTalkText2.Text = GameData.FindTextWithId(textId);
-                }
-
-            }
-        }
-
-        private void btnTalkText3_Click(object sender, EventArgs e)
-        {
-            FormTextFinder frm = new FormTextFinder();
-            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                uint textId = frm.ReturnValue;
-                if (textId > 0)
-                    btnTalkText3.Text = textId.ToString();
-                else
-                {
-                    btnTalkText3.Text = "-NONE-";
-                    txtTalkText3.Text = "";
-                }
-
-                if (lstActions.SelectedItems.Count > 0)
-                {
-                    // Get the selected item in the listview.
-                    ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                    // Get the associated ScriptAction.
-                    ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                    // TextId3 = dataint3;
-                    currentAction.Dataint3 = (int)textId;
-                    txtTalkText3.Text = GameData.FindTextWithId(textId);
-                }
-
-            }
-        }
-
-        private void btnTalkText4_Click(object sender, EventArgs e)
-        {
-            FormTextFinder frm = new FormTextFinder();
-            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                uint textId = frm.ReturnValue;
-                if (textId > 0)
-                    btnTalkText4.Text = textId.ToString();
-                else
-                {
-                    btnTalkText4.Text = "-NONE-";
-                    txtTalkText4.Text = "";
-                }
-
-                if (lstActions.SelectedItems.Count > 0)
-                {
-                    // Get the selected item in the listview.
-                    ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                    // Get the associated ScriptAction.
-                    ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                    // TextId4 = dataint4;
-                    currentAction.Dataint4 = (int)textId;
-                    txtTalkText4.Text = GameData.FindTextWithId(textId);
-                }
-
-            }
-        }
-
-        private void cmbTalkChatType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (dontUpdate)
-                return;
-
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                // ChatType = datalong
-                currentAction.Datalong = (uint)cmbTalkChatType.SelectedIndex;
-            }
-        }
-
-        private void txtCommandComment_Leave(object sender, EventArgs e)
-        {
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                // Updating comment.
-                currentAction.Comments = txtCommandComment.Text;
-
-                // Update comment in listview.
-                currentItem.SubItems[2].Text = txtCommandComment.Text;
-            }
-        }
-
-        private void cmbBuddyType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (dontUpdate)
-                return;
-
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                // Updating buddy type.
-                currentAction.BuddyType = (uint)cmbBuddyType.SelectedIndex;
-            }
-        }
-
         private void cmbCommandId_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (dontUpdate)
@@ -885,7 +712,168 @@ namespace ScriptEditor
                 currentItem.SubItems[1].Text = cmbCommandId.SelectedIndex.ToString();
             }
         }
+        // Generic function for setting field value from a textbox.
+        private void SetScriptFieldFromTextbox(TextBox ctrl, string fieldname)
+        {
+            if (lstActions.SelectedItems.Count > 0)
+            {
+                // Get the selected item in the listview.
+                ListViewItem currentItem = lstActions.SelectedItems[0];
 
+                // Get the associated ScriptAction.
+                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
+
+                // Get the value from the textbox.
+                float fieldValue;
+                float.TryParse(ctrl.Text, out fieldValue);
+
+                // Get the field we need to change.
+                FieldInfo prop = typeof(ScriptAction).GetField(fieldname, BindingFlags.Instance | BindingFlags.Public);
+
+                // Updating the value in the field.
+                prop.SetValue(currentAction, Convert.ChangeType(fieldValue, prop.FieldType));
+            }
+        }
+        // Generic function for setting field value from a checkbox.
+        private void SetScriptFieldFromCombobox(ComboBox cmbbox, string fieldname, bool usePairValue)
+        {
+            if (dontUpdate)
+                return;
+
+            if (lstActions.SelectedItems.Count > 0)
+            {
+                // Get the selected item in the listview.
+                ListViewItem currentItem = lstActions.SelectedItems[0];
+
+                // Get the associated ScriptAction.
+                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
+
+                // Get the field we need to change.
+                FieldInfo prop = typeof(ScriptAction).GetField(fieldname, BindingFlags.Instance | BindingFlags.Public);
+
+                // We can use either selected index or the pair value.
+                int selectedValue = usePairValue ? (cmbbox.SelectedItem as ComboboxPair).Value : cmbbox.SelectedIndex;
+
+                // Updating the value in the field.
+                prop.SetValue(currentAction, Convert.ChangeType(selectedValue, prop.FieldType));
+            }
+        }
+        // Generic function for updating flags based on checkbox.
+        private void SetScriptFlagsFromCheckbox(CheckBox chkbox, string fieldname, uint value)
+        {
+            if (dontUpdate)
+                return;
+
+            if (lstActions.SelectedItems.Count > 0)
+            {
+                // Get the selected item in the listview.
+                ListViewItem currentItem = lstActions.SelectedItems[0];
+
+                // Get the associated ScriptAction.
+                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
+
+                // Get the field we need to change.
+                FieldInfo prop = typeof(ScriptAction).GetField(fieldname, BindingFlags.Instance | BindingFlags.Public);
+
+                // Get the old value in this field.
+                uint currentValue = (uint)prop.GetValue(currentAction);
+
+                if (chkbox.Checked)
+                    currentValue += value;
+                else
+                    currentValue -= value;
+
+                prop.SetValue(currentAction, Convert.ChangeType(currentValue, prop.FieldType));
+            }
+        }
+        // Generic function for setting a value from another form.
+        private void SetScriptFieldFromDataFinderForm<TFinderForm>(Button btn, TextBox txtbox, NameFinder finder, string fieldname) where TFinderForm : FormDataFinder, new()
+        {
+            FormDataFinder frm = new TFinderForm();
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                uint returnId = frm.ReturnValue;
+
+                if (returnId > 0)
+                {
+                    // If there is no textbox provided the text is shown on the button.
+                    if (txtbox == null)
+                        btn.Text = finder(returnId) + " (" + returnId.ToString() + ")";
+                    else
+                    {
+                        btn.Text = returnId.ToString();
+                        txtbox.Text = finder(returnId);
+                    }
+                }
+                else
+                {
+                    btn.Text = "-NONE-";
+                    if (txtbox != null)
+                        txtbox.Text = "";
+                }
+
+                if (lstActions.SelectedItems.Count > 0)
+                {
+                    // Get the selected item in the listview.
+                    ListViewItem currentItem = lstActions.SelectedItems[0];
+
+                    // Get the associated ScriptAction.
+                    ScriptAction currentAction = (ScriptAction)currentItem.Tag;
+
+                    // Saving return value to the script action.
+                    FieldInfo prop = typeof(ScriptAction).GetField(fieldname, BindingFlags.Instance | BindingFlags.Public);
+                    prop.SetValue(currentAction, Convert.ChangeType(returnId, prop.FieldType));
+                }
+
+            }
+        }
+        private void btnTalkText1_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormTextFinder>(btnTalkText1, txtTalkText1, GameData.FindTextWithId, "Dataint");
+        }
+
+        private void btnTalkText2_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormTextFinder>(btnTalkText2, txtTalkText2, GameData.FindTextWithId, "Dataint2");
+        }
+
+        private void btnTalkText3_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormTextFinder>(btnTalkText3, txtTalkText3, GameData.FindTextWithId, "Dataint3");
+        }
+
+        private void btnTalkText4_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormTextFinder>(btnTalkText4, txtTalkText4, GameData.FindTextWithId, "Dataint4");
+        }
+
+        private void cmbTalkChatType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbTalkChatType, "Datalong", false);
+        }
+
+        private void txtCommandComment_Leave(object sender, EventArgs e)
+        {
+            if (lstActions.SelectedItems.Count > 0)
+            {
+                // Get the selected item in the listview.
+                ListViewItem currentItem = lstActions.SelectedItems[0];
+
+                // Get the associated ScriptAction.
+                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
+
+                // Updating comment.
+                currentAction.Comments = txtCommandComment.Text;
+
+                // Update comment in listview.
+                currentItem.SubItems[2].Text = txtCommandComment.Text;
+            }
+        }
+
+        private void cmbBuddyType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbBuddyType, "BuddyType", false);
+        }
         private void txtCommandDelay_Leave(object sender, EventArgs e)
         {
             if (lstActions.SelectedItems.Count > 0)
@@ -911,97 +899,37 @@ namespace ScriptEditor
 
         private void txtBuddyId_Leave(object sender, EventArgs e)
         {
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                uint buddyId;
-                UInt32.TryParse(txtBuddyId.Text, out buddyId);
-
-                // Updating buddy id.
-                currentAction.BuddyId = buddyId;
-            }
+            SetScriptFieldFromTextbox(txtBuddyId, "BuddyId");
         }
 
         private void txtBuddyRadius_Leave(object sender, EventArgs e)
         {
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                uint buddyRadius;
-                UInt32.TryParse(txtBuddyRadius.Text, out buddyRadius);
-
-                // Updating buddy search radius.
-                currentAction.BuddyRadius = buddyRadius;
-            }
-        }
-
-        private void SetDataFlagsFromCheckbox(CheckBox ctrl, uint value)
-        {
-            if (dontUpdate)
-                return;
-
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                // Updating data flags.
-                if (ctrl.Checked)
-                    currentAction.DataFlags += value;
-                else
-                    currentAction.DataFlags -= value;
-            }
+            SetScriptFieldFromTextbox(txtBuddyRadius, "BuddyRadius");
         }
 
         private void chkSwapInitial_CheckedChanged(object sender, EventArgs e)
         {
-            SetDataFlagsFromCheckbox(chkSwapInitial, 1);
+            SetScriptFlagsFromCheckbox(chkSwapInitial, "DataFlags", 1);
         }
 
         private void chkSwapFinal_CheckedChanged(object sender, EventArgs e)
         {
-            SetDataFlagsFromCheckbox(chkSwapFinal, 2);
+            SetScriptFlagsFromCheckbox(chkSwapFinal, "DataFlags", 2);
         }
 
         private void chkTargetSelf_CheckedChanged(object sender, EventArgs e)
         {
-            SetDataFlagsFromCheckbox(chkTargetSelf, 4);
+            SetScriptFlagsFromCheckbox(chkTargetSelf, "DataFlags", 4);
         }
 
         private void chkAbortScript_CheckedChanged(object sender, EventArgs e)
         {
-            SetDataFlagsFromCheckbox(chkAbortScript, 8);
+            SetScriptFlagsFromCheckbox(chkAbortScript, "DataFlags", 8);
         }
 
         private void cmbEmoteId_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (dontUpdate)
-                return;
-
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                // Updating emote id.
-                currentAction.Datalong = (uint)(cmbEmoteId.SelectedItem as ComboboxPair).Value;
-            }
+            SetScriptFieldFromCombobox(cmbEmoteId, "Datalong", true);
         }
 
         private void btnActionNew_Click(object sender, EventArgs e)
@@ -1024,294 +952,82 @@ namespace ScriptEditor
 
         private void cmbFieldSetFields_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (dontUpdate)
-                return;
-
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                // Updating field id.
-                currentAction.Datalong = (uint)(cmbFieldSetFields.SelectedItem as ComboboxPair).Value;
-            }
-        }
-
-        // Generic function for setting datalong value from a textbox.
-        private void SetDatalongFromTextbox(TextBox ctrl)
-        {
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                uint fieldValue;
-                UInt32.TryParse(ctrl.Text, out fieldValue);
-
-                // Updating datalong value.
-                currentAction.Datalong = fieldValue;
-            }
-        }
-        private void SetDatalong2FromTextbox(TextBox ctrl)
-        {
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                uint fieldValue;
-                UInt32.TryParse(ctrl.Text, out fieldValue);
-
-                // Updating datalong2 value.
-                currentAction.Datalong2 = fieldValue;
-            }
-        }
-
-        private void SetDatalong3FromTextbox(TextBox ctrl)
-        {
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                uint fieldValue;
-                UInt32.TryParse(ctrl.Text, out fieldValue);
-
-                // Updating datalong3 value.
-                currentAction.Datalong3 = fieldValue;
-            }
-        }
-
-        private void SetDatalong4FromTextbox(TextBox ctrl)
-        {
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                uint fieldValue;
-                UInt32.TryParse(ctrl.Text, out fieldValue);
-
-                // Updating datalong4 value.
-                currentAction.Datalong4 = fieldValue;
-            }
+            SetScriptFieldFromCombobox(cmbFieldSetFields, "Datalong", true);
         }
 
         private void txtFieldSetValue_Leave(object sender, EventArgs e)
         {
-            SetDatalong2FromTextbox(txtFieldSetValue);
-        }
-
-        private void SetCoordinateX(TextBox ctrl)
-        {
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                float xCoordinate;
-                float.TryParse(ctrl.Text, out xCoordinate);
-
-                // Updating X coordinate.
-                currentAction.X = xCoordinate;
-            }
+            SetScriptFieldFromTextbox(txtFieldSetValue, "Datalong2");
         }
         private void txtMoveToX_Leave(object sender, EventArgs e)
         {
-            SetCoordinateX(txtMoveToX);
-        }
-
-        private void SetCoordinateY(TextBox ctrl)
-        {
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                float yCoordinate;
-                float.TryParse(ctrl.Text, out yCoordinate);
-
-                // Updating Y coordinate.
-                currentAction.Y = yCoordinate;
-            }
+            SetScriptFieldFromTextbox(txtMoveToX, "X");
         }
 
         private void txtMoveToY_Leave(object sender, EventArgs e)
         {
-            SetCoordinateY(txtMoveToY);
-        }
-
-        private void SetCoordinateZ(TextBox ctrl)
-        {
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                float zCoordinate;
-                float.TryParse(ctrl.Text, out zCoordinate);
-
-                // Updating Z coordinate.
-                currentAction.Z = zCoordinate;
-            }
+            SetScriptFieldFromTextbox(txtMoveToY, "Y");
         }
 
         private void txtMoveToZ_Leave(object sender, EventArgs e)
         {
-            SetCoordinateZ(txtMoveToZ);
-        }
-
-        private void SetCoordinateO(TextBox ctrl)
-        {
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                float oCoordinate;
-                float.TryParse(ctrl.Text, out oCoordinate);
-
-                // Updating orientation.
-                currentAction.O = oCoordinate;
-            }
+            SetScriptFieldFromTextbox(txtMoveToZ, "Z");
         }
 
         private void txtMoveToO_Leave(object sender, EventArgs e)
         {
-            SetCoordinateO(txtMoveToO);
+            SetScriptFieldFromTextbox(txtMoveToO, "O");
         }
 
         private void chkMoveToFlagsForce_CheckedChanged(object sender, EventArgs e)
         {
-            if (dontUpdate)
-                return;
-
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                // datalong4 = eMoveToFlags
-                if (chkMoveToFlagsForce.Checked)
-                    currentAction.Datalong4 += 1;
-                else
-                    currentAction.Datalong4 -= 1;
-            }
+            SetScriptFlagsFromCheckbox(chkMoveToFlagsForce, "Datalong4", 1);
         }
 
-        // Generic function for updating flags in datalong based on checkbox.
-        private void SetDatalong3FlagsFromCheckbox(CheckBox ctrl, uint value)
-        {
-            if (dontUpdate)
-                return;
-
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                if (ctrl.Checked)
-                    currentAction.Datalong3 += value;
-                else
-                    currentAction.Datalong3 -= value;
-            }
-        }
-
-        private void SetDatalong2FlagsFromCheckbox(CheckBox ctrl, uint value)
-        {
-            if (dontUpdate)
-                return;
-
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                if (ctrl.Checked)
-                    currentAction.Datalong2 += value;
-                else
-                    currentAction.Datalong2 -= value;
-            }
-        }
+        
         private void chkMoveOptions1_CheckedChanged(object sender, EventArgs e)
         {
-            SetDatalong3FlagsFromCheckbox(chkMoveOptions1, 1);
+            SetScriptFlagsFromCheckbox(chkMoveOptions1, "Datalong3", 1);
         }
 
         private void chkMoveOptions2_CheckedChanged(object sender, EventArgs e)
         {
-            SetDatalong3FlagsFromCheckbox(chkMoveOptions2, 2);
+            SetScriptFlagsFromCheckbox(chkMoveOptions2, "Datalong3", 2);
         }
 
         private void chkMoveOptions4_CheckedChanged(object sender, EventArgs e)
         {
-            SetDatalong3FlagsFromCheckbox(chkMoveOptions4, 4);
+            SetScriptFlagsFromCheckbox(chkMoveOptions4, "Datalong3", 4);
         }
 
         private void chkMoveOptions8_CheckedChanged(object sender, EventArgs e)
         {
-            SetDatalong3FlagsFromCheckbox(chkMoveOptions8, 8);
+            SetScriptFlagsFromCheckbox(chkMoveOptions8, "Datalong3", 8);
         }
 
         private void chkMoveOptions16_CheckedChanged(object sender, EventArgs e)
         {
-            SetDatalong3FlagsFromCheckbox(chkMoveOptions16, 16);
+            SetScriptFlagsFromCheckbox(chkMoveOptions16, "Datalong3", 16);
         }
 
         private void chkMoveOptions32_CheckedChanged(object sender, EventArgs e)
         {
-            SetDatalong3FlagsFromCheckbox(chkMoveOptions32, 32);
+            SetScriptFlagsFromCheckbox(chkMoveOptions32, "Datalong3", 32);
         }
 
         private void chkMoveOptions64_CheckedChanged(object sender, EventArgs e)
         {
-            SetDatalong3FlagsFromCheckbox(chkMoveOptions64, 64);
+            SetScriptFlagsFromCheckbox(chkMoveOptions64, "Datalong3", 64);
         }
 
         private void chkMoveOptions128_CheckedChanged(object sender, EventArgs e)
         {
-            SetDatalong3FlagsFromCheckbox(chkMoveOptions128, 128);
+            SetScriptFlagsFromCheckbox(chkMoveOptions128, "Datalong3", 128);
         }
 
         private void chkMoveOptions256_CheckedChanged(object sender, EventArgs e)
         {
-            SetDatalong3FlagsFromCheckbox(chkMoveOptions256, 256);
+            SetScriptFlagsFromCheckbox(chkMoveOptions256, "Datalong3", 256);
         }
 
         private void cmbMoveToType_SelectedIndexChanged(object sender, EventArgs e)
@@ -1407,189 +1123,117 @@ namespace ScriptEditor
 
         private void cmbTeleportMap_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (dontUpdate)
-                return;
-
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                // Updating field id.
-                currentAction.Datalong = (uint)(cmbTeleportMap.SelectedItem as ComboboxPair).Value;
-            }
+            SetScriptFieldFromCombobox(cmbTeleportMap, "Datalong", true);
         }
 
         private void txtTeleportX_Leave(object sender, EventArgs e)
         {
-            SetCoordinateX(txtTeleportX);
+            SetScriptFieldFromTextbox(txtTeleportX, "X");
         }
 
         private void txtTeleportY_Leave(object sender, EventArgs e)
         {
-            SetCoordinateY(txtTeleportY);
+            SetScriptFieldFromTextbox(txtTeleportY, "Y");
         }
 
         private void txtTeleportZ_Leave(object sender, EventArgs e)
         {
-            SetCoordinateZ(txtTeleportZ);
+            SetScriptFieldFromTextbox(txtTeleportZ, "Z");
         }
 
         private void txtTeleportO_Leave(object sender, EventArgs e)
         {
-            SetCoordinateO(txtTeleportO);
+            SetScriptFieldFromTextbox(txtTeleportO, "O");
         }
 
         private void chkTeleportOptions1_CheckedChanged(object sender, EventArgs e)
         {
-            SetDatalong2FlagsFromCheckbox(chkTeleportOptions1, 1);
+            SetScriptFlagsFromCheckbox(chkTeleportOptions1, "Datalong2", 1);
         }
 
         private void chkTeleportOptions2_CheckedChanged(object sender, EventArgs e)
         {
-            SetDatalong2FlagsFromCheckbox(chkTeleportOptions2, 2);
+            SetScriptFlagsFromCheckbox(chkTeleportOptions2, "Datalong2", 2);
         }
 
         private void chkTeleportOptions4_CheckedChanged(object sender, EventArgs e)
         {
-            SetDatalong2FlagsFromCheckbox(chkTeleportOptions4, 4);
+            SetScriptFlagsFromCheckbox(chkTeleportOptions4, "Datalong2", 4);
         }
 
         private void chkTeleportOptions8_CheckedChanged(object sender, EventArgs e)
         {
-            SetDatalong2FlagsFromCheckbox(chkTeleportOptions8, 8);
+            SetScriptFlagsFromCheckbox(chkTeleportOptions8, "Datalong2", 8);
         }
 
         private void chkTeleportOptions16_CheckedChanged(object sender, EventArgs e)
         {
-            SetDatalong2FlagsFromCheckbox(chkTeleportOptions16, 16);
+            SetScriptFlagsFromCheckbox(chkTeleportOptions16, "Datalong2", 16);
         }
 
         private void chkTeleportOptions32_CheckedChanged(object sender, EventArgs e)
         {
-            SetDatalong2FlagsFromCheckbox(chkTeleportOptions32, 32);
+            SetScriptFlagsFromCheckbox(chkTeleportOptions32, "Datalong2", 32);
         }
 
         private void btnQuestCompleteId_Click(object sender, EventArgs e)
         {
-            FormQuestFinder frm = new FormQuestFinder();
-            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                uint questId = frm.ReturnValue;
-                if (questId > 0)
-                    btnQuestCompleteId.Text = GameData.FindQuestTitle(questId) + " (" + questId.ToString() + ")";
-                else
-                    btnQuestCompleteId.Text = "-NONE-";
-
-                if (lstActions.SelectedItems.Count > 0)
-                {
-                    // Get the selected item in the listview.
-                    ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                    // Get the associated ScriptAction.
-                    ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                    // QuestId = datalong;
-                    currentAction.Datalong = questId;
-                }
-
-            }
+            SetScriptFieldFromDataFinderForm<FormQuestFinder>(btnQuestCompleteId, null, GameData.FindQuestTitle, "Datalong");
         }
 
         private void txtQuestCompleteDistance_Leave(object sender, EventArgs e)
         {
-            SetDatalong2FromTextbox(txtQuestCompleteDistance);
+            SetScriptFieldFromTextbox(txtQuestCompleteDistance, "Datalong2");
         }
 
         private void cmbKillCreditType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (dontUpdate)
-                return;
-
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                // Updating credit type.
-                currentAction.Datalong2 = (uint)cmbKillCreditType.SelectedIndex;
-            }
+            SetScriptFieldFromCombobox(cmbKillCreditType, "Datalong2", false);
         }
-
-        private void SetDatalongCreatureIdFromButton(Button ctrl)
-        {
-            FormCreatureFinder frm = new FormCreatureFinder();
-            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                uint creatureId = frm.ReturnValue;
-                if (creatureId > 0)
-                    ctrl.Text = GameData.FindCreatureName(creatureId) + " (" + creatureId.ToString() + ")";
-                else
-                    ctrl.Text = "-NONE-";
-
-                if (lstActions.SelectedItems.Count > 0)
-                {
-                    // Get the selected item in the listview.
-                    ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                    // Get the associated ScriptAction.
-                    ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                    // CreatureId = datalong;
-                    currentAction.Datalong = creatureId;
-                }
-
-            }
-        }
+        
         private void btnKillCreditCreatureId_Click(object sender, EventArgs e)
         {
-            SetDatalongCreatureIdFromButton(btnKillCreditCreatureId);
+            SetScriptFieldFromDataFinderForm<FormCreatureFinder>(btnKillCreditCreatureId, null, GameData.FindCreatureName, "Datalong");
         }
 
         private void txtRespawnGameobjectDelay_Leave(object sender, EventArgs e)
         {
-            SetDatalong2FromTextbox(txtRespawnGameobjectDelay);
+            SetScriptFieldFromTextbox(txtRespawnGameobjectDelay, "Datalong2");
         }
 
         private void txtRespawnGameobjectGuid_Leave(object sender, EventArgs e)
         {
-            SetDatalongFromTextbox(txtRespawnGameobjectGuid);
+            SetScriptFieldFromTextbox(txtRespawnGameobjectGuid, "Datalong");
         }
 
         private void btnSummonCreatureId_Click(object sender, EventArgs e)
         {
-            SetDatalongCreatureIdFromButton(btnSummonCreatureId);
+            SetScriptFieldFromDataFinderForm<FormCreatureFinder>(btnSummonCreatureId, null, GameData.FindCreatureName, "Datalong");
         }
 
         private void txtSummonCreatureDelay_Leave(object sender, EventArgs e)
         {
-            SetDatalong2FromTextbox(txtSummonCreatureDelay);
+            SetScriptFieldFromTextbox(txtSummonCreatureDelay, "Datalong2");
         }
 
         private void txtSummonCreatureX_Leave(object sender, EventArgs e)
         {
-            SetCoordinateX(txtSummonCreatureX);
+            SetScriptFieldFromTextbox(txtSummonCreatureX, "X");
         }
 
         private void txtSummonCreatureY_Leave(object sender, EventArgs e)
         {
-            SetCoordinateY(txtSummonCreatureY);
+            SetScriptFieldFromTextbox(txtSummonCreatureY, "Y");
         }
 
         private void txtSummonCreatureZ_Leave(object sender, EventArgs e)
         {
-            SetCoordinateZ(txtSummonCreatureZ);
+            SetScriptFieldFromTextbox(txtSummonCreatureZ, "Z");
         }
 
         private void txtSummonCreatureO_Leave(object sender, EventArgs e)
         {
-            SetCoordinateO(txtSummonCreatureO);
+            SetScriptFieldFromTextbox(txtSummonCreatureO, "O");
         }
 
         private void cmbSummonCreatureFacingOptions_SelectedIndexChanged(object sender, EventArgs e)
@@ -1622,35 +1266,22 @@ namespace ScriptEditor
 
         private void cmbSummonCreatureSetRun_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (dontUpdate)
-                return;
-
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                // Set Run = Dataint
-                currentAction.Dataint = cmbSummonCreatureSetRun.SelectedIndex;
-            }
+            SetScriptFieldFromCombobox(cmbSummonCreatureSetRun, "Dataint", false);
         }
 
         private void txtSummonCreatureUniqueLimit_Leave(object sender, EventArgs e)
         {
-            SetDatalong3FromTextbox(txtSummonCreatureUniqueLimit);
+            SetScriptFieldFromTextbox(txtSummonCreatureUniqueLimit, "Datalong3");
         }
 
         private void txtSummonCreatureUniqueRange_Leave(object sender, EventArgs e)
         {
-            SetDatalong4FromTextbox(txtSummonCreatureUniqueRange);
+            SetScriptFieldFromTextbox(txtSummonCreatureUniqueRange, "Datalong4");
         }
 
         private void chkSummonCreatureFlags16_CheckedChanged(object sender, EventArgs e)
         {
-            SetDataFlagsFromCheckbox(chkSummonCreatureFlags16, 16);
+            SetScriptFlagsFromCheckbox(chkSummonCreatureFlags16, "DataFlags", 16);
         }
 
         private void chkSummonCreatureFlags32_CheckedChanged(object sender, EventArgs e)
@@ -1729,41 +1360,16 @@ namespace ScriptEditor
 
         private void txtDoorGuid_Leave(object sender, EventArgs e)
         {
-            SetDatalongFromTextbox(txtDoorGuid);
+            SetScriptFieldFromTextbox(txtDoorGuid, "Datalong");
         }
 
         private void txtDoorResetDelay_Leave(object sender, EventArgs e)
         {
-            SetDatalong2FromTextbox(txtDoorResetDelay);
-        }
-        private void SetDatalongSpellIdFromButton(Button ctrl)
-        {
-            FormSpellFinder frm = new FormSpellFinder();
-            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                uint spellId = frm.ReturnValue;
-                if (spellId > 0)
-                    ctrl.Text = GameData.FindSpellName(spellId) + " (" + spellId.ToString() + ")";
-                else
-                    ctrl.Text = "-NONE-";
-
-                if (lstActions.SelectedItems.Count > 0)
-                {
-                    // Get the selected item in the listview.
-                    ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                    // Get the associated ScriptAction.
-                    ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                    // CreatureId = datalong;
-                    currentAction.Datalong = spellId;
-                }
-
-            }
+            SetScriptFieldFromTextbox(txtDoorResetDelay, "Datalong2");
         }
         private void btnRemoveAuraSpellId_Click(object sender, EventArgs e)
         {
-            SetDatalongSpellIdFromButton(btnRemoveAuraSpellId);
+            SetScriptFieldFromDataFinderForm<FormSpellFinder>(btnRemoveAuraSpellId, null, GameData.FindSpellName, "Datalong");
         }
     }
 
