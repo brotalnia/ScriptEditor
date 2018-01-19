@@ -1,6 +1,6 @@
 ﻿namespace ScriptEditor
 {
-    partial class FormTextFinder
+    partial class FormItemFinder
     {
         /// <summary>
         /// Required designer variable.
@@ -28,40 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.columnText = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnChatType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnLanguage = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnRequiredLevel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnItemLevel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lstData
             // 
             this.lstData.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnText,
-            this.columnChatType,
-            this.columnLanguage});
+            this.columnRequiredLevel,
+            this.columnItemLevel,
+            this.columnName});
             // 
-            // columnText
+            // label1
             // 
-            this.columnText.Text = "Text";
-            this.columnText.Width = 415;
+            this.label1.Size = new System.Drawing.Size(150, 13);
+            this.label1.Text = "Enter name or Id to search for:";
             // 
-            // columnChatType
+            // columnRequiredLevel
             // 
-            this.columnChatType.Text = "Chat Type";
-            this.columnChatType.Width = 90;
+            this.columnRequiredLevel.Text = "Required Level";
+            this.columnRequiredLevel.Width = 90;
             // 
-            // columnLanguage
+            // columnItemLevel
             // 
-            this.columnLanguage.Text = "Language";
-            this.columnLanguage.Width = 90;
+            this.columnItemLevel.Text = "Item Level";
+            this.columnItemLevel.Width = 90;
             // 
-            // FormTextFinder
+            // columnName
+            // 
+            this.columnName.Text = "Name";
+            this.columnName.Width = 415;
+            // 
+            // FormItemFinder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(672, 393);
-            this.Name = "FormTextFinder";
-            this.Text = "Text Finder";
-            this.ResizeEnd += new System.EventHandler(this.FormTextFinder_ResizeEnd);
+            this.Name = "FormItemFinder";
+            this.Text = "Item Finder";
+            this.ResizeEnd += new System.EventHandler(this.FormItemFinder_ResizeEnd);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -69,8 +74,8 @@
 
         #endregion
 
-        private System.Windows.Forms.ColumnHeader columnText;
-        private System.Windows.Forms.ColumnHeader columnChatType;
-        private System.Windows.Forms.ColumnHeader columnLanguage;
+        private System.Windows.Forms.ColumnHeader columnRequiredLevel;
+        private System.Windows.Forms.ColumnHeader columnItemLevel;
+        private System.Windows.Forms.ColumnHeader columnName;
     }
 }

@@ -44,6 +44,7 @@ namespace ScriptEditor
             GameData.LoadQuests(connString);
             GameData.LoadCreatures(connString);
             GameData.LoadSpells(connString);
+            GameData.LoadItems(connString);
         }
 
         private void LoadControls()
@@ -363,6 +364,27 @@ namespace ScriptEditor
             btnRemoveAuraSpellId.Text = "-NONE-";
             frmCommandRemoveAura.Visible = false;
 
+            // Cast Spell Command (15)
+            btnCastSpellId.Text = "-NONE-";
+            chkCastSpellFlags1.Checked = false;
+            chkCastSpellFlags2.Checked = false;
+            frmCommandCastSpell.Visible = false;
+
+            // Play Sound Command (16)
+            txtPlaySoundId.Text = "";
+            chkPlaySoundFlags1.Checked = false;
+            chkPlaySoundFlags2.Checked = false;
+            frmCommandPlaySound.Visible = false;
+
+            // Create Item Command (17)
+            btnCreateItemId.Text = "-NONE-";
+            txtCreateItemAmount.Text = "";
+            frmCommandCreateItem.Visible = false;
+
+            // Despawn Creature Command (18)
+            txtDespawnCreatureDelay.Text = "";
+            frmCommandDespawnCreature.Visible = false;
+
             dontUpdate = false;
         }
         private void ShowCommandSpecificForm(ScriptAction selectedAction)
@@ -636,6 +658,43 @@ namespace ScriptEditor
                     if (spellId > 0)
                         btnRemoveAuraSpellId.Text = GameData.FindSpellName(spellId) + " (" + spellId.ToString() + ")";
                     frmCommandRemoveAura.Visible = true;
+                    break;
+                }
+                case 15: // Cast Spell
+                {
+                    uint spellId = selectedAction.Datalong;
+                    if (spellId > 0)
+                        btnCastSpellId.Text = GameData.FindSpellName(spellId) + " (" + spellId.ToString() + ")";
+                    if ((selectedAction.Datalong2 & 1) != 0)
+                        chkCastSpellFlags1.Checked = true;
+                    if ((selectedAction.Datalong2 & 2) != 0)
+                        chkCastSpellFlags2.Checked = true;
+                    frmCommandCastSpell.Visible = true;
+                    break;
+                }
+                case 16: // Play Sound
+                {
+                    txtPlaySoundId.Text = selectedAction.Datalong.ToString();
+                    if ((selectedAction.Datalong2 & 1) != 0)
+                        chkPlaySoundFlags1.Checked = true;
+                    if ((selectedAction.Datalong2 & 2) != 0)
+                        chkPlaySoundFlags2.Checked = true;
+                    frmCommandPlaySound.Visible = true;
+                    break;
+                }
+                case 17: // Create Item
+                {
+                    uint itemId = selectedAction.Datalong;
+                    if (itemId > 0)
+                        btnCreateItemId.Text = GameData.FindItemName(itemId) + " (" + itemId.ToString() + ")";
+                    txtCreateItemAmount.Text = selectedAction.Datalong2.ToString();
+                    frmCommandCreateItem.Visible = true;
+                    break;
+                }
+                case 18: // Despawn Creture
+                {
+                    txtDespawnCreatureDelay.Text = selectedAction.Datalong.ToString();
+                    frmCommandDespawnCreature.Visible = true;
                     break;
                 }
             }
@@ -1370,6 +1429,51 @@ namespace ScriptEditor
         private void btnRemoveAuraSpellId_Click(object sender, EventArgs e)
         {
             SetScriptFieldFromDataFinderForm<FormSpellFinder>(btnRemoveAuraSpellId, null, GameData.FindSpellName, "Datalong");
+        }
+
+        private void btnCastSpellId_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormSpellFinder>(btnCastSpellId, null, GameData.FindSpellName, "Datalong");
+        }
+
+        private void chkCastSpellFlags1_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkCastSpellFlags1, "Datalong2", 1);
+        }
+
+        private void chkCastSpellFlags2_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkCastSpellFlags2, "Datalong2", 2);
+        }
+
+        private void txtPlaySoundId_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtPlaySoundId, "Datalong");
+        }
+
+        private void chkPlaySoundFlags1_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkPlaySoundFlags1, "Datalong2", 1);
+        }
+
+        private void chkPlaySoundFlags2_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkPlaySoundFlags2, "Datalong2", 2);
+        }
+
+        private void btnCreateItemId_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormItemFinder>(btnCreateItemId, null, GameData.FindItemName, "Datalong");
+        }
+
+        private void txtCreateItemAmount_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtCreateItemAmount, "Datalong2");
+        }
+
+        private void txtDespawnCreatureDelay_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtDespawnCreatureDelay, "Datalong");
         }
     }
 

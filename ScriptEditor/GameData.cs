@@ -12,6 +12,7 @@ namespace ScriptEditor
         public static readonly List<QuestInfo> QuestInfoList = new List<QuestInfo>();
         public static readonly List<CreatureInfo> CreatureInfoList = new List<CreatureInfo>();
         public static readonly List<SpellInfo> SpellInfoList = new List<SpellInfo>();
+        public static readonly List<ItemInfo> ItemInfoList = new List<ItemInfo>();
         public static readonly List<ComboboxPair> UpdateFieldsList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> FlagFieldsList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> MapsList = new List<ComboboxPair>();
@@ -92,6 +93,16 @@ namespace ScriptEditor
             {
                 if (spell.ID == id)
                     return spell.Name;
+            }
+
+            return "";
+        }
+        public static string FindItemName(uint id)
+        {
+            foreach (ItemInfo item in ItemInfoList)
+            {
+                if (item.ID == id)
+                    return item.Name;
             }
 
             return "";
@@ -192,6 +203,31 @@ namespace ScriptEditor
                 {
                     // Add the spell entry to the list.
                     SpellInfoList.Add(new SpellInfo(reader.GetUInt32(0), reader.GetUInt32(1), reader.GetUInt32(2), reader.GetUInt32(3), reader.GetString(4), reader.GetString(5)));
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+            conn.Close();
+        }
+        public static void LoadItems(string connString)
+        {
+            ItemInfoList.Clear();
+
+            MySqlConnection conn = new MySqlConnection(connString);
+            MySqlCommand command = conn.CreateCommand();
+            command.CommandText = "SELECT entry, RequiredLevel, ItemLevel, name FROM item_template t1 WHERE patch=(SELECT max(patch) FROM item_template t2 WHERE t1.entry=t2.entry) ORDER BY entry";
+            try
+            {
+                conn.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    // Add the new item entry to the list.
+                    ItemInfoList.Add(new ItemInfo(reader.GetUInt32(0), reader.GetUInt32(1), reader.GetUInt32(2), reader.GetString(3)));
                 }
                 reader.Close();
             }
@@ -659,6 +695,20 @@ namespace ScriptEditor
             Effect3 = effect3;
             Name = name;
             Description = description;
+        }
+    }
+    public struct ItemInfo
+    {
+        public uint ID;
+        public uint RequiredLevel;
+        public uint ItemLevel;
+        public string Name;
+        public ItemInfo(uint id, uint requiredlevel, uint itemlevel, string name)
+        {
+            ID = id;
+            Name = name;
+            RequiredLevel = requiredlevel;
+            ItemLevel = itemlevel;
         }
     }
     public class ComboboxPair

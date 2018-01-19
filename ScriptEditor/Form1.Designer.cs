@@ -182,6 +182,30 @@
             this.btnRemoveAuraSpellId = new System.Windows.Forms.Button();
             this.lblRemoveAuraSpellId = new System.Windows.Forms.Label();
             this.lblRemoveAuraTooltip = new System.Windows.Forms.Label();
+            this.frmCommandCastSpell = new System.Windows.Forms.Panel();
+            this.grpCastSpellFlags = new System.Windows.Forms.GroupBox();
+            this.chkCastSpellFlags2 = new System.Windows.Forms.CheckBox();
+            this.chkCastSpellFlags1 = new System.Windows.Forms.CheckBox();
+            this.btnCastSpellId = new System.Windows.Forms.Button();
+            this.lblCastSpellId = new System.Windows.Forms.Label();
+            this.lblCastSpellTooltip = new System.Windows.Forms.Label();
+            this.frmCommandPlaySound = new System.Windows.Forms.Panel();
+            this.grpPlaySoundFlags = new System.Windows.Forms.GroupBox();
+            this.chkPlaySoundFlags2 = new System.Windows.Forms.CheckBox();
+            this.chkPlaySoundFlags1 = new System.Windows.Forms.CheckBox();
+            this.txtPlaySoundId = new System.Windows.Forms.TextBox();
+            this.lblPlaySoundId = new System.Windows.Forms.Label();
+            this.lblPlaySoundTooltip = new System.Windows.Forms.Label();
+            this.frmCommandCreateItem = new System.Windows.Forms.Panel();
+            this.lblCreateItemAmount = new System.Windows.Forms.Label();
+            this.txtCreateItemAmount = new System.Windows.Forms.TextBox();
+            this.btnCreateItemId = new System.Windows.Forms.Button();
+            this.lblCreateItemId = new System.Windows.Forms.Label();
+            this.lblCreateItemTooltip = new System.Windows.Forms.Label();
+            this.frmCommandDespawnCreature = new System.Windows.Forms.Panel();
+            this.lblDespawnCreatureTooltip = new System.Windows.Forms.Label();
+            this.txtDespawnCreatureDelay = new System.Windows.Forms.TextBox();
+            this.lblDespawnCreatureDelay = new System.Windows.Forms.Label();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -199,6 +223,12 @@
             this.grpSummonCreatureFlags.SuspendLayout();
             this.frmCommandDoor.SuspendLayout();
             this.frmCommandRemoveAura.SuspendLayout();
+            this.frmCommandCastSpell.SuspendLayout();
+            this.grpCastSpellFlags.SuspendLayout();
+            this.frmCommandPlaySound.SuspendLayout();
+            this.grpPlaySoundFlags.SuspendLayout();
+            this.frmCommandCreateItem.SuspendLayout();
+            this.frmCommandDespawnCreature.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstActions
@@ -1766,11 +1796,258 @@
             this.lblRemoveAuraTooltip.TabIndex = 0;
             this.lblRemoveAuraTooltip.Text = "Removes any auras from the source Unit caused by the specified spell.";
             // 
+            // frmCommandCastSpell
+            // 
+            this.frmCommandCastSpell.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandCastSpell.Controls.Add(this.grpCastSpellFlags);
+            this.frmCommandCastSpell.Controls.Add(this.btnCastSpellId);
+            this.frmCommandCastSpell.Controls.Add(this.lblCastSpellId);
+            this.frmCommandCastSpell.Controls.Add(this.lblCastSpellTooltip);
+            this.frmCommandCastSpell.Location = new System.Drawing.Point(409, 239);
+            this.frmCommandCastSpell.Name = "frmCommandCastSpell";
+            this.frmCommandCastSpell.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandCastSpell.TabIndex = 21;
+            this.frmCommandCastSpell.Visible = false;
+            // 
+            // grpCastSpellFlags
+            // 
+            this.grpCastSpellFlags.Controls.Add(this.chkCastSpellFlags2);
+            this.grpCastSpellFlags.Controls.Add(this.chkCastSpellFlags1);
+            this.grpCastSpellFlags.Location = new System.Drawing.Point(26, 88);
+            this.grpCastSpellFlags.Name = "grpCastSpellFlags";
+            this.grpCastSpellFlags.Size = new System.Drawing.Size(447, 48);
+            this.grpCastSpellFlags.TabIndex = 3;
+            this.grpCastSpellFlags.TabStop = false;
+            this.grpCastSpellFlags.Text = "Cast Flags";
+            // 
+            // chkCastSpellFlags2
+            // 
+            this.chkCastSpellFlags2.AutoSize = true;
+            this.chkCastSpellFlags2.Location = new System.Drawing.Point(85, 21);
+            this.chkCastSpellFlags2.Name = "chkCastSpellFlags2";
+            this.chkCastSpellFlags2.Size = new System.Drawing.Size(109, 17);
+            this.chkCastSpellFlags2.TabIndex = 1;
+            this.chkCastSpellFlags2.Text = "Interrupt Previous";
+            this.chkCastSpellFlags2.UseVisualStyleBackColor = true;
+            this.chkCastSpellFlags2.CheckedChanged += new System.EventHandler(this.chkCastSpellFlags2_CheckedChanged);
+            // 
+            // chkCastSpellFlags1
+            // 
+            this.chkCastSpellFlags1.AutoSize = true;
+            this.chkCastSpellFlags1.Location = new System.Drawing.Point(10, 21);
+            this.chkCastSpellFlags1.Name = "chkCastSpellFlags1";
+            this.chkCastSpellFlags1.Size = new System.Drawing.Size(71, 17);
+            this.chkCastSpellFlags1.TabIndex = 0;
+            this.chkCastSpellFlags1.Text = "Triggered";
+            this.chkCastSpellFlags1.UseVisualStyleBackColor = true;
+            this.chkCastSpellFlags1.CheckedChanged += new System.EventHandler(this.chkCastSpellFlags1_CheckedChanged);
+            // 
+            // btnCastSpellId
+            // 
+            this.btnCastSpellId.Location = new System.Drawing.Point(69, 57);
+            this.btnCastSpellId.Name = "btnCastSpellId";
+            this.btnCastSpellId.Size = new System.Drawing.Size(404, 23);
+            this.btnCastSpellId.TabIndex = 2;
+            this.btnCastSpellId.Text = "-NONE-";
+            this.btnCastSpellId.UseVisualStyleBackColor = true;
+            this.btnCastSpellId.Click += new System.EventHandler(this.btnCastSpellId_Click);
+            // 
+            // lblCastSpellId
+            // 
+            this.lblCastSpellId.AutoSize = true;
+            this.lblCastSpellId.Location = new System.Drawing.Point(23, 61);
+            this.lblCastSpellId.Name = "lblCastSpellId";
+            this.lblCastSpellId.Size = new System.Drawing.Size(45, 13);
+            this.lblCastSpellId.TabIndex = 1;
+            this.lblCastSpellId.Text = "Spell Id:";
+            // 
+            // lblCastSpellTooltip
+            // 
+            this.lblCastSpellTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblCastSpellTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblCastSpellTooltip.Name = "lblCastSpellTooltip";
+            this.lblCastSpellTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblCastSpellTooltip.TabIndex = 0;
+            this.lblCastSpellTooltip.Text = "The source Unit casts the specified spell on the Unit target.";
+            // 
+            // frmCommandPlaySound
+            // 
+            this.frmCommandPlaySound.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandPlaySound.Controls.Add(this.grpPlaySoundFlags);
+            this.frmCommandPlaySound.Controls.Add(this.txtPlaySoundId);
+            this.frmCommandPlaySound.Controls.Add(this.lblPlaySoundId);
+            this.frmCommandPlaySound.Controls.Add(this.lblPlaySoundTooltip);
+            this.frmCommandPlaySound.Location = new System.Drawing.Point(409, 239);
+            this.frmCommandPlaySound.Name = "frmCommandPlaySound";
+            this.frmCommandPlaySound.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandPlaySound.TabIndex = 22;
+            this.frmCommandPlaySound.Visible = false;
+            // 
+            // grpPlaySoundFlags
+            // 
+            this.grpPlaySoundFlags.Controls.Add(this.chkPlaySoundFlags2);
+            this.grpPlaySoundFlags.Controls.Add(this.chkPlaySoundFlags1);
+            this.grpPlaySoundFlags.Location = new System.Drawing.Point(26, 83);
+            this.grpPlaySoundFlags.Name = "grpPlaySoundFlags";
+            this.grpPlaySoundFlags.Size = new System.Drawing.Size(181, 83);
+            this.grpPlaySoundFlags.TabIndex = 3;
+            this.grpPlaySoundFlags.TabStop = false;
+            this.grpPlaySoundFlags.Text = "Flags";
+            // 
+            // chkPlaySoundFlags2
+            // 
+            this.chkPlaySoundFlags2.AutoSize = true;
+            this.chkPlaySoundFlags2.Location = new System.Drawing.Point(9, 52);
+            this.chkPlaySoundFlags2.Name = "chkPlaySoundFlags2";
+            this.chkPlaySoundFlags2.Size = new System.Drawing.Size(124, 17);
+            this.chkPlaySoundFlags2.TabIndex = 1;
+            this.chkPlaySoundFlags2.Text = "Distance Dependent";
+            this.chkPlaySoundFlags2.UseVisualStyleBackColor = true;
+            this.chkPlaySoundFlags2.CheckedChanged += new System.EventHandler(this.chkPlaySoundFlags2_CheckedChanged);
+            // 
+            // chkPlaySoundFlags1
+            // 
+            this.chkPlaySoundFlags1.AutoSize = true;
+            this.chkPlaySoundFlags1.Location = new System.Drawing.Point(9, 26);
+            this.chkPlaySoundFlags1.Name = "chkPlaySoundFlags1";
+            this.chkPlaySoundFlags1.Size = new System.Drawing.Size(97, 17);
+            this.chkPlaySoundFlags1.TabIndex = 0;
+            this.chkPlaySoundFlags1.Text = "Only To Target";
+            this.chkPlaySoundFlags1.UseVisualStyleBackColor = true;
+            this.chkPlaySoundFlags1.CheckedChanged += new System.EventHandler(this.chkPlaySoundFlags1_CheckedChanged);
+            // 
+            // txtPlaySoundId
+            // 
+            this.txtPlaySoundId.Location = new System.Drawing.Point(78, 52);
+            this.txtPlaySoundId.Name = "txtPlaySoundId";
+            this.txtPlaySoundId.Size = new System.Drawing.Size(129, 20);
+            this.txtPlaySoundId.TabIndex = 2;
+            this.txtPlaySoundId.Leave += new System.EventHandler(this.txtPlaySoundId_Leave);
+            // 
+            // lblPlaySoundId
+            // 
+            this.lblPlaySoundId.AutoSize = true;
+            this.lblPlaySoundId.Location = new System.Drawing.Point(25, 55);
+            this.lblPlaySoundId.Name = "lblPlaySoundId";
+            this.lblPlaySoundId.Size = new System.Drawing.Size(53, 13);
+            this.lblPlaySoundId.TabIndex = 1;
+            this.lblPlaySoundId.Text = "Sound Id:";
+            // 
+            // lblPlaySoundTooltip
+            // 
+            this.lblPlaySoundTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblPlaySoundTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblPlaySoundTooltip.Name = "lblPlaySoundTooltip";
+            this.lblPlaySoundTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblPlaySoundTooltip.TabIndex = 0;
+            this.lblPlaySoundTooltip.Text = "Plays the specified sound entry.";
+            // 
+            // frmCommandCreateItem
+            // 
+            this.frmCommandCreateItem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandCreateItem.Controls.Add(this.lblCreateItemAmount);
+            this.frmCommandCreateItem.Controls.Add(this.txtCreateItemAmount);
+            this.frmCommandCreateItem.Controls.Add(this.btnCreateItemId);
+            this.frmCommandCreateItem.Controls.Add(this.lblCreateItemId);
+            this.frmCommandCreateItem.Controls.Add(this.lblCreateItemTooltip);
+            this.frmCommandCreateItem.Location = new System.Drawing.Point(409, 239);
+            this.frmCommandCreateItem.Name = "frmCommandCreateItem";
+            this.frmCommandCreateItem.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandCreateItem.TabIndex = 23;
+            this.frmCommandCreateItem.Visible = false;
+            // 
+            // lblCreateItemAmount
+            // 
+            this.lblCreateItemAmount.AutoSize = true;
+            this.lblCreateItemAmount.Location = new System.Drawing.Point(68, 102);
+            this.lblCreateItemAmount.Name = "lblCreateItemAmount";
+            this.lblCreateItemAmount.Size = new System.Drawing.Size(46, 13);
+            this.lblCreateItemAmount.TabIndex = 4;
+            this.lblCreateItemAmount.Text = "Amount:";
+            // 
+            // txtCreateItemAmount
+            // 
+            this.txtCreateItemAmount.Location = new System.Drawing.Point(118, 100);
+            this.txtCreateItemAmount.Name = "txtCreateItemAmount";
+            this.txtCreateItemAmount.Size = new System.Drawing.Size(355, 20);
+            this.txtCreateItemAmount.TabIndex = 3;
+            this.txtCreateItemAmount.Leave += new System.EventHandler(this.txtCreateItemAmount_Leave);
+            // 
+            // btnCreateItemId
+            // 
+            this.btnCreateItemId.Location = new System.Drawing.Point(118, 66);
+            this.btnCreateItemId.Name = "btnCreateItemId";
+            this.btnCreateItemId.Size = new System.Drawing.Size(355, 23);
+            this.btnCreateItemId.TabIndex = 2;
+            this.btnCreateItemId.Text = "-NONE-";
+            this.btnCreateItemId.UseVisualStyleBackColor = true;
+            this.btnCreateItemId.Click += new System.EventHandler(this.btnCreateItemId_Click);
+            // 
+            // lblCreateItemId
+            // 
+            this.lblCreateItemId.AutoSize = true;
+            this.lblCreateItemId.Location = new System.Drawing.Point(72, 71);
+            this.lblCreateItemId.Name = "lblCreateItemId";
+            this.lblCreateItemId.Size = new System.Drawing.Size(42, 13);
+            this.lblCreateItemId.TabIndex = 1;
+            this.lblCreateItemId.Text = "Item Id:";
+            // 
+            // lblCreateItemTooltip
+            // 
+            this.lblCreateItemTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblCreateItemTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblCreateItemTooltip.Name = "lblCreateItemTooltip";
+            this.lblCreateItemTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblCreateItemTooltip.TabIndex = 0;
+            this.lblCreateItemTooltip.Text = "Adds the specified item to the target Player\'s inventory.";
+            // 
+            // frmCommandDespawnCreature
+            // 
+            this.frmCommandDespawnCreature.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandDespawnCreature.Controls.Add(this.lblDespawnCreatureDelay);
+            this.frmCommandDespawnCreature.Controls.Add(this.txtDespawnCreatureDelay);
+            this.frmCommandDespawnCreature.Controls.Add(this.lblDespawnCreatureTooltip);
+            this.frmCommandDespawnCreature.Location = new System.Drawing.Point(409, 239);
+            this.frmCommandDespawnCreature.Name = "frmCommandDespawnCreature";
+            this.frmCommandDespawnCreature.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandDespawnCreature.TabIndex = 24;
+            this.frmCommandDespawnCreature.Visible = false;
+            // 
+            // lblDespawnCreatureTooltip
+            // 
+            this.lblDespawnCreatureTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblDespawnCreatureTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblDespawnCreatureTooltip.Name = "lblDespawnCreatureTooltip";
+            this.lblDespawnCreatureTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblDespawnCreatureTooltip.TabIndex = 0;
+            this.lblDespawnCreatureTooltip.Text = "Despawns the source Creature after the specified delay.";
+            // 
+            // txtDespawnCreatureDelay
+            // 
+            this.txtDespawnCreatureDelay.Location = new System.Drawing.Point(93, 62);
+            this.txtDespawnCreatureDelay.Name = "txtDespawnCreatureDelay";
+            this.txtDespawnCreatureDelay.Size = new System.Drawing.Size(150, 20);
+            this.txtDespawnCreatureDelay.TabIndex = 1;
+            this.txtDespawnCreatureDelay.Leave += new System.EventHandler(this.txtDespawnCreatureDelay_Leave);
+            // 
+            // lblDespawnCreatureDelay
+            // 
+            this.lblDespawnCreatureDelay.AutoSize = true;
+            this.lblDespawnCreatureDelay.Location = new System.Drawing.Point(31, 65);
+            this.lblDespawnCreatureDelay.Name = "lblDespawnCreatureDelay";
+            this.lblDespawnCreatureDelay.Size = new System.Drawing.Size(59, 13);
+            this.lblDespawnCreatureDelay.TabIndex = 2;
+            this.lblDespawnCreatureDelay.Text = "Delay (ms):";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(926, 610);
+            this.Controls.Add(this.frmCommandDespawnCreature);
+            this.Controls.Add(this.frmCommandCreateItem);
+            this.Controls.Add(this.frmCommandPlaySound);
+            this.Controls.Add(this.frmCommandCastSpell);
             this.Controls.Add(this.frmCommandRemoveAura);
             this.Controls.Add(this.frmCommandDoor);
             this.Controls.Add(this.frmCommandSummonCreature);
@@ -1832,6 +2109,18 @@
             this.frmCommandDoor.PerformLayout();
             this.frmCommandRemoveAura.ResumeLayout(false);
             this.frmCommandRemoveAura.PerformLayout();
+            this.frmCommandCastSpell.ResumeLayout(false);
+            this.frmCommandCastSpell.PerformLayout();
+            this.grpCastSpellFlags.ResumeLayout(false);
+            this.grpCastSpellFlags.PerformLayout();
+            this.frmCommandPlaySound.ResumeLayout(false);
+            this.frmCommandPlaySound.PerformLayout();
+            this.grpPlaySoundFlags.ResumeLayout(false);
+            this.grpPlaySoundFlags.PerformLayout();
+            this.frmCommandCreateItem.ResumeLayout(false);
+            this.frmCommandCreateItem.PerformLayout();
+            this.frmCommandDespawnCreature.ResumeLayout(false);
+            this.frmCommandDespawnCreature.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1992,6 +2281,30 @@
         private System.Windows.Forms.Button btnRemoveAuraSpellId;
         private System.Windows.Forms.Label lblRemoveAuraSpellId;
         private System.Windows.Forms.Label lblRemoveAuraTooltip;
+        private System.Windows.Forms.Panel frmCommandCastSpell;
+        private System.Windows.Forms.GroupBox grpCastSpellFlags;
+        private System.Windows.Forms.CheckBox chkCastSpellFlags2;
+        private System.Windows.Forms.CheckBox chkCastSpellFlags1;
+        private System.Windows.Forms.Button btnCastSpellId;
+        private System.Windows.Forms.Label lblCastSpellId;
+        private System.Windows.Forms.Label lblCastSpellTooltip;
+        private System.Windows.Forms.Panel frmCommandPlaySound;
+        private System.Windows.Forms.GroupBox grpPlaySoundFlags;
+        private System.Windows.Forms.CheckBox chkPlaySoundFlags2;
+        private System.Windows.Forms.CheckBox chkPlaySoundFlags1;
+        private System.Windows.Forms.TextBox txtPlaySoundId;
+        private System.Windows.Forms.Label lblPlaySoundId;
+        private System.Windows.Forms.Label lblPlaySoundTooltip;
+        private System.Windows.Forms.Panel frmCommandCreateItem;
+        private System.Windows.Forms.Label lblCreateItemAmount;
+        private System.Windows.Forms.TextBox txtCreateItemAmount;
+        private System.Windows.Forms.Button btnCreateItemId;
+        private System.Windows.Forms.Label lblCreateItemId;
+        private System.Windows.Forms.Label lblCreateItemTooltip;
+        private System.Windows.Forms.Panel frmCommandDespawnCreature;
+        private System.Windows.Forms.Label lblDespawnCreatureDelay;
+        private System.Windows.Forms.TextBox txtDespawnCreatureDelay;
+        private System.Windows.Forms.Label lblDespawnCreatureTooltip;
     }
 }
 
