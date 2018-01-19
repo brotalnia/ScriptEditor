@@ -92,6 +92,12 @@
     <Compile Include="FormTextFinder.Designer.cs">
       <DependentUpon>FormTextFinder.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormWeaponFinder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWeaponFinder.Designer.cs">
+      <DependentUpon>FormWeaponFinder.cs</DependentUpon>
+    </Compile>
     <Compile Include="GameData.cs" />
     <Compile Include="MixedListSorter.cs" />
     <Compile Include="Program.cs" />
@@ -117,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormTextFinder.resx">
       <DependentUpon>FormTextFinder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWeaponFinder.resx">
+      <DependentUpon>FormWeaponFinder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

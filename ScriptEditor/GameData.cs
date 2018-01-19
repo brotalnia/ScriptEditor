@@ -218,7 +218,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT entry, RequiredLevel, ItemLevel, name FROM item_template t1 WHERE patch=(SELECT max(patch) FROM item_template t2 WHERE t1.entry=t2.entry) ORDER BY entry";
+            command.CommandText = "SELECT entry, RequiredLevel, ItemLevel, InventoryType, displayid, name FROM item_template t1 WHERE patch=(SELECT max(patch) FROM item_template t2 WHERE t1.entry=t2.entry) ORDER BY entry";
             try
             {
                 conn.Open();
@@ -227,7 +227,7 @@ namespace ScriptEditor
                 while (reader.Read())
                 {
                     // Add the new item entry to the list.
-                    ItemInfoList.Add(new ItemInfo(reader.GetUInt32(0), reader.GetUInt32(1), reader.GetUInt32(2), reader.GetString(3)));
+                    ItemInfoList.Add(new ItemInfo(reader.GetUInt32(0), reader.GetUInt32(1), reader.GetUInt32(2), reader.GetUInt32(3), reader.GetUInt32(4), reader.GetString(5)));
                 }
                 reader.Close();
             }
@@ -702,13 +702,34 @@ namespace ScriptEditor
         public uint ID;
         public uint RequiredLevel;
         public uint ItemLevel;
+        public uint InventoryType;
+        public uint DisplayId;
         public string Name;
-        public ItemInfo(uint id, uint requiredlevel, uint itemlevel, string name)
+        public ItemInfo(uint id, uint requiredlevel, uint itemlevel, uint inventorytype, uint displayid, string name)
         {
             ID = id;
             Name = name;
             RequiredLevel = requiredlevel;
             ItemLevel = itemlevel;
+            InventoryType = inventorytype;
+            DisplayId = displayid;
+        }
+        public bool IsHoldable()
+        {
+            switch (InventoryType)
+            {
+                case 13: // Weapon
+                case 14: // Shield
+                case 15: // Ranged
+                case 17: // 2H Weapon
+                case 21: // Main Hand
+                case 22: // Off Hand
+                case 23: // Holdable
+                case 25: // Thrown
+                case 26: // Light Ranged
+                    return true;
+            }
+            return false;
         }
     }
     public class ComboboxPair

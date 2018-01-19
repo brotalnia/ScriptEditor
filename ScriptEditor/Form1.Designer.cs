@@ -203,9 +203,19 @@
             this.lblCreateItemId = new System.Windows.Forms.Label();
             this.lblCreateItemTooltip = new System.Windows.Forms.Label();
             this.frmCommandDespawnCreature = new System.Windows.Forms.Panel();
-            this.lblDespawnCreatureTooltip = new System.Windows.Forms.Label();
-            this.txtDespawnCreatureDelay = new System.Windows.Forms.TextBox();
             this.lblDespawnCreatureDelay = new System.Windows.Forms.Label();
+            this.txtDespawnCreatureDelay = new System.Windows.Forms.TextBox();
+            this.lblDespawnCreatureTooltip = new System.Windows.Forms.Label();
+            this.frmCommandSetEquipment = new System.Windows.Forms.Panel();
+            this.lblSetEquipmentRanged = new System.Windows.Forms.Label();
+            this.lblSetEquipmentOffHand = new System.Windows.Forms.Label();
+            this.lblSetEquipmentMainHand = new System.Windows.Forms.Label();
+            this.btnSetEquipmentRanged = new System.Windows.Forms.Button();
+            this.btnSetEquipmentOffHand = new System.Windows.Forms.Button();
+            this.btnSetEquipmentMainHand = new System.Windows.Forms.Button();
+            this.cmbSetEquipmentUseDefault = new System.Windows.Forms.ComboBox();
+            this.lblSetEquipmentUseDefault = new System.Windows.Forms.Label();
+            this.lblSetEquipmentTooltip = new System.Windows.Forms.Label();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -229,6 +239,7 @@
             this.grpPlaySoundFlags.SuspendLayout();
             this.frmCommandCreateItem.SuspendLayout();
             this.frmCommandDespawnCreature.SuspendLayout();
+            this.frmCommandSetEquipment.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstActions
@@ -2013,23 +2024,6 @@
             this.frmCommandDespawnCreature.TabIndex = 24;
             this.frmCommandDespawnCreature.Visible = false;
             // 
-            // lblDespawnCreatureTooltip
-            // 
-            this.lblDespawnCreatureTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblDespawnCreatureTooltip.Location = new System.Drawing.Point(20, 10);
-            this.lblDespawnCreatureTooltip.Name = "lblDespawnCreatureTooltip";
-            this.lblDespawnCreatureTooltip.Size = new System.Drawing.Size(453, 32);
-            this.lblDespawnCreatureTooltip.TabIndex = 0;
-            this.lblDespawnCreatureTooltip.Text = "Despawns the source Creature after the specified delay.";
-            // 
-            // txtDespawnCreatureDelay
-            // 
-            this.txtDespawnCreatureDelay.Location = new System.Drawing.Point(93, 62);
-            this.txtDespawnCreatureDelay.Name = "txtDespawnCreatureDelay";
-            this.txtDespawnCreatureDelay.Size = new System.Drawing.Size(150, 20);
-            this.txtDespawnCreatureDelay.TabIndex = 1;
-            this.txtDespawnCreatureDelay.Leave += new System.EventHandler(this.txtDespawnCreatureDelay_Leave);
-            // 
             // lblDespawnCreatureDelay
             // 
             this.lblDespawnCreatureDelay.AutoSize = true;
@@ -2039,11 +2033,135 @@
             this.lblDespawnCreatureDelay.TabIndex = 2;
             this.lblDespawnCreatureDelay.Text = "Delay (ms):";
             // 
+            // txtDespawnCreatureDelay
+            // 
+            this.txtDespawnCreatureDelay.Location = new System.Drawing.Point(93, 62);
+            this.txtDespawnCreatureDelay.Name = "txtDespawnCreatureDelay";
+            this.txtDespawnCreatureDelay.Size = new System.Drawing.Size(150, 20);
+            this.txtDespawnCreatureDelay.TabIndex = 1;
+            this.txtDespawnCreatureDelay.Leave += new System.EventHandler(this.txtDespawnCreatureDelay_Leave);
+            // 
+            // lblDespawnCreatureTooltip
+            // 
+            this.lblDespawnCreatureTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblDespawnCreatureTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblDespawnCreatureTooltip.Name = "lblDespawnCreatureTooltip";
+            this.lblDespawnCreatureTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblDespawnCreatureTooltip.TabIndex = 0;
+            this.lblDespawnCreatureTooltip.Text = "Despawns the source Creature after the specified delay.";
+            // 
+            // frmCommandSetEquipment
+            // 
+            this.frmCommandSetEquipment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandSetEquipment.Controls.Add(this.lblSetEquipmentRanged);
+            this.frmCommandSetEquipment.Controls.Add(this.lblSetEquipmentOffHand);
+            this.frmCommandSetEquipment.Controls.Add(this.lblSetEquipmentMainHand);
+            this.frmCommandSetEquipment.Controls.Add(this.btnSetEquipmentRanged);
+            this.frmCommandSetEquipment.Controls.Add(this.btnSetEquipmentOffHand);
+            this.frmCommandSetEquipment.Controls.Add(this.btnSetEquipmentMainHand);
+            this.frmCommandSetEquipment.Controls.Add(this.cmbSetEquipmentUseDefault);
+            this.frmCommandSetEquipment.Controls.Add(this.lblSetEquipmentUseDefault);
+            this.frmCommandSetEquipment.Controls.Add(this.lblSetEquipmentTooltip);
+            this.frmCommandSetEquipment.Location = new System.Drawing.Point(409, 239);
+            this.frmCommandSetEquipment.Name = "frmCommandSetEquipment";
+            this.frmCommandSetEquipment.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandSetEquipment.TabIndex = 25;
+            this.frmCommandSetEquipment.Visible = false;
+            // 
+            // lblSetEquipmentRanged
+            // 
+            this.lblSetEquipmentRanged.AutoSize = true;
+            this.lblSetEquipmentRanged.Location = new System.Drawing.Point(47, 157);
+            this.lblSetEquipmentRanged.Name = "lblSetEquipmentRanged";
+            this.lblSetEquipmentRanged.Size = new System.Drawing.Size(48, 13);
+            this.lblSetEquipmentRanged.TabIndex = 8;
+            this.lblSetEquipmentRanged.Text = "Ranged:";
+            // 
+            // lblSetEquipmentOffHand
+            // 
+            this.lblSetEquipmentOffHand.AutoSize = true;
+            this.lblSetEquipmentOffHand.Location = new System.Drawing.Point(42, 125);
+            this.lblSetEquipmentOffHand.Name = "lblSetEquipmentOffHand";
+            this.lblSetEquipmentOffHand.Size = new System.Drawing.Size(53, 13);
+            this.lblSetEquipmentOffHand.TabIndex = 7;
+            this.lblSetEquipmentOffHand.Text = "Off Hand:";
+            // 
+            // lblSetEquipmentMainHand
+            // 
+            this.lblSetEquipmentMainHand.AutoSize = true;
+            this.lblSetEquipmentMainHand.Location = new System.Drawing.Point(33, 93);
+            this.lblSetEquipmentMainHand.Name = "lblSetEquipmentMainHand";
+            this.lblSetEquipmentMainHand.Size = new System.Drawing.Size(62, 13);
+            this.lblSetEquipmentMainHand.TabIndex = 6;
+            this.lblSetEquipmentMainHand.Text = "Main Hand:";
+            // 
+            // btnSetEquipmentRanged
+            // 
+            this.btnSetEquipmentRanged.Location = new System.Drawing.Point(99, 152);
+            this.btnSetEquipmentRanged.Name = "btnSetEquipmentRanged";
+            this.btnSetEquipmentRanged.Size = new System.Drawing.Size(374, 23);
+            this.btnSetEquipmentRanged.TabIndex = 5;
+            this.btnSetEquipmentRanged.Text = "-NONE-";
+            this.btnSetEquipmentRanged.UseVisualStyleBackColor = true;
+            this.btnSetEquipmentRanged.Click += new System.EventHandler(this.btnSetEquipmentRanged_Click);
+            // 
+            // btnSetEquipmentOffHand
+            // 
+            this.btnSetEquipmentOffHand.Location = new System.Drawing.Point(99, 120);
+            this.btnSetEquipmentOffHand.Name = "btnSetEquipmentOffHand";
+            this.btnSetEquipmentOffHand.Size = new System.Drawing.Size(374, 23);
+            this.btnSetEquipmentOffHand.TabIndex = 4;
+            this.btnSetEquipmentOffHand.Text = "-NONE-";
+            this.btnSetEquipmentOffHand.UseVisualStyleBackColor = true;
+            this.btnSetEquipmentOffHand.Click += new System.EventHandler(this.btnSetEquipmentOffHand_Click);
+            // 
+            // btnSetEquipmentMainHand
+            // 
+            this.btnSetEquipmentMainHand.Location = new System.Drawing.Point(99, 88);
+            this.btnSetEquipmentMainHand.Name = "btnSetEquipmentMainHand";
+            this.btnSetEquipmentMainHand.Size = new System.Drawing.Size(374, 23);
+            this.btnSetEquipmentMainHand.TabIndex = 3;
+            this.btnSetEquipmentMainHand.Text = "-NONE-";
+            this.btnSetEquipmentMainHand.UseVisualStyleBackColor = true;
+            this.btnSetEquipmentMainHand.Click += new System.EventHandler(this.btnSetEquipmentMainHand_Click);
+            // 
+            // cmbSetEquipmentUseDefault
+            // 
+            this.cmbSetEquipmentUseDefault.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSetEquipmentUseDefault.FormattingEnabled = true;
+            this.cmbSetEquipmentUseDefault.Items.AddRange(new object[] {
+            "Specified Items",
+            "Default Equipment"});
+            this.cmbSetEquipmentUseDefault.Location = new System.Drawing.Point(99, 58);
+            this.cmbSetEquipmentUseDefault.Name = "cmbSetEquipmentUseDefault";
+            this.cmbSetEquipmentUseDefault.Size = new System.Drawing.Size(374, 21);
+            this.cmbSetEquipmentUseDefault.TabIndex = 2;
+            this.cmbSetEquipmentUseDefault.SelectedIndexChanged += new System.EventHandler(this.cmbSetEquipmentUseDefault_SelectedIndexChanged);
+            // 
+            // lblSetEquipmentUseDefault
+            // 
+            this.lblSetEquipmentUseDefault.AutoSize = true;
+            this.lblSetEquipmentUseDefault.Location = new System.Drawing.Point(60, 61);
+            this.lblSetEquipmentUseDefault.Name = "lblSetEquipmentUseDefault";
+            this.lblSetEquipmentUseDefault.Size = new System.Drawing.Size(35, 13);
+            this.lblSetEquipmentUseDefault.TabIndex = 1;
+            this.lblSetEquipmentUseDefault.Text = "Items:";
+            // 
+            // lblSetEquipmentTooltip
+            // 
+            this.lblSetEquipmentTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblSetEquipmentTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblSetEquipmentTooltip.Name = "lblSetEquipmentTooltip";
+            this.lblSetEquipmentTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblSetEquipmentTooltip.TabIndex = 0;
+            this.lblSetEquipmentTooltip.Text = "Changes the equipped item in the specified slot. This is purely visual.";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(926, 610);
+            this.Controls.Add(this.frmCommandSetEquipment);
             this.Controls.Add(this.frmCommandDespawnCreature);
             this.Controls.Add(this.frmCommandCreateItem);
             this.Controls.Add(this.frmCommandPlaySound);
@@ -2121,6 +2239,8 @@
             this.frmCommandCreateItem.PerformLayout();
             this.frmCommandDespawnCreature.ResumeLayout(false);
             this.frmCommandDespawnCreature.PerformLayout();
+            this.frmCommandSetEquipment.ResumeLayout(false);
+            this.frmCommandSetEquipment.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2305,6 +2425,16 @@
         private System.Windows.Forms.Label lblDespawnCreatureDelay;
         private System.Windows.Forms.TextBox txtDespawnCreatureDelay;
         private System.Windows.Forms.Label lblDespawnCreatureTooltip;
+        private System.Windows.Forms.Panel frmCommandSetEquipment;
+        private System.Windows.Forms.Label lblSetEquipmentTooltip;
+        private System.Windows.Forms.Label lblSetEquipmentRanged;
+        private System.Windows.Forms.Label lblSetEquipmentOffHand;
+        private System.Windows.Forms.Label lblSetEquipmentMainHand;
+        private System.Windows.Forms.Button btnSetEquipmentRanged;
+        private System.Windows.Forms.Button btnSetEquipmentOffHand;
+        private System.Windows.Forms.Button btnSetEquipmentMainHand;
+        private System.Windows.Forms.ComboBox cmbSetEquipmentUseDefault;
+        private System.Windows.Forms.Label lblSetEquipmentUseDefault;
     }
 }
 

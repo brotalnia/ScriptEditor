@@ -12,7 +12,7 @@ namespace ScriptEditor
 {
     public partial class FormDataFinder : Form
     {
-        public uint ReturnValue { get; set; } // we return the chosen id in this
+        public int ReturnValue { get; set; } // we return the chosen id in this
 
         System.Collections.IComparer textComparer;
 
@@ -38,10 +38,10 @@ namespace ScriptEditor
         {
             if (lstData.SelectedItems.Count > 0)
             {
-                ListViewItem selectedText = lstData.SelectedItems[0];
-                uint textId;
-                uint.TryParse(selectedText.Text, out textId);
-                ReturnValue = textId;
+                ListViewItem selectedItem = lstData.SelectedItems[0];
+                uint selectedId;
+                uint.TryParse(selectedItem.Text, out selectedId);
+                ReturnValue = (int)selectedId;
                 DialogResult = DialogResult.OK;
                 Close();
             }

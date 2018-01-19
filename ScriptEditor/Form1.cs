@@ -385,6 +385,13 @@ namespace ScriptEditor
             txtDespawnCreatureDelay.Text = "";
             frmCommandDespawnCreature.Visible = false;
 
+            // Set Equipment Command (19)
+            btnSetEquipmentMainHand.Text = "-NONE-";
+            btnSetEquipmentOffHand.Text = "-NONE-";
+            btnSetEquipmentRanged.Text = "-NONE-";
+            cmbSetEquipmentUseDefault.SelectedIndex = 0;
+            frmCommandSetEquipment.Visible = false;
+
             dontUpdate = false;
         }
         private void ShowCommandSpecificForm(ScriptAction selectedAction)
@@ -697,6 +704,38 @@ namespace ScriptEditor
                     frmCommandDespawnCreature.Visible = true;
                     break;
                 }
+                case 19: // Set Equipment
+                {
+                    int itemId1 = selectedAction.Dataint;
+                    if (itemId1 > 0)
+                        btnSetEquipmentMainHand.Text = GameData.FindItemName((uint)itemId1) + " (" + itemId1.ToString() + ")";
+                    else if (itemId1 < 0)
+                        btnSetEquipmentMainHand.Text = "-UNCHANGED-";
+
+                    int itemId2 = selectedAction.Dataint2;
+                    if (itemId2 > 0)
+                        btnSetEquipmentOffHand.Text = GameData.FindItemName((uint)itemId2) + " (" + itemId2.ToString() + ")";
+                    else if (itemId2 < 0)
+                        btnSetEquipmentOffHand.Text = "-UNCHANGED-";
+
+                    int itemId3 = selectedAction.Dataint3;
+                    if (itemId3 > 0)
+                        btnSetEquipmentRanged.Text = GameData.FindItemName((uint)itemId3) + " (" + itemId3.ToString() + ")";
+                    else if (itemId3 < 0)
+                        btnSetEquipmentRanged.Text = "-UNCHANGED-";
+
+                    uint useDefault = selectedAction.Datalong;
+                    cmbSetEquipmentUseDefault.SelectedIndex = (int)useDefault;
+
+                    if (useDefault == 1)
+                    {
+                        btnSetEquipmentMainHand.Enabled = false;
+                        btnSetEquipmentOffHand.Enabled = false;
+                        btnSetEquipmentRanged.Enabled = false;
+                    }
+                    frmCommandSetEquipment.Visible = true;
+                    break;
+                }
             }
             dontUpdate = false;
         }
@@ -851,18 +890,22 @@ namespace ScriptEditor
             FormDataFinder frm = new TFinderForm();
             if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                uint returnId = frm.ReturnValue;
+                int returnId = frm.ReturnValue;
 
                 if (returnId > 0)
                 {
                     // If there is no textbox provided the text is shown on the button.
                     if (txtbox == null)
-                        btn.Text = finder(returnId) + " (" + returnId.ToString() + ")";
+                        btn.Text = finder((uint)returnId) + " (" + returnId.ToString() + ")";
                     else
                     {
                         btn.Text = returnId.ToString();
-                        txtbox.Text = finder(returnId);
+                        txtbox.Text = finder((uint)returnId);
                     }
+                }
+                else if (returnId < 0)
+                {
+                    btn.Text = "-UNCHANGED-";
                 }
                 else
                 {
@@ -1474,6 +1517,61 @@ namespace ScriptEditor
         private void txtDespawnCreatureDelay_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtDespawnCreatureDelay, "Datalong");
+        }
+
+        private void cmbSetEquipmentUseDefault_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (dontUpdate)
+                return;
+
+            if (lstActions.SelectedItems.Count > 0)
+            {
+                // Get the selected item in the listview.
+                ListViewItem currentItem = lstActions.SelectedItems[0];
+
+                // Get the associated ScriptAction.
+                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
+
+                // Get the selected option.
+                uint selection = (uint)cmbSetEquipmentUseDefault.SelectedIndex;
+
+                // Updating datalong value.
+                currentAction.Datalong = selection;
+
+                if (selection > 0)
+                {
+                    btnSetEquipmentMainHand.Text = "-NONE-";
+                    btnSetEquipmentMainHand.Enabled = false;
+                    btnSetEquipmentOffHand.Text = "-NONE-";
+                    btnSetEquipmentOffHand.Enabled = false;
+                    btnSetEquipmentRanged.Text = "-NONE-";
+                    btnSetEquipmentRanged.Enabled = false;
+                    currentAction.Dataint = 0;
+                    currentAction.Dataint2 = 0;
+                    currentAction.Dataint3 = 0;
+                }
+                else
+                {
+                    btnSetEquipmentMainHand.Enabled = true;
+                    btnSetEquipmentOffHand.Enabled = true;
+                    btnSetEquipmentRanged.Enabled = true;
+                }
+            }
+        }
+
+        private void btnSetEquipmentMainHand_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormWeaponFinder>(btnSetEquipmentMainHand, null, GameData.FindItemName, "Dataint");
+        }
+
+        private void btnSetEquipmentOffHand_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormWeaponFinder>(btnSetEquipmentOffHand, null, GameData.FindItemName, "Dataint2");
+        }
+
+        private void btnSetEquipmentRanged_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormWeaponFinder>(btnSetEquipmentRanged, null, GameData.FindItemName, "Dataint3");
         }
     }
 
