@@ -18,6 +18,7 @@ namespace ScriptEditor
         public static readonly List<ComboboxPair> MapsList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> EmotesList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> CreatureRanksList = new List<ComboboxPair>();
+        public static readonly List<ComboboxPair> MotionTypesList = new List<ComboboxPair>();
         public static int FindIndexOfMap(uint id)
         {
             for (int i = 0; i < MapsList.Count; i++)
@@ -36,7 +37,15 @@ namespace ScriptEditor
             }
             return 0;
         }
-
+        public static int FindIndexOfMotionType(uint id)
+        {
+            for (int i = 0; i < MotionTypesList.Count; i++)
+            {
+                if (id == (uint)(MotionTypesList[i] as ComboboxPair).Value)
+                    return i;
+            }
+            return 0;
+        }
         public static int FindIndexOfFlagsField(uint id)
         {
             for (int i = 0; i < FlagFieldsList.Count; i++)
@@ -633,6 +642,18 @@ namespace ScriptEditor
             CreatureRanksList.Add(new ComboboxPair("Rare Elite", 2));
             CreatureRanksList.Add(new ComboboxPair("Boss", 3));
             CreatureRanksList.Add(new ComboboxPair("Rare", 4));
+
+            // Add motion types to list.
+            MotionTypesList.Add(new ComboboxPair("IDLE_MOTION_TYPE", 0));
+            MotionTypesList.Add(new ComboboxPair("RANDOM_MOTION_TYPE", 1));
+            MotionTypesList.Add(new ComboboxPair("WAYPOINT_MOTION_TYPE", 2));
+            MotionTypesList.Add(new ComboboxPair("CONFUSED_MOTION_TYPE", 4));
+            MotionTypesList.Add(new ComboboxPair("CHASE_MOTION_TYPE", 5));
+            MotionTypesList.Add(new ComboboxPair("HOME_MOTION_TYPE", 6));
+            MotionTypesList.Add(new ComboboxPair("FLEEING_MOTION_TYPE", 9));
+            MotionTypesList.Add(new ComboboxPair("DISTRACT_MOTION_TYPE", 10));
+            MotionTypesList.Add(new ComboboxPair("FOLLOW_MOTION_TYPE", 14));
+            MotionTypesList.Add(new ComboboxPair("CHARGE_MOTION_TYPE", 17));
         }
     }
     public struct BroadcastText

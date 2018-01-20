@@ -216,6 +216,18 @@
             this.cmbSetEquipmentUseDefault = new System.Windows.Forms.ComboBox();
             this.lblSetEquipmentUseDefault = new System.Windows.Forms.Label();
             this.lblSetEquipmentTooltip = new System.Windows.Forms.Label();
+            this.frmCommandSetMovement = new System.Windows.Forms.Panel();
+            this.lblSetMovementAngle = new System.Windows.Forms.Label();
+            this.txtSetMovementAngle = new System.Windows.Forms.TextBox();
+            this.txtSetMovementDistance = new System.Windows.Forms.TextBox();
+            this.txtSetMovementIntParam = new System.Windows.Forms.TextBox();
+            this.cmbSetMovementBoolParam = new System.Windows.Forms.ComboBox();
+            this.lblSetMovementDistance = new System.Windows.Forms.Label();
+            this.lblSetMovementIntParam = new System.Windows.Forms.Label();
+            this.lblSetMovementBoolParam = new System.Windows.Forms.Label();
+            this.cmbSetMovementType = new System.Windows.Forms.ComboBox();
+            this.lblSetMovementType = new System.Windows.Forms.Label();
+            this.lblSetMovementTooltip = new System.Windows.Forms.Label();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -240,6 +252,7 @@
             this.frmCommandCreateItem.SuspendLayout();
             this.frmCommandDespawnCreature.SuspendLayout();
             this.frmCommandSetEquipment.SuspendLayout();
+            this.frmCommandSetMovement.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstActions
@@ -2156,11 +2169,136 @@
             this.lblSetEquipmentTooltip.TabIndex = 0;
             this.lblSetEquipmentTooltip.Text = "Changes the equipped item in the specified slot. This is purely visual.";
             // 
+            // frmCommandSetMovement
+            // 
+            this.frmCommandSetMovement.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandSetMovement.Controls.Add(this.lblSetMovementAngle);
+            this.frmCommandSetMovement.Controls.Add(this.txtSetMovementAngle);
+            this.frmCommandSetMovement.Controls.Add(this.txtSetMovementDistance);
+            this.frmCommandSetMovement.Controls.Add(this.txtSetMovementIntParam);
+            this.frmCommandSetMovement.Controls.Add(this.cmbSetMovementBoolParam);
+            this.frmCommandSetMovement.Controls.Add(this.lblSetMovementDistance);
+            this.frmCommandSetMovement.Controls.Add(this.lblSetMovementIntParam);
+            this.frmCommandSetMovement.Controls.Add(this.lblSetMovementBoolParam);
+            this.frmCommandSetMovement.Controls.Add(this.cmbSetMovementType);
+            this.frmCommandSetMovement.Controls.Add(this.lblSetMovementType);
+            this.frmCommandSetMovement.Controls.Add(this.lblSetMovementTooltip);
+            this.frmCommandSetMovement.Location = new System.Drawing.Point(409, 239);
+            this.frmCommandSetMovement.Name = "frmCommandSetMovement";
+            this.frmCommandSetMovement.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandSetMovement.TabIndex = 26;
+            this.frmCommandSetMovement.Visible = false;
+            // 
+            // lblSetMovementAngle
+            // 
+            this.lblSetMovementAngle.AutoSize = true;
+            this.lblSetMovementAngle.Location = new System.Drawing.Point(58, 182);
+            this.lblSetMovementAngle.Name = "lblSetMovementAngle";
+            this.lblSetMovementAngle.Size = new System.Drawing.Size(37, 13);
+            this.lblSetMovementAngle.TabIndex = 13;
+            this.lblSetMovementAngle.Text = "Angle:";
+            // 
+            // txtSetMovementAngle
+            // 
+            this.txtSetMovementAngle.Location = new System.Drawing.Point(99, 180);
+            this.txtSetMovementAngle.Name = "txtSetMovementAngle";
+            this.txtSetMovementAngle.Size = new System.Drawing.Size(374, 20);
+            this.txtSetMovementAngle.TabIndex = 12;
+            this.txtSetMovementAngle.Leave += new System.EventHandler(this.txtSetMovementAngle_Leave);
+            // 
+            // txtSetMovementDistance
+            // 
+            this.txtSetMovementDistance.Location = new System.Drawing.Point(99, 150);
+            this.txtSetMovementDistance.Name = "txtSetMovementDistance";
+            this.txtSetMovementDistance.Size = new System.Drawing.Size(374, 20);
+            this.txtSetMovementDistance.TabIndex = 11;
+            this.txtSetMovementDistance.Leave += new System.EventHandler(this.txtSetMovementDistance_Leave);
+            // 
+            // txtSetMovementIntParam
+            // 
+            this.txtSetMovementIntParam.Location = new System.Drawing.Point(99, 120);
+            this.txtSetMovementIntParam.Name = "txtSetMovementIntParam";
+            this.txtSetMovementIntParam.Size = new System.Drawing.Size(374, 20);
+            this.txtSetMovementIntParam.TabIndex = 10;
+            this.txtSetMovementIntParam.Leave += new System.EventHandler(this.txtSetMovementIntParam_Leave);
+            // 
+            // cmbSetMovementBoolParam
+            // 
+            this.cmbSetMovementBoolParam.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSetMovementBoolParam.FormattingEnabled = true;
+            this.cmbSetMovementBoolParam.Items.AddRange(new object[] {
+            "False",
+            "True"});
+            this.cmbSetMovementBoolParam.Location = new System.Drawing.Point(99, 89);
+            this.cmbSetMovementBoolParam.Name = "cmbSetMovementBoolParam";
+            this.cmbSetMovementBoolParam.Size = new System.Drawing.Size(374, 21);
+            this.cmbSetMovementBoolParam.TabIndex = 9;
+            this.cmbSetMovementBoolParam.SelectedIndexChanged += new System.EventHandler(this.cmbSetMovementBoolParam_SelectedIndexChanged);
+            // 
+            // lblSetMovementDistance
+            // 
+            this.lblSetMovementDistance.AutoSize = true;
+            this.lblSetMovementDistance.Location = new System.Drawing.Point(43, 152);
+            this.lblSetMovementDistance.Name = "lblSetMovementDistance";
+            this.lblSetMovementDistance.Size = new System.Drawing.Size(52, 13);
+            this.lblSetMovementDistance.TabIndex = 8;
+            this.lblSetMovementDistance.Text = "Distance:";
+            // 
+            // lblSetMovementIntParam
+            // 
+            this.lblSetMovementIntParam.AutoSize = true;
+            this.lblSetMovementIntParam.Location = new System.Drawing.Point(40, 122);
+            this.lblSetMovementIntParam.Name = "lblSetMovementIntParam";
+            this.lblSetMovementIntParam.Size = new System.Drawing.Size(55, 13);
+            this.lblSetMovementIntParam.TabIndex = 7;
+            this.lblSetMovementIntParam.Text = "Int Param:";
+            // 
+            // lblSetMovementBoolParam
+            // 
+            this.lblSetMovementBoolParam.AutoSize = true;
+            this.lblSetMovementBoolParam.Location = new System.Drawing.Point(31, 92);
+            this.lblSetMovementBoolParam.Name = "lblSetMovementBoolParam";
+            this.lblSetMovementBoolParam.Size = new System.Drawing.Size(64, 13);
+            this.lblSetMovementBoolParam.TabIndex = 6;
+            this.lblSetMovementBoolParam.Text = "Bool Param:";
+            // 
+            // cmbSetMovementType
+            // 
+            this.cmbSetMovementType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSetMovementType.FormattingEnabled = true;
+            this.cmbSetMovementType.Items.AddRange(new object[] {
+            "Specified Items",
+            "Default Equipment"});
+            this.cmbSetMovementType.Location = new System.Drawing.Point(99, 58);
+            this.cmbSetMovementType.Name = "cmbSetMovementType";
+            this.cmbSetMovementType.Size = new System.Drawing.Size(374, 21);
+            this.cmbSetMovementType.TabIndex = 2;
+            this.cmbSetMovementType.SelectedIndexChanged += new System.EventHandler(this.cmbSetMovementType_SelectedIndexChanged);
+            // 
+            // lblSetMovementType
+            // 
+            this.lblSetMovementType.AutoSize = true;
+            this.lblSetMovementType.Location = new System.Drawing.Point(26, 61);
+            this.lblSetMovementType.Name = "lblSetMovementType";
+            this.lblSetMovementType.Size = new System.Drawing.Size(69, 13);
+            this.lblSetMovementType.TabIndex = 1;
+            this.lblSetMovementType.Text = "Motion Type:";
+            // 
+            // lblSetMovementTooltip
+            // 
+            this.lblSetMovementTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblSetMovementTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblSetMovementTooltip.Name = "lblSetMovementTooltip";
+            this.lblSetMovementTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblSetMovementTooltip.TabIndex = 0;
+            this.lblSetMovementTooltip.Text = "Changes the current movement type used by the source Creature.";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(926, 610);
+            this.Controls.Add(this.frmCommandSetMovement);
             this.Controls.Add(this.frmCommandSetEquipment);
             this.Controls.Add(this.frmCommandDespawnCreature);
             this.Controls.Add(this.frmCommandCreateItem);
@@ -2241,6 +2379,8 @@
             this.frmCommandDespawnCreature.PerformLayout();
             this.frmCommandSetEquipment.ResumeLayout(false);
             this.frmCommandSetEquipment.PerformLayout();
+            this.frmCommandSetMovement.ResumeLayout(false);
+            this.frmCommandSetMovement.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2435,6 +2575,18 @@
         private System.Windows.Forms.Button btnSetEquipmentMainHand;
         private System.Windows.Forms.ComboBox cmbSetEquipmentUseDefault;
         private System.Windows.Forms.Label lblSetEquipmentUseDefault;
+        private System.Windows.Forms.Panel frmCommandSetMovement;
+        private System.Windows.Forms.Label lblSetMovementAngle;
+        private System.Windows.Forms.TextBox txtSetMovementAngle;
+        private System.Windows.Forms.TextBox txtSetMovementDistance;
+        private System.Windows.Forms.TextBox txtSetMovementIntParam;
+        private System.Windows.Forms.ComboBox cmbSetMovementBoolParam;
+        private System.Windows.Forms.Label lblSetMovementDistance;
+        private System.Windows.Forms.Label lblSetMovementIntParam;
+        private System.Windows.Forms.Label lblSetMovementBoolParam;
+        private System.Windows.Forms.ComboBox cmbSetMovementType;
+        private System.Windows.Forms.Label lblSetMovementType;
+        private System.Windows.Forms.Label lblSetMovementTooltip;
     }
 }
 

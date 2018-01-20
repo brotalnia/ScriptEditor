@@ -43,11 +43,11 @@
             // 
             // btnSelectUnchanged
             // 
-            this.btnSelectUnchanged.Location = new System.Drawing.Point(271, 367);
+            this.btnSelectUnchanged.Location = new System.Drawing.Point(305, 367);
             this.btnSelectUnchanged.Name = "btnSelectUnchanged";
-            this.btnSelectUnchanged.Size = new System.Drawing.Size(134, 23);
+            this.btnSelectUnchanged.Size = new System.Drawing.Size(100, 23);
             this.btnSelectUnchanged.TabIndex = 7;
-            this.btnSelectUnchanged.Text = "Select - UNCHANGED-";
+            this.btnSelectUnchanged.Text = "Select -IGNORE-";
             this.btnSelectUnchanged.UseVisualStyleBackColor = true;
             this.btnSelectUnchanged.Click += new System.EventHandler(this.btnSelectUnchanged_Click);
             // 
@@ -74,6 +74,7 @@
             this.Name = "FormWeaponFinder";
             this.Text = "Weapon Finder";
             this.ResizeEnd += new System.EventHandler(this.FormWeaponFinder_ResizeEnd);
+            this.Controls.SetChildIndex(this.btnSelectNone, 0);
             this.Controls.SetChildIndex(this.lstData, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.btnSelectUnchanged, 0);

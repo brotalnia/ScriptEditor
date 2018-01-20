@@ -121,7 +121,7 @@ namespace ScriptEditor
             // Assign fields list to combo box.
             cmbFieldSetFields.DataSource = GameData.FlagFieldsList;
 
-            // Assign maps list to a combo box.
+            // Assign maps list to combo box.
             cmbTeleportMap.DataSource = GameData.MapsList;
 
             // Add options to Move To Coordinates Type combo box.
@@ -133,10 +133,14 @@ namespace ScriptEditor
             cmbKillCreditType.Items.Add(new ComboboxPair("Personal credit", 0));
             cmbKillCreditType.Items.Add(new ComboboxPair("Group credit", 1));
 
+            // Assign motion types list to combo box.
+            cmbSetMovementType.DataSource = GameData.MotionTypesList;
+
             // Setting default selection for combo boxes.
             cmbSummonCreatureFacingOptions.SelectedIndex = 0;
             cmbSummonCreatureSetRun.SelectedIndex = 0;
             cmbTable.SelectedIndex = 0;
+            cmbSetMovementType.SelectedIndex = 0;
 
             //MessageBox.Show((cmbCommandId.SelectedItem as ComboboxPair).Value.ToString());
             dontUpdate = false;
@@ -391,6 +395,22 @@ namespace ScriptEditor
             btnSetEquipmentRanged.Text = "-NONE-";
             cmbSetEquipmentUseDefault.SelectedIndex = 0;
             frmCommandSetEquipment.Visible = false;
+
+            // Set Movement Command (20)
+            cmbSetMovementType.SelectedIndex = 0;
+            cmbSetMovementBoolParam.SelectedIndex = 0;
+            cmbSetMovementBoolParam.Enabled = false;
+            lblSetMovementBoolParam.Text = "Bool Param:";
+            txtSetMovementIntParam.Enabled = false;
+            txtSetMovementIntParam.Text = "";
+            lblSetMovementIntParam.Text = "Int Param:";
+            txtSetMovementDistance.Enabled = false;
+            txtSetMovementDistance.Text = "";
+            txtSetMovementAngle.Enabled = false;
+            txtSetMovementAngle.Text = "";
+            lblSetMovementBoolParam.Location = new Point(cmbSetMovementBoolParam.Location.X - lblSetMovementBoolParam.Size.Width - 4, lblSetMovementBoolParam.Location.Y);
+            lblSetMovementIntParam.Location = new Point(txtSetMovementIntParam.Location.X - lblSetMovementIntParam.Size.Width - 4, lblSetMovementIntParam.Location.Y);
+            frmCommandSetMovement.Visible = false;
 
             dontUpdate = false;
         }
@@ -710,19 +730,19 @@ namespace ScriptEditor
                     if (itemId1 > 0)
                         btnSetEquipmentMainHand.Text = GameData.FindItemName((uint)itemId1) + " (" + itemId1.ToString() + ")";
                     else if (itemId1 < 0)
-                        btnSetEquipmentMainHand.Text = "-UNCHANGED-";
+                        btnSetEquipmentMainHand.Text = "-IGNORE-";
 
                     int itemId2 = selectedAction.Dataint2;
                     if (itemId2 > 0)
                         btnSetEquipmentOffHand.Text = GameData.FindItemName((uint)itemId2) + " (" + itemId2.ToString() + ")";
                     else if (itemId2 < 0)
-                        btnSetEquipmentOffHand.Text = "-UNCHANGED-";
+                        btnSetEquipmentOffHand.Text = "-IGNORE-";
 
                     int itemId3 = selectedAction.Dataint3;
                     if (itemId3 > 0)
                         btnSetEquipmentRanged.Text = GameData.FindItemName((uint)itemId3) + " (" + itemId3.ToString() + ")";
                     else if (itemId3 < 0)
-                        btnSetEquipmentRanged.Text = "-UNCHANGED-";
+                        btnSetEquipmentRanged.Text = "-IGNORE-";
 
                     uint useDefault = selectedAction.Datalong;
                     cmbSetEquipmentUseDefault.SelectedIndex = (int)useDefault;
@@ -734,6 +754,71 @@ namespace ScriptEditor
                         btnSetEquipmentRanged.Enabled = false;
                     }
                     frmCommandSetEquipment.Visible = true;
+                    break;
+                }
+                case 20: // Set Movement
+                {
+                    uint motionType = selectedAction.Datalong;
+                    cmbSetMovementType.SelectedIndex = GameData.FindIndexOfMotionType(motionType);
+                    switch (motionType)
+                    {
+                        case 2: // WAYPOINT_MOTION_TYPE
+                        {
+                            cmbSetMovementBoolParam.Enabled = true;
+                            cmbSetMovementBoolParam.SelectedIndex = (int)selectedAction.Datalong2;
+                            lblSetMovementBoolParam.Text = "Repeat:";
+                            break;
+                        }
+                        case 5: // CHASE_MOTION_TYPE
+                        {
+                            cmbSetMovementBoolParam.Enabled = true;
+                            cmbSetMovementBoolParam.SelectedIndex = (int)selectedAction.Datalong2;
+                            lblSetMovementBoolParam.Text = "Target Victim:";
+                            txtSetMovementDistance.Enabled = true;
+                            txtSetMovementDistance.Text = selectedAction.X.ToString();
+                            txtSetMovementAngle.Enabled = true;
+                            txtSetMovementAngle.Text = selectedAction.O.ToString();
+                            break;
+                        }
+                        case 9: // FLEEING_MOTION_TYPE
+                        {
+                            cmbSetMovementBoolParam.Enabled = true;
+                            cmbSetMovementBoolParam.SelectedIndex = (int)selectedAction.Datalong2;
+                            lblSetMovementBoolParam.Text = "Target Victim:";
+                            txtSetMovementIntParam.Enabled = true;
+                            txtSetMovementIntParam.Text = selectedAction.Datalong3.ToString();
+                            lblSetMovementIntParam.Text = "Time:";
+                            break;
+                        }
+                        case 10: // DISTRACT_MOTION_TYPE
+                        {
+                            txtSetMovementIntParam.Enabled = true;
+                            txtSetMovementIntParam.Text = selectedAction.Datalong3.ToString();
+                            lblSetMovementIntParam.Text = "Time:";
+                            break;
+                        }
+                        case 14: // FOLLOW_MOTION_TYPE
+                        {
+                            txtSetMovementDistance.Enabled = true;
+                            txtSetMovementDistance.Text = selectedAction.X.ToString();
+                            txtSetMovementAngle.Enabled = true;
+                            txtSetMovementAngle.Text = selectedAction.O.ToString();
+                            break;
+                        }
+                        case 17: // CHARGE_MOTION_TYPE
+                        {
+                            cmbSetMovementBoolParam.Enabled = true;
+                            cmbSetMovementBoolParam.SelectedIndex = (int)selectedAction.Datalong2;
+                            lblSetMovementBoolParam.Text = "Attack:";
+                            txtSetMovementIntParam.Enabled = true;
+                            txtSetMovementIntParam.Text = selectedAction.Datalong3.ToString();
+                            lblSetMovementIntParam.Text = "Delay:";
+                            break;
+                        }
+                    }
+                    lblSetMovementBoolParam.Location = new Point(cmbSetMovementBoolParam.Location.X - lblSetMovementBoolParam.Size.Width - 4, lblSetMovementBoolParam.Location.Y);
+                    lblSetMovementIntParam.Location = new Point(txtSetMovementIntParam.Location.X - lblSetMovementIntParam.Size.Width - 4, lblSetMovementIntParam.Location.Y);
+                    frmCommandSetMovement.Visible = true;
                     break;
                 }
             }
@@ -905,7 +990,7 @@ namespace ScriptEditor
                 }
                 else if (returnId < 0)
                 {
-                    btn.Text = "-UNCHANGED-";
+                    btn.Text = "-IGNORE-";
                 }
                 else
                 {
@@ -1572,6 +1657,129 @@ namespace ScriptEditor
         private void btnSetEquipmentRanged_Click(object sender, EventArgs e)
         {
             SetScriptFieldFromDataFinderForm<FormWeaponFinder>(btnSetEquipmentRanged, null, GameData.FindItemName, "Dataint3");
+        }
+
+        private void cmbSetMovementType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (dontUpdate)
+                return;
+
+            if (lstActions.SelectedItems.Count > 0)
+            {
+                // Get the selected item in the listview.
+                ListViewItem currentItem = lstActions.SelectedItems[0];
+
+                // Get the associated ScriptAction.
+                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
+
+                // Get the selected option.
+                uint selection = (uint)(cmbSetMovementType.SelectedItem as ComboboxPair).Value;
+
+                // Updating datalong value.
+                currentAction.Datalong = selection;
+
+                dontUpdate = true;
+
+                // Reseting controls.
+                cmbSetMovementBoolParam.SelectedIndex = 0;
+                cmbSetMovementBoolParam.Enabled = false;
+                lblSetMovementBoolParam.Text = "Bool Param:";
+                txtSetMovementIntParam.Enabled = false;
+                txtSetMovementIntParam.Text = "";
+                lblSetMovementIntParam.Text = "Int Param:";
+                txtSetMovementDistance.Enabled = false;
+                txtSetMovementDistance.Text = "";
+                txtSetMovementAngle.Enabled = false;
+                txtSetMovementAngle.Text = "";
+
+                // Reseting script action data.
+                currentAction.Datalong2 = 0;
+                currentAction.Datalong3 = 0;
+                currentAction.X = 0;
+                currentAction.O = 0;
+
+
+                switch (selection)
+                {
+                    case 2: // WAYPOINT_MOTION_TYPE
+                    {
+                        cmbSetMovementBoolParam.Enabled = true;
+                        cmbSetMovementBoolParam.SelectedIndex = 0;
+                        lblSetMovementBoolParam.Text = "Repeat:";
+                        break;
+                    }
+                    case 5: // CHASE_MOTION_TYPE
+                    {
+                        cmbSetMovementBoolParam.Enabled = true;
+                        cmbSetMovementBoolParam.SelectedIndex = 0;
+                        lblSetMovementBoolParam.Text = "Target Victim:";
+                        txtSetMovementDistance.Enabled = true;
+                        txtSetMovementDistance.Text = "0";
+                        txtSetMovementAngle.Enabled = true;
+                        txtSetMovementAngle.Text = "0";
+                        break;
+                    }
+                    case 9: // FLEEING_MOTION_TYPE
+                    {
+                        cmbSetMovementBoolParam.Enabled = true;
+                        cmbSetMovementBoolParam.SelectedIndex = 0;
+                        lblSetMovementBoolParam.Text = "Target Victim:";
+                        txtSetMovementIntParam.Enabled = true;
+                        txtSetMovementIntParam.Text = "0";
+                        lblSetMovementIntParam.Text = "Time:";
+                        break;
+                    }
+                    case 10: // DISTRACT_MOTION_TYPE
+                    {
+                        txtSetMovementIntParam.Enabled = true;
+                        txtSetMovementIntParam.Text = "0";
+                        lblSetMovementIntParam.Text = "Time:";
+                        break;
+                    }
+                    case 14: // FOLLOW_MOTION_TYPE
+                    {
+                        txtSetMovementDistance.Enabled = true;
+                        txtSetMovementDistance.Text = "0";
+                        txtSetMovementAngle.Enabled = true;
+                        txtSetMovementAngle.Text = "0";
+                        break;
+                    }
+                    case 17: // CHARGE_MOTION_TYPE
+                    {
+                        cmbSetMovementBoolParam.Enabled = true;
+                        cmbSetMovementBoolParam.SelectedIndex = 0;
+                        lblSetMovementBoolParam.Text = "Attack:";
+                        txtSetMovementIntParam.Enabled = true;
+                        txtSetMovementIntParam.Text = "0";
+                        lblSetMovementIntParam.Text = "Delay:";
+                        break;
+                    }
+                }
+
+                lblSetMovementBoolParam.Location = new Point(cmbSetMovementBoolParam.Location.X - lblSetMovementBoolParam.Size.Width - 4, lblSetMovementBoolParam.Location.Y);
+                lblSetMovementIntParam.Location = new Point(txtSetMovementIntParam.Location.X - lblSetMovementIntParam.Size.Width - 4, lblSetMovementIntParam.Location.Y);
+                dontUpdate = false;
+            }
+        }
+
+        private void cmbSetMovementBoolParam_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbSetMovementBoolParam, "Datalong2", false);
+        }
+
+        private void txtSetMovementIntParam_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSetMovementIntParam, "Datalong3");
+        }
+
+        private void txtSetMovementDistance_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSetMovementDistance, "X");
+        }
+
+        private void txtSetMovementAngle_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSetMovementAngle, "O");
         }
     }
 
