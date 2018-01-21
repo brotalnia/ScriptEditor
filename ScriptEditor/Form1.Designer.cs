@@ -228,6 +228,24 @@
             this.cmbSetMovementType = new System.Windows.Forms.ComboBox();
             this.lblSetMovementType = new System.Windows.Forms.Label();
             this.lblSetMovementTooltip = new System.Windows.Forms.Label();
+            this.frmCommandActiveObject = new System.Windows.Forms.Panel();
+            this.cmbActiveObjectSetActive = new System.Windows.Forms.ComboBox();
+            this.lblActiveObjectSetActive = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.frmCommandSetFaction = new System.Windows.Forms.Panel();
+            this.txtSetFactionId = new System.Windows.Forms.TextBox();
+            this.grpSetFactionFlags = new System.Windows.Forms.GroupBox();
+            this.chkSetFactionFlag4 = new System.Windows.Forms.CheckBox();
+            this.chkSetFactionFlag2 = new System.Windows.Forms.CheckBox();
+            this.chkSetFactionFlag1 = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblSetFactionTooltip = new System.Windows.Forms.Label();
+            this.frmCommandMorphOrMount = new System.Windows.Forms.Panel();
+            this.cmbMorphOrMountType = new System.Windows.Forms.ComboBox();
+            this.lblMorphOrMountId = new System.Windows.Forms.Label();
+            this.lblMorphOrMountType = new System.Windows.Forms.Label();
+            this.btnMorphOrMountId = new System.Windows.Forms.Button();
+            this.lblMorphOrMountTooltip = new System.Windows.Forms.Label();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -253,6 +271,10 @@
             this.frmCommandDespawnCreature.SuspendLayout();
             this.frmCommandSetEquipment.SuspendLayout();
             this.frmCommandSetMovement.SuspendLayout();
+            this.frmCommandActiveObject.SuspendLayout();
+            this.frmCommandSetFaction.SuspendLayout();
+            this.grpSetFactionFlags.SuspendLayout();
+            this.frmCommandMorphOrMount.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstActions
@@ -2293,11 +2315,207 @@
             this.lblSetMovementTooltip.TabIndex = 0;
             this.lblSetMovementTooltip.Text = "Changes the current movement type used by the source Creature.";
             // 
+            // frmCommandActiveObject
+            // 
+            this.frmCommandActiveObject.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandActiveObject.Controls.Add(this.cmbActiveObjectSetActive);
+            this.frmCommandActiveObject.Controls.Add(this.lblActiveObjectSetActive);
+            this.frmCommandActiveObject.Controls.Add(this.label10);
+            this.frmCommandActiveObject.Location = new System.Drawing.Point(409, 239);
+            this.frmCommandActiveObject.Name = "frmCommandActiveObject";
+            this.frmCommandActiveObject.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandActiveObject.TabIndex = 27;
+            this.frmCommandActiveObject.Visible = false;
+            // 
+            // cmbActiveObjectSetActive
+            // 
+            this.cmbActiveObjectSetActive.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbActiveObjectSetActive.FormattingEnabled = true;
+            this.cmbActiveObjectSetActive.Items.AddRange(new object[] {
+            "Off",
+            "On"});
+            this.cmbActiveObjectSetActive.Location = new System.Drawing.Point(99, 58);
+            this.cmbActiveObjectSetActive.Name = "cmbActiveObjectSetActive";
+            this.cmbActiveObjectSetActive.Size = new System.Drawing.Size(374, 21);
+            this.cmbActiveObjectSetActive.TabIndex = 2;
+            this.cmbActiveObjectSetActive.SelectedIndexChanged += new System.EventHandler(this.cmbActiveObjectSetActive_SelectedIndexChanged);
+            // 
+            // lblActiveObjectSetActive
+            // 
+            this.lblActiveObjectSetActive.AutoSize = true;
+            this.lblActiveObjectSetActive.Location = new System.Drawing.Point(36, 61);
+            this.lblActiveObjectSetActive.Name = "lblActiveObjectSetActive";
+            this.lblActiveObjectSetActive.Size = new System.Drawing.Size(59, 13);
+            this.lblActiveObjectSetActive.TabIndex = 1;
+            this.lblActiveObjectSetActive.Text = "Set Active:";
+            // 
+            // label10
+            // 
+            this.label10.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label10.Location = new System.Drawing.Point(20, 10);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(453, 32);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Makes the source WorldObject into an Active Object. That means its always updated" +
+    ", even if there are no players around.";
+            // 
+            // frmCommandSetFaction
+            // 
+            this.frmCommandSetFaction.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandSetFaction.Controls.Add(this.txtSetFactionId);
+            this.frmCommandSetFaction.Controls.Add(this.grpSetFactionFlags);
+            this.frmCommandSetFaction.Controls.Add(this.label5);
+            this.frmCommandSetFaction.Controls.Add(this.lblSetFactionTooltip);
+            this.frmCommandSetFaction.Location = new System.Drawing.Point(409, 239);
+            this.frmCommandSetFaction.Name = "frmCommandSetFaction";
+            this.frmCommandSetFaction.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandSetFaction.TabIndex = 28;
+            this.frmCommandSetFaction.Visible = false;
+            // 
+            // txtSetFactionId
+            // 
+            this.txtSetFactionId.Location = new System.Drawing.Point(83, 57);
+            this.txtSetFactionId.Name = "txtSetFactionId";
+            this.txtSetFactionId.Size = new System.Drawing.Size(390, 20);
+            this.txtSetFactionId.TabIndex = 4;
+            this.txtSetFactionId.Leave += new System.EventHandler(this.txtSetFactionId_Leave);
+            // 
+            // grpSetFactionFlags
+            // 
+            this.grpSetFactionFlags.Controls.Add(this.chkSetFactionFlag4);
+            this.grpSetFactionFlags.Controls.Add(this.chkSetFactionFlag2);
+            this.grpSetFactionFlags.Controls.Add(this.chkSetFactionFlag1);
+            this.grpSetFactionFlags.Location = new System.Drawing.Point(26, 88);
+            this.grpSetFactionFlags.Name = "grpSetFactionFlags";
+            this.grpSetFactionFlags.Size = new System.Drawing.Size(447, 48);
+            this.grpSetFactionFlags.TabIndex = 3;
+            this.grpSetFactionFlags.TabStop = false;
+            this.grpSetFactionFlags.Text = "Restore Faction On";
+            // 
+            // chkSetFactionFlag4
+            // 
+            this.chkSetFactionFlag4.AutoSize = true;
+            this.chkSetFactionFlag4.Location = new System.Drawing.Point(186, 21);
+            this.chkSetFactionFlag4.Name = "chkSetFactionFlag4";
+            this.chkSetFactionFlag4.Size = new System.Drawing.Size(101, 17);
+            this.chkSetFactionFlag4.TabIndex = 2;
+            this.chkSetFactionFlag4.Text = "Reached Home";
+            this.chkSetFactionFlag4.UseVisualStyleBackColor = true;
+            this.chkSetFactionFlag4.CheckedChanged += new System.EventHandler(this.chkSetFactionFlag4_CheckedChanged);
+            // 
+            // chkSetFactionFlag2
+            // 
+            this.chkSetFactionFlag2.AutoSize = true;
+            this.chkSetFactionFlag2.Location = new System.Drawing.Point(90, 21);
+            this.chkSetFactionFlag2.Name = "chkSetFactionFlag2";
+            this.chkSetFactionFlag2.Size = new System.Drawing.Size(87, 17);
+            this.chkSetFactionFlag2.TabIndex = 1;
+            this.chkSetFactionFlag2.Text = "Combat Stop";
+            this.chkSetFactionFlag2.UseVisualStyleBackColor = true;
+            this.chkSetFactionFlag2.CheckedChanged += new System.EventHandler(this.chkSetFactionFlag2_CheckedChanged);
+            // 
+            // chkSetFactionFlag1
+            // 
+            this.chkSetFactionFlag1.AutoSize = true;
+            this.chkSetFactionFlag1.Location = new System.Drawing.Point(10, 21);
+            this.chkSetFactionFlag1.Name = "chkSetFactionFlag1";
+            this.chkSetFactionFlag1.Size = new System.Drawing.Size(71, 17);
+            this.chkSetFactionFlag1.TabIndex = 0;
+            this.chkSetFactionFlag1.Text = "Respawn";
+            this.chkSetFactionFlag1.UseVisualStyleBackColor = true;
+            this.chkSetFactionFlag1.CheckedChanged += new System.EventHandler(this.chkSetFactionFlag1_CheckedChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(24, 61);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(57, 13);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Faction Id:";
+            // 
+            // lblSetFactionTooltip
+            // 
+            this.lblSetFactionTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblSetFactionTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblSetFactionTooltip.Name = "lblSetFactionTooltip";
+            this.lblSetFactionTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblSetFactionTooltip.TabIndex = 0;
+            this.lblSetFactionTooltip.Text = "Temporarily changes the source Creature\'s faction to the one specified. Set flags" +
+    " to specify when the original faction will be restored.";
+            // 
+            // frmCommandMorphOrMount
+            // 
+            this.frmCommandMorphOrMount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandMorphOrMount.Controls.Add(this.cmbMorphOrMountType);
+            this.frmCommandMorphOrMount.Controls.Add(this.lblMorphOrMountId);
+            this.frmCommandMorphOrMount.Controls.Add(this.lblMorphOrMountType);
+            this.frmCommandMorphOrMount.Controls.Add(this.btnMorphOrMountId);
+            this.frmCommandMorphOrMount.Controls.Add(this.lblMorphOrMountTooltip);
+            this.frmCommandMorphOrMount.Location = new System.Drawing.Point(409, 239);
+            this.frmCommandMorphOrMount.Name = "frmCommandMorphOrMount";
+            this.frmCommandMorphOrMount.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandMorphOrMount.TabIndex = 29;
+            this.frmCommandMorphOrMount.Visible = false;
+            // 
+            // cmbMorphOrMountType
+            // 
+            this.cmbMorphOrMountType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMorphOrMountType.FormattingEnabled = true;
+            this.cmbMorphOrMountType.Items.AddRange(new object[] {
+            "Creature Id",
+            "Display Id"});
+            this.cmbMorphOrMountType.Location = new System.Drawing.Point(118, 100);
+            this.cmbMorphOrMountType.Name = "cmbMorphOrMountType";
+            this.cmbMorphOrMountType.Size = new System.Drawing.Size(355, 21);
+            this.cmbMorphOrMountType.TabIndex = 5;
+            this.cmbMorphOrMountType.SelectedIndexChanged += new System.EventHandler(this.cmbMorphOrMountType_SelectedIndexChanged);
+            // 
+            // lblMorphOrMountId
+            // 
+            this.lblMorphOrMountId.AutoSize = true;
+            this.lblMorphOrMountId.Location = new System.Drawing.Point(95, 71);
+            this.lblMorphOrMountId.Name = "lblMorphOrMountId";
+            this.lblMorphOrMountId.Size = new System.Drawing.Size(19, 13);
+            this.lblMorphOrMountId.TabIndex = 4;
+            this.lblMorphOrMountId.Text = "Id:";
+            // 
+            // lblMorphOrMountType
+            // 
+            this.lblMorphOrMountType.AutoSize = true;
+            this.lblMorphOrMountType.Location = new System.Drawing.Point(80, 103);
+            this.lblMorphOrMountType.Name = "lblMorphOrMountType";
+            this.lblMorphOrMountType.Size = new System.Drawing.Size(34, 13);
+            this.lblMorphOrMountType.TabIndex = 3;
+            this.lblMorphOrMountType.Text = "Type:";
+            // 
+            // btnMorphOrMountId
+            // 
+            this.btnMorphOrMountId.Location = new System.Drawing.Point(118, 66);
+            this.btnMorphOrMountId.Name = "btnMorphOrMountId";
+            this.btnMorphOrMountId.Size = new System.Drawing.Size(355, 23);
+            this.btnMorphOrMountId.TabIndex = 1;
+            this.btnMorphOrMountId.Text = "-NONE-";
+            this.btnMorphOrMountId.UseVisualStyleBackColor = true;
+            this.btnMorphOrMountId.Click += new System.EventHandler(this.btnMorphOrMountId_Click);
+            // 
+            // lblMorphOrMountTooltip
+            // 
+            this.lblMorphOrMountTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblMorphOrMountTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblMorphOrMountTooltip.Name = "lblMorphOrMountTooltip";
+            this.lblMorphOrMountTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblMorphOrMountTooltip.TabIndex = 0;
+            this.lblMorphOrMountTooltip.Text = "Changes the Creature source\'s current display id.";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(926, 610);
+            this.Controls.Add(this.frmCommandMorphOrMount);
+            this.Controls.Add(this.frmCommandSetFaction);
+            this.Controls.Add(this.frmCommandActiveObject);
             this.Controls.Add(this.frmCommandSetMovement);
             this.Controls.Add(this.frmCommandSetEquipment);
             this.Controls.Add(this.frmCommandDespawnCreature);
@@ -2381,6 +2599,14 @@
             this.frmCommandSetEquipment.PerformLayout();
             this.frmCommandSetMovement.ResumeLayout(false);
             this.frmCommandSetMovement.PerformLayout();
+            this.frmCommandActiveObject.ResumeLayout(false);
+            this.frmCommandActiveObject.PerformLayout();
+            this.frmCommandSetFaction.ResumeLayout(false);
+            this.frmCommandSetFaction.PerformLayout();
+            this.grpSetFactionFlags.ResumeLayout(false);
+            this.grpSetFactionFlags.PerformLayout();
+            this.frmCommandMorphOrMount.ResumeLayout(false);
+            this.frmCommandMorphOrMount.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2587,6 +2813,24 @@
         private System.Windows.Forms.ComboBox cmbSetMovementType;
         private System.Windows.Forms.Label lblSetMovementType;
         private System.Windows.Forms.Label lblSetMovementTooltip;
+        private System.Windows.Forms.Panel frmCommandActiveObject;
+        private System.Windows.Forms.ComboBox cmbActiveObjectSetActive;
+        private System.Windows.Forms.Label lblActiveObjectSetActive;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Panel frmCommandSetFaction;
+        private System.Windows.Forms.TextBox txtSetFactionId;
+        private System.Windows.Forms.GroupBox grpSetFactionFlags;
+        private System.Windows.Forms.CheckBox chkSetFactionFlag4;
+        private System.Windows.Forms.CheckBox chkSetFactionFlag2;
+        private System.Windows.Forms.CheckBox chkSetFactionFlag1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblSetFactionTooltip;
+        private System.Windows.Forms.Panel frmCommandMorphOrMount;
+        private System.Windows.Forms.ComboBox cmbMorphOrMountType;
+        private System.Windows.Forms.Label lblMorphOrMountId;
+        private System.Windows.Forms.Label lblMorphOrMountType;
+        private System.Windows.Forms.Button btnMorphOrMountId;
+        private System.Windows.Forms.Label lblMorphOrMountTooltip;
     }
 }
 

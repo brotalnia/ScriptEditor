@@ -412,6 +412,22 @@ namespace ScriptEditor
             lblSetMovementIntParam.Location = new Point(txtSetMovementIntParam.Location.X - lblSetMovementIntParam.Size.Width - 4, lblSetMovementIntParam.Location.Y);
             frmCommandSetMovement.Visible = false;
 
+            // Set Active Object (21)
+            cmbActiveObjectSetActive.SelectedIndex = 0;
+            frmCommandActiveObject.Visible = false;
+
+            // Set Faction (22)
+            txtSetFactionId.Text = "";
+            chkSetFactionFlag1.Checked = false;
+            chkSetFactionFlag2.Checked = false;
+            chkSetFactionFlag4.Checked = false;
+            frmCommandSetFaction.Visible = false;
+
+            // Morph (23) and Mount (24)
+            btnMorphOrMountId.Text = "-NONE-";
+            cmbMorphOrMountType.SelectedIndex = 0;
+            frmCommandMorphOrMount.Visible = false;
+
             dontUpdate = false;
         }
         private void ShowCommandSpecificForm(ScriptAction selectedAction)
@@ -821,6 +837,47 @@ namespace ScriptEditor
                     frmCommandSetMovement.Visible = true;
                     break;
                 }
+                case 21: // Set Active Object
+                {
+                    cmbActiveObjectSetActive.SelectedIndex = (int)selectedAction.Datalong;
+                    frmCommandActiveObject.Visible = true;
+                    break;
+                }
+                case 22: // Set Faction
+                {
+                    txtSetFactionId.Text = selectedAction.Datalong.ToString();
+                    if ((selectedAction.Datalong2 & 1) != 0)
+                        chkSetFactionFlag1.Checked = true;
+                    if ((selectedAction.Datalong2 & 2) != 0)
+                        chkSetFactionFlag2.Checked = true;
+                    if ((selectedAction.Datalong2 & 4) != 0)
+                        chkSetFactionFlag4.Checked = true;
+                    frmCommandSetFaction.Visible = true;
+                    break;
+                }
+                case 23: // Morph
+                case 24: // Mount
+                {
+                    uint idType = selectedAction.Datalong2;
+                    cmbMorphOrMountType.SelectedIndex = (int)idType;
+                    uint id = selectedAction.Datalong;
+
+                    if (id > 0)
+                    {
+                        if (idType == 0)
+                            btnMorphOrMountId.Text = GameData.FindCreatureName(id) + " (" + id.ToString() + ")";
+                        else
+                            btnMorphOrMountId.Text = id.ToString();
+                    }
+
+                    if (selectedAction.Command == 23)
+                        lblMorphOrMountTooltip.Text = "Sets the source Creature's display Id to the provided value. Select NONE to restore the Creature's original display Id.";
+                    else
+                        lblMorphOrMountTooltip.Text = "The source Creature gets mounted to the provided creature or display Id. Select NONE to unmount.";
+
+                    frmCommandMorphOrMount.Visible = true;
+                    break;
+                }
             }
             dontUpdate = false;
         }
@@ -895,8 +952,50 @@ namespace ScriptEditor
                 currentItem.SubItems[1].Text = cmbCommandId.SelectedIndex.ToString();
             }
         }
-        // Generic function for setting field value from a textbox.
-        private void SetScriptFieldFromTextbox(TextBox ctrl, string fieldname)
+        // Shows an input box that returns a value.
+        private static DialogResult ShowInputDialog(ref string input, string name)
+        {
+            System.Drawing.Size size = new System.Drawing.Size(200, 70);
+            Form inputBox = new Form();
+
+            inputBox.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            inputBox.ClientSize = size;
+            inputBox.Text = name;
+            inputBox.MaximizeBox = false;
+            inputBox.MinimizeBox = false;
+            inputBox.StartPosition = FormStartPosition.CenterParent;
+
+            System.Windows.Forms.TextBox textBox = new TextBox();
+            textBox.Size = new System.Drawing.Size(size.Width - 10, 23);
+            textBox.Location = new System.Drawing.Point(5, 5);
+            textBox.Text = input;
+            inputBox.Controls.Add(textBox);
+
+            Button okButton = new Button();
+            okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            okButton.Name = "okButton";
+            okButton.Size = new System.Drawing.Size(75, 23);
+            okButton.Text = "&OK";
+            okButton.Location = new System.Drawing.Point(size.Width - 80 - 80, 39);
+            inputBox.Controls.Add(okButton);
+
+            Button cancelButton = new Button();
+            cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            cancelButton.Name = "cancelButton";
+            cancelButton.Size = new System.Drawing.Size(75, 23);
+            cancelButton.Text = "&Cancel";
+            cancelButton.Location = new System.Drawing.Point(size.Width - 80, 39);
+            inputBox.Controls.Add(cancelButton);
+
+            inputBox.AcceptButton = okButton;
+            inputBox.CancelButton = cancelButton;
+
+            DialogResult result = inputBox.ShowDialog();
+            input = textBox.Text;
+            return result;
+        }
+        // Generic function for setting script field to specified value;
+        private void SetScriptFieldFromValue(float fieldvalue, string fieldname)
         {
             if (lstActions.SelectedItems.Count > 0)
             {
@@ -906,16 +1005,22 @@ namespace ScriptEditor
                 // Get the associated ScriptAction.
                 ScriptAction currentAction = (ScriptAction)currentItem.Tag;
 
-                // Get the value from the textbox.
-                float fieldValue;
-                float.TryParse(ctrl.Text, out fieldValue);
-
                 // Get the field we need to change.
                 FieldInfo prop = typeof(ScriptAction).GetField(fieldname, BindingFlags.Instance | BindingFlags.Public);
 
                 // Updating the value in the field.
-                prop.SetValue(currentAction, Convert.ChangeType(fieldValue, prop.FieldType));
+                prop.SetValue(currentAction, Convert.ChangeType(fieldvalue, prop.FieldType));
             }
+        }
+        // Generic function for setting field value from a textbox.
+        private void SetScriptFieldFromTextbox(TextBox ctrl, string fieldname)
+        {
+            // Get the value from the textbox.
+            float fieldValue;
+            float.TryParse(ctrl.Text, out fieldValue);
+
+            // Set the field value.
+            SetScriptFieldFromValue(fieldValue, fieldname);
         }
         // Generic function for setting field value from a checkbox.
         private void SetScriptFieldFromCombobox(ComboBox cmbbox, string fieldname, bool usePairValue)
@@ -923,23 +1028,11 @@ namespace ScriptEditor
             if (dontUpdate)
                 return;
 
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
+            // We can use either selected index or the pair value.
+            int selectedValue = usePairValue ? (cmbbox.SelectedItem as ComboboxPair).Value : cmbbox.SelectedIndex;
 
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                // Get the field we need to change.
-                FieldInfo prop = typeof(ScriptAction).GetField(fieldname, BindingFlags.Instance | BindingFlags.Public);
-
-                // We can use either selected index or the pair value.
-                int selectedValue = usePairValue ? (cmbbox.SelectedItem as ComboboxPair).Value : cmbbox.SelectedIndex;
-
-                // Updating the value in the field.
-                prop.SetValue(currentAction, Convert.ChangeType(selectedValue, prop.FieldType));
-            }
+            // Set the field value.
+            SetScriptFieldFromValue(selectedValue, fieldname);
         }
         // Generic function for updating flags based on checkbox.
         private void SetScriptFlagsFromCheckbox(CheckBox chkbox, string fieldname, uint value)
@@ -999,19 +1092,8 @@ namespace ScriptEditor
                         txtbox.Text = "";
                 }
 
-                if (lstActions.SelectedItems.Count > 0)
-                {
-                    // Get the selected item in the listview.
-                    ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                    // Get the associated ScriptAction.
-                    ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                    // Saving return value to the script action.
-                    FieldInfo prop = typeof(ScriptAction).GetField(fieldname, BindingFlags.Instance | BindingFlags.Public);
-                    prop.SetValue(currentAction, Convert.ChangeType(returnId, prop.FieldType));
-                }
-
+                // Set the field value.
+                SetScriptFieldFromValue(returnId, fieldname);
             }
         }
         private void btnTalkText1_Click(object sender, EventArgs e)
@@ -1780,6 +1862,67 @@ namespace ScriptEditor
         private void txtSetMovementAngle_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSetMovementAngle, "O");
+        }
+
+        private void cmbActiveObjectSetActive_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbActiveObjectSetActive, "Datalong", false);
+        }
+
+        private void txtSetFactionId_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSetFactionId, "Datalong");
+        }
+
+        private void chkSetFactionFlag1_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkSetFactionFlag1, "Datalong2", 1);
+        }
+
+        private void chkSetFactionFlag2_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkSetFactionFlag2, "Datalong2", 2);
+        }
+
+        private void chkSetFactionFlag4_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkSetFactionFlag4, "Datalong2", 4);
+        }
+
+        private void btnMorphOrMountId_Click(object sender, EventArgs e)
+        {
+            if (cmbMorphOrMountType.SelectedIndex == 0) // Creature Id
+                SetScriptFieldFromDataFinderForm<FormCreatureFinder>(btnMorphOrMountId, null, GameData.FindCreatureName, "Datalong");
+            else // Display Id
+            {
+                string id = "";
+                DialogResult result = ShowInputDialog(ref id, "Display Id");
+                if (result == DialogResult.OK)
+                {
+                    // Get the selected option.
+                    uint selectedId;
+                    uint.TryParse(id, out selectedId);
+
+                    if (selectedId == 0)
+                        btnMorphOrMountId.Text = "-NONE-";
+                    else
+                        btnMorphOrMountId.Text = selectedId.ToString();
+
+                    SetScriptFieldFromValue(selectedId, "Datalong");
+                }
+            }
+        }
+
+        private void cmbMorphOrMountType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (dontUpdate)
+                return;
+
+            SetScriptFieldFromCombobox(cmbMorphOrMountType, "Datalong2", false);
+
+            // Reseting Id.
+            SetScriptFieldFromValue(0, "Datalong");
+            btnMorphOrMountId.Text = "-NONE-";
         }
     }
 
