@@ -59,8 +59,8 @@ namespace ScriptEditor
             cmbCommandId.Items.Add(new ComboboxPair("Emote", 1));
             cmbCommandId.Items.Add(new ComboboxPair("Field Set", 2));
             cmbCommandId.Items.Add(new ComboboxPair("Move", 3));
-            cmbCommandId.Items.Add(new ComboboxPair("Flag Set", 4));
-            cmbCommandId.Items.Add(new ComboboxPair("Flag Remove", 5));
+            cmbCommandId.Items.Add(new ComboboxPair("Modify Flags", 4));
+            cmbCommandId.Items.Add(new ComboboxPair("Interrupt Casts", 5));
             cmbCommandId.Items.Add(new ComboboxPair("Teleport", 6));
             cmbCommandId.Items.Add(new ComboboxPair("Complete Quest", 7));
             cmbCommandId.Items.Add(new ComboboxPair("Kill Credit", 8));
@@ -82,9 +82,9 @@ namespace ScriptEditor
             cmbCommandId.Items.Add(new ComboboxPair("Mount", 24));
             cmbCommandId.Items.Add(new ComboboxPair("Toggle Run or Walk", 25));
             cmbCommandId.Items.Add(new ComboboxPair("Start Attack", 26));
-            cmbCommandId.Items.Add(new ComboboxPair("Set Lock State", 27));
+            cmbCommandId.Items.Add(new ComboboxPair("Update Entry", 27));
             cmbCommandId.Items.Add(new ComboboxPair("Set Stand State", 28));
-            cmbCommandId.Items.Add(new ComboboxPair("Set NPC Flags", 29));
+            cmbCommandId.Items.Add(new ComboboxPair("Modify Threat", 29));
             cmbCommandId.Items.Add(new ComboboxPair("Start Taxi Path", 30));
             cmbCommandId.Items.Add(new ComboboxPair("Terminate Script", 31));
             cmbCommandId.Items.Add(new ComboboxPair("Terminate Condition", 32));
@@ -293,7 +293,6 @@ namespace ScriptEditor
             cmbEmoteId.SelectedIndex = 0;
 
             // Field Set Command (2)
-            // todo: just hide checkboxes, no panels, unified groupbox with all flags
             cmbFieldSetFields.SelectedIndex = 0;
             txtFieldSetValue.Text = "";
             frmCommandFieldSet.Visible = false;
@@ -326,6 +325,11 @@ namespace ScriptEditor
             cmbModifyFlagsMode.SelectedIndex = 0;
             Command4ResetAllCheckboxes();
             frmCommandModifyFlags.Visible = false;
+
+            // Interrupt Casts Command (5)
+            btnInterruptCastsSpellId.Text = "-NONE-";
+            cmbInterruptCastsWithDelayed.SelectedIndex = 0;
+            frmCommandInterruptCasts.Visible = false;
 
             // Teleport Command (6)
             txtTeleportX.Text = "";
@@ -444,6 +448,25 @@ namespace ScriptEditor
             // Set Run Command (25)
             cmbSetRunMode.SelectedIndex = 0;
             frmCommandSetRun.Visible = false;
+
+            // Update Entry Command (27)
+            btnUpdateEntryCreatureId.Text = "-NONE-";
+            cmbUpdateEntryTeam.SelectedIndex = 0;
+            frmCommandUpdateEntry.Visible = false;
+
+            // Set Stand State Command (28)
+            cmbSetStandState.SelectedIndex = 0;
+            frmCommandSetStandState.Visible = false;
+
+            // Modify Threat Command (29)
+            cmbModifyThreatTarget.SelectedIndex = 0;
+            txtModifyThreatPercent.Text = "";
+            frmCommandModifyThreat.Visible = false;
+
+            // Send Taxi Path (30)
+            btnSendTaxiPathId.Text = "-NONE-";
+            txtSendTaxiPath.Text = "";
+            frmCommandSendTaxiPath.Visible = false;
 
             dontUpdate = false;
         }
@@ -592,6 +615,15 @@ namespace ScriptEditor
                     Command4SetCheckboxesBasedOnFlags(selectedAction.Datalong2);
                     Command4SetCheckboxNamesBasedOnFieldIndex(cmbModifyFlagsFieldId.SelectedIndex);
                     frmCommandModifyFlags.Visible = true;
+                    break;
+                }
+                case 5: // Interrupt Casts
+                {
+                    uint spellId = selectedAction.Datalong;
+                    if (spellId > 0)
+                        btnInterruptCastsSpellId.Text = GameData.FindSpellName(spellId) + " (" + spellId.ToString() + ")";
+                    cmbInterruptCastsWithDelayed.SelectedIndex = (int)selectedAction.Datalong2;
+                    frmCommandInterruptCasts.Visible = true;
                     break;
                 }
                 case 6: // Teleport
@@ -892,6 +924,39 @@ namespace ScriptEditor
                     lblDoorResetDelay.Visible = false;
                     lblDoorTooltip.Text = "The source Creature begins attacking the target Unit. This command has no additional parameters.";
                     frmCommandDoor.Visible = true;
+                    break;
+                }
+                case 27: // Update Entry
+                {
+                    uint creatureId = selectedAction.Datalong;
+                    if (creatureId > 0)
+                        btnUpdateEntryCreatureId.Text = GameData.FindCreatureName(creatureId) + " (" + creatureId.ToString() + ")";
+                    cmbUpdateEntryTeam.SelectedIndex = (int)selectedAction.Datalong2;
+                    frmCommandUpdateEntry.Visible = true;
+                    break;
+                }
+                case 28: // Set Stand State
+                {
+                    cmbSetStandState.SelectedIndex = (int)selectedAction.Datalong;
+                    frmCommandSetStandState.Visible = true;
+                    break;
+                }
+                case 29: // Modify Threat
+                {
+                    cmbModifyThreatTarget.SelectedIndex = (int)selectedAction.Datalong;
+                    txtModifyThreatPercent.Text = selectedAction.X.ToString();
+                    frmCommandModifyThreat.Visible = true;
+                    break;
+                }
+                case 30: // Send Taxi Path
+                {
+                    uint taxiPath = selectedAction.Datalong;
+                    if (taxiPath > 0)
+                    {
+                        txtSendTaxiPath.Text = GameData.FindTaxiPathDestination(taxiPath);
+                        btnSendTaxiPathId.Text = taxiPath.ToString();
+                    }
+                    frmCommandSendTaxiPath.Visible = true;
                     break;
                 }
             }
@@ -2490,6 +2555,46 @@ namespace ScriptEditor
         private void chkModifyFlags536870912_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkModifyFlags536870912, "Datalong2", 536870912);
+        }
+
+        private void btnInterruptCastsSpellId_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormSpellFinder>(btnInterruptCastsSpellId, null, GameData.FindSpellName, "Datalong2");
+        }
+
+        private void cmbInterruptCastsWithDelayed_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbInterruptCastsWithDelayed, "Datalong", false);
+        }
+
+        private void btnUpdateEntryCreatureId_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormCreatureFinder>(btnUpdateEntryCreatureId, null, GameData.FindCreatureName, "Datalong");
+        }
+
+        private void cmbUpdateEntryTeam_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbUpdateEntryTeam, "Datalong2", false);
+        }
+
+        private void cmbSetStandState_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbSetStandState, "Datalong", false);
+        }
+
+        private void cmbModifyThreatTarget_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbModifyThreatTarget, "Datalong", false);
+        }
+
+        private void txtModifyThreatPercent_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtModifyThreatPercent, "X");
+        }
+
+        private void btnSendTaxiPathId_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormTaxiFinder>(btnSendTaxiPathId, txtSendTaxiPath, GameData.FindTaxiPathDestination, "Datalong");
         }
     }
 

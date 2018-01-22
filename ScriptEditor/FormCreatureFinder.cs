@@ -41,7 +41,10 @@ namespace ScriptEditor
         {
             ListViewItem lvi = new ListViewItem();
             lvi.Text = creature.ID.ToString();
-            lvi.SubItems.Add(creature.MinLevel.ToString() + " - " + creature.MaxLevel.ToString());
+            if (creature.MinLevel != creature.MaxLevel)
+                lvi.SubItems.Add(creature.MinLevel.ToString() + " - " + creature.MaxLevel.ToString());
+            else
+                lvi.SubItems.Add(creature.MinLevel.ToString());
             lvi.SubItems.Add(GameData.CreatureRanksList[(int)creature.Rank].Text);
             lvi.SubItems.Add(creature.Name);
 

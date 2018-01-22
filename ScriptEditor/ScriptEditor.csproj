@@ -86,6 +86,12 @@
     <Compile Include="FormSpellFinder.Designer.cs">
       <DependentUpon>FormSpellFinder.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormTaxiFinder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTaxiFinder.Designer.cs">
+      <DependentUpon>FormTaxiFinder.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormTextFinder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSpellFinder.resx">
       <DependentUpon>FormSpellFinder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTaxiFinder.resx">
+      <DependentUpon>FormTaxiFinder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTextFinder.resx">
       <DependentUpon>FormTextFinder.cs</DependentUpon>

@@ -286,6 +286,34 @@
             this.cmbModifyFlagsFieldId = new System.Windows.Forms.ComboBox();
             this.lblModifyFlagsField = new System.Windows.Forms.Label();
             this.lblModifyFlagsTooltip = new System.Windows.Forms.Label();
+            this.frmCommandInterruptCasts = new System.Windows.Forms.Panel();
+            this.cmbInterruptCastsWithDelayed = new System.Windows.Forms.ComboBox();
+            this.lblInterruptCastsSpellId = new System.Windows.Forms.Label();
+            this.lblInterruptCastsWithDelayed = new System.Windows.Forms.Label();
+            this.btnInterruptCastsSpellId = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.frmCommandUpdateEntry = new System.Windows.Forms.Panel();
+            this.cmbUpdateEntryTeam = new System.Windows.Forms.ComboBox();
+            this.lblUpdateEntryCreatureId = new System.Windows.Forms.Label();
+            this.lblUpdateEntryTeam = new System.Windows.Forms.Label();
+            this.btnUpdateEntryCreatureId = new System.Windows.Forms.Button();
+            this.lblUpdateEntryTooltip = new System.Windows.Forms.Label();
+            this.frmCommandSetStandState = new System.Windows.Forms.Panel();
+            this.cmbSetStandState = new System.Windows.Forms.ComboBox();
+            this.lblSetStandState = new System.Windows.Forms.Label();
+            this.lblSetStandStateTooltip = new System.Windows.Forms.Label();
+            this.frmCommandModifyThreat = new System.Windows.Forms.Panel();
+            this.lblModifyThreatPercent = new System.Windows.Forms.Label();
+            this.txtModifyThreatPercent = new System.Windows.Forms.TextBox();
+            this.cmbModifyThreatTarget = new System.Windows.Forms.ComboBox();
+            this.lblModifyThreatTarget = new System.Windows.Forms.Label();
+            this.lblModifyThreatTooltip = new System.Windows.Forms.Label();
+            this.frmCommandSendTaxiPath = new System.Windows.Forms.Panel();
+            this.lblSendTaxiPath = new System.Windows.Forms.Label();
+            this.txtSendTaxiPath = new System.Windows.Forms.TextBox();
+            this.btnSendTaxiPathId = new System.Windows.Forms.Button();
+            this.lblSendTaxiPathId = new System.Windows.Forms.Label();
+            this.lblSendTaxiPathTooltip = new System.Windows.Forms.Label();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -317,6 +345,11 @@
             this.frmCommandMorphOrMount.SuspendLayout();
             this.frmCommandSetRun.SuspendLayout();
             this.frmCommandModifyFlags.SuspendLayout();
+            this.frmCommandInterruptCasts.SuspendLayout();
+            this.frmCommandUpdateEntry.SuspendLayout();
+            this.frmCommandSetStandState.SuspendLayout();
+            this.frmCommandModifyThreat.SuspendLayout();
+            this.frmCommandSendTaxiPath.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstActions
@@ -2975,7 +3008,7 @@
             "Toggle Flags",
             "Add Flags",
             "Remove Flags"});
-            this.cmbModifyFlagsMode.Location = new System.Drawing.Point(303, 49);
+            this.cmbModifyFlagsMode.Location = new System.Drawing.Point(303, 50);
             this.cmbModifyFlagsMode.Name = "cmbModifyFlagsMode";
             this.cmbModifyFlagsMode.Size = new System.Drawing.Size(169, 21);
             this.cmbModifyFlagsMode.TabIndex = 4;
@@ -2984,7 +3017,7 @@
             // lblModifyFlagsMode
             // 
             this.lblModifyFlagsMode.AutoSize = true;
-            this.lblModifyFlagsMode.Location = new System.Drawing.Point(262, 52);
+            this.lblModifyFlagsMode.Location = new System.Drawing.Point(262, 53);
             this.lblModifyFlagsMode.Name = "lblModifyFlagsMode";
             this.lblModifyFlagsMode.Size = new System.Drawing.Size(37, 13);
             this.lblModifyFlagsMode.TabIndex = 3;
@@ -2994,7 +3027,7 @@
             // 
             this.cmbModifyFlagsFieldId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbModifyFlagsFieldId.FormattingEnabled = true;
-            this.cmbModifyFlagsFieldId.Location = new System.Drawing.Point(72, 49);
+            this.cmbModifyFlagsFieldId.Location = new System.Drawing.Point(72, 50);
             this.cmbModifyFlagsFieldId.Name = "cmbModifyFlagsFieldId";
             this.cmbModifyFlagsFieldId.Size = new System.Drawing.Size(184, 21);
             this.cmbModifyFlagsFieldId.TabIndex = 2;
@@ -3003,7 +3036,7 @@
             // lblModifyFlagsField
             // 
             this.lblModifyFlagsField.AutoSize = true;
-            this.lblModifyFlagsField.Location = new System.Drawing.Point(26, 52);
+            this.lblModifyFlagsField.Location = new System.Drawing.Point(26, 53);
             this.lblModifyFlagsField.Name = "lblModifyFlagsField";
             this.lblModifyFlagsField.Size = new System.Drawing.Size(44, 13);
             this.lblModifyFlagsField.TabIndex = 1;
@@ -3019,11 +3052,319 @@
             this.lblModifyFlagsTooltip.Text = "Toggles on the specified flags on the chosen field. Can be used on any object, bu" +
     "t the fields are different based on the type.";
             // 
+            // frmCommandInterruptCasts
+            // 
+            this.frmCommandInterruptCasts.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandInterruptCasts.Controls.Add(this.cmbInterruptCastsWithDelayed);
+            this.frmCommandInterruptCasts.Controls.Add(this.lblInterruptCastsSpellId);
+            this.frmCommandInterruptCasts.Controls.Add(this.lblInterruptCastsWithDelayed);
+            this.frmCommandInterruptCasts.Controls.Add(this.btnInterruptCastsSpellId);
+            this.frmCommandInterruptCasts.Controls.Add(this.label9);
+            this.frmCommandInterruptCasts.Location = new System.Drawing.Point(409, 239);
+            this.frmCommandInterruptCasts.Name = "frmCommandInterruptCasts";
+            this.frmCommandInterruptCasts.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandInterruptCasts.TabIndex = 32;
+            this.frmCommandInterruptCasts.Visible = false;
+            // 
+            // cmbInterruptCastsWithDelayed
+            // 
+            this.cmbInterruptCastsWithDelayed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbInterruptCastsWithDelayed.FormattingEnabled = true;
+            this.cmbInterruptCastsWithDelayed.Items.AddRange(new object[] {
+            "False",
+            "True"});
+            this.cmbInterruptCastsWithDelayed.Location = new System.Drawing.Point(118, 100);
+            this.cmbInterruptCastsWithDelayed.Name = "cmbInterruptCastsWithDelayed";
+            this.cmbInterruptCastsWithDelayed.Size = new System.Drawing.Size(355, 21);
+            this.cmbInterruptCastsWithDelayed.TabIndex = 5;
+            this.cmbInterruptCastsWithDelayed.SelectedIndexChanged += new System.EventHandler(this.cmbInterruptCastsWithDelayed_SelectedIndexChanged);
+            // 
+            // lblInterruptCastsSpellId
+            // 
+            this.lblInterruptCastsSpellId.AutoSize = true;
+            this.lblInterruptCastsSpellId.Location = new System.Drawing.Point(69, 71);
+            this.lblInterruptCastsSpellId.Name = "lblInterruptCastsSpellId";
+            this.lblInterruptCastsSpellId.Size = new System.Drawing.Size(45, 13);
+            this.lblInterruptCastsSpellId.TabIndex = 4;
+            this.lblInterruptCastsSpellId.Text = "Spell Id:";
+            // 
+            // lblInterruptCastsWithDelayed
+            // 
+            this.lblInterruptCastsWithDelayed.AutoSize = true;
+            this.lblInterruptCastsWithDelayed.Location = new System.Drawing.Point(42, 103);
+            this.lblInterruptCastsWithDelayed.Name = "lblInterruptCastsWithDelayed";
+            this.lblInterruptCastsWithDelayed.Size = new System.Drawing.Size(72, 13);
+            this.lblInterruptCastsWithDelayed.TabIndex = 3;
+            this.lblInterruptCastsWithDelayed.Text = "With delayed:";
+            // 
+            // btnInterruptCastsSpellId
+            // 
+            this.btnInterruptCastsSpellId.Location = new System.Drawing.Point(118, 66);
+            this.btnInterruptCastsSpellId.Name = "btnInterruptCastsSpellId";
+            this.btnInterruptCastsSpellId.Size = new System.Drawing.Size(355, 23);
+            this.btnInterruptCastsSpellId.TabIndex = 1;
+            this.btnInterruptCastsSpellId.Text = "-NONE-";
+            this.btnInterruptCastsSpellId.UseVisualStyleBackColor = true;
+            this.btnInterruptCastsSpellId.Click += new System.EventHandler(this.btnInterruptCastsSpellId_Click);
+            // 
+            // label9
+            // 
+            this.label9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label9.Location = new System.Drawing.Point(20, 10);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(453, 32);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Interrupts the current spell cast. If a spell Id is provided, only that spell wil" +
+    "l be interrupted.";
+            // 
+            // frmCommandUpdateEntry
+            // 
+            this.frmCommandUpdateEntry.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandUpdateEntry.Controls.Add(this.cmbUpdateEntryTeam);
+            this.frmCommandUpdateEntry.Controls.Add(this.lblUpdateEntryCreatureId);
+            this.frmCommandUpdateEntry.Controls.Add(this.lblUpdateEntryTeam);
+            this.frmCommandUpdateEntry.Controls.Add(this.btnUpdateEntryCreatureId);
+            this.frmCommandUpdateEntry.Controls.Add(this.lblUpdateEntryTooltip);
+            this.frmCommandUpdateEntry.Location = new System.Drawing.Point(409, 239);
+            this.frmCommandUpdateEntry.Name = "frmCommandUpdateEntry";
+            this.frmCommandUpdateEntry.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandUpdateEntry.TabIndex = 33;
+            this.frmCommandUpdateEntry.Visible = false;
+            // 
+            // cmbUpdateEntryTeam
+            // 
+            this.cmbUpdateEntryTeam.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbUpdateEntryTeam.FormattingEnabled = true;
+            this.cmbUpdateEntryTeam.Items.AddRange(new object[] {
+            "Alliance",
+            "Horde"});
+            this.cmbUpdateEntryTeam.Location = new System.Drawing.Point(118, 100);
+            this.cmbUpdateEntryTeam.Name = "cmbUpdateEntryTeam";
+            this.cmbUpdateEntryTeam.Size = new System.Drawing.Size(355, 21);
+            this.cmbUpdateEntryTeam.TabIndex = 5;
+            this.cmbUpdateEntryTeam.SelectedIndexChanged += new System.EventHandler(this.cmbUpdateEntryTeam_SelectedIndexChanged);
+            // 
+            // lblUpdateEntryCreatureId
+            // 
+            this.lblUpdateEntryCreatureId.AutoSize = true;
+            this.lblUpdateEntryCreatureId.Location = new System.Drawing.Point(52, 71);
+            this.lblUpdateEntryCreatureId.Name = "lblUpdateEntryCreatureId";
+            this.lblUpdateEntryCreatureId.Size = new System.Drawing.Size(62, 13);
+            this.lblUpdateEntryCreatureId.TabIndex = 4;
+            this.lblUpdateEntryCreatureId.Text = "Creature Id:";
+            // 
+            // lblUpdateEntryTeam
+            // 
+            this.lblUpdateEntryTeam.AutoSize = true;
+            this.lblUpdateEntryTeam.Location = new System.Drawing.Point(80, 103);
+            this.lblUpdateEntryTeam.Name = "lblUpdateEntryTeam";
+            this.lblUpdateEntryTeam.Size = new System.Drawing.Size(37, 13);
+            this.lblUpdateEntryTeam.TabIndex = 3;
+            this.lblUpdateEntryTeam.Text = "Team:";
+            // 
+            // btnUpdateEntryCreatureId
+            // 
+            this.btnUpdateEntryCreatureId.Location = new System.Drawing.Point(118, 66);
+            this.btnUpdateEntryCreatureId.Name = "btnUpdateEntryCreatureId";
+            this.btnUpdateEntryCreatureId.Size = new System.Drawing.Size(355, 23);
+            this.btnUpdateEntryCreatureId.TabIndex = 1;
+            this.btnUpdateEntryCreatureId.Text = "-NONE-";
+            this.btnUpdateEntryCreatureId.UseVisualStyleBackColor = true;
+            this.btnUpdateEntryCreatureId.Click += new System.EventHandler(this.btnUpdateEntryCreatureId_Click);
+            // 
+            // lblUpdateEntryTooltip
+            // 
+            this.lblUpdateEntryTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblUpdateEntryTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblUpdateEntryTooltip.Name = "lblUpdateEntryTooltip";
+            this.lblUpdateEntryTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblUpdateEntryTooltip.TabIndex = 0;
+            this.lblUpdateEntryTooltip.Text = "Temporarily changes the creature\'s entry, but preserves the same AI. The team set" +
+    "ting determines which display Id will be used if there is a different one for ea" +
+    "ch faction.";
+            // 
+            // frmCommandSetStandState
+            // 
+            this.frmCommandSetStandState.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandSetStandState.Controls.Add(this.cmbSetStandState);
+            this.frmCommandSetStandState.Controls.Add(this.lblSetStandState);
+            this.frmCommandSetStandState.Controls.Add(this.lblSetStandStateTooltip);
+            this.frmCommandSetStandState.Location = new System.Drawing.Point(409, 239);
+            this.frmCommandSetStandState.Name = "frmCommandSetStandState";
+            this.frmCommandSetStandState.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandSetStandState.TabIndex = 34;
+            this.frmCommandSetStandState.Visible = false;
+            // 
+            // cmbSetStandState
+            // 
+            this.cmbSetStandState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSetStandState.FormattingEnabled = true;
+            this.cmbSetStandState.Items.AddRange(new object[] {
+            "UNIT_STAND_STATE_STAND",
+            "UNIT_STAND_STATE_SIT",
+            "UNIT_STAND_STATE_SIT_CHAIR",
+            "UNIT_STAND_STATE_SLEEP",
+            "UNIT_STAND_STATE_SIT_LOW_CHAIR",
+            "UNIT_STAND_STATE_SIT_MEDIUM_CHAIR",
+            "UNIT_STAND_STATE_SIT_HIGH_CHAIR",
+            "UNIT_STAND_STATE_DEAD",
+            "UNIT_STAND_STATE_KNEEL"});
+            this.cmbSetStandState.Location = new System.Drawing.Point(99, 58);
+            this.cmbSetStandState.Name = "cmbSetStandState";
+            this.cmbSetStandState.Size = new System.Drawing.Size(374, 21);
+            this.cmbSetStandState.TabIndex = 2;
+            this.cmbSetStandState.SelectedIndexChanged += new System.EventHandler(this.cmbSetStandState_SelectedIndexChanged);
+            // 
+            // lblSetStandState
+            // 
+            this.lblSetStandState.AutoSize = true;
+            this.lblSetStandState.Location = new System.Drawing.Point(31, 61);
+            this.lblSetStandState.Name = "lblSetStandState";
+            this.lblSetStandState.Size = new System.Drawing.Size(66, 13);
+            this.lblSetStandState.TabIndex = 1;
+            this.lblSetStandState.Text = "Stand State:";
+            // 
+            // lblSetStandStateTooltip
+            // 
+            this.lblSetStandStateTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblSetStandStateTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblSetStandStateTooltip.Name = "lblSetStandStateTooltip";
+            this.lblSetStandStateTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblSetStandStateTooltip.TabIndex = 0;
+            this.lblSetStandStateTooltip.Text = "Changes the source Unit\'s current stand state.";
+            // 
+            // frmCommandModifyThreat
+            // 
+            this.frmCommandModifyThreat.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandModifyThreat.Controls.Add(this.lblModifyThreatPercent);
+            this.frmCommandModifyThreat.Controls.Add(this.txtModifyThreatPercent);
+            this.frmCommandModifyThreat.Controls.Add(this.cmbModifyThreatTarget);
+            this.frmCommandModifyThreat.Controls.Add(this.lblModifyThreatTarget);
+            this.frmCommandModifyThreat.Controls.Add(this.lblModifyThreatTooltip);
+            this.frmCommandModifyThreat.Location = new System.Drawing.Point(409, 239);
+            this.frmCommandModifyThreat.Name = "frmCommandModifyThreat";
+            this.frmCommandModifyThreat.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandModifyThreat.TabIndex = 35;
+            this.frmCommandModifyThreat.Visible = false;
+            // 
+            // lblModifyThreatPercent
+            // 
+            this.lblModifyThreatPercent.AutoSize = true;
+            this.lblModifyThreatPercent.Location = new System.Drawing.Point(47, 90);
+            this.lblModifyThreatPercent.Name = "lblModifyThreatPercent";
+            this.lblModifyThreatPercent.Size = new System.Drawing.Size(47, 13);
+            this.lblModifyThreatPercent.TabIndex = 4;
+            this.lblModifyThreatPercent.Text = "Percent:";
+            // 
+            // txtModifyThreatPercent
+            // 
+            this.txtModifyThreatPercent.Location = new System.Drawing.Point(99, 88);
+            this.txtModifyThreatPercent.Name = "txtModifyThreatPercent";
+            this.txtModifyThreatPercent.Size = new System.Drawing.Size(374, 20);
+            this.txtModifyThreatPercent.TabIndex = 3;
+            this.txtModifyThreatPercent.Leave += new System.EventHandler(this.txtModifyThreatPercent_Leave);
+            // 
+            // cmbModifyThreatTarget
+            // 
+            this.cmbModifyThreatTarget.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbModifyThreatTarget.FormattingEnabled = true;
+            this.cmbModifyThreatTarget.Items.AddRange(new object[] {
+            "Provided Target",
+            "Current Victim",
+            "All Attackers"});
+            this.cmbModifyThreatTarget.Location = new System.Drawing.Point(99, 58);
+            this.cmbModifyThreatTarget.Name = "cmbModifyThreatTarget";
+            this.cmbModifyThreatTarget.Size = new System.Drawing.Size(374, 21);
+            this.cmbModifyThreatTarget.TabIndex = 2;
+            this.cmbModifyThreatTarget.SelectedIndexChanged += new System.EventHandler(this.cmbModifyThreatTarget_SelectedIndexChanged);
+            // 
+            // lblModifyThreatTarget
+            // 
+            this.lblModifyThreatTarget.AutoSize = true;
+            this.lblModifyThreatTarget.Location = new System.Drawing.Point(53, 61);
+            this.lblModifyThreatTarget.Name = "lblModifyThreatTarget";
+            this.lblModifyThreatTarget.Size = new System.Drawing.Size(41, 13);
+            this.lblModifyThreatTarget.TabIndex = 1;
+            this.lblModifyThreatTarget.Text = "Target:";
+            // 
+            // lblModifyThreatTooltip
+            // 
+            this.lblModifyThreatTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblModifyThreatTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblModifyThreatTooltip.Name = "lblModifyThreatTooltip";
+            this.lblModifyThreatTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblModifyThreatTooltip.TabIndex = 0;
+            this.lblModifyThreatTooltip.Text = "Modifies threat for the selected targets by the specified percent.";
+            // 
+            // frmCommandSendTaxiPath
+            // 
+            this.frmCommandSendTaxiPath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandSendTaxiPath.Controls.Add(this.lblSendTaxiPath);
+            this.frmCommandSendTaxiPath.Controls.Add(this.txtSendTaxiPath);
+            this.frmCommandSendTaxiPath.Controls.Add(this.btnSendTaxiPathId);
+            this.frmCommandSendTaxiPath.Controls.Add(this.lblSendTaxiPathId);
+            this.frmCommandSendTaxiPath.Controls.Add(this.lblSendTaxiPathTooltip);
+            this.frmCommandSendTaxiPath.Location = new System.Drawing.Point(409, 239);
+            this.frmCommandSendTaxiPath.Name = "frmCommandSendTaxiPath";
+            this.frmCommandSendTaxiPath.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandSendTaxiPath.TabIndex = 36;
+            this.frmCommandSendTaxiPath.Visible = false;
+            // 
+            // lblSendTaxiPath
+            // 
+            this.lblSendTaxiPath.AutoSize = true;
+            this.lblSendTaxiPath.Location = new System.Drawing.Point(158, 54);
+            this.lblSendTaxiPath.Name = "lblSendTaxiPath";
+            this.lblSendTaxiPath.Size = new System.Drawing.Size(32, 13);
+            this.lblSendTaxiPath.TabIndex = 4;
+            this.lblSendTaxiPath.Text = "Path:";
+            // 
+            // txtSendTaxiPath
+            // 
+            this.txtSendTaxiPath.Location = new System.Drawing.Point(153, 73);
+            this.txtSendTaxiPath.Name = "txtSendTaxiPath";
+            this.txtSendTaxiPath.ReadOnly = true;
+            this.txtSendTaxiPath.Size = new System.Drawing.Size(320, 20);
+            this.txtSendTaxiPath.TabIndex = 3;
+            // 
+            // btnSendTaxiPathId
+            // 
+            this.btnSendTaxiPathId.Location = new System.Drawing.Point(22, 71);
+            this.btnSendTaxiPathId.Name = "btnSendTaxiPathId";
+            this.btnSendTaxiPathId.Size = new System.Drawing.Size(122, 23);
+            this.btnSendTaxiPathId.TabIndex = 2;
+            this.btnSendTaxiPathId.Text = "-NONE-";
+            this.btnSendTaxiPathId.UseVisualStyleBackColor = true;
+            this.btnSendTaxiPathId.Click += new System.EventHandler(this.btnSendTaxiPathId_Click);
+            // 
+            // lblSendTaxiPathId
+            // 
+            this.lblSendTaxiPathId.AutoSize = true;
+            this.lblSendTaxiPathId.Location = new System.Drawing.Point(28, 54);
+            this.lblSendTaxiPathId.Name = "lblSendTaxiPathId";
+            this.lblSendTaxiPathId.Size = new System.Drawing.Size(19, 13);
+            this.lblSendTaxiPathId.TabIndex = 1;
+            this.lblSendTaxiPathId.Text = "Id:";
+            // 
+            // lblSendTaxiPathTooltip
+            // 
+            this.lblSendTaxiPathTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblSendTaxiPathTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblSendTaxiPathTooltip.Name = "lblSendTaxiPathTooltip";
+            this.lblSendTaxiPathTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblSendTaxiPathTooltip.TabIndex = 0;
+            this.lblSendTaxiPathTooltip.Text = "Sends the Player on the specified taxi path.";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(926, 610);
+            this.Controls.Add(this.frmCommandSendTaxiPath);
+            this.Controls.Add(this.frmCommandModifyThreat);
+            this.Controls.Add(this.frmCommandSetStandState);
+            this.Controls.Add(this.frmCommandUpdateEntry);
+            this.Controls.Add(this.frmCommandInterruptCasts);
             this.Controls.Add(this.frmCommandModifyFlags);
             this.Controls.Add(this.frmCommandSetRun);
             this.Controls.Add(this.frmCommandMorphOrMount);
@@ -3124,6 +3465,16 @@
             this.frmCommandSetRun.PerformLayout();
             this.frmCommandModifyFlags.ResumeLayout(false);
             this.frmCommandModifyFlags.PerformLayout();
+            this.frmCommandInterruptCasts.ResumeLayout(false);
+            this.frmCommandInterruptCasts.PerformLayout();
+            this.frmCommandUpdateEntry.ResumeLayout(false);
+            this.frmCommandUpdateEntry.PerformLayout();
+            this.frmCommandSetStandState.ResumeLayout(false);
+            this.frmCommandSetStandState.PerformLayout();
+            this.frmCommandModifyThreat.ResumeLayout(false);
+            this.frmCommandModifyThreat.PerformLayout();
+            this.frmCommandSendTaxiPath.ResumeLayout(false);
+            this.frmCommandSendTaxiPath.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3388,6 +3739,34 @@
         private System.Windows.Forms.ComboBox cmbModifyFlagsMode;
         private System.Windows.Forms.Label lblModifyFlagsMode;
         private System.Windows.Forms.ComboBox cmbModifyFlagsFieldId;
+        private System.Windows.Forms.Panel frmCommandInterruptCasts;
+        private System.Windows.Forms.ComboBox cmbInterruptCastsWithDelayed;
+        private System.Windows.Forms.Label lblInterruptCastsSpellId;
+        private System.Windows.Forms.Label lblInterruptCastsWithDelayed;
+        private System.Windows.Forms.Button btnInterruptCastsSpellId;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Panel frmCommandUpdateEntry;
+        private System.Windows.Forms.ComboBox cmbUpdateEntryTeam;
+        private System.Windows.Forms.Label lblUpdateEntryCreatureId;
+        private System.Windows.Forms.Label lblUpdateEntryTeam;
+        private System.Windows.Forms.Button btnUpdateEntryCreatureId;
+        private System.Windows.Forms.Label lblUpdateEntryTooltip;
+        private System.Windows.Forms.Panel frmCommandSetStandState;
+        private System.Windows.Forms.ComboBox cmbSetStandState;
+        private System.Windows.Forms.Label lblSetStandState;
+        private System.Windows.Forms.Label lblSetStandStateTooltip;
+        private System.Windows.Forms.Panel frmCommandModifyThreat;
+        private System.Windows.Forms.Label lblModifyThreatPercent;
+        private System.Windows.Forms.TextBox txtModifyThreatPercent;
+        private System.Windows.Forms.ComboBox cmbModifyThreatTarget;
+        private System.Windows.Forms.Label lblModifyThreatTarget;
+        private System.Windows.Forms.Label lblModifyThreatTooltip;
+        private System.Windows.Forms.Panel frmCommandSendTaxiPath;
+        private System.Windows.Forms.Label lblSendTaxiPathId;
+        private System.Windows.Forms.Label lblSendTaxiPathTooltip;
+        private System.Windows.Forms.Label lblSendTaxiPath;
+        private System.Windows.Forms.TextBox txtSendTaxiPath;
+        private System.Windows.Forms.Button btnSendTaxiPathId;
     }
 }
 
