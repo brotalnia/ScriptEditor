@@ -45,6 +45,7 @@ namespace ScriptEditor
             GameData.LoadCreatures(connString);
             GameData.LoadSpells(connString);
             GameData.LoadItems(connString);
+            GameData.LoadCondition(connString);
         }
 
         private void LoadControls()
@@ -463,10 +464,22 @@ namespace ScriptEditor
             txtModifyThreatPercent.Text = "";
             frmCommandModifyThreat.Visible = false;
 
-            // Send Taxi Path (30)
+            // Send Taxi Path Command (30)
             btnSendTaxiPathId.Text = "-NONE-";
             txtSendTaxiPath.Text = "";
             frmCommandSendTaxiPath.Visible = false;
+
+            // Terminate Script Command (31)
+            btnTerminateScriptCreatureId.Text = "-NONE-";
+            txtTerminateScriptSearchRadius.Text = "";
+            cmbTerminateScriptCondition.SelectedIndex = 0;
+            frmCommandTerminateScript.Visible = false;
+
+            // Terminate Condition Command (32)
+            btnTerminateConditionId.Text = "-NONE-";
+            btnTerminateConditionQuest.Text = "-NONE-";
+            cmbTerminateConditionRule.SelectedIndex = 0;
+            frmCommandTerminateCondition.Visible = false;
 
             dontUpdate = false;
         }
@@ -957,6 +970,27 @@ namespace ScriptEditor
                         btnSendTaxiPathId.Text = taxiPath.ToString();
                     }
                     frmCommandSendTaxiPath.Visible = true;
+                    break;
+                }
+                case 31: // Terminate Script
+                {
+                    uint creatureId = selectedAction.Datalong;
+                    if (creatureId > 0)
+                        btnTerminateScriptCreatureId.Text = GameData.FindCreatureName(creatureId) + " (" + creatureId.ToString() + ")";
+                    txtTerminateScriptSearchRadius.Text = selectedAction.Datalong2.ToString();
+                    cmbTerminateScriptCondition.SelectedIndex = (int)selectedAction.Datalong3;
+                    frmCommandTerminateScript.Visible = true;
+                    break;
+                }
+                case 32: // Terminate Condition
+                {
+                    if (selectedAction.Datalong > 0)
+                        btnTerminateConditionId.Text = selectedAction.Datalong.ToString();
+                    uint questId = selectedAction.Datalong2;
+                    if (questId > 0)
+                        btnTerminateConditionQuest.Text = GameData.FindQuestTitle(questId) + " (" + questId.ToString() + ")";
+                    cmbTerminateConditionRule.SelectedIndex = (int)selectedAction.Datalong3;
+                    frmCommandTerminateCondition.Visible = true;
                     break;
                 }
             }
@@ -2595,6 +2629,47 @@ namespace ScriptEditor
         private void btnSendTaxiPathId_Click(object sender, EventArgs e)
         {
             SetScriptFieldFromDataFinderForm<FormTaxiFinder>(btnSendTaxiPathId, txtSendTaxiPath, GameData.FindTaxiPathDestination, "Datalong");
+        }
+
+        private void btnTerminateScriptCreatureId_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormCreatureFinder>(btnTerminateScriptCreatureId, null, GameData.FindCreatureName, "Datalong");
+        }
+
+        private void txtTerminateScriptSearchRadius_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtTerminateScriptSearchRadius, "Datalong2");
+        }
+
+        private void cmbTerminateScriptCondition_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbTerminateScriptCondition, "Datalong3", false);
+        }
+
+        private void btnTerminateConditionId_Click(object sender, EventArgs e)
+        {
+            FormConditionFinder frm = new FormConditionFinder();
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                int returnId = frm.ReturnValue;
+
+                if (returnId > 0)
+                    btnTerminateConditionId.Text = returnId.ToString();
+                else
+                    btnTerminateConditionId.Text = "-NONE-";
+
+                SetScriptFieldFromValue(returnId, "Datalong");
+            }
+        }
+
+        private void btnTerminateConditionQuest_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormQuestFinder>(btnTerminateConditionQuest, null, GameData.FindQuestTitle, "Datalong2");
+        }
+
+        private void cmbTerminateConditionRule_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbTerminateConditionRule, "Datalong3", false);
         }
     }
 

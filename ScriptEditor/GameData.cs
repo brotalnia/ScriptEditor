@@ -14,12 +14,14 @@ namespace ScriptEditor
         public static readonly List<SpellInfo> SpellInfoList = new List<SpellInfo>();
         public static readonly List<ItemInfo> ItemInfoList = new List<ItemInfo>();
         public static readonly List<TaxiInfo> TaxiInfoList = new List<TaxiInfo>();
+        public static readonly List<ConditionInfo> ConditionInfoList = new List<ConditionInfo>();
         public static readonly List<ComboboxPair> UpdateFieldsList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> FlagFieldsList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> MapsList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> EmotesList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> CreatureRanksList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> MotionTypesList = new List<ComboboxPair>();
+        public static readonly List<ComboboxPair> ConditionNamesList = new List<ComboboxPair>();
         public static int FindIndexOfMap(uint id)
         {
             for (int i = 0; i < MapsList.Count; i++)
@@ -123,6 +125,16 @@ namespace ScriptEditor
             {
                 if (item.ID == id)
                     return item.Source + " - " + item.Destination;
+            }
+
+            return "";
+        }
+        public static string FindConditionName(int id)
+        {
+            foreach (ComboboxPair condition in ConditionNamesList)
+            {
+                if (condition.Value == id)
+                    return condition.Text;
             }
 
             return "";
@@ -248,6 +260,31 @@ namespace ScriptEditor
                 {
                     // Add the new item entry to the list.
                     ItemInfoList.Add(new ItemInfo(reader.GetUInt32(0), reader.GetUInt32(1), reader.GetUInt32(2), reader.GetUInt32(3), reader.GetUInt32(4), reader.GetString(5)));
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+            conn.Close();
+        }
+        public static void LoadCondition(string connString)
+        {
+            ConditionInfoList.Clear();
+
+            MySqlConnection conn = new MySqlConnection(connString);
+            MySqlCommand command = conn.CreateCommand();
+            command.CommandText = "SELECT condition_entry, type, value1, value2 FROM conditions ORDER BY condition_entry";
+            try
+            {
+                conn.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    // Add the new condition entry to the list.
+                    ConditionInfoList.Add(new ConditionInfo(reader.GetUInt32(0), reader.GetInt32(1), reader.GetUInt32(2), reader.GetUInt32(3)));
                 }
                 reader.Close();
             }
@@ -954,6 +991,51 @@ namespace ScriptEditor
             TaxiInfoList.Add(new TaxiInfo(496, "Plaguewood Tower, Eastern Plaguelands", "Crown Guard Tower, Eastern Plaguelands"));
             TaxiInfoList.Add(new TaxiInfo(499, "Everlook, Winterspring", "Valormok, Azshara"));
             TaxiInfoList.Add(new TaxiInfo(500, "Valormok, Azshara", "Everlook, Winterspring"));
+
+            // Add condition names.
+            ConditionNamesList.Add(new ComboboxPair("NOT", -3));
+            ConditionNamesList.Add(new ComboboxPair("OR", -2));
+            ConditionNamesList.Add(new ComboboxPair("AND", -1));
+            ConditionNamesList.Add(new ComboboxPair("NONE", 0));
+            ConditionNamesList.Add(new ComboboxPair("AURA", 1));
+            ConditionNamesList.Add(new ComboboxPair("ITEM", 2));
+            ConditionNamesList.Add(new ComboboxPair("ITEM_EQUIPPED", 3));
+            ConditionNamesList.Add(new ComboboxPair("AREAID", 4));
+            ConditionNamesList.Add(new ComboboxPair("REPUTATION_RANK_MIN", 5));
+            ConditionNamesList.Add(new ComboboxPair("TEAM", 6));
+            ConditionNamesList.Add(new ComboboxPair("SKILL", 7));
+            ConditionNamesList.Add(new ComboboxPair("QUESTREWARDED", 8));
+            ConditionNamesList.Add(new ComboboxPair("QUESTTAKEN", 9));
+            ConditionNamesList.Add(new ComboboxPair("AD_COMMISSION_AURA", 10));
+            ConditionNamesList.Add(new ComboboxPair("NO_AURA", 11));
+            ConditionNamesList.Add(new ComboboxPair("ACTIVE_GAME_EVENT", 12));
+            ConditionNamesList.Add(new ComboboxPair("AREA_FLAG", 13));
+            ConditionNamesList.Add(new ComboboxPair("RACE_CLASS", 14));
+            ConditionNamesList.Add(new ComboboxPair("LEVEL", 15));
+            ConditionNamesList.Add(new ComboboxPair("NOITEM", 16));
+            ConditionNamesList.Add(new ComboboxPair("SPELL", 17));
+            ConditionNamesList.Add(new ComboboxPair("INSTANCE_SCRIPT", 18));
+            ConditionNamesList.Add(new ComboboxPair("QUESTAVAILABLE", 19));
+            ConditionNamesList.Add(new ComboboxPair("RESERVED_1", 20));
+            ConditionNamesList.Add(new ComboboxPair("RESERVED_2", 21));
+            ConditionNamesList.Add(new ComboboxPair("QUEST_NONE", 22));
+            ConditionNamesList.Add(new ComboboxPair("ITEM_WITH_BANK", 23));
+            ConditionNamesList.Add(new ComboboxPair("NOITEM_WITH_BANK", 24));
+            ConditionNamesList.Add(new ComboboxPair("NOT_ACTIVE_GAME_EVENT", 25));
+            ConditionNamesList.Add(new ComboboxPair("ACTIVE_HOLIDAY", 26));
+            ConditionNamesList.Add(new ComboboxPair("NOT_ACTIVE_HOLIDAY", 27));
+            ConditionNamesList.Add(new ComboboxPair("LEARNABLE_ABILITY", 28));
+            ConditionNamesList.Add(new ComboboxPair("SKILL_BELOW", 29));
+            ConditionNamesList.Add(new ComboboxPair("REPUTATION_RANK_MAX", 30));
+            ConditionNamesList.Add(new ComboboxPair("RESERVED_3", 31));
+            ConditionNamesList.Add(new ComboboxPair("SOURCE_AURA", 32));
+            ConditionNamesList.Add(new ComboboxPair("LAST_WAYPOINT", 33));
+            ConditionNamesList.Add(new ComboboxPair("RESERVED_4", 34));
+            ConditionNamesList.Add(new ComboboxPair("GENDER", 35));
+            ConditionNamesList.Add(new ComboboxPair("DEAD_OR_AWAY", 36));
+            ConditionNamesList.Add(new ComboboxPair("WOW_PATCH", 37));
+            ConditionNamesList.Add(new ComboboxPair("NPC_ENTRY", 38));
+            ConditionNamesList.Add(new ComboboxPair("WAR_EFFORT_STAGE", 39));
         }
     }
     public struct BroadcastText
@@ -1063,6 +1145,20 @@ namespace ScriptEditor
             ID = id;
             Source = source;
             Destination = destination;
+        }
+    }
+    public struct ConditionInfo
+    {
+        public uint ID;
+        public int Type;
+        public uint Value1;
+        public uint Value2;
+        public ConditionInfo(uint id, int type, uint value1, uint value2)
+        {
+            ID = id;
+            Type = type;
+            Value1 = value1;
+            Value2 = value2;
         }
     }
     public class ComboboxPair

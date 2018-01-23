@@ -314,6 +314,22 @@
             this.btnSendTaxiPathId = new System.Windows.Forms.Button();
             this.lblSendTaxiPathId = new System.Windows.Forms.Label();
             this.lblSendTaxiPathTooltip = new System.Windows.Forms.Label();
+            this.frmCommandTerminateScript = new System.Windows.Forms.Panel();
+            this.lblTerminateScriptCondition = new System.Windows.Forms.Label();
+            this.cmbTerminateScriptCondition = new System.Windows.Forms.ComboBox();
+            this.lblTerminateScriptCreatureId = new System.Windows.Forms.Label();
+            this.lblTerminateScriptSearchRadius = new System.Windows.Forms.Label();
+            this.txtTerminateScriptSearchRadius = new System.Windows.Forms.TextBox();
+            this.btnTerminateScriptCreatureId = new System.Windows.Forms.Button();
+            this.lblTerminateScriptTooltip = new System.Windows.Forms.Label();
+            this.frmCommandTerminateCondition = new System.Windows.Forms.Panel();
+            this.btnTerminateConditionQuest = new System.Windows.Forms.Button();
+            this.lblTerminateConditionRule = new System.Windows.Forms.Label();
+            this.cmbTerminateConditionRule = new System.Windows.Forms.ComboBox();
+            this.lblTerminateConditionId = new System.Windows.Forms.Label();
+            this.lblTerminateConditionQuestId = new System.Windows.Forms.Label();
+            this.btnTerminateConditionId = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -350,6 +366,8 @@
             this.frmCommandSetStandState.SuspendLayout();
             this.frmCommandModifyThreat.SuspendLayout();
             this.frmCommandSendTaxiPath.SuspendLayout();
+            this.frmCommandTerminateScript.SuspendLayout();
+            this.frmCommandTerminateCondition.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstActions
@@ -3355,11 +3373,184 @@
             this.lblSendTaxiPathTooltip.TabIndex = 0;
             this.lblSendTaxiPathTooltip.Text = "Sends the Player on the specified taxi path.";
             // 
+            // frmCommandTerminateScript
+            // 
+            this.frmCommandTerminateScript.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandTerminateScript.Controls.Add(this.lblTerminateScriptCondition);
+            this.frmCommandTerminateScript.Controls.Add(this.cmbTerminateScriptCondition);
+            this.frmCommandTerminateScript.Controls.Add(this.lblTerminateScriptCreatureId);
+            this.frmCommandTerminateScript.Controls.Add(this.lblTerminateScriptSearchRadius);
+            this.frmCommandTerminateScript.Controls.Add(this.txtTerminateScriptSearchRadius);
+            this.frmCommandTerminateScript.Controls.Add(this.btnTerminateScriptCreatureId);
+            this.frmCommandTerminateScript.Controls.Add(this.lblTerminateScriptTooltip);
+            this.frmCommandTerminateScript.Location = new System.Drawing.Point(409, 239);
+            this.frmCommandTerminateScript.Name = "frmCommandTerminateScript";
+            this.frmCommandTerminateScript.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandTerminateScript.TabIndex = 37;
+            this.frmCommandTerminateScript.Visible = false;
+            // 
+            // lblTerminateScriptCondition
+            // 
+            this.lblTerminateScriptCondition.AutoSize = true;
+            this.lblTerminateScriptCondition.Location = new System.Drawing.Point(60, 134);
+            this.lblTerminateScriptCondition.Name = "lblTerminateScriptCondition";
+            this.lblTerminateScriptCondition.Size = new System.Drawing.Size(54, 13);
+            this.lblTerminateScriptCondition.TabIndex = 6;
+            this.lblTerminateScriptCondition.Text = "Condition:";
+            // 
+            // cmbTerminateScriptCondition
+            // 
+            this.cmbTerminateScriptCondition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTerminateScriptCondition.FormattingEnabled = true;
+            this.cmbTerminateScriptCondition.Items.AddRange(new object[] {
+            "Creature Not Found",
+            "Creature Is Found"});
+            this.cmbTerminateScriptCondition.Location = new System.Drawing.Point(118, 131);
+            this.cmbTerminateScriptCondition.Name = "cmbTerminateScriptCondition";
+            this.cmbTerminateScriptCondition.Size = new System.Drawing.Size(355, 21);
+            this.cmbTerminateScriptCondition.TabIndex = 5;
+            this.cmbTerminateScriptCondition.SelectedIndexChanged += new System.EventHandler(this.cmbTerminateScriptCondition_SelectedIndexChanged);
+            // 
+            // lblTerminateScriptCreatureId
+            // 
+            this.lblTerminateScriptCreatureId.AutoSize = true;
+            this.lblTerminateScriptCreatureId.Location = new System.Drawing.Point(52, 71);
+            this.lblTerminateScriptCreatureId.Name = "lblTerminateScriptCreatureId";
+            this.lblTerminateScriptCreatureId.Size = new System.Drawing.Size(62, 13);
+            this.lblTerminateScriptCreatureId.TabIndex = 4;
+            this.lblTerminateScriptCreatureId.Text = "Creature Id:";
+            // 
+            // lblTerminateScriptSearchRadius
+            // 
+            this.lblTerminateScriptSearchRadius.AutoSize = true;
+            this.lblTerminateScriptSearchRadius.Location = new System.Drawing.Point(34, 102);
+            this.lblTerminateScriptSearchRadius.Name = "lblTerminateScriptSearchRadius";
+            this.lblTerminateScriptSearchRadius.Size = new System.Drawing.Size(80, 13);
+            this.lblTerminateScriptSearchRadius.TabIndex = 3;
+            this.lblTerminateScriptSearchRadius.Text = "Search Radius:";
+            // 
+            // txtTerminateScriptSearchRadius
+            // 
+            this.txtTerminateScriptSearchRadius.Location = new System.Drawing.Point(118, 100);
+            this.txtTerminateScriptSearchRadius.Name = "txtTerminateScriptSearchRadius";
+            this.txtTerminateScriptSearchRadius.Size = new System.Drawing.Size(355, 20);
+            this.txtTerminateScriptSearchRadius.TabIndex = 2;
+            this.txtTerminateScriptSearchRadius.Leave += new System.EventHandler(this.txtTerminateScriptSearchRadius_Leave);
+            // 
+            // btnTerminateScriptCreatureId
+            // 
+            this.btnTerminateScriptCreatureId.Location = new System.Drawing.Point(118, 66);
+            this.btnTerminateScriptCreatureId.Name = "btnTerminateScriptCreatureId";
+            this.btnTerminateScriptCreatureId.Size = new System.Drawing.Size(355, 23);
+            this.btnTerminateScriptCreatureId.TabIndex = 1;
+            this.btnTerminateScriptCreatureId.Text = "-NONE-";
+            this.btnTerminateScriptCreatureId.UseVisualStyleBackColor = true;
+            this.btnTerminateScriptCreatureId.Click += new System.EventHandler(this.btnTerminateScriptCreatureId_Click);
+            // 
+            // lblTerminateScriptTooltip
+            // 
+            this.lblTerminateScriptTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblTerminateScriptTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblTerminateScriptTooltip.Name = "lblTerminateScriptTooltip";
+            this.lblTerminateScriptTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblTerminateScriptTooltip.TabIndex = 0;
+            this.lblTerminateScriptTooltip.Text = "Terminates further execution of the same script if a Creature with the provided I" +
+    "d is not found within the specified range.";
+            // 
+            // frmCommandTerminateCondition
+            // 
+            this.frmCommandTerminateCondition.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandTerminateCondition.Controls.Add(this.btnTerminateConditionQuest);
+            this.frmCommandTerminateCondition.Controls.Add(this.lblTerminateConditionRule);
+            this.frmCommandTerminateCondition.Controls.Add(this.cmbTerminateConditionRule);
+            this.frmCommandTerminateCondition.Controls.Add(this.lblTerminateConditionId);
+            this.frmCommandTerminateCondition.Controls.Add(this.lblTerminateConditionQuestId);
+            this.frmCommandTerminateCondition.Controls.Add(this.btnTerminateConditionId);
+            this.frmCommandTerminateCondition.Controls.Add(this.label12);
+            this.frmCommandTerminateCondition.Location = new System.Drawing.Point(409, 239);
+            this.frmCommandTerminateCondition.Name = "frmCommandTerminateCondition";
+            this.frmCommandTerminateCondition.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandTerminateCondition.TabIndex = 38;
+            this.frmCommandTerminateCondition.Visible = false;
+            // 
+            // btnTerminateConditionQuest
+            // 
+            this.btnTerminateConditionQuest.Location = new System.Drawing.Point(118, 100);
+            this.btnTerminateConditionQuest.Name = "btnTerminateConditionQuest";
+            this.btnTerminateConditionQuest.Size = new System.Drawing.Size(355, 23);
+            this.btnTerminateConditionQuest.TabIndex = 7;
+            this.btnTerminateConditionQuest.Text = "-NONE-";
+            this.btnTerminateConditionQuest.UseVisualStyleBackColor = true;
+            this.btnTerminateConditionQuest.Click += new System.EventHandler(this.btnTerminateConditionQuest_Click);
+            // 
+            // lblTerminateConditionRule
+            // 
+            this.lblTerminateConditionRule.AutoSize = true;
+            this.lblTerminateConditionRule.Location = new System.Drawing.Point(82, 134);
+            this.lblTerminateConditionRule.Name = "lblTerminateConditionRule";
+            this.lblTerminateConditionRule.Size = new System.Drawing.Size(32, 13);
+            this.lblTerminateConditionRule.TabIndex = 6;
+            this.lblTerminateConditionRule.Text = "Rule:";
+            // 
+            // cmbTerminateConditionRule
+            // 
+            this.cmbTerminateConditionRule.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTerminateConditionRule.FormattingEnabled = true;
+            this.cmbTerminateConditionRule.Items.AddRange(new object[] {
+            "Terminate when True",
+            "Terminate when False"});
+            this.cmbTerminateConditionRule.Location = new System.Drawing.Point(118, 131);
+            this.cmbTerminateConditionRule.Name = "cmbTerminateConditionRule";
+            this.cmbTerminateConditionRule.Size = new System.Drawing.Size(355, 21);
+            this.cmbTerminateConditionRule.TabIndex = 5;
+            this.cmbTerminateConditionRule.SelectedIndexChanged += new System.EventHandler(this.cmbTerminateConditionRule_SelectedIndexChanged);
+            // 
+            // lblTerminateConditionId
+            // 
+            this.lblTerminateConditionId.AutoSize = true;
+            this.lblTerminateConditionId.Location = new System.Drawing.Point(48, 71);
+            this.lblTerminateConditionId.Name = "lblTerminateConditionId";
+            this.lblTerminateConditionId.Size = new System.Drawing.Size(66, 13);
+            this.lblTerminateConditionId.TabIndex = 4;
+            this.lblTerminateConditionId.Text = "Condition Id:";
+            // 
+            // lblTerminateConditionQuestId
+            // 
+            this.lblTerminateConditionQuestId.AutoSize = true;
+            this.lblTerminateConditionQuestId.Location = new System.Drawing.Point(64, 102);
+            this.lblTerminateConditionQuestId.Name = "lblTerminateConditionQuestId";
+            this.lblTerminateConditionQuestId.Size = new System.Drawing.Size(50, 13);
+            this.lblTerminateConditionQuestId.TabIndex = 3;
+            this.lblTerminateConditionQuestId.Text = "Quest Id:";
+            // 
+            // btnTerminateConditionId
+            // 
+            this.btnTerminateConditionId.Location = new System.Drawing.Point(118, 66);
+            this.btnTerminateConditionId.Name = "btnTerminateConditionId";
+            this.btnTerminateConditionId.Size = new System.Drawing.Size(355, 23);
+            this.btnTerminateConditionId.TabIndex = 1;
+            this.btnTerminateConditionId.Text = "-NONE-";
+            this.btnTerminateConditionId.UseVisualStyleBackColor = true;
+            this.btnTerminateConditionId.Click += new System.EventHandler(this.btnTerminateConditionId_Click);
+            // 
+            // label12
+            // 
+            this.label12.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label12.Location = new System.Drawing.Point(20, 10);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(453, 32);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "Terminates further execution of the same script if the specified condition is sat" +
+    "isfied. If a quest Id is provided, the quest gets marked as failed for the invol" +
+    "ved players.";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(926, 610);
+            this.Controls.Add(this.frmCommandTerminateCondition);
+            this.Controls.Add(this.frmCommandTerminateScript);
             this.Controls.Add(this.frmCommandSendTaxiPath);
             this.Controls.Add(this.frmCommandModifyThreat);
             this.Controls.Add(this.frmCommandSetStandState);
@@ -3475,6 +3666,10 @@
             this.frmCommandModifyThreat.PerformLayout();
             this.frmCommandSendTaxiPath.ResumeLayout(false);
             this.frmCommandSendTaxiPath.PerformLayout();
+            this.frmCommandTerminateScript.ResumeLayout(false);
+            this.frmCommandTerminateScript.PerformLayout();
+            this.frmCommandTerminateCondition.ResumeLayout(false);
+            this.frmCommandTerminateCondition.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3767,6 +3962,22 @@
         private System.Windows.Forms.Label lblSendTaxiPath;
         private System.Windows.Forms.TextBox txtSendTaxiPath;
         private System.Windows.Forms.Button btnSendTaxiPathId;
+        private System.Windows.Forms.Panel frmCommandTerminateScript;
+        private System.Windows.Forms.Label lblTerminateScriptCondition;
+        private System.Windows.Forms.ComboBox cmbTerminateScriptCondition;
+        private System.Windows.Forms.Label lblTerminateScriptCreatureId;
+        private System.Windows.Forms.Label lblTerminateScriptSearchRadius;
+        private System.Windows.Forms.TextBox txtTerminateScriptSearchRadius;
+        private System.Windows.Forms.Button btnTerminateScriptCreatureId;
+        private System.Windows.Forms.Label lblTerminateScriptTooltip;
+        private System.Windows.Forms.Panel frmCommandTerminateCondition;
+        private System.Windows.Forms.Button btnTerminateConditionQuest;
+        private System.Windows.Forms.Label lblTerminateConditionRule;
+        private System.Windows.Forms.ComboBox cmbTerminateConditionRule;
+        private System.Windows.Forms.Label lblTerminateConditionId;
+        private System.Windows.Forms.Label lblTerminateConditionQuestId;
+        private System.Windows.Forms.Button btnTerminateConditionId;
+        private System.Windows.Forms.Label label12;
     }
 }
 
