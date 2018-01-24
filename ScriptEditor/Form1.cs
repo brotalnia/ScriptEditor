@@ -910,7 +910,7 @@ namespace ScriptEditor
                         }
                         case 33:
                         {
-                            lblDoorTooltip.Text = "The source Creature enters evade mode, leaving combat and returning to it's home location.";
+                            lblDoorTooltip.Text = "The source Creature enters evade mode, leaving combat and returning to it's home location. This command has no additional parameters.";
                             break;
                         }
                     }
