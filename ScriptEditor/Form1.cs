@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace ScriptEditor
 {
@@ -31,6 +32,11 @@ namespace ScriptEditor
         // Used to get the name of quests, creatures, etc.
         public delegate string NameFinder(uint id);
 
+        // Set Data options.
+        public string[] SetDataModes = { "Save Raw Value", "Increment Existing Data", "Decrement Existing Data" };
+        // Set Data 64 options.
+        public string[] SetData64Modes = { "Save Raw Value", "Save Own GUID"};
+
         public Form1()
         {
             InitializeComponent();
@@ -46,6 +52,7 @@ namespace ScriptEditor
             GameData.LoadSpells(connString);
             GameData.LoadItems(connString);
             GameData.LoadCondition(connString);
+            GameData.LoadAreas(connString);
         }
 
         private void LoadControls()
@@ -178,7 +185,134 @@ namespace ScriptEditor
             connString = "Server=" + mysqlHost + ";Database=" + mysqlDB + ";Uid=" + mysqlUser + ";Pwd=" + mysqlPass + ";";
         }
 
-        
+        // Shows an input box that returns a value.
+        private static DialogResult ShowInputDialog(ref string input, string name)
+        {
+            System.Drawing.Size size = new System.Drawing.Size(200, 70);
+            Form inputBox = new Form();
+
+            inputBox.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            inputBox.ClientSize = size;
+            inputBox.Text = name;
+            inputBox.MaximizeBox = false;
+            inputBox.MinimizeBox = false;
+            inputBox.StartPosition = FormStartPosition.CenterParent;
+
+            System.Windows.Forms.TextBox textBox = new TextBox();
+            textBox.Size = new System.Drawing.Size(size.Width - 10, 23);
+            textBox.Location = new System.Drawing.Point(5, 5);
+            textBox.Text = input;
+            inputBox.Controls.Add(textBox);
+
+            Button okButton = new Button();
+            okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            okButton.Name = "okButton";
+            okButton.Size = new System.Drawing.Size(75, 23);
+            okButton.Text = "&OK";
+            okButton.Location = new System.Drawing.Point(size.Width - 80 - 80, 39);
+            inputBox.Controls.Add(okButton);
+
+            Button cancelButton = new Button();
+            cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            cancelButton.Name = "cancelButton";
+            cancelButton.Size = new System.Drawing.Size(75, 23);
+            cancelButton.Text = "&Cancel";
+            cancelButton.Location = new System.Drawing.Point(size.Width - 80, 39);
+            inputBox.Controls.Add(cancelButton);
+
+            inputBox.AcceptButton = okButton;
+            inputBox.CancelButton = cancelButton;
+
+            DialogResult result = inputBox.ShowDialog();
+            input = textBox.Text;
+            return result;
+        }
+
+        // Shows a dialog with the query.
+        private DialogResult ShowSaveDialog(ref string query)
+        {
+            System.Drawing.Size size = new System.Drawing.Size(800, 450);
+            Form saveBox = new Form();
+
+            saveBox.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            saveBox.ClientSize = size;
+            saveBox.Text = "Save Script";
+            saveBox.MaximizeBox = false;
+            saveBox.MinimizeBox = false;
+            saveBox.StartPosition = FormStartPosition.CenterParent;
+
+            System.Windows.Forms.RichTextBox textBox = new RichTextBox();
+            textBox.Size = new System.Drawing.Size(size.Width - 10, size.Height - 40);
+            textBox.Location = new System.Drawing.Point(5, 5);
+            textBox.Text = query;
+            textBox.Multiline = true;
+            textBox.WordWrap = false;
+            textBox.ScrollBars = RichTextBoxScrollBars.ForcedBoth;
+            saveBox.Controls.Add(textBox);
+
+            Button okButton = new Button();
+            okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            okButton.Name = "okButton";
+            okButton.Size = new System.Drawing.Size(75, 23);
+            okButton.Text = "Save";
+            okButton.Location = new System.Drawing.Point(size.Width / 2 - okButton.Size.Width - 2, textBox.Location.Y + textBox.Size.Height + 5);
+            saveBox.Controls.Add(okButton);
+
+            Button cancelButton = new Button();
+            cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            cancelButton.Name = "cancelButton";
+            cancelButton.Size = new System.Drawing.Size(75, 23);
+            cancelButton.Text = "Cancel";
+            cancelButton.Location = new System.Drawing.Point(okButton.Location.X + okButton.Size.Width + 4, textBox.Location.Y + textBox.Size.Height + 5);
+            saveBox.Controls.Add(cancelButton);
+
+            saveBox.CancelButton = cancelButton;
+
+            DialogResult result = saveBox.ShowDialog();
+            query = textBox.Text;
+            return result;
+        }
+
+        // Generates SQL query based on script actions list.
+        private string GenerateScriptQuery()
+        {
+            string query = "DELETE FROM `" + currentScriptTable + "` WHERE `id`=" + currentScriptId.ToString() + ";\n";
+            foreach (ListViewItem lvi in lstActions.Items)
+            {
+                // Get the associated ScriptAction.
+                ScriptAction currentAction = (ScriptAction)lvi.Tag;
+
+                query += "INSERT INTO `" + currentScriptTable + "` (`id`, `delay`, `command`, `datalong`, `datalong2`, `datalong3`, `datalong4`, `buddy_id`, `buddy_radius`, `buddy_type`, `data_flags`, `dataint`, `dataint2`, `dataint3`, `dataint4`, `x`, `y`, `z`, `o`, `comments`) VALUES (" + currentAction.Id.ToString() + ", " + currentAction.Delay.ToString() + ", " + currentAction.Command.ToString() + ", " + currentAction.Datalong.ToString() + ", " + currentAction.Datalong2.ToString() + ", " + currentAction.Datalong3.ToString() + ", " + currentAction.Datalong4.ToString() + ", " + currentAction.BuddyId.ToString() + ", " + currentAction.BuddyRadius.ToString() + ", " + currentAction.BuddyType.ToString() + ", " + currentAction.DataFlags.ToString() + ", " + currentAction.Dataint.ToString() + ", " + currentAction.Dataint2.ToString() + ", " + currentAction.Dataint3.ToString() + ", " + currentAction.Dataint4.ToString() + ", " + currentAction.X.ToString().Replace(',', '.') + ", " + currentAction.Y.ToString().Replace(',', '.') + ", " + currentAction.Z.ToString().Replace(',', '.') + ", " + currentAction.O.ToString().Replace(',', '.') + ", '" + MySQLEscape(currentAction.Comments) + "');\n";
+            }
+            return query;
+        }
+        // Escape characters that will break the query.
+        private static string MySQLEscape(string str)
+        {
+            return Regex.Replace(str, @"[\x00'""\b\n\r\t\cZ\\%_]",
+                delegate (Match match)
+                {
+                    string v = match.Value;
+                    switch (v)
+                    {
+                        case "\x00":            // ASCII NUL (0x00) character
+                            return "\\0";
+                        case "\b":              // BACKSPACE character
+                            return "\\b";
+                        case "\n":              // NEWLINE (linefeed) character
+                            return "\\n";
+                        case "\r":              // CARRIAGE RETURN character
+                            return "\\r";
+                        case "\t":              // TAB
+                            return "\\t";
+                        case "\u001A":          // Ctrl-Z
+                            return "\\Z";
+                        default:
+                            return "\\" + v;
+                    }
+                });
+        }
+
         private void btnFind_Click(object sender, EventArgs e)
         {
             dontUpdate = true;
@@ -481,6 +615,29 @@ namespace ScriptEditor
             cmbTerminateConditionRule.SelectedIndex = 0;
             frmCommandTerminateCondition.Visible = false;
 
+            // Set Home Position Command (34)
+            cmbSetHomePositionMode.SelectedIndex = 0;
+            txtSetHomePositionX.Text = "";
+            txtSetHomePositionY.Text = "";
+            txtSetHomePositionZ.Text = "";
+            txtSetHomePositionO.Text = "";
+            frmCommandSetHomePosition.Visible = false;
+
+            // Set Facing Command (35)
+            txtSetFacingOrientation.Text = "";
+            cmbSetFacingMode.SelectedIndex = 0;
+            frmCommandSetFacing.Visible = false;
+
+            // Meeting Stone Command (36)
+            btnMeetingStoneAreaId.Text = "-NONE-";
+            frmCommandMeetingStone.Visible = false;
+
+            // Set Data Commands (37 and 38)
+            cmbSetDataMode.SelectedIndex = 0;
+            txtSetDataField.Text = "";
+            txtSetDataValue.Text = "";
+            frmCommandSetData.Visible = false;
+
             dontUpdate = false;
         }
         private void ShowCommandSpecificForm(ScriptAction selectedAction)
@@ -730,13 +887,33 @@ namespace ScriptEditor
                     frmCommandDoor.Visible = true;
                     break;
                 }
+                // These commands have no parameters, using the same form.
                 case 13: // Activate object
+                case 26: // Start Attack
+                case 33: // Enter Evade Mode
                 {
                     txtDoorGuid.Visible = false;
                     txtDoorResetDelay.Visible = false;
                     lblDoorGuid.Visible = false;
                     lblDoorResetDelay.Visible = false;
-                    lblDoorTooltip.Text = "The source GameObject is used by the provided Unit target. This command has no additional parameters.";
+                    switch (selectedAction.Command)
+                    {
+                        case 13:
+                        {
+                            lblDoorTooltip.Text = "The source GameObject is used by the provided Unit target. This command has no additional parameters.";
+                            break;
+                        }
+                        case 26:
+                        {
+                            lblDoorTooltip.Text = "The source Creature begins attacking the target Unit. This command has no additional parameters.";
+                            break;
+                        }
+                        case 33:
+                        {
+                            lblDoorTooltip.Text = "The source Creature enters evade mode, leaving combat and returning to it's home location.";
+                            break;
+                        }
+                    }
                     frmCommandDoor.Visible = true;
                     break;
                 }
@@ -929,16 +1106,6 @@ namespace ScriptEditor
                     frmCommandSetRun.Visible = true;
                     break;
                 }
-                case 26: // Start Attack
-                {
-                    txtDoorGuid.Visible = false;
-                    txtDoorResetDelay.Visible = false;
-                    lblDoorGuid.Visible = false;
-                    lblDoorResetDelay.Visible = false;
-                    lblDoorTooltip.Text = "The source Creature begins attacking the target Unit. This command has no additional parameters.";
-                    frmCommandDoor.Visible = true;
-                    break;
-                }
                 case 27: // Update Entry
                 {
                     uint creatureId = selectedAction.Datalong;
@@ -991,6 +1158,71 @@ namespace ScriptEditor
                         btnTerminateConditionQuest.Text = GameData.FindQuestTitle(questId) + " (" + questId.ToString() + ")";
                     cmbTerminateConditionRule.SelectedIndex = (int)selectedAction.Datalong3;
                     frmCommandTerminateCondition.Visible = true;
+                    break;
+                }
+                case 34: // Set Home Position
+                {
+                    cmbSetHomePositionMode.SelectedIndex = (int)selectedAction.Datalong;
+                    if (selectedAction.Datalong == 0) // Use provided coordinates
+                    {
+                        txtSetHomePositionX.Text = selectedAction.X.ToString();
+                        txtSetHomePositionX.Enabled = true;
+                        txtSetHomePositionY.Text = selectedAction.Y.ToString();
+                        txtSetHomePositionY.Enabled = true;
+                        txtSetHomePositionZ.Text = selectedAction.Z.ToString();
+                        txtSetHomePositionZ.Enabled = true;
+                        txtSetHomePositionO.Text = selectedAction.O.ToString();
+                        txtSetHomePositionO.Enabled = true;
+                    }
+                    else // Use current position
+                    {
+                        txtSetHomePositionX.Enabled = false;
+                        txtSetHomePositionY.Enabled = false;
+                        txtSetHomePositionZ.Enabled = false;
+                        txtSetHomePositionO.Enabled = false;
+                    }
+                    frmCommandSetHomePosition.Visible = true;
+                    break;
+                }
+                case 35: // Set Facing
+                {
+                    cmbSetFacingMode.SelectedIndex = (int)selectedAction.Datalong;
+                    if (selectedAction.Datalong == 0) // Face Target
+                        txtSetFacingOrientation.Enabled = false;
+                    else // Use orientation
+                    {
+                        txtSetFacingOrientation.Text = selectedAction.O.ToString();
+                        txtSetFacingOrientation.Enabled = true;
+                    }
+                    frmCommandSetFacing.Visible = true;
+                    break;
+                }
+                case 36: // Meeting Stone
+                {
+                    uint areaId = selectedAction.Datalong;
+                    if (areaId > 0)
+                        btnMeetingStoneAreaId.Text = GameData.FindAreaName(areaId) + " (" + areaId.ToString() + ")";
+                    frmCommandMeetingStone.Visible = true;
+                    break;
+                }
+                case 37: // Set Data
+                case 38: // Set Data 64
+                {
+                    int selectedMode = (int)selectedAction.Datalong3;
+                    if ((selectedAction.Command == 38) && (selectedMode == 1)) // Save Guid
+                        txtSetDataValue.Enabled = false;
+                    else
+                    {
+                        txtSetDataValue.Enabled = true;
+                        txtSetDataValue.Text = selectedAction.Datalong2.ToString();
+                    }
+                    txtSetDataField.Text = selectedAction.Datalong.ToString();
+                    if (selectedAction.Command == 37)
+                        cmbSetDataMode.DataSource = SetDataModes;
+                    else
+                        cmbSetDataMode.DataSource = SetData64Modes;
+                    cmbSetDataMode.SelectedIndex = selectedMode;
+                    frmCommandSetData.Visible = true;
                     break;
                 }
             }
@@ -1067,48 +1299,7 @@ namespace ScriptEditor
                 currentItem.SubItems[1].Text = cmbCommandId.SelectedIndex.ToString();
             }
         }
-        // Shows an input box that returns a value.
-        private static DialogResult ShowInputDialog(ref string input, string name)
-        {
-            System.Drawing.Size size = new System.Drawing.Size(200, 70);
-            Form inputBox = new Form();
-
-            inputBox.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            inputBox.ClientSize = size;
-            inputBox.Text = name;
-            inputBox.MaximizeBox = false;
-            inputBox.MinimizeBox = false;
-            inputBox.StartPosition = FormStartPosition.CenterParent;
-
-            System.Windows.Forms.TextBox textBox = new TextBox();
-            textBox.Size = new System.Drawing.Size(size.Width - 10, 23);
-            textBox.Location = new System.Drawing.Point(5, 5);
-            textBox.Text = input;
-            inputBox.Controls.Add(textBox);
-
-            Button okButton = new Button();
-            okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            okButton.Name = "okButton";
-            okButton.Size = new System.Drawing.Size(75, 23);
-            okButton.Text = "&OK";
-            okButton.Location = new System.Drawing.Point(size.Width - 80 - 80, 39);
-            inputBox.Controls.Add(okButton);
-
-            Button cancelButton = new Button();
-            cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            cancelButton.Name = "cancelButton";
-            cancelButton.Size = new System.Drawing.Size(75, 23);
-            cancelButton.Text = "&Cancel";
-            cancelButton.Location = new System.Drawing.Point(size.Width - 80, 39);
-            inputBox.Controls.Add(cancelButton);
-
-            inputBox.AcceptButton = okButton;
-            inputBox.CancelButton = cancelButton;
-
-            DialogResult result = inputBox.ShowDialog();
-            input = textBox.Text;
-            return result;
-        }
+        
         // Generic function for setting script field to specified value;
         private void SetScriptFieldFromValue(float fieldvalue, string fieldname)
         {
@@ -2670,6 +2861,151 @@ namespace ScriptEditor
         private void cmbTerminateConditionRule_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbTerminateConditionRule, "Datalong3", false);
+        }
+
+        private void cmbSetHomePositionMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbSetHomePositionMode, "Datalong", false);
+            if (cmbSetHomePositionMode.SelectedIndex == 1)
+            {
+                // Use current position
+                SetScriptFieldFromValue(0, "X");
+                SetScriptFieldFromValue(0, "Y");
+                SetScriptFieldFromValue(0, "Z");
+                SetScriptFieldFromValue(0, "O");
+                txtSetHomePositionX.Text = "";
+                txtSetHomePositionX.Enabled = false;
+                txtSetHomePositionY.Text = "";
+                txtSetHomePositionY.Enabled = false;
+                txtSetHomePositionZ.Text = "";
+                txtSetHomePositionZ.Enabled = false;
+                txtSetHomePositionO.Text = "";
+                txtSetHomePositionO.Enabled = false;
+            }
+            else
+            {
+                // Use provided coordinates
+                txtSetHomePositionX.Enabled = true;
+                txtSetHomePositionY.Enabled = true;
+                txtSetHomePositionZ.Enabled = true;
+                txtSetHomePositionO.Enabled = true;
+            }
+        }
+
+        private void txtSetHomePositionX_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSetHomePositionX, "X");
+        }
+
+        private void txtSetHomePositionY_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSetHomePositionY, "Y");
+        }
+
+        private void txtSetHomePositionZ_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSetHomePositionZ, "Z");
+        }
+
+        private void txtSetHomePositionO_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSetHomePositionO, "O");
+        }
+
+        private void cmbSetFacingMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbSetFacingMode, "Datalong", false);
+            if (cmbSetFacingMode.SelectedIndex == 0)
+            {
+                // Face target
+                SetScriptFieldFromValue(0, "O");
+                txtSetFacingOrientation.Text = "";
+                txtSetFacingOrientation.Enabled = false;
+            }
+            else
+            {
+                // Use orientation
+                txtSetFacingOrientation.Enabled = true;
+            }
+        }
+
+        private void txtSetFacingOrientation_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSetFacingOrientation, "O");
+        }
+
+        private void btnMeetingStoneAreaId_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormAreaFinder>(btnMeetingStoneAreaId, null, GameData.FindAreaName, "Datalong");
+        }
+
+        private void txtSetDataField_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSetDataField, "Datalong");
+        }
+
+        private void txtSetDataValue_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSetDataValue, "Datalong2");
+        }
+
+        private void cmbSetDataMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (dontUpdate)
+                return;
+
+            if (lstActions.SelectedItems.Count > 0)
+            {
+                // Get the selected item in the listview.
+                ListViewItem currentItem = lstActions.SelectedItems[0];
+
+                // Get the associated ScriptAction.
+                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
+
+                // Get the selected option.
+                uint selection = (uint)cmbSetDataMode.SelectedIndex;
+
+                // Updating datalong value.
+                currentAction.Datalong3 = selection;
+
+                if (currentAction.Command == 38) // Set Data 64
+                {
+                    if (selection == 1) // Source Guid
+                    {
+                        txtSetDataValue.Text = "";
+                        txtSetDataValue.Enabled = false;
+                        currentAction.Datalong2 = 0;
+                    }
+                    else
+                        txtSetDataValue.Enabled = true;
+                }
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (currentScriptId != 0)
+            {
+                string query = GenerateScriptQuery();
+                if (ShowSaveDialog(ref query) == DialogResult.OK)
+                {
+                    MySqlConnection conn = new MySqlConnection(connString);
+                    MySqlCommand command = conn.CreateCommand();
+                    command.CommandText = query;
+                    try
+                    {
+                        conn.Open();
+                        command.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString(), "Save Script", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    conn.Close();
+                }
+            }
+            else
+                MessageBox.Show("You are not editing a script, cannot save to unknown table.", "Save Script", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 

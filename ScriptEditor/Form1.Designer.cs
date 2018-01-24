@@ -330,6 +330,37 @@
             this.lblTerminateConditionQuestId = new System.Windows.Forms.Label();
             this.btnTerminateConditionId = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
+            this.frmCommandSetHomePosition = new System.Windows.Forms.Panel();
+            this.lblSetHomePositionO = new System.Windows.Forms.Label();
+            this.lblSetHomePositionZ = new System.Windows.Forms.Label();
+            this.txtSetHomePositionO = new System.Windows.Forms.TextBox();
+            this.txtSetHomePositionZ = new System.Windows.Forms.TextBox();
+            this.lblSetHomePositionY = new System.Windows.Forms.Label();
+            this.lblSetHomePositionX = new System.Windows.Forms.Label();
+            this.txtSetHomePositionY = new System.Windows.Forms.TextBox();
+            this.txtSetHomePositionX = new System.Windows.Forms.TextBox();
+            this.cmbSetHomePositionMode = new System.Windows.Forms.ComboBox();
+            this.lblSetHomePositionMode = new System.Windows.Forms.Label();
+            this.lblSetHomePositionTooltip = new System.Windows.Forms.Label();
+            this.frmCommandSetFacing = new System.Windows.Forms.Panel();
+            this.lblSetFacingOrientation = new System.Windows.Forms.Label();
+            this.txtSetFacingOrientation = new System.Windows.Forms.TextBox();
+            this.cmbSetFacingMode = new System.Windows.Forms.ComboBox();
+            this.lblSetFacingMode = new System.Windows.Forms.Label();
+            this.lblSetFacingTooltip = new System.Windows.Forms.Label();
+            this.frmCommandMeetingStone = new System.Windows.Forms.Panel();
+            this.btnMeetingStoneAreaId = new System.Windows.Forms.Button();
+            this.lblMeetingStoneAreaId = new System.Windows.Forms.Label();
+            this.lblMeetingStoneTooltip = new System.Windows.Forms.Label();
+            this.frmCommandSetData = new System.Windows.Forms.Panel();
+            this.lblSetDataValue = new System.Windows.Forms.Label();
+            this.txtSetDataValue = new System.Windows.Forms.TextBox();
+            this.lblSetDataField = new System.Windows.Forms.Label();
+            this.txtSetDataField = new System.Windows.Forms.TextBox();
+            this.cmbSetDataMode = new System.Windows.Forms.ComboBox();
+            this.lblSetDataMode = new System.Windows.Forms.Label();
+            this.lblSetDataTooltip = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -368,6 +399,10 @@
             this.frmCommandSendTaxiPath.SuspendLayout();
             this.frmCommandTerminateScript.SuspendLayout();
             this.frmCommandTerminateCondition.SuspendLayout();
+            this.frmCommandSetHomePosition.SuspendLayout();
+            this.frmCommandSetFacing.SuspendLayout();
+            this.frmCommandMeetingStone.SuspendLayout();
+            this.frmCommandSetData.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstActions
@@ -3544,11 +3579,330 @@
     "isfied. If a quest Id is provided, the quest gets marked as failed for the invol" +
     "ved players.";
             // 
+            // frmCommandSetHomePosition
+            // 
+            this.frmCommandSetHomePosition.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandSetHomePosition.Controls.Add(this.lblSetHomePositionO);
+            this.frmCommandSetHomePosition.Controls.Add(this.lblSetHomePositionZ);
+            this.frmCommandSetHomePosition.Controls.Add(this.txtSetHomePositionO);
+            this.frmCommandSetHomePosition.Controls.Add(this.txtSetHomePositionZ);
+            this.frmCommandSetHomePosition.Controls.Add(this.lblSetHomePositionY);
+            this.frmCommandSetHomePosition.Controls.Add(this.lblSetHomePositionX);
+            this.frmCommandSetHomePosition.Controls.Add(this.txtSetHomePositionY);
+            this.frmCommandSetHomePosition.Controls.Add(this.txtSetHomePositionX);
+            this.frmCommandSetHomePosition.Controls.Add(this.cmbSetHomePositionMode);
+            this.frmCommandSetHomePosition.Controls.Add(this.lblSetHomePositionMode);
+            this.frmCommandSetHomePosition.Controls.Add(this.lblSetHomePositionTooltip);
+            this.frmCommandSetHomePosition.Location = new System.Drawing.Point(409, 239);
+            this.frmCommandSetHomePosition.Name = "frmCommandSetHomePosition";
+            this.frmCommandSetHomePosition.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandSetHomePosition.TabIndex = 39;
+            this.frmCommandSetHomePosition.Visible = false;
+            // 
+            // lblSetHomePositionO
+            // 
+            this.lblSetHomePositionO.AutoSize = true;
+            this.lblSetHomePositionO.Location = new System.Drawing.Point(264, 124);
+            this.lblSetHomePositionO.Name = "lblSetHomePositionO";
+            this.lblSetHomePositionO.Size = new System.Drawing.Size(61, 13);
+            this.lblSetHomePositionO.TabIndex = 10;
+            this.lblSetHomePositionO.Text = "Orientation:";
+            // 
+            // lblSetHomePositionZ
+            // 
+            this.lblSetHomePositionZ.AutoSize = true;
+            this.lblSetHomePositionZ.Location = new System.Drawing.Point(26, 124);
+            this.lblSetHomePositionZ.Name = "lblSetHomePositionZ";
+            this.lblSetHomePositionZ.Size = new System.Drawing.Size(70, 13);
+            this.lblSetHomePositionZ.TabIndex = 9;
+            this.lblSetHomePositionZ.Text = "Z coordinate:";
+            // 
+            // txtSetHomePositionO
+            // 
+            this.txtSetHomePositionO.Location = new System.Drawing.Point(328, 121);
+            this.txtSetHomePositionO.Name = "txtSetHomePositionO";
+            this.txtSetHomePositionO.Size = new System.Drawing.Size(145, 20);
+            this.txtSetHomePositionO.TabIndex = 8;
+            this.txtSetHomePositionO.Leave += new System.EventHandler(this.txtSetHomePositionO_Leave);
+            // 
+            // txtSetHomePositionZ
+            // 
+            this.txtSetHomePositionZ.Location = new System.Drawing.Point(99, 121);
+            this.txtSetHomePositionZ.Name = "txtSetHomePositionZ";
+            this.txtSetHomePositionZ.Size = new System.Drawing.Size(145, 20);
+            this.txtSetHomePositionZ.TabIndex = 7;
+            this.txtSetHomePositionZ.Leave += new System.EventHandler(this.txtSetHomePositionZ_Leave);
+            // 
+            // lblSetHomePositionY
+            // 
+            this.lblSetHomePositionY.AutoSize = true;
+            this.lblSetHomePositionY.Location = new System.Drawing.Point(255, 93);
+            this.lblSetHomePositionY.Name = "lblSetHomePositionY";
+            this.lblSetHomePositionY.Size = new System.Drawing.Size(70, 13);
+            this.lblSetHomePositionY.TabIndex = 6;
+            this.lblSetHomePositionY.Text = "Y coordinate:";
+            // 
+            // lblSetHomePositionX
+            // 
+            this.lblSetHomePositionX.AutoSize = true;
+            this.lblSetHomePositionX.Location = new System.Drawing.Point(26, 93);
+            this.lblSetHomePositionX.Name = "lblSetHomePositionX";
+            this.lblSetHomePositionX.Size = new System.Drawing.Size(70, 13);
+            this.lblSetHomePositionX.TabIndex = 5;
+            this.lblSetHomePositionX.Text = "X coordinate:";
+            // 
+            // txtSetHomePositionY
+            // 
+            this.txtSetHomePositionY.Location = new System.Drawing.Point(328, 90);
+            this.txtSetHomePositionY.Name = "txtSetHomePositionY";
+            this.txtSetHomePositionY.Size = new System.Drawing.Size(145, 20);
+            this.txtSetHomePositionY.TabIndex = 4;
+            this.txtSetHomePositionY.Leave += new System.EventHandler(this.txtSetHomePositionY_Leave);
+            // 
+            // txtSetHomePositionX
+            // 
+            this.txtSetHomePositionX.Location = new System.Drawing.Point(99, 90);
+            this.txtSetHomePositionX.Name = "txtSetHomePositionX";
+            this.txtSetHomePositionX.Size = new System.Drawing.Size(145, 20);
+            this.txtSetHomePositionX.TabIndex = 3;
+            this.txtSetHomePositionX.Leave += new System.EventHandler(this.txtSetHomePositionX_Leave);
+            // 
+            // cmbSetHomePositionMode
+            // 
+            this.cmbSetHomePositionMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSetHomePositionMode.FormattingEnabled = true;
+            this.cmbSetHomePositionMode.Items.AddRange(new object[] {
+            "Provided coordinates",
+            "Current position"});
+            this.cmbSetHomePositionMode.Location = new System.Drawing.Point(99, 58);
+            this.cmbSetHomePositionMode.Name = "cmbSetHomePositionMode";
+            this.cmbSetHomePositionMode.Size = new System.Drawing.Size(374, 21);
+            this.cmbSetHomePositionMode.TabIndex = 2;
+            this.cmbSetHomePositionMode.SelectedIndexChanged += new System.EventHandler(this.cmbSetHomePositionMode_SelectedIndexChanged);
+            // 
+            // lblSetHomePositionMode
+            // 
+            this.lblSetHomePositionMode.AutoSize = true;
+            this.lblSetHomePositionMode.Location = new System.Drawing.Point(59, 61);
+            this.lblSetHomePositionMode.Name = "lblSetHomePositionMode";
+            this.lblSetHomePositionMode.Size = new System.Drawing.Size(37, 13);
+            this.lblSetHomePositionMode.TabIndex = 1;
+            this.lblSetHomePositionMode.Text = "Mode:";
+            // 
+            // lblSetHomePositionTooltip
+            // 
+            this.lblSetHomePositionTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblSetHomePositionTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblSetHomePositionTooltip.Name = "lblSetHomePositionTooltip";
+            this.lblSetHomePositionTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblSetHomePositionTooltip.TabIndex = 0;
+            this.lblSetHomePositionTooltip.Text = "Sets the source Creature\'s home position to the specified coordinates.";
+            // 
+            // frmCommandSetFacing
+            // 
+            this.frmCommandSetFacing.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandSetFacing.Controls.Add(this.lblSetFacingOrientation);
+            this.frmCommandSetFacing.Controls.Add(this.txtSetFacingOrientation);
+            this.frmCommandSetFacing.Controls.Add(this.cmbSetFacingMode);
+            this.frmCommandSetFacing.Controls.Add(this.lblSetFacingMode);
+            this.frmCommandSetFacing.Controls.Add(this.lblSetFacingTooltip);
+            this.frmCommandSetFacing.Location = new System.Drawing.Point(409, 239);
+            this.frmCommandSetFacing.Name = "frmCommandSetFacing";
+            this.frmCommandSetFacing.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandSetFacing.TabIndex = 40;
+            this.frmCommandSetFacing.Visible = false;
+            // 
+            // lblSetFacingOrientation
+            // 
+            this.lblSetFacingOrientation.AutoSize = true;
+            this.lblSetFacingOrientation.Location = new System.Drawing.Point(35, 93);
+            this.lblSetFacingOrientation.Name = "lblSetFacingOrientation";
+            this.lblSetFacingOrientation.Size = new System.Drawing.Size(61, 13);
+            this.lblSetFacingOrientation.TabIndex = 5;
+            this.lblSetFacingOrientation.Text = "Orientation:";
+            // 
+            // txtSetFacingOrientation
+            // 
+            this.txtSetFacingOrientation.Location = new System.Drawing.Point(99, 90);
+            this.txtSetFacingOrientation.Name = "txtSetFacingOrientation";
+            this.txtSetFacingOrientation.Size = new System.Drawing.Size(374, 20);
+            this.txtSetFacingOrientation.TabIndex = 3;
+            this.txtSetFacingOrientation.Leave += new System.EventHandler(this.txtSetFacingOrientation_Leave);
+            // 
+            // cmbSetFacingMode
+            // 
+            this.cmbSetFacingMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSetFacingMode.FormattingEnabled = true;
+            this.cmbSetFacingMode.Items.AddRange(new object[] {
+            "Face provided target",
+            "Use orientation value"});
+            this.cmbSetFacingMode.Location = new System.Drawing.Point(99, 58);
+            this.cmbSetFacingMode.Name = "cmbSetFacingMode";
+            this.cmbSetFacingMode.Size = new System.Drawing.Size(374, 21);
+            this.cmbSetFacingMode.TabIndex = 2;
+            this.cmbSetFacingMode.SelectedIndexChanged += new System.EventHandler(this.cmbSetFacingMode_SelectedIndexChanged);
+            // 
+            // lblSetFacingMode
+            // 
+            this.lblSetFacingMode.AutoSize = true;
+            this.lblSetFacingMode.Location = new System.Drawing.Point(59, 61);
+            this.lblSetFacingMode.Name = "lblSetFacingMode";
+            this.lblSetFacingMode.Size = new System.Drawing.Size(37, 13);
+            this.lblSetFacingMode.TabIndex = 1;
+            this.lblSetFacingMode.Text = "Mode:";
+            // 
+            // lblSetFacingTooltip
+            // 
+            this.lblSetFacingTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblSetFacingTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblSetFacingTooltip.Name = "lblSetFacingTooltip";
+            this.lblSetFacingTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblSetFacingTooltip.TabIndex = 0;
+            this.lblSetFacingTooltip.Text = "Changes the source Unit\'s orientation to either the specified value, or to face t" +
+    "he target WorldObject.";
+            // 
+            // frmCommandMeetingStone
+            // 
+            this.frmCommandMeetingStone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandMeetingStone.Controls.Add(this.btnMeetingStoneAreaId);
+            this.frmCommandMeetingStone.Controls.Add(this.lblMeetingStoneAreaId);
+            this.frmCommandMeetingStone.Controls.Add(this.lblMeetingStoneTooltip);
+            this.frmCommandMeetingStone.Location = new System.Drawing.Point(409, 239);
+            this.frmCommandMeetingStone.Name = "frmCommandMeetingStone";
+            this.frmCommandMeetingStone.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandMeetingStone.TabIndex = 41;
+            this.frmCommandMeetingStone.Visible = false;
+            // 
+            // btnMeetingStoneAreaId
+            // 
+            this.btnMeetingStoneAreaId.Location = new System.Drawing.Point(69, 57);
+            this.btnMeetingStoneAreaId.Name = "btnMeetingStoneAreaId";
+            this.btnMeetingStoneAreaId.Size = new System.Drawing.Size(404, 23);
+            this.btnMeetingStoneAreaId.TabIndex = 2;
+            this.btnMeetingStoneAreaId.Text = "-NONE-";
+            this.btnMeetingStoneAreaId.UseVisualStyleBackColor = true;
+            this.btnMeetingStoneAreaId.Click += new System.EventHandler(this.btnMeetingStoneAreaId_Click);
+            // 
+            // lblMeetingStoneAreaId
+            // 
+            this.lblMeetingStoneAreaId.AutoSize = true;
+            this.lblMeetingStoneAreaId.Location = new System.Drawing.Point(23, 61);
+            this.lblMeetingStoneAreaId.Name = "lblMeetingStoneAreaId";
+            this.lblMeetingStoneAreaId.Size = new System.Drawing.Size(44, 13);
+            this.lblMeetingStoneAreaId.TabIndex = 1;
+            this.lblMeetingStoneAreaId.Text = "Area Id:";
+            // 
+            // lblMeetingStoneTooltip
+            // 
+            this.lblMeetingStoneTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblMeetingStoneTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblMeetingStoneTooltip.Name = "lblMeetingStoneTooltip";
+            this.lblMeetingStoneTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblMeetingStoneTooltip.TabIndex = 0;
+            this.lblMeetingStoneTooltip.Text = "The source Player gets put into a queue for the chosen dungeon.";
+            // 
+            // frmCommandSetData
+            // 
+            this.frmCommandSetData.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandSetData.Controls.Add(this.lblSetDataValue);
+            this.frmCommandSetData.Controls.Add(this.txtSetDataValue);
+            this.frmCommandSetData.Controls.Add(this.lblSetDataField);
+            this.frmCommandSetData.Controls.Add(this.txtSetDataField);
+            this.frmCommandSetData.Controls.Add(this.cmbSetDataMode);
+            this.frmCommandSetData.Controls.Add(this.lblSetDataMode);
+            this.frmCommandSetData.Controls.Add(this.lblSetDataTooltip);
+            this.frmCommandSetData.Location = new System.Drawing.Point(409, 239);
+            this.frmCommandSetData.Name = "frmCommandSetData";
+            this.frmCommandSetData.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandSetData.TabIndex = 42;
+            this.frmCommandSetData.Visible = false;
+            // 
+            // lblSetDataValue
+            // 
+            this.lblSetDataValue.AutoSize = true;
+            this.lblSetDataValue.Location = new System.Drawing.Point(63, 124);
+            this.lblSetDataValue.Name = "lblSetDataValue";
+            this.lblSetDataValue.Size = new System.Drawing.Size(33, 13);
+            this.lblSetDataValue.TabIndex = 7;
+            this.lblSetDataValue.Text = "Data:";
+            // 
+            // txtSetDataValue
+            // 
+            this.txtSetDataValue.Location = new System.Drawing.Point(99, 121);
+            this.txtSetDataValue.Name = "txtSetDataValue";
+            this.txtSetDataValue.Size = new System.Drawing.Size(374, 20);
+            this.txtSetDataValue.TabIndex = 6;
+            this.txtSetDataValue.Leave += new System.EventHandler(this.txtSetDataValue_Leave);
+            // 
+            // lblSetDataField
+            // 
+            this.lblSetDataField.AutoSize = true;
+            this.lblSetDataField.Location = new System.Drawing.Point(64, 93);
+            this.lblSetDataField.Name = "lblSetDataField";
+            this.lblSetDataField.Size = new System.Drawing.Size(32, 13);
+            this.lblSetDataField.TabIndex = 5;
+            this.lblSetDataField.Text = "Field:";
+            // 
+            // txtSetDataField
+            // 
+            this.txtSetDataField.Location = new System.Drawing.Point(99, 90);
+            this.txtSetDataField.Name = "txtSetDataField";
+            this.txtSetDataField.Size = new System.Drawing.Size(374, 20);
+            this.txtSetDataField.TabIndex = 3;
+            this.txtSetDataField.Leave += new System.EventHandler(this.txtSetDataField_Leave);
+            // 
+            // cmbSetDataMode
+            // 
+            this.cmbSetDataMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSetDataMode.FormattingEnabled = true;
+            this.cmbSetDataMode.Items.AddRange(new object[] {
+            "Raw Value",
+            "Increment Current Value",
+            "Decrement Current Value"});
+            this.cmbSetDataMode.Location = new System.Drawing.Point(99, 58);
+            this.cmbSetDataMode.Name = "cmbSetDataMode";
+            this.cmbSetDataMode.Size = new System.Drawing.Size(374, 21);
+            this.cmbSetDataMode.TabIndex = 2;
+            this.cmbSetDataMode.SelectedIndexChanged += new System.EventHandler(this.cmbSetDataMode_SelectedIndexChanged);
+            // 
+            // lblSetDataMode
+            // 
+            this.lblSetDataMode.AutoSize = true;
+            this.lblSetDataMode.Location = new System.Drawing.Point(59, 61);
+            this.lblSetDataMode.Name = "lblSetDataMode";
+            this.lblSetDataMode.Size = new System.Drawing.Size(37, 13);
+            this.lblSetDataMode.TabIndex = 1;
+            this.lblSetDataMode.Text = "Mode:";
+            // 
+            // lblSetDataTooltip
+            // 
+            this.lblSetDataTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblSetDataTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblSetDataTooltip.Name = "lblSetDataTooltip";
+            this.lblSetDataTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblSetDataTooltip.TabIndex = 0;
+            this.lblSetDataTooltip.Text = "Saves data to the instance script of the map.";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(829, 578);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 43;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(926, 610);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.frmCommandSetData);
+            this.Controls.Add(this.frmCommandMeetingStone);
+            this.Controls.Add(this.frmCommandSetFacing);
+            this.Controls.Add(this.frmCommandSetHomePosition);
             this.Controls.Add(this.frmCommandTerminateCondition);
             this.Controls.Add(this.frmCommandTerminateScript);
             this.Controls.Add(this.frmCommandSendTaxiPath);
@@ -3670,6 +4024,14 @@
             this.frmCommandTerminateScript.PerformLayout();
             this.frmCommandTerminateCondition.ResumeLayout(false);
             this.frmCommandTerminateCondition.PerformLayout();
+            this.frmCommandSetHomePosition.ResumeLayout(false);
+            this.frmCommandSetHomePosition.PerformLayout();
+            this.frmCommandSetFacing.ResumeLayout(false);
+            this.frmCommandSetFacing.PerformLayout();
+            this.frmCommandMeetingStone.ResumeLayout(false);
+            this.frmCommandMeetingStone.PerformLayout();
+            this.frmCommandSetData.ResumeLayout(false);
+            this.frmCommandSetData.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3978,6 +4340,37 @@
         private System.Windows.Forms.Label lblTerminateConditionQuestId;
         private System.Windows.Forms.Button btnTerminateConditionId;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Panel frmCommandSetHomePosition;
+        private System.Windows.Forms.TextBox txtSetHomePositionY;
+        private System.Windows.Forms.TextBox txtSetHomePositionX;
+        private System.Windows.Forms.ComboBox cmbSetHomePositionMode;
+        private System.Windows.Forms.Label lblSetHomePositionMode;
+        private System.Windows.Forms.Label lblSetHomePositionTooltip;
+        private System.Windows.Forms.Label lblSetHomePositionO;
+        private System.Windows.Forms.Label lblSetHomePositionZ;
+        private System.Windows.Forms.TextBox txtSetHomePositionO;
+        private System.Windows.Forms.TextBox txtSetHomePositionZ;
+        private System.Windows.Forms.Label lblSetHomePositionY;
+        private System.Windows.Forms.Label lblSetHomePositionX;
+        private System.Windows.Forms.Panel frmCommandSetFacing;
+        private System.Windows.Forms.Label lblSetFacingOrientation;
+        private System.Windows.Forms.TextBox txtSetFacingOrientation;
+        private System.Windows.Forms.ComboBox cmbSetFacingMode;
+        private System.Windows.Forms.Label lblSetFacingMode;
+        private System.Windows.Forms.Label lblSetFacingTooltip;
+        private System.Windows.Forms.Panel frmCommandMeetingStone;
+        private System.Windows.Forms.Button btnMeetingStoneAreaId;
+        private System.Windows.Forms.Label lblMeetingStoneAreaId;
+        private System.Windows.Forms.Label lblMeetingStoneTooltip;
+        private System.Windows.Forms.Panel frmCommandSetData;
+        private System.Windows.Forms.Label lblSetDataField;
+        private System.Windows.Forms.TextBox txtSetDataField;
+        private System.Windows.Forms.ComboBox cmbSetDataMode;
+        private System.Windows.Forms.Label lblSetDataMode;
+        private System.Windows.Forms.Label lblSetDataTooltip;
+        private System.Windows.Forms.Label lblSetDataValue;
+        private System.Windows.Forms.TextBox txtSetDataValue;
+        private System.Windows.Forms.Button btnSave;
     }
 }
 

@@ -15,6 +15,7 @@ namespace ScriptEditor
         public static readonly List<ItemInfo> ItemInfoList = new List<ItemInfo>();
         public static readonly List<TaxiInfo> TaxiInfoList = new List<TaxiInfo>();
         public static readonly List<ConditionInfo> ConditionInfoList = new List<ConditionInfo>();
+        public static readonly List<AreaInfo> AreaInfoList = new List<AreaInfo>();
         public static readonly List<ComboboxPair> UpdateFieldsList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> FlagFieldsList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> MapsList = new List<ComboboxPair>();
@@ -135,6 +136,16 @@ namespace ScriptEditor
             {
                 if (condition.Value == id)
                     return condition.Text;
+            }
+
+            return "";
+        }
+        public static string FindAreaName(uint id)
+        {
+            foreach (AreaInfo area in AreaInfoList)
+            {
+                if (area.ID == id)
+                    return area.Name;
             }
 
             return "";
@@ -285,6 +296,31 @@ namespace ScriptEditor
                 {
                     // Add the new condition entry to the list.
                     ConditionInfoList.Add(new ConditionInfo(reader.GetUInt32(0), reader.GetInt32(1), reader.GetUInt32(2), reader.GetUInt32(3)));
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+            conn.Close();
+        }
+        public static void LoadAreas(string connString)
+        {
+            AreaInfoList.Clear();
+
+            MySqlConnection conn = new MySqlConnection(connString);
+            MySqlCommand command = conn.CreateCommand();
+            command.CommandText = "SELECT Entry, MapId, ZoneId, Name FROM area_template ORDER BY Entry";
+            try
+            {
+                conn.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    // Add the new area entry to the list.
+                    AreaInfoList.Add(new AreaInfo(reader.GetUInt32(0), reader.GetUInt32(1), reader.GetUInt32(2), reader.GetString(3)));
                 }
                 reader.Close();
             }
@@ -1159,6 +1195,20 @@ namespace ScriptEditor
             Type = type;
             Value1 = value1;
             Value2 = value2;
+        }
+    }
+    public struct AreaInfo
+    {
+        public uint ID;
+        public uint Map;
+        public uint Zone;
+        public string Name;
+        public AreaInfo(uint id, uint map, uint zone, string name)
+        {
+            ID = id;
+            Map = map;
+            Zone = zone;
+            Name = name;
         }
     }
     public class ComboboxPair

@@ -48,7 +48,7 @@ namespace ScriptEditor
             lvi.SubItems.Add(GameData.CreatureRanksList[(int)creature.Rank].Text);
             lvi.SubItems.Add(creature.Name);
 
-            // Add this quest to the listview.
+            // Add this creature to the listview.
             lstData.Items.Add(lvi);
         }
 

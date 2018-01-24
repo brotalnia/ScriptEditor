@@ -56,6 +56,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAreaFinder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAreaFinder.Designer.cs">
+      <DependentUpon>FormAreaFinder.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormConditionFinder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +123,9 @@
     <Compile Include="ScriptAction.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAreaFinder.resx">
+      <DependentUpon>FormAreaFinder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormConditionFinder.resx">
       <DependentUpon>FormConditionFinder.cs</DependentUpon>

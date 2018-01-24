@@ -44,7 +44,7 @@ namespace ScriptEditor
             lvi.SubItems.Add(path.Source);
             lvi.SubItems.Add(path.Destination);
 
-            // Add this item to the listview.
+            // Add this taxi path to the listview.
             lstData.Items.Add(lvi);
         }
         private void FormTaxiFinder_ResizeEnd(object sender, EventArgs e)
