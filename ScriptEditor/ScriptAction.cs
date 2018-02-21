@@ -26,8 +26,9 @@ namespace ScriptEditor
         public float Y;
         public float Z;
         public float O;
+        public uint ConditionId;
         public string Comments;
-        public ScriptAction(uint id, uint delay, uint command, uint datalong, uint datalong2, uint datalong3, uint datalong4, uint buddyid, uint buddyradius, uint buddytype, uint dataflags, int dataint, int dataint2, int dataint3, int dataint4, float x, float y, float z, float o, string comments)
+        public ScriptAction(uint id, uint delay, uint command, uint datalong, uint datalong2, uint datalong3, uint datalong4, uint buddyid, uint buddyradius, uint buddytype, uint dataflags, int dataint, int dataint2, int dataint3, int dataint4, float x, float y, float z, float o, uint conditionid, string comments)
         {
             Id = id;
             Delay = delay;
@@ -48,6 +49,7 @@ namespace ScriptEditor
             Y = y;
             Z = z;
             O = o;
+            ConditionId = conditionid;
             Comments = comments;
         }
         public ScriptAction(uint id)
@@ -71,6 +73,7 @@ namespace ScriptEditor
             Y = 0;
             Z = 0;
             O = 0;
+            ConditionId = 0;
             Comments = "New Action - Edit me!";
         }
     }

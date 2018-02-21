@@ -53,6 +53,9 @@ namespace ScriptEditor
             GameData.LoadItems(connString);
             GameData.LoadCondition(connString);
             GameData.LoadAreas(connString);
+            GameData.LoadSounds(connString);
+            GameData.LoadFactions(connString);
+            GameData.LoadFactionTemplates(connString);
         }
 
         private void LoadControls()
@@ -282,7 +285,7 @@ namespace ScriptEditor
                 // Get the associated ScriptAction.
                 ScriptAction currentAction = (ScriptAction)lvi.Tag;
 
-                query += "INSERT INTO `" + currentScriptTable + "` (`id`, `delay`, `command`, `datalong`, `datalong2`, `datalong3`, `datalong4`, `buddy_id`, `buddy_radius`, `buddy_type`, `data_flags`, `dataint`, `dataint2`, `dataint3`, `dataint4`, `x`, `y`, `z`, `o`, `comments`) VALUES (" + currentAction.Id.ToString() + ", " + currentAction.Delay.ToString() + ", " + currentAction.Command.ToString() + ", " + currentAction.Datalong.ToString() + ", " + currentAction.Datalong2.ToString() + ", " + currentAction.Datalong3.ToString() + ", " + currentAction.Datalong4.ToString() + ", " + currentAction.BuddyId.ToString() + ", " + currentAction.BuddyRadius.ToString() + ", " + currentAction.BuddyType.ToString() + ", " + currentAction.DataFlags.ToString() + ", " + currentAction.Dataint.ToString() + ", " + currentAction.Dataint2.ToString() + ", " + currentAction.Dataint3.ToString() + ", " + currentAction.Dataint4.ToString() + ", " + currentAction.X.ToString().Replace(',', '.') + ", " + currentAction.Y.ToString().Replace(',', '.') + ", " + currentAction.Z.ToString().Replace(',', '.') + ", " + currentAction.O.ToString().Replace(',', '.') + ", '" + MySQLEscape(currentAction.Comments) + "');\n";
+                query += "INSERT INTO `" + currentScriptTable + "` (`id`, `delay`, `command`, `datalong`, `datalong2`, `datalong3`, `datalong4`, `buddy_id`, `buddy_radius`, `buddy_type`, `data_flags`, `dataint`, `dataint2`, `dataint3`, `dataint4`, `x`, `y`, `z`, `o`, `condition_id`, `comments`) VALUES (" + currentAction.Id.ToString() + ", " + currentAction.Delay.ToString() + ", " + currentAction.Command.ToString() + ", " + currentAction.Datalong.ToString() + ", " + currentAction.Datalong2.ToString() + ", " + currentAction.Datalong3.ToString() + ", " + currentAction.Datalong4.ToString() + ", " + currentAction.BuddyId.ToString() + ", " + currentAction.BuddyRadius.ToString() + ", " + currentAction.BuddyType.ToString() + ", " + currentAction.DataFlags.ToString() + ", " + currentAction.Dataint.ToString() + ", " + currentAction.Dataint2.ToString() + ", " + currentAction.Dataint3.ToString() + ", " + currentAction.Dataint4.ToString() + ", " + currentAction.X.ToString().Replace(',', '.') + ", " + currentAction.Y.ToString().Replace(',', '.') + ", " + currentAction.Z.ToString().Replace(',', '.') + ", " + currentAction.O.ToString().Replace(',', '.') + ", " + currentAction.ConditionId.ToString() + ", '" + MySQLEscape(currentAction.Comments) + "');\n";
             }
             return query;
         }
@@ -335,7 +338,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT id, delay, command, datalong, datalong2, datalong3, datalong4, buddy_id, buddy_radius, buddy_type, data_flags, dataint, dataint2, dataint3, dataint4, x, y, z, o, comments FROM " + cmbTable.SelectedItem.ToString() + " WHERE id=" + txtScriptId.Text + " ORDER BY delay";
+            command.CommandText = "SELECT id, delay, command, datalong, datalong2, datalong3, datalong4, buddy_id, buddy_radius, buddy_type, data_flags, dataint, dataint2, dataint3, dataint4, x, y, z, o, condition_id, comments FROM " + cmbTable.SelectedItem.ToString() + " WHERE id=" + txtScriptId.Text + " ORDER BY delay";
             try
             {
                 conn.Open();
@@ -345,7 +348,7 @@ namespace ScriptEditor
                 {
                     ListViewItem lvi = new ListViewItem();
 
-                    ScriptAction action = new ScriptAction(reader.GetUInt32(0), reader.GetUInt32(1), reader.GetUInt32(2), reader.GetUInt32(3), reader.GetUInt32(4), reader.GetUInt32(5), reader.GetUInt32(6), reader.GetUInt32(7), reader.GetUInt32(8), reader.GetUInt32(9), reader.GetUInt32(10), reader.GetInt32(11), reader.GetInt32(12), reader.GetInt32(13), reader.GetInt32(14), reader.GetFloat(15), reader.GetFloat(16), reader.GetFloat(17), reader.GetFloat(18), reader[19].ToString());
+                    ScriptAction action = new ScriptAction(reader.GetUInt32(0), reader.GetUInt32(1), reader.GetUInt32(2), reader.GetUInt32(3), reader.GetUInt32(4), reader.GetUInt32(5), reader.GetUInt32(6), reader.GetUInt32(7), reader.GetUInt32(8), reader.GetUInt32(9), reader.GetUInt32(10), reader.GetInt32(11), reader.GetInt32(12), reader.GetInt32(13), reader.GetInt32(14), reader.GetFloat(15), reader.GetFloat(16), reader.GetFloat(17), reader.GetFloat(18), reader.GetUInt32(19), reader[20].ToString());
                     
                     // We show only delay, command id and comment in the listview.
                     lvi.Text = action.Delay.ToString();
@@ -366,6 +369,32 @@ namespace ScriptEditor
             }
             conn.Close();
             dontUpdate = false;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (currentScriptId != 0)
+            {
+                string query = GenerateScriptQuery();
+                if (ShowSaveDialog(ref query) == DialogResult.OK)
+                {
+                    MySqlConnection conn = new MySqlConnection(connString);
+                    MySqlCommand command = conn.CreateCommand();
+                    command.CommandText = query;
+                    try
+                    {
+                        conn.Open();
+                        command.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString(), "Save Script", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    conn.Close();
+                }
+            }
+            else
+                MessageBox.Show("You are not editing a script, cannot save to unknown table.", "Save Script", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void btnActionRemove_Click(object sender, EventArgs e)
@@ -401,6 +430,9 @@ namespace ScriptEditor
             chkSwapFinal.Checked = false;
             chkSwapInitial.Checked = false;
             chkTargetSelf.Checked = false;
+
+            // Buttons.
+            btnCommandCondition.Text = "-NONE-";
 
             // Make the form disabled.
             grpGeneral.Enabled = false;
@@ -527,7 +559,7 @@ namespace ScriptEditor
             frmCommandCastSpell.Visible = false;
 
             // Play Sound Command (16)
-            txtPlaySoundId.Text = "";
+            btnPlaySoundId.Text = "-NONE-";
             chkPlaySoundFlags1.Checked = false;
             chkPlaySoundFlags2.Checked = false;
             frmCommandPlaySound.Visible = false;
@@ -569,7 +601,7 @@ namespace ScriptEditor
             frmCommandActiveObject.Visible = false;
 
             // Set Faction Command (22)
-            txtSetFactionId.Text = "";
+            btnSetFactionId.Text = "-NONE-";
             chkSetFactionFlag1.Checked = false;
             chkSetFactionFlag2.Checked = false;
             chkSetFactionFlag4.Checked = false;
@@ -939,7 +971,9 @@ namespace ScriptEditor
                 }
                 case 16: // Play Sound
                 {
-                    txtPlaySoundId.Text = selectedAction.Datalong.ToString();
+                    uint soundId = selectedAction.Datalong;
+                    if (soundId > 0)
+                        btnPlaySoundId.Text = GameData.FindSoundName(soundId) + " (" + soundId.ToString() + ")";
                     if ((selectedAction.Datalong2 & 1) != 0)
                         chkPlaySoundFlags1.Checked = true;
                     if ((selectedAction.Datalong2 & 2) != 0)
@@ -1067,7 +1101,9 @@ namespace ScriptEditor
                 }
                 case 22: // Set Faction
                 {
-                    txtSetFactionId.Text = selectedAction.Datalong.ToString();
+                    uint factionId = selectedAction.Datalong;
+                    if (factionId > 0)
+                        btnSetFactionId.Text = GameData.FindFactionTemplateName(factionId) + " (" + factionId.ToString() + ")";
                     if ((selectedAction.Datalong2 & 1) != 0)
                         chkSetFactionFlag1.Checked = true;
                     if ((selectedAction.Datalong2 & 2) != 0)
@@ -1248,6 +1284,9 @@ namespace ScriptEditor
             cmbBuddyType.SelectedIndex = (int)selectedAction.BuddyType;
             cmbCommandId.SelectedIndex = (int)selectedAction.Command;
 
+            if (selectedAction.ConditionId > 0)
+                btnCommandCondition.Text = selectedAction.ConditionId.ToString();
+
             if ((selectedAction.DataFlags & 1) != 0)
                 chkSwapInitial.Checked = true;
             if ((selectedAction.DataFlags & 2) != 0)
@@ -1299,7 +1338,23 @@ namespace ScriptEditor
                 currentItem.SubItems[1].Text = cmbCommandId.SelectedIndex.ToString();
             }
         }
-        
+
+        private void btnCommandCondition_Click(object sender, EventArgs e)
+        {
+            FormConditionFinder frm = new FormConditionFinder();
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                int returnId = frm.ReturnValue;
+
+                if (returnId > 0)
+                    btnCommandCondition.Text = returnId.ToString();
+                else
+                    btnCommandCondition.Text = "-NONE-";
+
+                SetScriptFieldFromValue(returnId, "ConditionId");
+            }
+        }
+
         // Generic function for setting script field to specified value;
         private void SetScriptFieldFromValue(float fieldvalue, string fieldname)
         {
@@ -2342,9 +2397,9 @@ namespace ScriptEditor
             SetScriptFlagsFromCheckbox(chkCastSpellFlags2, "Datalong2", 2);
         }
 
-        private void txtPlaySoundId_Leave(object sender, EventArgs e)
+        private void btnPlaySoundId_Click(object sender, EventArgs e)
         {
-            SetScriptFieldFromTextbox(txtPlaySoundId, "Datalong");
+            SetScriptFieldFromDataFinderForm<FormSoundFinder>(btnPlaySoundId, null, GameData.FindSoundName, "Datalong");
         }
 
         private void chkPlaySoundFlags1_CheckedChanged(object sender, EventArgs e)
@@ -2555,9 +2610,9 @@ namespace ScriptEditor
             SetScriptFieldFromCombobox(cmbActiveObjectSetActive, "Datalong", false);
         }
 
-        private void txtSetFactionId_Leave(object sender, EventArgs e)
+        private void btnSetFactionId_Click(object sender, EventArgs e)
         {
-            SetScriptFieldFromTextbox(txtSetFactionId, "Datalong");
+            SetScriptFieldFromDataFinderForm<FormFactionTemplateFinder>(btnSetFactionId, null, GameData.FindFactionTemplateName, "Datalong");
         }
 
         private void chkSetFactionFlag1_CheckedChanged(object sender, EventArgs e)
@@ -2980,32 +3035,6 @@ namespace ScriptEditor
                         txtSetDataValue.Enabled = true;
                 }
             }
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            if (currentScriptId != 0)
-            {
-                string query = GenerateScriptQuery();
-                if (ShowSaveDialog(ref query) == DialogResult.OK)
-                {
-                    MySqlConnection conn = new MySqlConnection(connString);
-                    MySqlCommand command = conn.CreateCommand();
-                    command.CommandText = query;
-                    try
-                    {
-                        conn.Open();
-                        command.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.ToString(), "Save Script", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    conn.Close();
-                }
-            }
-            else
-                MessageBox.Show("You are not editing a script, cannot save to unknown table.", "Save Script", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 

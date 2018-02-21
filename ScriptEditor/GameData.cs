@@ -16,6 +16,9 @@ namespace ScriptEditor
         public static readonly List<TaxiInfo> TaxiInfoList = new List<TaxiInfo>();
         public static readonly List<ConditionInfo> ConditionInfoList = new List<ConditionInfo>();
         public static readonly List<AreaInfo> AreaInfoList = new List<AreaInfo>();
+        public static readonly List<SoundInfo> SoundInfoList = new List<SoundInfo>();
+        public static readonly List<FactionInfo> FactionInfoList = new List<FactionInfo>();
+        public static readonly List<FactionTemplateInfo> FactionTemplateInfoList = new List<FactionTemplateInfo>();
         public static readonly List<ComboboxPair> UpdateFieldsList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> FlagFieldsList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> MapsList = new List<ComboboxPair>();
@@ -146,6 +149,36 @@ namespace ScriptEditor
             {
                 if (area.ID == id)
                     return area.Name;
+            }
+
+            return "";
+        }
+        public static string FindSoundName(uint id)
+        {
+            foreach (SoundInfo sound in SoundInfoList)
+            {
+                if (sound.ID == id)
+                    return sound.Name;
+            }
+
+            return "";
+        }
+        public static string FindFactionName(uint id)
+        {
+            foreach (FactionInfo faction in FactionInfoList)
+            {
+                if (faction.ID == id)
+                    return faction.Name;
+            }
+
+            return "";
+        }
+        public static string FindFactionTemplateName(uint id)
+        {
+            foreach (FactionTemplateInfo factiontemplate in FactionTemplateInfoList)
+            {
+                if (factiontemplate.ID == id)
+                    return FindFactionName(factiontemplate.FactionId);
             }
 
             return "";
@@ -321,6 +354,81 @@ namespace ScriptEditor
                 {
                     // Add the new area entry to the list.
                     AreaInfoList.Add(new AreaInfo(reader.GetUInt32(0), reader.GetUInt32(1), reader.GetUInt32(2), reader.GetString(3)));
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+            conn.Close();
+        }
+        public static void LoadSounds(string connString)
+        {
+            SoundInfoList.Clear();
+
+            MySqlConnection conn = new MySqlConnection(connString);
+            MySqlCommand command = conn.CreateCommand();
+            command.CommandText = "SELECT ID, name FROM sound_entries ORDER BY ID";
+            try
+            {
+                conn.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    // Add the new sound entry to the list.
+                    SoundInfoList.Add(new SoundInfo(reader.GetUInt32(0), reader.GetString(1)));
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+            conn.Close();
+        }
+        public static void LoadFactions(string connString)
+        {
+            FactionInfoList.Clear();
+
+            MySqlConnection conn = new MySqlConnection(connString);
+            MySqlCommand command = conn.CreateCommand();
+            command.CommandText = "SELECT ID, name1, description1 FROM faction ORDER BY ID";
+            try
+            {
+                conn.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    // Add the new faction entry to the list.
+                    FactionInfoList.Add(new FactionInfo(reader.GetUInt32(0), reader.GetString(1), reader.GetString(2)));
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+            conn.Close();
+        }
+        public static void LoadFactionTemplates(string connString)
+        {
+            FactionTemplateInfoList.Clear();
+
+            MySqlConnection conn = new MySqlConnection(connString);
+            MySqlCommand command = conn.CreateCommand();
+            command.CommandText = "SELECT ID, factionId, factionFlags FROM faction_template ORDER BY ID";
+            try
+            {
+                conn.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    // Add the new faction template entry to the list.
+                    FactionTemplateInfoList.Add(new FactionTemplateInfo(reader.GetUInt32(0), reader.GetUInt32(1), reader.GetUInt32(2)));
                 }
                 reader.Close();
             }
@@ -1066,8 +1174,8 @@ namespace ScriptEditor
             ConditionNamesList.Add(new ComboboxPair("RESERVED_3", 31));
             ConditionNamesList.Add(new ComboboxPair("SOURCE_AURA", 32));
             ConditionNamesList.Add(new ComboboxPair("LAST_WAYPOINT", 33));
-            ConditionNamesList.Add(new ComboboxPair("RESERVED_4", 34));
-            ConditionNamesList.Add(new ComboboxPair("GENDER", 35));
+            ConditionNamesList.Add(new ComboboxPair("SOURCE_GENDER", 34));
+            ConditionNamesList.Add(new ComboboxPair("TARGET_GENDER", 35));
             ConditionNamesList.Add(new ComboboxPair("DEAD_OR_AWAY", 36));
             ConditionNamesList.Add(new ComboboxPair("WOW_PATCH", 37));
             ConditionNamesList.Add(new ComboboxPair("NPC_ENTRY", 38));
@@ -1209,6 +1317,40 @@ namespace ScriptEditor
             Map = map;
             Zone = zone;
             Name = name;
+        }
+    }
+    public struct SoundInfo
+    {
+        public uint ID;
+        public string Name;
+        public SoundInfo(uint id, string name)
+        {
+            ID = id;
+            Name = name;
+        }
+    }
+    public struct FactionInfo
+    {
+        public uint ID;
+        public string Name;
+        public string Description;
+        public FactionInfo(uint id, string name, string description)
+        {
+            ID = id;
+            Name = name;
+            Description = description;
+        }
+    }
+    public struct FactionTemplateInfo
+    {
+        public uint ID;
+        public uint FactionId;
+        public uint Flags;
+        public FactionTemplateInfo(uint id, uint factionid, uint flags)
+        {
+            ID = id;
+            FactionId = factionid;
+            Flags = flags;
         }
     }
     public class ComboboxPair

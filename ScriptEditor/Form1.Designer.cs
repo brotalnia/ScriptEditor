@@ -38,6 +38,8 @@
             this.btnFind = new System.Windows.Forms.Button();
             this.txtScriptId = new System.Windows.Forms.TextBox();
             this.grpGeneral = new System.Windows.Forms.GroupBox();
+            this.lblCommandCondition = new System.Windows.Forms.Label();
+            this.btnCommandCondition = new System.Windows.Forms.Button();
             this.lblComment = new System.Windows.Forms.Label();
             this.txtCommandComment = new System.Windows.Forms.TextBox();
             this.grpDataFlags = new System.Windows.Forms.GroupBox();
@@ -190,10 +192,10 @@
             this.lblCastSpellId = new System.Windows.Forms.Label();
             this.lblCastSpellTooltip = new System.Windows.Forms.Label();
             this.frmCommandPlaySound = new System.Windows.Forms.Panel();
+            this.btnPlaySoundId = new System.Windows.Forms.Button();
             this.grpPlaySoundFlags = new System.Windows.Forms.GroupBox();
             this.chkPlaySoundFlags2 = new System.Windows.Forms.CheckBox();
             this.chkPlaySoundFlags1 = new System.Windows.Forms.CheckBox();
-            this.txtPlaySoundId = new System.Windows.Forms.TextBox();
             this.lblPlaySoundId = new System.Windows.Forms.Label();
             this.lblPlaySoundTooltip = new System.Windows.Forms.Label();
             this.frmCommandCreateItem = new System.Windows.Forms.Panel();
@@ -233,7 +235,7 @@
             this.lblActiveObjectSetActive = new System.Windows.Forms.Label();
             this.lblActiveObjectTooltip = new System.Windows.Forms.Label();
             this.frmCommandSetFaction = new System.Windows.Forms.Panel();
-            this.txtSetFactionId = new System.Windows.Forms.TextBox();
+            this.btnSetFactionId = new System.Windows.Forms.Button();
             this.grpSetFactionFlags = new System.Windows.Forms.GroupBox();
             this.chkSetFactionFlag4 = new System.Windows.Forms.CheckBox();
             this.chkSetFactionFlag2 = new System.Windows.Forms.CheckBox();
@@ -417,7 +419,7 @@
             this.lstActions.HideSelection = false;
             this.lstActions.Location = new System.Drawing.Point(20, 62);
             this.lstActions.Name = "lstActions";
-            this.lstActions.Size = new System.Drawing.Size(355, 510);
+            this.lstActions.Size = new System.Drawing.Size(355, 520);
             this.lstActions.TabIndex = 0;
             this.lstActions.UseCompatibleStateImageBehavior = false;
             this.lstActions.View = System.Windows.Forms.View.Details;
@@ -483,6 +485,8 @@
             // 
             // grpGeneral
             // 
+            this.grpGeneral.Controls.Add(this.lblCommandCondition);
+            this.grpGeneral.Controls.Add(this.btnCommandCondition);
             this.grpGeneral.Controls.Add(this.lblComment);
             this.grpGeneral.Controls.Add(this.txtCommandComment);
             this.grpGeneral.Controls.Add(this.grpDataFlags);
@@ -494,15 +498,34 @@
             this.grpGeneral.Enabled = false;
             this.grpGeneral.Location = new System.Drawing.Point(410, 62);
             this.grpGeneral.Name = "grpGeneral";
-            this.grpGeneral.Size = new System.Drawing.Size(495, 171);
+            this.grpGeneral.Size = new System.Drawing.Size(495, 182);
             this.grpGeneral.TabIndex = 5;
             this.grpGeneral.TabStop = false;
             this.grpGeneral.Text = "Command Data";
             // 
+            // lblCommandCondition
+            // 
+            this.lblCommandCondition.AutoSize = true;
+            this.lblCommandCondition.Location = new System.Drawing.Point(21, 109);
+            this.lblCommandCondition.Name = "lblCommandCondition";
+            this.lblCommandCondition.Size = new System.Drawing.Size(54, 13);
+            this.lblCommandCondition.TabIndex = 14;
+            this.lblCommandCondition.Text = "Condition:";
+            // 
+            // btnCommandCondition
+            // 
+            this.btnCommandCondition.Location = new System.Drawing.Point(24, 125);
+            this.btnCommandCondition.Name = "btnCommandCondition";
+            this.btnCommandCondition.Size = new System.Drawing.Size(133, 21);
+            this.btnCommandCondition.TabIndex = 13;
+            this.btnCommandCondition.Text = "-NONE-";
+            this.btnCommandCondition.UseVisualStyleBackColor = true;
+            this.btnCommandCondition.Click += new System.EventHandler(this.btnCommandCondition_Click);
+            // 
             // lblComment
             // 
             this.lblComment.AutoSize = true;
-            this.lblComment.Location = new System.Drawing.Point(24, 125);
+            this.lblComment.Location = new System.Drawing.Point(22, 158);
             this.lblComment.Name = "lblComment";
             this.lblComment.Size = new System.Drawing.Size(54, 13);
             this.lblComment.TabIndex = 12;
@@ -510,9 +533,9 @@
             // 
             // txtCommandComment
             // 
-            this.txtCommandComment.Location = new System.Drawing.Point(23, 144);
+            this.txtCommandComment.Location = new System.Drawing.Point(81, 155);
             this.txtCommandComment.Name = "txtCommandComment";
-            this.txtCommandComment.Size = new System.Drawing.Size(450, 20);
+            this.txtCommandComment.Size = new System.Drawing.Size(392, 20);
             this.txtCommandComment.TabIndex = 11;
             this.txtCommandComment.Leave += new System.EventHandler(this.txtCommandComment_Leave);
             // 
@@ -524,7 +547,7 @@
             this.grpDataFlags.Controls.Add(this.chkSwapInitial);
             this.grpDataFlags.Location = new System.Drawing.Point(321, 19);
             this.grpDataFlags.Name = "grpDataFlags";
-            this.grpDataFlags.Size = new System.Drawing.Size(152, 119);
+            this.grpDataFlags.Size = new System.Drawing.Size(152, 128);
             this.grpDataFlags.TabIndex = 10;
             this.grpDataFlags.TabStop = false;
             this.grpDataFlags.Text = "Data Flags";
@@ -583,7 +606,7 @@
             this.grpBuddy.Controls.Add(this.lblBuddyId);
             this.grpBuddy.Location = new System.Drawing.Point(162, 19);
             this.grpBuddy.Name = "grpBuddy";
-            this.grpBuddy.Size = new System.Drawing.Size(153, 118);
+            this.grpBuddy.Size = new System.Drawing.Size(153, 128);
             this.grpBuddy.TabIndex = 9;
             this.grpBuddy.TabStop = false;
             this.grpBuddy.Text = "Buddy";
@@ -591,7 +614,7 @@
             // lblBuddyType
             // 
             this.lblBuddyType.AutoSize = true;
-            this.lblBuddyType.Location = new System.Drawing.Point(16, 70);
+            this.lblBuddyType.Location = new System.Drawing.Point(16, 78);
             this.lblBuddyType.Name = "lblBuddyType";
             this.lblBuddyType.Size = new System.Drawing.Size(124, 13);
             this.lblBuddyType.TabIndex = 9;
@@ -609,7 +632,7 @@
             // 
             this.cmbBuddyType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbBuddyType.FormattingEnabled = true;
-            this.cmbBuddyType.Location = new System.Drawing.Point(9, 86);
+            this.cmbBuddyType.Location = new System.Drawing.Point(9, 94);
             this.cmbBuddyType.Name = "cmbBuddyType";
             this.cmbBuddyType.Size = new System.Drawing.Size(138, 21);
             this.cmbBuddyType.TabIndex = 6;
@@ -618,7 +641,7 @@
             // lblBuddyRadius
             // 
             this.lblBuddyRadius.AutoSize = true;
-            this.lblBuddyRadius.Location = new System.Drawing.Point(6, 46);
+            this.lblBuddyRadius.Location = new System.Drawing.Point(6, 49);
             this.lblBuddyRadius.Name = "lblBuddyRadius";
             this.lblBuddyRadius.Size = new System.Drawing.Size(43, 13);
             this.lblBuddyRadius.TabIndex = 8;
@@ -626,7 +649,7 @@
             // 
             // txtBuddyRadius
             // 
-            this.txtBuddyRadius.Location = new System.Drawing.Point(55, 46);
+            this.txtBuddyRadius.Location = new System.Drawing.Point(55, 49);
             this.txtBuddyRadius.Name = "txtBuddyRadius";
             this.txtBuddyRadius.Size = new System.Drawing.Size(92, 20);
             this.txtBuddyRadius.TabIndex = 5;
@@ -643,7 +666,7 @@
             // 
             // txtCommandDelay
             // 
-            this.txtCommandDelay.Location = new System.Drawing.Point(24, 46);
+            this.txtCommandDelay.Location = new System.Drawing.Point(24, 42);
             this.txtCommandDelay.Name = "txtCommandDelay";
             this.txtCommandDelay.Size = new System.Drawing.Size(132, 20);
             this.txtCommandDelay.TabIndex = 3;
@@ -652,7 +675,7 @@
             // lblDelay
             // 
             this.lblDelay.AutoSize = true;
-            this.lblDelay.Location = new System.Drawing.Point(20, 30);
+            this.lblDelay.Location = new System.Drawing.Point(20, 26);
             this.lblDelay.Name = "lblDelay";
             this.lblDelay.Size = new System.Drawing.Size(51, 13);
             this.lblDelay.TabIndex = 2;
@@ -661,7 +684,7 @@
             // lblCommand
             // 
             this.lblCommand.AutoSize = true;
-            this.lblCommand.Location = new System.Drawing.Point(21, 72);
+            this.lblCommand.Location = new System.Drawing.Point(21, 67);
             this.lblCommand.Name = "lblCommand";
             this.lblCommand.Size = new System.Drawing.Size(57, 13);
             this.lblCommand.TabIndex = 1;
@@ -671,7 +694,7 @@
             // 
             this.cmbCommandId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCommandId.FormattingEnabled = true;
-            this.cmbCommandId.Location = new System.Drawing.Point(23, 88);
+            this.cmbCommandId.Location = new System.Drawing.Point(23, 83);
             this.cmbCommandId.Name = "cmbCommandId";
             this.cmbCommandId.Size = new System.Drawing.Size(133, 21);
             this.cmbCommandId.TabIndex = 0;
@@ -693,7 +716,7 @@
             this.frmCommandTalk.Controls.Add(this.btnTalkText1);
             this.frmCommandTalk.Controls.Add(this.cmbTalkChatType);
             this.frmCommandTalk.Controls.Add(this.lblTalkChatType);
-            this.frmCommandTalk.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandTalk.Location = new System.Drawing.Point(410, 250);
             this.frmCommandTalk.Name = "frmCommandTalk";
             this.frmCommandTalk.Size = new System.Drawing.Size(495, 332);
             this.frmCommandTalk.TabIndex = 6;
@@ -820,7 +843,7 @@
             // 
             // btnActionRemove
             // 
-            this.btnActionRemove.Location = new System.Drawing.Point(300, 578);
+            this.btnActionRemove.Location = new System.Drawing.Point(300, 588);
             this.btnActionRemove.Name = "btnActionRemove";
             this.btnActionRemove.Size = new System.Drawing.Size(75, 23);
             this.btnActionRemove.TabIndex = 7;
@@ -830,7 +853,7 @@
             // 
             // btnActionNew
             // 
-            this.btnActionNew.Location = new System.Drawing.Point(219, 578);
+            this.btnActionNew.Location = new System.Drawing.Point(219, 588);
             this.btnActionNew.Name = "btnActionNew";
             this.btnActionNew.Size = new System.Drawing.Size(75, 23);
             this.btnActionNew.TabIndex = 8;
@@ -862,7 +885,7 @@
             this.frmCommandEmote.Controls.Add(this.lblEmoteTooltip);
             this.frmCommandEmote.Controls.Add(this.cmbEmoteId);
             this.frmCommandEmote.Controls.Add(this.lblEmoteId);
-            this.frmCommandEmote.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandEmote.Location = new System.Drawing.Point(410, 250);
             this.frmCommandEmote.Name = "frmCommandEmote";
             this.frmCommandEmote.Size = new System.Drawing.Size(495, 332);
             this.frmCommandEmote.TabIndex = 11;
@@ -904,7 +927,7 @@
             this.frmCommandFieldSet.Controls.Add(this.txtFieldSetValue);
             this.frmCommandFieldSet.Controls.Add(this.cmbFieldSetFields);
             this.frmCommandFieldSet.Controls.Add(this.lblFieldSetTooltip);
-            this.frmCommandFieldSet.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandFieldSet.Location = new System.Drawing.Point(410, 250);
             this.frmCommandFieldSet.Name = "frmCommandFieldSet";
             this.frmCommandFieldSet.Size = new System.Drawing.Size(495, 332);
             this.frmCommandFieldSet.TabIndex = 12;
@@ -975,7 +998,7 @@
             this.frmCommandMoveTo.Controls.Add(this.lblMoveToType);
             this.frmCommandMoveTo.Controls.Add(this.cmbMoveToType);
             this.frmCommandMoveTo.Controls.Add(this.lblMoveToTooltip);
-            this.frmCommandMoveTo.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandMoveTo.Location = new System.Drawing.Point(410, 250);
             this.frmCommandMoveTo.Name = "frmCommandMoveTo";
             this.frmCommandMoveTo.Size = new System.Drawing.Size(495, 332);
             this.frmCommandMoveTo.TabIndex = 13;
@@ -1239,7 +1262,7 @@
             this.frmCommandTeleport.Controls.Add(this.txtTeleportY);
             this.frmCommandTeleport.Controls.Add(this.txtTeleportX);
             this.frmCommandTeleport.Controls.Add(this.lblTeleportTooltip);
-            this.frmCommandTeleport.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandTeleport.Location = new System.Drawing.Point(410, 250);
             this.frmCommandTeleport.Name = "frmCommandTeleport";
             this.frmCommandTeleport.Size = new System.Drawing.Size(495, 332);
             this.frmCommandTeleport.TabIndex = 14;
@@ -1431,7 +1454,7 @@
             this.frmCommandQuestComplete.Controls.Add(this.txtQuestCompleteDistance);
             this.frmCommandQuestComplete.Controls.Add(this.btnQuestCompleteId);
             this.frmCommandQuestComplete.Controls.Add(this.lblQuestCompleteTooltip);
-            this.frmCommandQuestComplete.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandQuestComplete.Location = new System.Drawing.Point(410, 250);
             this.frmCommandQuestComplete.Name = "frmCommandQuestComplete";
             this.frmCommandQuestComplete.Size = new System.Drawing.Size(495, 332);
             this.frmCommandQuestComplete.TabIndex = 15;
@@ -1491,7 +1514,7 @@
             this.frmCommandKillCredit.Controls.Add(this.lblKillCreditType);
             this.frmCommandKillCredit.Controls.Add(this.btnKillCreditCreatureId);
             this.frmCommandKillCredit.Controls.Add(this.lblKillCreditTooltip);
-            this.frmCommandKillCredit.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandKillCredit.Location = new System.Drawing.Point(410, 250);
             this.frmCommandKillCredit.Name = "frmCommandKillCredit";
             this.frmCommandKillCredit.Size = new System.Drawing.Size(495, 332);
             this.frmCommandKillCredit.TabIndex = 16;
@@ -1552,7 +1575,7 @@
             this.frmCommandRespawnGameobject.Controls.Add(this.txtRespawnGameobjectDelay);
             this.frmCommandRespawnGameobject.Controls.Add(this.txtRespawnGameobjectGuid);
             this.frmCommandRespawnGameobject.Controls.Add(this.lblRespawnGameobjectTooltip);
-            this.frmCommandRespawnGameobject.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandRespawnGameobject.Location = new System.Drawing.Point(410, 250);
             this.frmCommandRespawnGameobject.Name = "frmCommandRespawnGameobject";
             this.frmCommandRespawnGameobject.Size = new System.Drawing.Size(495, 332);
             this.frmCommandRespawnGameobject.TabIndex = 17;
@@ -1627,7 +1650,7 @@
             this.frmCommandSummonCreature.Controls.Add(this.grpSummonCreatureFlags);
             this.frmCommandSummonCreature.Controls.Add(this.btnSummonCreatureId);
             this.frmCommandSummonCreature.Controls.Add(this.lblSummonCreatureTooltip);
-            this.frmCommandSummonCreature.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandSummonCreature.Location = new System.Drawing.Point(410, 250);
             this.frmCommandSummonCreature.Name = "frmCommandSummonCreature";
             this.frmCommandSummonCreature.Size = new System.Drawing.Size(495, 332);
             this.frmCommandSummonCreature.TabIndex = 18;
@@ -1879,7 +1902,7 @@
             this.frmCommandDoor.Controls.Add(this.txtDoorResetDelay);
             this.frmCommandDoor.Controls.Add(this.txtDoorGuid);
             this.frmCommandDoor.Controls.Add(this.lblDoorTooltip);
-            this.frmCommandDoor.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandDoor.Location = new System.Drawing.Point(410, 250);
             this.frmCommandDoor.Name = "frmCommandDoor";
             this.frmCommandDoor.Size = new System.Drawing.Size(495, 332);
             this.frmCommandDoor.TabIndex = 19;
@@ -1936,7 +1959,7 @@
             this.frmCommandRemoveAura.Controls.Add(this.btnRemoveAuraSpellId);
             this.frmCommandRemoveAura.Controls.Add(this.lblRemoveAuraSpellId);
             this.frmCommandRemoveAura.Controls.Add(this.lblRemoveAuraTooltip);
-            this.frmCommandRemoveAura.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandRemoveAura.Location = new System.Drawing.Point(410, 250);
             this.frmCommandRemoveAura.Name = "frmCommandRemoveAura";
             this.frmCommandRemoveAura.Size = new System.Drawing.Size(495, 332);
             this.frmCommandRemoveAura.TabIndex = 20;
@@ -1977,7 +2000,7 @@
             this.frmCommandCastSpell.Controls.Add(this.btnCastSpellId);
             this.frmCommandCastSpell.Controls.Add(this.lblCastSpellId);
             this.frmCommandCastSpell.Controls.Add(this.lblCastSpellTooltip);
-            this.frmCommandCastSpell.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandCastSpell.Location = new System.Drawing.Point(410, 250);
             this.frmCommandCastSpell.Name = "frmCommandCastSpell";
             this.frmCommandCastSpell.Size = new System.Drawing.Size(495, 332);
             this.frmCommandCastSpell.TabIndex = 21;
@@ -2047,15 +2070,25 @@
             // frmCommandPlaySound
             // 
             this.frmCommandPlaySound.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandPlaySound.Controls.Add(this.btnPlaySoundId);
             this.frmCommandPlaySound.Controls.Add(this.grpPlaySoundFlags);
-            this.frmCommandPlaySound.Controls.Add(this.txtPlaySoundId);
             this.frmCommandPlaySound.Controls.Add(this.lblPlaySoundId);
             this.frmCommandPlaySound.Controls.Add(this.lblPlaySoundTooltip);
-            this.frmCommandPlaySound.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandPlaySound.Location = new System.Drawing.Point(410, 250);
             this.frmCommandPlaySound.Name = "frmCommandPlaySound";
             this.frmCommandPlaySound.Size = new System.Drawing.Size(495, 332);
             this.frmCommandPlaySound.TabIndex = 22;
             this.frmCommandPlaySound.Visible = false;
+            // 
+            // btnPlaySoundId
+            // 
+            this.btnPlaySoundId.Location = new System.Drawing.Point(83, 58);
+            this.btnPlaySoundId.Name = "btnPlaySoundId";
+            this.btnPlaySoundId.Size = new System.Drawing.Size(390, 23);
+            this.btnPlaySoundId.TabIndex = 4;
+            this.btnPlaySoundId.Text = "-NONE-";
+            this.btnPlaySoundId.UseVisualStyleBackColor = true;
+            this.btnPlaySoundId.Click += new System.EventHandler(this.btnPlaySoundId_Click);
             // 
             // grpPlaySoundFlags
             // 
@@ -2090,14 +2123,6 @@
             this.chkPlaySoundFlags1.UseVisualStyleBackColor = true;
             this.chkPlaySoundFlags1.CheckedChanged += new System.EventHandler(this.chkPlaySoundFlags1_CheckedChanged);
             // 
-            // txtPlaySoundId
-            // 
-            this.txtPlaySoundId.Location = new System.Drawing.Point(83, 58);
-            this.txtPlaySoundId.Name = "txtPlaySoundId";
-            this.txtPlaySoundId.Size = new System.Drawing.Size(390, 20);
-            this.txtPlaySoundId.TabIndex = 2;
-            this.txtPlaySoundId.Leave += new System.EventHandler(this.txtPlaySoundId_Leave);
-            // 
             // lblPlaySoundId
             // 
             this.lblPlaySoundId.AutoSize = true;
@@ -2124,7 +2149,7 @@
             this.frmCommandCreateItem.Controls.Add(this.btnCreateItemId);
             this.frmCommandCreateItem.Controls.Add(this.lblCreateItemId);
             this.frmCommandCreateItem.Controls.Add(this.lblCreateItemTooltip);
-            this.frmCommandCreateItem.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandCreateItem.Location = new System.Drawing.Point(410, 250);
             this.frmCommandCreateItem.Name = "frmCommandCreateItem";
             this.frmCommandCreateItem.Size = new System.Drawing.Size(495, 332);
             this.frmCommandCreateItem.TabIndex = 23;
@@ -2181,7 +2206,7 @@
             this.frmCommandDespawnCreature.Controls.Add(this.lblDespawnCreatureDelay);
             this.frmCommandDespawnCreature.Controls.Add(this.txtDespawnCreatureDelay);
             this.frmCommandDespawnCreature.Controls.Add(this.lblDespawnCreatureTooltip);
-            this.frmCommandDespawnCreature.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandDespawnCreature.Location = new System.Drawing.Point(410, 250);
             this.frmCommandDespawnCreature.Name = "frmCommandDespawnCreature";
             this.frmCommandDespawnCreature.Size = new System.Drawing.Size(495, 332);
             this.frmCommandDespawnCreature.TabIndex = 24;
@@ -2225,7 +2250,7 @@
             this.frmCommandSetEquipment.Controls.Add(this.cmbSetEquipmentUseDefault);
             this.frmCommandSetEquipment.Controls.Add(this.lblSetEquipmentUseDefault);
             this.frmCommandSetEquipment.Controls.Add(this.lblSetEquipmentTooltip);
-            this.frmCommandSetEquipment.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandSetEquipment.Location = new System.Drawing.Point(410, 250);
             this.frmCommandSetEquipment.Name = "frmCommandSetEquipment";
             this.frmCommandSetEquipment.Size = new System.Drawing.Size(495, 332);
             this.frmCommandSetEquipment.TabIndex = 25;
@@ -2333,7 +2358,7 @@
             this.frmCommandSetMovement.Controls.Add(this.cmbSetMovementType);
             this.frmCommandSetMovement.Controls.Add(this.lblSetMovementType);
             this.frmCommandSetMovement.Controls.Add(this.lblSetMovementTooltip);
-            this.frmCommandSetMovement.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandSetMovement.Location = new System.Drawing.Point(410, 250);
             this.frmCommandSetMovement.Name = "frmCommandSetMovement";
             this.frmCommandSetMovement.Size = new System.Drawing.Size(495, 332);
             this.frmCommandSetMovement.TabIndex = 26;
@@ -2449,7 +2474,7 @@
             this.frmCommandActiveObject.Controls.Add(this.cmbActiveObjectSetActive);
             this.frmCommandActiveObject.Controls.Add(this.lblActiveObjectSetActive);
             this.frmCommandActiveObject.Controls.Add(this.lblActiveObjectTooltip);
-            this.frmCommandActiveObject.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandActiveObject.Location = new System.Drawing.Point(410, 250);
             this.frmCommandActiveObject.Name = "frmCommandActiveObject";
             this.frmCommandActiveObject.Size = new System.Drawing.Size(495, 332);
             this.frmCommandActiveObject.TabIndex = 27;
@@ -2490,23 +2515,25 @@
             // frmCommandSetFaction
             // 
             this.frmCommandSetFaction.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.frmCommandSetFaction.Controls.Add(this.txtSetFactionId);
+            this.frmCommandSetFaction.Controls.Add(this.btnSetFactionId);
             this.frmCommandSetFaction.Controls.Add(this.grpSetFactionFlags);
             this.frmCommandSetFaction.Controls.Add(this.lblSetFactionId);
             this.frmCommandSetFaction.Controls.Add(this.lblSetFactionTooltip);
-            this.frmCommandSetFaction.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandSetFaction.Location = new System.Drawing.Point(410, 250);
             this.frmCommandSetFaction.Name = "frmCommandSetFaction";
             this.frmCommandSetFaction.Size = new System.Drawing.Size(495, 332);
             this.frmCommandSetFaction.TabIndex = 28;
             this.frmCommandSetFaction.Visible = false;
             // 
-            // txtSetFactionId
+            // btnSetFactionId
             // 
-            this.txtSetFactionId.Location = new System.Drawing.Point(83, 57);
-            this.txtSetFactionId.Name = "txtSetFactionId";
-            this.txtSetFactionId.Size = new System.Drawing.Size(390, 20);
-            this.txtSetFactionId.TabIndex = 4;
-            this.txtSetFactionId.Leave += new System.EventHandler(this.txtSetFactionId_Leave);
+            this.btnSetFactionId.Location = new System.Drawing.Point(83, 57);
+            this.btnSetFactionId.Name = "btnSetFactionId";
+            this.btnSetFactionId.Size = new System.Drawing.Size(390, 23);
+            this.btnSetFactionId.TabIndex = 5;
+            this.btnSetFactionId.Text = "-NONE-";
+            this.btnSetFactionId.UseVisualStyleBackColor = true;
+            this.btnSetFactionId.Click += new System.EventHandler(this.btnSetFactionId_Click);
             // 
             // grpSetFactionFlags
             // 
@@ -2580,7 +2607,7 @@
             this.frmCommandMorphOrMount.Controls.Add(this.lblMorphOrMountType);
             this.frmCommandMorphOrMount.Controls.Add(this.btnMorphOrMountId);
             this.frmCommandMorphOrMount.Controls.Add(this.lblMorphOrMountTooltip);
-            this.frmCommandMorphOrMount.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandMorphOrMount.Location = new System.Drawing.Point(410, 250);
             this.frmCommandMorphOrMount.Name = "frmCommandMorphOrMount";
             this.frmCommandMorphOrMount.Size = new System.Drawing.Size(495, 332);
             this.frmCommandMorphOrMount.TabIndex = 29;
@@ -2642,7 +2669,7 @@
             this.frmCommandSetRun.Controls.Add(this.cmbSetRunMode);
             this.frmCommandSetRun.Controls.Add(this.lblSetRunMode);
             this.frmCommandSetRun.Controls.Add(this.lblSetRunTooltip);
-            this.frmCommandSetRun.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandSetRun.Location = new System.Drawing.Point(410, 250);
             this.frmCommandSetRun.Name = "frmCommandSetRun";
             this.frmCommandSetRun.Size = new System.Drawing.Size(495, 332);
             this.frmCommandSetRun.TabIndex = 30;
@@ -2717,7 +2744,7 @@
             this.frmCommandModifyFlags.Controls.Add(this.cmbModifyFlagsFieldId);
             this.frmCommandModifyFlags.Controls.Add(this.lblModifyFlagsField);
             this.frmCommandModifyFlags.Controls.Add(this.lblModifyFlagsTooltip);
-            this.frmCommandModifyFlags.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandModifyFlags.Location = new System.Drawing.Point(410, 250);
             this.frmCommandModifyFlags.Name = "frmCommandModifyFlags";
             this.frmCommandModifyFlags.Size = new System.Drawing.Size(495, 332);
             this.frmCommandModifyFlags.TabIndex = 31;
@@ -3113,7 +3140,7 @@
             this.frmCommandInterruptCasts.Controls.Add(this.lblInterruptCastsWithDelayed);
             this.frmCommandInterruptCasts.Controls.Add(this.btnInterruptCastsSpellId);
             this.frmCommandInterruptCasts.Controls.Add(this.lblInterruptCastsTooltip);
-            this.frmCommandInterruptCasts.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandInterruptCasts.Location = new System.Drawing.Point(410, 250);
             this.frmCommandInterruptCasts.Name = "frmCommandInterruptCasts";
             this.frmCommandInterruptCasts.Size = new System.Drawing.Size(495, 332);
             this.frmCommandInterruptCasts.TabIndex = 32;
@@ -3178,7 +3205,7 @@
             this.frmCommandUpdateEntry.Controls.Add(this.lblUpdateEntryTeam);
             this.frmCommandUpdateEntry.Controls.Add(this.btnUpdateEntryCreatureId);
             this.frmCommandUpdateEntry.Controls.Add(this.lblUpdateEntryTooltip);
-            this.frmCommandUpdateEntry.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandUpdateEntry.Location = new System.Drawing.Point(410, 250);
             this.frmCommandUpdateEntry.Name = "frmCommandUpdateEntry";
             this.frmCommandUpdateEntry.Size = new System.Drawing.Size(495, 332);
             this.frmCommandUpdateEntry.TabIndex = 33;
@@ -3242,7 +3269,7 @@
             this.frmCommandSetStandState.Controls.Add(this.cmbSetStandState);
             this.frmCommandSetStandState.Controls.Add(this.lblSetStandState);
             this.frmCommandSetStandState.Controls.Add(this.lblSetStandStateTooltip);
-            this.frmCommandSetStandState.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandSetStandState.Location = new System.Drawing.Point(410, 250);
             this.frmCommandSetStandState.Name = "frmCommandSetStandState";
             this.frmCommandSetStandState.Size = new System.Drawing.Size(495, 332);
             this.frmCommandSetStandState.TabIndex = 34;
@@ -3294,7 +3321,7 @@
             this.frmCommandModifyThreat.Controls.Add(this.cmbModifyThreatTarget);
             this.frmCommandModifyThreat.Controls.Add(this.lblModifyThreatTarget);
             this.frmCommandModifyThreat.Controls.Add(this.lblModifyThreatTooltip);
-            this.frmCommandModifyThreat.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandModifyThreat.Location = new System.Drawing.Point(410, 250);
             this.frmCommandModifyThreat.Name = "frmCommandModifyThreat";
             this.frmCommandModifyThreat.Size = new System.Drawing.Size(495, 332);
             this.frmCommandModifyThreat.TabIndex = 35;
@@ -3357,7 +3384,7 @@
             this.frmCommandSendTaxiPath.Controls.Add(this.btnSendTaxiPathId);
             this.frmCommandSendTaxiPath.Controls.Add(this.lblSendTaxiPathId);
             this.frmCommandSendTaxiPath.Controls.Add(this.lblSendTaxiPathTooltip);
-            this.frmCommandSendTaxiPath.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandSendTaxiPath.Location = new System.Drawing.Point(410, 250);
             this.frmCommandSendTaxiPath.Name = "frmCommandSendTaxiPath";
             this.frmCommandSendTaxiPath.Size = new System.Drawing.Size(495, 332);
             this.frmCommandSendTaxiPath.TabIndex = 36;
@@ -3418,7 +3445,7 @@
             this.frmCommandTerminateScript.Controls.Add(this.txtTerminateScriptSearchRadius);
             this.frmCommandTerminateScript.Controls.Add(this.btnTerminateScriptCreatureId);
             this.frmCommandTerminateScript.Controls.Add(this.lblTerminateScriptTooltip);
-            this.frmCommandTerminateScript.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandTerminateScript.Location = new System.Drawing.Point(410, 250);
             this.frmCommandTerminateScript.Name = "frmCommandTerminateScript";
             this.frmCommandTerminateScript.Size = new System.Drawing.Size(495, 332);
             this.frmCommandTerminateScript.TabIndex = 37;
@@ -3502,7 +3529,7 @@
             this.frmCommandTerminateCondition.Controls.Add(this.lblTerminateConditionQuestId);
             this.frmCommandTerminateCondition.Controls.Add(this.btnTerminateConditionId);
             this.frmCommandTerminateCondition.Controls.Add(this.lblTerminateConditionTooltip);
-            this.frmCommandTerminateCondition.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandTerminateCondition.Location = new System.Drawing.Point(410, 250);
             this.frmCommandTerminateCondition.Name = "frmCommandTerminateCondition";
             this.frmCommandTerminateCondition.Size = new System.Drawing.Size(495, 332);
             this.frmCommandTerminateCondition.TabIndex = 38;
@@ -3593,7 +3620,7 @@
             this.frmCommandSetHomePosition.Controls.Add(this.cmbSetHomePositionMode);
             this.frmCommandSetHomePosition.Controls.Add(this.lblSetHomePositionMode);
             this.frmCommandSetHomePosition.Controls.Add(this.lblSetHomePositionTooltip);
-            this.frmCommandSetHomePosition.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandSetHomePosition.Location = new System.Drawing.Point(410, 250);
             this.frmCommandSetHomePosition.Name = "frmCommandSetHomePosition";
             this.frmCommandSetHomePosition.Size = new System.Drawing.Size(495, 332);
             this.frmCommandSetHomePosition.TabIndex = 39;
@@ -3706,7 +3733,7 @@
             this.frmCommandSetFacing.Controls.Add(this.cmbSetFacingMode);
             this.frmCommandSetFacing.Controls.Add(this.lblSetFacingMode);
             this.frmCommandSetFacing.Controls.Add(this.lblSetFacingTooltip);
-            this.frmCommandSetFacing.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandSetFacing.Location = new System.Drawing.Point(410, 250);
             this.frmCommandSetFacing.Name = "frmCommandSetFacing";
             this.frmCommandSetFacing.Size = new System.Drawing.Size(495, 332);
             this.frmCommandSetFacing.TabIndex = 40;
@@ -3767,7 +3794,7 @@
             this.frmCommandMeetingStone.Controls.Add(this.btnMeetingStoneAreaId);
             this.frmCommandMeetingStone.Controls.Add(this.lblMeetingStoneAreaId);
             this.frmCommandMeetingStone.Controls.Add(this.lblMeetingStoneTooltip);
-            this.frmCommandMeetingStone.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandMeetingStone.Location = new System.Drawing.Point(410, 250);
             this.frmCommandMeetingStone.Name = "frmCommandMeetingStone";
             this.frmCommandMeetingStone.Size = new System.Drawing.Size(495, 332);
             this.frmCommandMeetingStone.TabIndex = 41;
@@ -3811,7 +3838,7 @@
             this.frmCommandSetData.Controls.Add(this.cmbSetDataMode);
             this.frmCommandSetData.Controls.Add(this.lblSetDataMode);
             this.frmCommandSetData.Controls.Add(this.lblSetDataTooltip);
-            this.frmCommandSetData.Location = new System.Drawing.Point(410, 240);
+            this.frmCommandSetData.Location = new System.Drawing.Point(410, 250);
             this.frmCommandSetData.Name = "frmCommandSetData";
             this.frmCommandSetData.Size = new System.Drawing.Size(495, 332);
             this.frmCommandSetData.TabIndex = 42;
@@ -3885,7 +3912,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(830, 578);
+            this.btnSave.Location = new System.Drawing.Point(830, 588);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 43;
@@ -3897,7 +3924,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(924, 610);
+            this.ClientSize = new System.Drawing.Size(924, 620);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.frmCommandSetData);
             this.Controls.Add(this.frmCommandMeetingStone);
@@ -4203,7 +4230,6 @@
         private System.Windows.Forms.GroupBox grpPlaySoundFlags;
         private System.Windows.Forms.CheckBox chkPlaySoundFlags2;
         private System.Windows.Forms.CheckBox chkPlaySoundFlags1;
-        private System.Windows.Forms.TextBox txtPlaySoundId;
         private System.Windows.Forms.Label lblPlaySoundId;
         private System.Windows.Forms.Label lblPlaySoundTooltip;
         private System.Windows.Forms.Panel frmCommandCreateItem;
@@ -4243,7 +4269,6 @@
         private System.Windows.Forms.Label lblActiveObjectSetActive;
         private System.Windows.Forms.Label lblActiveObjectTooltip;
         private System.Windows.Forms.Panel frmCommandSetFaction;
-        private System.Windows.Forms.TextBox txtSetFactionId;
         private System.Windows.Forms.GroupBox grpSetFactionFlags;
         private System.Windows.Forms.CheckBox chkSetFactionFlag4;
         private System.Windows.Forms.CheckBox chkSetFactionFlag2;
@@ -4371,6 +4396,10 @@
         private System.Windows.Forms.Label lblSetDataValue;
         private System.Windows.Forms.TextBox txtSetDataValue;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnCommandCondition;
+        private System.Windows.Forms.Label lblCommandCondition;
+        private System.Windows.Forms.Button btnPlaySoundId;
+        private System.Windows.Forms.Button btnSetFactionId;
     }
 }
 

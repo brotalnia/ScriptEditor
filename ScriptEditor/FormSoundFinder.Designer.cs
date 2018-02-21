@@ -1,6 +1,6 @@
 ﻿namespace ScriptEditor
 {
-    partial class FormTaxiFinder
+    partial class FormSoundFinder
     {
         /// <summary>
         /// Required designer variable.
@@ -28,33 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.columnSource = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnDestination = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lstData
             // 
             this.lstData.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnSource,
-            this.columnDestination});
+            this.columnName});
             // 
-            // columnSource
+            // columnName
             // 
-            this.columnSource.Text = "Source";
-            this.columnSource.Width = 295;
+            this.columnName.Text = "Name";
+            this.columnName.Width = 595;
             // 
-            // columnDestination
-            // 
-            this.columnDestination.Text = "Destination";
-            this.columnDestination.Width = 300;
-            // 
-            // FormTaxiFinder
+            // FormSoundFinder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(672, 393);
-            this.Name = "FormTaxiFinder";
-            this.Text = "Taxi Finder";
-            this.ResizeEnd += new System.EventHandler(this.FormTaxiFinder_ResizeEnd);
+            this.Name = "FormSoundFinder";
+            this.Text = "Sound Finder";
+            this.ResizeEnd += new System.EventHandler(this.FormSoundFinder_ResizeEnd);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -62,7 +55,6 @@
 
         #endregion
 
-        private System.Windows.Forms.ColumnHeader columnSource;
-        private System.Windows.Forms.ColumnHeader columnDestination;
+        private System.Windows.Forms.ColumnHeader columnName;
     }
 }

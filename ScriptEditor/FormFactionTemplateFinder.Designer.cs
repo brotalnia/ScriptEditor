@@ -1,6 +1,6 @@
 ﻿namespace ScriptEditor
 {
-    partial class FormSpellFinder
+    partial class FormFactionTemplateFinder
     {
         /// <summary>
         /// Required designer variable.
@@ -28,36 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.columnEffect1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnEffect2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnEffect3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnFlags = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnFactionId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lstData
             // 
             this.lstData.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnEffect1,
-            this.columnEffect2,
-            this.columnEffect3,
+            this.columnFactionId,
+            this.columnFlags,
             this.columnName,
             this.columnDescription});
             // 
-            // columnEffect1
+            // columnFlags
             // 
-            this.columnEffect1.Text = "Effect 1";
-            this.columnEffect1.Width = 90;
-            // 
-            // columnEffect2
-            // 
-            this.columnEffect2.Text = "Effect 2";
-            this.columnEffect2.Width = 90;
-            // 
-            // columnEffect3
-            // 
-            this.columnEffect3.Text = "Effect 3";
-            this.columnEffect3.Width = 90;
+            this.columnFlags.Text = "Flags";
+            this.columnFlags.Width = 90;
             // 
             // columnName
             // 
@@ -67,15 +55,20 @@
             // columnDescription
             // 
             this.columnDescription.Text = "Description";
-            this.columnDescription.Width = 175;
+            this.columnDescription.Width = 265;
             // 
-            // FormSpellFinder
+            // columnFactionId
+            // 
+            this.columnFactionId.Text = "Faction ID";
+            this.columnFactionId.Width = 90;
+            // 
+            // FormFactionTemplateFinder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(672, 393);
-            this.Name = "FormSpellFinder";
-            this.Text = "Spell Finder";
-            this.ResizeEnd += new System.EventHandler(this.FormSpellFinder_ResizeEnd);
+            this.Name = "FormFactionTemplateFinder";
+            this.Text = "Faction Template Finder";
+            this.ResizeEnd += new System.EventHandler(this.FormFactionTemplateFinder_ResizeEnd);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -83,9 +76,8 @@
 
         #endregion
 
-        private System.Windows.Forms.ColumnHeader columnEffect1;
-        private System.Windows.Forms.ColumnHeader columnEffect2;
-        private System.Windows.Forms.ColumnHeader columnEffect3;
+        private System.Windows.Forms.ColumnHeader columnFlags;
+        private System.Windows.Forms.ColumnHeader columnFactionId;
         private System.Windows.Forms.ColumnHeader columnName;
         private System.Windows.Forms.ColumnHeader columnDescription;
     }
