@@ -363,6 +363,24 @@
             this.lblSetDataMode = new System.Windows.Forms.Label();
             this.lblSetDataTooltip = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
+            this.frmCommandStartScript = new System.Windows.Forms.Panel();
+            this.btnStartScriptEdit4 = new System.Windows.Forms.Button();
+            this.btnStartScriptEdit3 = new System.Windows.Forms.Button();
+            this.btnStartScriptEdit2 = new System.Windows.Forms.Button();
+            this.btnStartScriptEdit1 = new System.Windows.Forms.Button();
+            this.txtStartScriptChance4 = new System.Windows.Forms.TextBox();
+            this.txtStartScriptId4 = new System.Windows.Forms.TextBox();
+            this.txtStartScriptChance3 = new System.Windows.Forms.TextBox();
+            this.txtStartScriptId3 = new System.Windows.Forms.TextBox();
+            this.txtStartScriptChance2 = new System.Windows.Forms.TextBox();
+            this.txtStartScriptId2 = new System.Windows.Forms.TextBox();
+            this.txtStartScriptChance1 = new System.Windows.Forms.TextBox();
+            this.txtStartScriptId1 = new System.Windows.Forms.TextBox();
+            this.lblStartScriptChance = new System.Windows.Forms.Label();
+            this.lblStartScriptId = new System.Windows.Forms.Label();
+            this.lblStartScriptTooltip = new System.Windows.Forms.Label();
+            this.btnNewForm = new System.Windows.Forms.Button();
+            this.lblNoAction = new System.Windows.Forms.Label();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -405,6 +423,7 @@
             this.frmCommandSetFacing.SuspendLayout();
             this.frmCommandMeetingStone.SuspendLayout();
             this.frmCommandSetData.SuspendLayout();
+            this.frmCommandStartScript.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstActions
@@ -3920,11 +3939,197 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // frmCommandStartScript
+            // 
+            this.frmCommandStartScript.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandStartScript.Controls.Add(this.btnStartScriptEdit4);
+            this.frmCommandStartScript.Controls.Add(this.btnStartScriptEdit3);
+            this.frmCommandStartScript.Controls.Add(this.btnStartScriptEdit2);
+            this.frmCommandStartScript.Controls.Add(this.btnStartScriptEdit1);
+            this.frmCommandStartScript.Controls.Add(this.txtStartScriptChance4);
+            this.frmCommandStartScript.Controls.Add(this.txtStartScriptId4);
+            this.frmCommandStartScript.Controls.Add(this.txtStartScriptChance3);
+            this.frmCommandStartScript.Controls.Add(this.txtStartScriptId3);
+            this.frmCommandStartScript.Controls.Add(this.txtStartScriptChance2);
+            this.frmCommandStartScript.Controls.Add(this.txtStartScriptId2);
+            this.frmCommandStartScript.Controls.Add(this.txtStartScriptChance1);
+            this.frmCommandStartScript.Controls.Add(this.txtStartScriptId1);
+            this.frmCommandStartScript.Controls.Add(this.lblStartScriptChance);
+            this.frmCommandStartScript.Controls.Add(this.lblStartScriptId);
+            this.frmCommandStartScript.Controls.Add(this.lblStartScriptTooltip);
+            this.frmCommandStartScript.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandStartScript.Name = "frmCommandStartScript";
+            this.frmCommandStartScript.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandStartScript.TabIndex = 44;
+            this.frmCommandStartScript.Visible = false;
+            // 
+            // btnStartScriptEdit4
+            // 
+            this.btnStartScriptEdit4.Location = new System.Drawing.Point(428, 172);
+            this.btnStartScriptEdit4.Name = "btnStartScriptEdit4";
+            this.btnStartScriptEdit4.Size = new System.Drawing.Size(44, 22);
+            this.btnStartScriptEdit4.TabIndex = 24;
+            this.btnStartScriptEdit4.Text = "Edit";
+            this.btnStartScriptEdit4.UseVisualStyleBackColor = true;
+            this.btnStartScriptEdit4.Click += new System.EventHandler(this.btnStartScriptEdit4_Click);
+            // 
+            // btnStartScriptEdit3
+            // 
+            this.btnStartScriptEdit3.Location = new System.Drawing.Point(428, 143);
+            this.btnStartScriptEdit3.Name = "btnStartScriptEdit3";
+            this.btnStartScriptEdit3.Size = new System.Drawing.Size(44, 22);
+            this.btnStartScriptEdit3.TabIndex = 23;
+            this.btnStartScriptEdit3.Text = "Edit";
+            this.btnStartScriptEdit3.UseVisualStyleBackColor = true;
+            this.btnStartScriptEdit3.Click += new System.EventHandler(this.btnStartScriptEdit3_Click);
+            // 
+            // btnStartScriptEdit2
+            // 
+            this.btnStartScriptEdit2.Location = new System.Drawing.Point(428, 114);
+            this.btnStartScriptEdit2.Name = "btnStartScriptEdit2";
+            this.btnStartScriptEdit2.Size = new System.Drawing.Size(44, 22);
+            this.btnStartScriptEdit2.TabIndex = 22;
+            this.btnStartScriptEdit2.Text = "Edit";
+            this.btnStartScriptEdit2.UseVisualStyleBackColor = true;
+            this.btnStartScriptEdit2.Click += new System.EventHandler(this.btnStartScriptEdit2_Click);
+            // 
+            // btnStartScriptEdit1
+            // 
+            this.btnStartScriptEdit1.Location = new System.Drawing.Point(429, 85);
+            this.btnStartScriptEdit1.Name = "btnStartScriptEdit1";
+            this.btnStartScriptEdit1.Size = new System.Drawing.Size(44, 22);
+            this.btnStartScriptEdit1.TabIndex = 21;
+            this.btnStartScriptEdit1.Text = "Edit";
+            this.btnStartScriptEdit1.UseVisualStyleBackColor = true;
+            this.btnStartScriptEdit1.Click += new System.EventHandler(this.btnStartScriptEdit1_Click);
+            // 
+            // txtStartScriptChance4
+            // 
+            this.txtStartScriptChance4.Location = new System.Drawing.Point(225, 172);
+            this.txtStartScriptChance4.MinimumSize = new System.Drawing.Size(4, 22);
+            this.txtStartScriptChance4.Name = "txtStartScriptChance4";
+            this.txtStartScriptChance4.Size = new System.Drawing.Size(190, 20);
+            this.txtStartScriptChance4.TabIndex = 20;
+            this.txtStartScriptChance4.Leave += new System.EventHandler(this.txtStartScriptChance4_Leave);
+            // 
+            // txtStartScriptId4
+            // 
+            this.txtStartScriptId4.Location = new System.Drawing.Point(19, 172);
+            this.txtStartScriptId4.MinimumSize = new System.Drawing.Size(4, 22);
+            this.txtStartScriptId4.Name = "txtStartScriptId4";
+            this.txtStartScriptId4.Size = new System.Drawing.Size(191, 20);
+            this.txtStartScriptId4.TabIndex = 19;
+            this.txtStartScriptId4.Leave += new System.EventHandler(this.txtStartScriptId4_Leave);
+            // 
+            // txtStartScriptChance3
+            // 
+            this.txtStartScriptChance3.Location = new System.Drawing.Point(225, 143);
+            this.txtStartScriptChance3.MinimumSize = new System.Drawing.Size(4, 22);
+            this.txtStartScriptChance3.Name = "txtStartScriptChance3";
+            this.txtStartScriptChance3.Size = new System.Drawing.Size(190, 20);
+            this.txtStartScriptChance3.TabIndex = 18;
+            this.txtStartScriptChance3.Leave += new System.EventHandler(this.txtStartScriptChance3_Leave);
+            // 
+            // txtStartScriptId3
+            // 
+            this.txtStartScriptId3.Location = new System.Drawing.Point(19, 143);
+            this.txtStartScriptId3.MinimumSize = new System.Drawing.Size(4, 22);
+            this.txtStartScriptId3.Name = "txtStartScriptId3";
+            this.txtStartScriptId3.Size = new System.Drawing.Size(191, 20);
+            this.txtStartScriptId3.TabIndex = 17;
+            this.txtStartScriptId3.Leave += new System.EventHandler(this.txtStartScriptId3_Leave);
+            // 
+            // txtStartScriptChance2
+            // 
+            this.txtStartScriptChance2.Location = new System.Drawing.Point(225, 114);
+            this.txtStartScriptChance2.MinimumSize = new System.Drawing.Size(4, 22);
+            this.txtStartScriptChance2.Name = "txtStartScriptChance2";
+            this.txtStartScriptChance2.Size = new System.Drawing.Size(190, 20);
+            this.txtStartScriptChance2.TabIndex = 16;
+            this.txtStartScriptChance2.Leave += new System.EventHandler(this.txtStartScriptChance2_Leave);
+            // 
+            // txtStartScriptId2
+            // 
+            this.txtStartScriptId2.Location = new System.Drawing.Point(19, 114);
+            this.txtStartScriptId2.MinimumSize = new System.Drawing.Size(4, 22);
+            this.txtStartScriptId2.Name = "txtStartScriptId2";
+            this.txtStartScriptId2.Size = new System.Drawing.Size(191, 20);
+            this.txtStartScriptId2.TabIndex = 15;
+            this.txtStartScriptId2.Leave += new System.EventHandler(this.txtStartScriptId2_Leave);
+            // 
+            // txtStartScriptChance1
+            // 
+            this.txtStartScriptChance1.Location = new System.Drawing.Point(225, 85);
+            this.txtStartScriptChance1.MinimumSize = new System.Drawing.Size(4, 22);
+            this.txtStartScriptChance1.Name = "txtStartScriptChance1";
+            this.txtStartScriptChance1.Size = new System.Drawing.Size(190, 20);
+            this.txtStartScriptChance1.TabIndex = 14;
+            this.txtStartScriptChance1.Leave += new System.EventHandler(this.txtStartScriptChance1_Leave);
+            // 
+            // txtStartScriptId1
+            // 
+            this.txtStartScriptId1.Location = new System.Drawing.Point(19, 85);
+            this.txtStartScriptId1.MinimumSize = new System.Drawing.Size(4, 22);
+            this.txtStartScriptId1.Name = "txtStartScriptId1";
+            this.txtStartScriptId1.Size = new System.Drawing.Size(191, 20);
+            this.txtStartScriptId1.TabIndex = 13;
+            this.txtStartScriptId1.Leave += new System.EventHandler(this.txtStartScriptId1_Leave);
+            // 
+            // lblStartScriptChance
+            // 
+            this.lblStartScriptChance.AutoSize = true;
+            this.lblStartScriptChance.Location = new System.Drawing.Point(228, 63);
+            this.lblStartScriptChance.Name = "lblStartScriptChance";
+            this.lblStartScriptChance.Size = new System.Drawing.Size(86, 13);
+            this.lblStartScriptChance.TabIndex = 12;
+            this.lblStartScriptChance.Text = "Percent chance:";
+            // 
+            // lblStartScriptId
+            // 
+            this.lblStartScriptId.AutoSize = true;
+            this.lblStartScriptId.Location = new System.Drawing.Point(22, 63);
+            this.lblStartScriptId.Name = "lblStartScriptId";
+            this.lblStartScriptId.Size = new System.Drawing.Size(82, 13);
+            this.lblStartScriptId.TabIndex = 11;
+            this.lblStartScriptId.Text = "Event Script ID:";
+            // 
+            // lblStartScriptTooltip
+            // 
+            this.lblStartScriptTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblStartScriptTooltip.Location = new System.Drawing.Point(19, 10);
+            this.lblStartScriptTooltip.Name = "lblStartScriptTooltip";
+            this.lblStartScriptTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblStartScriptTooltip.TabIndex = 10;
+            this.lblStartScriptTooltip.Text = "Starts one of the specified event script Ids. Chosen script is determined by a ra" +
+    "ndom chance roll. Total chance must not exceed 100%.";
+            // 
+            // btnNewForm
+            // 
+            this.btnNewForm.Location = new System.Drawing.Point(751, 588);
+            this.btnNewForm.Name = "btnNewForm";
+            this.btnNewForm.Size = new System.Drawing.Size(75, 23);
+            this.btnNewForm.TabIndex = 45;
+            this.btnNewForm.Text = "New Form";
+            this.btnNewForm.UseVisualStyleBackColor = true;
+            this.btnNewForm.Click += new System.EventHandler(this.btnNewForm_Click);
+            // 
+            // lblNoAction
+            // 
+            this.lblNoAction.AutoSize = true;
+            this.lblNoAction.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoAction.Location = new System.Drawing.Point(575, 406);
+            this.lblNoAction.Name = "lblNoAction";
+            this.lblNoAction.Size = new System.Drawing.Size(163, 20);
+            this.lblNoAction.TabIndex = 46;
+            this.lblNoAction.Text = "No Action Selected";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 620);
+            this.Controls.Add(this.btnNewForm);
+            this.Controls.Add(this.frmCommandStartScript);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.frmCommandSetData);
             this.Controls.Add(this.frmCommandMeetingStone);
@@ -3969,11 +4174,13 @@
             this.Controls.Add(this.cmbTable);
             this.Controls.Add(this.lblId);
             this.Controls.Add(this.lstActions);
+            this.Controls.Add(this.lblNoAction);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Script Editor";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.grpGeneral.ResumeLayout(false);
             this.grpGeneral.PerformLayout();
@@ -4059,6 +4266,8 @@
             this.frmCommandMeetingStone.PerformLayout();
             this.frmCommandSetData.ResumeLayout(false);
             this.frmCommandSetData.PerformLayout();
+            this.frmCommandStartScript.ResumeLayout(false);
+            this.frmCommandStartScript.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4400,6 +4609,24 @@
         private System.Windows.Forms.Label lblCommandCondition;
         private System.Windows.Forms.Button btnPlaySoundId;
         private System.Windows.Forms.Button btnSetFactionId;
+        private System.Windows.Forms.Panel frmCommandStartScript;
+        private System.Windows.Forms.TextBox txtStartScriptChance4;
+        private System.Windows.Forms.TextBox txtStartScriptId4;
+        private System.Windows.Forms.TextBox txtStartScriptChance3;
+        private System.Windows.Forms.TextBox txtStartScriptId3;
+        private System.Windows.Forms.TextBox txtStartScriptChance2;
+        private System.Windows.Forms.TextBox txtStartScriptId2;
+        private System.Windows.Forms.TextBox txtStartScriptChance1;
+        private System.Windows.Forms.TextBox txtStartScriptId1;
+        private System.Windows.Forms.Label lblStartScriptChance;
+        private System.Windows.Forms.Label lblStartScriptId;
+        private System.Windows.Forms.Label lblStartScriptTooltip;
+        private System.Windows.Forms.Button btnStartScriptEdit4;
+        private System.Windows.Forms.Button btnStartScriptEdit3;
+        private System.Windows.Forms.Button btnStartScriptEdit2;
+        private System.Windows.Forms.Button btnStartScriptEdit1;
+        private System.Windows.Forms.Button btnNewForm;
+        private System.Windows.Forms.Label lblNoAction;
     }
 }
 

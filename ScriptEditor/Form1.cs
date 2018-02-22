@@ -15,13 +15,6 @@ namespace ScriptEditor
 {
     public partial class Form1 : Form
     {
-        // MySQL connection data.
-        public string connString = "Server=localhost;Database=mangos;Uid=root;Pwd=root;";
-        public string mysqlUser = "root";
-        public string mysqlPass = "root";
-        public string mysqlHost = "localhost";
-        public string mysqlDB = "mangos";
-
         // Save what we are currently working on.
         public uint currentScriptId = 0;
         public string currentScriptTable = "";
@@ -45,17 +38,14 @@ namespace ScriptEditor
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadControls();
-            LoadConfig();
-            GameData.LoadBroadcastTexts(connString);
-            GameData.LoadQuests(connString);
-            GameData.LoadCreatures(connString);
-            GameData.LoadSpells(connString);
-            GameData.LoadItems(connString);
-            GameData.LoadCondition(connString);
-            GameData.LoadAreas(connString);
-            GameData.LoadSounds(connString);
-            GameData.LoadFactions(connString);
-            GameData.LoadFactionTemplates(connString);
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if ((currentScriptId != 0) && (MessageBox.Show("Are you sure you want to close the editor?\n\nScript changes are not saved automatically. Make sure you've clicked the Save button first, or your changes will be lost.", "Exit Editor?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No))
+            {
+                e.Cancel = true;
+            }
         }
 
         private void LoadControls()
@@ -105,6 +95,8 @@ namespace ScriptEditor
             cmbCommandId.Items.Add(new ComboboxPair("MeetingStone Queue", 36));
             cmbCommandId.Items.Add(new ComboboxPair("Set Data", 37));
             cmbCommandId.Items.Add(new ComboboxPair("Set Data 64", 38));
+            cmbCommandId.Items.Add(new ComboboxPair("Start Script", 39));
+            cmbCommandId.Items.Add(new ComboboxPair("Remove Item", 40));
             cmbCommandId.SelectedIndex = 0;
 
             // Add option to Buddy Type combo box.
@@ -161,31 +153,6 @@ namespace ScriptEditor
 
             //MessageBox.Show((cmbCommandId.SelectedItem as ComboboxPair).Value.ToString());
             dontUpdate = false;
-        }
-        
-        private void LoadConfig()
-        {
-            if (!System.IO.File.Exists(@"config.ini"))
-            {
-                MessageBox.Show("Your config file seems to have vanished into the nether! But worry not, i shall use my ultra-safe mind reading device to guess your database connection details. Surely nothing can go wrong, gnomish inventions are renowned for their safety after all!", "No config found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
-            string line;
-            System.IO.StreamReader file = new System.IO.StreamReader(@"config.ini");
-            while ((line = file.ReadLine()) != null)
-            {
-                if (line.Contains("User="))
-                    mysqlUser = line.Replace("User=", "");
-                else if (line.Contains("Pass="))
-                    mysqlPass = line.Replace("Pass=", "");
-                else if (line.Contains("Host="))
-                    mysqlHost = line.Replace("Host=", "");
-                else if (line.Contains("DB="))
-                    mysqlDB = line.Replace("DB=", "");
-            }
-
-            connString = "Server=" + mysqlHost + ";Database=" + mysqlDB + ";Uid=" + mysqlUser + ";Pwd=" + mysqlPass + ";";
         }
 
         // Shows an input box that returns a value.
@@ -316,40 +283,62 @@ namespace ScriptEditor
                 });
         }
 
-        private void btnFind_Click(object sender, EventArgs e)
+        private void ResetEditorForm()
         {
             dontUpdate = true;
             lstActions.Items.Clear();
             ResetAndDisableGeneralForm();
             ResetAndHideCommandSpecificForms();
+            this.Text = "Script Editor";
+            lblId.Text = "No script loaded.";
+            currentScriptId = 0;
+            currentScriptTable = "";
+            dontUpdate = false;
+        }
+
+        private void btnNewForm_Click(object sender, EventArgs e)
+        {
+            new Form1().Show();
+        }
+
+        private void btnFind_Click(object sender, EventArgs e)
+        {
+            dontUpdate = true;
+
+            uint script_id = 0;
 
             // If no script id just clear data.
-            if ((txtScriptId.Text.Length == 0) || (!UInt32.TryParse(txtScriptId.Text, out currentScriptId)))
+            if ((txtScriptId.Text.Length == 0) || (!uint.TryParse(txtScriptId.Text, out script_id)))
             {
-                lblId.Text = "No script loaded.";
-                currentScriptId = 0;
-                currentScriptTable = "";
+                ResetEditorForm();
                 return;
             }
 
-            currentScriptTable = cmbTable.Text;
+            LoadScript(script_id, cmbTable.Text);
 
-            lblId.Text = "Editing script " + txtScriptId.Text + " from " + currentScriptTable + ".";
+            dontUpdate = false;
+        }
 
-            MySqlConnection conn = new MySqlConnection(connString);
+        public void LoadScript(uint script_id, string table_name)
+        {
+            dontUpdate = true;
+
+            ResetEditorForm();
+
+            MySqlConnection conn = new MySqlConnection(Program.connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT id, delay, command, datalong, datalong2, datalong3, datalong4, buddy_id, buddy_radius, buddy_type, data_flags, dataint, dataint2, dataint3, dataint4, x, y, z, o, condition_id, comments FROM " + cmbTable.SelectedItem.ToString() + " WHERE id=" + txtScriptId.Text + " ORDER BY delay";
+            command.CommandText = "SELECT id, delay, command, datalong, datalong2, datalong3, datalong4, buddy_id, buddy_radius, buddy_type, data_flags, dataint, dataint2, dataint3, dataint4, x, y, z, o, condition_id, comments FROM " + table_name + " WHERE id=" + script_id.ToString() + " ORDER BY delay";
             try
             {
                 conn.Open();
                 MySqlDataReader reader = command.ExecuteReader();
-                
+
                 while (reader.Read())
                 {
                     ListViewItem lvi = new ListViewItem();
 
                     ScriptAction action = new ScriptAction(reader.GetUInt32(0), reader.GetUInt32(1), reader.GetUInt32(2), reader.GetUInt32(3), reader.GetUInt32(4), reader.GetUInt32(5), reader.GetUInt32(6), reader.GetUInt32(7), reader.GetUInt32(8), reader.GetUInt32(9), reader.GetUInt32(10), reader.GetInt32(11), reader.GetInt32(12), reader.GetInt32(13), reader.GetInt32(14), reader.GetFloat(15), reader.GetFloat(16), reader.GetFloat(17), reader.GetFloat(18), reader.GetUInt32(19), reader[20].ToString());
-                    
+
                     // We show only delay, command id and comment in the listview.
                     lvi.Text = action.Delay.ToString();
                     lvi.SubItems.Add(action.Command.ToString());
@@ -362,12 +351,19 @@ namespace ScriptEditor
                     lstActions.Items.Add(lvi);
                 }
                 reader.Close();
+
+                currentScriptId = script_id;
+                currentScriptTable = table_name;
+
+                lblId.Text = "Editing script " + script_id.ToString() + " from " + table_name + ".";
+                this.Text = "Script Editor (" + script_id.ToString() + ")";
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
             conn.Close();
+
             dontUpdate = false;
         }
 
@@ -378,7 +374,7 @@ namespace ScriptEditor
                 string query = GenerateScriptQuery();
                 if (ShowSaveDialog(ref query) == DialogResult.OK)
                 {
-                    MySqlConnection conn = new MySqlConnection(connString);
+                    MySqlConnection conn = new MySqlConnection(Program.connString);
                     MySqlCommand command = conn.CreateCommand();
                     command.CommandText = query;
                     try
@@ -564,7 +560,7 @@ namespace ScriptEditor
             chkPlaySoundFlags2.Checked = false;
             frmCommandPlaySound.Visible = false;
 
-            // Create Item Command (17)
+            // Create Item and Remove Item Commands (17, 40)
             btnCreateItemId.Text = "-NONE-";
             txtCreateItemAmount.Text = "";
             frmCommandCreateItem.Visible = false;
@@ -669,6 +665,17 @@ namespace ScriptEditor
             txtSetDataField.Text = "";
             txtSetDataValue.Text = "";
             frmCommandSetData.Visible = false;
+
+            // Start Script Command (39)
+            txtStartScriptId1.Text = "";
+            txtStartScriptId2.Text = "";
+            txtStartScriptId3.Text = "";
+            txtStartScriptId4.Text = "";
+            txtStartScriptChance1.Text = "";
+            txtStartScriptChance2.Text = "";
+            txtStartScriptChance3.Text = "";
+            txtStartScriptChance4.Text = "";
+            frmCommandStartScript.Visible = false;
 
             dontUpdate = false;
         }
@@ -982,11 +989,16 @@ namespace ScriptEditor
                     break;
                 }
                 case 17: // Create Item
+                case 40: // Delete Item
                 {
                     uint itemId = selectedAction.Datalong;
                     if (itemId > 0)
                         btnCreateItemId.Text = GameData.FindItemName(itemId) + " (" + itemId.ToString() + ")";
                     txtCreateItemAmount.Text = selectedAction.Datalong2.ToString();
+                    if (selectedAction.Command == 17)
+                        lblCreateItemTooltip.Text = "Adds the specified item to the target Player\'s inventory.";
+                    else
+                        lblCreateItemTooltip.Text = "Removes the specified item from the target Player\'s inventory.";
                     frmCommandCreateItem.Visible = true;
                     break;
                 }
@@ -1259,6 +1271,19 @@ namespace ScriptEditor
                         cmbSetDataMode.DataSource = SetData64Modes;
                     cmbSetDataMode.SelectedIndex = selectedMode;
                     frmCommandSetData.Visible = true;
+                    break;
+                }
+                case 39: // Start Script
+                {
+                    txtStartScriptId1.Text = selectedAction.Datalong.ToString();
+                    txtStartScriptId2.Text = selectedAction.Datalong2.ToString();
+                    txtStartScriptId3.Text = selectedAction.Datalong3.ToString();
+                    txtStartScriptId4.Text = selectedAction.Datalong4.ToString();
+                    txtStartScriptChance1.Text = selectedAction.Dataint.ToString();
+                    txtStartScriptChance2.Text = selectedAction.Dataint2.ToString();
+                    txtStartScriptChance3.Text = selectedAction.Dataint3.ToString();
+                    txtStartScriptChance4.Text = selectedAction.Dataint4.ToString();
+                    frmCommandStartScript.Visible = true;
                     break;
                 }
             }
@@ -3034,6 +3059,94 @@ namespace ScriptEditor
                     else
                         txtSetDataValue.Enabled = true;
                 }
+            }
+        }
+
+        private void txtStartScriptId1_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtStartScriptId1, "Datalong");
+        }
+
+        private void txtStartScriptId2_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtStartScriptId2, "Datalong2");
+        }
+
+        private void txtStartScriptId3_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtStartScriptId3, "Datalong3");
+        }
+
+        private void txtStartScriptId4_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtStartScriptId4, "Datalong4");
+        }
+
+        private void txtStartScriptChance1_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtStartScriptChance1, "Dataint");
+        }
+
+        private void txtStartScriptChance2_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtStartScriptChance2, "Dataint2");
+        }
+
+        private void txtStartScriptChance3_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtStartScriptChance3, "Dataint3");
+        }
+
+        private void txtStartScriptChance4_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtStartScriptChance4, "Dataint4");
+        }
+
+        private void btnStartScriptEdit1_Click(object sender, EventArgs e)
+        {
+            uint script_id = 0;
+            uint.TryParse(txtStartScriptId1.Text, out script_id);
+            if (script_id > 0)
+            {
+                Form1 formEditor = new Form1();
+                formEditor.Show();
+                formEditor.LoadScript(script_id, "event_scripts");
+            }
+        }
+
+        private void btnStartScriptEdit2_Click(object sender, EventArgs e)
+        {
+            uint script_id = 0;
+            uint.TryParse(txtStartScriptId2.Text, out script_id);
+            if (script_id > 0)
+            {
+                Form1 formEditor = new Form1();
+                formEditor.Show();
+                formEditor.LoadScript(script_id, "event_scripts");
+            }
+        }
+
+        private void btnStartScriptEdit3_Click(object sender, EventArgs e)
+        {
+            uint script_id = 0;
+            uint.TryParse(txtStartScriptId3.Text, out script_id);
+            if (script_id > 0)
+            {
+                Form1 formEditor = new Form1();
+                formEditor.Show();
+                formEditor.LoadScript(script_id, "event_scripts");
+            }
+        }
+
+        private void btnStartScriptEdit4_Click(object sender, EventArgs e)
+        {
+            uint script_id = 0;
+            uint.TryParse(txtStartScriptId4.Text, out script_id);
+            if (script_id > 0)
+            {
+                Form1 formEditor = new Form1();
+                formEditor.Show();
+                formEditor.LoadScript(script_id, "event_scripts");
             }
         }
     }
