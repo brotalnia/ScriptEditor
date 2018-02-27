@@ -87,6 +87,7 @@
             this.cmbFieldSetFields = new System.Windows.Forms.ComboBox();
             this.lblFieldSetTooltip = new System.Windows.Forms.Label();
             this.frmCommandMoveTo = new System.Windows.Forms.Panel();
+            this.chkMoveToFlagsPointMovement = new System.Windows.Forms.CheckBox();
             this.chkMoveToFlagsForce = new System.Windows.Forms.CheckBox();
             this.lblMoveToO = new System.Windows.Forms.Label();
             this.lblMoveToZ = new System.Windows.Forms.Label();
@@ -381,6 +382,7 @@
             this.lblStartScriptTooltip = new System.Windows.Forms.Label();
             this.btnNewForm = new System.Windows.Forms.Button();
             this.lblNoAction = new System.Windows.Forms.Label();
+            this.btnActionCopy = new System.Windows.Forms.Button();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -437,6 +439,7 @@
             this.lstActions.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lstActions.HideSelection = false;
             this.lstActions.Location = new System.Drawing.Point(20, 62);
+            this.lstActions.MultiSelect = false;
             this.lstActions.Name = "lstActions";
             this.lstActions.Size = new System.Drawing.Size(355, 520);
             this.lstActions.TabIndex = 0;
@@ -872,7 +875,7 @@
             // 
             // btnActionNew
             // 
-            this.btnActionNew.Location = new System.Drawing.Point(219, 588);
+            this.btnActionNew.Location = new System.Drawing.Point(138, 588);
             this.btnActionNew.Name = "btnActionNew";
             this.btnActionNew.Size = new System.Drawing.Size(75, 23);
             this.btnActionNew.TabIndex = 8;
@@ -1002,6 +1005,7 @@
             // frmCommandMoveTo
             // 
             this.frmCommandMoveTo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandMoveTo.Controls.Add(this.chkMoveToFlagsPointMovement);
             this.frmCommandMoveTo.Controls.Add(this.chkMoveToFlagsForce);
             this.frmCommandMoveTo.Controls.Add(this.lblMoveToO);
             this.frmCommandMoveTo.Controls.Add(this.lblMoveToZ);
@@ -1022,6 +1026,17 @@
             this.frmCommandMoveTo.Size = new System.Drawing.Size(495, 332);
             this.frmCommandMoveTo.TabIndex = 13;
             this.frmCommandMoveTo.Visible = false;
+            // 
+            // chkMoveToFlagsPointMovement
+            // 
+            this.chkMoveToFlagsPointMovement.AutoSize = true;
+            this.chkMoveToFlagsPointMovement.Location = new System.Drawing.Point(20, 271);
+            this.chkMoveToFlagsPointMovement.Name = "chkMoveToFlagsPointMovement";
+            this.chkMoveToFlagsPointMovement.Size = new System.Drawing.Size(175, 17);
+            this.chkMoveToFlagsPointMovement.TabIndex = 15;
+            this.chkMoveToFlagsPointMovement.Text = "Use Point Movement Generator";
+            this.chkMoveToFlagsPointMovement.UseVisualStyleBackColor = true;
+            this.chkMoveToFlagsPointMovement.CheckedChanged += new System.EventHandler(this.chkMoveToFlagsPointMovement_CheckedChanged);
             // 
             // chkMoveToFlagsForce
             // 
@@ -4123,11 +4138,22 @@
             this.lblNoAction.TabIndex = 46;
             this.lblNoAction.Text = "No Action Selected";
             // 
+            // btnActionCopy
+            // 
+            this.btnActionCopy.Location = new System.Drawing.Point(219, 588);
+            this.btnActionCopy.Name = "btnActionCopy";
+            this.btnActionCopy.Size = new System.Drawing.Size(75, 23);
+            this.btnActionCopy.TabIndex = 47;
+            this.btnActionCopy.Text = "Copy";
+            this.btnActionCopy.UseVisualStyleBackColor = true;
+            this.btnActionCopy.Click += new System.EventHandler(this.btnActionCopy_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 620);
+            this.Controls.Add(this.btnActionCopy);
             this.Controls.Add(this.btnNewForm);
             this.Controls.Add(this.frmCommandStartScript);
             this.Controls.Add(this.btnSave);
@@ -4627,6 +4653,8 @@
         private System.Windows.Forms.Button btnStartScriptEdit1;
         private System.Windows.Forms.Button btnNewForm;
         private System.Windows.Forms.Label lblNoAction;
+        private System.Windows.Forms.CheckBox chkMoveToFlagsPointMovement;
+        private System.Windows.Forms.Button btnActionCopy;
     }
 }
 

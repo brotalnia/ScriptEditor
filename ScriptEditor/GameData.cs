@@ -1151,35 +1151,28 @@ namespace ScriptEditor
             ConditionNamesList.Add(new ComboboxPair("QUESTREWARDED", 8));
             ConditionNamesList.Add(new ComboboxPair("QUESTTAKEN", 9));
             ConditionNamesList.Add(new ComboboxPair("AD_COMMISSION_AURA", 10));
-            ConditionNamesList.Add(new ComboboxPair("NO_AURA", 11));
+            ConditionNamesList.Add(new ComboboxPair("WAR_EFFORT_STAGE", 11));
             ConditionNamesList.Add(new ComboboxPair("ACTIVE_GAME_EVENT", 12));
             ConditionNamesList.Add(new ComboboxPair("AREA_FLAG", 13));
             ConditionNamesList.Add(new ComboboxPair("RACE_CLASS", 14));
             ConditionNamesList.Add(new ComboboxPair("LEVEL", 15));
-            ConditionNamesList.Add(new ComboboxPair("NOITEM", 16));
+            ConditionNamesList.Add(new ComboboxPair("SOURCE_ENTRY", 16));
             ConditionNamesList.Add(new ComboboxPair("SPELL", 17));
             ConditionNamesList.Add(new ComboboxPair("INSTANCE_SCRIPT", 18));
             ConditionNamesList.Add(new ComboboxPair("QUESTAVAILABLE", 19));
-            ConditionNamesList.Add(new ComboboxPair("RESERVED_1", 20));
-            ConditionNamesList.Add(new ComboboxPair("RESERVED_2", 21));
+            ConditionNamesList.Add(new ComboboxPair("NEARBY_CREATURE", 20));
+            ConditionNamesList.Add(new ComboboxPair("NEARBY_GAMEOBJECT", 21));
             ConditionNamesList.Add(new ComboboxPair("QUEST_NONE", 22));
             ConditionNamesList.Add(new ComboboxPair("ITEM_WITH_BANK", 23));
-            ConditionNamesList.Add(new ComboboxPair("NOITEM_WITH_BANK", 24));
-            ConditionNamesList.Add(new ComboboxPair("NOT_ACTIVE_GAME_EVENT", 25));
+            ConditionNamesList.Add(new ComboboxPair("WOW_PATCH", 24));
+            ConditionNamesList.Add(new ComboboxPair("DEAD_OR_AWAY", 25));
             ConditionNamesList.Add(new ComboboxPair("ACTIVE_HOLIDAY", 26));
-            ConditionNamesList.Add(new ComboboxPair("NOT_ACTIVE_HOLIDAY", 27));
+            ConditionNamesList.Add(new ComboboxPair("TARGET_GENDER", 27));
             ConditionNamesList.Add(new ComboboxPair("LEARNABLE_ABILITY", 28));
             ConditionNamesList.Add(new ComboboxPair("SKILL_BELOW", 29));
             ConditionNamesList.Add(new ComboboxPair("REPUTATION_RANK_MAX", 30));
-            ConditionNamesList.Add(new ComboboxPair("RESERVED_3", 31));
-            ConditionNamesList.Add(new ComboboxPair("SOURCE_AURA", 32));
-            ConditionNamesList.Add(new ComboboxPair("LAST_WAYPOINT", 33));
-            ConditionNamesList.Add(new ComboboxPair("SOURCE_GENDER", 34));
-            ConditionNamesList.Add(new ComboboxPair("TARGET_GENDER", 35));
-            ConditionNamesList.Add(new ComboboxPair("DEAD_OR_AWAY", 36));
-            ConditionNamesList.Add(new ComboboxPair("WOW_PATCH", 37));
-            ConditionNamesList.Add(new ComboboxPair("NPC_ENTRY", 38));
-            ConditionNamesList.Add(new ComboboxPair("WAR_EFFORT_STAGE", 39));
+            ConditionNamesList.Add(new ComboboxPair("HAS_FLAG", 31));
+            ConditionNamesList.Add(new ComboboxPair("LAST_WAYPOINT", 32));
         }
     }
     public struct BroadcastText

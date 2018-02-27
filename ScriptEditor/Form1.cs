@@ -97,6 +97,7 @@ namespace ScriptEditor
             cmbCommandId.Items.Add(new ComboboxPair("Set Data 64", 38));
             cmbCommandId.Items.Add(new ComboboxPair("Start Script", 39));
             cmbCommandId.Items.Add(new ComboboxPair("Remove Item", 40));
+            cmbCommandId.Items.Add(new ComboboxPair("Remove Object", 41));
             cmbCommandId.SelectedIndex = 0;
 
             // Add option to Buddy Type combo box.
@@ -481,6 +482,7 @@ namespace ScriptEditor
             chkMoveOptions128.Checked = false;
             chkMoveOptions256.Checked = false;
             chkMoveToFlagsForce.Checked = false;
+            chkMoveToFlagsPointMovement.Checked = false;
             frmCommandMoveTo.Visible = false;
 
             // Modify Flags Command (4)
@@ -782,6 +784,9 @@ namespace ScriptEditor
                     if ((selectedAction.Datalong4 & 1) != 0)
                         chkMoveToFlagsForce.Checked = true;
 
+                    if ((selectedAction.Datalong4 & 2) != 0)
+                        chkMoveToFlagsPointMovement.Checked = true;
+
                     // some fields unavailable based on coordinates_type
                     switch (selectedAction.Datalong)
                     {
@@ -800,18 +805,6 @@ namespace ScriptEditor
                             txtMoveToZ.Enabled = false;
                             break;
                         }
-                    }
-
-                    // movement options and orientation unavailable with speed
-                    if (selectedAction.Datalong2 > 0)
-                    {
-                        txtMoveToO.Enabled = false;
-                        grpMoveToOptions.Enabled = false;
-                    }
-                    else
-                    {
-                        txtMoveToO.Enabled = true;
-                        grpMoveToOptions.Enabled = true;
                     }
 
                     frmCommandMoveTo.Visible = true;
@@ -930,6 +923,7 @@ namespace ScriptEditor
                 case 13: // Activate object
                 case 26: // Start Attack
                 case 33: // Enter Evade Mode
+                case 41: // Remove Object
                 {
                     txtDoorGuid.Visible = false;
                     txtDoorResetDelay.Visible = false;
@@ -950,6 +944,11 @@ namespace ScriptEditor
                         case 33:
                         {
                             lblDoorTooltip.Text = "The source Creature enters evade mode, leaving combat and returning to it's home location. This command has no additional parameters.";
+                            break;
+                        }
+                        case 41:
+                        {
+                            lblDoorTooltip.Text = "The source gameobject has its loot state changed to deactivated and is removed from the map. This command has no additional parameters.";
                             break;
                         }
                     }
@@ -1589,20 +1588,59 @@ namespace ScriptEditor
 
         private void btnActionNew_Click(object sender, EventArgs e)
         {
-            ListViewItem lvi = new ListViewItem();
+            ListViewItem newItem = new ListViewItem();
 
-            ScriptAction action = new ScriptAction(currentScriptId);
+            ScriptAction newAction = new ScriptAction(currentScriptId);
 
             // We show only delay, command id and comment in the listview.
-            lvi.Text = action.Delay.ToString();
-            lvi.SubItems.Add(action.Command.ToString());
-            lvi.SubItems.Add(action.Comments);
+            newItem.Text = newAction.Delay.ToString();
+            newItem.SubItems.Add(newAction.Command.ToString());
+            newItem.SubItems.Add(newAction.Comments);
 
             // Save the ScriptAction to the Tag.
-            lvi.Tag = action;
+            newItem.Tag = newAction;
 
             // Add it to the listview.
-            lstActions.Items.Add(lvi);
+            lstActions.Items.Add(newItem);
+
+            // Select the new item.
+            lstActions.FocusedItem = newItem;
+            newItem.Selected = true;
+            lstActions.Select();
+        }
+
+        private void btnActionCopy_Click(object sender, EventArgs e)
+        {
+            if (lstActions.SelectedItems.Count > 0)
+            {
+                // Get the selected item in the listview.
+                ListViewItem currentItem = lstActions.SelectedItems[0];
+
+                // Get the associated ScriptAction.
+                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
+
+                // Create new item.
+                ListViewItem newItem = new ListViewItem();
+
+                // Copy values of selected action.
+                ScriptAction newAction = new ScriptAction(currentScriptId, currentAction.Delay, currentAction.Command, currentAction.Datalong, currentAction.Datalong2, currentAction.Datalong3, currentAction.Datalong4, currentAction.BuddyId, currentAction.BuddyRadius, currentAction.BuddyType, currentAction.DataFlags, currentAction.Dataint, currentAction.Dataint2, currentAction.Dataint3, currentAction.Dataint4, currentAction.X, currentAction.Y, currentAction.Z, currentAction.O, currentAction.ConditionId, currentAction.Comments + " - Copy");
+
+                // We show only delay, command id and comment in the listview.
+                newItem.Text = newAction.Delay.ToString();
+                newItem.SubItems.Add(newAction.Command.ToString());
+                newItem.SubItems.Add(newAction.Comments);
+
+                // Save the ScriptAction to the Tag.
+                newItem.Tag = newAction;
+
+                // Add it to the listview.
+                lstActions.Items.Add(newItem);
+
+                // Select the new item.
+                lstActions.FocusedItem = newItem;
+                newItem.Selected = true;
+                lstActions.Select();
+            }
         }
 
         private void cmbFieldSetFields_SelectedIndexChanged(object sender, EventArgs e)
@@ -1639,7 +1677,11 @@ namespace ScriptEditor
             SetScriptFlagsFromCheckbox(chkMoveToFlagsForce, "Datalong4", 1);
         }
 
-        
+        private void chkMoveToFlagsPointMovement_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkMoveToFlagsPointMovement, "Datalong4", 2);
+        }
+
         private void chkMoveOptions1_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkMoveOptions1, "Datalong3", 1);
@@ -1730,50 +1772,7 @@ namespace ScriptEditor
 
         private void txtMoveToTime_Leave(object sender, EventArgs e)
         {
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                dontUpdate = true;
-
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                uint speed;
-                if (!UInt32.TryParse(txtMoveToTime.Text, out speed))
-                    txtMoveToTime.Text = "";
-
-                // Updating orientation.
-                currentAction.Datalong2 = speed;
-
-                // Orientation and movement options cannot be used with speed.
-                if (speed > 0)
-                {
-                    txtMoveToO.Enabled = false;
-                    txtMoveToO.Text = "";
-                    currentAction.O = 0;
-
-                    grpMoveToOptions.Enabled = false;
-                    currentAction.Datalong3 = 0;
-                    chkMoveOptions1.Checked = false;
-                    chkMoveOptions2.Checked = false;
-                    chkMoveOptions4.Checked = false;
-                    chkMoveOptions8.Checked = false;
-                    chkMoveOptions16.Checked = false;
-                    chkMoveOptions32.Checked = false;
-                    chkMoveOptions64.Checked = false;
-                    chkMoveOptions128.Checked = false;
-                    chkMoveOptions256.Checked = false;
-                }
-                else
-                {
-                    txtMoveToO.Enabled = true;
-                    grpMoveToOptions.Enabled = true;
-                }
-
-                dontUpdate = false;
-            }
+            SetScriptFieldFromTextbox(txtMoveToTime, "Datalong2");
         }
 
         private void Command4ResetAllCheckboxes()
@@ -3149,6 +3148,8 @@ namespace ScriptEditor
                 formEditor.LoadScript(script_id, "event_scripts");
             }
         }
+
+        
     }
 
     // Sorts items in the script actions listbox by delay.
