@@ -14,9 +14,9 @@ namespace ScriptEditor
         public uint Datalong2;
         public uint Datalong3;
         public uint Datalong4;
-        public uint BuddyId;
-        public uint BuddyRadius;
-        public uint BuddyType;
+        public uint TargetParam1;
+        public uint TargetParam2;
+        public uint TargetType;
         public uint DataFlags;
         public int Dataint;
         public int Dataint2;
@@ -28,7 +28,7 @@ namespace ScriptEditor
         public float O;
         public uint ConditionId;
         public string Comments;
-        public ScriptAction(uint id, uint delay, uint command, uint datalong, uint datalong2, uint datalong3, uint datalong4, uint buddyid, uint buddyradius, uint buddytype, uint dataflags, int dataint, int dataint2, int dataint3, int dataint4, float x, float y, float z, float o, uint conditionid, string comments)
+        public ScriptAction(uint id, uint delay, uint command, uint datalong, uint datalong2, uint datalong3, uint datalong4, uint targetparam1, uint targetparam2, uint targettype, uint dataflags, int dataint, int dataint2, int dataint3, int dataint4, float x, float y, float z, float o, uint conditionid, string comments)
         {
             Id = id;
             Delay = delay;
@@ -37,9 +37,9 @@ namespace ScriptEditor
             Datalong2 = datalong2;
             Datalong3 = datalong3;
             Datalong4 = datalong4;
-            BuddyId = buddyid;
-            BuddyRadius = buddyradius;
-            BuddyType = buddytype;
+            TargetParam1 = targetparam1;
+            TargetParam2 = targetparam2;
+            TargetType = targettype;
             DataFlags = dataflags;
             Dataint = dataint;
             Dataint2 = dataint2;
@@ -61,9 +61,9 @@ namespace ScriptEditor
             Datalong2 = 0;
             Datalong3 = 0;
             Datalong4 = 0;
-            BuddyId = 0;
-            BuddyRadius = 0;
-            BuddyType = 0;
+            TargetParam1 = 0;
+            TargetParam2 = 0;
+            TargetType = 0;
             DataFlags = 0;
             Dataint = 0;
             Dataint2 = 0;

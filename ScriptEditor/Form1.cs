@@ -98,16 +98,33 @@ namespace ScriptEditor
             cmbCommandId.Items.Add(new ComboboxPair("Start Script", 39));
             cmbCommandId.Items.Add(new ComboboxPair("Remove Item", 40));
             cmbCommandId.Items.Add(new ComboboxPair("Remove Object", 41));
+            cmbCommandId.Items.Add(new ComboboxPair("Set Melee Attack", 42));
+            cmbCommandId.Items.Add(new ComboboxPair("Set Combat Movement", 43));
+            cmbCommandId.Items.Add(new ComboboxPair("Set Phase", 44));
+            cmbCommandId.Items.Add(new ComboboxPair("Set Phase Random", 45));
+            cmbCommandId.Items.Add(new ComboboxPair("Set Phase Range", 46));
+            cmbCommandId.Items.Add(new ComboboxPair("Flee", 47));
             cmbCommandId.SelectedIndex = 0;
 
             // Add option to Buddy Type combo box.
-            cmbBuddyType.Items.Add(new ComboboxPair("Creature Entry", 0));
-            cmbBuddyType.Items.Add(new ComboboxPair("Creature GUID", 1));
-            cmbBuddyType.Items.Add(new ComboboxPair("Creature Instance Data", 2));
-            cmbBuddyType.Items.Add(new ComboboxPair("Gameobject Entry", 3));
-            cmbBuddyType.Items.Add(new ComboboxPair("Gameobject GUID", 4));
-            cmbBuddyType.Items.Add(new ComboboxPair("Gameobject Instance Data", 5));
-            cmbBuddyType.SelectedIndex = 0;
+            cmbTargetType.Items.Add(new ComboboxPair("Provided Target", 0));
+            cmbTargetType.Items.Add(new ComboboxPair("Current Victim", 1));
+            cmbTargetType.Items.Add(new ComboboxPair("Second on Threat", 2));
+            cmbTargetType.Items.Add(new ComboboxPair("Last on Threat", 3));
+            cmbTargetType.Items.Add(new ComboboxPair("Random Attacker", 4));
+            cmbTargetType.Items.Add(new ComboboxPair("Random Not Top", 5));
+            cmbTargetType.Items.Add(new ComboboxPair("Source", 6));
+            cmbTargetType.Items.Add(new ComboboxPair("Owner of Source", 7));
+            cmbTargetType.Items.Add(new ComboboxPair("Owner or Source", 8));
+            cmbTargetType.Items.Add(new ComboboxPair("Creature Entry", 9));
+            cmbTargetType.Items.Add(new ComboboxPair("Creature GUID", 10));
+            cmbTargetType.Items.Add(new ComboboxPair("Creature Instance Data", 11));
+            cmbTargetType.Items.Add(new ComboboxPair("Gameobject Entry", 12));
+            cmbTargetType.Items.Add(new ComboboxPair("Gameobject GUID", 13));
+            cmbTargetType.Items.Add(new ComboboxPair("Gameobject Instance Data", 14));
+            cmbTargetType.Items.Add(new ComboboxPair("Nearby Friendly", 15));
+            cmbTargetType.Items.Add(new ComboboxPair("Injured Friendly", 16));
+            cmbTargetType.SelectedIndex = 0;
 
             // Add chat types to combo box.
             cmbTalkChatType.Items.Add(new ComboboxPair("-NONE-", 0));
@@ -137,6 +154,27 @@ namespace ScriptEditor
             cmbKillCreditType.Items.Add(new ComboboxPair("Personal credit", 0));
             cmbKillCreditType.Items.Add(new ComboboxPair("Group credit", 1));
 
+            // Add options to Summon Creature Attack Target combo box.
+            cmbSummonCreatureAttackTarget.Items.Add(new ComboboxPair("None", 6));
+            cmbSummonCreatureAttackTarget.Items.Add(new ComboboxPair("Provided Target", 0));
+            cmbSummonCreatureAttackTarget.Items.Add(new ComboboxPair("Current Victim", 1));
+            cmbSummonCreatureAttackTarget.Items.Add(new ComboboxPair("Second on Threat", 2));
+            cmbSummonCreatureAttackTarget.Items.Add(new ComboboxPair("Last on Threat", 3));
+            cmbSummonCreatureAttackTarget.Items.Add(new ComboboxPair("Random Attacker", 4));
+            cmbSummonCreatureAttackTarget.Items.Add(new ComboboxPair("Random Not Top", 5));
+
+            // Add options to Summon Creature Despawn Type combo box.
+            cmbSummonCreatureDespawnType.Items.Add(new ComboboxPair("Timer OOC or Disappear", 1));
+            cmbSummonCreatureDespawnType.Items.Add(new ComboboxPair("Timer OOC or Death", 2));
+            cmbSummonCreatureDespawnType.Items.Add(new ComboboxPair("Timer", 3));
+            cmbSummonCreatureDespawnType.Items.Add(new ComboboxPair("Timer OOC", 4));
+            cmbSummonCreatureDespawnType.Items.Add(new ComboboxPair("On Death", 5));
+            cmbSummonCreatureDespawnType.Items.Add(new ComboboxPair("Timer after Death", 6));
+            cmbSummonCreatureDespawnType.Items.Add(new ComboboxPair("On Corpse Despawn", 7));
+            cmbSummonCreatureDespawnType.Items.Add(new ComboboxPair("Manual", 8));
+            cmbSummonCreatureDespawnType.Items.Add(new ComboboxPair("Timer or Disappear", 9));
+            cmbSummonCreatureDespawnType.Items.Add(new ComboboxPair("Timer or Death", 10));
+
             // Assign motion types list to combo box.
             cmbSetMovementType.DataSource = GameData.MotionTypesList;
 
@@ -148,7 +186,7 @@ namespace ScriptEditor
 
             // Setting default selection for combo boxes.
             cmbSummonCreatureFacingOptions.SelectedIndex = 0;
-            cmbSummonCreatureSetRun.SelectedIndex = 0;
+            cmbSummonCreatureAttackTarget.SelectedIndex = 0;
             cmbTable.SelectedIndex = 0;
             cmbSetMovementType.SelectedIndex = 0;
 
@@ -253,7 +291,7 @@ namespace ScriptEditor
                 // Get the associated ScriptAction.
                 ScriptAction currentAction = (ScriptAction)lvi.Tag;
 
-                query += "INSERT INTO `" + currentScriptTable + "` (`id`, `delay`, `command`, `datalong`, `datalong2`, `datalong3`, `datalong4`, `buddy_id`, `buddy_radius`, `buddy_type`, `data_flags`, `dataint`, `dataint2`, `dataint3`, `dataint4`, `x`, `y`, `z`, `o`, `condition_id`, `comments`) VALUES (" + currentAction.Id.ToString() + ", " + currentAction.Delay.ToString() + ", " + currentAction.Command.ToString() + ", " + currentAction.Datalong.ToString() + ", " + currentAction.Datalong2.ToString() + ", " + currentAction.Datalong3.ToString() + ", " + currentAction.Datalong4.ToString() + ", " + currentAction.BuddyId.ToString() + ", " + currentAction.BuddyRadius.ToString() + ", " + currentAction.BuddyType.ToString() + ", " + currentAction.DataFlags.ToString() + ", " + currentAction.Dataint.ToString() + ", " + currentAction.Dataint2.ToString() + ", " + currentAction.Dataint3.ToString() + ", " + currentAction.Dataint4.ToString() + ", " + currentAction.X.ToString().Replace(',', '.') + ", " + currentAction.Y.ToString().Replace(',', '.') + ", " + currentAction.Z.ToString().Replace(',', '.') + ", " + currentAction.O.ToString().Replace(',', '.') + ", " + currentAction.ConditionId.ToString() + ", '" + MySQLEscape(currentAction.Comments) + "');\n";
+                query += "INSERT INTO `" + currentScriptTable + "` (`id`, `delay`, `command`, `datalong`, `datalong2`, `datalong3`, `datalong4`, `target_param1`, `target_param2`, `target_type`, `data_flags`, `dataint`, `dataint2`, `dataint3`, `dataint4`, `x`, `y`, `z`, `o`, `condition_id`, `comments`) VALUES (" + currentAction.Id.ToString() + ", " + currentAction.Delay.ToString() + ", " + currentAction.Command.ToString() + ", " + currentAction.Datalong.ToString() + ", " + currentAction.Datalong2.ToString() + ", " + currentAction.Datalong3.ToString() + ", " + currentAction.Datalong4.ToString() + ", " + currentAction.TargetParam1.ToString() + ", " + currentAction.TargetParam2.ToString() + ", " + currentAction.TargetType.ToString() + ", " + currentAction.DataFlags.ToString() + ", " + currentAction.Dataint.ToString() + ", " + currentAction.Dataint2.ToString() + ", " + currentAction.Dataint3.ToString() + ", " + currentAction.Dataint4.ToString() + ", " + currentAction.X.ToString().Replace(',', '.') + ", " + currentAction.Y.ToString().Replace(',', '.') + ", " + currentAction.Z.ToString().Replace(',', '.') + ", " + currentAction.O.ToString().Replace(',', '.') + ", " + currentAction.ConditionId.ToString() + ", '" + MySQLEscape(currentAction.Comments) + "');\n";
             }
             return query;
         }
@@ -302,6 +340,20 @@ namespace ScriptEditor
             new Form1().Show();
         }
 
+        private void btnViewRaw_Click(object sender, EventArgs e)
+        {
+            if (lstActions.SelectedItems.Count > 0)
+            {
+                // Get the selected item in the listview.
+                ListViewItem currentItem = lstActions.SelectedItems[0];
+
+                // Get the associated ScriptAction.
+                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
+
+                MessageBox.Show("Id: " + currentAction.Id.ToString() + "\nDelay: " + currentAction.Delay.ToString() + "\nCommand: " + currentAction.Command.ToString() + "\nDatalong: " + currentAction.Datalong.ToString() + "\nDatalong2: " + currentAction.Datalong2.ToString() + "\nDatalong3: " + currentAction.Datalong3.ToString() + "\nDatalong4: " + currentAction.Datalong4.ToString() + "\nTargetParam1: " + currentAction.TargetParam1.ToString() + "\nTargetParam2: " + currentAction.TargetParam2.ToString() + "\nTargetType: " + currentAction.TargetType.ToString() + "\nDataFlags: " + currentAction.DataFlags.ToString() + "\nDataint: " + currentAction.Dataint.ToString() + "\nDataint2: " + currentAction.Dataint2.ToString() + "\nDataint3: " + currentAction.Dataint3.ToString() + "\nDataint4: " + currentAction.Dataint4.ToString() + "\nX: " + currentAction.X.ToString() + "\nY: " + currentAction.Y.ToString() + "\nZ: " + currentAction.Z.ToString() + "\nO: " + currentAction.O.ToString() + "\nCondition: " + currentAction.ConditionId.ToString(), "Raw Script Data");
+            }
+        }
+
         private void btnFind_Click(object sender, EventArgs e)
         {
             dontUpdate = true;
@@ -328,7 +380,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(Program.connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT id, delay, command, datalong, datalong2, datalong3, datalong4, buddy_id, buddy_radius, buddy_type, data_flags, dataint, dataint2, dataint3, dataint4, x, y, z, o, condition_id, comments FROM " + table_name + " WHERE id=" + script_id.ToString() + " ORDER BY delay";
+            command.CommandText = "SELECT id, delay, command, datalong, datalong2, datalong3, datalong4, target_param1, target_param2, target_type, data_flags, dataint, dataint2, dataint3, dataint4, x, y, z, o, condition_id, comments FROM " + table_name + " WHERE id=" + script_id.ToString() + " ORDER BY delay";
             try
             {
                 conn.Open();
@@ -413,12 +465,12 @@ namespace ScriptEditor
             // Text Boxes.
             txtCommandDelay.Text = "";
             txtCommandComment.Text = "";
-            txtBuddyId.Text = "";
-            txtBuddyRadius.Text = "";
+            txtTargetParam1.Text = "";
+            txtTargetParam2.Text = "";
             
             // Combo Boxes.
-            cmbBuddyType.SelectedIndex = 0;
-            cmbBuddyType.Text = "";
+            cmbTargetType.SelectedIndex = 0;
+            cmbTargetType.Text = "";
             cmbCommandId.SelectedIndex = 0;
             cmbCommandId.Text = "";
 
@@ -534,11 +586,13 @@ namespace ScriptEditor
             txtSummonCreatureY.Text = "";
             txtSummonCreatureZ.Text = "";
             txtSummonCreatureO.Text = "";
-            cmbSummonCreatureSetRun.SelectedIndex = 0;
+            cmbSummonCreatureAttackTarget.SelectedIndex = 0;
             cmbSummonCreatureFacingOptions.SelectedIndex = 0;
-            chkSummonCreatureFlags16.Checked = false;
-            chkSummonCreatureFlags32.Checked = false;
-            chkSummonCreatureFlags64.Checked = false;
+            cmbSummonCreatureDespawnType.SelectedIndex = 0;
+            chkSummonCreatureFlags1.Checked = false;
+            chkSummonCreatureFlags2.Checked = false;
+            chkSummonCreatureFlags4.Checked = false;
+            chkSummonCreatureFlags8.Checked = false;
             frmCommandSummonCreature.Visible = false;
 
             // Open/Close Door and Activate GameObject Commands (11, 12, 13)
@@ -595,6 +649,8 @@ namespace ScriptEditor
             frmCommandSetMovement.Visible = false;
 
             // Set Active Object Command (21)
+            // Set Melee Attack Command (42)
+            // Set Combat Movement Command (43)
             cmbActiveObjectSetActive.SelectedIndex = 0;
             frmCommandActiveObject.Visible = false;
 
@@ -678,6 +734,23 @@ namespace ScriptEditor
             txtStartScriptChance3.Text = "";
             txtStartScriptChance4.Text = "";
             frmCommandStartScript.Visible = false;
+
+            // Set AI Phase Command (44)
+            txtSetPhasePhase.Text = "";
+            cmbSetPhaseMode.SelectedIndex = 0;
+            frmCommandSetPhase.Visible = false;
+
+            // Set Random AI Phase Command (45)
+            // Set Range AI Phase Command (46)
+            txtSetRandomPhase1.Text = "";
+            txtSetRandomPhase2.Text = "";
+            txtSetRandomPhase3.Text = "";
+            txtSetRandomPhase4.Text = "";
+            frmCommandSetRandomPhase.Visible = false;
+
+            // Flee Command (47)
+            cmbFleeMode.SelectedIndex = 0;
+            frmCommandFlee.Visible = false;
 
             dontUpdate = false;
         }
@@ -887,15 +960,30 @@ namespace ScriptEditor
                     txtSummonCreatureY.Text = selectedAction.Y.ToString();
                     txtSummonCreatureZ.Text = selectedAction.Z.ToString();
                     txtSummonCreatureO.Text = selectedAction.O.ToString();
-                    cmbSummonCreatureSetRun.SelectedIndex = selectedAction.Dataint;
+                    for (int i = 0; i < cmbSummonCreatureAttackTarget.Items.Count; i++)
+                    {
+                        if ((cmbSummonCreatureAttackTarget.Items[i] as ComboboxPair).Value == selectedAction.Dataint3)
+                        {
+                            cmbSummonCreatureAttackTarget.SelectedIndex = i;
+                            break;
+                        }
+                    }
+                    for (int i = 0; i < cmbSummonCreatureDespawnType.Items.Count; i++)
+                    {
+                        if ((cmbSummonCreatureDespawnType.Items[i] as ComboboxPair).Value == selectedAction.Dataint4)
+                        {
+                            cmbSummonCreatureDespawnType.SelectedIndex = i;
+                            break;
+                        }
+                    }
                     cmbSummonCreatureFacingOptions.SelectedIndex = selectedAction.Dataint2;
-                    if ((selectedAction.DataFlags & 16) != 0)
-                        chkSummonCreatureFlags16.Checked = true;
-                    if ((selectedAction.DataFlags & 32) != 0)
-                        chkSummonCreatureFlags32.Checked = true;
-                    if ((selectedAction.DataFlags & 64) != 0)
-                        chkSummonCreatureFlags64.Checked = true;
-                    if (!chkSummonCreatureFlags32.Checked && !chkSummonCreatureFlags64.Checked)
+                    if ((selectedAction.Dataint & 2) != 0)
+                        chkSummonCreatureFlags2.Checked = true;
+                    if ((selectedAction.Dataint & 4) != 0)
+                        chkSummonCreatureFlags4.Checked = true;
+                    if ((selectedAction.Dataint & 8) != 0)
+                        chkSummonCreatureFlags8.Checked = true;
+                    if (!chkSummonCreatureFlags4.Checked && !chkSummonCreatureFlags8.Checked)
                     {
                         txtSummonCreatureUniqueLimit.Enabled = false;
                         txtSummonCreatureUniqueRange.Enabled = false;
@@ -1105,7 +1193,27 @@ namespace ScriptEditor
                     break;
                 }
                 case 21: // Set Active Object
+                case 42: // Set Melee Attack
+                case 43: // Set Combat Movement
                 {
+                    switch (selectedAction.Command)
+                    {
+                        case 21: // Set Active Object
+                        {
+                            lblActiveObjectTooltip.Text = "Makes the source WorldObject into an Active Object. That means its always updated, even if there are no players around.";
+                            break;
+                        }
+                        case 42: // Set Melee Attack
+                        {
+                            lblActiveObjectTooltip.Text = "Controls whether the source Creature will auto attack its target.";
+                            break;
+                        }
+                        case 43: // Set Combat Movement
+                        {
+                            lblActiveObjectTooltip.Text = "Controls whether the source Creature will chase its target.";
+                            break;
+                        }
+                    }
                     cmbActiveObjectSetActive.SelectedIndex = (int)selectedAction.Datalong;
                     frmCommandActiveObject.Visible = true;
                     break;
@@ -1285,6 +1393,49 @@ namespace ScriptEditor
                     frmCommandStartScript.Visible = true;
                     break;
                 }
+                case 44: // Set AI Phase
+                {
+                    txtSetPhasePhase.Text = selectedAction.Datalong.ToString();
+                    cmbSetPhaseMode.SelectedIndex = (int)selectedAction.Datalong2;
+                    frmCommandSetPhase.Visible = true;
+                    break;
+                }
+                case 45: // Set Random AI Phase
+                case 46: // Set Range AI Phase
+                {
+                    txtSetRandomPhase1.Text = selectedAction.Datalong.ToString();
+                    txtSetRandomPhase2.Text = selectedAction.Datalong2.ToString();
+                    txtSetRandomPhase3.Text = selectedAction.Datalong3.ToString();
+                    txtSetRandomPhase4.Text = selectedAction.Datalong4.ToString();
+                    if (selectedAction.Command == 45)
+                    {
+                        lblSetRandomPhaseTooltip.Text = "Randomly chooses one of the provided values and sets the Creature's AI phase to it. Can only be used on creatures with EventAI.";
+                        lblSetRandomPhase3.Visible = true;
+                        lblSetRandomPhase4.Visible = true;
+                        txtSetRandomPhase3.Visible = true;
+                        txtSetRandomPhase4.Visible = true;
+                        lblSetRandomPhase1.Text = "Phase 1:";
+                        lblSetRandomPhase2.Text = "Phase 2:";
+                    }
+                    else
+                    {
+                        lblSetRandomPhaseTooltip.Text = "Randomly chooses a value in the provided range and sets the Creature's AI phase to it. Can only be used on creatures with EventAI.";
+                        lblSetRandomPhase3.Visible = false;
+                        lblSetRandomPhase4.Visible = false;
+                        txtSetRandomPhase3.Visible = false;
+                        txtSetRandomPhase4.Visible = false;
+                        lblSetRandomPhase1.Text = "Minimum:";
+                        lblSetRandomPhase2.Text = "Maximum:";
+                    }
+                    frmCommandSetRandomPhase.Visible = true;
+                    break;
+                }
+                case 47: // Flee
+                {
+                    cmbFleeMode.SelectedIndex = (int)selectedAction.Datalong;
+                    frmCommandFlee.Visible = true;
+                    break;
+                }
             }
             dontUpdate = false;
         }
@@ -1303,9 +1454,9 @@ namespace ScriptEditor
             
             txtCommandDelay.Text = selectedAction.Delay.ToString();
             txtCommandComment.Text = selectedAction.Comments;
-            txtBuddyId.Text = selectedAction.BuddyId.ToString();
-            txtBuddyRadius.Text = selectedAction.BuddyRadius.ToString();
-            cmbBuddyType.SelectedIndex = (int)selectedAction.BuddyType;
+            txtTargetParam1.Text = selectedAction.TargetParam1.ToString();
+            txtTargetParam2.Text = selectedAction.TargetParam2.ToString();
+            cmbTargetType.SelectedIndex = (int)selectedAction.TargetType;
             cmbCommandId.SelectedIndex = (int)selectedAction.Command;
 
             if (selectedAction.ConditionId > 0)
@@ -1524,9 +1675,84 @@ namespace ScriptEditor
             }
         }
 
-        private void cmbBuddyType_SelectedIndexChanged(object sender, EventArgs e)
+        private void SetTargetControlsBasedOnType(int target_type)
         {
-            SetScriptFieldFromCombobox(cmbBuddyType, "BuddyType", false);
+            switch (target_type)
+            {
+                case 0: // Provided Target
+                case 1: // Current Victim
+                case 2: // Second Aggro
+                case 3: // Last Aggro
+                case 4: // Random
+                case 5: // Random Not Top
+                case 6: // Self
+                case 7: // Owner
+                case 8: // Owner or Self
+                {
+                    lblTargetParam1.Text = "N/A:";
+                    lblTargetParam2.Text = "N/A:";
+                    SetScriptFieldFromValue(0, "TargetParam1");
+                    txtTargetParam1.Text = "";
+                    txtTargetParam1.Enabled = false;
+                    SetScriptFieldFromValue(0, "TargetParam2");
+                    txtTargetParam2.Text = "";
+                    txtTargetParam2.Enabled = false;
+                    break;
+                }
+                case 9: // Creature Entry
+                case 12: // GameObject Entry
+                {
+                    lblTargetParam1.Text = "Entry:";
+                    lblTargetParam2.Text = "Radius:";
+                    txtTargetParam1.Enabled = true;
+                    txtTargetParam2.Enabled = true;
+                    break;
+                }
+                case 10: // Creature GUID
+                case 13: // GameObject Guid
+                {
+                    lblTargetParam1.Text = "GUID:";
+                    lblTargetParam2.Text = "N/A:";
+                    txtTargetParam1.Enabled = true;
+                    txtTargetParam2.Enabled = false;
+                    SetScriptFieldFromValue(0, "TargetParam2");
+                    txtTargetParam2.Text = "";
+                    break;
+                }
+                case 11: // Creature Instance Data
+                case 14: // GameObject Instance Data
+                {
+                    lblTargetParam1.Text = "Index:";
+                    lblTargetParam2.Text = "N/A:";
+                    txtTargetParam1.Enabled = true;
+                    txtTargetParam2.Enabled = false;
+                    SetScriptFieldFromValue(0, "TargetParam2");
+                    txtTargetParam2.Text = "";
+                    break;
+                }
+                case 15: // Nearby Friendly
+                {
+                    lblTargetParam1.Text = "Spell Id:";
+                    lblTargetParam2.Text = "Not Self:";
+                    txtTargetParam1.Enabled = true;
+                    txtTargetParam2.Enabled = true;
+                    break;
+                }
+                case 16: // Injured Friendly
+                {
+                    lblTargetParam1.Text = "Spell Id:";
+                    lblTargetParam2.Text = "HP %:";
+                    txtTargetParam1.Enabled = true;
+                    txtTargetParam2.Enabled = true;
+                    break;
+                }
+            }
+        }
+        private void cmbTargetType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbTargetType, "TargetType", false);
+            SetTargetControlsBasedOnType(cmbTargetType.SelectedIndex);
+            
         }
         private void txtCommandDelay_Leave(object sender, EventArgs e)
         {
@@ -1551,14 +1777,14 @@ namespace ScriptEditor
             }
         }
 
-        private void txtBuddyId_Leave(object sender, EventArgs e)
+        private void txtTargetParam1_Leave(object sender, EventArgs e)
         {
-            SetScriptFieldFromTextbox(txtBuddyId, "BuddyId");
+            SetScriptFieldFromTextbox(txtTargetParam1, "TargetParam1");
         }
 
-        private void txtBuddyRadius_Leave(object sender, EventArgs e)
+        private void txtTargetParam2_Leave(object sender, EventArgs e)
         {
-            SetScriptFieldFromTextbox(txtBuddyRadius, "BuddyRadius");
+            SetScriptFieldFromTextbox(txtTargetParam2, "TargetParam2");
         }
 
         private void chkSwapInitial_CheckedChanged(object sender, EventArgs e)
@@ -1623,7 +1849,7 @@ namespace ScriptEditor
                 ListViewItem newItem = new ListViewItem();
 
                 // Copy values of selected action.
-                ScriptAction newAction = new ScriptAction(currentScriptId, currentAction.Delay, currentAction.Command, currentAction.Datalong, currentAction.Datalong2, currentAction.Datalong3, currentAction.Datalong4, currentAction.BuddyId, currentAction.BuddyRadius, currentAction.BuddyType, currentAction.DataFlags, currentAction.Dataint, currentAction.Dataint2, currentAction.Dataint3, currentAction.Dataint4, currentAction.X, currentAction.Y, currentAction.Z, currentAction.O, currentAction.ConditionId, currentAction.Comments + " - Copy");
+                ScriptAction newAction = new ScriptAction(currentScriptId, currentAction.Delay, currentAction.Command, currentAction.Datalong, currentAction.Datalong2, currentAction.Datalong3, currentAction.Datalong4, currentAction.TargetParam1, currentAction.TargetParam2, currentAction.TargetType, currentAction.DataFlags, currentAction.Dataint, currentAction.Dataint2, currentAction.Dataint3, currentAction.Dataint4, currentAction.X, currentAction.Y, currentAction.Z, currentAction.O, currentAction.ConditionId, currentAction.Comments + " - Copy");
 
                 // We show only delay, command id and comment in the listview.
                 newItem.Text = newAction.Delay.ToString();
@@ -2270,6 +2496,16 @@ namespace ScriptEditor
             SetScriptFieldFromTextbox(txtSummonCreatureO, "O");
         }
 
+        private void cmbSummonCreatureAttackTarget_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbSummonCreatureAttackTarget, "Dataint3", true);
+        }
+
+        private void cmbSummonCreatureDespawnType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbSummonCreatureDespawnType, "Dataint4", true);
+        }
+
         private void cmbSummonCreatureFacingOptions_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (dontUpdate)
@@ -2298,11 +2534,6 @@ namespace ScriptEditor
             }
         }
 
-        private void cmbSummonCreatureSetRun_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SetScriptFieldFromCombobox(cmbSummonCreatureSetRun, "Dataint", false);
-        }
-
         private void txtSummonCreatureUniqueLimit_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSummonCreatureUniqueLimit, "Datalong3");
@@ -2313,12 +2544,17 @@ namespace ScriptEditor
             SetScriptFieldFromTextbox(txtSummonCreatureUniqueRange, "Datalong4");
         }
 
-        private void chkSummonCreatureFlags16_CheckedChanged(object sender, EventArgs e)
+        private void chkSummonCreatureFlags1_CheckedChanged(object sender, EventArgs e)
         {
-            SetScriptFlagsFromCheckbox(chkSummonCreatureFlags16, "DataFlags", 16);
+            SetScriptFlagsFromCheckbox(chkSummonCreatureFlags1, "Dataint", 1);
         }
 
-        private void chkSummonCreatureFlags32_CheckedChanged(object sender, EventArgs e)
+        private void chkSummonCreatureFlags2_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkSummonCreatureFlags2, "Dataint", 2);
+        }
+
+        private void chkSummonCreatureFlags4_CheckedChanged(object sender, EventArgs e)
         {
             if (dontUpdate)
                 return;
@@ -2332,17 +2568,17 @@ namespace ScriptEditor
                 ScriptAction currentAction = (ScriptAction)currentItem.Tag;
 
                 // Updating data flags.
-                if (chkSummonCreatureFlags32.Checked)
+                if (chkSummonCreatureFlags4.Checked)
                 {
-                    currentAction.DataFlags += 32;
-                    chkSummonCreatureFlags64.Checked = false;
+                    currentAction.Dataint += 4;
+                    chkSummonCreatureFlags8.Checked = false;
                     txtSummonCreatureUniqueLimit.Enabled = true;
                     txtSummonCreatureUniqueRange.Enabled = true;
                 }
                 else
                 {
-                    currentAction.DataFlags -= 32;
-                    if (!chkSummonCreatureFlags64.Checked)
+                    currentAction.Dataint -= 4;
+                    if (!chkSummonCreatureFlags8.Checked)
                     {
                         txtSummonCreatureUniqueLimit.Enabled = false;
                         txtSummonCreatureUniqueLimit.Text = "0";
@@ -2355,7 +2591,7 @@ namespace ScriptEditor
             }
         }
 
-        private void chkSummonCreatureFlags64_CheckStateChanged(object sender, EventArgs e)
+        private void chkSummonCreatureFlags8_CheckStateChanged(object sender, EventArgs e)
         {
             if (dontUpdate)
                 return;
@@ -2369,17 +2605,17 @@ namespace ScriptEditor
                 ScriptAction currentAction = (ScriptAction)currentItem.Tag;
 
                 // Updating data flags.
-                if (chkSummonCreatureFlags64.Checked)
+                if (chkSummonCreatureFlags8.Checked)
                 {
-                    currentAction.DataFlags += 64;
-                    chkSummonCreatureFlags32.Checked = false;
+                    currentAction.Dataint += 8;
+                    chkSummonCreatureFlags4.Checked = false;
                     txtSummonCreatureUniqueLimit.Enabled = true;
                     txtSummonCreatureUniqueRange.Enabled = true;
                 }
                 else
                 {
-                    currentAction.DataFlags -= 64;
-                    if (!chkSummonCreatureFlags32.Checked)
+                    currentAction.Dataint -= 8;
+                    if (!chkSummonCreatureFlags4.Checked)
                     {
                         txtSummonCreatureUniqueLimit.Enabled = false;
                         txtSummonCreatureUniqueLimit.Text = "0";
@@ -3149,7 +3385,40 @@ namespace ScriptEditor
             }
         }
 
-        
+        private void txtSetPhasePhase_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSetPhasePhase, "Datalong");
+        }
+
+        private void cmbSetPhaseMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbSetPhaseMode, "Datalong2", false);
+        }
+
+        private void txtSetRandomPhase1_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSetRandomPhase1, "Datalong");
+        }
+
+        private void txtSetRandomPhase2_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSetRandomPhase2, "Datalong2");
+        }
+
+        private void txtSetRandomPhase3_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSetRandomPhase3, "Datalong3");
+        }
+
+        private void txtSetRandomPhase4_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSetRandomPhase4, "Datalong4");
+        }
+
+        private void cmbFleeMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbFleeMode, "Datalong", false);
+        }
     }
 
     // Sorts items in the script actions listbox by delay.

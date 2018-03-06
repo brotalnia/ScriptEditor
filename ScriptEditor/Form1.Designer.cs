@@ -48,12 +48,12 @@
             this.chkSwapFinal = new System.Windows.Forms.CheckBox();
             this.chkSwapInitial = new System.Windows.Forms.CheckBox();
             this.grpBuddy = new System.Windows.Forms.GroupBox();
-            this.lblBuddyType = new System.Windows.Forms.Label();
-            this.txtBuddyId = new System.Windows.Forms.TextBox();
-            this.cmbBuddyType = new System.Windows.Forms.ComboBox();
-            this.lblBuddyRadius = new System.Windows.Forms.Label();
-            this.txtBuddyRadius = new System.Windows.Forms.TextBox();
-            this.lblBuddyId = new System.Windows.Forms.Label();
+            this.lblTargetType = new System.Windows.Forms.Label();
+            this.txtTargetParam1 = new System.Windows.Forms.TextBox();
+            this.cmbTargetType = new System.Windows.Forms.ComboBox();
+            this.lblTargetParam2 = new System.Windows.Forms.Label();
+            this.txtTargetParam2 = new System.Windows.Forms.TextBox();
+            this.lblTargetParam1 = new System.Windows.Forms.Label();
             this.txtCommandDelay = new System.Windows.Forms.TextBox();
             this.lblDelay = new System.Windows.Forms.Label();
             this.lblCommand = new System.Windows.Forms.Label();
@@ -150,6 +150,8 @@
             this.txtRespawnGameobjectGuid = new System.Windows.Forms.TextBox();
             this.lblRespawnGameobjectTooltip = new System.Windows.Forms.Label();
             this.frmCommandSummonCreature = new System.Windows.Forms.Panel();
+            this.lblSummonCreatureDespawnType = new System.Windows.Forms.Label();
+            this.cmbSummonCreatureDespawnType = new System.Windows.Forms.ComboBox();
             this.lblSummonCreatureO = new System.Windows.Forms.Label();
             this.lblSummonCreatureZ = new System.Windows.Forms.Label();
             this.lblSummonCreatureY = new System.Windows.Forms.Label();
@@ -162,17 +164,18 @@
             this.lblSummonCreatureUniqueLimit = new System.Windows.Forms.Label();
             this.txtSummonCreatureUniqueRange = new System.Windows.Forms.TextBox();
             this.txtSummonCreatureUniqueLimit = new System.Windows.Forms.TextBox();
-            this.lblSummonCreatureSetRun = new System.Windows.Forms.Label();
-            this.cmbSummonCreatureSetRun = new System.Windows.Forms.ComboBox();
+            this.lblSummonCreatureAttackTarget = new System.Windows.Forms.Label();
+            this.cmbSummonCreatureAttackTarget = new System.Windows.Forms.ComboBox();
             this.lblSummonCreatureFacingOptions = new System.Windows.Forms.Label();
             this.cmbSummonCreatureFacingOptions = new System.Windows.Forms.ComboBox();
             this.lblSummonCreatureDelay = new System.Windows.Forms.Label();
             this.txtSummonCreatureDelay = new System.Windows.Forms.TextBox();
             this.lblSummonCreatureId = new System.Windows.Forms.Label();
             this.grpSummonCreatureFlags = new System.Windows.Forms.GroupBox();
-            this.chkSummonCreatureFlags64 = new System.Windows.Forms.CheckBox();
-            this.chkSummonCreatureFlags32 = new System.Windows.Forms.CheckBox();
-            this.chkSummonCreatureFlags16 = new System.Windows.Forms.CheckBox();
+            this.chkSummonCreatureFlags1 = new System.Windows.Forms.CheckBox();
+            this.chkSummonCreatureFlags8 = new System.Windows.Forms.CheckBox();
+            this.chkSummonCreatureFlags4 = new System.Windows.Forms.CheckBox();
+            this.chkSummonCreatureFlags2 = new System.Windows.Forms.CheckBox();
             this.btnSummonCreatureId = new System.Windows.Forms.Button();
             this.lblSummonCreatureTooltip = new System.Windows.Forms.Label();
             this.frmCommandDoor = new System.Windows.Forms.Panel();
@@ -383,6 +386,27 @@
             this.btnNewForm = new System.Windows.Forms.Button();
             this.lblNoAction = new System.Windows.Forms.Label();
             this.btnActionCopy = new System.Windows.Forms.Button();
+            this.btnViewRaw = new System.Windows.Forms.Button();
+            this.frmCommandSetPhase = new System.Windows.Forms.Panel();
+            this.lblSetPhasePhase = new System.Windows.Forms.Label();
+            this.lblSetPhaseMode = new System.Windows.Forms.Label();
+            this.txtSetPhasePhase = new System.Windows.Forms.TextBox();
+            this.cmbSetPhaseMode = new System.Windows.Forms.ComboBox();
+            this.lblSetPhaseTooltip = new System.Windows.Forms.Label();
+            this.frmCommandSetRandomPhase = new System.Windows.Forms.Panel();
+            this.lblSetRandomPhase4 = new System.Windows.Forms.Label();
+            this.txtSetRandomPhase4 = new System.Windows.Forms.TextBox();
+            this.lblSetRandomPhase3 = new System.Windows.Forms.Label();
+            this.txtSetRandomPhase3 = new System.Windows.Forms.TextBox();
+            this.txtSetRandomPhase1 = new System.Windows.Forms.TextBox();
+            this.lblSetRandomPhase2 = new System.Windows.Forms.Label();
+            this.lblSetRandomPhase1 = new System.Windows.Forms.Label();
+            this.txtSetRandomPhase2 = new System.Windows.Forms.TextBox();
+            this.lblSetRandomPhaseTooltip = new System.Windows.Forms.Label();
+            this.frmCommandFlee = new System.Windows.Forms.Panel();
+            this.cmbFleeMode = new System.Windows.Forms.ComboBox();
+            this.lblFleeMode = new System.Windows.Forms.Label();
+            this.lblFleeTooltip = new System.Windows.Forms.Label();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -426,6 +450,9 @@
             this.frmCommandMeetingStone.SuspendLayout();
             this.frmCommandSetData.SuspendLayout();
             this.frmCommandStartScript.SuspendLayout();
+            this.frmCommandSetPhase.SuspendLayout();
+            this.frmCommandSetRandomPhase.SuspendLayout();
+            this.frmCommandFlee.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstActions
@@ -482,7 +509,8 @@
             "quest_start_scripts",
             "quest_end_scripts",
             "creature_movement_scripts",
-            "creature_spells_scripts"});
+            "creature_spells_scripts",
+            "creature_ai_scripts"});
             this.cmbTable.Location = new System.Drawing.Point(672, 24);
             this.cmbTable.Name = "cmbTable";
             this.cmbTable.Size = new System.Drawing.Size(154, 21);
@@ -620,71 +648,71 @@
             // 
             // grpBuddy
             // 
-            this.grpBuddy.Controls.Add(this.lblBuddyType);
-            this.grpBuddy.Controls.Add(this.txtBuddyId);
-            this.grpBuddy.Controls.Add(this.cmbBuddyType);
-            this.grpBuddy.Controls.Add(this.lblBuddyRadius);
-            this.grpBuddy.Controls.Add(this.txtBuddyRadius);
-            this.grpBuddy.Controls.Add(this.lblBuddyId);
+            this.grpBuddy.Controls.Add(this.lblTargetType);
+            this.grpBuddy.Controls.Add(this.txtTargetParam1);
+            this.grpBuddy.Controls.Add(this.cmbTargetType);
+            this.grpBuddy.Controls.Add(this.lblTargetParam2);
+            this.grpBuddy.Controls.Add(this.txtTargetParam2);
+            this.grpBuddy.Controls.Add(this.lblTargetParam1);
             this.grpBuddy.Location = new System.Drawing.Point(162, 19);
             this.grpBuddy.Name = "grpBuddy";
             this.grpBuddy.Size = new System.Drawing.Size(153, 128);
             this.grpBuddy.TabIndex = 9;
             this.grpBuddy.TabStop = false;
-            this.grpBuddy.Text = "Buddy";
+            this.grpBuddy.Text = "Target";
             // 
-            // lblBuddyType
+            // lblTargetType
             // 
-            this.lblBuddyType.AutoSize = true;
-            this.lblBuddyType.Location = new System.Drawing.Point(16, 78);
-            this.lblBuddyType.Name = "lblBuddyType";
-            this.lblBuddyType.Size = new System.Drawing.Size(124, 13);
-            this.lblBuddyType.TabIndex = 9;
-            this.lblBuddyType.Text = "What does the Id mean?";
+            this.lblTargetType.AutoSize = true;
+            this.lblTargetType.Location = new System.Drawing.Point(22, 77);
+            this.lblTargetType.Name = "lblTargetType";
+            this.lblTargetType.Size = new System.Drawing.Size(107, 13);
+            this.lblTargetType.TabIndex = 9;
+            this.lblTargetType.Text = "Target for this action:";
             // 
-            // txtBuddyId
+            // txtTargetParam1
             // 
-            this.txtBuddyId.Location = new System.Drawing.Point(55, 23);
-            this.txtBuddyId.Name = "txtBuddyId";
-            this.txtBuddyId.Size = new System.Drawing.Size(92, 20);
-            this.txtBuddyId.TabIndex = 4;
-            this.txtBuddyId.Leave += new System.EventHandler(this.txtBuddyId_Leave);
+            this.txtTargetParam1.Location = new System.Drawing.Point(64, 23);
+            this.txtTargetParam1.Name = "txtTargetParam1";
+            this.txtTargetParam1.Size = new System.Drawing.Size(83, 20);
+            this.txtTargetParam1.TabIndex = 4;
+            this.txtTargetParam1.Leave += new System.EventHandler(this.txtTargetParam1_Leave);
             // 
-            // cmbBuddyType
+            // cmbTargetType
             // 
-            this.cmbBuddyType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbBuddyType.FormattingEnabled = true;
-            this.cmbBuddyType.Location = new System.Drawing.Point(9, 94);
-            this.cmbBuddyType.Name = "cmbBuddyType";
-            this.cmbBuddyType.Size = new System.Drawing.Size(138, 21);
-            this.cmbBuddyType.TabIndex = 6;
-            this.cmbBuddyType.SelectedIndexChanged += new System.EventHandler(this.cmbBuddyType_SelectedIndexChanged);
+            this.cmbTargetType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTargetType.FormattingEnabled = true;
+            this.cmbTargetType.Location = new System.Drawing.Point(9, 94);
+            this.cmbTargetType.Name = "cmbTargetType";
+            this.cmbTargetType.Size = new System.Drawing.Size(138, 21);
+            this.cmbTargetType.TabIndex = 6;
+            this.cmbTargetType.SelectedIndexChanged += new System.EventHandler(this.cmbTargetType_SelectedIndexChanged);
             // 
-            // lblBuddyRadius
+            // lblTargetParam2
             // 
-            this.lblBuddyRadius.AutoSize = true;
-            this.lblBuddyRadius.Location = new System.Drawing.Point(6, 49);
-            this.lblBuddyRadius.Name = "lblBuddyRadius";
-            this.lblBuddyRadius.Size = new System.Drawing.Size(43, 13);
-            this.lblBuddyRadius.TabIndex = 8;
-            this.lblBuddyRadius.Text = "Radius:";
+            this.lblTargetParam2.AutoSize = true;
+            this.lblTargetParam2.Location = new System.Drawing.Point(6, 49);
+            this.lblTargetParam2.Name = "lblTargetParam2";
+            this.lblTargetParam2.Size = new System.Drawing.Size(43, 13);
+            this.lblTargetParam2.TabIndex = 8;
+            this.lblTargetParam2.Text = "Radius:";
             // 
-            // txtBuddyRadius
+            // txtTargetParam2
             // 
-            this.txtBuddyRadius.Location = new System.Drawing.Point(55, 49);
-            this.txtBuddyRadius.Name = "txtBuddyRadius";
-            this.txtBuddyRadius.Size = new System.Drawing.Size(92, 20);
-            this.txtBuddyRadius.TabIndex = 5;
-            this.txtBuddyRadius.Leave += new System.EventHandler(this.txtBuddyRadius_Leave);
+            this.txtTargetParam2.Location = new System.Drawing.Point(64, 49);
+            this.txtTargetParam2.Name = "txtTargetParam2";
+            this.txtTargetParam2.Size = new System.Drawing.Size(83, 20);
+            this.txtTargetParam2.TabIndex = 5;
+            this.txtTargetParam2.Leave += new System.EventHandler(this.txtTargetParam2_Leave);
             // 
-            // lblBuddyId
+            // lblTargetParam1
             // 
-            this.lblBuddyId.AutoSize = true;
-            this.lblBuddyId.Location = new System.Drawing.Point(6, 26);
-            this.lblBuddyId.Name = "lblBuddyId";
-            this.lblBuddyId.Size = new System.Drawing.Size(19, 13);
-            this.lblBuddyId.TabIndex = 7;
-            this.lblBuddyId.Text = "Id:";
+            this.lblTargetParam1.AutoSize = true;
+            this.lblTargetParam1.Location = new System.Drawing.Point(6, 26);
+            this.lblTargetParam1.Name = "lblTargetParam1";
+            this.lblTargetParam1.Size = new System.Drawing.Size(19, 13);
+            this.lblTargetParam1.TabIndex = 7;
+            this.lblTargetParam1.Text = "Id:";
             // 
             // txtCommandDelay
             // 
@@ -1656,12 +1684,14 @@
             this.lblRespawnGameobjectTooltip.Name = "lblRespawnGameobjectTooltip";
             this.lblRespawnGameobjectTooltip.Size = new System.Drawing.Size(453, 32);
             this.lblRespawnGameobjectTooltip.TabIndex = 0;
-            this.lblRespawnGameobjectTooltip.Text = "Respawns the gameobject with the specified GUID, and then despawns it again when " +
+            this.lblRespawnGameobjectTooltip.Text = "Respawns the GameObject with the specified GUID, and then despawns it again when " +
     "the delay expires.";
             // 
             // frmCommandSummonCreature
             // 
             this.frmCommandSummonCreature.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandSummonCreature.Controls.Add(this.lblSummonCreatureDespawnType);
+            this.frmCommandSummonCreature.Controls.Add(this.cmbSummonCreatureDespawnType);
             this.frmCommandSummonCreature.Controls.Add(this.lblSummonCreatureO);
             this.frmCommandSummonCreature.Controls.Add(this.lblSummonCreatureZ);
             this.frmCommandSummonCreature.Controls.Add(this.lblSummonCreatureY);
@@ -1674,8 +1704,8 @@
             this.frmCommandSummonCreature.Controls.Add(this.lblSummonCreatureUniqueLimit);
             this.frmCommandSummonCreature.Controls.Add(this.txtSummonCreatureUniqueRange);
             this.frmCommandSummonCreature.Controls.Add(this.txtSummonCreatureUniqueLimit);
-            this.frmCommandSummonCreature.Controls.Add(this.lblSummonCreatureSetRun);
-            this.frmCommandSummonCreature.Controls.Add(this.cmbSummonCreatureSetRun);
+            this.frmCommandSummonCreature.Controls.Add(this.lblSummonCreatureAttackTarget);
+            this.frmCommandSummonCreature.Controls.Add(this.cmbSummonCreatureAttackTarget);
             this.frmCommandSummonCreature.Controls.Add(this.lblSummonCreatureFacingOptions);
             this.frmCommandSummonCreature.Controls.Add(this.cmbSummonCreatureFacingOptions);
             this.frmCommandSummonCreature.Controls.Add(this.lblSummonCreatureDelay);
@@ -1690,10 +1720,29 @@
             this.frmCommandSummonCreature.TabIndex = 18;
             this.frmCommandSummonCreature.Visible = false;
             // 
+            // lblSummonCreatureDespawnType
+            // 
+            this.lblSummonCreatureDespawnType.AutoSize = true;
+            this.lblSummonCreatureDespawnType.Location = new System.Drawing.Point(47, 138);
+            this.lblSummonCreatureDespawnType.Name = "lblSummonCreatureDespawnType";
+            this.lblSummonCreatureDespawnType.Size = new System.Drawing.Size(78, 13);
+            this.lblSummonCreatureDespawnType.TabIndex = 23;
+            this.lblSummonCreatureDespawnType.Text = "Despawn type:";
+            // 
+            // cmbSummonCreatureDespawnType
+            // 
+            this.cmbSummonCreatureDespawnType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSummonCreatureDespawnType.FormattingEnabled = true;
+            this.cmbSummonCreatureDespawnType.Location = new System.Drawing.Point(131, 134);
+            this.cmbSummonCreatureDespawnType.Name = "cmbSummonCreatureDespawnType";
+            this.cmbSummonCreatureDespawnType.Size = new System.Drawing.Size(143, 21);
+            this.cmbSummonCreatureDespawnType.TabIndex = 22;
+            this.cmbSummonCreatureDespawnType.SelectedIndexChanged += new System.EventHandler(this.cmbSummonCreatureDespawnType_SelectedIndexChanged);
+            // 
             // lblSummonCreatureO
             // 
             this.lblSummonCreatureO.AutoSize = true;
-            this.lblSummonCreatureO.Location = new System.Drawing.Point(64, 286);
+            this.lblSummonCreatureO.Location = new System.Drawing.Point(64, 260);
             this.lblSummonCreatureO.Name = "lblSummonCreatureO";
             this.lblSummonCreatureO.Size = new System.Drawing.Size(61, 13);
             this.lblSummonCreatureO.TabIndex = 21;
@@ -1702,7 +1751,7 @@
             // lblSummonCreatureZ
             // 
             this.lblSummonCreatureZ.AutoSize = true;
-            this.lblSummonCreatureZ.Location = new System.Drawing.Point(55, 257);
+            this.lblSummonCreatureZ.Location = new System.Drawing.Point(55, 231);
             this.lblSummonCreatureZ.Name = "lblSummonCreatureZ";
             this.lblSummonCreatureZ.Size = new System.Drawing.Size(70, 13);
             this.lblSummonCreatureZ.TabIndex = 20;
@@ -1711,7 +1760,7 @@
             // lblSummonCreatureY
             // 
             this.lblSummonCreatureY.AutoSize = true;
-            this.lblSummonCreatureY.Location = new System.Drawing.Point(55, 229);
+            this.lblSummonCreatureY.Location = new System.Drawing.Point(55, 201);
             this.lblSummonCreatureY.Name = "lblSummonCreatureY";
             this.lblSummonCreatureY.Size = new System.Drawing.Size(70, 13);
             this.lblSummonCreatureY.TabIndex = 19;
@@ -1720,7 +1769,7 @@
             // lblSummonCreatureX
             // 
             this.lblSummonCreatureX.AutoSize = true;
-            this.lblSummonCreatureX.Location = new System.Drawing.Point(55, 197);
+            this.lblSummonCreatureX.Location = new System.Drawing.Point(55, 169);
             this.lblSummonCreatureX.Name = "lblSummonCreatureX";
             this.lblSummonCreatureX.Size = new System.Drawing.Size(70, 13);
             this.lblSummonCreatureX.TabIndex = 18;
@@ -1728,7 +1777,7 @@
             // 
             // txtSummonCreatureO
             // 
-            this.txtSummonCreatureO.Location = new System.Drawing.Point(131, 285);
+            this.txtSummonCreatureO.Location = new System.Drawing.Point(131, 259);
             this.txtSummonCreatureO.Name = "txtSummonCreatureO";
             this.txtSummonCreatureO.Size = new System.Drawing.Size(143, 20);
             this.txtSummonCreatureO.TabIndex = 17;
@@ -1736,7 +1785,7 @@
             // 
             // txtSummonCreatureZ
             // 
-            this.txtSummonCreatureZ.Location = new System.Drawing.Point(132, 254);
+            this.txtSummonCreatureZ.Location = new System.Drawing.Point(132, 228);
             this.txtSummonCreatureZ.Name = "txtSummonCreatureZ";
             this.txtSummonCreatureZ.Size = new System.Drawing.Size(142, 20);
             this.txtSummonCreatureZ.TabIndex = 16;
@@ -1744,7 +1793,7 @@
             // 
             // txtSummonCreatureY
             // 
-            this.txtSummonCreatureY.Location = new System.Drawing.Point(131, 225);
+            this.txtSummonCreatureY.Location = new System.Drawing.Point(131, 197);
             this.txtSummonCreatureY.Name = "txtSummonCreatureY";
             this.txtSummonCreatureY.Size = new System.Drawing.Size(143, 20);
             this.txtSummonCreatureY.TabIndex = 15;
@@ -1752,7 +1801,7 @@
             // 
             // txtSummonCreatureX
             // 
-            this.txtSummonCreatureX.Location = new System.Drawing.Point(131, 194);
+            this.txtSummonCreatureX.Location = new System.Drawing.Point(131, 166);
             this.txtSummonCreatureX.Name = "txtSummonCreatureX";
             this.txtSummonCreatureX.Size = new System.Drawing.Size(143, 20);
             this.txtSummonCreatureX.TabIndex = 14;
@@ -1761,7 +1810,7 @@
             // lblSummonCreatureUniqueRange
             // 
             this.lblSummonCreatureUniqueRange.AutoSize = true;
-            this.lblSummonCreatureUniqueRange.Location = new System.Drawing.Point(386, 181);
+            this.lblSummonCreatureUniqueRange.Location = new System.Drawing.Point(389, 283);
             this.lblSummonCreatureUniqueRange.Name = "lblSummonCreatureUniqueRange";
             this.lblSummonCreatureUniqueRange.Size = new System.Drawing.Size(74, 13);
             this.lblSummonCreatureUniqueRange.TabIndex = 13;
@@ -1770,7 +1819,7 @@
             // lblSummonCreatureUniqueLimit
             // 
             this.lblSummonCreatureUniqueLimit.AutoSize = true;
-            this.lblSummonCreatureUniqueLimit.Location = new System.Drawing.Point(293, 181);
+            this.lblSummonCreatureUniqueLimit.Location = new System.Drawing.Point(293, 283);
             this.lblSummonCreatureUniqueLimit.Name = "lblSummonCreatureUniqueLimit";
             this.lblSummonCreatureUniqueLimit.Size = new System.Drawing.Size(64, 13);
             this.lblSummonCreatureUniqueLimit.TabIndex = 12;
@@ -1778,7 +1827,7 @@
             // 
             // txtSummonCreatureUniqueRange
             // 
-            this.txtSummonCreatureUniqueRange.Location = new System.Drawing.Point(387, 200);
+            this.txtSummonCreatureUniqueRange.Location = new System.Drawing.Point(388, 302);
             this.txtSummonCreatureUniqueRange.Name = "txtSummonCreatureUniqueRange";
             this.txtSummonCreatureUniqueRange.Size = new System.Drawing.Size(85, 20);
             this.txtSummonCreatureUniqueRange.TabIndex = 11;
@@ -1786,38 +1835,35 @@
             // 
             // txtSummonCreatureUniqueLimit
             // 
-            this.txtSummonCreatureUniqueLimit.Location = new System.Drawing.Point(292, 200);
+            this.txtSummonCreatureUniqueLimit.Location = new System.Drawing.Point(292, 302);
             this.txtSummonCreatureUniqueLimit.Name = "txtSummonCreatureUniqueLimit";
             this.txtSummonCreatureUniqueLimit.Size = new System.Drawing.Size(85, 20);
             this.txtSummonCreatureUniqueLimit.TabIndex = 10;
             this.txtSummonCreatureUniqueLimit.Leave += new System.EventHandler(this.txtSummonCreatureUniqueLimit_Leave);
             // 
-            // lblSummonCreatureSetRun
+            // lblSummonCreatureAttackTarget
             // 
-            this.lblSummonCreatureSetRun.AutoSize = true;
-            this.lblSummonCreatureSetRun.Location = new System.Drawing.Point(41, 167);
-            this.lblSummonCreatureSetRun.Name = "lblSummonCreatureSetRun";
-            this.lblSummonCreatureSetRun.Size = new System.Drawing.Size(84, 13);
-            this.lblSummonCreatureSetRun.TabIndex = 9;
-            this.lblSummonCreatureSetRun.Text = "Runs by default:";
+            this.lblSummonCreatureAttackTarget.AutoSize = true;
+            this.lblSummonCreatureAttackTarget.Location = new System.Drawing.Point(293, 236);
+            this.lblSummonCreatureAttackTarget.Name = "lblSummonCreatureAttackTarget";
+            this.lblSummonCreatureAttackTarget.Size = new System.Drawing.Size(71, 13);
+            this.lblSummonCreatureAttackTarget.TabIndex = 9;
+            this.lblSummonCreatureAttackTarget.Text = "Attack target:";
             // 
-            // cmbSummonCreatureSetRun
+            // cmbSummonCreatureAttackTarget
             // 
-            this.cmbSummonCreatureSetRun.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSummonCreatureSetRun.FormattingEnabled = true;
-            this.cmbSummonCreatureSetRun.Items.AddRange(new object[] {
-            "False",
-            "True"});
-            this.cmbSummonCreatureSetRun.Location = new System.Drawing.Point(131, 164);
-            this.cmbSummonCreatureSetRun.Name = "cmbSummonCreatureSetRun";
-            this.cmbSummonCreatureSetRun.Size = new System.Drawing.Size(143, 21);
-            this.cmbSummonCreatureSetRun.TabIndex = 8;
-            this.cmbSummonCreatureSetRun.SelectedIndexChanged += new System.EventHandler(this.cmbSummonCreatureSetRun_SelectedIndexChanged);
+            this.cmbSummonCreatureAttackTarget.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSummonCreatureAttackTarget.FormattingEnabled = true;
+            this.cmbSummonCreatureAttackTarget.Location = new System.Drawing.Point(292, 255);
+            this.cmbSummonCreatureAttackTarget.Name = "cmbSummonCreatureAttackTarget";
+            this.cmbSummonCreatureAttackTarget.Size = new System.Drawing.Size(181, 21);
+            this.cmbSummonCreatureAttackTarget.TabIndex = 8;
+            this.cmbSummonCreatureAttackTarget.SelectedIndexChanged += new System.EventHandler(this.cmbSummonCreatureAttackTarget_SelectedIndexChanged);
             // 
             // lblSummonCreatureFacingOptions
             // 
             this.lblSummonCreatureFacingOptions.AutoSize = true;
-            this.lblSummonCreatureFacingOptions.Location = new System.Drawing.Point(46, 136);
+            this.lblSummonCreatureFacingOptions.Location = new System.Drawing.Point(293, 191);
             this.lblSummonCreatureFacingOptions.Name = "lblSummonCreatureFacingOptions";
             this.lblSummonCreatureFacingOptions.Size = new System.Drawing.Size(79, 13);
             this.lblSummonCreatureFacingOptions.TabIndex = 7;
@@ -1831,9 +1877,9 @@
             "Provided Orientation",
             "Face Summoner",
             "Face Target"});
-            this.cmbSummonCreatureFacingOptions.Location = new System.Drawing.Point(131, 133);
+            this.cmbSummonCreatureFacingOptions.Location = new System.Drawing.Point(292, 210);
             this.cmbSummonCreatureFacingOptions.Name = "cmbSummonCreatureFacingOptions";
-            this.cmbSummonCreatureFacingOptions.Size = new System.Drawing.Size(143, 21);
+            this.cmbSummonCreatureFacingOptions.Size = new System.Drawing.Size(181, 21);
             this.cmbSummonCreatureFacingOptions.TabIndex = 6;
             this.cmbSummonCreatureFacingOptions.SelectedIndexChanged += new System.EventHandler(this.cmbSummonCreatureFacingOptions_SelectedIndexChanged);
             // 
@@ -1865,48 +1911,60 @@
             // 
             // grpSummonCreatureFlags
             // 
-            this.grpSummonCreatureFlags.Controls.Add(this.chkSummonCreatureFlags64);
-            this.grpSummonCreatureFlags.Controls.Add(this.chkSummonCreatureFlags32);
-            this.grpSummonCreatureFlags.Controls.Add(this.chkSummonCreatureFlags16);
+            this.grpSummonCreatureFlags.Controls.Add(this.chkSummonCreatureFlags1);
+            this.grpSummonCreatureFlags.Controls.Add(this.chkSummonCreatureFlags8);
+            this.grpSummonCreatureFlags.Controls.Add(this.chkSummonCreatureFlags4);
+            this.grpSummonCreatureFlags.Controls.Add(this.chkSummonCreatureFlags2);
             this.grpSummonCreatureFlags.Location = new System.Drawing.Point(292, 58);
             this.grpSummonCreatureFlags.Name = "grpSummonCreatureFlags";
-            this.grpSummonCreatureFlags.Size = new System.Drawing.Size(181, 114);
+            this.grpSummonCreatureFlags.Size = new System.Drawing.Size(181, 125);
             this.grpSummonCreatureFlags.TabIndex = 2;
             this.grpSummonCreatureFlags.TabStop = false;
             this.grpSummonCreatureFlags.Text = "Summon Flags";
             // 
-            // chkSummonCreatureFlags64
+            // chkSummonCreatureFlags1
             // 
-            this.chkSummonCreatureFlags64.AutoSize = true;
-            this.chkSummonCreatureFlags64.Location = new System.Drawing.Point(10, 80);
-            this.chkSummonCreatureFlags64.Name = "chkSummonCreatureFlags64";
-            this.chkSummonCreatureFlags64.Size = new System.Drawing.Size(149, 17);
-            this.chkSummonCreatureFlags64.TabIndex = 2;
-            this.chkSummonCreatureFlags64.Text = "Unique Temporary Spawn";
-            this.chkSummonCreatureFlags64.UseVisualStyleBackColor = true;
-            this.chkSummonCreatureFlags64.CheckStateChanged += new System.EventHandler(this.chkSummonCreatureFlags64_CheckStateChanged);
+            this.chkSummonCreatureFlags1.AutoSize = true;
+            this.chkSummonCreatureFlags1.Location = new System.Drawing.Point(10, 24);
+            this.chkSummonCreatureFlags1.Name = "chkSummonCreatureFlags1";
+            this.chkSummonCreatureFlags1.Size = new System.Drawing.Size(103, 17);
+            this.chkSummonCreatureFlags1.TabIndex = 3;
+            this.chkSummonCreatureFlags1.Text = "Runs By Default";
+            this.chkSummonCreatureFlags1.UseVisualStyleBackColor = true;
+            this.chkSummonCreatureFlags1.CheckedChanged += new System.EventHandler(this.chkSummonCreatureFlags1_CheckedChanged);
             // 
-            // chkSummonCreatureFlags32
+            // chkSummonCreatureFlags8
             // 
-            this.chkSummonCreatureFlags32.AutoSize = true;
-            this.chkSummonCreatureFlags32.Location = new System.Drawing.Point(10, 54);
-            this.chkSummonCreatureFlags32.Name = "chkSummonCreatureFlags32";
-            this.chkSummonCreatureFlags32.Size = new System.Drawing.Size(96, 17);
-            this.chkSummonCreatureFlags32.TabIndex = 1;
-            this.chkSummonCreatureFlags32.Text = "Unique Spawn";
-            this.chkSummonCreatureFlags32.UseVisualStyleBackColor = true;
-            this.chkSummonCreatureFlags32.CheckedChanged += new System.EventHandler(this.chkSummonCreatureFlags32_CheckedChanged);
+            this.chkSummonCreatureFlags8.AutoSize = true;
+            this.chkSummonCreatureFlags8.Location = new System.Drawing.Point(10, 99);
+            this.chkSummonCreatureFlags8.Name = "chkSummonCreatureFlags8";
+            this.chkSummonCreatureFlags8.Size = new System.Drawing.Size(149, 17);
+            this.chkSummonCreatureFlags8.TabIndex = 2;
+            this.chkSummonCreatureFlags8.Text = "Unique Temporary Spawn";
+            this.chkSummonCreatureFlags8.UseVisualStyleBackColor = true;
+            this.chkSummonCreatureFlags8.CheckStateChanged += new System.EventHandler(this.chkSummonCreatureFlags8_CheckStateChanged);
             // 
-            // chkSummonCreatureFlags16
+            // chkSummonCreatureFlags4
             // 
-            this.chkSummonCreatureFlags16.AutoSize = true;
-            this.chkSummonCreatureFlags16.Location = new System.Drawing.Point(11, 28);
-            this.chkSummonCreatureFlags16.Name = "chkSummonCreatureFlags16";
-            this.chkSummonCreatureFlags16.Size = new System.Drawing.Size(120, 17);
-            this.chkSummonCreatureFlags16.TabIndex = 0;
-            this.chkSummonCreatureFlags16.Text = "Make Active Object";
-            this.chkSummonCreatureFlags16.UseVisualStyleBackColor = true;
-            this.chkSummonCreatureFlags16.CheckedChanged += new System.EventHandler(this.chkSummonCreatureFlags16_CheckedChanged);
+            this.chkSummonCreatureFlags4.AutoSize = true;
+            this.chkSummonCreatureFlags4.Location = new System.Drawing.Point(10, 74);
+            this.chkSummonCreatureFlags4.Name = "chkSummonCreatureFlags4";
+            this.chkSummonCreatureFlags4.Size = new System.Drawing.Size(96, 17);
+            this.chkSummonCreatureFlags4.TabIndex = 1;
+            this.chkSummonCreatureFlags4.Text = "Unique Spawn";
+            this.chkSummonCreatureFlags4.UseVisualStyleBackColor = true;
+            this.chkSummonCreatureFlags4.CheckedChanged += new System.EventHandler(this.chkSummonCreatureFlags4_CheckedChanged);
+            // 
+            // chkSummonCreatureFlags2
+            // 
+            this.chkSummonCreatureFlags2.AutoSize = true;
+            this.chkSummonCreatureFlags2.Location = new System.Drawing.Point(10, 49);
+            this.chkSummonCreatureFlags2.Name = "chkSummonCreatureFlags2";
+            this.chkSummonCreatureFlags2.Size = new System.Drawing.Size(120, 17);
+            this.chkSummonCreatureFlags2.TabIndex = 0;
+            this.chkSummonCreatureFlags2.Text = "Make Active Object";
+            this.chkSummonCreatureFlags2.UseVisualStyleBackColor = true;
+            this.chkSummonCreatureFlags2.CheckedChanged += new System.EventHandler(this.chkSummonCreatureFlags2_CheckedChanged);
             // 
             // btnSummonCreatureId
             // 
@@ -2530,11 +2588,11 @@
             // lblActiveObjectSetActive
             // 
             this.lblActiveObjectSetActive.AutoSize = true;
-            this.lblActiveObjectSetActive.Location = new System.Drawing.Point(36, 61);
+            this.lblActiveObjectSetActive.Location = new System.Drawing.Point(58, 61);
             this.lblActiveObjectSetActive.Name = "lblActiveObjectSetActive";
-            this.lblActiveObjectSetActive.Size = new System.Drawing.Size(59, 13);
+            this.lblActiveObjectSetActive.Size = new System.Drawing.Size(35, 13);
             this.lblActiveObjectSetActive.TabIndex = 1;
-            this.lblActiveObjectSetActive.Text = "Set Active:";
+            this.lblActiveObjectSetActive.Text = "State:";
             // 
             // lblActiveObjectTooltip
             // 
@@ -4148,11 +4206,228 @@
             this.btnActionCopy.UseVisualStyleBackColor = true;
             this.btnActionCopy.Click += new System.EventHandler(this.btnActionCopy_Click);
             // 
+            // btnViewRaw
+            // 
+            this.btnViewRaw.Location = new System.Drawing.Point(672, 588);
+            this.btnViewRaw.Name = "btnViewRaw";
+            this.btnViewRaw.Size = new System.Drawing.Size(75, 23);
+            this.btnViewRaw.TabIndex = 48;
+            this.btnViewRaw.Text = "View Raw";
+            this.btnViewRaw.UseVisualStyleBackColor = true;
+            this.btnViewRaw.Click += new System.EventHandler(this.btnViewRaw_Click);
+            // 
+            // frmCommandSetPhase
+            // 
+            this.frmCommandSetPhase.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandSetPhase.Controls.Add(this.lblSetPhasePhase);
+            this.frmCommandSetPhase.Controls.Add(this.lblSetPhaseMode);
+            this.frmCommandSetPhase.Controls.Add(this.txtSetPhasePhase);
+            this.frmCommandSetPhase.Controls.Add(this.cmbSetPhaseMode);
+            this.frmCommandSetPhase.Controls.Add(this.lblSetPhaseTooltip);
+            this.frmCommandSetPhase.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandSetPhase.Name = "frmCommandSetPhase";
+            this.frmCommandSetPhase.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandSetPhase.TabIndex = 49;
+            this.frmCommandSetPhase.Visible = false;
+            // 
+            // lblSetPhasePhase
+            // 
+            this.lblSetPhasePhase.AutoSize = true;
+            this.lblSetPhasePhase.Location = new System.Drawing.Point(56, 93);
+            this.lblSetPhasePhase.Name = "lblSetPhasePhase";
+            this.lblSetPhasePhase.Size = new System.Drawing.Size(40, 13);
+            this.lblSetPhasePhase.TabIndex = 4;
+            this.lblSetPhasePhase.Text = "Phase:";
+            // 
+            // lblSetPhaseMode
+            // 
+            this.lblSetPhaseMode.AutoSize = true;
+            this.lblSetPhaseMode.Location = new System.Drawing.Point(59, 61);
+            this.lblSetPhaseMode.Name = "lblSetPhaseMode";
+            this.lblSetPhaseMode.Size = new System.Drawing.Size(37, 13);
+            this.lblSetPhaseMode.TabIndex = 3;
+            this.lblSetPhaseMode.Text = "Mode:";
+            // 
+            // txtSetPhasePhase
+            // 
+            this.txtSetPhasePhase.Location = new System.Drawing.Point(99, 90);
+            this.txtSetPhasePhase.Name = "txtSetPhasePhase";
+            this.txtSetPhasePhase.Size = new System.Drawing.Size(374, 20);
+            this.txtSetPhasePhase.TabIndex = 2;
+            this.txtSetPhasePhase.Leave += new System.EventHandler(this.txtSetPhasePhase_Leave);
+            // 
+            // cmbSetPhaseMode
+            // 
+            this.cmbSetPhaseMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSetPhaseMode.FormattingEnabled = true;
+            this.cmbSetPhaseMode.Items.AddRange(new object[] {
+            "Raw Value",
+            "Increment",
+            "Decrement"});
+            this.cmbSetPhaseMode.Location = new System.Drawing.Point(99, 58);
+            this.cmbSetPhaseMode.Name = "cmbSetPhaseMode";
+            this.cmbSetPhaseMode.Size = new System.Drawing.Size(374, 21);
+            this.cmbSetPhaseMode.TabIndex = 1;
+            this.cmbSetPhaseMode.SelectedIndexChanged += new System.EventHandler(this.cmbSetPhaseMode_SelectedIndexChanged);
+            // 
+            // lblSetPhaseTooltip
+            // 
+            this.lblSetPhaseTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblSetPhaseTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblSetPhaseTooltip.Name = "lblSetPhaseTooltip";
+            this.lblSetPhaseTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblSetPhaseTooltip.TabIndex = 0;
+            this.lblSetPhaseTooltip.Text = "Changes the current AI phase of the source Creature. Can only be used on creature" +
+    "s with EventAI.";
+            // 
+            // frmCommandSetRandomPhase
+            // 
+            this.frmCommandSetRandomPhase.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandSetRandomPhase.Controls.Add(this.lblSetRandomPhase4);
+            this.frmCommandSetRandomPhase.Controls.Add(this.txtSetRandomPhase4);
+            this.frmCommandSetRandomPhase.Controls.Add(this.lblSetRandomPhase3);
+            this.frmCommandSetRandomPhase.Controls.Add(this.txtSetRandomPhase3);
+            this.frmCommandSetRandomPhase.Controls.Add(this.txtSetRandomPhase1);
+            this.frmCommandSetRandomPhase.Controls.Add(this.lblSetRandomPhase2);
+            this.frmCommandSetRandomPhase.Controls.Add(this.lblSetRandomPhase1);
+            this.frmCommandSetRandomPhase.Controls.Add(this.txtSetRandomPhase2);
+            this.frmCommandSetRandomPhase.Controls.Add(this.lblSetRandomPhaseTooltip);
+            this.frmCommandSetRandomPhase.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandSetRandomPhase.Name = "frmCommandSetRandomPhase";
+            this.frmCommandSetRandomPhase.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandSetRandomPhase.TabIndex = 50;
+            this.frmCommandSetRandomPhase.Visible = false;
+            // 
+            // lblSetRandomPhase4
+            // 
+            this.lblSetRandomPhase4.AutoSize = true;
+            this.lblSetRandomPhase4.Location = new System.Drawing.Point(46, 160);
+            this.lblSetRandomPhase4.Name = "lblSetRandomPhase4";
+            this.lblSetRandomPhase4.Size = new System.Drawing.Size(49, 13);
+            this.lblSetRandomPhase4.TabIndex = 9;
+            this.lblSetRandomPhase4.Text = "Phase 4:";
+            // 
+            // txtSetRandomPhase4
+            // 
+            this.txtSetRandomPhase4.Location = new System.Drawing.Point(99, 157);
+            this.txtSetRandomPhase4.Name = "txtSetRandomPhase4";
+            this.txtSetRandomPhase4.Size = new System.Drawing.Size(374, 20);
+            this.txtSetRandomPhase4.TabIndex = 8;
+            this.txtSetRandomPhase4.Leave += new System.EventHandler(this.txtSetRandomPhase4_Leave);
+            // 
+            // lblSetRandomPhase3
+            // 
+            this.lblSetRandomPhase3.AutoSize = true;
+            this.lblSetRandomPhase3.Location = new System.Drawing.Point(46, 127);
+            this.lblSetRandomPhase3.Name = "lblSetRandomPhase3";
+            this.lblSetRandomPhase3.Size = new System.Drawing.Size(49, 13);
+            this.lblSetRandomPhase3.TabIndex = 7;
+            this.lblSetRandomPhase3.Text = "Phase 3:";
+            // 
+            // txtSetRandomPhase3
+            // 
+            this.txtSetRandomPhase3.Location = new System.Drawing.Point(99, 124);
+            this.txtSetRandomPhase3.Name = "txtSetRandomPhase3";
+            this.txtSetRandomPhase3.Size = new System.Drawing.Size(374, 20);
+            this.txtSetRandomPhase3.TabIndex = 6;
+            this.txtSetRandomPhase3.Leave += new System.EventHandler(this.txtSetRandomPhase3_Leave);
+            // 
+            // txtSetRandomPhase1
+            // 
+            this.txtSetRandomPhase1.Location = new System.Drawing.Point(99, 58);
+            this.txtSetRandomPhase1.Name = "txtSetRandomPhase1";
+            this.txtSetRandomPhase1.Size = new System.Drawing.Size(374, 20);
+            this.txtSetRandomPhase1.TabIndex = 5;
+            this.txtSetRandomPhase1.Leave += new System.EventHandler(this.txtSetRandomPhase1_Leave);
+            // 
+            // lblSetRandomPhase2
+            // 
+            this.lblSetRandomPhase2.AutoSize = true;
+            this.lblSetRandomPhase2.Location = new System.Drawing.Point(46, 94);
+            this.lblSetRandomPhase2.Name = "lblSetRandomPhase2";
+            this.lblSetRandomPhase2.Size = new System.Drawing.Size(49, 13);
+            this.lblSetRandomPhase2.TabIndex = 4;
+            this.lblSetRandomPhase2.Text = "Phase 2:";
+            // 
+            // lblSetRandomPhase1
+            // 
+            this.lblSetRandomPhase1.AutoSize = true;
+            this.lblSetRandomPhase1.Location = new System.Drawing.Point(46, 61);
+            this.lblSetRandomPhase1.Name = "lblSetRandomPhase1";
+            this.lblSetRandomPhase1.Size = new System.Drawing.Size(49, 13);
+            this.lblSetRandomPhase1.TabIndex = 3;
+            this.lblSetRandomPhase1.Text = "Phase 1:";
+            // 
+            // txtSetRandomPhase2
+            // 
+            this.txtSetRandomPhase2.Location = new System.Drawing.Point(99, 91);
+            this.txtSetRandomPhase2.Name = "txtSetRandomPhase2";
+            this.txtSetRandomPhase2.Size = new System.Drawing.Size(374, 20);
+            this.txtSetRandomPhase2.TabIndex = 2;
+            this.txtSetRandomPhase2.Leave += new System.EventHandler(this.txtSetRandomPhase2_Leave);
+            // 
+            // lblSetRandomPhaseTooltip
+            // 
+            this.lblSetRandomPhaseTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblSetRandomPhaseTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblSetRandomPhaseTooltip.Name = "lblSetRandomPhaseTooltip";
+            this.lblSetRandomPhaseTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblSetRandomPhaseTooltip.TabIndex = 0;
+            this.lblSetRandomPhaseTooltip.Text = "Randomly chooses one of the provided values and sets the Creature\'s AI phase to i" +
+    "t. Can only be used on creatures with EventAI.";
+            // 
+            // frmCommandFlee
+            // 
+            this.frmCommandFlee.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandFlee.Controls.Add(this.cmbFleeMode);
+            this.frmCommandFlee.Controls.Add(this.lblFleeMode);
+            this.frmCommandFlee.Controls.Add(this.lblFleeTooltip);
+            this.frmCommandFlee.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandFlee.Name = "frmCommandFlee";
+            this.frmCommandFlee.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandFlee.TabIndex = 51;
+            this.frmCommandFlee.Visible = false;
+            // 
+            // cmbFleeMode
+            // 
+            this.cmbFleeMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFleeMode.FormattingEnabled = true;
+            this.cmbFleeMode.Items.AddRange(new object[] {
+            "Random Direction",
+            "Seek Assistance"});
+            this.cmbFleeMode.Location = new System.Drawing.Point(99, 58);
+            this.cmbFleeMode.Name = "cmbFleeMode";
+            this.cmbFleeMode.Size = new System.Drawing.Size(374, 21);
+            this.cmbFleeMode.TabIndex = 2;
+            this.cmbFleeMode.SelectedIndexChanged += new System.EventHandler(this.cmbFleeMode_SelectedIndexChanged);
+            // 
+            // lblFleeMode
+            // 
+            this.lblFleeMode.AutoSize = true;
+            this.lblFleeMode.Location = new System.Drawing.Point(58, 61);
+            this.lblFleeMode.Name = "lblFleeMode";
+            this.lblFleeMode.Size = new System.Drawing.Size(37, 13);
+            this.lblFleeMode.TabIndex = 1;
+            this.lblFleeMode.Text = "Mode:";
+            // 
+            // lblFleeTooltip
+            // 
+            this.lblFleeTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblFleeTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblFleeTooltip.Name = "lblFleeTooltip";
+            this.lblFleeTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblFleeTooltip.TabIndex = 0;
+            this.lblFleeTooltip.Text = "The source Creature attempts to flee from the attacker.";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 620);
+            this.Controls.Add(this.frmCommandFlee);
+            this.Controls.Add(this.frmCommandSetRandomPhase);
+            this.Controls.Add(this.frmCommandSetPhase);
+            this.Controls.Add(this.btnViewRaw);
             this.Controls.Add(this.btnActionCopy);
             this.Controls.Add(this.btnNewForm);
             this.Controls.Add(this.frmCommandStartScript);
@@ -4294,6 +4569,12 @@
             this.frmCommandSetData.PerformLayout();
             this.frmCommandStartScript.ResumeLayout(false);
             this.frmCommandStartScript.PerformLayout();
+            this.frmCommandSetPhase.ResumeLayout(false);
+            this.frmCommandSetPhase.PerformLayout();
+            this.frmCommandSetRandomPhase.ResumeLayout(false);
+            this.frmCommandSetRandomPhase.PerformLayout();
+            this.frmCommandFlee.ResumeLayout(false);
+            this.frmCommandFlee.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4315,17 +4596,17 @@
         private System.Windows.Forms.Label lblDelay;
         private System.Windows.Forms.Label lblCommand;
         private System.Windows.Forms.GroupBox grpBuddy;
-        private System.Windows.Forms.TextBox txtBuddyId;
-        private System.Windows.Forms.Label lblBuddyRadius;
-        private System.Windows.Forms.Label lblBuddyId;
-        private System.Windows.Forms.ComboBox cmbBuddyType;
-        private System.Windows.Forms.TextBox txtBuddyRadius;
+        private System.Windows.Forms.TextBox txtTargetParam1;
+        private System.Windows.Forms.Label lblTargetParam2;
+        private System.Windows.Forms.Label lblTargetParam1;
+        private System.Windows.Forms.ComboBox cmbTargetType;
+        private System.Windows.Forms.TextBox txtTargetParam2;
         private System.Windows.Forms.GroupBox grpDataFlags;
         private System.Windows.Forms.CheckBox chkAbortScript;
         private System.Windows.Forms.CheckBox chkTargetSelf;
         private System.Windows.Forms.CheckBox chkSwapFinal;
         private System.Windows.Forms.CheckBox chkSwapInitial;
-        private System.Windows.Forms.Label lblBuddyType;
+        private System.Windows.Forms.Label lblTargetType;
         private System.Windows.Forms.Panel frmCommandTalk;
         private System.Windows.Forms.ComboBox cmbTalkChatType;
         private System.Windows.Forms.Label lblTalkChatType;
@@ -4421,9 +4702,9 @@
         private System.Windows.Forms.Panel frmCommandSummonCreature;
         private System.Windows.Forms.Label lblSummonCreatureId;
         private System.Windows.Forms.GroupBox grpSummonCreatureFlags;
-        private System.Windows.Forms.CheckBox chkSummonCreatureFlags64;
-        private System.Windows.Forms.CheckBox chkSummonCreatureFlags32;
-        private System.Windows.Forms.CheckBox chkSummonCreatureFlags16;
+        private System.Windows.Forms.CheckBox chkSummonCreatureFlags8;
+        private System.Windows.Forms.CheckBox chkSummonCreatureFlags4;
+        private System.Windows.Forms.CheckBox chkSummonCreatureFlags2;
         private System.Windows.Forms.Button btnSummonCreatureId;
         private System.Windows.Forms.Label lblSummonCreatureTooltip;
         private System.Windows.Forms.Label lblSummonCreatureDelay;
@@ -4434,8 +4715,8 @@
         private System.Windows.Forms.Label lblSummonCreatureUniqueLimit;
         private System.Windows.Forms.TextBox txtSummonCreatureUniqueRange;
         private System.Windows.Forms.TextBox txtSummonCreatureUniqueLimit;
-        private System.Windows.Forms.Label lblSummonCreatureSetRun;
-        private System.Windows.Forms.ComboBox cmbSummonCreatureSetRun;
+        private System.Windows.Forms.Label lblSummonCreatureAttackTarget;
+        private System.Windows.Forms.ComboBox cmbSummonCreatureAttackTarget;
         private System.Windows.Forms.Label lblSummonCreatureFacingOptions;
         private System.Windows.Forms.ComboBox cmbSummonCreatureFacingOptions;
         private System.Windows.Forms.Label lblSummonCreatureO;
@@ -4655,6 +4936,30 @@
         private System.Windows.Forms.Label lblNoAction;
         private System.Windows.Forms.CheckBox chkMoveToFlagsPointMovement;
         private System.Windows.Forms.Button btnActionCopy;
+        private System.Windows.Forms.CheckBox chkSummonCreatureFlags1;
+        private System.Windows.Forms.Label lblSummonCreatureDespawnType;
+        private System.Windows.Forms.ComboBox cmbSummonCreatureDespawnType;
+        private System.Windows.Forms.Button btnViewRaw;
+        private System.Windows.Forms.Panel frmCommandSetPhase;
+        private System.Windows.Forms.Label lblSetPhasePhase;
+        private System.Windows.Forms.Label lblSetPhaseMode;
+        private System.Windows.Forms.TextBox txtSetPhasePhase;
+        private System.Windows.Forms.ComboBox cmbSetPhaseMode;
+        private System.Windows.Forms.Label lblSetPhaseTooltip;
+        private System.Windows.Forms.Panel frmCommandSetRandomPhase;
+        private System.Windows.Forms.Label lblSetRandomPhase4;
+        private System.Windows.Forms.TextBox txtSetRandomPhase4;
+        private System.Windows.Forms.Label lblSetRandomPhase3;
+        private System.Windows.Forms.TextBox txtSetRandomPhase3;
+        private System.Windows.Forms.TextBox txtSetRandomPhase1;
+        private System.Windows.Forms.Label lblSetRandomPhase2;
+        private System.Windows.Forms.Label lblSetRandomPhase1;
+        private System.Windows.Forms.TextBox txtSetRandomPhase2;
+        private System.Windows.Forms.Label lblSetRandomPhaseTooltip;
+        private System.Windows.Forms.Panel frmCommandFlee;
+        private System.Windows.Forms.ComboBox cmbFleeMode;
+        private System.Windows.Forms.Label lblFleeMode;
+        private System.Windows.Forms.Label lblFleeTooltip;
     }
 }
 
