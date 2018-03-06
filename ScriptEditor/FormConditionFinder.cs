@@ -37,6 +37,7 @@ namespace ScriptEditor
             lvi.SubItems.Add(GameData.FindConditionName(condition.Type));
             lvi.SubItems.Add(condition.Value1.ToString());
             lvi.SubItems.Add(condition.Value2.ToString());
+            lvi.SubItems.Add(condition.Flags.ToString());
 
             // Add this condition to the listview.
             lstData.Items.Add(lvi);

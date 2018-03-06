@@ -407,6 +407,18 @@
             this.cmbFleeMode = new System.Windows.Forms.ComboBox();
             this.lblFleeMode = new System.Windows.Forms.Label();
             this.lblFleeTooltip = new System.Windows.Forms.Label();
+            this.frmCommandCallForHelp = new System.Windows.Forms.Panel();
+            this.lblCallForHelpRadius = new System.Windows.Forms.Label();
+            this.txtCallForHelpRadius = new System.Windows.Forms.TextBox();
+            this.lblCallForHelpTooltip = new System.Windows.Forms.Label();
+            this.frmCommandGameEvent = new System.Windows.Forms.Panel();
+            this.cmbGameEventOverwrite = new System.Windows.Forms.ComboBox();
+            this.lblGameEventOverwrite = new System.Windows.Forms.Label();
+            this.cmbGameEventAction = new System.Windows.Forms.ComboBox();
+            this.lblGameEventId = new System.Windows.Forms.Label();
+            this.lblGameEventAction = new System.Windows.Forms.Label();
+            this.btnGameEventId = new System.Windows.Forms.Button();
+            this.lblCommandGameEventTooltip = new System.Windows.Forms.Label();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -453,6 +465,8 @@
             this.frmCommandSetPhase.SuspendLayout();
             this.frmCommandSetRandomPhase.SuspendLayout();
             this.frmCommandFlee.SuspendLayout();
+            this.frmCommandCallForHelp.SuspendLayout();
+            this.frmCommandGameEvent.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstActions
@@ -4242,7 +4256,7 @@
             // lblSetPhaseMode
             // 
             this.lblSetPhaseMode.AutoSize = true;
-            this.lblSetPhaseMode.Location = new System.Drawing.Point(59, 61);
+            this.lblSetPhaseMode.Location = new System.Drawing.Point(58, 61);
             this.lblSetPhaseMode.Name = "lblSetPhaseMode";
             this.lblSetPhaseMode.Size = new System.Drawing.Size(37, 13);
             this.lblSetPhaseMode.TabIndex = 3;
@@ -4260,10 +4274,6 @@
             // 
             this.cmbSetPhaseMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSetPhaseMode.FormattingEnabled = true;
-            this.cmbSetPhaseMode.Items.AddRange(new object[] {
-            "Raw Value",
-            "Increment",
-            "Decrement"});
             this.cmbSetPhaseMode.Location = new System.Drawing.Point(99, 58);
             this.cmbSetPhaseMode.Name = "cmbSetPhaseMode";
             this.cmbSetPhaseMode.Size = new System.Drawing.Size(374, 21);
@@ -4392,9 +4402,6 @@
             // 
             this.cmbFleeMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbFleeMode.FormattingEnabled = true;
-            this.cmbFleeMode.Items.AddRange(new object[] {
-            "Random Direction",
-            "Seek Assistance"});
             this.cmbFleeMode.Location = new System.Drawing.Point(99, 58);
             this.cmbFleeMode.Name = "cmbFleeMode";
             this.cmbFleeMode.Size = new System.Drawing.Size(374, 21);
@@ -4419,11 +4426,140 @@
             this.lblFleeTooltip.TabIndex = 0;
             this.lblFleeTooltip.Text = "The source Creature attempts to flee from the attacker.";
             // 
+            // frmCommandCallForHelp
+            // 
+            this.frmCommandCallForHelp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandCallForHelp.Controls.Add(this.lblCallForHelpRadius);
+            this.frmCommandCallForHelp.Controls.Add(this.txtCallForHelpRadius);
+            this.frmCommandCallForHelp.Controls.Add(this.lblCallForHelpTooltip);
+            this.frmCommandCallForHelp.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandCallForHelp.Name = "frmCommandCallForHelp";
+            this.frmCommandCallForHelp.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandCallForHelp.TabIndex = 52;
+            this.frmCommandCallForHelp.Visible = false;
+            // 
+            // lblCallForHelpRadius
+            // 
+            this.lblCallForHelpRadius.AutoSize = true;
+            this.lblCallForHelpRadius.Location = new System.Drawing.Point(52, 61);
+            this.lblCallForHelpRadius.Name = "lblCallForHelpRadius";
+            this.lblCallForHelpRadius.Size = new System.Drawing.Size(43, 13);
+            this.lblCallForHelpRadius.TabIndex = 2;
+            this.lblCallForHelpRadius.Text = "Radius:";
+            // 
+            // txtCallForHelpRadius
+            // 
+            this.txtCallForHelpRadius.Location = new System.Drawing.Point(99, 58);
+            this.txtCallForHelpRadius.Name = "txtCallForHelpRadius";
+            this.txtCallForHelpRadius.Size = new System.Drawing.Size(374, 20);
+            this.txtCallForHelpRadius.TabIndex = 1;
+            this.txtCallForHelpRadius.Leave += new System.EventHandler(this.txtCallForHelpRadius_Leave);
+            // 
+            // lblCallForHelpTooltip
+            // 
+            this.lblCallForHelpTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblCallForHelpTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblCallForHelpTooltip.Name = "lblCallForHelpTooltip";
+            this.lblCallForHelpTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblCallForHelpTooltip.TabIndex = 0;
+            this.lblCallForHelpTooltip.Text = "Calls any friendly creatures in the specified radius to attack the source Creatur" +
+    "e\'s target.";
+            // 
+            // frmCommandGameEvent
+            // 
+            this.frmCommandGameEvent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandGameEvent.Controls.Add(this.cmbGameEventOverwrite);
+            this.frmCommandGameEvent.Controls.Add(this.lblGameEventOverwrite);
+            this.frmCommandGameEvent.Controls.Add(this.cmbGameEventAction);
+            this.frmCommandGameEvent.Controls.Add(this.lblGameEventId);
+            this.frmCommandGameEvent.Controls.Add(this.lblGameEventAction);
+            this.frmCommandGameEvent.Controls.Add(this.btnGameEventId);
+            this.frmCommandGameEvent.Controls.Add(this.lblCommandGameEventTooltip);
+            this.frmCommandGameEvent.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandGameEvent.Name = "frmCommandGameEvent";
+            this.frmCommandGameEvent.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandGameEvent.TabIndex = 53;
+            this.frmCommandGameEvent.Visible = false;
+            // 
+            // cmbGameEventOverwrite
+            // 
+            this.cmbGameEventOverwrite.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGameEventOverwrite.FormattingEnabled = true;
+            this.cmbGameEventOverwrite.Items.AddRange(new object[] {
+            "False",
+            "True"});
+            this.cmbGameEventOverwrite.Location = new System.Drawing.Point(99, 120);
+            this.cmbGameEventOverwrite.Name = "cmbGameEventOverwrite";
+            this.cmbGameEventOverwrite.Size = new System.Drawing.Size(374, 21);
+            this.cmbGameEventOverwrite.TabIndex = 7;
+            this.cmbGameEventOverwrite.SelectedIndexChanged += new System.EventHandler(this.cmbGameEventOverwrite_SelectedIndexChanged);
+            // 
+            // lblGameEventOverwrite
+            // 
+            this.lblGameEventOverwrite.AutoSize = true;
+            this.lblGameEventOverwrite.Location = new System.Drawing.Point(41, 123);
+            this.lblGameEventOverwrite.Name = "lblGameEventOverwrite";
+            this.lblGameEventOverwrite.Size = new System.Drawing.Size(55, 13);
+            this.lblGameEventOverwrite.TabIndex = 6;
+            this.lblGameEventOverwrite.Text = "Overwrite:";
+            // 
+            // cmbGameEventAction
+            // 
+            this.cmbGameEventAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGameEventAction.FormattingEnabled = true;
+            this.cmbGameEventAction.Items.AddRange(new object[] {
+            "Stop",
+            "Start"});
+            this.cmbGameEventAction.Location = new System.Drawing.Point(99, 90);
+            this.cmbGameEventAction.Name = "cmbGameEventAction";
+            this.cmbGameEventAction.Size = new System.Drawing.Size(374, 21);
+            this.cmbGameEventAction.TabIndex = 5;
+            this.cmbGameEventAction.SelectedIndexChanged += new System.EventHandler(this.cmbGameEventAction_SelectedIndexChanged);
+            // 
+            // lblGameEventId
+            // 
+            this.lblGameEventId.AutoSize = true;
+            this.lblGameEventId.Location = new System.Drawing.Point(46, 61);
+            this.lblGameEventId.Name = "lblGameEventId";
+            this.lblGameEventId.Size = new System.Drawing.Size(50, 13);
+            this.lblGameEventId.TabIndex = 4;
+            this.lblGameEventId.Text = "Event Id:";
+            // 
+            // lblGameEventAction
+            // 
+            this.lblGameEventAction.AutoSize = true;
+            this.lblGameEventAction.Location = new System.Drawing.Point(56, 93);
+            this.lblGameEventAction.Name = "lblGameEventAction";
+            this.lblGameEventAction.Size = new System.Drawing.Size(40, 13);
+            this.lblGameEventAction.TabIndex = 3;
+            this.lblGameEventAction.Text = "Action:";
+            // 
+            // btnGameEventId
+            // 
+            this.btnGameEventId.Location = new System.Drawing.Point(99, 58);
+            this.btnGameEventId.Name = "btnGameEventId";
+            this.btnGameEventId.Size = new System.Drawing.Size(374, 23);
+            this.btnGameEventId.TabIndex = 1;
+            this.btnGameEventId.Text = "-NONE-";
+            this.btnGameEventId.UseVisualStyleBackColor = true;
+            this.btnGameEventId.Click += new System.EventHandler(this.btnGameEventId_Click);
+            // 
+            // lblCommandGameEventTooltip
+            // 
+            this.lblCommandGameEventTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblCommandGameEventTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblCommandGameEventTooltip.Name = "lblCommandGameEventTooltip";
+            this.lblCommandGameEventTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblCommandGameEventTooltip.TabIndex = 0;
+            this.lblCommandGameEventTooltip.Text = "Starts or stops the chosen game event.";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 620);
+            this.Controls.Add(this.frmCommandGameEvent);
+            this.Controls.Add(this.frmCommandCallForHelp);
             this.Controls.Add(this.frmCommandFlee);
             this.Controls.Add(this.frmCommandSetRandomPhase);
             this.Controls.Add(this.frmCommandSetPhase);
@@ -4575,6 +4711,10 @@
             this.frmCommandSetRandomPhase.PerformLayout();
             this.frmCommandFlee.ResumeLayout(false);
             this.frmCommandFlee.PerformLayout();
+            this.frmCommandCallForHelp.ResumeLayout(false);
+            this.frmCommandCallForHelp.PerformLayout();
+            this.frmCommandGameEvent.ResumeLayout(false);
+            this.frmCommandGameEvent.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4960,6 +5100,18 @@
         private System.Windows.Forms.ComboBox cmbFleeMode;
         private System.Windows.Forms.Label lblFleeMode;
         private System.Windows.Forms.Label lblFleeTooltip;
+        private System.Windows.Forms.Panel frmCommandCallForHelp;
+        private System.Windows.Forms.Label lblCallForHelpRadius;
+        private System.Windows.Forms.TextBox txtCallForHelpRadius;
+        private System.Windows.Forms.Label lblCallForHelpTooltip;
+        private System.Windows.Forms.Panel frmCommandGameEvent;
+        private System.Windows.Forms.ComboBox cmbGameEventAction;
+        private System.Windows.Forms.Label lblGameEventId;
+        private System.Windows.Forms.Label lblGameEventAction;
+        private System.Windows.Forms.Button btnGameEventId;
+        private System.Windows.Forms.Label lblCommandGameEventTooltip;
+        private System.Windows.Forms.ComboBox cmbGameEventOverwrite;
+        private System.Windows.Forms.Label lblGameEventOverwrite;
     }
 }
 

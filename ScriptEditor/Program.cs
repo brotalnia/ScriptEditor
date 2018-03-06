@@ -60,6 +60,8 @@ namespace ScriptEditor
             Console.WriteLine("Loading factions...");
             GameData.LoadFactions(connString);
             GameData.LoadFactionTemplates(connString);
+            Console.WriteLine("Loading game events...");
+            GameData.LoadGameEvents(connString);
 
             // Closes the temporary console window.
             NativeMethods.FreeConsole();

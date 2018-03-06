@@ -19,6 +19,7 @@ namespace ScriptEditor
         public static readonly List<SoundInfo> SoundInfoList = new List<SoundInfo>();
         public static readonly List<FactionInfo> FactionInfoList = new List<FactionInfo>();
         public static readonly List<FactionTemplateInfo> FactionTemplateInfoList = new List<FactionTemplateInfo>();
+        public static readonly List<GameEventInfo> GameEventInfoList = new List<GameEventInfo>();
         public static readonly List<ComboboxPair> UpdateFieldsList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> FlagFieldsList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> MapsList = new List<ComboboxPair>();
@@ -183,6 +184,16 @@ namespace ScriptEditor
 
             return "";
         }
+        public static string FindEventName(uint id)
+        {
+            foreach (GameEventInfo gamevent in GameEventInfoList)
+            {
+                if (gamevent.ID == id)
+                    return gamevent.Name;
+            }
+
+            return "";
+        }
         public static void LoadBroadcastTexts(string connString)
         {
             BroadcastTextsList.Clear();
@@ -319,7 +330,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT condition_entry, type, value1, value2 FROM conditions ORDER BY condition_entry";
+            command.CommandText = "SELECT condition_entry, type, value1, value2, flags FROM conditions ORDER BY condition_entry";
             try
             {
                 conn.Open();
@@ -328,7 +339,7 @@ namespace ScriptEditor
                 while (reader.Read())
                 {
                     // Add the new condition entry to the list.
-                    ConditionInfoList.Add(new ConditionInfo(reader.GetUInt32(0), reader.GetInt32(1), reader.GetUInt32(2), reader.GetUInt32(3)));
+                    ConditionInfoList.Add(new ConditionInfo(reader.GetUInt32(0), reader.GetInt32(1), reader.GetUInt32(2), reader.GetUInt32(3), reader.GetUInt32(4)));
                 }
                 reader.Close();
             }
@@ -429,6 +440,31 @@ namespace ScriptEditor
                 {
                     // Add the new faction template entry to the list.
                     FactionTemplateInfoList.Add(new FactionTemplateInfo(reader.GetUInt32(0), reader.GetUInt32(1), reader.GetUInt32(2)));
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+            conn.Close();
+        }
+        public static void LoadGameEvents(string connString)
+        {
+            GameEventInfoList.Clear();
+
+            MySqlConnection conn = new MySqlConnection(connString);
+            MySqlCommand command = conn.CreateCommand();
+            command.CommandText = "SELECT entry, occurence, length, description, patch_min, patch_max FROM game_event ORDER BY entry";
+            try
+            {
+                conn.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    // Add the new game event entry to the list.
+                    GameEventInfoList.Add(new GameEventInfo(reader.GetUInt32(0), reader.GetUInt32(1), reader.GetUInt32(2), reader.GetString(3), reader.GetUInt32(4), reader.GetUInt32(5)));
                 }
                 reader.Close();
             }
@@ -1290,12 +1326,14 @@ namespace ScriptEditor
         public int Type;
         public uint Value1;
         public uint Value2;
-        public ConditionInfo(uint id, int type, uint value1, uint value2)
+        public uint Flags;
+        public ConditionInfo(uint id, int type, uint value1, uint value2, uint flags)
         {
             ID = id;
             Type = type;
             Value1 = value1;
             Value2 = value2;
+            Flags = flags;
         }
     }
     public struct AreaInfo
@@ -1344,6 +1382,24 @@ namespace ScriptEditor
             ID = id;
             FactionId = factionid;
             Flags = flags;
+        }
+    }
+    public struct GameEventInfo
+    {
+        public uint ID;
+        public uint Occurrence;
+        public uint Length;
+        public string Name;
+        public uint PatchMin;
+        public uint PatchMax;
+        public GameEventInfo(uint id, uint occurrence, uint length, string name, uint patchmin, uint patchmax)
+        {
+            ID = id;
+            Occurrence = occurrence;
+            Length = length;
+            Name = name;
+            PatchMin = patchmin;
+            PatchMax = patchmax;
         }
     }
     public class ComboboxPair

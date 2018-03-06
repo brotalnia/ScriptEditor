@@ -31,6 +31,7 @@
             this.columnType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnValue1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnValue2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnFlags = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lstData
@@ -38,7 +39,8 @@
             this.lstData.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnType,
             this.columnValue1,
-            this.columnValue2});
+            this.columnValue2,
+            this.columnFlags});
             // 
             // label1
             // 
@@ -60,6 +62,11 @@
             this.columnValue2.Text = "Value 2";
             this.columnValue2.Width = 100;
             // 
+            // columnFlags
+            // 
+            this.columnFlags.Text = "Flags";
+            this.columnFlags.Width = 90;
+            // 
             // FormConditionFinder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -76,5 +83,6 @@
         private System.Windows.Forms.ColumnHeader columnType;
         private System.Windows.Forms.ColumnHeader columnValue1;
         private System.Windows.Forms.ColumnHeader columnValue2;
+        private System.Windows.Forms.ColumnHeader columnFlags;
     }
 }

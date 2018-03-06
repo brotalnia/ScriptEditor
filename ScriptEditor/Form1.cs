@@ -26,10 +26,16 @@ namespace ScriptEditor
         public delegate string NameFinder(uint id);
 
         // Set Data options.
-        public string[] SetDataModes = { "Save Raw Value", "Increment Existing Data", "Decrement Existing Data" };
+        public string[] CommandSetData_ComboOptions = { "Save Raw Value", "Increment Existing Data", "Decrement Existing Data" };
         // Set Data 64 options.
-        public string[] SetData64Modes = { "Save Raw Value", "Save Own GUID"};
-
+        public string[] CommandSetData64_ComboOptions = { "Save Raw Value", "Save Own GUID"};
+        // Set Phase options.
+        public string[] CommandSetPhase_ComboOptions = { "Change To Specified Value", "Increment Current Phase", "Decrement Current Phase" };
+        // Deal Damage options.
+        public string[] CommandDealDamage_ComboOptions = { "Raw Value", "Percent of Total Health" };
+        public string[] CommandFleeModes_ComboOptions = { "Random Direction", "Seek Assistance" };
+        public string[] CommandCombatPulse_ComboOptions = { "False", "True" };
+        public string[] CommandSetSheathState_ComboOptions = { "Unarmed", "Melee", "Ranged" };
         public Form1()
         {
             InitializeComponent();
@@ -104,6 +110,13 @@ namespace ScriptEditor
             cmbCommandId.Items.Add(new ComboboxPair("Set Phase Random", 45));
             cmbCommandId.Items.Add(new ComboboxPair("Set Phase Range", 46));
             cmbCommandId.Items.Add(new ComboboxPair("Flee", 47));
+            cmbCommandId.Items.Add(new ComboboxPair("Deal Damage", 48));
+            cmbCommandId.Items.Add(new ComboboxPair("Combat Pulse", 49));
+            cmbCommandId.Items.Add(new ComboboxPair("Call For Help", 50));
+            cmbCommandId.Items.Add(new ComboboxPair("Set Sheath State", 51));
+            cmbCommandId.Items.Add(new ComboboxPair("Set Invincibility HP", 52));
+            cmbCommandId.Items.Add(new ComboboxPair("Start Game Event", 53));
+            cmbCommandId.Items.Add(new ComboboxPair("Set Server Variable", 54));
             cmbCommandId.SelectedIndex = 0;
 
             // Add option to Buddy Type combo box.
@@ -174,6 +187,12 @@ namespace ScriptEditor
             cmbSummonCreatureDespawnType.Items.Add(new ComboboxPair("Manual", 8));
             cmbSummonCreatureDespawnType.Items.Add(new ComboboxPair("Timer or Disappear", 9));
             cmbSummonCreatureDespawnType.Items.Add(new ComboboxPair("Timer or Death", 10));
+
+            // Assign options to Set Phase combo box.
+            cmbSetPhaseMode.DataSource = CommandSetPhase_ComboOptions;
+
+            // Assign options to Flee combo box.
+            cmbFleeMode.DataSource = CommandFleeModes_ComboOptions;
 
             // Assign motion types list to combo box.
             cmbSetMovementType.DataSource = GameData.MotionTypesList;
@@ -736,12 +755,15 @@ namespace ScriptEditor
             frmCommandStartScript.Visible = false;
 
             // Set AI Phase Command (44)
+            // Deal Damage Command (48)
+            // Set Invincibility HP Command (52)
             txtSetPhasePhase.Text = "";
             cmbSetPhaseMode.SelectedIndex = 0;
             frmCommandSetPhase.Visible = false;
 
             // Set Random AI Phase Command (45)
             // Set Range AI Phase Command (46)
+            // Set Server Variable Command (54)
             txtSetRandomPhase1.Text = "";
             txtSetRandomPhase2.Text = "";
             txtSetRandomPhase3.Text = "";
@@ -749,8 +771,20 @@ namespace ScriptEditor
             frmCommandSetRandomPhase.Visible = false;
 
             // Flee Command (47)
+            // Combat Pulse Command (49)
+            // Set Sheath State Command (51)
             cmbFleeMode.SelectedIndex = 0;
             frmCommandFlee.Visible = false;
+
+            // Call for Help Command (50)
+            txtCallForHelpRadius.Text = "";
+            frmCommandCallForHelp.Visible = false;
+
+            // Start Game Event Command (53)
+            btnGameEventId.Text = "-NONE-";
+            cmbGameEventAction.SelectedIndex = 0;
+            cmbGameEventOverwrite.SelectedIndex = 0;
+            frmCommandGameEvent.Visible = false;
 
             dontUpdate = false;
         }
@@ -1373,9 +1407,9 @@ namespace ScriptEditor
                     }
                     txtSetDataField.Text = selectedAction.Datalong.ToString();
                     if (selectedAction.Command == 37)
-                        cmbSetDataMode.DataSource = SetDataModes;
+                        cmbSetDataMode.DataSource = CommandSetData_ComboOptions;
                     else
-                        cmbSetDataMode.DataSource = SetData64Modes;
+                        cmbSetDataMode.DataSource = CommandSetData64_ComboOptions;
                     cmbSetDataMode.SelectedIndex = selectedMode;
                     frmCommandSetData.Visible = true;
                     break;
@@ -1394,7 +1428,34 @@ namespace ScriptEditor
                     break;
                 }
                 case 44: // Set AI Phase
+                case 48: // Deal Damage
+                case 52: // Set Invincibility HP
                 {
+                    switch (selectedAction.Command)
+                    {
+                        case 44: // Set AI Phase
+                        {
+                            lblSetPhaseTooltip.Text = "Changes the current AI phase of the source Creature. Can only be used on creatures with EventAI.";
+                            lblSetPhasePhase.Text = "Phase:";
+                            cmbSetPhaseMode.DataSource = CommandSetPhase_ComboOptions;
+                            break;
+                        }
+                        case 48: // Deal Damage
+                        {
+                            lblSetPhaseTooltip.Text = "The source Unit deals the specified amount of damage to the Unit target.";
+                            lblSetPhasePhase.Text = "Damage:";
+                            cmbSetPhaseMode.DataSource = CommandDealDamage_ComboOptions;
+                            break;
+                        }
+                        case 52: // Set Invincibility HP
+                        {
+                            lblSetPhaseTooltip.Text = "Makes the source Creature not take damage below the specified health level.";
+                            lblSetPhasePhase.Text = "Health:";
+                            cmbSetPhaseMode.DataSource = CommandDealDamage_ComboOptions;
+                            break;
+                        }
+                    }
+                    lblSetPhasePhase.Location = new Point(cmbSetPhaseMode.Location.X - lblSetPhasePhase.Size.Width - 4, lblSetPhasePhase.Location.Y);
                     txtSetPhasePhase.Text = selectedAction.Datalong.ToString();
                     cmbSetPhaseMode.SelectedIndex = (int)selectedAction.Datalong2;
                     frmCommandSetPhase.Visible = true;
@@ -1402,38 +1463,100 @@ namespace ScriptEditor
                 }
                 case 45: // Set Random AI Phase
                 case 46: // Set Range AI Phase
+                case 54: // Set Server Variable
                 {
                     txtSetRandomPhase1.Text = selectedAction.Datalong.ToString();
                     txtSetRandomPhase2.Text = selectedAction.Datalong2.ToString();
                     txtSetRandomPhase3.Text = selectedAction.Datalong3.ToString();
                     txtSetRandomPhase4.Text = selectedAction.Datalong4.ToString();
-                    if (selectedAction.Command == 45)
+                    switch (selectedAction.Command)
                     {
-                        lblSetRandomPhaseTooltip.Text = "Randomly chooses one of the provided values and sets the Creature's AI phase to it. Can only be used on creatures with EventAI.";
-                        lblSetRandomPhase3.Visible = true;
-                        lblSetRandomPhase4.Visible = true;
-                        txtSetRandomPhase3.Visible = true;
-                        txtSetRandomPhase4.Visible = true;
-                        lblSetRandomPhase1.Text = "Phase 1:";
-                        lblSetRandomPhase2.Text = "Phase 2:";
+                        case 45: // Set Random AI Phase
+                        {
+                            lblSetRandomPhaseTooltip.Text = "Randomly chooses one of the provided values and sets the Creature's AI phase to it. Can only be used on creatures with EventAI.";
+                            lblSetRandomPhase3.Visible = true;
+                            lblSetRandomPhase4.Visible = true;
+                            txtSetRandomPhase3.Visible = true;
+                            txtSetRandomPhase4.Visible = true;
+                            lblSetRandomPhase1.Text = "Phase 1:";
+                            lblSetRandomPhase2.Text = "Phase 2:";
+                            break;
+                        }
+                        case 46: // Set Range AI Phase
+                        {
+                            lblSetRandomPhaseTooltip.Text = "Randomly chooses a value in the provided range and sets the Creature's AI phase to it. Can only be used on creatures with EventAI.";
+                            lblSetRandomPhase3.Visible = false;
+                            lblSetRandomPhase4.Visible = false;
+                            txtSetRandomPhase3.Visible = false;
+                            txtSetRandomPhase4.Visible = false;
+                            lblSetRandomPhase1.Text = "Minimum:";
+                            lblSetRandomPhase2.Text = "Maximum:";
+                            break;
+                        }
+                        case 54: // Set Server Variable
+                        {
+                            lblSetRandomPhaseTooltip.Text = "Sets the chosen server variable to the provided value.";
+                            lblSetRandomPhase3.Visible = false;
+                            lblSetRandomPhase4.Visible = false;
+                            txtSetRandomPhase3.Visible = false;
+                            txtSetRandomPhase4.Visible = false;
+                            lblSetRandomPhase1.Text = "Index:";
+                            lblSetRandomPhase2.Text = "Value:";
+                            break;
+                        }
                     }
-                    else
-                    {
-                        lblSetRandomPhaseTooltip.Text = "Randomly chooses a value in the provided range and sets the Creature's AI phase to it. Can only be used on creatures with EventAI.";
-                        lblSetRandomPhase3.Visible = false;
-                        lblSetRandomPhase4.Visible = false;
-                        txtSetRandomPhase3.Visible = false;
-                        txtSetRandomPhase4.Visible = false;
-                        lblSetRandomPhase1.Text = "Minimum:";
-                        lblSetRandomPhase2.Text = "Maximum:";
-                    }
+                    lblSetRandomPhase1.Location = new Point(txtSetRandomPhase1.Location.X - lblSetRandomPhase1.Size.Width - 4, lblSetRandomPhase1.Location.Y);
+                    lblSetRandomPhase2.Location = new Point(txtSetRandomPhase2.Location.X - lblSetRandomPhase2.Size.Width - 4, lblSetRandomPhase2.Location.Y);
                     frmCommandSetRandomPhase.Visible = true;
                     break;
                 }
                 case 47: // Flee
+                case 49: // Combat Pulse
+                case 51: // Set Sheath State
                 {
+                    switch (selectedAction.Command)
+                    {
+                        case 47: // Flee
+                        {
+                            lblFleeTooltip.Text = "The source Creature attempts to flee from the attacker.";
+                            lblFleeMode.Text = "Mode:";
+                            cmbFleeMode.DataSource = CommandFleeModes_ComboOptions;
+                            break;
+                        }
+                        case 49: // Combat Pusle
+                        {
+                            lblFleeTooltip.Text = "Places all players within the instance into combat with the source Creature.";
+                            lblFleeMode.Text = "Initial Pulse:";
+                            cmbFleeMode.DataSource = CommandCombatPulse_ComboOptions;
+                            break;
+                        }
+                        case 51: // Set Sheath State
+                        {
+                            lblFleeTooltip.Text = "Changes the source Unit's current sheath state.";
+                            lblFleeMode.Text = "Sheath State:";
+                            cmbFleeMode.DataSource = CommandSetSheathState_ComboOptions;
+                            break;
+                        }
+                    }
+                    lblFleeMode.Location = new Point(cmbFleeMode.Location.X - lblFleeMode.Size.Width - 4, lblFleeMode.Location.Y);
                     cmbFleeMode.SelectedIndex = (int)selectedAction.Datalong;
                     frmCommandFlee.Visible = true;
+                    break;
+                }
+                case 50: // Call For Help
+                {
+                    txtCallForHelpRadius.Text = selectedAction.X.ToString();
+                    frmCommandCallForHelp.Visible = true;
+                    break;
+                }
+                case 53: // Start Game Event
+                {
+                    uint eventId = selectedAction.Datalong;
+                    if (eventId > 0)
+                        btnGameEventId.Text = GameData.FindEventName(eventId) + " (" + eventId.ToString() + ")";
+                    cmbGameEventAction.SelectedIndex = (int)selectedAction.Datalong2;
+                    cmbGameEventOverwrite.SelectedIndex = (int)selectedAction.Datalong3;
+                    frmCommandGameEvent.Visible = true;
                     break;
                 }
             }
@@ -3418,6 +3541,26 @@ namespace ScriptEditor
         private void cmbFleeMode_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbFleeMode, "Datalong", false);
+        }
+
+        private void txtCallForHelpRadius_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtCallForHelpRadius, "X");
+        }
+
+        private void btnGameEventId_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormEventFinder>(btnGameEventId, null, GameData.FindEventName, "Datalong");
+        }
+
+        private void cmbGameEventAction_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbGameEventAction, "Datalong2", false);
+        }
+
+        private void cmbGameEventOverwrite_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbGameEventOverwrite, "Datalong3", false);
         }
     }
 
