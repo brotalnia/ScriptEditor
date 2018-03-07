@@ -50,89 +50,96 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreatureEvent.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAreaFinder.cs">
+    <Compile Include="DataFinderForms\FormAreaFinder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAreaFinder.Designer.cs">
+    <Compile Include="DataFinderForms\FormAreaFinder.Designer.cs">
       <DependentUpon>FormAreaFinder.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormConditionFinder.cs">
+    <Compile Include="DataFinderForms\FormConditionFinder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormConditionFinder.Designer.cs">
+    <Compile Include="DataFinderForms\FormConditionFinder.Designer.cs">
       <DependentUpon>FormConditionFinder.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCreatureFinder.cs">
+    <Compile Include="DataFinderForms\FormCreatureFinder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCreatureFinder.Designer.cs">
+    <Compile Include="DataFinderForms\FormCreatureFinder.Designer.cs">
       <DependentUpon>FormCreatureFinder.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormDataFinder.cs">
+    <Compile Include="DataFinderForms\FormDataFinder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormDataFinder.Designer.cs">
+    <Compile Include="DataFinderForms\FormDataFinder.Designer.cs">
       <DependentUpon>FormDataFinder.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormEventFinder.cs">
+    <Compile Include="DataFinderForms\FormEventFinder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormEventFinder.Designer.cs">
+    <Compile Include="DataFinderForms\FormEventFinder.Designer.cs">
       <DependentUpon>FormEventFinder.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormFactionTemplateFinder.cs">
+    <Compile Include="DataFinderForms\FormFactionTemplateFinder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormFactionTemplateFinder.Designer.cs">
+    <Compile Include="DataFinderForms\FormFactionTemplateFinder.Designer.cs">
       <DependentUpon>FormFactionTemplateFinder.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormItemFinder.cs">
+    <Compile Include="DataFinderForms\FormItemFinder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormItemFinder.Designer.cs">
+    <Compile Include="DataFinderForms\FormItemFinder.Designer.cs">
       <DependentUpon>FormItemFinder.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormQuestFinder.cs">
+    <Compile Include="DataFinderForms\FormQuestFinder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormQuestFinder.Designer.cs">
+    <Compile Include="DataFinderForms\FormQuestFinder.Designer.cs">
       <DependentUpon>FormQuestFinder.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormSoundFinder.cs">
+    <Compile Include="DataFinderForms\FormSoundFinder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSoundFinder.Designer.cs">
+    <Compile Include="DataFinderForms\FormSoundFinder.Designer.cs">
       <DependentUpon>FormSoundFinder.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormSpellFinder.cs">
+    <Compile Include="DataFinderForms\FormSpellFinder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSpellFinder.Designer.cs">
+    <Compile Include="DataFinderForms\FormSpellFinder.Designer.cs">
       <DependentUpon>FormSpellFinder.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormTaxiFinder.cs">
+    <Compile Include="DataFinderForms\FormTaxiFinder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormTaxiFinder.Designer.cs">
+    <Compile Include="DataFinderForms\FormTaxiFinder.Designer.cs">
       <DependentUpon>FormTaxiFinder.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormTextFinder.cs">
+    <Compile Include="DataFinderForms\FormTextFinder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormTextFinder.Designer.cs">
+    <Compile Include="DataFinderForms\FormTextFinder.Designer.cs">
       <DependentUpon>FormTextFinder.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormWeaponFinder.cs">
+    <Compile Include="DataFinderForms\FormWeaponFinder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormWeaponFinder.Designer.cs">
+    <Compile Include="DataFinderForms\FormWeaponFinder.Designer.cs">
       <DependentUpon>FormWeaponFinder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEventEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEventEditor.Designer.cs">
+      <DependentUpon>FormEventEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="GameData.cs" />
     <Compile Include="MixedListSorter.cs" />
@@ -142,44 +149,47 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAreaFinder.resx">
+    <EmbeddedResource Include="DataFinderForms\FormAreaFinder.resx">
       <DependentUpon>FormAreaFinder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormConditionFinder.resx">
+    <EmbeddedResource Include="DataFinderForms\FormConditionFinder.resx">
       <DependentUpon>FormConditionFinder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormCreatureFinder.resx">
+    <EmbeddedResource Include="DataFinderForms\FormCreatureFinder.resx">
       <DependentUpon>FormCreatureFinder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormDataFinder.resx">
+    <EmbeddedResource Include="DataFinderForms\FormDataFinder.resx">
       <DependentUpon>FormDataFinder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormEventFinder.resx">
+    <EmbeddedResource Include="DataFinderForms\FormEventFinder.resx">
       <DependentUpon>FormEventFinder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormFactionTemplateFinder.resx">
+    <EmbeddedResource Include="DataFinderForms\FormFactionTemplateFinder.resx">
       <DependentUpon>FormFactionTemplateFinder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormItemFinder.resx">
+    <EmbeddedResource Include="DataFinderForms\FormItemFinder.resx">
       <DependentUpon>FormItemFinder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormQuestFinder.resx">
+    <EmbeddedResource Include="DataFinderForms\FormQuestFinder.resx">
       <DependentUpon>FormQuestFinder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormSoundFinder.resx">
+    <EmbeddedResource Include="DataFinderForms\FormSoundFinder.resx">
       <DependentUpon>FormSoundFinder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormSpellFinder.resx">
+    <EmbeddedResource Include="DataFinderForms\FormSpellFinder.resx">
       <DependentUpon>FormSpellFinder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormTaxiFinder.resx">
+    <EmbeddedResource Include="DataFinderForms\FormTaxiFinder.resx">
       <DependentUpon>FormTaxiFinder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormTextFinder.resx">
+    <EmbeddedResource Include="DataFinderForms\FormTextFinder.resx">
       <DependentUpon>FormTextFinder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormWeaponFinder.resx">
+    <EmbeddedResource Include="DataFinderForms\FormWeaponFinder.resx">
       <DependentUpon>FormWeaponFinder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEventEditor.resx">
+      <DependentUpon>FormEventEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

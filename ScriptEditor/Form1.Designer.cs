@@ -419,6 +419,7 @@
             this.lblGameEventAction = new System.Windows.Forms.Label();
             this.btnGameEventId = new System.Windows.Forms.Button();
             this.lblCommandGameEventTooltip = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -505,7 +506,7 @@
             // lblId
             // 
             this.lblId.AutoSize = true;
-            this.lblId.Location = new System.Drawing.Point(20, 32);
+            this.lblId.Location = new System.Drawing.Point(19, 40);
             this.lblId.Name = "lblId";
             this.lblId.Size = new System.Drawing.Size(87, 13);
             this.lblId.TabIndex = 1;
@@ -4553,11 +4554,22 @@
             this.lblCommandGameEventTooltip.TabIndex = 0;
             this.lblCommandGameEventTooltip.Text = "Starts or stops the chosen game event.";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(471, 588);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(84, 23);
+            this.button1.TabIndex = 54;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 620);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.frmCommandGameEvent);
             this.Controls.Add(this.frmCommandCallForHelp);
             this.Controls.Add(this.frmCommandFlee);
@@ -5112,6 +5124,7 @@
         private System.Windows.Forms.Label lblCommandGameEventTooltip;
         private System.Windows.Forms.ComboBox cmbGameEventOverwrite;
         private System.Windows.Forms.Label lblGameEventOverwrite;
+        private System.Windows.Forms.Button button1;
     }
 }
 

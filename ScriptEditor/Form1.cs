@@ -19,7 +19,7 @@ namespace ScriptEditor
         public uint currentScriptId = 0;
         public string currentScriptTable = "";
 
-        // Used to prevent control events triggering when reseting data.
+        // Used to prevent control events triggering when resetting data.
         bool dontUpdate = false;
 
         // Used to get the name of quests, creatures, etc.
@@ -33,7 +33,7 @@ namespace ScriptEditor
         public string[] CommandSetPhase_ComboOptions = { "Change To Specified Value", "Increment Current Phase", "Decrement Current Phase" };
         // Deal Damage options.
         public string[] CommandDealDamage_ComboOptions = { "Raw Value", "Percent of Total Health" };
-        public string[] CommandFleeModes_ComboOptions = { "Random Direction", "Seek Assistance" };
+        public string[] CommandFlee_ComboOptions = { "Random Direction", "Seek Assistance" };
         public string[] CommandCombatPulse_ComboOptions = { "False", "True" };
         public string[] CommandSetSheathState_ComboOptions = { "Unarmed", "Melee", "Ranged" };
         public Form1()
@@ -192,7 +192,7 @@ namespace ScriptEditor
             cmbSetPhaseMode.DataSource = CommandSetPhase_ComboOptions;
 
             // Assign options to Flee combo box.
-            cmbFleeMode.DataSource = CommandFleeModes_ComboOptions;
+            cmbFleeMode.DataSource = CommandFlee_ComboOptions;
 
             // Assign motion types list to combo box.
             cmbSetMovementType.DataSource = GameData.MotionTypesList;
@@ -1520,7 +1520,7 @@ namespace ScriptEditor
                         {
                             lblFleeTooltip.Text = "The source Creature attempts to flee from the attacker.";
                             lblFleeMode.Text = "Mode:";
-                            cmbFleeMode.DataSource = CommandFleeModes_ComboOptions;
+                            cmbFleeMode.DataSource = CommandFlee_ComboOptions;
                             break;
                         }
                         case 49: // Combat Pusle
@@ -1564,7 +1564,7 @@ namespace ScriptEditor
         }
         private void lstActions_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.lstActions.SelectedItems.Count == 0)
+            if (lstActions.SelectedItems.Count == 0)
             {
                 ResetAndDisableGeneralForm();
                 ResetAndHideCommandSpecificForms();
@@ -3561,6 +3561,12 @@ namespace ScriptEditor
         private void cmbGameEventOverwrite_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbGameEventOverwrite, "Datalong3", false);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormEventEditor editor = new FormEventEditor();
+            editor.Show();
         }
     }
 
