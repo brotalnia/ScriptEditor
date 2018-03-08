@@ -141,7 +141,14 @@
     <Compile Include="FormEventEditor.Designer.cs">
       <DependentUpon>FormEventEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormMaskCalculator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMaskCalculator.Designer.cs">
+      <DependentUpon>FormMaskCalculator.cs</DependentUpon>
+    </Compile>
     <Compile Include="GameData.cs" />
+    <Compile Include="Helpers.cs" />
     <Compile Include="MixedListSorter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -190,6 +197,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEventEditor.resx">
       <DependentUpon>FormEventEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMaskCalculator.resx">
+      <DependentUpon>FormMaskCalculator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

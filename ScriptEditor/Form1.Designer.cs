@@ -72,8 +72,8 @@
             this.btnTalkText1 = new System.Windows.Forms.Button();
             this.cmbTalkChatType = new System.Windows.Forms.ComboBox();
             this.lblTalkChatType = new System.Windows.Forms.Label();
-            this.btnActionRemove = new System.Windows.Forms.Button();
-            this.btnActionNew = new System.Windows.Forms.Button();
+            this.btnActionDelete = new System.Windows.Forms.Button();
+            this.btnActionAdd = new System.Windows.Forms.Button();
             this.lblScriptId = new System.Windows.Forms.Label();
             this.lblTable = new System.Windows.Forms.Label();
             this.frmCommandEmote = new System.Windows.Forms.Panel();
@@ -906,25 +906,25 @@
             this.lblTalkChatType.TabIndex = 0;
             this.lblTalkChatType.Text = "Chat Type Override:";
             // 
-            // btnActionRemove
+            // btnActionDelete
             // 
-            this.btnActionRemove.Location = new System.Drawing.Point(300, 588);
-            this.btnActionRemove.Name = "btnActionRemove";
-            this.btnActionRemove.Size = new System.Drawing.Size(75, 23);
-            this.btnActionRemove.TabIndex = 7;
-            this.btnActionRemove.Text = "Remove";
-            this.btnActionRemove.UseVisualStyleBackColor = true;
-            this.btnActionRemove.Click += new System.EventHandler(this.btnActionRemove_Click);
+            this.btnActionDelete.Location = new System.Drawing.Point(300, 588);
+            this.btnActionDelete.Name = "btnActionDelete";
+            this.btnActionDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnActionDelete.TabIndex = 7;
+            this.btnActionDelete.Text = "Delete";
+            this.btnActionDelete.UseVisualStyleBackColor = true;
+            this.btnActionDelete.Click += new System.EventHandler(this.btnActionDelete_Click);
             // 
-            // btnActionNew
+            // btnActionAdd
             // 
-            this.btnActionNew.Location = new System.Drawing.Point(138, 588);
-            this.btnActionNew.Name = "btnActionNew";
-            this.btnActionNew.Size = new System.Drawing.Size(75, 23);
-            this.btnActionNew.TabIndex = 8;
-            this.btnActionNew.Text = "New";
-            this.btnActionNew.UseVisualStyleBackColor = true;
-            this.btnActionNew.Click += new System.EventHandler(this.btnActionNew_Click);
+            this.btnActionAdd.Location = new System.Drawing.Point(138, 588);
+            this.btnActionAdd.Name = "btnActionAdd";
+            this.btnActionAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnActionAdd.TabIndex = 8;
+            this.btnActionAdd.Text = "Add";
+            this.btnActionAdd.UseVisualStyleBackColor = true;
+            this.btnActionAdd.Click += new System.EventHandler(this.btnActionAdd_Click);
             // 
             // lblScriptId
             // 
@@ -4614,8 +4614,8 @@
             this.Controls.Add(this.frmCommandEmote);
             this.Controls.Add(this.lblTable);
             this.Controls.Add(this.lblScriptId);
-            this.Controls.Add(this.btnActionNew);
-            this.Controls.Add(this.btnActionRemove);
+            this.Controls.Add(this.btnActionAdd);
+            this.Controls.Add(this.btnActionDelete);
             this.Controls.Add(this.frmCommandTalk);
             this.Controls.Add(this.grpGeneral);
             this.Controls.Add(this.txtScriptId);
@@ -4772,8 +4772,8 @@
         private System.Windows.Forms.Button btnTalkText1;
         private System.Windows.Forms.Label lblComment;
         private System.Windows.Forms.TextBox txtCommandComment;
-        private System.Windows.Forms.Button btnActionRemove;
-        private System.Windows.Forms.Button btnActionNew;
+        private System.Windows.Forms.Button btnActionDelete;
+        private System.Windows.Forms.Button btnActionAdd;
         private System.Windows.Forms.Label lblScriptId;
         private System.Windows.Forms.Label lblTable;
         private System.Windows.Forms.Label lblTalkTextPreview;

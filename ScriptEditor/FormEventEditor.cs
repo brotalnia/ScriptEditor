@@ -98,14 +98,13 @@ namespace ScriptEditor
             dontUpdate = true;
 
             // Text Boxes.
-            txtCreatureId.Text = "";
+            txtEventId.Text = "";
             txtScriptId1.Text = "";
             txtScriptId2.Text = "";
             txtScriptId3.Text = "";
             txtEventComment.Text = "";
             txtEventChance.Text = "";
-            txtEventPhaseMask.Text = "";
-
+            btnEventPhaseMask.Text = "-NONE-";
 
             // Combo Boxes.
             cmbEventType.SelectedIndex = 0;
@@ -115,7 +114,6 @@ namespace ScriptEditor
             chkEventFlag1.Checked = false;
             chkEventFlag2.Checked = false;
             chkEventFlag4.Checked = false;
-
 
             // Buttons.
             btnEventCondition.Text = "-NONE-";
@@ -130,14 +128,151 @@ namespace ScriptEditor
         {
             dontUpdate = true;
 
+            // EVENT_T_TIMER (0)
+            // EVENT_T_TIMER_OOC (1)
+            // EVENT_T_HP (2)
+            // EVENT_T_MANA (3)
+            // EVENT_T_KILL (5)
+            txtTimerInitialMin.Text = "";
+            txtTimerInitialMax.Text = "";
+            txtTimerRepeatMin.Text = "";
+            txtTimerRepeatMax.Text = "";
+            frmEventTimerCombat.Visible = false;
+
+            // EVENT_T_AGGRO (4)
+            // EVENT_T_DEATH (6)
+            // EVENT_T_EVADE (7)
+            frmEventAggro.Visible = false;
+
+            // EVENT_T_SPELLHIT (8)
+            btnSpellHitSpellId.Text = "-NONE-";
+            txtSpellHitSchoolMask.Text = "";
+            txtSpellHitRepeatMin.Text = "";
+            txtSpellHitRepeatMax.Text = "";
+            frmEventSpellHit.Visible = false;
 
 
             dontUpdate = false;
         }
 
-        private void ShowEventSpecificForm(CreatureEvent currentEvent)
+        private void ShowEventSpecificForm(CreatureEvent selectedEvent)
         {
-
+            dontUpdate = true;
+            switch (selectedEvent.Type)
+            {
+                case 0: // EVENT_T_TIMER
+                case 1: // EVENT_T_TIMER_OOC
+                case 2: // EVENT_T_HP
+                case 3: // EVENT_T_MANA
+                case 5: // EVENT_T_KILL
+                {
+                    switch (selectedEvent.Type)
+                    {
+                        case 0: // EVENT_T_TIMER
+                        {
+                            lblEventTimerCombatTooltip.Text = "A timed event that expires after the specified amount of miliseconds have passed. Only while the creature is in combat.";
+                            lblTimerInitialMin.Text = "Initial Min:";
+                            lblTimerInitialMax.Text = "Initial Max:";
+                            lblTimerRepeatMin.Visible = true;
+                            lblTimerRepeatMax.Visible = true;
+                            txtTimerRepeatMin.Visible = true;
+                            txtTimerRepeatMax.Visible = true;
+                            break;
+                        }
+                        case 1: // EVENT_T_TIMER_OOC
+                        {
+                            lblEventTimerCombatTooltip.Text = "A timed event that expires after the specified amount of miliseconds have passed. Only while the creature is out of combat.";
+                            lblTimerInitialMin.Text = "Initial Min:";
+                            lblTimerInitialMax.Text = "Initial Max:";
+                            lblTimerRepeatMin.Visible = true;
+                            lblTimerRepeatMax.Visible = true;
+                            txtTimerRepeatMin.Visible = true;
+                            txtTimerRepeatMax.Visible = true;
+                            break;
+                        }
+                        case 2: // EVENT_T_HP
+                        {
+                            lblEventTimerCombatTooltip.Text = "Expires when the creature's health is between the specified percents. Only while the creature is in combat.";
+                            lblTimerInitialMin.Text = "HP Max:";
+                            lblTimerInitialMax.Text = "HP Min:";
+                            lblTimerRepeatMin.Visible = true;
+                            lblTimerRepeatMax.Visible = true;
+                            txtTimerRepeatMin.Visible = true;
+                            txtTimerRepeatMax.Visible = true;
+                            break;
+                        }
+                        case 3: // EVENT_T_MANA
+                        {
+                            lblEventTimerCombatTooltip.Text = "Expires when the creature's mana is between the specified percents. Only while the creature is in combat.";
+                            lblTimerInitialMin.Text = "Mana Max:";
+                            lblTimerInitialMax.Text = "Mana Min:";
+                            lblTimerRepeatMin.Visible = true;
+                            lblTimerRepeatMax.Visible = true;
+                            txtTimerRepeatMin.Visible = true;
+                            txtTimerRepeatMax.Visible = true;
+                            break;
+                        }
+                        case 5: // EVENT_T_KILL
+                        {
+                            lblEventTimerCombatTooltip.Text = "Expires upon killing a player. ";
+                            lblTimerInitialMin.Text = "Repeat Min:";
+                            lblTimerInitialMax.Text = "Repeat Max:";
+                            lblTimerRepeatMin.Visible = false;
+                            lblTimerRepeatMax.Visible = false;
+                            txtTimerRepeatMin.Visible = false;
+                            txtTimerRepeatMax.Visible = false;
+                            break;
+                        }
+                    }
+                    txtTimerInitialMin.Text = selectedEvent.Param1.ToString();
+                    lblTimerInitialMin.Location = new Point(txtTimerInitialMin.Location.X - lblTimerInitialMin.Size.Width - 4, lblTimerInitialMin.Location.Y);
+                    txtTimerInitialMax.Text = selectedEvent.Param2.ToString();
+                    lblTimerInitialMax.Location = new Point(txtTimerInitialMax.Location.X - lblTimerInitialMax.Size.Width - 4, lblTimerInitialMax.Location.Y);
+                    txtTimerRepeatMin.Text = selectedEvent.Param3.ToString();
+                    lblTimerRepeatMin.Location = new Point(txtTimerRepeatMin.Location.X - lblTimerRepeatMin.Size.Width - 4, lblTimerRepeatMin.Location.Y);
+                    txtTimerRepeatMax.Text = selectedEvent.Param4.ToString();
+                    lblTimerRepeatMax.Location = new Point(txtTimerRepeatMax.Location.X - lblTimerRepeatMax.Size.Width - 4, lblTimerRepeatMax.Location.Y);
+                    frmEventTimerCombat.Visible = true;
+                    break;
+                }
+                case 4: // EVENT_T_AGGRO
+                case 6: // EVENT_T_DEATH
+                case 7: // EVENT_T_EVADE
+                {
+                    switch (selectedEvent.Type)
+                    {
+                        case 4: // EVENT_T_AGGRO
+                        {
+                            lblEventAggroTooltip.Text = "Expires upon initial aggro, does not repeat. This event has no additional parameters.";
+                            break;
+                        }
+                        case 6: // EVENT_T_DEATH
+                        {
+                            lblEventAggroTooltip.Text = "Expires when the creature dies. This event has no additional parameters.";
+                            break;
+                        }
+                        case 7: // EVENT_T_EVADE
+                        {
+                            lblEventAggroTooltip.Text = "Expires when the creature enters evade mode. This event has no additional parameters.";
+                            break;
+                        }
+                    }
+                    frmEventAggro.Visible = true;
+                    break;
+                }
+                case 8: // EVENT_T_SPELLHIT
+                {
+                    uint spellId = (uint)selectedEvent.Param1;
+                    if (spellId > 0)
+                        btnSpellHitSpellId.Text = GameData.FindSpellName(spellId) + " (" + spellId.ToString() + ")";
+                    txtSpellHitSchoolMask.Text = selectedEvent.Param2.ToString();
+                    txtSpellHitRepeatMin.Text = selectedEvent.Param3.ToString();
+                    txtSpellHitRepeatMax.Text = selectedEvent.Param4.ToString();
+                    frmEventSpellHit.Visible = true;
+                    break;
+                }
+            }
+            dontUpdate = false;
         }
 
         private void btnFind_Click(object sender, EventArgs e)
@@ -200,7 +335,7 @@ namespace ScriptEditor
                 }
                 reader.Close();
 
-                currentCreatureId = 0;
+                currentCreatureId = creature_id;
 
                 lblCurrentCreature.Text = "Editing events for creature " + creature_id.ToString() + ".";
                 this.Text = "Event Editor (" + creature_id.ToString() + ")";
@@ -230,7 +365,6 @@ namespace ScriptEditor
             // Text Boxes
             txtEventId.Text = selectedEvent.Id.ToString();
             txtEventChance.Text = selectedEvent.Chance.ToString();
-            txtEventPhaseMask.Text = selectedEvent.InversePhaseMask.ToString();
             txtEventComment.Text = selectedEvent.Comment;
             txtScriptId1.Text = selectedEvent.ScriptId1.ToString();
             txtScriptId2.Text = selectedEvent.ScriptId2.ToString();
@@ -242,6 +376,8 @@ namespace ScriptEditor
             // Buttons
             if (selectedEvent.ConditionId > 0)
                 btnEventCondition.Text = selectedEvent.ConditionId.ToString();
+            if (selectedEvent.InversePhaseMask != 0)
+                btnEventPhaseMask.Text = selectedEvent.InversePhaseMask.ToString();
 
             // Checkboxes
             chkEventFlag1.Checked = ((selectedEvent.Flags & 1) != 0);
@@ -335,6 +471,40 @@ namespace ScriptEditor
                     currentValue -= value;
 
                 prop.SetValue(currentEvent, Convert.ChangeType(currentValue, prop.FieldType));
+            }
+        }
+        // Generic function for setting a value from another form.
+        private void SetScriptFieldFromDataFinderForm<TFinderForm>(Button btn, TextBox txtbox, NameFinder finder, string fieldname) where TFinderForm : FormDataFinder, new()
+        {
+            FormDataFinder frm = new TFinderForm();
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                int returnId = frm.ReturnValue;
+
+                if (returnId > 0)
+                {
+                    // If there is no textbox provided the text is shown on the button.
+                    if (txtbox == null)
+                        btn.Text = finder((uint)returnId) + " (" + returnId.ToString() + ")";
+                    else
+                    {
+                        btn.Text = returnId.ToString();
+                        txtbox.Text = finder((uint)returnId);
+                    }
+                }
+                else if (returnId < 0)
+                {
+                    btn.Text = "-IGNORE-";
+                }
+                else
+                {
+                    btn.Text = "-NONE-";
+                    if (txtbox != null)
+                        txtbox.Text = "";
+                }
+
+                // Set the field value.
+                SetScriptFieldFromValue(returnId, fieldname);
             }
         }
 
@@ -443,9 +613,29 @@ namespace ScriptEditor
             SetScriptFieldFromTextbox(txtEventChance, "Chance");
         }
 
-        private void txtEventPhaseMask_Leave(object sender, EventArgs e)
+        private void btnEventPhaseMask_Click(object sender, EventArgs e)
         {
-            SetScriptFieldFromTextbox(txtEventPhaseMask, "InversePhaseMask");
+            if (lstEvents.SelectedItems.Count > 0)
+            {
+                // Get the selected item in the listview.
+                ListViewItem currentItem = lstEvents.SelectedItems[0];
+
+                // Get the associated CreatureEvent.
+                CreatureEvent currentEvent = (CreatureEvent)currentItem.Tag;
+
+                // Show the mask calculator fork.
+                FormMaskCalculator frm = new FormMaskCalculator((uint)currentEvent.InversePhaseMask);
+                frm.ShowDialog();
+                uint returnPhase = frm.ReturnValue;
+
+                if (returnPhase > 0)
+                    btnEventPhaseMask.Text = returnPhase.ToString();
+                else
+                    btnEventPhaseMask.Text = "-NONE-";
+
+                // Set the field value.
+                currentEvent.InversePhaseMask = (int)returnPhase;
+            }
         }
 
         private void btnEventCondition_Click(object sender, EventArgs e)
@@ -480,7 +670,7 @@ namespace ScriptEditor
             lstEvents.Sort();
         }
 
-        private void btnEventNew_Click(object sender, EventArgs e)
+        private void btnEventAdd_Click(object sender, EventArgs e)
         {
             // First we find the highest id in the event list.
             uint max_id = 0;
@@ -561,7 +751,7 @@ namespace ScriptEditor
             }
         }
 
-        private void btnEventRemove_Click(object sender, EventArgs e)
+        private void btnEventDelete_Click(object sender, EventArgs e)
         {
             if (lstEvents.SelectedItems.Count > 0)
             {
@@ -571,6 +761,112 @@ namespace ScriptEditor
                 // Delete the item from the listview.
                 lstEvents.Items.Remove(deleteItem);
             }
+        }
+        // Generates SQL query based on creature events list.
+        private string GenerateSaveQuery()
+        {
+            string unusedScripts = "";
+            List<uint> usedScripts = new List<uint>();
+            // Add all currently used ScriptIds to a list.
+            foreach (ListViewItem item in lstEvents.Items)
+            {
+                CreatureEvent creature_event = (CreatureEvent)item.Tag;
+                if (creature_event.ScriptId1 > 0)
+                    usedScripts.Add(creature_event.ScriptId1);
+                if (creature_event.ScriptId2 > 0)
+                    usedScripts.Add(creature_event.ScriptId2);
+                if (creature_event.ScriptId3 > 0)
+                    usedScripts.Add(creature_event.ScriptId3);
+            }
+            // Check if all initially used scripts are still used.
+            foreach (uint id in ScriptIdsList)
+            {
+                if (!usedScripts.Contains(id))
+                {
+                    if (unusedScripts != "")
+                        unusedScripts += ", ";
+                    unusedScripts += id.ToString();
+                }
+            }
+            string query = "";
+            if (unusedScripts != "")
+            {
+                query = "-- Removing unused script actions.\nDELETE FROM `creature_ai_scripts` WHERE `id` IN (" + unusedScripts + ");\n\n";
+            }
+            query += "-- Events list for " + GameData.FindCreatureName(currentCreatureId) + "\nDELETE FROM `creature_ai_events` WHERE `creature_id`=" + currentCreatureId.ToString() + ";\n";
+            foreach (ListViewItem lvi in lstEvents.Items)
+            {
+                // Get the associated CreatureEvent.
+                CreatureEvent currentEvent = (CreatureEvent)lvi.Tag;
+
+                query += "INSERT INTO `creature_ai_events` (`id`, `creature_id`, `condition_id`, `event_type`, `event_inverse_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `action1_script`, `action2_script`, `action3_script`, `comment`) VALUES (" + currentEvent.Id.ToString() + ", " + currentEvent.CreatureId.ToString() + ", " + currentEvent.ConditionId.ToString() + ", " + currentEvent.Type.ToString() + ", " + currentEvent.InversePhaseMask.ToString() + ", " + currentEvent.Chance.ToString() + ", " + currentEvent.Flags.ToString() + ", " + currentEvent.Param1.ToString() + ", " + currentEvent.Param2.ToString() + ", " + currentEvent.Param3.ToString() + ", " + currentEvent.Param4.ToString() + ", " + currentEvent.ScriptId1.ToString() + ", " + currentEvent.ScriptId2.ToString() + ", " + currentEvent.ScriptId3.ToString() + ", '" + Helpers.MySQLEscape(currentEvent.Comment) + "');\n";
+            }
+            return query;
+        }
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (currentCreatureId != 0)
+            {
+                string query = GenerateSaveQuery();
+                if (Helpers.ShowSaveDialog(ref query) == DialogResult.OK)
+                {
+                    MySqlConnection conn = new MySqlConnection(Program.connString);
+                    MySqlCommand command = conn.CreateCommand();
+                    command.CommandText = query;
+                    try
+                    {
+                        conn.Open();
+                        command.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString(), "Save Events", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    conn.Close();
+                }
+            }
+            else
+                MessageBox.Show("You are not editing any specific creature!", "Save Events", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void txtTimerInitialMin_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtTimerInitialMin, "Param1");
+        }
+
+        private void txtTimerInitialMax_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtTimerInitialMax, "Param2");
+        }
+
+        private void txtTimerRepeatMin_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtTimerRepeatMin, "Param3");
+        }
+
+        private void txtTimerRepeatMax_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtTimerRepeatMax, "Param4");
+        }
+
+        private void btnSpellHitSpellId_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormSpellFinder>(btnSpellHitSpellId, null, GameData.FindSpellName, "Param1");
+        }
+
+        private void txtSpellHitSchoolMask_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSpellHitSchoolMask, "Param2");
+        }
+
+        private void txtSpellHitRepeatMin_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSpellHitRepeatMin, "Param3");
+        }
+
+        private void txtSpellHitRepeatMax_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSpellHitRepeatMax, "Param4");
         }
     }
 }

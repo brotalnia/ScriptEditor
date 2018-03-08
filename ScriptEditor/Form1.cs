@@ -13,6 +13,10 @@ using System.Text.RegularExpressions;
 
 namespace ScriptEditor
 {
+
+    // Used to get the name of quests, creatures, etc.
+    public delegate string NameFinder(uint id);
+
     public partial class Form1 : Form
     {
         // Save what we are currently working on.
@@ -21,9 +25,6 @@ namespace ScriptEditor
 
         // Used to prevent control events triggering when resetting data.
         bool dontUpdate = false;
-
-        // Used to get the name of quests, creatures, etc.
-        public delegate string NameFinder(uint id);
 
         // Set Data options.
         public string[] CommandSetData_ComboOptions = { "Save Raw Value", "Increment Existing Data", "Decrement Existing Data" };
@@ -213,94 +214,6 @@ namespace ScriptEditor
             dontUpdate = false;
         }
 
-        // Shows an input box that returns a value.
-        private static DialogResult ShowInputDialog(ref string input, string name)
-        {
-            System.Drawing.Size size = new System.Drawing.Size(200, 70);
-            Form inputBox = new Form();
-
-            inputBox.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            inputBox.ClientSize = size;
-            inputBox.Text = name;
-            inputBox.MaximizeBox = false;
-            inputBox.MinimizeBox = false;
-            inputBox.StartPosition = FormStartPosition.CenterParent;
-
-            System.Windows.Forms.TextBox textBox = new TextBox();
-            textBox.Size = new System.Drawing.Size(size.Width - 10, 23);
-            textBox.Location = new System.Drawing.Point(5, 5);
-            textBox.Text = input;
-            inputBox.Controls.Add(textBox);
-
-            Button okButton = new Button();
-            okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            okButton.Name = "okButton";
-            okButton.Size = new System.Drawing.Size(75, 23);
-            okButton.Text = "&OK";
-            okButton.Location = new System.Drawing.Point(size.Width - 80 - 80, 39);
-            inputBox.Controls.Add(okButton);
-
-            Button cancelButton = new Button();
-            cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            cancelButton.Name = "cancelButton";
-            cancelButton.Size = new System.Drawing.Size(75, 23);
-            cancelButton.Text = "&Cancel";
-            cancelButton.Location = new System.Drawing.Point(size.Width - 80, 39);
-            inputBox.Controls.Add(cancelButton);
-
-            inputBox.AcceptButton = okButton;
-            inputBox.CancelButton = cancelButton;
-
-            DialogResult result = inputBox.ShowDialog();
-            input = textBox.Text;
-            return result;
-        }
-
-        // Shows a dialog with the query.
-        private DialogResult ShowSaveDialog(ref string query)
-        {
-            System.Drawing.Size size = new System.Drawing.Size(800, 450);
-            Form saveBox = new Form();
-
-            saveBox.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            saveBox.ClientSize = size;
-            saveBox.Text = "Save Script";
-            saveBox.MaximizeBox = false;
-            saveBox.MinimizeBox = false;
-            saveBox.StartPosition = FormStartPosition.CenterParent;
-
-            System.Windows.Forms.RichTextBox textBox = new RichTextBox();
-            textBox.Size = new System.Drawing.Size(size.Width - 10, size.Height - 40);
-            textBox.Location = new System.Drawing.Point(5, 5);
-            textBox.Text = query;
-            textBox.Multiline = true;
-            textBox.WordWrap = false;
-            textBox.ScrollBars = RichTextBoxScrollBars.ForcedBoth;
-            saveBox.Controls.Add(textBox);
-
-            Button okButton = new Button();
-            okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            okButton.Name = "okButton";
-            okButton.Size = new System.Drawing.Size(75, 23);
-            okButton.Text = "Save";
-            okButton.Location = new System.Drawing.Point(size.Width / 2 - okButton.Size.Width - 2, textBox.Location.Y + textBox.Size.Height + 5);
-            saveBox.Controls.Add(okButton);
-
-            Button cancelButton = new Button();
-            cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            cancelButton.Name = "cancelButton";
-            cancelButton.Size = new System.Drawing.Size(75, 23);
-            cancelButton.Text = "Cancel";
-            cancelButton.Location = new System.Drawing.Point(okButton.Location.X + okButton.Size.Width + 4, textBox.Location.Y + textBox.Size.Height + 5);
-            saveBox.Controls.Add(cancelButton);
-
-            saveBox.CancelButton = cancelButton;
-
-            DialogResult result = saveBox.ShowDialog();
-            query = textBox.Text;
-            return result;
-        }
-
         // Generates SQL query based on script actions list.
         private string GenerateScriptQuery()
         {
@@ -310,35 +223,9 @@ namespace ScriptEditor
                 // Get the associated ScriptAction.
                 ScriptAction currentAction = (ScriptAction)lvi.Tag;
 
-                query += "INSERT INTO `" + currentScriptTable + "` (`id`, `delay`, `command`, `datalong`, `datalong2`, `datalong3`, `datalong4`, `target_param1`, `target_param2`, `target_type`, `data_flags`, `dataint`, `dataint2`, `dataint3`, `dataint4`, `x`, `y`, `z`, `o`, `condition_id`, `comments`) VALUES (" + currentAction.Id.ToString() + ", " + currentAction.Delay.ToString() + ", " + currentAction.Command.ToString() + ", " + currentAction.Datalong.ToString() + ", " + currentAction.Datalong2.ToString() + ", " + currentAction.Datalong3.ToString() + ", " + currentAction.Datalong4.ToString() + ", " + currentAction.TargetParam1.ToString() + ", " + currentAction.TargetParam2.ToString() + ", " + currentAction.TargetType.ToString() + ", " + currentAction.DataFlags.ToString() + ", " + currentAction.Dataint.ToString() + ", " + currentAction.Dataint2.ToString() + ", " + currentAction.Dataint3.ToString() + ", " + currentAction.Dataint4.ToString() + ", " + currentAction.X.ToString().Replace(',', '.') + ", " + currentAction.Y.ToString().Replace(',', '.') + ", " + currentAction.Z.ToString().Replace(',', '.') + ", " + currentAction.O.ToString().Replace(',', '.') + ", " + currentAction.ConditionId.ToString() + ", '" + MySQLEscape(currentAction.Comments) + "');\n";
+                query += "INSERT INTO `" + currentScriptTable + "` (`id`, `delay`, `command`, `datalong`, `datalong2`, `datalong3`, `datalong4`, `target_param1`, `target_param2`, `target_type`, `data_flags`, `dataint`, `dataint2`, `dataint3`, `dataint4`, `x`, `y`, `z`, `o`, `condition_id`, `comments`) VALUES (" + currentAction.Id.ToString() + ", " + currentAction.Delay.ToString() + ", " + currentAction.Command.ToString() + ", " + currentAction.Datalong.ToString() + ", " + currentAction.Datalong2.ToString() + ", " + currentAction.Datalong3.ToString() + ", " + currentAction.Datalong4.ToString() + ", " + currentAction.TargetParam1.ToString() + ", " + currentAction.TargetParam2.ToString() + ", " + currentAction.TargetType.ToString() + ", " + currentAction.DataFlags.ToString() + ", " + currentAction.Dataint.ToString() + ", " + currentAction.Dataint2.ToString() + ", " + currentAction.Dataint3.ToString() + ", " + currentAction.Dataint4.ToString() + ", " + currentAction.X.ToString().Replace(',', '.') + ", " + currentAction.Y.ToString().Replace(',', '.') + ", " + currentAction.Z.ToString().Replace(',', '.') + ", " + currentAction.O.ToString().Replace(',', '.') + ", " + currentAction.ConditionId.ToString() + ", '" + Helpers.MySQLEscape(currentAction.Comments) + "');\n";
             }
             return query;
-        }
-        // Escape characters that will break the query.
-        private static string MySQLEscape(string str)
-        {
-            return Regex.Replace(str, @"[\x00'""\b\n\r\t\cZ\\%_]",
-                delegate (Match match)
-                {
-                    string v = match.Value;
-                    switch (v)
-                    {
-                        case "\x00":            // ASCII NUL (0x00) character
-                            return "\\0";
-                        case "\b":              // BACKSPACE character
-                            return "\\b";
-                        case "\n":              // NEWLINE (linefeed) character
-                            return "\\n";
-                        case "\r":              // CARRIAGE RETURN character
-                            return "\\r";
-                        case "\t":              // TAB
-                            return "\\t";
-                        case "\u001A":          // Ctrl-Z
-                            return "\\Z";
-                        default:
-                            return "\\" + v;
-                    }
-                });
         }
 
         private void ResetEditorForm()
@@ -444,7 +331,7 @@ namespace ScriptEditor
             if (currentScriptId != 0)
             {
                 string query = GenerateScriptQuery();
-                if (ShowSaveDialog(ref query) == DialogResult.OK)
+                if (Helpers.ShowSaveDialog(ref query) == DialogResult.OK)
                 {
                     MySqlConnection conn = new MySqlConnection(Program.connString);
                     MySqlCommand command = conn.CreateCommand();
@@ -465,7 +352,7 @@ namespace ScriptEditor
                 MessageBox.Show("You are not editing a script, cannot save to unknown table.", "Save Script", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void btnActionRemove_Click(object sender, EventArgs e)
+        private void btnActionDelete_Click(object sender, EventArgs e)
         {
             if (lstActions.SelectedItems.Count > 0)
             {
@@ -1935,7 +1822,7 @@ namespace ScriptEditor
             SetScriptFieldFromCombobox(cmbEmoteId, "Datalong", true);
         }
 
-        private void btnActionNew_Click(object sender, EventArgs e)
+        private void btnActionAdd_Click(object sender, EventArgs e)
         {
             ListViewItem newItem = new ListViewItem();
 
@@ -3020,7 +2907,7 @@ namespace ScriptEditor
             else // Display Id
             {
                 string id = "";
-                DialogResult result = ShowInputDialog(ref id, "Display Id");
+                DialogResult result = Helpers.ShowInputDialog(ref id, "Display Id");
                 if (result == DialogResult.OK)
                 {
                     // Get the selected option.
