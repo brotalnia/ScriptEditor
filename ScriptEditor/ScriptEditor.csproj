@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\gnome.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\main.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MySql.Data, Version=6.8.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
@@ -56,6 +56,12 @@
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormScriptEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormScriptEditor.Designer.cs">
+      <DependentUpon>FormScriptEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="DataFinderForms\FormAreaFinder.cs">
       <SubType>Form</SubType>
@@ -156,6 +162,9 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormScriptEditor.resx">
+      <DependentUpon>FormScriptEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DataFinderForms\FormAreaFinder.resx">
       <DependentUpon>FormAreaFinder.cs</DependentUpon>
     </EmbeddedResource>
@@ -226,6 +235,42 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\gnome.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\orc.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cast editor button black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cast editor button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\event editor button black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\event editor button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\script editor button black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\script editor button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MouseOver.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gitlink1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gitlink2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

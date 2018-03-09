@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEventEditor));
             this.lstEvents = new System.Windows.Forms.ListView();
             this.columnID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -36,6 +37,7 @@
             this.btnFind = new System.Windows.Forms.Button();
             this.lblCreatureId = new System.Windows.Forms.Label();
             this.grpGeneral = new System.Windows.Forms.GroupBox();
+            this.btnEventPhaseMask = new System.Windows.Forms.Button();
             this.lblEventComment = new System.Windows.Forms.Label();
             this.txtEventComment = new System.Windows.Forms.TextBox();
             this.lblScriptId3 = new System.Windows.Forms.Label();
@@ -61,6 +63,11 @@
             this.lblEventId = new System.Windows.Forms.Label();
             this.txtEventId = new System.Windows.Forms.TextBox();
             this.frmEventTimerCombat = new System.Windows.Forms.Panel();
+            this.txtTimerRepeatMax = new System.Windows.Forms.TextBox();
+            this.lblTimerRepeatMax = new System.Windows.Forms.Label();
+            this.txtTimerRepeatMin = new System.Windows.Forms.TextBox();
+            this.txtTimerInitialMax = new System.Windows.Forms.TextBox();
+            this.txtTimerInitialMin = new System.Windows.Forms.TextBox();
             this.lblTimerRepeatMin = new System.Windows.Forms.Label();
             this.lblTimerInitialMin = new System.Windows.Forms.Label();
             this.lblTimerInitialMax = new System.Windows.Forms.Label();
@@ -71,15 +78,11 @@
             this.btnEventDelete = new System.Windows.Forms.Button();
             this.btnViewRaw = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.txtTimerInitialMin = new System.Windows.Forms.TextBox();
-            this.txtTimerInitialMax = new System.Windows.Forms.TextBox();
-            this.txtTimerRepeatMin = new System.Windows.Forms.TextBox();
-            this.txtTimerRepeatMax = new System.Windows.Forms.TextBox();
-            this.lblTimerRepeatMax = new System.Windows.Forms.Label();
             this.lblNoEvent = new System.Windows.Forms.Label();
             this.frmEventAggro = new System.Windows.Forms.Panel();
             this.lblEventAggroTooltip = new System.Windows.Forms.Label();
             this.frmEventSpellHit = new System.Windows.Forms.Panel();
+            this.btnSpellHitSpellId = new System.Windows.Forms.Button();
             this.txtSpellHitRepeatMax = new System.Windows.Forms.TextBox();
             this.lblSpellHitRepeatMax = new System.Windows.Forms.Label();
             this.txtSpellHitRepeatMin = new System.Windows.Forms.TextBox();
@@ -88,8 +91,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblSpellHitSchoolMask = new System.Windows.Forms.Label();
             this.lblEventSpellHitTooltip = new System.Windows.Forms.Label();
-            this.btnSpellHitSpellId = new System.Windows.Forms.Button();
-            this.btnEventPhaseMask = new System.Windows.Forms.Button();
             this.grpGeneral.SuspendLayout();
             this.grpEventFlags.SuspendLayout();
             this.frmEventTimerCombat.SuspendLayout();
@@ -180,12 +181,23 @@
             this.grpGeneral.Controls.Add(this.lblEventType);
             this.grpGeneral.Controls.Add(this.lblEventId);
             this.grpGeneral.Controls.Add(this.txtEventId);
+            this.grpGeneral.Enabled = false;
             this.grpGeneral.Location = new System.Drawing.Point(433, 55);
             this.grpGeneral.Name = "grpGeneral";
             this.grpGeneral.Size = new System.Drawing.Size(495, 228);
             this.grpGeneral.TabIndex = 4;
             this.grpGeneral.TabStop = false;
             this.grpGeneral.Text = "General Settings";
+            // 
+            // btnEventPhaseMask
+            // 
+            this.btnEventPhaseMask.Location = new System.Drawing.Point(328, 128);
+            this.btnEventPhaseMask.Name = "btnEventPhaseMask";
+            this.btnEventPhaseMask.Size = new System.Drawing.Size(145, 23);
+            this.btnEventPhaseMask.TabIndex = 35;
+            this.btnEventPhaseMask.Text = "-NONE-";
+            this.btnEventPhaseMask.UseVisualStyleBackColor = true;
+            this.btnEventPhaseMask.Click += new System.EventHandler(this.btnEventPhaseMask_Click);
             // 
             // lblEventComment
             // 
@@ -429,6 +441,47 @@
             this.frmEventTimerCombat.TabIndex = 54;
             this.frmEventTimerCombat.Visible = false;
             // 
+            // txtTimerRepeatMax
+            // 
+            this.txtTimerRepeatMax.Location = new System.Drawing.Point(98, 148);
+            this.txtTimerRepeatMax.Name = "txtTimerRepeatMax";
+            this.txtTimerRepeatMax.Size = new System.Drawing.Size(374, 20);
+            this.txtTimerRepeatMax.TabIndex = 12;
+            this.txtTimerRepeatMax.Leave += new System.EventHandler(this.txtTimerRepeatMax_Leave);
+            // 
+            // lblTimerRepeatMax
+            // 
+            this.lblTimerRepeatMax.AutoSize = true;
+            this.lblTimerRepeatMax.Location = new System.Drawing.Point(32, 151);
+            this.lblTimerRepeatMax.Name = "lblTimerRepeatMax";
+            this.lblTimerRepeatMax.Size = new System.Drawing.Size(68, 13);
+            this.lblTimerRepeatMax.TabIndex = 11;
+            this.lblTimerRepeatMax.Text = "Repeat Max:";
+            // 
+            // txtTimerRepeatMin
+            // 
+            this.txtTimerRepeatMin.Location = new System.Drawing.Point(99, 118);
+            this.txtTimerRepeatMin.Name = "txtTimerRepeatMin";
+            this.txtTimerRepeatMin.Size = new System.Drawing.Size(374, 20);
+            this.txtTimerRepeatMin.TabIndex = 10;
+            this.txtTimerRepeatMin.Leave += new System.EventHandler(this.txtTimerRepeatMin_Leave);
+            // 
+            // txtTimerInitialMax
+            // 
+            this.txtTimerInitialMax.Location = new System.Drawing.Point(99, 88);
+            this.txtTimerInitialMax.Name = "txtTimerInitialMax";
+            this.txtTimerInitialMax.Size = new System.Drawing.Size(374, 20);
+            this.txtTimerInitialMax.TabIndex = 9;
+            this.txtTimerInitialMax.Leave += new System.EventHandler(this.txtTimerInitialMax_Leave);
+            // 
+            // txtTimerInitialMin
+            // 
+            this.txtTimerInitialMin.Location = new System.Drawing.Point(99, 58);
+            this.txtTimerInitialMin.Name = "txtTimerInitialMin";
+            this.txtTimerInitialMin.Size = new System.Drawing.Size(374, 20);
+            this.txtTimerInitialMin.TabIndex = 8;
+            this.txtTimerInitialMin.Leave += new System.EventHandler(this.txtTimerInitialMin_Leave);
+            // 
             // lblTimerRepeatMin
             // 
             this.lblTimerRepeatMin.AutoSize = true;
@@ -525,47 +578,6 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // txtTimerInitialMin
-            // 
-            this.txtTimerInitialMin.Location = new System.Drawing.Point(99, 58);
-            this.txtTimerInitialMin.Name = "txtTimerInitialMin";
-            this.txtTimerInitialMin.Size = new System.Drawing.Size(374, 20);
-            this.txtTimerInitialMin.TabIndex = 8;
-            this.txtTimerInitialMin.Leave += new System.EventHandler(this.txtTimerInitialMin_Leave);
-            // 
-            // txtTimerInitialMax
-            // 
-            this.txtTimerInitialMax.Location = new System.Drawing.Point(99, 88);
-            this.txtTimerInitialMax.Name = "txtTimerInitialMax";
-            this.txtTimerInitialMax.Size = new System.Drawing.Size(374, 20);
-            this.txtTimerInitialMax.TabIndex = 9;
-            this.txtTimerInitialMax.Leave += new System.EventHandler(this.txtTimerInitialMax_Leave);
-            // 
-            // txtTimerRepeatMin
-            // 
-            this.txtTimerRepeatMin.Location = new System.Drawing.Point(99, 118);
-            this.txtTimerRepeatMin.Name = "txtTimerRepeatMin";
-            this.txtTimerRepeatMin.Size = new System.Drawing.Size(374, 20);
-            this.txtTimerRepeatMin.TabIndex = 10;
-            this.txtTimerRepeatMin.Leave += new System.EventHandler(this.txtTimerRepeatMin_Leave);
-            // 
-            // txtTimerRepeatMax
-            // 
-            this.txtTimerRepeatMax.Location = new System.Drawing.Point(98, 148);
-            this.txtTimerRepeatMax.Name = "txtTimerRepeatMax";
-            this.txtTimerRepeatMax.Size = new System.Drawing.Size(374, 20);
-            this.txtTimerRepeatMax.TabIndex = 12;
-            this.txtTimerRepeatMax.Leave += new System.EventHandler(this.txtTimerRepeatMax_Leave);
-            // 
-            // lblTimerRepeatMax
-            // 
-            this.lblTimerRepeatMax.AutoSize = true;
-            this.lblTimerRepeatMax.Location = new System.Drawing.Point(32, 151);
-            this.lblTimerRepeatMax.Name = "lblTimerRepeatMax";
-            this.lblTimerRepeatMax.Size = new System.Drawing.Size(68, 13);
-            this.lblTimerRepeatMax.TabIndex = 11;
-            this.lblTimerRepeatMax.Text = "Repeat Max:";
-            // 
             // lblNoEvent
             // 
             this.lblNoEvent.AutoSize = true;
@@ -613,6 +625,16 @@
             this.frmEventSpellHit.Size = new System.Drawing.Size(495, 275);
             this.frmEventSpellHit.TabIndex = 63;
             this.frmEventSpellHit.Visible = false;
+            // 
+            // btnSpellHitSpellId
+            // 
+            this.btnSpellHitSpellId.Location = new System.Drawing.Point(99, 58);
+            this.btnSpellHitSpellId.Name = "btnSpellHitSpellId";
+            this.btnSpellHitSpellId.Size = new System.Drawing.Size(375, 23);
+            this.btnSpellHitSpellId.TabIndex = 13;
+            this.btnSpellHitSpellId.Text = "-NONE-";
+            this.btnSpellHitSpellId.UseVisualStyleBackColor = true;
+            this.btnSpellHitSpellId.Click += new System.EventHandler(this.btnSpellHitSpellId_Click);
             // 
             // txtSpellHitRepeatMax
             // 
@@ -684,26 +706,6 @@
             this.lblEventSpellHitTooltip.Text = "Expires when the creature is hit by a spell. If a spell Id is set, it will only e" +
     "xpire when hit by that spell. Same logic applies when a school mask is set.";
             // 
-            // btnSpellHitSpellId
-            // 
-            this.btnSpellHitSpellId.Location = new System.Drawing.Point(99, 58);
-            this.btnSpellHitSpellId.Name = "btnSpellHitSpellId";
-            this.btnSpellHitSpellId.Size = new System.Drawing.Size(375, 23);
-            this.btnSpellHitSpellId.TabIndex = 13;
-            this.btnSpellHitSpellId.Text = "-NONE-";
-            this.btnSpellHitSpellId.UseVisualStyleBackColor = true;
-            this.btnSpellHitSpellId.Click += new System.EventHandler(this.btnSpellHitSpellId_Click);
-            // 
-            // btnEventPhaseMask
-            // 
-            this.btnEventPhaseMask.Location = new System.Drawing.Point(328, 128);
-            this.btnEventPhaseMask.Name = "btnEventPhaseMask";
-            this.btnEventPhaseMask.Size = new System.Drawing.Size(145, 23);
-            this.btnEventPhaseMask.TabIndex = 35;
-            this.btnEventPhaseMask.Text = "-NONE-";
-            this.btnEventPhaseMask.UseVisualStyleBackColor = true;
-            this.btnEventPhaseMask.Click += new System.EventHandler(this.btnEventPhaseMask_Click);
-            // 
             // FormEventEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -725,6 +727,7 @@
             this.Controls.Add(this.lstEvents);
             this.Controls.Add(this.lblNoEvent);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FormEventEditor";
             this.Text = "Event Editor";

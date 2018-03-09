@@ -11,7 +11,7 @@ namespace ScriptEditor
         public uint CreatureId;
         public uint Type;
         public uint Chance;
-        public int InversePhaseMask;
+        public uint InversePhaseMask;
         public uint ConditionId;
         public uint Flags;
         public int Param1;
@@ -23,7 +23,7 @@ namespace ScriptEditor
         public uint ScriptId3;
         public string Comment;
 
-        public CreatureEvent(uint id, uint creatureid, uint conditionid, uint type, int inversephasemask, uint chance, uint flags, int param1, int param2, int param3, int param4, uint scriptid1, uint scriptid2, uint scriptid3, string comment)
+        public CreatureEvent(uint id, uint creatureid, uint conditionid, uint type, uint inversephasemask, uint chance, uint flags, int param1, int param2, int param3, int param4, uint scriptid1, uint scriptid2, uint scriptid3, string comment)
         {
             Id = id;
             CreatureId = creatureid;

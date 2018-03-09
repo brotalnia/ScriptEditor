@@ -133,6 +133,7 @@ namespace ScriptEditor
             // EVENT_T_HP (2)
             // EVENT_T_MANA (3)
             // EVENT_T_KILL (5)
+            // EVENT_T_RANGE (9)
             txtTimerInitialMin.Text = "";
             txtTimerInitialMax.Text = "";
             txtTimerRepeatMin.Text = "";
@@ -165,6 +166,7 @@ namespace ScriptEditor
                 case 2: // EVENT_T_HP
                 case 3: // EVENT_T_MANA
                 case 5: // EVENT_T_KILL
+                case 9: // EVENT_T_RANGE
                 {
                     switch (selectedEvent.Type)
                     {
@@ -221,6 +223,17 @@ namespace ScriptEditor
                             lblTimerRepeatMax.Visible = false;
                             txtTimerRepeatMin.Visible = false;
                             txtTimerRepeatMax.Visible = false;
+                            break;
+                        }
+                        case 9: // EVENT_T_RANGE
+                        {
+                            lblEventTimerCombatTooltip.Text = "Expires when the distance in yards to the highest threat target is in the specified range.";
+                            lblTimerInitialMin.Text = "Distance Min:";
+                            lblTimerInitialMax.Text = "Distance Max:";
+                            lblTimerRepeatMin.Visible = true;
+                            lblTimerRepeatMax.Visible = true;
+                            txtTimerRepeatMin.Visible = true;
+                            txtTimerRepeatMax.Visible = true;
                             break;
                         }
                     }
@@ -312,7 +325,7 @@ namespace ScriptEditor
                 {
                     ListViewItem lvi = new ListViewItem();
 
-                    CreatureEvent creature_event = new CreatureEvent(reader.GetUInt32(0), reader.GetUInt32(1), reader.GetUInt32(2), reader.GetUInt32(3), reader.GetInt32(4), reader.GetUInt32(5), reader.GetUInt32(6), reader.GetInt32(7), reader.GetInt32(8), reader.GetInt32(9), reader.GetInt32(10), reader.GetUInt32(11), reader.GetUInt32(12), reader.GetUInt32(13), reader[14].ToString());
+                    CreatureEvent creature_event = new CreatureEvent(reader.GetUInt32(0), reader.GetUInt32(1), reader.GetUInt32(2), reader.GetUInt32(3), reader.GetUInt32(4), reader.GetUInt32(5), reader.GetUInt32(6), reader.GetInt32(7), reader.GetInt32(8), reader.GetInt32(9), reader.GetInt32(10), reader.GetUInt32(11), reader.GetUInt32(12), reader.GetUInt32(13), reader[14].ToString());
 
                     // Add used script ids to the list, so we can know if any are unused later.
                     if (creature_event.ScriptId1 > 0)
@@ -401,7 +414,7 @@ namespace ScriptEditor
                 // Get the associated CreatureEvent.
                 CreatureEvent currentEvent = (CreatureEvent)currentItem.Tag;
 
-                MessageBox.Show("Id: " + currentEvent.Id.ToString() + "\nCreatureId: " + currentEvent.CreatureId.ToString() + "\nType: " + currentEvent.Type.ToString() + "\nInversePhaseMask: " + currentEvent.InversePhaseMask.ToString() + "\nChance: " + currentEvent.Chance.ToString() + "\nFlags: " + currentEvent.Flags.ToString() + "\nParameter1: " + currentEvent.Param1.ToString() + "\nParameter2: " + currentEvent.Param2.ToString() + "\nParameter3: " + currentEvent.Param3.ToString() + "\nParameter4: " + currentEvent.Param4.ToString() + "\nScript1: " + currentEvent.ScriptId1.ToString() + "\nScript2: " + currentEvent.ScriptId2 + "\nScript3: " + currentEvent.ScriptId3.ToString() + "\nCondition: " + currentEvent.ConditionId.ToString() + "\nComment: " + currentEvent.Comment, "Raw Event Data");
+                MessageBox.Show("Id: " + currentEvent.Id.ToString() + "\nCreatureId: " + currentEvent.CreatureId.ToString() + "\nType: " + currentEvent.Type.ToString() + "\nInversePhaseMask: " + currentEvent.InversePhaseMask.ToString() + "\nChance: " + currentEvent.Chance.ToString() + "\nFlags: " + currentEvent.Flags.ToString() + "\nParameter1: " + currentEvent.Param1.ToString() + "\nParameter2: " + currentEvent.Param2.ToString() + "\nParameter3: " + currentEvent.Param3.ToString() + "\nParameter4: " + currentEvent.Param4.ToString() + "\nScript1: " + currentEvent.ScriptId1.ToString() + "\nScript2: " + currentEvent.ScriptId2 + "\nScript3: " + currentEvent.ScriptId3.ToString() + "\nCondition: " + currentEvent.ConditionId.ToString(), "Raw Event Data");
             }
         }
 
@@ -634,7 +647,7 @@ namespace ScriptEditor
                     btnEventPhaseMask.Text = "-NONE-";
 
                 // Set the field value.
-                currentEvent.InversePhaseMask = (int)returnPhase;
+                currentEvent.InversePhaseMask = returnPhase;
             }
         }
 
