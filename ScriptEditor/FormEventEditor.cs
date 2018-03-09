@@ -22,6 +22,9 @@ namespace ScriptEditor
         // Stores script Ids used when the event list is loaded.
         List<uint> ScriptIdsList = new List<uint>();
 
+        // Use the same form when viewing script.
+        FormScriptEditor script_editor = null;
+
         // Event Type Names
         private string[] EventTypeNames =
         {
@@ -67,6 +70,14 @@ namespace ScriptEditor
             LoadControls();
         }
 
+        private void FormEventEditor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if ((currentCreatureId != 0) && (MessageBox.Show("Are you sure you want to close the editor?\n\nChanges are not saved automatically. Make sure you've clicked the Save button first, or your changes will be lost.", "Exit Editor?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No))
+            {
+                e.Cancel = true;
+            }
+        }
+
         private void LoadControls()
         {
             dontUpdate = true;
@@ -77,6 +88,10 @@ namespace ScriptEditor
             // Add options to Event Type combo box.
             cmbEventType.DataSource = EventTypeNames;
             cmbEventType.SelectedIndex = 0;
+
+            // Add options to Received Emote combo box.
+            cmbReceiveEmoteId.DataSource = GameData.TextEmotesList;
+            cmbReceiveEmoteId.SelectedIndex = 0;
 
             dontUpdate = false;
         }
@@ -134,6 +149,12 @@ namespace ScriptEditor
             // EVENT_T_MANA (3)
             // EVENT_T_KILL (5)
             // EVENT_T_RANGE (9)
+            // EVENT_T_SPAWNED (11)
+            // EVENT_T_TARGET_HP (12)
+            // EVENT_T_TARGET_CASTING (13)
+            // EVENT_T_FRIENDLY_HP (14)
+            // EVENT_T_FRIENDLY_IS_CC (15)
+            // EVENT_T_TARGET_MANA (18)
             txtTimerInitialMin.Text = "";
             txtTimerInitialMax.Text = "";
             txtTimerRepeatMin.Text = "";
@@ -143,15 +164,40 @@ namespace ScriptEditor
             // EVENT_T_AGGRO (4)
             // EVENT_T_DEATH (6)
             // EVENT_T_EVADE (7)
+            // EVENT_T_SPAWNED (11)
+            // EVENT_T_REACHED_HOME (21)
             frmEventAggro.Visible = false;
 
             // EVENT_T_SPELLHIT (8)
+            // EVENT_T_FRIENDLY_MISSING_BUFF (16)
+            // EVENT_T_AURA (23)
+            // EVENT_T_TARGET_AURA (24)
+            // EVENT_T_MISSING_AURA (27)
+            // EVENT_T_TARGET_MISSING_AURA (28(
             btnSpellHitSpellId.Text = "-NONE-";
             txtSpellHitSchoolMask.Text = "";
             txtSpellHitRepeatMin.Text = "";
             txtSpellHitRepeatMax.Text = "";
             frmEventSpellHit.Visible = false;
 
+            // EVENT_T_OOC_LOS (10)
+            cmbEnterLOSFaction.SelectedIndex = 0;
+            txtEnterLOSDistance.Text = "";
+            txtEnterLOSRepeatMin.Text = "";
+            txtEnterLOSRepeatMax.Text = "";
+            frmEventEnterLOS.Visible = false;
+
+            // EVENT_T_SUMMONED_UNIT (17)
+            // EVENT_T_SUMMONED_JUST_DIED (25)
+            // EVENT_T_SUMMONED_JUST_DESPAWN (26)
+            btnSummonedUnitId.Text = "-NONE-";
+            txtSummonedUnitRepeatMin.Text = "";
+            txtSummonedUnitRepeatMax.Text = "";
+            frmEventSummonedUnit.Visible = false;
+
+            // EVENT_T_RECEIVE_EMOTE (22)
+            cmbReceiveEmoteId.SelectedIndex = 0;
+            frmEventReceiveEmote.Visible = false;
 
             dontUpdate = false;
         }
@@ -167,6 +213,11 @@ namespace ScriptEditor
                 case 3: // EVENT_T_MANA
                 case 5: // EVENT_T_KILL
                 case 9: // EVENT_T_RANGE
+                case 12: // EVENT_T_TARGET_HP
+                case 13: // EVENT_T_TARGET_CASTING
+                case 14: // EVENT_T_FRIENDLY_HP
+                case 15: // EVENT_T_FRIENDLY_IS_CC
+                case 18: // EVENT_T_TARGET_MANA
                 {
                     switch (selectedEvent.Type)
                     {
@@ -236,6 +287,61 @@ namespace ScriptEditor
                             txtTimerRepeatMax.Visible = true;
                             break;
                         }
+                        case 12: // EVENT_T_TARGET_HP
+                        {
+                            lblEventTimerCombatTooltip.Text = "Expires when the current victim's health is between the specified percents.";
+                            lblTimerInitialMin.Text = "HP Max:";
+                            lblTimerInitialMax.Text = "HP Min:";
+                            lblTimerRepeatMin.Visible = true;
+                            lblTimerRepeatMax.Visible = true;
+                            txtTimerRepeatMin.Visible = true;
+                            txtTimerRepeatMax.Visible = true;
+                            break;
+                        }
+                        case 13: // EVENT_T_TARGET_CASTING 
+                        {
+                            lblEventTimerCombatTooltip.Text = "Expires when the current victim is casting a spell. ";
+                            lblTimerInitialMin.Text = "Repeat Min:";
+                            lblTimerInitialMax.Text = "Repeat Max:";
+                            lblTimerRepeatMin.Visible = false;
+                            lblTimerRepeatMax.Visible = false;
+                            txtTimerRepeatMin.Visible = false;
+                            txtTimerRepeatMax.Visible = false;
+                            break;
+                        }
+                        case 14: // EVENT_T_FRIENDLY_HP
+                        {
+                            lblEventTimerCombatTooltip.Text = "Expires when a nearby friendly unit is missing a specified percent of its total health. Only while the creature is in combat.";
+                            lblTimerInitialMin.Text = "HP Percent:";
+                            lblTimerInitialMax.Text = "Distance:";
+                            lblTimerRepeatMin.Visible = true;
+                            lblTimerRepeatMax.Visible = true;
+                            txtTimerRepeatMin.Visible = true;
+                            txtTimerRepeatMax.Visible = true;
+                            break;
+                        }
+                        case 15: // EVENT_T_FRIENDLY_IS_CC
+                        {
+                            lblEventTimerCombatTooltip.Text = "Expires when a nearby friendly unit is crowd controlled. Only while the creature is in combat.";
+                            lblTimerInitialMin.Text = "UNUSED:";
+                            lblTimerInitialMax.Text = "Distance:";
+                            lblTimerRepeatMin.Visible = true;
+                            lblTimerRepeatMax.Visible = true;
+                            txtTimerRepeatMin.Visible = true;
+                            txtTimerRepeatMax.Visible = true;
+                            break;
+                        }
+                        case 18: // EVENT_T_TARGET_MANA
+                        {
+                            lblEventTimerCombatTooltip.Text = "Expires when the current victim's mana is between the specified percents.";
+                            lblTimerInitialMin.Text = "Mana Max:";
+                            lblTimerInitialMax.Text = "Mana Min:";
+                            lblTimerRepeatMin.Visible = true;
+                            lblTimerRepeatMax.Visible = true;
+                            txtTimerRepeatMin.Visible = true;
+                            txtTimerRepeatMax.Visible = true;
+                            break;
+                        }
                     }
                     txtTimerInitialMin.Text = selectedEvent.Param1.ToString();
                     lblTimerInitialMin.Location = new Point(txtTimerInitialMin.Location.X - lblTimerInitialMin.Size.Width - 4, lblTimerInitialMin.Location.Y);
@@ -251,6 +357,8 @@ namespace ScriptEditor
                 case 4: // EVENT_T_AGGRO
                 case 6: // EVENT_T_DEATH
                 case 7: // EVENT_T_EVADE
+                case 11: // EVENT_T_SPAWNED
+                case 21: // EVENT_T_REACHED_HOME
                 {
                     switch (selectedEvent.Type)
                     {
@@ -269,19 +377,119 @@ namespace ScriptEditor
                             lblEventAggroTooltip.Text = "Expires when the creature enters evade mode. This event has no additional parameters.";
                             break;
                         }
+                        case 11: // EVENT_T_SPAWNED
+                        {
+                            lblEventAggroTooltip.Text = "Expires every time the creature spawns. This event has no additional parameters.";
+                            break;
+                        }
+                        case 21: // EVENT_T_REACHED_HOME
+                        {
+                            lblEventAggroTooltip.Text = "Expires when the creature reaches its home location after an evade. This event has no additional parameters.";
+                            break;
+                        }
                     }
                     frmEventAggro.Visible = true;
                     break;
                 }
                 case 8: // EVENT_T_SPELLHIT
+                case 16: // EVENT_T_FRIENDLY_MISSING_BUFF
+                case 23: // EVENT_T_AURA
+                case 24: // EVENT_T_TARGET_AURA
+                case 27: // EVENT_T_MISSING_AURA
+                case 28: // EVENT_T_TARGET_MISSING_AURA
                 {
                     uint spellId = (uint)selectedEvent.Param1;
                     if (spellId > 0)
                         btnSpellHitSpellId.Text = GameData.FindSpellName(spellId) + " (" + spellId.ToString() + ")";
+                    switch (selectedEvent.Type)
+                    {
+                        case 8: // EVENT_T_SPELLHIT
+                        {
+                            lblEventSpellHitTooltip.Text = "Expires when the creature is hit by a spell. If a spell Id is set, it will only expire when hit by that spell. Same logic applies when a school mask is set.";
+                            lblSpellHitSchoolMask.Text = "School Mask:";
+                            break;
+                        }
+                        case 16: // EVENT_T_FRIENDLY_MISSING_BUFF
+                        {
+                            lblEventSpellHitTooltip.Text = "Expires when a nearby friendly unit is missing an aura given by the specified spell.";
+                            lblSpellHitSchoolMask.Text = "Distance:";
+                            break;
+                        }
+                        case 23: // EVENT_T_AURA
+                        {
+                            lblEventSpellHitTooltip.Text = "Expires when the creature has an aura given by the specified spell.";
+                            lblSpellHitSchoolMask.Text = "Min Stacks:";
+                            break;
+                        }
+                        case 24: // EVENT_T_TARGET_AURA
+                        {
+                            lblEventSpellHitTooltip.Text = "Expires when the current victim has an aura given by the specified spell.";
+                            lblSpellHitSchoolMask.Text = "Min Stacks:";
+                            break;
+                        }
+                        case 27: // EVENT_T_MISSING_AURA
+                        {
+                            lblEventSpellHitTooltip.Text = "Expires when the creature does not have the minimum number of stacks from the specified spell aura.";
+                            lblSpellHitSchoolMask.Text = "Min Stacks:";
+                            break;
+                        }
+                        case 28: // EVENT_T_TARGET_MISSING_AURA
+                        {
+                            lblEventSpellHitTooltip.Text = "Expires when the current victim does not have the minimum number of stacks from the specified spell aura.";
+                            lblSpellHitSchoolMask.Text = "Min Stacks:";
+                            break;
+                        }
+                    }
+                    lblSpellHitSchoolMask.Location = new Point(txtSpellHitSchoolMask.Location.X - lblSpellHitSchoolMask.Size.Width - 4, lblSpellHitSchoolMask.Location.Y);
                     txtSpellHitSchoolMask.Text = selectedEvent.Param2.ToString();
                     txtSpellHitRepeatMin.Text = selectedEvent.Param3.ToString();
                     txtSpellHitRepeatMax.Text = selectedEvent.Param4.ToString();
                     frmEventSpellHit.Visible = true;
+                    break;
+                }
+                case 10: // EVENT_T_OOC_LOS
+                {
+                    cmbEnterLOSFaction.SelectedIndex = selectedEvent.Param1;
+                    txtEnterLOSDistance.Text = selectedEvent.Param2.ToString();
+                    txtEnterLOSRepeatMin.Text = selectedEvent.Param3.ToString();
+                    txtEnterLOSRepeatMax.Text = selectedEvent.Param4.ToString();
+                    frmEventEnterLOS.Visible = true;
+                    break;
+                }
+                case 17: // EVENT_T_SUMMONED_UNIT
+                case 25: // EVENT_T_SUMMONED_JUST_DIED
+                case 26: // EVENT_T_SUMMONED_JUST_DESPAWN
+                {
+                    uint creatureId = (uint)selectedEvent.Param1;
+                    if (creatureId > 0)
+                        btnSummonedUnitId.Text = GameData.FindCreatureName(creatureId) + " (" + creatureId.ToString() + ")";
+                    switch (selectedEvent.Type)
+                    {
+                        case 17: // EVENT_T_SUMMONED_UNIT
+                        {
+                            lblEventSummonedUnitTooltip.Text = "Expires after summoning another creature with the given Id.";
+                            break;
+                        }
+                        case 25: // EVENT_T_SUMMONED_JUST_DIED
+                        {
+                            lblEventSummonedUnitTooltip.Text = "Expires after a summoned creature with the given Id dies.";
+                            break;
+                        }
+                        case 26: // EVENT_T_SUMMONED_JUST_DESPAWN
+                        {
+                            lblEventSummonedUnitTooltip.Text = "Expires after a summoned creature with the given Id despawns.";
+                            break;
+                        }
+                    }
+                    txtSummonedUnitRepeatMin.Text = selectedEvent.Param2.ToString();
+                    txtSummonedUnitRepeatMax.Text = selectedEvent.Param3.ToString();
+                    frmEventSummonedUnit.Visible = true;
+                    break;
+                }
+                case 22: // EVENT_T_RECEIVE_EMOTE
+                {
+                    cmbReceiveEmoteId.SelectedIndex = GameData.FindIndexOfTextEmote((uint)selectedEvent.Param1);
+                    frmEventReceiveEmote.Visible = true;
                     break;
                 }
             }
@@ -402,6 +610,60 @@ namespace ScriptEditor
             ShowEventSpecificForm(selectedEvent);
 
             dontUpdate = false;
+        }
+
+        private void btnEditScript1_Click(object sender, EventArgs e)
+        {
+            uint script_id = 0;
+            uint.TryParse(txtScriptId1.Text, out script_id);
+            if (script_id > 0)
+            {
+                if ((script_editor == null) || (script_editor.IsDisposed))
+                {
+                    script_editor = new FormScriptEditor();
+                    script_editor.Show();
+                }
+                else
+                    script_editor.Focus();
+
+                script_editor.LoadScript(script_id, "creature_ai_scripts");
+            }
+        }
+
+        private void btnEditScript2_Click(object sender, EventArgs e)
+        {
+            uint script_id = 0;
+            uint.TryParse(txtScriptId2.Text, out script_id);
+            if (script_id > 0)
+            {
+                if ((script_editor == null) || (script_editor.IsDisposed))
+                {
+                    script_editor = new FormScriptEditor();
+                    script_editor.Show();
+                }
+                else
+                    script_editor.Focus();
+
+                script_editor.LoadScript(script_id, "creature_ai_scripts");
+            }
+        }
+
+        private void btnEditScript3_Click(object sender, EventArgs e)
+        {
+            uint script_id = 0;
+            uint.TryParse(txtScriptId3.Text, out script_id);
+            if (script_id > 0)
+            {
+                if ((script_editor == null) || (script_editor.IsDisposed))
+                {
+                    script_editor = new FormScriptEditor();
+                    script_editor.Show();
+                }
+                else
+                    script_editor.Focus();
+
+                script_editor.LoadScript(script_id, "creature_ai_scripts");
+            }
         }
 
         private void btnViewRaw_Click(object sender, EventArgs e)
@@ -880,6 +1142,46 @@ namespace ScriptEditor
         private void txtSpellHitRepeatMax_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSpellHitRepeatMax, "Param4");
+        }
+
+        private void cmbEnterLOSFaction_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbEnterLOSFaction, "Param1", false);
+        }
+
+        private void txtEnterLOSDistance_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtEnterLOSDistance, "Param2");
+        }
+
+        private void txtEnterLOSRepeatMin_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtEnterLOSRepeatMin, "Param3");
+        }
+
+        private void txtEnterLOSRepeatMax_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtEnterLOSRepeatMax, "Param4");
+        }
+
+        private void btnSummonedUnitId_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormCreatureFinder>(btnSummonedUnitId, null, GameData.FindCreatureName, "Param1");
+        }
+
+        private void txtSummonedUnitRepeatMin_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSummonedUnitRepeatMin, "Param2");
+        }
+
+        private void txtSummonedUnitRepeatMax_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSummonedUnitRepeatMax, "Param3");
+        }
+
+        private void cmbReceiveEmoteId_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbReceiveEmoteId, "Param1", true);
         }
     }
 }

@@ -88,14 +88,39 @@
             this.txtSpellHitRepeatMin = new System.Windows.Forms.TextBox();
             this.txtSpellHitSchoolMask = new System.Windows.Forms.TextBox();
             this.lblSpellHitRepeatMin = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblSpellHitSpellId = new System.Windows.Forms.Label();
             this.lblSpellHitSchoolMask = new System.Windows.Forms.Label();
             this.lblEventSpellHitTooltip = new System.Windows.Forms.Label();
+            this.frmEventEnterLOS = new System.Windows.Forms.Panel();
+            this.cmbEnterLOSFaction = new System.Windows.Forms.ComboBox();
+            this.txtEnterLOSRepeatMax = new System.Windows.Forms.TextBox();
+            this.lblEnterLOSRepeatMax = new System.Windows.Forms.Label();
+            this.txtEnterLOSRepeatMin = new System.Windows.Forms.TextBox();
+            this.txtEnterLOSDistance = new System.Windows.Forms.TextBox();
+            this.lblEnterLOSRepeatMin = new System.Windows.Forms.Label();
+            this.lblEnterLOSFaction = new System.Windows.Forms.Label();
+            this.lblEnterLOSDistance = new System.Windows.Forms.Label();
+            this.lblEventEnterLOSTooltip = new System.Windows.Forms.Label();
+            this.frmEventSummonedUnit = new System.Windows.Forms.Panel();
+            this.btnSummonedUnitId = new System.Windows.Forms.Button();
+            this.txtSummonedUnitRepeatMax = new System.Windows.Forms.TextBox();
+            this.txtSummonedUnitRepeatMin = new System.Windows.Forms.TextBox();
+            this.lblSummonedUnitRepeatMax = new System.Windows.Forms.Label();
+            this.lblSummonedUnitId = new System.Windows.Forms.Label();
+            this.lblSummonedUnitRepeatMin = new System.Windows.Forms.Label();
+            this.lblEventSummonedUnitTooltip = new System.Windows.Forms.Label();
+            this.frmEventReceiveEmote = new System.Windows.Forms.Panel();
+            this.cmbReceiveEmoteId = new System.Windows.Forms.ComboBox();
+            this.lblReceiveEmoteId = new System.Windows.Forms.Label();
+            this.lblEventReceiveEmoteTooltip = new System.Windows.Forms.Label();
             this.grpGeneral.SuspendLayout();
             this.grpEventFlags.SuspendLayout();
             this.frmEventTimerCombat.SuspendLayout();
             this.frmEventAggro.SuspendLayout();
             this.frmEventSpellHit.SuspendLayout();
+            this.frmEventEnterLOS.SuspendLayout();
+            this.frmEventSummonedUnit.SuspendLayout();
+            this.frmEventReceiveEmote.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstEvents
@@ -296,6 +321,7 @@
             this.btnEditScript3.TabIndex = 29;
             this.btnEditScript3.Text = "Edit";
             this.btnEditScript3.UseVisualStyleBackColor = true;
+            this.btnEditScript3.Click += new System.EventHandler(this.btnEditScript3_Click);
             // 
             // btnEditScript2
             // 
@@ -305,6 +331,7 @@
             this.btnEditScript2.TabIndex = 28;
             this.btnEditScript2.Text = "Edit";
             this.btnEditScript2.UseVisualStyleBackColor = true;
+            this.btnEditScript2.Click += new System.EventHandler(this.btnEditScript2_Click);
             // 
             // btnEditScript1
             // 
@@ -314,6 +341,7 @@
             this.btnEditScript1.TabIndex = 27;
             this.btnEditScript1.Text = "Edit";
             this.btnEditScript1.UseVisualStyleBackColor = true;
+            this.btnEditScript1.Click += new System.EventHandler(this.btnEditScript1_Click);
             // 
             // txtScriptId3
             // 
@@ -443,7 +471,7 @@
             // 
             // txtTimerRepeatMax
             // 
-            this.txtTimerRepeatMax.Location = new System.Drawing.Point(98, 148);
+            this.txtTimerRepeatMax.Location = new System.Drawing.Point(99, 148);
             this.txtTimerRepeatMax.Name = "txtTimerRepeatMax";
             this.txtTimerRepeatMax.Size = new System.Drawing.Size(374, 20);
             this.txtTimerRepeatMax.TabIndex = 12;
@@ -452,7 +480,7 @@
             // lblTimerRepeatMax
             // 
             this.lblTimerRepeatMax.AutoSize = true;
-            this.lblTimerRepeatMax.Location = new System.Drawing.Point(32, 151);
+            this.lblTimerRepeatMax.Location = new System.Drawing.Point(30, 151);
             this.lblTimerRepeatMax.Name = "lblTimerRepeatMax";
             this.lblTimerRepeatMax.Size = new System.Drawing.Size(68, 13);
             this.lblTimerRepeatMax.TabIndex = 11;
@@ -617,7 +645,7 @@
             this.frmEventSpellHit.Controls.Add(this.txtSpellHitRepeatMin);
             this.frmEventSpellHit.Controls.Add(this.txtSpellHitSchoolMask);
             this.frmEventSpellHit.Controls.Add(this.lblSpellHitRepeatMin);
-            this.frmEventSpellHit.Controls.Add(this.label3);
+            this.frmEventSpellHit.Controls.Add(this.lblSpellHitSpellId);
             this.frmEventSpellHit.Controls.Add(this.lblSpellHitSchoolMask);
             this.frmEventSpellHit.Controls.Add(this.lblEventSpellHitTooltip);
             this.frmEventSpellHit.Location = new System.Drawing.Point(433, 289);
@@ -630,7 +658,7 @@
             // 
             this.btnSpellHitSpellId.Location = new System.Drawing.Point(99, 58);
             this.btnSpellHitSpellId.Name = "btnSpellHitSpellId";
-            this.btnSpellHitSpellId.Size = new System.Drawing.Size(375, 23);
+            this.btnSpellHitSpellId.Size = new System.Drawing.Size(374, 23);
             this.btnSpellHitSpellId.TabIndex = 13;
             this.btnSpellHitSpellId.Text = "-NONE-";
             this.btnSpellHitSpellId.UseVisualStyleBackColor = true;
@@ -638,7 +666,7 @@
             // 
             // txtSpellHitRepeatMax
             // 
-            this.txtSpellHitRepeatMax.Location = new System.Drawing.Point(98, 148);
+            this.txtSpellHitRepeatMax.Location = new System.Drawing.Point(99, 148);
             this.txtSpellHitRepeatMax.Name = "txtSpellHitRepeatMax";
             this.txtSpellHitRepeatMax.Size = new System.Drawing.Size(374, 20);
             this.txtSpellHitRepeatMax.TabIndex = 12;
@@ -647,7 +675,7 @@
             // lblSpellHitRepeatMax
             // 
             this.lblSpellHitRepeatMax.AutoSize = true;
-            this.lblSpellHitRepeatMax.Location = new System.Drawing.Point(29, 151);
+            this.lblSpellHitRepeatMax.Location = new System.Drawing.Point(27, 151);
             this.lblSpellHitRepeatMax.Name = "lblSpellHitRepeatMax";
             this.lblSpellHitRepeatMax.Size = new System.Drawing.Size(68, 13);
             this.lblSpellHitRepeatMax.TabIndex = 11;
@@ -672,25 +700,25 @@
             // lblSpellHitRepeatMin
             // 
             this.lblSpellHitRepeatMin.AutoSize = true;
-            this.lblSpellHitRepeatMin.Location = new System.Drawing.Point(32, 121);
+            this.lblSpellHitRepeatMin.Location = new System.Drawing.Point(30, 121);
             this.lblSpellHitRepeatMin.Name = "lblSpellHitRepeatMin";
             this.lblSpellHitRepeatMin.Size = new System.Drawing.Size(65, 13);
             this.lblSpellHitRepeatMin.TabIndex = 6;
             this.lblSpellHitRepeatMin.Text = "Repeat Min:";
             // 
-            // label3
+            // lblSpellHitSpellId
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(55, 61);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "SpellId:";
+            this.lblSpellHitSpellId.AutoSize = true;
+            this.lblSpellHitSpellId.Location = new System.Drawing.Point(50, 61);
+            this.lblSpellHitSpellId.Name = "lblSpellHitSpellId";
+            this.lblSpellHitSpellId.Size = new System.Drawing.Size(45, 13);
+            this.lblSpellHitSpellId.TabIndex = 4;
+            this.lblSpellHitSpellId.Text = "Spell Id:";
             // 
             // lblSpellHitSchoolMask
             // 
             this.lblSpellHitSchoolMask.AutoSize = true;
-            this.lblSpellHitSchoolMask.Location = new System.Drawing.Point(25, 91);
+            this.lblSpellHitSchoolMask.Location = new System.Drawing.Point(23, 91);
             this.lblSpellHitSchoolMask.Name = "lblSpellHitSchoolMask";
             this.lblSpellHitSchoolMask.Size = new System.Drawing.Size(72, 13);
             this.lblSpellHitSchoolMask.TabIndex = 3;
@@ -706,11 +734,236 @@
             this.lblEventSpellHitTooltip.Text = "Expires when the creature is hit by a spell. If a spell Id is set, it will only e" +
     "xpire when hit by that spell. Same logic applies when a school mask is set.";
             // 
+            // frmEventEnterLOS
+            // 
+            this.frmEventEnterLOS.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmEventEnterLOS.Controls.Add(this.cmbEnterLOSFaction);
+            this.frmEventEnterLOS.Controls.Add(this.txtEnterLOSRepeatMax);
+            this.frmEventEnterLOS.Controls.Add(this.lblEnterLOSRepeatMax);
+            this.frmEventEnterLOS.Controls.Add(this.txtEnterLOSRepeatMin);
+            this.frmEventEnterLOS.Controls.Add(this.txtEnterLOSDistance);
+            this.frmEventEnterLOS.Controls.Add(this.lblEnterLOSRepeatMin);
+            this.frmEventEnterLOS.Controls.Add(this.lblEnterLOSFaction);
+            this.frmEventEnterLOS.Controls.Add(this.lblEnterLOSDistance);
+            this.frmEventEnterLOS.Controls.Add(this.lblEventEnterLOSTooltip);
+            this.frmEventEnterLOS.Location = new System.Drawing.Point(433, 289);
+            this.frmEventEnterLOS.Name = "frmEventEnterLOS";
+            this.frmEventEnterLOS.Size = new System.Drawing.Size(495, 275);
+            this.frmEventEnterLOS.TabIndex = 64;
+            this.frmEventEnterLOS.Visible = false;
+            // 
+            // cmbEnterLOSFaction
+            // 
+            this.cmbEnterLOSFaction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEnterLOSFaction.FormattingEnabled = true;
+            this.cmbEnterLOSFaction.Items.AddRange(new object[] {
+            "Hostile",
+            "Friendly"});
+            this.cmbEnterLOSFaction.Location = new System.Drawing.Point(99, 58);
+            this.cmbEnterLOSFaction.Name = "cmbEnterLOSFaction";
+            this.cmbEnterLOSFaction.Size = new System.Drawing.Size(374, 21);
+            this.cmbEnterLOSFaction.TabIndex = 14;
+            this.cmbEnterLOSFaction.SelectedIndexChanged += new System.EventHandler(this.cmbEnterLOSFaction_SelectedIndexChanged);
+            // 
+            // txtEnterLOSRepeatMax
+            // 
+            this.txtEnterLOSRepeatMax.Location = new System.Drawing.Point(99, 148);
+            this.txtEnterLOSRepeatMax.Name = "txtEnterLOSRepeatMax";
+            this.txtEnterLOSRepeatMax.Size = new System.Drawing.Size(374, 20);
+            this.txtEnterLOSRepeatMax.TabIndex = 12;
+            this.txtEnterLOSRepeatMax.Leave += new System.EventHandler(this.txtEnterLOSRepeatMax_Leave);
+            // 
+            // lblEnterLOSRepeatMax
+            // 
+            this.lblEnterLOSRepeatMax.AutoSize = true;
+            this.lblEnterLOSRepeatMax.Location = new System.Drawing.Point(27, 151);
+            this.lblEnterLOSRepeatMax.Name = "lblEnterLOSRepeatMax";
+            this.lblEnterLOSRepeatMax.Size = new System.Drawing.Size(68, 13);
+            this.lblEnterLOSRepeatMax.TabIndex = 11;
+            this.lblEnterLOSRepeatMax.Text = "Repeat Max:";
+            // 
+            // txtEnterLOSRepeatMin
+            // 
+            this.txtEnterLOSRepeatMin.Location = new System.Drawing.Point(99, 118);
+            this.txtEnterLOSRepeatMin.Name = "txtEnterLOSRepeatMin";
+            this.txtEnterLOSRepeatMin.Size = new System.Drawing.Size(374, 20);
+            this.txtEnterLOSRepeatMin.TabIndex = 10;
+            this.txtEnterLOSRepeatMin.Leave += new System.EventHandler(this.txtEnterLOSRepeatMin_Leave);
+            // 
+            // txtEnterLOSDistance
+            // 
+            this.txtEnterLOSDistance.Location = new System.Drawing.Point(99, 88);
+            this.txtEnterLOSDistance.Name = "txtEnterLOSDistance";
+            this.txtEnterLOSDistance.Size = new System.Drawing.Size(374, 20);
+            this.txtEnterLOSDistance.TabIndex = 9;
+            this.txtEnterLOSDistance.Leave += new System.EventHandler(this.txtEnterLOSDistance_Leave);
+            // 
+            // lblEnterLOSRepeatMin
+            // 
+            this.lblEnterLOSRepeatMin.AutoSize = true;
+            this.lblEnterLOSRepeatMin.Location = new System.Drawing.Point(30, 121);
+            this.lblEnterLOSRepeatMin.Name = "lblEnterLOSRepeatMin";
+            this.lblEnterLOSRepeatMin.Size = new System.Drawing.Size(65, 13);
+            this.lblEnterLOSRepeatMin.TabIndex = 6;
+            this.lblEnterLOSRepeatMin.Text = "Repeat Min:";
+            // 
+            // lblEnterLOSFaction
+            // 
+            this.lblEnterLOSFaction.AutoSize = true;
+            this.lblEnterLOSFaction.Location = new System.Drawing.Point(50, 61);
+            this.lblEnterLOSFaction.Name = "lblEnterLOSFaction";
+            this.lblEnterLOSFaction.Size = new System.Drawing.Size(45, 13);
+            this.lblEnterLOSFaction.TabIndex = 4;
+            this.lblEnterLOSFaction.Text = "Faction:";
+            // 
+            // lblEnterLOSDistance
+            // 
+            this.lblEnterLOSDistance.AutoSize = true;
+            this.lblEnterLOSDistance.Location = new System.Drawing.Point(43, 91);
+            this.lblEnterLOSDistance.Name = "lblEnterLOSDistance";
+            this.lblEnterLOSDistance.Size = new System.Drawing.Size(52, 13);
+            this.lblEnterLOSDistance.TabIndex = 3;
+            this.lblEnterLOSDistance.Text = "Distance:";
+            // 
+            // lblEventEnterLOSTooltip
+            // 
+            this.lblEventEnterLOSTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblEventEnterLOSTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblEventEnterLOSTooltip.Name = "lblEventEnterLOSTooltip";
+            this.lblEventEnterLOSTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblEventEnterLOSTooltip.TabIndex = 0;
+            this.lblEventEnterLOSTooltip.Text = "Expires when an unit moves within visible distance of the creature. Only while th" +
+    "e creature is out of combat.";
+            // 
+            // frmEventSummonedUnit
+            // 
+            this.frmEventSummonedUnit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmEventSummonedUnit.Controls.Add(this.btnSummonedUnitId);
+            this.frmEventSummonedUnit.Controls.Add(this.txtSummonedUnitRepeatMax);
+            this.frmEventSummonedUnit.Controls.Add(this.txtSummonedUnitRepeatMin);
+            this.frmEventSummonedUnit.Controls.Add(this.lblSummonedUnitRepeatMax);
+            this.frmEventSummonedUnit.Controls.Add(this.lblSummonedUnitId);
+            this.frmEventSummonedUnit.Controls.Add(this.lblSummonedUnitRepeatMin);
+            this.frmEventSummonedUnit.Controls.Add(this.lblEventSummonedUnitTooltip);
+            this.frmEventSummonedUnit.Location = new System.Drawing.Point(433, 289);
+            this.frmEventSummonedUnit.Name = "frmEventSummonedUnit";
+            this.frmEventSummonedUnit.Size = new System.Drawing.Size(495, 275);
+            this.frmEventSummonedUnit.TabIndex = 65;
+            this.frmEventSummonedUnit.Visible = false;
+            // 
+            // btnSummonedUnitId
+            // 
+            this.btnSummonedUnitId.Location = new System.Drawing.Point(99, 58);
+            this.btnSummonedUnitId.Name = "btnSummonedUnitId";
+            this.btnSummonedUnitId.Size = new System.Drawing.Size(374, 23);
+            this.btnSummonedUnitId.TabIndex = 13;
+            this.btnSummonedUnitId.Text = "-NONE-";
+            this.btnSummonedUnitId.UseVisualStyleBackColor = true;
+            this.btnSummonedUnitId.Click += new System.EventHandler(this.btnSummonedUnitId_Click);
+            // 
+            // txtSummonedUnitRepeatMax
+            // 
+            this.txtSummonedUnitRepeatMax.Location = new System.Drawing.Point(99, 118);
+            this.txtSummonedUnitRepeatMax.Name = "txtSummonedUnitRepeatMax";
+            this.txtSummonedUnitRepeatMax.Size = new System.Drawing.Size(374, 20);
+            this.txtSummonedUnitRepeatMax.TabIndex = 10;
+            this.txtSummonedUnitRepeatMax.Leave += new System.EventHandler(this.txtSummonedUnitRepeatMax_Leave);
+            // 
+            // txtSummonedUnitRepeatMin
+            // 
+            this.txtSummonedUnitRepeatMin.Location = new System.Drawing.Point(99, 88);
+            this.txtSummonedUnitRepeatMin.Name = "txtSummonedUnitRepeatMin";
+            this.txtSummonedUnitRepeatMin.Size = new System.Drawing.Size(374, 20);
+            this.txtSummonedUnitRepeatMin.TabIndex = 9;
+            this.txtSummonedUnitRepeatMin.Leave += new System.EventHandler(this.txtSummonedUnitRepeatMin_Leave);
+            // 
+            // lblSummonedUnitRepeatMax
+            // 
+            this.lblSummonedUnitRepeatMax.AutoSize = true;
+            this.lblSummonedUnitRepeatMax.Location = new System.Drawing.Point(27, 121);
+            this.lblSummonedUnitRepeatMax.Name = "lblSummonedUnitRepeatMax";
+            this.lblSummonedUnitRepeatMax.Size = new System.Drawing.Size(68, 13);
+            this.lblSummonedUnitRepeatMax.TabIndex = 6;
+            this.lblSummonedUnitRepeatMax.Text = "Repeat Max:";
+            // 
+            // lblSummonedUnitId
+            // 
+            this.lblSummonedUnitId.AutoSize = true;
+            this.lblSummonedUnitId.Location = new System.Drawing.Point(33, 61);
+            this.lblSummonedUnitId.Name = "lblSummonedUnitId";
+            this.lblSummonedUnitId.Size = new System.Drawing.Size(62, 13);
+            this.lblSummonedUnitId.TabIndex = 4;
+            this.lblSummonedUnitId.Text = "Creature Id:";
+            // 
+            // lblSummonedUnitRepeatMin
+            // 
+            this.lblSummonedUnitRepeatMin.AutoSize = true;
+            this.lblSummonedUnitRepeatMin.Location = new System.Drawing.Point(30, 91);
+            this.lblSummonedUnitRepeatMin.Name = "lblSummonedUnitRepeatMin";
+            this.lblSummonedUnitRepeatMin.Size = new System.Drawing.Size(65, 13);
+            this.lblSummonedUnitRepeatMin.TabIndex = 3;
+            this.lblSummonedUnitRepeatMin.Text = "Repeat Min:";
+            // 
+            // lblEventSummonedUnitTooltip
+            // 
+            this.lblEventSummonedUnitTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblEventSummonedUnitTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblEventSummonedUnitTooltip.Name = "lblEventSummonedUnitTooltip";
+            this.lblEventSummonedUnitTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblEventSummonedUnitTooltip.TabIndex = 0;
+            this.lblEventSummonedUnitTooltip.Text = "Expires after summoning another creature with the given Id.";
+            // 
+            // frmEventReceiveEmote
+            // 
+            this.frmEventReceiveEmote.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmEventReceiveEmote.Controls.Add(this.cmbReceiveEmoteId);
+            this.frmEventReceiveEmote.Controls.Add(this.lblReceiveEmoteId);
+            this.frmEventReceiveEmote.Controls.Add(this.lblEventReceiveEmoteTooltip);
+            this.frmEventReceiveEmote.Location = new System.Drawing.Point(433, 289);
+            this.frmEventReceiveEmote.Name = "frmEventReceiveEmote";
+            this.frmEventReceiveEmote.Size = new System.Drawing.Size(495, 275);
+            this.frmEventReceiveEmote.TabIndex = 66;
+            this.frmEventReceiveEmote.Visible = false;
+            // 
+            // cmbReceiveEmoteId
+            // 
+            this.cmbReceiveEmoteId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbReceiveEmoteId.FormattingEnabled = true;
+            this.cmbReceiveEmoteId.Items.AddRange(new object[] {
+            "Hostile",
+            "Friendly"});
+            this.cmbReceiveEmoteId.Location = new System.Drawing.Point(99, 58);
+            this.cmbReceiveEmoteId.Name = "cmbReceiveEmoteId";
+            this.cmbReceiveEmoteId.Size = new System.Drawing.Size(375, 21);
+            this.cmbReceiveEmoteId.TabIndex = 14;
+            this.cmbReceiveEmoteId.SelectedIndexChanged += new System.EventHandler(this.cmbReceiveEmoteId_SelectedIndexChanged);
+            // 
+            // lblReceiveEmoteId
+            // 
+            this.lblReceiveEmoteId.AutoSize = true;
+            this.lblReceiveEmoteId.Location = new System.Drawing.Point(45, 61);
+            this.lblReceiveEmoteId.Name = "lblReceiveEmoteId";
+            this.lblReceiveEmoteId.Size = new System.Drawing.Size(52, 13);
+            this.lblReceiveEmoteId.TabIndex = 4;
+            this.lblReceiveEmoteId.Text = "Emote Id:";
+            // 
+            // lblEventReceiveEmoteTooltip
+            // 
+            this.lblEventReceiveEmoteTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblEventReceiveEmoteTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblEventReceiveEmoteTooltip.Name = "lblEventReceiveEmoteTooltip";
+            this.lblEventReceiveEmoteTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblEventReceiveEmoteTooltip.TabIndex = 0;
+            this.lblEventReceiveEmoteTooltip.Text = "Expires when the creature receives a text emote with the specified id.";
+            // 
             // FormEventEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 600);
+            this.Controls.Add(this.frmEventReceiveEmote);
+            this.Controls.Add(this.frmEventSummonedUnit);
+            this.Controls.Add(this.frmEventEnterLOS);
             this.Controls.Add(this.frmEventSpellHit);
             this.Controls.Add(this.frmEventAggro);
             this.Controls.Add(this.btnViewRaw);
@@ -731,6 +984,7 @@
             this.MaximizeBox = false;
             this.Name = "FormEventEditor";
             this.Text = "Event Editor";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormEventEditor_FormClosing);
             this.Load += new System.EventHandler(this.FormEventEditor_Load);
             this.grpGeneral.ResumeLayout(false);
             this.grpGeneral.PerformLayout();
@@ -741,6 +995,12 @@
             this.frmEventAggro.ResumeLayout(false);
             this.frmEventSpellHit.ResumeLayout(false);
             this.frmEventSpellHit.PerformLayout();
+            this.frmEventEnterLOS.ResumeLayout(false);
+            this.frmEventEnterLOS.PerformLayout();
+            this.frmEventSummonedUnit.ResumeLayout(false);
+            this.frmEventSummonedUnit.PerformLayout();
+            this.frmEventReceiveEmote.ResumeLayout(false);
+            this.frmEventReceiveEmote.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -806,9 +1066,31 @@
         private System.Windows.Forms.TextBox txtSpellHitRepeatMin;
         private System.Windows.Forms.TextBox txtSpellHitSchoolMask;
         private System.Windows.Forms.Label lblSpellHitRepeatMin;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblSpellHitSpellId;
         private System.Windows.Forms.Label lblSpellHitSchoolMask;
         private System.Windows.Forms.Label lblEventSpellHitTooltip;
         private System.Windows.Forms.Button btnEventPhaseMask;
+        private System.Windows.Forms.Panel frmEventEnterLOS;
+        private System.Windows.Forms.ComboBox cmbEnterLOSFaction;
+        private System.Windows.Forms.TextBox txtEnterLOSRepeatMax;
+        private System.Windows.Forms.Label lblEnterLOSRepeatMax;
+        private System.Windows.Forms.TextBox txtEnterLOSRepeatMin;
+        private System.Windows.Forms.TextBox txtEnterLOSDistance;
+        private System.Windows.Forms.Label lblEnterLOSRepeatMin;
+        private System.Windows.Forms.Label lblEnterLOSFaction;
+        private System.Windows.Forms.Label lblEnterLOSDistance;
+        private System.Windows.Forms.Label lblEventEnterLOSTooltip;
+        private System.Windows.Forms.Panel frmEventSummonedUnit;
+        private System.Windows.Forms.Button btnSummonedUnitId;
+        private System.Windows.Forms.TextBox txtSummonedUnitRepeatMax;
+        private System.Windows.Forms.TextBox txtSummonedUnitRepeatMin;
+        private System.Windows.Forms.Label lblSummonedUnitRepeatMax;
+        private System.Windows.Forms.Label lblSummonedUnitId;
+        private System.Windows.Forms.Label lblSummonedUnitRepeatMin;
+        private System.Windows.Forms.Label lblEventSummonedUnitTooltip;
+        private System.Windows.Forms.Panel frmEventReceiveEmote;
+        private System.Windows.Forms.ComboBox cmbReceiveEmoteId;
+        private System.Windows.Forms.Label lblReceiveEmoteId;
+        private System.Windows.Forms.Label lblEventReceiveEmoteTooltip;
     }
 }
