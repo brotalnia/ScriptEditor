@@ -20,6 +20,7 @@ namespace ScriptEditor
         public static readonly List<FactionInfo> FactionInfoList = new List<FactionInfo>();
         public static readonly List<FactionTemplateInfo> FactionTemplateInfoList = new List<FactionTemplateInfo>();
         public static readonly List<GameEventInfo> GameEventInfoList = new List<GameEventInfo>();
+        public static readonly List<CreatureSpellsInfo> CreatureSpellsInfoList = new List<CreatureSpellsInfo>();
         public static readonly List<ComboboxPair> UpdateFieldsList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> FlagFieldsList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> MapsList = new List<ComboboxPair>();
@@ -27,6 +28,7 @@ namespace ScriptEditor
         public static readonly List<ComboboxPair> TextEmotesList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> CreatureRanksList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> MotionTypesList = new List<ComboboxPair>();
+        public static readonly List<ComboboxPair> MotionTypesFullList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> ConditionNamesList = new List<ComboboxPair>();
         public static int FindIndexOfMap(uint id)
         {
@@ -51,6 +53,15 @@ namespace ScriptEditor
             for (int i = 0; i < MotionTypesList.Count; i++)
             {
                 if (id == (uint)(MotionTypesList[i] as ComboboxPair).Value)
+                    return i;
+            }
+            return 0;
+        }
+        public static int FindIndexOfMotionTypeFull(uint id)
+        {
+            for (int i = 0; i < MotionTypesFullList.Count; i++)
+            {
+                if (id == (uint)(MotionTypesFullList[i] as ComboboxPair).Value)
                     return i;
             }
             return 0;
@@ -265,7 +276,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT entry, minlevel, maxlevel, rank, name FROM creature_template t1 WHERE patch=(SELECT max(patch) FROM creature_template t2 WHERE t1.entry=t2.entry) ORDER BY entry";
+            command.CommandText = "SELECT entry, minlevel, maxlevel, rank, name, spells_template FROM creature_template t1 WHERE patch=(SELECT max(patch) FROM creature_template t2 WHERE t1.entry=t2.entry) ORDER BY entry";
             try
             {
                 conn.Open();
@@ -274,7 +285,114 @@ namespace ScriptEditor
                 while (reader.Read())
                 {
                     // Add the new creature entry to the list.
-                    CreatureInfoList.Add(new CreatureInfo(reader.GetUInt32(0), reader.GetUInt32(1), reader.GetUInt32(2), reader.GetUInt32(3), reader.GetString(4)));
+                    CreatureInfoList.Add(new CreatureInfo(reader.GetUInt32(0), reader.GetUInt32(1), reader.GetUInt32(2), reader.GetUInt32(3), reader.GetUInt32(5), reader.GetString(4)));
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+            conn.Close();
+        }
+        public static void LoadCreatureSpells(string connString)
+        {
+            CreatureSpellsInfoList.Clear();
+
+            MySqlConnection conn = new MySqlConnection(connString);
+            MySqlCommand command = conn.CreateCommand();
+            command.CommandText = "SELECT * FROM creature_spells ORDER BY entry";
+            try
+            {
+                conn.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    CreatureSpellsInfo template = new CreatureSpellsInfo(reader.GetUInt32(0), reader.GetString(1));
+
+                    template.SpellId1 = reader.GetUInt32(2);
+                    template.Probability1 = reader.GetUInt32(3);
+                    template.CastTarget1 = reader.GetUInt32(4);
+                    template.CastFlags1 = reader.GetUInt32(5);
+                    template.DelayInitialMin1 = reader.GetUInt32(6);
+                    template.DelayInitialMax1 = reader.GetUInt32(7);
+                    template.DelayRepeatMin1 = reader.GetUInt32(8);
+                    template.DelayRepeatMax1 = reader.GetUInt32(9);
+                    template.ScriptId1 = reader.GetUInt32(10);
+
+                    template.SpellId2 = reader.GetUInt32(11);
+                    template.Probability2 = reader.GetUInt32(12);
+                    template.CastTarget2 = reader.GetUInt32(13);
+                    template.CastFlags2 = reader.GetUInt32(14);
+                    template.DelayInitialMin2 = reader.GetUInt32(15);
+                    template.DelayInitialMax2 = reader.GetUInt32(16);
+                    template.DelayRepeatMin2 = reader.GetUInt32(17);
+                    template.DelayRepeatMax2 = reader.GetUInt32(18);
+                    template.ScriptId2 = reader.GetUInt32(19);
+
+                    template.SpellId3 = reader.GetUInt32(20);
+                    template.Probability3 = reader.GetUInt32(21);
+                    template.CastTarget3 = reader.GetUInt32(22);
+                    template.CastFlags3 = reader.GetUInt32(23);
+                    template.DelayInitialMin3 = reader.GetUInt32(24);
+                    template.DelayInitialMax3 = reader.GetUInt32(25);
+                    template.DelayRepeatMin3 = reader.GetUInt32(26);
+                    template.DelayRepeatMax3 = reader.GetUInt32(27);
+                    template.ScriptId3 = reader.GetUInt32(28);
+
+                    template.SpellId4 = reader.GetUInt32(29);
+                    template.Probability4 = reader.GetUInt32(30);
+                    template.CastTarget4 = reader.GetUInt32(31);
+                    template.CastFlags4 = reader.GetUInt32(32);
+                    template.DelayInitialMin4 = reader.GetUInt32(33);
+                    template.DelayInitialMax4 = reader.GetUInt32(34);
+                    template.DelayRepeatMin4 = reader.GetUInt32(35);
+                    template.DelayRepeatMax4 = reader.GetUInt32(36);
+                    template.ScriptId4 = reader.GetUInt32(37);
+
+                    template.SpellId5 = reader.GetUInt32(38);
+                    template.Probability5 = reader.GetUInt32(39);
+                    template.CastTarget5 = reader.GetUInt32(40);
+                    template.CastFlags5 = reader.GetUInt32(41);
+                    template.DelayInitialMin5 = reader.GetUInt32(42);
+                    template.DelayInitialMax5 = reader.GetUInt32(43);
+                    template.DelayRepeatMin5 = reader.GetUInt32(44);
+                    template.DelayRepeatMax5 = reader.GetUInt32(45);
+                    template.ScriptId5 = reader.GetUInt32(46);
+
+                    template.SpellId6 = reader.GetUInt32(47);
+                    template.Probability6 = reader.GetUInt32(48);
+                    template.CastTarget6 = reader.GetUInt32(49);
+                    template.CastFlags6 = reader.GetUInt32(50);
+                    template.DelayInitialMin6 = reader.GetUInt32(51);
+                    template.DelayInitialMax6 = reader.GetUInt32(52);
+                    template.DelayRepeatMin6 = reader.GetUInt32(53);
+                    template.DelayRepeatMax6 = reader.GetUInt32(54);
+                    template.ScriptId6 = reader.GetUInt32(55);
+
+                    template.SpellId7 = reader.GetUInt32(56);
+                    template.Probability7 = reader.GetUInt32(57);
+                    template.CastTarget7 = reader.GetUInt32(58);
+                    template.CastFlags7 = reader.GetUInt32(59);
+                    template.DelayInitialMin7 = reader.GetUInt32(60);
+                    template.DelayInitialMax7 = reader.GetUInt32(61);
+                    template.DelayRepeatMin7 = reader.GetUInt32(62);
+                    template.DelayRepeatMax7 = reader.GetUInt32(63);
+                    template.ScriptId7 = reader.GetUInt32(64);
+
+                    template.SpellId8 = reader.GetUInt32(65);
+                    template.Probability8 = reader.GetUInt32(66);
+                    template.CastTarget8 = reader.GetUInt32(67);
+                    template.CastFlags8 = reader.GetUInt32(68);
+                    template.DelayInitialMin8 = reader.GetUInt32(69);
+                    template.DelayInitialMax8 = reader.GetUInt32(70);
+                    template.DelayRepeatMin8 = reader.GetUInt32(71);
+                    template.DelayRepeatMax8 = reader.GetUInt32(72);
+                    template.ScriptId8 = reader.GetUInt32(73);
+
+                    // Add the new creature spells template to the list.
+                    CreatureSpellsInfoList.Add(template);
                 }
                 reader.Close();
             }
@@ -1055,7 +1173,7 @@ namespace ScriptEditor
             CreatureRanksList.Add(new ComboboxPair("Boss", 3));
             CreatureRanksList.Add(new ComboboxPair("Rare", 4));
 
-            // Add motion types to list.
+            // Add motion types to list. (for command 20)
             MotionTypesList.Add(new ComboboxPair("IDLE_MOTION_TYPE", 0));
             MotionTypesList.Add(new ComboboxPair("RANDOM_MOTION_TYPE", 1));
             MotionTypesList.Add(new ComboboxPair("WAYPOINT_MOTION_TYPE", 2));
@@ -1066,6 +1184,26 @@ namespace ScriptEditor
             MotionTypesList.Add(new ComboboxPair("DISTRACT_MOTION_TYPE", 10));
             MotionTypesList.Add(new ComboboxPair("FOLLOW_MOTION_TYPE", 14));
             MotionTypesList.Add(new ComboboxPair("CHARGE_MOTION_TYPE", 17));
+
+            // Add all motion types to list.
+            MotionTypesFullList.Add(new ComboboxPair("IDLE_MOTION_TYPE", 0));
+            MotionTypesFullList.Add(new ComboboxPair("RANDOM_MOTION_TYPE", 1));
+            MotionTypesFullList.Add(new ComboboxPair("WAYPOINT_MOTION_TYPE", 2));
+            MotionTypesFullList.Add(new ComboboxPair("CONFUSED_MOTION_TYPE", 4));
+            MotionTypesFullList.Add(new ComboboxPair("CHASE_MOTION_TYPE", 5));
+            MotionTypesFullList.Add(new ComboboxPair("HOME_MOTION_TYPE", 6));
+            MotionTypesFullList.Add(new ComboboxPair("FLIGHT_MOTION_TYPE", 7));
+            MotionTypesFullList.Add(new ComboboxPair("POINT_MOTION_TYPE", 8));
+            MotionTypesFullList.Add(new ComboboxPair("FLEEING_MOTION_TYPE", 9));
+            MotionTypesFullList.Add(new ComboboxPair("DISTRACT_MOTION_TYPE", 10));
+            MotionTypesFullList.Add(new ComboboxPair("ASSISTANCE_MOTION_TYPE", 11));
+            MotionTypesFullList.Add(new ComboboxPair("ASSISTANCE_DISTRACT_MOTION_TYPE", 12));
+            MotionTypesFullList.Add(new ComboboxPair("TIMED_FLEEING_MOTION_TYPE", 13));
+            MotionTypesFullList.Add(new ComboboxPair("FOLLOW_MOTION_TYPE", 14));
+            MotionTypesFullList.Add(new ComboboxPair("EFFECT_MOTION_TYPE", 15));
+            MotionTypesFullList.Add(new ComboboxPair("PATROL_MOTION_TYPE", 16));
+            MotionTypesFullList.Add(new ComboboxPair("CHARGE_MOTION_TYPE", 17));
+
 
             // Add taxi paths to list.
             TaxiInfoList.Add(new TaxiInfo(6, "Stormwind, Elwynn", "Sentinel Hill, Westfall"));
@@ -1429,14 +1567,16 @@ namespace ScriptEditor
         public uint MinLevel;
         public uint MaxLevel;
         public uint Rank;
+        public uint SpellsTemplate;
         public string Name;
-        public CreatureInfo(uint id, uint minlevel, uint maxlevel, uint rank, string name)
+        public CreatureInfo(uint id, uint minlevel, uint maxlevel, uint rank, uint spellstemplate, string name)
         {
             ID = id;
             Name = name;
             MinLevel = minlevel;
             MaxLevel = maxlevel;
             Rank = rank;
+            SpellsTemplate = spellstemplate;
         }
     }
     public struct SpellInfo
@@ -1584,6 +1724,161 @@ namespace ScriptEditor
             Name = name;
             PatchMin = patchmin;
             PatchMax = patchmax;
+        }
+    }
+    public struct CreatureSpellsInfo
+    {
+        public uint ID;
+        public string Name;
+        public uint SpellId1;
+        public uint SpellId2;
+        public uint SpellId3;
+        public uint SpellId4;
+        public uint SpellId5;
+        public uint SpellId6;
+        public uint SpellId7;
+        public uint SpellId8;
+        public uint Probability1;
+        public uint Probability2;
+        public uint Probability3;
+        public uint Probability4;
+        public uint Probability5;
+        public uint Probability6;
+        public uint Probability7;
+        public uint Probability8;
+        public uint CastTarget1;
+        public uint CastTarget2;
+        public uint CastTarget3;
+        public uint CastTarget4;
+        public uint CastTarget5;
+        public uint CastTarget6;
+        public uint CastTarget7;
+        public uint CastTarget8;
+        public uint CastFlags1;
+        public uint CastFlags2;
+        public uint CastFlags3;
+        public uint CastFlags4;
+        public uint CastFlags5;
+        public uint CastFlags6;
+        public uint CastFlags7;
+        public uint CastFlags8;
+        public uint DelayInitialMin1;
+        public uint DelayInitialMin2;
+        public uint DelayInitialMin3;
+        public uint DelayInitialMin4;
+        public uint DelayInitialMin5;
+        public uint DelayInitialMin6;
+        public uint DelayInitialMin7;
+        public uint DelayInitialMin8;
+        public uint DelayInitialMax1;
+        public uint DelayInitialMax2;
+        public uint DelayInitialMax3;
+        public uint DelayInitialMax4;
+        public uint DelayInitialMax5;
+        public uint DelayInitialMax6;
+        public uint DelayInitialMax7;
+        public uint DelayInitialMax8;
+        public uint DelayRepeatMin1;
+        public uint DelayRepeatMin2;
+        public uint DelayRepeatMin3;
+        public uint DelayRepeatMin4;
+        public uint DelayRepeatMin5;
+        public uint DelayRepeatMin6;
+        public uint DelayRepeatMin7;
+        public uint DelayRepeatMin8;
+        public uint DelayRepeatMax1;
+        public uint DelayRepeatMax2;
+        public uint DelayRepeatMax3;
+        public uint DelayRepeatMax4;
+        public uint DelayRepeatMax5;
+        public uint DelayRepeatMax6;
+        public uint DelayRepeatMax7;
+        public uint DelayRepeatMax8;
+        public uint ScriptId1;
+        public uint ScriptId2;
+        public uint ScriptId3;
+        public uint ScriptId4;
+        public uint ScriptId5;
+        public uint ScriptId6;
+        public uint ScriptId7;
+        public uint ScriptId8;
+
+        public CreatureSpellsInfo(uint id, string name)
+        {
+            ID = id;
+            Name = name;
+            SpellId1 = 0;
+            SpellId2 = 0;
+            SpellId3 = 0;
+            SpellId4 = 0;
+            SpellId5 = 0;
+            SpellId6 = 0;
+            SpellId7 = 0;
+            SpellId8 = 0;
+            Probability1 = 0;
+            Probability2 = 0;
+            Probability3 = 0;
+            Probability4 = 0;
+            Probability5 = 0;
+            Probability6 = 0;
+            Probability7 = 0;
+            Probability8 = 0;
+            CastTarget1 = 0;
+            CastTarget2 = 0;
+            CastTarget3 = 0;
+            CastTarget4 = 0;
+            CastTarget5 = 0;
+            CastTarget6 = 0;
+            CastTarget7 = 0;
+            CastTarget8 = 0;
+            CastFlags1 = 0;
+            CastFlags2 = 0;
+            CastFlags3 = 0;
+            CastFlags4 = 0;
+            CastFlags5 = 0;
+            CastFlags6 = 0;
+            CastFlags7 = 0;
+            CastFlags8 = 0;
+            DelayInitialMin1 = 0;
+            DelayInitialMin2 = 0;
+            DelayInitialMin3 = 0;
+            DelayInitialMin4 = 0;
+            DelayInitialMin5 = 0;
+            DelayInitialMin6 = 0;
+            DelayInitialMin7 = 0;
+            DelayInitialMin8 = 0;
+            DelayInitialMax1 = 0;
+            DelayInitialMax2 = 0;
+            DelayInitialMax3 = 0;
+            DelayInitialMax4 = 0;
+            DelayInitialMax5 = 0;
+            DelayInitialMax6 = 0;
+            DelayInitialMax7 = 0;
+            DelayInitialMax8 = 0;
+            DelayRepeatMin1 = 0;
+            DelayRepeatMin2 = 0;
+            DelayRepeatMin3 = 0;
+            DelayRepeatMin4 = 0;
+            DelayRepeatMin5 = 0;
+            DelayRepeatMin6 = 0;
+            DelayRepeatMin7 = 0;
+            DelayRepeatMin8 = 0;
+            DelayRepeatMax1 = 0;
+            DelayRepeatMax2 = 0;
+            DelayRepeatMax3 = 0;
+            DelayRepeatMax4 = 0;
+            DelayRepeatMax5 = 0;
+            DelayRepeatMax6 = 0;
+            DelayRepeatMax7 = 0;
+            DelayRepeatMax8 = 0;
+            ScriptId1 = 0;
+            ScriptId2 = 0;
+            ScriptId3 = 0;
+            ScriptId4 = 0;
+            ScriptId5 = 0;
+            ScriptId6 = 0;
+            ScriptId7 = 0;
+            ScriptId8 = 0;
         }
     }
     public class ComboboxPair

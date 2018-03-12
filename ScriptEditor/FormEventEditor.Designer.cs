@@ -113,6 +113,16 @@
             this.cmbReceiveEmoteId = new System.Windows.Forms.ComboBox();
             this.lblReceiveEmoteId = new System.Windows.Forms.Label();
             this.lblEventReceiveEmoteTooltip = new System.Windows.Forms.Label();
+            this.frmEventMovementInform = new System.Windows.Forms.Panel();
+            this.cmbMovementInformType = new System.Windows.Forms.ComboBox();
+            this.txtMovementInformRepeatMax = new System.Windows.Forms.TextBox();
+            this.lblMovementInformRepeatMax = new System.Windows.Forms.Label();
+            this.txtMovementInformRepeatMin = new System.Windows.Forms.TextBox();
+            this.txtMovementInformPoint = new System.Windows.Forms.TextBox();
+            this.lblMovementInformRepeatMin = new System.Windows.Forms.Label();
+            this.lblMovementInformType = new System.Windows.Forms.Label();
+            this.lblMovementInformPoint = new System.Windows.Forms.Label();
+            this.lblEventMovementInformTooltip = new System.Windows.Forms.Label();
             this.grpGeneral.SuspendLayout();
             this.grpEventFlags.SuspendLayout();
             this.frmEventTimerCombat.SuspendLayout();
@@ -121,6 +131,7 @@
             this.frmEventEnterLOS.SuspendLayout();
             this.frmEventSummonedUnit.SuspendLayout();
             this.frmEventReceiveEmote.SuspendLayout();
+            this.frmEventMovementInform.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstEvents
@@ -956,11 +967,109 @@
             this.lblEventReceiveEmoteTooltip.TabIndex = 0;
             this.lblEventReceiveEmoteTooltip.Text = "Expires when the creature receives a text emote with the specified id.";
             // 
+            // frmEventMovementInform
+            // 
+            this.frmEventMovementInform.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmEventMovementInform.Controls.Add(this.cmbMovementInformType);
+            this.frmEventMovementInform.Controls.Add(this.txtMovementInformRepeatMax);
+            this.frmEventMovementInform.Controls.Add(this.lblMovementInformRepeatMax);
+            this.frmEventMovementInform.Controls.Add(this.txtMovementInformRepeatMin);
+            this.frmEventMovementInform.Controls.Add(this.txtMovementInformPoint);
+            this.frmEventMovementInform.Controls.Add(this.lblMovementInformRepeatMin);
+            this.frmEventMovementInform.Controls.Add(this.lblMovementInformType);
+            this.frmEventMovementInform.Controls.Add(this.lblMovementInformPoint);
+            this.frmEventMovementInform.Controls.Add(this.lblEventMovementInformTooltip);
+            this.frmEventMovementInform.Location = new System.Drawing.Point(433, 289);
+            this.frmEventMovementInform.Name = "frmEventMovementInform";
+            this.frmEventMovementInform.Size = new System.Drawing.Size(495, 275);
+            this.frmEventMovementInform.TabIndex = 67;
+            this.frmEventMovementInform.Visible = false;
+            // 
+            // cmbMovementInformType
+            // 
+            this.cmbMovementInformType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMovementInformType.FormattingEnabled = true;
+            this.cmbMovementInformType.Location = new System.Drawing.Point(99, 58);
+            this.cmbMovementInformType.Name = "cmbMovementInformType";
+            this.cmbMovementInformType.Size = new System.Drawing.Size(374, 21);
+            this.cmbMovementInformType.TabIndex = 14;
+            this.cmbMovementInformType.SelectedIndexChanged += new System.EventHandler(this.cmbMovementInformType_SelectedIndexChanged);
+            // 
+            // txtMovementInformRepeatMax
+            // 
+            this.txtMovementInformRepeatMax.Location = new System.Drawing.Point(99, 148);
+            this.txtMovementInformRepeatMax.Name = "txtMovementInformRepeatMax";
+            this.txtMovementInformRepeatMax.Size = new System.Drawing.Size(374, 20);
+            this.txtMovementInformRepeatMax.TabIndex = 12;
+            this.txtMovementInformRepeatMax.Leave += new System.EventHandler(this.txtMovementInformRepeatMax_Leave);
+            // 
+            // lblMovementInformRepeatMax
+            // 
+            this.lblMovementInformRepeatMax.AutoSize = true;
+            this.lblMovementInformRepeatMax.Location = new System.Drawing.Point(27, 151);
+            this.lblMovementInformRepeatMax.Name = "lblMovementInformRepeatMax";
+            this.lblMovementInformRepeatMax.Size = new System.Drawing.Size(68, 13);
+            this.lblMovementInformRepeatMax.TabIndex = 11;
+            this.lblMovementInformRepeatMax.Text = "Repeat Max:";
+            // 
+            // txtMovementInformRepeatMin
+            // 
+            this.txtMovementInformRepeatMin.Location = new System.Drawing.Point(99, 118);
+            this.txtMovementInformRepeatMin.Name = "txtMovementInformRepeatMin";
+            this.txtMovementInformRepeatMin.Size = new System.Drawing.Size(374, 20);
+            this.txtMovementInformRepeatMin.TabIndex = 10;
+            this.txtMovementInformRepeatMin.Leave += new System.EventHandler(this.txtMovementInformRepeatMin_Leave);
+            // 
+            // txtMovementInformPoint
+            // 
+            this.txtMovementInformPoint.Location = new System.Drawing.Point(99, 88);
+            this.txtMovementInformPoint.Name = "txtMovementInformPoint";
+            this.txtMovementInformPoint.Size = new System.Drawing.Size(374, 20);
+            this.txtMovementInformPoint.TabIndex = 9;
+            this.txtMovementInformPoint.Leave += new System.EventHandler(this.txtMovementInformPoint_Leave);
+            // 
+            // lblMovementInformRepeatMin
+            // 
+            this.lblMovementInformRepeatMin.AutoSize = true;
+            this.lblMovementInformRepeatMin.Location = new System.Drawing.Point(30, 121);
+            this.lblMovementInformRepeatMin.Name = "lblMovementInformRepeatMin";
+            this.lblMovementInformRepeatMin.Size = new System.Drawing.Size(65, 13);
+            this.lblMovementInformRepeatMin.TabIndex = 6;
+            this.lblMovementInformRepeatMin.Text = "Repeat Min:";
+            // 
+            // lblMovementInformType
+            // 
+            this.lblMovementInformType.AutoSize = true;
+            this.lblMovementInformType.Location = new System.Drawing.Point(26, 61);
+            this.lblMovementInformType.Name = "lblMovementInformType";
+            this.lblMovementInformType.Size = new System.Drawing.Size(69, 13);
+            this.lblMovementInformType.TabIndex = 4;
+            this.lblMovementInformType.Text = "Motion Type:";
+            // 
+            // lblMovementInformPoint
+            // 
+            this.lblMovementInformPoint.AutoSize = true;
+            this.lblMovementInformPoint.Location = new System.Drawing.Point(49, 91);
+            this.lblMovementInformPoint.Name = "lblMovementInformPoint";
+            this.lblMovementInformPoint.Size = new System.Drawing.Size(46, 13);
+            this.lblMovementInformPoint.TabIndex = 3;
+            this.lblMovementInformPoint.Text = "Point Id:";
+            // 
+            // lblEventMovementInformTooltip
+            // 
+            this.lblEventMovementInformTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblEventMovementInformTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblEventMovementInformTooltip.Name = "lblEventMovementInformTooltip";
+            this.lblEventMovementInformTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblEventMovementInformTooltip.TabIndex = 0;
+            this.lblEventMovementInformTooltip.Text = "Expires upon reaching a waypoint or finishing point movement.";
+            // 
             // FormEventEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 600);
+            this.Controls.Add(this.frmEventMovementInform);
             this.Controls.Add(this.frmEventReceiveEmote);
             this.Controls.Add(this.frmEventSummonedUnit);
             this.Controls.Add(this.frmEventEnterLOS);
@@ -1001,6 +1110,8 @@
             this.frmEventSummonedUnit.PerformLayout();
             this.frmEventReceiveEmote.ResumeLayout(false);
             this.frmEventReceiveEmote.PerformLayout();
+            this.frmEventMovementInform.ResumeLayout(false);
+            this.frmEventMovementInform.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1092,5 +1203,15 @@
         private System.Windows.Forms.ComboBox cmbReceiveEmoteId;
         private System.Windows.Forms.Label lblReceiveEmoteId;
         private System.Windows.Forms.Label lblEventReceiveEmoteTooltip;
+        private System.Windows.Forms.Panel frmEventMovementInform;
+        private System.Windows.Forms.ComboBox cmbMovementInformType;
+        private System.Windows.Forms.TextBox txtMovementInformRepeatMax;
+        private System.Windows.Forms.Label lblMovementInformRepeatMax;
+        private System.Windows.Forms.TextBox txtMovementInformRepeatMin;
+        private System.Windows.Forms.TextBox txtMovementInformPoint;
+        private System.Windows.Forms.Label lblMovementInformRepeatMin;
+        private System.Windows.Forms.Label lblMovementInformType;
+        private System.Windows.Forms.Label lblMovementInformPoint;
+        private System.Windows.Forms.Label lblEventMovementInformTooltip;
     }
 }

@@ -62,6 +62,8 @@ namespace ScriptEditor
             GameData.LoadFactionTemplates(connString);
             Console.WriteLine("Loading game events...");
             GameData.LoadGameEvents(connString);
+            Console.WriteLine("Loading creature spells...");
+            GameData.LoadCreatureSpells(connString);
 
             // Closes the temporary console window.
             NativeMethods.FreeConsole();

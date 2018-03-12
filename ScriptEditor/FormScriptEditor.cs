@@ -127,17 +127,16 @@ namespace ScriptEditor
             cmbTargetType.Items.Add(new ComboboxPair("Last on Threat", 3));
             cmbTargetType.Items.Add(new ComboboxPair("Random Attacker", 4));
             cmbTargetType.Items.Add(new ComboboxPair("Random Not Top", 5));
-            cmbTargetType.Items.Add(new ComboboxPair("Source", 6));
+            cmbTargetType.Items.Add(new ComboboxPair("Owner or Source", 6));
             cmbTargetType.Items.Add(new ComboboxPair("Owner of Source", 7));
-            cmbTargetType.Items.Add(new ComboboxPair("Owner or Source", 8));
-            cmbTargetType.Items.Add(new ComboboxPair("Creature Entry", 9));
-            cmbTargetType.Items.Add(new ComboboxPair("Creature GUID", 10));
-            cmbTargetType.Items.Add(new ComboboxPair("Creature Instance Data", 11));
-            cmbTargetType.Items.Add(new ComboboxPair("Gameobject Entry", 12));
-            cmbTargetType.Items.Add(new ComboboxPair("Gameobject GUID", 13));
-            cmbTargetType.Items.Add(new ComboboxPair("Gameobject Instance Data", 14));
-            cmbTargetType.Items.Add(new ComboboxPair("Nearby Friendly", 15));
-            cmbTargetType.Items.Add(new ComboboxPair("Injured Friendly", 16));
+            cmbTargetType.Items.Add(new ComboboxPair("Creature Entry", 8));
+            cmbTargetType.Items.Add(new ComboboxPair("Creature GUID", 9));
+            cmbTargetType.Items.Add(new ComboboxPair("Creature Instance Data", 10));
+            cmbTargetType.Items.Add(new ComboboxPair("Gameobject Entry", 11));
+            cmbTargetType.Items.Add(new ComboboxPair("Gameobject GUID", 12));
+            cmbTargetType.Items.Add(new ComboboxPair("Gameobject Instance Data", 13));
+            cmbTargetType.Items.Add(new ComboboxPair("Nearby Friendly", 14));
+            cmbTargetType.Items.Add(new ComboboxPair("Injured Friendly", 15));
             cmbTargetType.SelectedIndex = 0;
 
             // Add chat types to combo box.
@@ -509,6 +508,9 @@ namespace ScriptEditor
             btnCastSpellId.Text = "-NONE-";
             chkCastSpellFlags1.Checked = false;
             chkCastSpellFlags2.Checked = false;
+            chkCastSpellFlags4.Checked = false;
+            chkCastSpellFlags16.Checked = false;
+            chkCastSpellFlags32.Checked = false;
             frmCommandCastSpell.Visible = false;
 
             // Play Sound Command (16)
@@ -976,6 +978,12 @@ namespace ScriptEditor
                         chkCastSpellFlags1.Checked = true;
                     if ((selectedAction.Datalong2 & 2) != 0)
                         chkCastSpellFlags2.Checked = true;
+                    if ((selectedAction.Datalong2 & 4) != 0)
+                        chkCastSpellFlags4.Checked = true;
+                    if ((selectedAction.Datalong2 & 16) != 0)
+                        chkCastSpellFlags16.Checked = true;
+                    if ((selectedAction.Datalong2 & 32) != 0)
+                        chkCastSpellFlags32.Checked = true;
                     frmCommandCastSpell.Visible = true;
                     break;
                 }
@@ -1690,9 +1698,8 @@ namespace ScriptEditor
                 case 3: // Last Aggro
                 case 4: // Random
                 case 5: // Random Not Top
-                case 6: // Self
+                case 6: // Owner or Self
                 case 7: // Owner
-                case 8: // Owner or Self
                 {
                     lblTargetParam1.Text = "N/A:";
                     lblTargetParam2.Text = "N/A:";
@@ -1704,8 +1711,8 @@ namespace ScriptEditor
                     txtTargetParam2.Enabled = false;
                     break;
                 }
-                case 9: // Creature Entry
-                case 12: // GameObject Entry
+                case 8: // Creature Entry
+                case 11: // GameObject Entry
                 {
                     lblTargetParam1.Text = "Entry:";
                     lblTargetParam2.Text = "Radius:";
@@ -1713,8 +1720,8 @@ namespace ScriptEditor
                     txtTargetParam2.Enabled = true;
                     break;
                 }
-                case 10: // Creature GUID
-                case 13: // GameObject Guid
+                case 9: // Creature GUID
+                case 12: // GameObject Guid
                 {
                     lblTargetParam1.Text = "GUID:";
                     lblTargetParam2.Text = "N/A:";
@@ -1724,8 +1731,8 @@ namespace ScriptEditor
                     txtTargetParam2.Text = "";
                     break;
                 }
-                case 11: // Creature Instance Data
-                case 14: // GameObject Instance Data
+                case 10: // Creature Instance Data
+                case 13: // GameObject Instance Data
                 {
                     lblTargetParam1.Text = "Index:";
                     lblTargetParam2.Text = "N/A:";
@@ -1735,7 +1742,7 @@ namespace ScriptEditor
                     txtTargetParam2.Text = "";
                     break;
                 }
-                case 15: // Nearby Friendly
+                case 14: // Nearby Friendly
                 {
                     lblTargetParam1.Text = "Spell Id:";
                     lblTargetParam2.Text = "Not Self:";
@@ -1743,7 +1750,7 @@ namespace ScriptEditor
                     txtTargetParam2.Enabled = true;
                     break;
                 }
-                case 16: // Injured Friendly
+                case 15: // Injured Friendly
                 {
                     lblTargetParam1.Text = "Spell Id:";
                     lblTargetParam2.Text = "HP %:";
@@ -2660,6 +2667,21 @@ namespace ScriptEditor
         private void chkCastSpellFlags2_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkCastSpellFlags2, "Datalong2", 2);
+        }
+
+        private void chkCastSpellFlags4_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkCastSpellFlags4, "Datalong2", 4);
+        }
+
+        private void chkCastSpellFlags16_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkCastSpellFlags16, "Datalong2", 16);
+        }
+
+        private void chkCastSpellFlags32_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkCastSpellFlags32, "Datalong2", 32);
         }
 
         private void btnPlaySoundId_Click(object sender, EventArgs e)

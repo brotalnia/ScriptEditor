@@ -89,5 +89,11 @@ namespace ScriptEditor
         {
             picCastsEditor.BackgroundImage = imgCastsEditor;
         }
+
+        private void picCastsEditor_Click(object sender, EventArgs e)
+        {
+            FormCastsEditor editor = new FormCastsEditor();
+            editor.Show();
+        }
     }
 }

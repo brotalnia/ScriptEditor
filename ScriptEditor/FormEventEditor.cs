@@ -93,6 +93,9 @@ namespace ScriptEditor
             cmbReceiveEmoteId.DataSource = GameData.TextEmotesList;
             cmbReceiveEmoteId.SelectedIndex = 0;
 
+            // Add options to Movement Inform combo box.
+            cmbMovementInformType.DataSource = GameData.MotionTypesFullList;
+
             dontUpdate = false;
         }
 
@@ -198,6 +201,13 @@ namespace ScriptEditor
             // EVENT_T_RECEIVE_EMOTE (22)
             cmbReceiveEmoteId.SelectedIndex = 0;
             frmEventReceiveEmote.Visible = false;
+
+            // EVENT_T_MOVEMENT_INFORM (29)
+            cmbMovementInformType.SelectedIndex = 0;
+            txtMovementInformPoint.Text = "";
+            txtMovementInformRepeatMin.Text = "";
+            txtMovementInformRepeatMax.Text = "";
+            frmEventMovementInform.Visible = false;
 
             dontUpdate = false;
         }
@@ -490,6 +500,15 @@ namespace ScriptEditor
                 {
                     cmbReceiveEmoteId.SelectedIndex = GameData.FindIndexOfTextEmote((uint)selectedEvent.Param1);
                     frmEventReceiveEmote.Visible = true;
+                    break;
+                }
+                case 29: // EVENT_T_MOVEMENT_INFORM
+                {
+                    cmbMovementInformType.SelectedIndex = GameData.FindIndexOfMotionTypeFull((uint)selectedEvent.Param1);
+                    txtMovementInformPoint.Text = selectedEvent.Param2.ToString();
+                    txtMovementInformRepeatMin.Text = selectedEvent.Param3.ToString();
+                    txtMovementInformRepeatMax.Text = selectedEvent.Param4.ToString();
+                    frmEventMovementInform.Visible = true;
                     break;
                 }
             }
@@ -1182,6 +1201,26 @@ namespace ScriptEditor
         private void cmbReceiveEmoteId_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbReceiveEmoteId, "Param1", true);
+        }
+
+        private void cmbMovementInformType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbMovementInformType, "Param1", true);
+        }
+
+        private void txtMovementInformPoint_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtMovementInformPoint, "Param2");
+        }
+
+        private void txtMovementInformRepeatMin_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtMovementInformRepeatMin, "Param3");
+        }
+
+        private void txtMovementInformRepeatMax_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtMovementInformRepeatMax, "Param4");
         }
     }
 }

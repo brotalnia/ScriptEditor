@@ -90,6 +90,7 @@
             this.picCastsEditor.Size = new System.Drawing.Size(138, 97);
             this.picCastsEditor.TabIndex = 3;
             this.picCastsEditor.TabStop = false;
+            this.picCastsEditor.Click += new System.EventHandler(this.picCastsEditor_Click);
             this.picCastsEditor.MouseEnter += new System.EventHandler(this.picCastsEditor_MouseEnter);
             this.picCastsEditor.MouseLeave += new System.EventHandler(this.picCastsEditor_MouseLeave);
             // 

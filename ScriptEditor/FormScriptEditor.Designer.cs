@@ -190,8 +190,11 @@
             this.lblRemoveAuraTooltip = new System.Windows.Forms.Label();
             this.frmCommandCastSpell = new System.Windows.Forms.Panel();
             this.grpCastSpellFlags = new System.Windows.Forms.GroupBox();
-            this.chkCastSpellFlags2 = new System.Windows.Forms.CheckBox();
+            this.chkCastSpellFlags32 = new System.Windows.Forms.CheckBox();
+            this.chkCastSpellFlags16 = new System.Windows.Forms.CheckBox();
+            this.chkCastSpellFlags4 = new System.Windows.Forms.CheckBox();
             this.chkCastSpellFlags1 = new System.Windows.Forms.CheckBox();
+            this.chkCastSpellFlags2 = new System.Windows.Forms.CheckBox();
             this.btnCastSpellId = new System.Windows.Forms.Button();
             this.lblCastSpellId = new System.Windows.Forms.Label();
             this.lblCastSpellTooltip = new System.Windows.Forms.Label();
@@ -2113,36 +2116,72 @@
             // 
             // grpCastSpellFlags
             // 
-            this.grpCastSpellFlags.Controls.Add(this.chkCastSpellFlags2);
+            this.grpCastSpellFlags.Controls.Add(this.chkCastSpellFlags32);
+            this.grpCastSpellFlags.Controls.Add(this.chkCastSpellFlags16);
+            this.grpCastSpellFlags.Controls.Add(this.chkCastSpellFlags4);
             this.grpCastSpellFlags.Controls.Add(this.chkCastSpellFlags1);
+            this.grpCastSpellFlags.Controls.Add(this.chkCastSpellFlags2);
             this.grpCastSpellFlags.Location = new System.Drawing.Point(26, 88);
             this.grpCastSpellFlags.Name = "grpCastSpellFlags";
-            this.grpCastSpellFlags.Size = new System.Drawing.Size(447, 48);
+            this.grpCastSpellFlags.Size = new System.Drawing.Size(447, 77);
             this.grpCastSpellFlags.TabIndex = 3;
             this.grpCastSpellFlags.TabStop = false;
             this.grpCastSpellFlags.Text = "Cast Flags";
             // 
-            // chkCastSpellFlags2
+            // chkCastSpellFlags32
             // 
-            this.chkCastSpellFlags2.AutoSize = true;
-            this.chkCastSpellFlags2.Location = new System.Drawing.Point(85, 21);
-            this.chkCastSpellFlags2.Name = "chkCastSpellFlags2";
-            this.chkCastSpellFlags2.Size = new System.Drawing.Size(109, 17);
-            this.chkCastSpellFlags2.TabIndex = 1;
-            this.chkCastSpellFlags2.Text = "Interrupt Previous";
-            this.chkCastSpellFlags2.UseVisualStyleBackColor = true;
-            this.chkCastSpellFlags2.CheckedChanged += new System.EventHandler(this.chkCastSpellFlags2_CheckedChanged);
+            this.chkCastSpellFlags32.AutoSize = true;
+            this.chkCastSpellFlags32.Location = new System.Drawing.Point(10, 48);
+            this.chkCastSpellFlags32.Name = "chkCastSpellFlags32";
+            this.chkCastSpellFlags32.Size = new System.Drawing.Size(130, 17);
+            this.chkCastSpellFlags32.TabIndex = 4;
+            this.chkCastSpellFlags32.Text = "Only If Not Have Aura";
+            this.chkCastSpellFlags32.UseVisualStyleBackColor = true;
+            this.chkCastSpellFlags32.CheckedChanged += new System.EventHandler(this.chkCastSpellFlags32_CheckedChanged);
+            // 
+            // chkCastSpellFlags16
+            // 
+            this.chkCastSpellFlags16.AutoSize = true;
+            this.chkCastSpellFlags16.Location = new System.Drawing.Point(259, 21);
+            this.chkCastSpellFlags16.Name = "chkCastSpellFlags16";
+            this.chkCastSpellFlags16.Size = new System.Drawing.Size(124, 17);
+            this.chkCastSpellFlags16.TabIndex = 3;
+            this.chkCastSpellFlags16.Text = "Target Casts On Self";
+            this.chkCastSpellFlags16.UseVisualStyleBackColor = true;
+            this.chkCastSpellFlags16.CheckedChanged += new System.EventHandler(this.chkCastSpellFlags16_CheckedChanged);
+            // 
+            // chkCastSpellFlags4
+            // 
+            this.chkCastSpellFlags4.AutoSize = true;
+            this.chkCastSpellFlags4.Location = new System.Drawing.Point(200, 21);
+            this.chkCastSpellFlags4.Name = "chkCastSpellFlags4";
+            this.chkCastSpellFlags4.Size = new System.Drawing.Size(53, 17);
+            this.chkCastSpellFlags4.TabIndex = 2;
+            this.chkCastSpellFlags4.Text = "Force";
+            this.chkCastSpellFlags4.UseVisualStyleBackColor = true;
+            this.chkCastSpellFlags4.CheckedChanged += new System.EventHandler(this.chkCastSpellFlags4_CheckedChanged);
             // 
             // chkCastSpellFlags1
             // 
             this.chkCastSpellFlags1.AutoSize = true;
-            this.chkCastSpellFlags1.Location = new System.Drawing.Point(10, 21);
+            this.chkCastSpellFlags1.Location = new System.Drawing.Point(85, 21);
             this.chkCastSpellFlags1.Name = "chkCastSpellFlags1";
-            this.chkCastSpellFlags1.Size = new System.Drawing.Size(71, 17);
-            this.chkCastSpellFlags1.TabIndex = 0;
-            this.chkCastSpellFlags1.Text = "Triggered";
+            this.chkCastSpellFlags1.Size = new System.Drawing.Size(109, 17);
+            this.chkCastSpellFlags1.TabIndex = 1;
+            this.chkCastSpellFlags1.Text = "Interrupt Previous";
             this.chkCastSpellFlags1.UseVisualStyleBackColor = true;
             this.chkCastSpellFlags1.CheckedChanged += new System.EventHandler(this.chkCastSpellFlags1_CheckedChanged);
+            // 
+            // chkCastSpellFlags2
+            // 
+            this.chkCastSpellFlags2.AutoSize = true;
+            this.chkCastSpellFlags2.Location = new System.Drawing.Point(10, 21);
+            this.chkCastSpellFlags2.Name = "chkCastSpellFlags2";
+            this.chkCastSpellFlags2.Size = new System.Drawing.Size(71, 17);
+            this.chkCastSpellFlags2.TabIndex = 0;
+            this.chkCastSpellFlags2.Text = "Triggered";
+            this.chkCastSpellFlags2.UseVisualStyleBackColor = true;
+            this.chkCastSpellFlags2.CheckedChanged += new System.EventHandler(this.chkCastSpellFlags2_CheckedChanged);
             // 
             // btnCastSpellId
             // 
@@ -4865,8 +4904,8 @@
         private System.Windows.Forms.Label lblRemoveAuraTooltip;
         private System.Windows.Forms.Panel frmCommandCastSpell;
         private System.Windows.Forms.GroupBox grpCastSpellFlags;
-        private System.Windows.Forms.CheckBox chkCastSpellFlags2;
         private System.Windows.Forms.CheckBox chkCastSpellFlags1;
+        private System.Windows.Forms.CheckBox chkCastSpellFlags2;
         private System.Windows.Forms.Button btnCastSpellId;
         private System.Windows.Forms.Label lblCastSpellId;
         private System.Windows.Forms.Label lblCastSpellTooltip;
@@ -5099,6 +5138,9 @@
         private System.Windows.Forms.Label lblCommandGameEventTooltip;
         private System.Windows.Forms.ComboBox cmbGameEventOverwrite;
         private System.Windows.Forms.Label lblGameEventOverwrite;
+        private System.Windows.Forms.CheckBox chkCastSpellFlags4;
+        private System.Windows.Forms.CheckBox chkCastSpellFlags32;
+        private System.Windows.Forms.CheckBox chkCastSpellFlags16;
     }
 }
 

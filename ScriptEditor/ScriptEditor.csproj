@@ -57,6 +57,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormCastsEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCastsEditor.Designer.cs">
+      <DependentUpon>FormCastsEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormScriptEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,6 +167,9 @@
     <Compile Include="ScriptAction.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCastsEditor.resx">
+      <DependentUpon>FormCastsEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormScriptEditor.resx">
       <DependentUpon>FormScriptEditor.cs</DependentUpon>
@@ -271,6 +280,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\main.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mage.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
