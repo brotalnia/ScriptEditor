@@ -51,11 +51,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CreatureEvent.cs" />
+    <Compile Include="CreatureSpellsInfo.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCastFlags.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCastFlags.Designer.cs">
+      <DependentUpon>FormCastFlags.cs</DependentUpon>
     </Compile>
     <Compile Include="FormCastsEditor.cs">
       <SubType>Form</SubType>
@@ -167,6 +174,9 @@
     <Compile Include="ScriptAction.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCastFlags.resx">
+      <DependentUpon>FormCastFlags.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCastsEditor.resx">
       <DependentUpon>FormCastsEditor.cs</DependentUpon>
