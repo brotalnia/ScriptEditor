@@ -421,6 +421,18 @@
             this.lblGameEventAction = new System.Windows.Forms.Label();
             this.btnGameEventId = new System.Windows.Forms.Button();
             this.lblCommandGameEventTooltip = new System.Windows.Forms.Label();
+            this.frmCommandSetSpellsTemplate = new System.Windows.Forms.Panel();
+            this.btnSetSpellsTemplate4 = new System.Windows.Forms.Button();
+            this.txtSetSpellsTemplateChance4 = new System.Windows.Forms.TextBox();
+            this.btnSetSpellsTemplate3 = new System.Windows.Forms.Button();
+            this.txtSetSpellsTemplateChance3 = new System.Windows.Forms.TextBox();
+            this.btnSetSpellsTemplate2 = new System.Windows.Forms.Button();
+            this.txtSetSpellsTemplateChance2 = new System.Windows.Forms.TextBox();
+            this.btnSetSpellsTemplate1 = new System.Windows.Forms.Button();
+            this.txtSetSpellsTemplateChance1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblSetSpellsTempalteId = new System.Windows.Forms.Label();
+            this.lblSetSpellsTemplateTooltip = new System.Windows.Forms.Label();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -469,6 +481,7 @@
             this.frmCommandFlee.SuspendLayout();
             this.frmCommandCallForHelp.SuspendLayout();
             this.frmCommandGameEvent.SuspendLayout();
+            this.frmCommandSetSpellsTemplate.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstActions
@@ -4581,11 +4594,131 @@
             this.lblCommandGameEventTooltip.TabIndex = 0;
             this.lblCommandGameEventTooltip.Text = "Starts or stops the chosen game event.";
             // 
+            // frmCommandSetSpellsTemplate
+            // 
+            this.frmCommandSetSpellsTemplate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandSetSpellsTemplate.Controls.Add(this.btnSetSpellsTemplate4);
+            this.frmCommandSetSpellsTemplate.Controls.Add(this.txtSetSpellsTemplateChance4);
+            this.frmCommandSetSpellsTemplate.Controls.Add(this.btnSetSpellsTemplate3);
+            this.frmCommandSetSpellsTemplate.Controls.Add(this.txtSetSpellsTemplateChance3);
+            this.frmCommandSetSpellsTemplate.Controls.Add(this.btnSetSpellsTemplate2);
+            this.frmCommandSetSpellsTemplate.Controls.Add(this.txtSetSpellsTemplateChance2);
+            this.frmCommandSetSpellsTemplate.Controls.Add(this.btnSetSpellsTemplate1);
+            this.frmCommandSetSpellsTemplate.Controls.Add(this.txtSetSpellsTemplateChance1);
+            this.frmCommandSetSpellsTemplate.Controls.Add(this.label1);
+            this.frmCommandSetSpellsTemplate.Controls.Add(this.lblSetSpellsTempalteId);
+            this.frmCommandSetSpellsTemplate.Controls.Add(this.lblSetSpellsTemplateTooltip);
+            this.frmCommandSetSpellsTemplate.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandSetSpellsTemplate.Name = "frmCommandSetSpellsTemplate";
+            this.frmCommandSetSpellsTemplate.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandSetSpellsTemplate.TabIndex = 54;
+            this.frmCommandSetSpellsTemplate.Visible = false;
+            // 
+            // btnSetSpellsTemplate4
+            // 
+            this.btnSetSpellsTemplate4.Location = new System.Drawing.Point(19, 181);
+            this.btnSetSpellsTemplate4.Name = "btnSetSpellsTemplate4";
+            this.btnSetSpellsTemplate4.Size = new System.Drawing.Size(334, 23);
+            this.btnSetSpellsTemplate4.TabIndex = 31;
+            this.btnSetSpellsTemplate4.Text = "-NONE-";
+            this.btnSetSpellsTemplate4.UseVisualStyleBackColor = true;
+            this.btnSetSpellsTemplate4.Click += new System.EventHandler(this.btnSetSpellsTemplate4_Click);
+            // 
+            // txtSetSpellsTemplateChance4
+            // 
+            this.txtSetSpellsTemplateChance4.Location = new System.Drawing.Point(359, 182);
+            this.txtSetSpellsTemplateChance4.Name = "txtSetSpellsTemplateChance4";
+            this.txtSetSpellsTemplateChance4.Size = new System.Drawing.Size(114, 20);
+            this.txtSetSpellsTemplateChance4.TabIndex = 30;
+            this.txtSetSpellsTemplateChance4.Leave += new System.EventHandler(this.txtSetSpellsTemplateChance4_Leave);
+            // 
+            // btnSetSpellsTemplate3
+            // 
+            this.btnSetSpellsTemplate3.Location = new System.Drawing.Point(19, 149);
+            this.btnSetSpellsTemplate3.Name = "btnSetSpellsTemplate3";
+            this.btnSetSpellsTemplate3.Size = new System.Drawing.Size(334, 23);
+            this.btnSetSpellsTemplate3.TabIndex = 29;
+            this.btnSetSpellsTemplate3.Text = "-NONE-";
+            this.btnSetSpellsTemplate3.UseVisualStyleBackColor = true;
+            this.btnSetSpellsTemplate3.Click += new System.EventHandler(this.btnSetSpellsTemplate3_Click);
+            // 
+            // txtSetSpellsTemplateChance3
+            // 
+            this.txtSetSpellsTemplateChance3.Location = new System.Drawing.Point(359, 150);
+            this.txtSetSpellsTemplateChance3.Name = "txtSetSpellsTemplateChance3";
+            this.txtSetSpellsTemplateChance3.Size = new System.Drawing.Size(114, 20);
+            this.txtSetSpellsTemplateChance3.TabIndex = 28;
+            this.txtSetSpellsTemplateChance3.Leave += new System.EventHandler(this.txtSetSpellsTemplateChance3_Leave);
+            // 
+            // btnSetSpellsTemplate2
+            // 
+            this.btnSetSpellsTemplate2.Location = new System.Drawing.Point(19, 117);
+            this.btnSetSpellsTemplate2.Name = "btnSetSpellsTemplate2";
+            this.btnSetSpellsTemplate2.Size = new System.Drawing.Size(334, 23);
+            this.btnSetSpellsTemplate2.TabIndex = 27;
+            this.btnSetSpellsTemplate2.Text = "-NONE-";
+            this.btnSetSpellsTemplate2.UseVisualStyleBackColor = true;
+            this.btnSetSpellsTemplate2.Click += new System.EventHandler(this.btnSetSpellsTemplate2_Click);
+            // 
+            // txtSetSpellsTemplateChance2
+            // 
+            this.txtSetSpellsTemplateChance2.Location = new System.Drawing.Point(359, 118);
+            this.txtSetSpellsTemplateChance2.Name = "txtSetSpellsTemplateChance2";
+            this.txtSetSpellsTemplateChance2.Size = new System.Drawing.Size(114, 20);
+            this.txtSetSpellsTemplateChance2.TabIndex = 26;
+            this.txtSetSpellsTemplateChance2.Leave += new System.EventHandler(this.txtSetSpellsTemplateChance2_Leave);
+            // 
+            // btnSetSpellsTemplate1
+            // 
+            this.btnSetSpellsTemplate1.Location = new System.Drawing.Point(19, 85);
+            this.btnSetSpellsTemplate1.Name = "btnSetSpellsTemplate1";
+            this.btnSetSpellsTemplate1.Size = new System.Drawing.Size(334, 23);
+            this.btnSetSpellsTemplate1.TabIndex = 25;
+            this.btnSetSpellsTemplate1.Text = "-NONE-";
+            this.btnSetSpellsTemplate1.UseVisualStyleBackColor = true;
+            this.btnSetSpellsTemplate1.Click += new System.EventHandler(this.btnSetSpellsTemplate1_Click);
+            // 
+            // txtSetSpellsTemplateChance1
+            // 
+            this.txtSetSpellsTemplateChance1.Location = new System.Drawing.Point(359, 86);
+            this.txtSetSpellsTemplateChance1.Name = "txtSetSpellsTemplateChance1";
+            this.txtSetSpellsTemplateChance1.Size = new System.Drawing.Size(114, 20);
+            this.txtSetSpellsTemplateChance1.TabIndex = 14;
+            this.txtSetSpellsTemplateChance1.Leave += new System.EventHandler(this.txtSetSpellsTemplateChance1_Leave);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(364, 63);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(86, 13);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Percent chance:";
+            // 
+            // lblSetSpellsTempalteId
+            // 
+            this.lblSetSpellsTempalteId.AutoSize = true;
+            this.lblSetSpellsTempalteId.Location = new System.Drawing.Point(22, 63);
+            this.lblSetSpellsTempalteId.Name = "lblSetSpellsTempalteId";
+            this.lblSetSpellsTempalteId.Size = new System.Drawing.Size(99, 13);
+            this.lblSetSpellsTempalteId.TabIndex = 11;
+            this.lblSetSpellsTempalteId.Text = "Spells Template ID:";
+            // 
+            // lblSetSpellsTemplateTooltip
+            // 
+            this.lblSetSpellsTemplateTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblSetSpellsTemplateTooltip.Location = new System.Drawing.Point(19, 10);
+            this.lblSetSpellsTemplateTooltip.Name = "lblSetSpellsTemplateTooltip";
+            this.lblSetSpellsTemplateTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblSetSpellsTemplateTooltip.TabIndex = 10;
+            this.lblSetSpellsTemplateTooltip.Text = "Sets the source Creature\'s current spells template.";
+            // 
             // FormScriptEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 620);
+            this.Controls.Add(this.frmCommandSetSpellsTemplate);
             this.Controls.Add(this.frmCommandGameEvent);
             this.Controls.Add(this.frmCommandCallForHelp);
             this.Controls.Add(this.frmCommandFlee);
@@ -4742,6 +4875,8 @@
             this.frmCommandCallForHelp.PerformLayout();
             this.frmCommandGameEvent.ResumeLayout(false);
             this.frmCommandGameEvent.PerformLayout();
+            this.frmCommandSetSpellsTemplate.ResumeLayout(false);
+            this.frmCommandSetSpellsTemplate.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -5141,6 +5276,18 @@
         private System.Windows.Forms.CheckBox chkCastSpellFlags4;
         private System.Windows.Forms.CheckBox chkCastSpellFlags32;
         private System.Windows.Forms.CheckBox chkCastSpellFlags16;
+        private System.Windows.Forms.Panel frmCommandSetSpellsTemplate;
+        private System.Windows.Forms.Button btnSetSpellsTemplate4;
+        private System.Windows.Forms.TextBox txtSetSpellsTemplateChance4;
+        private System.Windows.Forms.Button btnSetSpellsTemplate3;
+        private System.Windows.Forms.TextBox txtSetSpellsTemplateChance3;
+        private System.Windows.Forms.Button btnSetSpellsTemplate2;
+        private System.Windows.Forms.TextBox txtSetSpellsTemplateChance2;
+        private System.Windows.Forms.Button btnSetSpellsTemplate1;
+        private System.Windows.Forms.TextBox txtSetSpellsTemplateChance1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblSetSpellsTempalteId;
+        private System.Windows.Forms.Label lblSetSpellsTemplateTooltip;
     }
 }
 

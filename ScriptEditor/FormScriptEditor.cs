@@ -118,6 +118,7 @@ namespace ScriptEditor
             cmbCommandId.Items.Add(new ComboboxPair("Set Invincibility HP", 52));
             cmbCommandId.Items.Add(new ComboboxPair("Start Game Event", 53));
             cmbCommandId.Items.Add(new ComboboxPair("Set Server Variable", 54));
+            cmbCommandId.Items.Add(new ComboboxPair("Set Spells Template", 55));
             cmbCommandId.SelectedIndex = 0;
 
             // Add option to Buddy Type combo box.
@@ -669,6 +670,17 @@ namespace ScriptEditor
             cmbGameEventAction.SelectedIndex = 0;
             cmbGameEventOverwrite.SelectedIndex = 0;
             frmCommandGameEvent.Visible = false;
+
+            // Set Creature Spells Template (55)
+            btnSetSpellsTemplate1.Text = "-NONE-";
+            btnSetSpellsTemplate2.Text = "-NONE-";
+            btnSetSpellsTemplate3.Text = "-NONE-";
+            btnSetSpellsTemplate4.Text = "-NONE-";
+            txtSetSpellsTemplateChance1.Text = "";
+            txtSetSpellsTemplateChance2.Text = "";
+            txtSetSpellsTemplateChance3.Text = "";
+            txtSetSpellsTemplateChance4.Text = "";
+            frmCommandSetSpellsTemplate.Visible = false;
 
             dontUpdate = false;
         }
@@ -1447,6 +1459,27 @@ namespace ScriptEditor
                     cmbGameEventAction.SelectedIndex = (int)selectedAction.Datalong2;
                     cmbGameEventOverwrite.SelectedIndex = (int)selectedAction.Datalong3;
                     frmCommandGameEvent.Visible = true;
+                    break;
+                }
+                case 55: // Set Creature Spells Template
+                {
+                    uint template1 = selectedAction.Datalong;
+                    if (template1 > 0)
+                        btnSetSpellsTemplate1.Text = GameData.FindCreatureSpellsTemplateName(template1) + " (" + template1.ToString() + ")";
+                    uint template2 = selectedAction.Datalong2;
+                    if (template2 > 0)
+                        btnSetSpellsTemplate2.Text = GameData.FindCreatureSpellsTemplateName(template2) + " (" + template2.ToString() + ")";
+                    uint template3 = selectedAction.Datalong3;
+                    if (template3 > 0)
+                        btnSetSpellsTemplate3.Text = GameData.FindCreatureSpellsTemplateName(template3) + " (" + template3.ToString() + ")";
+                    uint template4 = selectedAction.Datalong4;
+                    if (template4 > 0)
+                        btnSetSpellsTemplate4.Text = GameData.FindCreatureSpellsTemplateName(template4) + " (" + template4.ToString() + ")";
+                    txtSetSpellsTemplateChance1.Text = selectedAction.Dataint.ToString();
+                    txtSetSpellsTemplateChance2.Text = selectedAction.Dataint2.ToString();
+                    txtSetSpellsTemplateChance3.Text = selectedAction.Dataint3.ToString();
+                    txtSetSpellsTemplateChance4.Text = selectedAction.Dataint4.ToString();
+                    frmCommandSetSpellsTemplate.Visible = true;
                     break;
                 }
             }
@@ -3465,6 +3498,94 @@ namespace ScriptEditor
         private void cmbGameEventOverwrite_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbGameEventOverwrite, "Datalong3", false);
+        }
+
+        private void btnSetSpellsTemplate1_Click(object sender, EventArgs e)
+        {
+            FormCastsEditor frm = new FormCastsEditor();
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                uint returnId = frm.ReturnValue;
+
+                if (returnId > 0)
+                    btnSetSpellsTemplate1.Text = GameData.FindCreatureSpellsTemplateName(returnId) + " (" + returnId.ToString() + ")";
+                else
+                    btnSetSpellsTemplate1.Text = "-NONE-";
+
+                // Set the field value.
+                SetScriptFieldFromValue(returnId, "Datalong");
+            }
+        }
+
+        private void btnSetSpellsTemplate2_Click(object sender, EventArgs e)
+        {
+            FormCastsEditor frm = new FormCastsEditor();
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                uint returnId = frm.ReturnValue;
+
+                if (returnId > 0)
+                    btnSetSpellsTemplate2.Text = GameData.FindCreatureSpellsTemplateName(returnId) + " (" + returnId.ToString() + ")";
+                else
+                    btnSetSpellsTemplate2.Text = "-NONE-";
+
+                // Set the field value.
+                SetScriptFieldFromValue(returnId, "Datalong2");
+            }
+        }
+
+        private void btnSetSpellsTemplate3_Click(object sender, EventArgs e)
+        {
+            FormCastsEditor frm = new FormCastsEditor();
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                uint returnId = frm.ReturnValue;
+
+                if (returnId > 0)
+                    btnSetSpellsTemplate3.Text = GameData.FindCreatureSpellsTemplateName(returnId) + " (" + returnId.ToString() + ")";
+                else
+                    btnSetSpellsTemplate3.Text = "-NONE-";
+
+                // Set the field value.
+                SetScriptFieldFromValue(returnId, "Datalong3");
+            }
+        }
+
+        private void btnSetSpellsTemplate4_Click(object sender, EventArgs e)
+        {
+            FormCastsEditor frm = new FormCastsEditor();
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                uint returnId = frm.ReturnValue;
+
+                if (returnId > 0)
+                    btnSetSpellsTemplate4.Text = GameData.FindCreatureSpellsTemplateName(returnId) + " (" + returnId.ToString() + ")";
+                else
+                    btnSetSpellsTemplate4.Text = "-NONE-";
+
+                // Set the field value.
+                SetScriptFieldFromValue(returnId, "Datalong4");
+            }
+        }
+
+        private void txtSetSpellsTemplateChance1_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSetSpellsTemplateChance1, "Dataint");
+        }
+
+        private void txtSetSpellsTemplateChance2_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSetSpellsTemplateChance2, "Dataint2");
+        }
+
+        private void txtSetSpellsTemplateChance3_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSetSpellsTemplateChance3, "Dataint3");
+        }
+
+        private void txtSetSpellsTemplateChance4_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSetSpellsTemplateChance4, "Dataint4");
         }
     }
 

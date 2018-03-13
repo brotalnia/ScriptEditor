@@ -215,6 +215,16 @@ namespace ScriptEditor
 
             return "";
         }
+        public static string FindCreatureSpellsTemplateName(uint id)
+        {
+            foreach (CreatureSpellsInfo template in CreatureSpellsInfoList)
+            {
+                if (template.ID == id)
+                    return template.Name;
+            }
+
+            return "";
+        }
         public static void LoadBroadcastTexts(string connString)
         {
             BroadcastTextsList.Clear();
