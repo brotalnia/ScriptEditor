@@ -649,34 +649,6 @@ namespace ScriptEditor
             // Set the field value.
             SetScriptFieldFromValue(selectedValue, fieldname);
         }
-        // Generic function for updating flags based on checkbox.
-        private void SetScriptFlagsFromCheckbox(CheckBox chkbox, string fieldname, uint value)
-        {
-            if (dontUpdate)
-                return;
-
-            if (lstSpellTemplates.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListBoxItem currentItem = lstSpellTemplates.SelectedItem as ListBoxItem;
-
-                // Get the associated Spells Template.
-                CreatureSpellsInfo currentTemplate = currentItem.Template;
-
-                // Get the field we need to change.
-                FieldInfo prop = typeof(CreatureSpellsInfo).GetField(fieldname, BindingFlags.Instance | BindingFlags.Public);
-
-                // Get the old value in this field.
-                uint currentValue = (uint)prop.GetValue(currentTemplate);
-
-                if (chkbox.Checked)
-                    currentValue += value;
-                else
-                    currentValue -= value;
-
-                prop.SetValue(currentTemplate, Convert.ChangeType(currentValue, prop.FieldType));
-            }
-        }
         // Generic function for setting a value from another form.
         private void SetScriptFieldFromDataFinderForm<TFinderForm>(Button btn, TextBox txtbox, NameFinder finder, string fieldname) where TFinderForm : FormDataFinder, new()
         {

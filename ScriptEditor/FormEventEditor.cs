@@ -528,12 +528,12 @@ namespace ScriptEditor
                 return;
             }
 
-            LoadScript(creature_id);
+            LoadEvents(creature_id);
 
             dontUpdate = false;
         }
 
-        public void LoadScript(uint creature_id)
+        public void LoadEvents(uint creature_id)
         {
             dontUpdate = true;
 
@@ -646,6 +646,7 @@ namespace ScriptEditor
                     script_editor.Focus();
 
                 script_editor.LoadScript(script_id, "creature_ai_scripts");
+                script_editor.SelectFirstAction();
             }
         }
 
@@ -664,6 +665,7 @@ namespace ScriptEditor
                     script_editor.Focus();
 
                 script_editor.LoadScript(script_id, "creature_ai_scripts");
+                script_editor.SelectFirstAction();
             }
         }
 
@@ -682,6 +684,7 @@ namespace ScriptEditor
                     script_editor.Focus();
 
                 script_editor.LoadScript(script_id, "creature_ai_scripts");
+                script_editor.SelectFirstAction();
             }
         }
 

@@ -119,6 +119,7 @@ namespace ScriptEditor
             cmbCommandId.Items.Add(new ComboboxPair("Start Game Event", 53));
             cmbCommandId.Items.Add(new ComboboxPair("Set Server Variable", 54));
             cmbCommandId.Items.Add(new ComboboxPair("Set Spells Template", 55));
+            cmbCommandId.Items.Add(new ComboboxPair("Remove Guardians", 56));
             cmbCommandId.SelectedIndex = 0;
 
             // Add option to Buddy Type combo box.
@@ -319,6 +320,12 @@ namespace ScriptEditor
             conn.Close();
 
             dontUpdate = false;
+        }
+
+        public void SelectFirstAction()
+        {
+            if (lstActions.Items.Count > 0)
+                lstActions.Items[0].Selected = true;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -907,6 +914,8 @@ namespace ScriptEditor
                         }
                     }
                     cmbSummonCreatureFacingOptions.SelectedIndex = selectedAction.Dataint2;
+                    if ((selectedAction.Dataint & 1) != 0)
+                        chkSummonCreatureFlags1.Checked = true;
                     if ((selectedAction.Dataint & 2) != 0)
                         chkSummonCreatureFlags2.Checked = true;
                     if ((selectedAction.Dataint & 4) != 0)
@@ -942,6 +951,7 @@ namespace ScriptEditor
                 case 26: // Start Attack
                 case 33: // Enter Evade Mode
                 case 41: // Remove Object
+                case 56: // Remove Guardians
                 {
                     txtDoorGuid.Visible = false;
                     txtDoorResetDelay.Visible = false;
@@ -967,6 +977,11 @@ namespace ScriptEditor
                         case 41:
                         {
                             lblDoorTooltip.Text = "The source gameobject has its loot state changed to deactivated and is removed from the map. This command has no additional parameters.";
+                            break;
+                        }
+                        case 56:
+                        {
+                            lblDoorTooltip.Text = "Unsummons all Guardian Pets owned by the source Unit. This command has no additional parameters.";
                             break;
                         }
                     }
@@ -1634,7 +1649,7 @@ namespace ScriptEditor
                 FieldInfo prop = typeof(ScriptAction).GetField(fieldname, BindingFlags.Instance | BindingFlags.Public);
 
                 // Get the old value in this field.
-                uint currentValue = (uint)prop.GetValue(currentAction);
+                uint currentValue = (uint)Convert.ChangeType(prop.GetValue(currentAction), typeof(uint));
 
                 if (chkbox.Checked)
                     currentValue += value;
