@@ -60,8 +60,12 @@ namespace ScriptEditor
                new ComboboxPair("Random Not Top", 5),
                new ComboboxPair("Owner or Self", 6),
                new ComboboxPair("Owner", 7),
-               new ComboboxPair("Friendly", 14),
-               new ComboboxPair("Friendly Injured", 15)
+               new ComboboxPair("Random Friendly", 14),
+               new ComboboxPair("Injured Friendly", 15),
+               new ComboboxPair("Injured Not Self", 16),
+               new ComboboxPair("No Buff Friendly", 17),
+               new ComboboxPair("No Buff Not Self", 18),
+               new ComboboxPair("Friendly In CC", 19)
              };
         }
         private void LoadControls()
@@ -512,7 +516,7 @@ namespace ScriptEditor
         }
         private string GenerateSaveTemplateQuery(CreatureSpellsInfo template)
         {
-            string query = "REPLACE INTO `creature_spells` (`entry`, `name`, `spellId_1`, `probability_1`, `castTarget_1`, `castFlags_1`, `delayInitialMin_1`, `delayInitialMax_1`, `delayRepeatMin_1`, `delayRepeatMax_1`, `scriptId_1`, `spellId_2`, `probability_2`, `castTarget_2`, `castFlags_2`, `delayInitialMin_2`, `delayInitialMax_2`, `delayRepeatMin_2`, `delayRepeatMax_2`, `scriptId_2`, `spellId_3`, `probability_3`, `castTarget_3`, `castFlags_3`, `delayInitialMin_3`, `delayInitialMax_3`, `delayRepeatMin_3`, `delayRepeatMax_3`, `scriptId_3`, `spellId_4`, `probability_4`, `castTarget_4`, `castFlags_4`, `delayInitialMin_4`, `delayInitialMax_4`, `delayRepeatMin_4`, `delayRepeatMax_4`, `scriptId_4`, `spellId_5`, `probability_5`, `castTarget_5`, `castFlags_5`, `delayInitialMin_5`, `delayInitialMax_5`, `delayRepeatMin_5`, `delayRepeatMax_5`, `scriptId_5`, `spellId_6`, `probability_6`, `castTarget_6`, `castFlags_6`, `delayInitialMin_6`, `delayInitialMax_6`, `delayRepeatMin_6`, `delayRepeatMax_6`, `scriptId_6`, `spellId_7`, `probability_7`, `castTarget_7`, `castFlags_7`, `delayInitialMin_7`, `delayInitialMax_7`, `delayRepeatMin_7`, `delayRepeatMax_7`, `scriptId_7`, `spellId_8`, `probability_8`, `castTarget_8`, `castFlags_8`, `delayInitialMin_8`, `delayInitialMax_8`, `delayRepeatMin_8`, `delayRepeatMax_8`, `scriptId_8`) VALUES (" + template.ID.ToString() + ", '" + Helpers.MySQLEscape(template.Name) + "', " + template.SpellId1.ToString() + ", " + template.Probability1.ToString() + ", " + template.CastTarget1.ToString() + ", " + template.CastFlags1.ToString() + ", " + template.DelayInitialMin1.ToString() + ", " + template.DelayInitialMax1.ToString() + ", " + template.DelayRepeatMin1.ToString() + ", " + template.DelayRepeatMax1.ToString() + ", " + template.ScriptId1.ToString() + ", " + template.SpellId2.ToString() + ", " + template.Probability2.ToString() + ", " + template.CastTarget2.ToString() + ", " + template.CastFlags2.ToString() + ", " + template.DelayInitialMin2.ToString() + ", " + template.DelayInitialMax2.ToString() + ", " + template.DelayRepeatMin2.ToString() + ", " + template.DelayRepeatMax2.ToString() + ", " + template.ScriptId2.ToString() + ", " + template.SpellId3.ToString() + ", " + template.Probability3.ToString() + ", " + template.CastTarget3.ToString() + ", " + template.CastFlags3.ToString() + ", " + template.DelayInitialMin3.ToString() + ", " + template.DelayInitialMax3.ToString() + ", " + template.DelayRepeatMin3.ToString() + ", " + template.DelayRepeatMax3.ToString() + ", " + template.ScriptId3.ToString() + ", " + template.SpellId4.ToString() + ", " + template.Probability4.ToString() + ", " + template.CastTarget4.ToString() + ", " + template.CastFlags4.ToString() + ", " + template.DelayInitialMin4.ToString() + ", " + template.DelayInitialMax4.ToString() + ", " + template.DelayRepeatMin4.ToString() + ", " + template.DelayRepeatMax4.ToString() + ", " + template.ScriptId4.ToString() + ", " + template.SpellId5.ToString() + ", " + template.Probability5.ToString() + ", " + template.CastTarget5.ToString() + ", " + template.CastFlags5.ToString() + ", " + template.DelayInitialMin5.ToString() + ", " + template.DelayInitialMax5.ToString() + ", " + template.DelayRepeatMin5.ToString() + ", " + template.DelayRepeatMax5.ToString() + ", " + template.ScriptId5.ToString() + ", " + template.SpellId6.ToString() + ", " + template.Probability6.ToString() + ", " + template.CastTarget6.ToString() + ", " + template.CastFlags6.ToString() + ", " + template.DelayInitialMin6.ToString() + ", " + template.DelayInitialMax6.ToString() + ", " + template.DelayRepeatMin6.ToString() + ", " + template.DelayRepeatMax6.ToString() + ", " + template.ScriptId6.ToString() + ", " + template.SpellId7.ToString() + ", " + template.Probability7.ToString() + ", " + template.CastTarget7.ToString() + ", " + template.CastFlags7.ToString() + ", " + template.DelayInitialMin7.ToString() + ", " + template.DelayInitialMax7.ToString() + ", " + template.DelayRepeatMin7.ToString() + ", " + template.DelayRepeatMax7.ToString() + ", " + template.ScriptId7.ToString() + ", " + template.SpellId8.ToString() + ", " + template.Probability8.ToString() + ", " + template.CastTarget8.ToString() + ", " + template.CastFlags8.ToString() + ", " + template.DelayInitialMin8.ToString() + ", " + template.DelayInitialMax8.ToString() + ", " + template.DelayRepeatMin8.ToString() + ", " + template.DelayRepeatMax8.ToString() + ", " + template.ScriptId8.ToString() + ");\n";
+            string query = "REPLACE INTO `creature_spells` (`entry`, `name`, `spellId_1`, `probability_1`, `castTarget_1`, `targetParam1_1`, `targetParam2_1`, `castFlags_1`, `delayInitialMin_1`, `delayInitialMax_1`, `delayRepeatMin_1`, `delayRepeatMax_1`, `scriptId_1`, `spellId_2`, `probability_2`, `castTarget_2`, `targetParam1_2`, `targetParam2_2`, `castFlags_2`, `delayInitialMin_2`, `delayInitialMax_2`, `delayRepeatMin_2`, `delayRepeatMax_2`, `scriptId_2`, `spellId_3`, `probability_3`, `castTarget_3`, `targetParam1_3`, `targetParam2_3`, `castFlags_3`, `delayInitialMin_3`, `delayInitialMax_3`, `delayRepeatMin_3`, `delayRepeatMax_3`, `scriptId_3`, `spellId_4`, `probability_4`, `castTarget_4`, `targetParam1_4`, `targetParam2_4`, `castFlags_4`, `delayInitialMin_4`, `delayInitialMax_4`, `delayRepeatMin_4`, `delayRepeatMax_4`, `scriptId_4`, `spellId_5`, `probability_5`, `castTarget_5`, `targetParam1_5`, `targetParam2_5`, `castFlags_5`, `delayInitialMin_5`, `delayInitialMax_5`, `delayRepeatMin_5`, `delayRepeatMax_5`, `scriptId_5`, `spellId_6`, `probability_6`, `castTarget_6`, `targetParam1_6`, `targetParam2_6`, `castFlags_6`, `delayInitialMin_6`, `delayInitialMax_6`, `delayRepeatMin_6`, `delayRepeatMax_6`, `scriptId_6`, `spellId_7`, `probability_7`, `castTarget_7`, `targetParam1_7`, `targetParam2_7`, `castFlags_7`, `delayInitialMin_7`, `delayInitialMax_7`, `delayRepeatMin_7`, `delayRepeatMax_7`, `scriptId_7`, `spellId_8`, `probability_8`, `castTarget_8`, `targetParam1_8`, `targetParam2_8`, `castFlags_8`, `delayInitialMin_8`, `delayInitialMax_8`, `delayRepeatMin_8`, `delayRepeatMax_8`, `scriptId_8`) VALUES (" + template.ID.ToString() + ", '" + Helpers.MySQLEscape(template.Name) + "', " + template.SpellId1.ToString() + ", " + template.Probability1.ToString() + ", " + template.CastTarget1.ToString() + ", " + template.TargetParam1_1.ToString() + ", " + template.TargetParam2_1.ToString() + ", " + template.CastFlags1.ToString() + ", " + template.DelayInitialMin1.ToString() + ", " + template.DelayInitialMax1.ToString() + ", " + template.DelayRepeatMin1.ToString() + ", " + template.DelayRepeatMax1.ToString() + ", " + template.ScriptId1.ToString() + ", " + template.SpellId2.ToString() + ", " + template.Probability2.ToString() + ", " + template.CastTarget2.ToString() + ", " + template.TargetParam1_2.ToString() + ", " + template.TargetParam2_2.ToString() + ", " + template.CastFlags2.ToString() + ", " + template.DelayInitialMin2.ToString() + ", " + template.DelayInitialMax2.ToString() + ", " + template.DelayRepeatMin2.ToString() + ", " + template.DelayRepeatMax2.ToString() + ", " + template.ScriptId2.ToString() + ", " + template.SpellId3.ToString() + ", " + template.Probability3.ToString() + ", " + template.CastTarget3.ToString() + ", " + template.TargetParam1_3.ToString() + ", " + template.TargetParam2_3.ToString() + ", " + template.CastFlags3.ToString() + ", " + template.DelayInitialMin3.ToString() + ", " + template.DelayInitialMax3.ToString() + ", " + template.DelayRepeatMin3.ToString() + ", " + template.DelayRepeatMax3.ToString() + ", " + template.ScriptId3.ToString() + ", " + template.SpellId4.ToString() + ", " + template.Probability4.ToString() + ", " + template.CastTarget4.ToString() + ", " + template.TargetParam1_4.ToString() + ", " + template.TargetParam2_4.ToString() + ", " + template.CastFlags4.ToString() + ", " + template.DelayInitialMin4.ToString() + ", " + template.DelayInitialMax4.ToString() + ", " + template.DelayRepeatMin4.ToString() + ", " + template.DelayRepeatMax4.ToString() + ", " + template.ScriptId4.ToString() + ", " + template.SpellId5.ToString() + ", " + template.Probability5.ToString() + ", " + template.CastTarget5.ToString() + ", " + template.TargetParam1_5.ToString() + ", " + template.TargetParam2_5.ToString() + ", " + template.CastFlags5.ToString() + ", " + template.DelayInitialMin5.ToString() + ", " + template.DelayInitialMax5.ToString() + ", " + template.DelayRepeatMin5.ToString() + ", " + template.DelayRepeatMax5.ToString() + ", " + template.ScriptId5.ToString() + ", " + template.SpellId6.ToString() + ", " + template.Probability6.ToString() + ", " + template.CastTarget6.ToString() + ", " + template.TargetParam1_6.ToString() + ", " + template.TargetParam2_6.ToString() + ", " + template.CastFlags6.ToString() + ", " + template.DelayInitialMin6.ToString() + ", " + template.DelayInitialMax6.ToString() + ", " + template.DelayRepeatMin6.ToString() + ", " + template.DelayRepeatMax6.ToString() + ", " + template.ScriptId6.ToString() + ", " + template.SpellId7.ToString() + ", " + template.Probability7.ToString() + ", " + template.CastTarget7.ToString() + ", " + template.TargetParam1_7.ToString() + ", " + template.TargetParam2_7.ToString() + ", " + template.CastFlags7.ToString() + ", " + template.DelayInitialMin7.ToString() + ", " + template.DelayInitialMax7.ToString() + ", " + template.DelayRepeatMin7.ToString() + ", " + template.DelayRepeatMax7.ToString() + ", " + template.ScriptId7.ToString() + ", " + template.SpellId8.ToString() + ", " + template.Probability8.ToString() + ", " + template.CastTarget8.ToString() + ", " + template.TargetParam1_8.ToString() + ", " + template.TargetParam2_8.ToString() + ", " + template.CastFlags8.ToString() + ", " + template.DelayInitialMin8.ToString() + ", " + template.DelayInitialMax8.ToString() + ", " + template.DelayRepeatMin8.ToString() + ", " + template.DelayRepeatMax8.ToString() + ", " + template.ScriptId8.ToString() + ");\n";
             return query;
         }
         private void btnSaveThis_Click(object sender, EventArgs e)
@@ -1372,7 +1376,7 @@ namespace ScriptEditor
             ListBoxItem currentItem = lstSpellTemplates.SelectedItem as ListBoxItem;
 
             FormCastFlags flags_form = new FormCastFlags();
-            if (flags_form.ShowDialog(ref currentItem.Template.CastFlags1, ref currentItem.Template.ScriptId1) == true)
+            if (flags_form.ShowDialog(ref currentItem.Template.CastFlags1, ref currentItem.Template.ScriptId1, currentItem.Template.CastTarget1, ref currentItem.Template.TargetParam1_1, ref currentItem.Template.TargetParam2_1) == true)
                 NewTemplates.Add(currentItem.Id);
         }
 
@@ -1384,7 +1388,7 @@ namespace ScriptEditor
             ListBoxItem currentItem = lstSpellTemplates.SelectedItem as ListBoxItem;
 
             FormCastFlags flags_form = new FormCastFlags();
-            if (flags_form.ShowDialog(ref currentItem.Template.CastFlags2, ref currentItem.Template.ScriptId2) == true)
+            if (flags_form.ShowDialog(ref currentItem.Template.CastFlags2, ref currentItem.Template.ScriptId2, currentItem.Template.CastTarget2, ref currentItem.Template.TargetParam1_2, ref currentItem.Template.TargetParam2_2) == true)
                 NewTemplates.Add(currentItem.Id);
         }
 
@@ -1396,7 +1400,7 @@ namespace ScriptEditor
             ListBoxItem currentItem = lstSpellTemplates.SelectedItem as ListBoxItem;
 
             FormCastFlags flags_form = new FormCastFlags();
-            if (flags_form.ShowDialog(ref currentItem.Template.CastFlags3, ref currentItem.Template.ScriptId3) == true)
+            if (flags_form.ShowDialog(ref currentItem.Template.CastFlags3, ref currentItem.Template.ScriptId3, currentItem.Template.CastTarget3, ref currentItem.Template.TargetParam1_3, ref currentItem.Template.TargetParam2_3) == true)
                 NewTemplates.Add(currentItem.Id);
         }
 
@@ -1408,7 +1412,7 @@ namespace ScriptEditor
             ListBoxItem currentItem = lstSpellTemplates.SelectedItem as ListBoxItem;
 
             FormCastFlags flags_form = new FormCastFlags();
-            if (flags_form.ShowDialog(ref currentItem.Template.CastFlags4, ref currentItem.Template.ScriptId4) == true)
+            if (flags_form.ShowDialog(ref currentItem.Template.CastFlags4, ref currentItem.Template.ScriptId4, currentItem.Template.CastTarget4, ref currentItem.Template.TargetParam1_4, ref currentItem.Template.TargetParam2_4) == true)
                 NewTemplates.Add(currentItem.Id);
         }
 
@@ -1420,7 +1424,7 @@ namespace ScriptEditor
             ListBoxItem currentItem = lstSpellTemplates.SelectedItem as ListBoxItem;
 
             FormCastFlags flags_form = new FormCastFlags();
-            if (flags_form.ShowDialog(ref currentItem.Template.CastFlags5, ref currentItem.Template.ScriptId5) == true)
+            if (flags_form.ShowDialog(ref currentItem.Template.CastFlags5, ref currentItem.Template.ScriptId5, currentItem.Template.CastTarget5, ref currentItem.Template.TargetParam1_5, ref currentItem.Template.TargetParam2_5) == true)
                 NewTemplates.Add(currentItem.Id);
         }
 
@@ -1432,7 +1436,7 @@ namespace ScriptEditor
             ListBoxItem currentItem = lstSpellTemplates.SelectedItem as ListBoxItem;
 
             FormCastFlags flags_form = new FormCastFlags();
-            if (flags_form.ShowDialog(ref currentItem.Template.CastFlags6, ref currentItem.Template.ScriptId6) == true)
+            if (flags_form.ShowDialog(ref currentItem.Template.CastFlags6, ref currentItem.Template.ScriptId6, currentItem.Template.CastTarget6, ref currentItem.Template.TargetParam1_6, ref currentItem.Template.TargetParam2_6) == true)
                 NewTemplates.Add(currentItem.Id);
         }
 
@@ -1444,7 +1448,7 @@ namespace ScriptEditor
             ListBoxItem currentItem = lstSpellTemplates.SelectedItem as ListBoxItem;
 
             FormCastFlags flags_form = new FormCastFlags();
-            if (flags_form.ShowDialog(ref currentItem.Template.CastFlags7, ref currentItem.Template.ScriptId7) == true)
+            if (flags_form.ShowDialog(ref currentItem.Template.CastFlags7, ref currentItem.Template.ScriptId7, currentItem.Template.CastTarget7, ref currentItem.Template.TargetParam1_7, ref currentItem.Template.TargetParam2_7) == true)
                 NewTemplates.Add(currentItem.Id);
         }
 
@@ -1456,7 +1460,7 @@ namespace ScriptEditor
             ListBoxItem currentItem = lstSpellTemplates.SelectedItem as ListBoxItem;
 
             FormCastFlags flags_form = new FormCastFlags();
-            if (flags_form.ShowDialog(ref currentItem.Template.CastFlags8, ref currentItem.Template.ScriptId8) == true)
+            if (flags_form.ShowDialog(ref currentItem.Template.CastFlags8, ref currentItem.Template.ScriptId8, currentItem.Template.CastTarget8, ref currentItem.Template.TargetParam1_8, ref currentItem.Template.TargetParam2_8) == true)
                 NewTemplates.Add(currentItem.Id);
         }
 

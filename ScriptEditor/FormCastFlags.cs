@@ -16,11 +16,58 @@ namespace ScriptEditor
             InitializeComponent();
         }
         // Returns true if any values were changed.
-        public bool ShowDialog(ref uint flags, ref uint script)
+        public bool ShowDialog(ref uint flags, ref uint script, uint targettype, ref uint targetparam1, ref uint targetparam2)
         {
             // --------
             // Assigning initial values to form controls.
             // --------
+
+            switch (targettype)
+            {
+                case 14: // Friendly
+                {
+                    grpTargetParams.Enabled = true;
+                    lblTargetParam1.Text = "Radius:";
+                    lblTargetParam2.Text = "Exclude self:";
+                    txtTargetParam1.Enabled = true;
+                    txtTargetParam2.Enabled = true;
+                    txtTargetParam1.Text = targetparam1.ToString();
+                    txtTargetParam2.Text = targetparam2.ToString();
+                    break;
+                }
+                case 15: // Friendly Injured
+                case 16: // Friendly Injured Not Self
+                {
+                    grpTargetParams.Enabled = true;
+                    lblTargetParam1.Text = "Radius:";
+                    lblTargetParam2.Text = "HP Percent:";
+                    txtTargetParam1.Enabled = true;
+                    txtTargetParam2.Enabled = true;
+                    txtTargetParam1.Text = targetparam1.ToString();
+                    txtTargetParam2.Text = targetparam2.ToString();
+                    break;
+                }
+                case 17: // Friendly Missing Buff
+                case 18: // Friendly Missing Buff Not Self
+                {
+                    grpTargetParams.Enabled = true;
+                    lblTargetParam1.Text = "Radius:";
+                    lblTargetParam2.Text = "Spell Id:";
+                    txtTargetParam1.Enabled = true;
+                    txtTargetParam2.Enabled = true;
+                    txtTargetParam1.Text = targetparam1.ToString();
+                    txtTargetParam2.Text = targetparam2.ToString();
+                    break;
+                }
+                case 19: // Friendly CC
+                {
+                    grpTargetParams.Enabled = true;
+                    lblTargetParam1.Text = "Radius:";
+                    txtTargetParam1.Enabled = true;
+                    txtTargetParam1.Text = targetparam1.ToString();
+                    break;
+                }
+            }
 
             txtScriptId.Text = script.ToString();
 
@@ -81,15 +128,23 @@ namespace ScriptEditor
             if (chkCastFlag32.Checked)
                 new_flags += 32;
 
+            uint new_targetparam1 = 0;
+            uint.TryParse(txtTargetParam1.Text, out new_targetparam1);
+
+            uint new_targetparam2 = 0;
+            uint.TryParse(txtTargetParam2.Text, out new_targetparam2);
+
             uint new_script = 0;
             uint.TryParse(txtScriptId.Text, out new_script);
 
-            if ((flags == new_flags) && (script == new_script))
+            if ((flags == new_flags) && (script == new_script) && (new_targetparam1 == targetparam1) && (new_targetparam2 == targetparam2))
                 return false;
 
             // Return new values.
             flags = new_flags;
             script = new_script;
+            targetparam1 = new_targetparam1;
+            targetparam2 = new_targetparam2;
 
             return true;
         }

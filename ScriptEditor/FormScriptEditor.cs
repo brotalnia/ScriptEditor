@@ -139,6 +139,10 @@ namespace ScriptEditor
             cmbTargetType.Items.Add(new ComboboxPair("Gameobject Instance Data", 13));
             cmbTargetType.Items.Add(new ComboboxPair("Nearby Friendly", 14));
             cmbTargetType.Items.Add(new ComboboxPair("Injured Friendly", 15));
+            cmbTargetType.Items.Add(new ComboboxPair("Injured Not Self", 16));
+            cmbTargetType.Items.Add(new ComboboxPair("Friendly Missing Buff", 17));
+            cmbTargetType.Items.Add(new ComboboxPair("Missing Buff Not Self", 18));
+            cmbTargetType.Items.Add(new ComboboxPair("Friendly CC-ed", 19));
             cmbTargetType.SelectedIndex = 0;
 
             // Add chat types to combo box.
@@ -1792,18 +1796,38 @@ namespace ScriptEditor
                 }
                 case 14: // Nearby Friendly
                 {
-                    lblTargetParam1.Text = "Spell Id:";
+                    lblTargetParam1.Text = "Radius:";
                     lblTargetParam2.Text = "Not Self:";
                     txtTargetParam1.Enabled = true;
                     txtTargetParam2.Enabled = true;
                     break;
                 }
                 case 15: // Injured Friendly
+                case 16: // Injured Friendly Not Self
                 {
-                    lblTargetParam1.Text = "Spell Id:";
+                    lblTargetParam1.Text = "Radius:";
                     lblTargetParam2.Text = "HP %:";
                     txtTargetParam1.Enabled = true;
                     txtTargetParam2.Enabled = true;
+                    break;
+                }
+                case 17: // Friendly Missing Buff
+                case 18: // Friendly Missing Buff Not Self
+                {
+                    lblTargetParam1.Text = "Radius:";
+                    lblTargetParam2.Text = "Spell Id:";
+                    txtTargetParam1.Enabled = true;
+                    txtTargetParam2.Enabled = true;
+                    break;
+                }
+                case 19: // Friendly CC-ed
+                {
+                    lblTargetParam1.Text = "Radius:";
+                    lblTargetParam2.Text = "N/A:";
+                    txtTargetParam1.Enabled = true;
+                    txtTargetParam2.Enabled = false;
+                    SetScriptFieldFromValue(0, "TargetParam2");
+                    txtTargetParam2.Text = "";
                     break;
                 }
             }
