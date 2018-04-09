@@ -16,6 +16,9 @@ namespace ScriptEditor
         public static string mysqlHost = "localhost";
         public static string mysqlDB = "mangos";
 
+        // Highlight non-default values.
+        public static bool highlight = false;
+
         internal sealed class NativeMethods
         {
             [DllImport("kernel32.dll")]
@@ -92,6 +95,8 @@ namespace ScriptEditor
                     mysqlHost = line.Replace("Host=", "");
                 else if (line.Contains("DB="))
                     mysqlDB = line.Replace("DB=", "");
+                else if (line.Contains("Highlight=true"))
+                    highlight = true;
             }
 
             connString = "Server=" + mysqlHost + ";Database=" + mysqlDB + ";Uid=" + mysqlUser + ";Pwd=" + mysqlPass + ";";

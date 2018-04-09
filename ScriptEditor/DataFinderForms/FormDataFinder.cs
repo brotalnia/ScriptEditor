@@ -25,6 +25,19 @@ namespace ScriptEditor
 
             // Set minimum size of window.
             this.MinimumSize = this.Size;
+
+            // Return item on double click.
+            lstData.Activation = ItemActivation.TwoClick;
+        }
+
+        public DialogResult ShowDialog(int current_id)
+        {
+            if (current_id > 0)
+            {
+                txtSearch.Text = current_id.ToString();
+                btnSearch_Click(null, null);
+            }
+            return this.ShowDialog();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -104,6 +117,20 @@ namespace ScriptEditor
             btnSelectNone.Location = new Point(btnSelect.Location.X - btnSelectNone.Size.Width - 6, btnSelect.Location.Y);
             btnSearch.Location = new Point(lstData.Size.Width + lstData.Location.X - btnSearch.Size.Width, btnSearch.Location.Y);
             txtSearch.Width = btnSearch.Location.X - txtSearch.Location.X - 7;
+        }
+
+        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                btnSearch_Click(this, new EventArgs());
+                e.Handled = true;
+            }
+        }
+
+        private void lstData_ItemActivate(object sender, EventArgs e)
+        {
+            btnSelect_Click(sender, e);
         }
     }
 }

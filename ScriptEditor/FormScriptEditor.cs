@@ -395,6 +395,15 @@ namespace ScriptEditor
             // Buttons.
             btnCommandCondition.Text = "-NONE-";
 
+            if (Program.highlight)
+            {
+                lblDelay.BackColor = Color.FromKnownColor(KnownColor.Control);
+                lblTargetParam1.BackColor = Color.FromKnownColor(KnownColor.Control);
+                lblTargetParam2.BackColor = Color.FromKnownColor(KnownColor.Control);
+                lblTargetType.BackColor = Color.FromKnownColor(KnownColor.Control);
+                lblCommandCondition.BackColor = Color.FromKnownColor(KnownColor.Control);
+            }
+
             // Make the form disabled.
             grpGeneral.Enabled = false;
 
@@ -523,6 +532,8 @@ namespace ScriptEditor
             chkCastSpellFlags4.Checked = false;
             chkCastSpellFlags16.Checked = false;
             chkCastSpellFlags32.Checked = false;
+            chkCastSpellFlags64.Checked = false;
+            chkCastSpellFlags128.Checked = false;
             frmCommandCastSpell.Visible = false;
 
             // Play Sound Command (16)
@@ -1015,6 +1026,10 @@ namespace ScriptEditor
                         chkCastSpellFlags16.Checked = true;
                     if ((selectedAction.Datalong2 & 32) != 0)
                         chkCastSpellFlags32.Checked = true;
+                    if ((selectedAction.Datalong2 & 64) != 0)
+                        chkCastSpellFlags64.Checked = true;
+                    if ((selectedAction.Datalong2 & 128) != 0)
+                        chkCastSpellFlags128.Checked = true;
                     frmCommandCastSpell.Visible = true;
                     break;
                 }
@@ -1536,6 +1551,20 @@ namespace ScriptEditor
             if ((selectedAction.DataFlags & 8) != 0)
                 chkAbortScript.Checked = true;
 
+            if (Program.highlight)
+            {
+                if (selectedAction.Delay != 0)
+                    lblDelay.BackColor = Color.FromKnownColor(KnownColor.Gold);
+                if (selectedAction.TargetParam1 != 0)
+                    lblTargetParam1.BackColor = Color.FromKnownColor(KnownColor.Gold);
+                if (selectedAction.TargetParam2 != 0)
+                    lblTargetParam2.BackColor = Color.FromKnownColor(KnownColor.Gold);
+                if (selectedAction.TargetType != 0)
+                    lblTargetType.BackColor = Color.FromKnownColor(KnownColor.Gold);
+                if (selectedAction.ConditionId != 0)
+                    lblCommandCondition.BackColor = Color.FromKnownColor(KnownColor.Gold);
+            }
+
             grpGeneral.Enabled = true;
 
             ShowCommandSpecificForm(selectedAction);
@@ -1582,7 +1611,7 @@ namespace ScriptEditor
         private void btnCommandCondition_Click(object sender, EventArgs e)
         {
             FormConditionFinder frm = new FormConditionFinder();
-            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (frm.ShowDialog(GetScriptFieldValue("ConditionId")) == System.Windows.Forms.DialogResult.OK)
             {
                 int returnId = frm.ReturnValue;
 
@@ -1667,7 +1696,7 @@ namespace ScriptEditor
         private void SetScriptFieldFromDataFinderForm<TFinderForm>(Button btn, TextBox txtbox, NameFinder finder, string fieldname) where TFinderForm : FormDataFinder, new()
         {
             FormDataFinder frm = new TFinderForm();
-            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (frm.ShowDialog(GetScriptFieldValue(fieldname)) == System.Windows.Forms.DialogResult.OK)
             {
                 int returnId = frm.ReturnValue;
 
@@ -1696,6 +1725,28 @@ namespace ScriptEditor
                 // Set the field value.
                 SetScriptFieldFromValue(returnId, fieldname);
             }
+        }
+        // Generic function for getting int value in field.
+        private int GetScriptFieldValue(string fieldname)
+        {
+            if (lstActions.SelectedItems.Count > 0)
+            {
+                // Get the selected item in the listview.
+                ListViewItem currentItem = lstActions.SelectedItems[0];
+
+                // Get the associated ScriptAction.
+                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
+
+                // Get the field by name.
+                FieldInfo prop = typeof(ScriptAction).GetField(fieldname, BindingFlags.Instance | BindingFlags.Public);
+
+                // Get the value in this field.
+                int currentValue = (int)Convert.ChangeType(prop.GetValue(currentAction), typeof(int));
+
+                return currentValue;
+            }
+
+            return 0;
         }
         private void btnTalkText1_Click(object sender, EventArgs e)
         {
@@ -2756,6 +2807,16 @@ namespace ScriptEditor
             SetScriptFlagsFromCheckbox(chkCastSpellFlags32, "Datalong2", 32);
         }
 
+        private void chkCastSpellFlags64_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkCastSpellFlags64, "Datalong2", 64);
+        }
+
+        private void chkCastSpellFlags128_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkCastSpellFlags128, "Datalong2", 128);
+        }
+
         private void btnPlaySoundId_Click(object sender, EventArgs e)
         {
             SetScriptFieldFromDataFinderForm<FormSoundFinder>(btnPlaySoundId, null, GameData.FindSoundName, "Datalong");
@@ -3254,7 +3315,7 @@ namespace ScriptEditor
         private void btnTerminateConditionId_Click(object sender, EventArgs e)
         {
             FormConditionFinder frm = new FormConditionFinder();
-            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (frm.ShowDialog(GetScriptFieldValue("Datalong")) == System.Windows.Forms.DialogResult.OK)
             {
                 int returnId = frm.ReturnValue;
 

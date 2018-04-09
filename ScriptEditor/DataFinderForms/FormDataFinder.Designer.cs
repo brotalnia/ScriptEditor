@@ -52,6 +52,7 @@
             this.lstData.UseCompatibleStateImageBehavior = false;
             this.lstData.View = System.Windows.Forms.View.Details;
             this.lstData.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lstData_ColumnClick);
+            this.lstData.ItemActivate += new System.EventHandler(this.lstData_ItemActivate);
             // 
             // columnID
             // 
@@ -64,6 +65,7 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(560, 20);
             this.txtSearch.TabIndex = 1;
+            this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
             // 
             // btnSearch
             // 

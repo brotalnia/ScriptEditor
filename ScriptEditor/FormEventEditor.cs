@@ -136,6 +136,16 @@ namespace ScriptEditor
             // Buttons.
             btnEventCondition.Text = "-NONE-";
 
+            if (Program.highlight)
+            {
+                lblScriptId1.BackColor = Color.FromKnownColor(KnownColor.Control);
+                lblScriptId2.BackColor = Color.FromKnownColor(KnownColor.Control);
+                lblScriptId3.BackColor = Color.FromKnownColor(KnownColor.Control);
+                lblEventChance.BackColor = Color.FromKnownColor(KnownColor.Control);
+                lblEventCondition.BackColor = Color.FromKnownColor(KnownColor.Control);
+                lblEventPhaseMask.BackColor = Color.FromKnownColor(KnownColor.Control);
+            }
+
             // Make the form disabled.
             grpGeneral.Enabled = false;
 
@@ -321,8 +331,8 @@ namespace ScriptEditor
                         }
                         case 14: // EVENT_T_FRIENDLY_HP
                         {
-                            lblEventTimerCombatTooltip.Text = "Expires when a nearby friendly unit is missing a specified percent of its total health. Only while the creature is in combat.";
-                            lblTimerInitialMin.Text = "HP Percent:";
+                            lblEventTimerCombatTooltip.Text = "Expires when a nearby friendly unit is missing a specified amount of its total health. Only while the creature is in combat.";
+                            lblTimerInitialMin.Text = "Missing HP:";
                             lblTimerInitialMax.Text = "Distance:";
                             lblTimerRepeatMin.Visible = true;
                             lblTimerRepeatMax.Visible = true;
@@ -624,6 +634,22 @@ namespace ScriptEditor
             chkEventFlag2.Checked = ((selectedEvent.Flags & 2) != 0);
             chkEventFlag4.Checked = ((selectedEvent.Flags & 4) != 0);
 
+            if (Program.highlight)
+            {
+                if (selectedEvent.ScriptId1 != 0)
+                    lblScriptId1.BackColor = Color.FromKnownColor(KnownColor.Gold);
+                if (selectedEvent.ScriptId2 != 0)
+                    lblScriptId2.BackColor = Color.FromKnownColor(KnownColor.Gold);
+                if (selectedEvent.ScriptId3 != 0)
+                    lblScriptId3.BackColor = Color.FromKnownColor(KnownColor.Gold);
+                if (selectedEvent.ConditionId != 0)
+                    lblEventCondition.BackColor = Color.FromKnownColor(KnownColor.Gold);
+                if (selectedEvent.Chance != 100)
+                    lblEventChance.BackColor = Color.FromKnownColor(KnownColor.Gold);
+                if (selectedEvent.InversePhaseMask != 0)
+                    lblEventPhaseMask.BackColor = Color.FromKnownColor(KnownColor.Gold);
+            }
+
             grpGeneral.Enabled = true;
 
             ShowEventSpecificForm(selectedEvent);
@@ -774,7 +800,7 @@ namespace ScriptEditor
         private void SetScriptFieldFromDataFinderForm<TFinderForm>(Button btn, TextBox txtbox, NameFinder finder, string fieldname) where TFinderForm : FormDataFinder, new()
         {
             FormDataFinder frm = new TFinderForm();
-            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (frm.ShowDialog(GetScriptFieldValue(fieldname)) == System.Windows.Forms.DialogResult.OK)
             {
                 int returnId = frm.ReturnValue;
 
@@ -804,7 +830,28 @@ namespace ScriptEditor
                 SetScriptFieldFromValue(returnId, fieldname);
             }
         }
+        // Generic function for getting int value in field.
+        private int GetScriptFieldValue(string fieldname)
+        {
+            if (lstEvents.SelectedItems.Count > 0)
+            {
+                // Get the selected item in the listview.
+                ListViewItem currentItem = lstEvents.SelectedItems[0];
 
+                // Get the associated ScriptAction.
+                CreatureEvent currentAction = (CreatureEvent)currentItem.Tag;
+
+                // Get the field by name.
+                FieldInfo prop = typeof(CreatureEvent).GetField(fieldname, BindingFlags.Instance | BindingFlags.Public);
+
+                // Get the value in this field.
+                int currentValue = (int)Convert.ChangeType(prop.GetValue(currentAction), typeof(int));
+
+                return currentValue;
+            }
+
+            return 0;
+        }
         private void txtEventId_Leave(object sender, EventArgs e)
         {
             if (dontUpdate)
@@ -938,7 +985,7 @@ namespace ScriptEditor
         private void btnEventCondition_Click(object sender, EventArgs e)
         {
             FormConditionFinder frm = new FormConditionFinder();
-            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (frm.ShowDialog(GetScriptFieldValue("ConditionId")) == System.Windows.Forms.DialogResult.OK)
             {
                 int returnId = frm.ReturnValue;
 

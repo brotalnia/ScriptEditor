@@ -95,6 +95,14 @@ namespace ScriptEditor
             if ((flags & 32) != 0)
                 chkCastFlag32.Checked = true;
 
+            // CF_ONLY_IN_MELEE
+            if ((flags & 64) != 0)
+                chkCastFlag64.Checked = true;
+
+            // CF_NOT_IN_MELEE
+            if ((flags & 128) != 0)
+                chkCastFlag128.Checked = true;
+
             // Show the form.
             this.ShowDialog();
 
@@ -127,6 +135,14 @@ namespace ScriptEditor
             // CF_AURA_NOT_PRESENT
             if (chkCastFlag32.Checked)
                 new_flags += 32;
+
+            // CF_ONLY_IN_MELEE
+            if (chkCastFlag64.Checked)
+                new_flags += 64;
+
+            // CF_NOT_IN_MELEE
+            if (chkCastFlag128.Checked)
+                new_flags += 128;
 
             uint new_targetparam1 = 0;
             uint.TryParse(txtTargetParam1.Text, out new_targetparam1);

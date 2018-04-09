@@ -293,6 +293,7 @@ namespace ScriptEditor
             if (e.KeyChar == (char)13)
             {
                 btnFilter_Click(this, new EventArgs());
+                e.Handled = true;
             }
         }
 
@@ -657,7 +658,7 @@ namespace ScriptEditor
         private void SetScriptFieldFromDataFinderForm<TFinderForm>(Button btn, TextBox txtbox, NameFinder finder, string fieldname) where TFinderForm : FormDataFinder, new()
         {
             FormDataFinder frm = new TFinderForm();
-            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (frm.ShowDialog(GetScriptFieldValue(fieldname)) == System.Windows.Forms.DialogResult.OK)
             {
                 int returnId = frm.ReturnValue;
 
@@ -687,7 +688,28 @@ namespace ScriptEditor
                 SetScriptFieldFromValue(returnId, fieldname);
             }
         }
+        // Generic function for getting int value in field.
+        private int GetScriptFieldValue(string fieldname)
+        {
+            if (lstSpellTemplates.SelectedItems.Count > 0)
+            {
+                // Get the selected item in the listview.
+                ListBoxItem currentItem = lstSpellTemplates.SelectedItem as ListBoxItem;
 
+                // Get the associated ScriptAction.
+                CreatureSpellsInfo currentTemplate = currentItem.Template;
+
+                // Get the field by name.
+                FieldInfo prop = typeof(CreatureSpellsInfo).GetField(fieldname, BindingFlags.Instance | BindingFlags.Public);
+
+                // Get the value in this field.
+                int currentValue = (int)Convert.ChangeType(prop.GetValue(currentTemplate), typeof(int));
+
+                return currentValue;
+            }
+
+            return 0;
+        }
         private void txtName_Leave(object sender, EventArgs e)
         {
             if ((lstSpellTemplates.SelectedItems.Count == 0) || (txtName.Text.Length < 1))

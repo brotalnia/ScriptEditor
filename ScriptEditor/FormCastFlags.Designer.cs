@@ -43,12 +43,16 @@
             this.lblTargetParam1 = new System.Windows.Forms.Label();
             this.lblTargetParam2 = new System.Windows.Forms.Label();
             this.grpTargetParams = new System.Windows.Forms.GroupBox();
+            this.chkCastFlag128 = new System.Windows.Forms.CheckBox();
+            this.chkCastFlag64 = new System.Windows.Forms.CheckBox();
             this.grpFlags.SuspendLayout();
             this.grpTargetParams.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpFlags
             // 
+            this.grpFlags.Controls.Add(this.chkCastFlag128);
+            this.grpFlags.Controls.Add(this.chkCastFlag64);
             this.grpFlags.Controls.Add(this.chkCastFlag32);
             this.grpFlags.Controls.Add(this.chkCastFlag16);
             this.grpFlags.Controls.Add(this.chkCastFlag8);
@@ -57,7 +61,7 @@
             this.grpFlags.Controls.Add(this.chkCastFlag1);
             this.grpFlags.Location = new System.Drawing.Point(12, 10);
             this.grpFlags.Name = "grpFlags";
-            this.grpFlags.Size = new System.Drawing.Size(268, 106);
+            this.grpFlags.Size = new System.Drawing.Size(268, 126);
             this.grpFlags.TabIndex = 0;
             this.grpFlags.TabStop = false;
             this.grpFlags.Text = "Cast Flags";
@@ -77,9 +81,9 @@
             this.chkCastFlag16.AutoSize = true;
             this.chkCastFlag16.Location = new System.Drawing.Point(6, 74);
             this.chkCastFlag16.Name = "chkCastFlag16";
-            this.chkCastFlag16.Size = new System.Drawing.Size(124, 17);
+            this.chkCastFlag16.Size = new System.Drawing.Size(121, 17);
             this.chkCastFlag16.TabIndex = 4;
-            this.chkCastFlag16.Text = "Target Casts On Self";
+            this.chkCastFlag16.Text = "Target Unreachable";
             this.chkCastFlag16.UseVisualStyleBackColor = true;
             // 
             // chkCastFlag8
@@ -124,7 +128,7 @@
             // 
             // txtScriptId
             // 
-            this.txtScriptId.Location = new System.Drawing.Point(70, 189);
+            this.txtScriptId.Location = new System.Drawing.Point(70, 212);
             this.txtScriptId.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtScriptId.Name = "txtScriptId";
             this.txtScriptId.Size = new System.Drawing.Size(136, 23);
@@ -132,7 +136,7 @@
             // 
             // btnEditScript
             // 
-            this.btnEditScript.Location = new System.Drawing.Point(212, 189);
+            this.btnEditScript.Location = new System.Drawing.Point(212, 212);
             this.btnEditScript.Name = "btnEditScript";
             this.btnEditScript.Size = new System.Drawing.Size(68, 23);
             this.btnEditScript.TabIndex = 2;
@@ -143,7 +147,7 @@
             // lblScriptId
             // 
             this.lblScriptId.AutoSize = true;
-            this.lblScriptId.Location = new System.Drawing.Point(17, 193);
+            this.lblScriptId.Location = new System.Drawing.Point(17, 216);
             this.lblScriptId.Name = "lblScriptId";
             this.lblScriptId.Size = new System.Drawing.Size(49, 13);
             this.lblScriptId.TabIndex = 3;
@@ -189,17 +193,37 @@
             this.grpTargetParams.Controls.Add(this.lblTargetParam1);
             this.grpTargetParams.Controls.Add(this.txtTargetParam2);
             this.grpTargetParams.Enabled = false;
-            this.grpTargetParams.Location = new System.Drawing.Point(12, 119);
+            this.grpTargetParams.Location = new System.Drawing.Point(12, 142);
             this.grpTargetParams.Name = "grpTargetParams";
             this.grpTargetParams.Size = new System.Drawing.Size(268, 60);
             this.grpTargetParams.TabIndex = 8;
             this.grpTargetParams.TabStop = false;
             // 
+            // chkCastFlag128
+            // 
+            this.chkCastFlag128.AutoSize = true;
+            this.chkCastFlag128.Location = new System.Drawing.Point(154, 97);
+            this.chkCastFlag128.Name = "chkCastFlag128";
+            this.chkCastFlag128.Size = new System.Drawing.Size(87, 17);
+            this.chkCastFlag128.TabIndex = 7;
+            this.chkCastFlag128.Text = "Not In Melee";
+            this.chkCastFlag128.UseVisualStyleBackColor = true;
+            // 
+            // chkCastFlag64
+            // 
+            this.chkCastFlag64.AutoSize = true;
+            this.chkCastFlag64.Location = new System.Drawing.Point(6, 97);
+            this.chkCastFlag64.Name = "chkCastFlag64";
+            this.chkCastFlag64.Size = new System.Drawing.Size(91, 17);
+            this.chkCastFlag64.TabIndex = 6;
+            this.chkCastFlag64.Text = "Only In Melee";
+            this.chkCastFlag64.UseVisualStyleBackColor = true;
+            // 
             // FormCastFlags
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 219);
+            this.ClientSize = new System.Drawing.Size(292, 244);
             this.Controls.Add(this.grpTargetParams);
             this.Controls.Add(this.lblScriptId);
             this.Controls.Add(this.btnEditScript);
@@ -237,5 +261,7 @@
         private System.Windows.Forms.Label lblTargetParam1;
         private System.Windows.Forms.Label lblTargetParam2;
         private System.Windows.Forms.GroupBox grpTargetParams;
+        private System.Windows.Forms.CheckBox chkCastFlag128;
+        private System.Windows.Forms.CheckBox chkCastFlag64;
     }
 }

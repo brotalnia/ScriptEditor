@@ -46,7 +46,7 @@ namespace ScriptEditor
             Id = id;
             CreatureId = creatureid;
             Type = 0;
-            Chance = 0;
+            Chance = 100;
             InversePhaseMask = 0;
             ConditionId = 0;
             Flags = 0;

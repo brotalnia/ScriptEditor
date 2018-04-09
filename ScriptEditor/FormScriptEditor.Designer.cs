@@ -190,6 +190,8 @@
             this.lblRemoveAuraTooltip = new System.Windows.Forms.Label();
             this.frmCommandCastSpell = new System.Windows.Forms.Panel();
             this.grpCastSpellFlags = new System.Windows.Forms.GroupBox();
+            this.chkCastSpellFlags128 = new System.Windows.Forms.CheckBox();
+            this.chkCastSpellFlags64 = new System.Windows.Forms.CheckBox();
             this.chkCastSpellFlags32 = new System.Windows.Forms.CheckBox();
             this.chkCastSpellFlags16 = new System.Windows.Forms.CheckBox();
             this.chkCastSpellFlags4 = new System.Windows.Forms.CheckBox();
@@ -2129,6 +2131,8 @@
             // 
             // grpCastSpellFlags
             // 
+            this.grpCastSpellFlags.Controls.Add(this.chkCastSpellFlags128);
+            this.grpCastSpellFlags.Controls.Add(this.chkCastSpellFlags64);
             this.grpCastSpellFlags.Controls.Add(this.chkCastSpellFlags32);
             this.grpCastSpellFlags.Controls.Add(this.chkCastSpellFlags16);
             this.grpCastSpellFlags.Controls.Add(this.chkCastSpellFlags4);
@@ -2140,6 +2144,28 @@
             this.grpCastSpellFlags.TabIndex = 3;
             this.grpCastSpellFlags.TabStop = false;
             this.grpCastSpellFlags.Text = "Cast Flags";
+            // 
+            // chkCastSpellFlags128
+            // 
+            this.chkCastSpellFlags128.AutoSize = true;
+            this.chkCastSpellFlags128.Location = new System.Drawing.Point(243, 48);
+            this.chkCastSpellFlags128.Name = "chkCastSpellFlags128";
+            this.chkCastSpellFlags128.Size = new System.Drawing.Size(87, 17);
+            this.chkCastSpellFlags128.TabIndex = 6;
+            this.chkCastSpellFlags128.Text = "Not In Melee";
+            this.chkCastSpellFlags128.UseVisualStyleBackColor = true;
+            this.chkCastSpellFlags128.CheckedChanged += new System.EventHandler(this.chkCastSpellFlags128_CheckedChanged);
+            // 
+            // chkCastSpellFlags64
+            // 
+            this.chkCastSpellFlags64.AutoSize = true;
+            this.chkCastSpellFlags64.Location = new System.Drawing.Point(146, 48);
+            this.chkCastSpellFlags64.Name = "chkCastSpellFlags64";
+            this.chkCastSpellFlags64.Size = new System.Drawing.Size(91, 17);
+            this.chkCastSpellFlags64.TabIndex = 5;
+            this.chkCastSpellFlags64.Text = "Only In Melee";
+            this.chkCastSpellFlags64.UseVisualStyleBackColor = true;
+            this.chkCastSpellFlags64.CheckedChanged += new System.EventHandler(this.chkCastSpellFlags64_CheckedChanged);
             // 
             // chkCastSpellFlags32
             // 
@@ -2157,9 +2183,9 @@
             this.chkCastSpellFlags16.AutoSize = true;
             this.chkCastSpellFlags16.Location = new System.Drawing.Point(259, 21);
             this.chkCastSpellFlags16.Name = "chkCastSpellFlags16";
-            this.chkCastSpellFlags16.Size = new System.Drawing.Size(124, 17);
+            this.chkCastSpellFlags16.Size = new System.Drawing.Size(121, 17);
             this.chkCastSpellFlags16.TabIndex = 3;
-            this.chkCastSpellFlags16.Text = "Target Casts On Self";
+            this.chkCastSpellFlags16.Text = "Target Unreachable";
             this.chkCastSpellFlags16.UseVisualStyleBackColor = true;
             this.chkCastSpellFlags16.CheckedChanged += new System.EventHandler(this.chkCastSpellFlags16_CheckedChanged);
             // 
@@ -5288,6 +5314,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblSetSpellsTempalteId;
         private System.Windows.Forms.Label lblSetSpellsTemplateTooltip;
+        private System.Windows.Forms.CheckBox chkCastSpellFlags128;
+        private System.Windows.Forms.CheckBox chkCastSpellFlags64;
     }
 }
 
