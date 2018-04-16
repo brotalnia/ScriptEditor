@@ -26,13 +26,10 @@ namespace ScriptEditor
         // Used to prevent control events triggering when resetting data.
         bool dontUpdate = false;
 
-        // Set Data options.
+        // Options for combo boxes.
         public string[] CommandSetData_ComboOptions = { "Save Raw Value", "Increment Existing Data", "Decrement Existing Data" };
-        // Set Data 64 options.
         public string[] CommandSetData64_ComboOptions = { "Save Raw Value", "Save Own GUID"};
-        // Set Phase options.
         public string[] CommandSetPhase_ComboOptions = { "Change To Specified Value", "Increment Current Phase", "Decrement Current Phase" };
-        // Deal Damage options.
         public string[] CommandDealDamage_ComboOptions = { "Raw Value", "Percent of Total Health" };
         public string[] CommandFlee_ComboOptions = { "Random Direction", "Seek Assistance" };
         public string[] CommandCombatPulse_ComboOptions = { "False", "True" };
@@ -3686,6 +3683,15 @@ namespace ScriptEditor
         private void txtSetSpellsTemplateChance4_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSetSpellsTemplateChance4, "Dataint4");
+        }
+
+        private void txtScriptId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                btnFind_Click(this, new EventArgs());
+                e.Handled = true;
+            }
         }
     }
 

@@ -563,6 +563,7 @@
             this.txtScriptId.Name = "txtScriptId";
             this.txtScriptId.Size = new System.Drawing.Size(76, 20);
             this.txtScriptId.TabIndex = 4;
+            this.txtScriptId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtScriptId_KeyPress);
             // 
             // grpGeneral
             // 

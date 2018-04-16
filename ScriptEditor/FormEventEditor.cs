@@ -1272,5 +1272,14 @@ namespace ScriptEditor
         {
             SetScriptFieldFromTextbox(txtMovementInformRepeatMax, "Param4");
         }
+
+        private void txtCreatureId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                btnFind_Click(this, new EventArgs());
+                e.Handled = true;
+            }
+        }
     }
 }

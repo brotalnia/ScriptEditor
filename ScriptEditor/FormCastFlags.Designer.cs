@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.grpFlags = new System.Windows.Forms.GroupBox();
+            this.chkCastFlag128 = new System.Windows.Forms.CheckBox();
+            this.chkCastFlag64 = new System.Windows.Forms.CheckBox();
             this.chkCastFlag32 = new System.Windows.Forms.CheckBox();
             this.chkCastFlag16 = new System.Windows.Forms.CheckBox();
             this.chkCastFlag8 = new System.Windows.Forms.CheckBox();
@@ -43,8 +45,6 @@
             this.lblTargetParam1 = new System.Windows.Forms.Label();
             this.lblTargetParam2 = new System.Windows.Forms.Label();
             this.grpTargetParams = new System.Windows.Forms.GroupBox();
-            this.chkCastFlag128 = new System.Windows.Forms.CheckBox();
-            this.chkCastFlag64 = new System.Windows.Forms.CheckBox();
             this.grpFlags.SuspendLayout();
             this.grpTargetParams.SuspendLayout();
             this.SuspendLayout();
@@ -65,6 +65,26 @@
             this.grpFlags.TabIndex = 0;
             this.grpFlags.TabStop = false;
             this.grpFlags.Text = "Cast Flags";
+            // 
+            // chkCastFlag128
+            // 
+            this.chkCastFlag128.AutoSize = true;
+            this.chkCastFlag128.Location = new System.Drawing.Point(154, 97);
+            this.chkCastFlag128.Name = "chkCastFlag128";
+            this.chkCastFlag128.Size = new System.Drawing.Size(87, 17);
+            this.chkCastFlag128.TabIndex = 7;
+            this.chkCastFlag128.Text = "Not In Melee";
+            this.chkCastFlag128.UseVisualStyleBackColor = true;
+            // 
+            // chkCastFlag64
+            // 
+            this.chkCastFlag64.AutoSize = true;
+            this.chkCastFlag64.Location = new System.Drawing.Point(6, 97);
+            this.chkCastFlag64.Name = "chkCastFlag64";
+            this.chkCastFlag64.Size = new System.Drawing.Size(91, 17);
+            this.chkCastFlag64.TabIndex = 6;
+            this.chkCastFlag64.Text = "Only In Melee";
+            this.chkCastFlag64.UseVisualStyleBackColor = true;
             // 
             // chkCastFlag32
             // 
@@ -131,7 +151,7 @@
             this.txtScriptId.Location = new System.Drawing.Point(70, 212);
             this.txtScriptId.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtScriptId.Name = "txtScriptId";
-            this.txtScriptId.Size = new System.Drawing.Size(136, 23);
+            this.txtScriptId.Size = new System.Drawing.Size(136, 20);
             this.txtScriptId.TabIndex = 1;
             // 
             // btnEditScript
@@ -199,26 +219,6 @@
             this.grpTargetParams.TabIndex = 8;
             this.grpTargetParams.TabStop = false;
             // 
-            // chkCastFlag128
-            // 
-            this.chkCastFlag128.AutoSize = true;
-            this.chkCastFlag128.Location = new System.Drawing.Point(154, 97);
-            this.chkCastFlag128.Name = "chkCastFlag128";
-            this.chkCastFlag128.Size = new System.Drawing.Size(87, 17);
-            this.chkCastFlag128.TabIndex = 7;
-            this.chkCastFlag128.Text = "Not In Melee";
-            this.chkCastFlag128.UseVisualStyleBackColor = true;
-            // 
-            // chkCastFlag64
-            // 
-            this.chkCastFlag64.AutoSize = true;
-            this.chkCastFlag64.Location = new System.Drawing.Point(6, 97);
-            this.chkCastFlag64.Name = "chkCastFlag64";
-            this.chkCastFlag64.Size = new System.Drawing.Size(91, 17);
-            this.chkCastFlag64.TabIndex = 6;
-            this.chkCastFlag64.Text = "Only In Melee";
-            this.chkCastFlag64.UseVisualStyleBackColor = true;
-            // 
             // FormCastFlags
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -230,6 +230,7 @@
             this.Controls.Add(this.txtScriptId);
             this.Controls.Add(this.grpFlags);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
             this.Name = "FormCastFlags";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

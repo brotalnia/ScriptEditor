@@ -173,6 +173,7 @@
             this.txtCreatureId.Name = "txtCreatureId";
             this.txtCreatureId.Size = new System.Drawing.Size(190, 20);
             this.txtCreatureId.TabIndex = 1;
+            this.txtCreatureId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCreatureId_KeyPress);
             // 
             // btnFind
             // 
