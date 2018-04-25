@@ -435,6 +435,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblSetSpellsTempalteId = new System.Windows.Forms.Label();
             this.lblSetSpellsTemplateTooltip = new System.Windows.Forms.Label();
+            this.frmCommandSpellCooldown = new System.Windows.Forms.Panel();
+            this.lblSpellCooldownSeconds = new System.Windows.Forms.Label();
+            this.txtSpellCooldownSeconds = new System.Windows.Forms.TextBox();
+            this.btnSpellCooldownId = new System.Windows.Forms.Button();
+            this.lblSpellCooldownId = new System.Windows.Forms.Label();
+            this.lblSpellCooldownTooltip = new System.Windows.Forms.Label();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -484,6 +490,7 @@
             this.frmCommandCallForHelp.SuspendLayout();
             this.frmCommandGameEvent.SuspendLayout();
             this.frmCommandSetSpellsTemplate.SuspendLayout();
+            this.frmCommandSpellCooldown.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstActions
@@ -4740,11 +4747,71 @@
             this.lblSetSpellsTemplateTooltip.TabIndex = 10;
             this.lblSetSpellsTemplateTooltip.Text = "Sets the source Creature\'s current spells template.";
             // 
+            // frmCommandSpellCooldown
+            // 
+            this.frmCommandSpellCooldown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandSpellCooldown.Controls.Add(this.lblSpellCooldownSeconds);
+            this.frmCommandSpellCooldown.Controls.Add(this.txtSpellCooldownSeconds);
+            this.frmCommandSpellCooldown.Controls.Add(this.btnSpellCooldownId);
+            this.frmCommandSpellCooldown.Controls.Add(this.lblSpellCooldownId);
+            this.frmCommandSpellCooldown.Controls.Add(this.lblSpellCooldownTooltip);
+            this.frmCommandSpellCooldown.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandSpellCooldown.Name = "frmCommandSpellCooldown";
+            this.frmCommandSpellCooldown.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandSpellCooldown.TabIndex = 55;
+            this.frmCommandSpellCooldown.Visible = false;
+            // 
+            // lblSpellCooldownSeconds
+            // 
+            this.lblSpellCooldownSeconds.AutoSize = true;
+            this.lblSpellCooldownSeconds.Location = new System.Drawing.Point(44, 93);
+            this.lblSpellCooldownSeconds.Name = "lblSpellCooldownSeconds";
+            this.lblSpellCooldownSeconds.Size = new System.Drawing.Size(52, 13);
+            this.lblSpellCooldownSeconds.TabIndex = 4;
+            this.lblSpellCooldownSeconds.Text = "Seconds:";
+            // 
+            // txtSpellCooldownSeconds
+            // 
+            this.txtSpellCooldownSeconds.Location = new System.Drawing.Point(99, 90);
+            this.txtSpellCooldownSeconds.Name = "txtSpellCooldownSeconds";
+            this.txtSpellCooldownSeconds.Size = new System.Drawing.Size(374, 20);
+            this.txtSpellCooldownSeconds.TabIndex = 3;
+            this.txtSpellCooldownSeconds.Leave += new System.EventHandler(this.txtSpellCooldownSeconds_Leave);
+            // 
+            // btnSpellCooldownId
+            // 
+            this.btnSpellCooldownId.Location = new System.Drawing.Point(99, 58);
+            this.btnSpellCooldownId.Name = "btnSpellCooldownId";
+            this.btnSpellCooldownId.Size = new System.Drawing.Size(374, 23);
+            this.btnSpellCooldownId.TabIndex = 2;
+            this.btnSpellCooldownId.Text = "-NONE-";
+            this.btnSpellCooldownId.UseVisualStyleBackColor = true;
+            this.btnSpellCooldownId.Click += new System.EventHandler(this.btnSpellCooldownId_Click);
+            // 
+            // lblSpellCooldownId
+            // 
+            this.lblSpellCooldownId.AutoSize = true;
+            this.lblSpellCooldownId.Location = new System.Drawing.Point(51, 61);
+            this.lblSpellCooldownId.Name = "lblSpellCooldownId";
+            this.lblSpellCooldownId.Size = new System.Drawing.Size(45, 13);
+            this.lblSpellCooldownId.TabIndex = 1;
+            this.lblSpellCooldownId.Text = "Spell Id:";
+            // 
+            // lblSpellCooldownTooltip
+            // 
+            this.lblSpellCooldownTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblSpellCooldownTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblSpellCooldownTooltip.Name = "lblSpellCooldownTooltip";
+            this.lblSpellCooldownTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblSpellCooldownTooltip.TabIndex = 0;
+            this.lblSpellCooldownTooltip.Text = "Adds a spell cooldown lasting a specified amount of time to the source Unit.";
+            // 
             // FormScriptEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 620);
+            this.Controls.Add(this.frmCommandSpellCooldown);
             this.Controls.Add(this.frmCommandSetSpellsTemplate);
             this.Controls.Add(this.frmCommandGameEvent);
             this.Controls.Add(this.frmCommandCallForHelp);
@@ -4904,6 +4971,8 @@
             this.frmCommandGameEvent.PerformLayout();
             this.frmCommandSetSpellsTemplate.ResumeLayout(false);
             this.frmCommandSetSpellsTemplate.PerformLayout();
+            this.frmCommandSpellCooldown.ResumeLayout(false);
+            this.frmCommandSpellCooldown.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -5317,6 +5386,12 @@
         private System.Windows.Forms.Label lblSetSpellsTemplateTooltip;
         private System.Windows.Forms.CheckBox chkCastSpellFlags128;
         private System.Windows.Forms.CheckBox chkCastSpellFlags64;
+        private System.Windows.Forms.Panel frmCommandSpellCooldown;
+        private System.Windows.Forms.Label lblSpellCooldownSeconds;
+        private System.Windows.Forms.TextBox txtSpellCooldownSeconds;
+        private System.Windows.Forms.Button btnSpellCooldownId;
+        private System.Windows.Forms.Label lblSpellCooldownId;
+        private System.Windows.Forms.Label lblSpellCooldownTooltip;
     }
 }
 

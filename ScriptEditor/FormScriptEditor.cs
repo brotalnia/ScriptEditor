@@ -117,6 +117,8 @@ namespace ScriptEditor
             cmbCommandId.Items.Add(new ComboboxPair("Set Server Variable", 54));
             cmbCommandId.Items.Add(new ComboboxPair("Set Spells Template", 55));
             cmbCommandId.Items.Add(new ComboboxPair("Remove Guardians", 56));
+            cmbCommandId.Items.Add(new ComboboxPair("Add Spell Cooldown", 57));
+            cmbCommandId.Items.Add(new ComboboxPair("Remove Spell Cooldown", 58));
             cmbCommandId.SelectedIndex = 0;
 
             // Add option to Buddy Type combo box.
@@ -594,6 +596,7 @@ namespace ScriptEditor
             frmCommandSetRun.Visible = false;
 
             // Update Entry Command (27)
+            // Remove Guardians Command (56)
             btnUpdateEntryCreatureId.Text = "-NONE-";
             cmbUpdateEntryTeam.SelectedIndex = 0;
             frmCommandUpdateEntry.Visible = false;
@@ -700,6 +703,12 @@ namespace ScriptEditor
             txtSetSpellsTemplateChance3.Text = "";
             txtSetSpellsTemplateChance4.Text = "";
             frmCommandSetSpellsTemplate.Visible = false;
+
+            // Add Spell Cooldown (57)
+            // Remove Spell Cooldown (58)
+            btnSpellCooldownId.Text = "-NONE-";
+            txtSpellCooldownSeconds.Text = "";
+            frmCommandSpellCooldown.Visible = false;
 
             dontUpdate = false;
         }
@@ -963,7 +972,6 @@ namespace ScriptEditor
                 case 26: // Start Attack
                 case 33: // Enter Evade Mode
                 case 41: // Remove Object
-                case 56: // Remove Guardians
                 {
                     txtDoorGuid.Visible = false;
                     txtDoorResetDelay.Visible = false;
@@ -989,11 +997,6 @@ namespace ScriptEditor
                         case 41:
                         {
                             lblDoorTooltip.Text = "The source gameobject has its loot state changed to deactivated and is removed from the map. This command has no additional parameters.";
-                            break;
-                        }
-                        case 56:
-                        {
-                            lblDoorTooltip.Text = "Unsummons all Guardian Pets owned by the source Unit. This command has no additional parameters.";
                             break;
                         }
                     }
@@ -1229,7 +1232,26 @@ namespace ScriptEditor
                     break;
                 }
                 case 27: // Update Entry
+                case 56: // Remove Guardians
                 {
+                    switch (selectedAction.Command)
+                    {
+                        case 27: // Update Entry
+                        {
+                            lblUpdateEntryTooltip.Text = "Temporarily changes the creature\'s entry, but preserves the same AI. The team setting determines which display Id will be used if there is a different one for each faction.";
+                            lblUpdateEntryTeam.Visible = true;
+                            cmbUpdateEntryTeam.Visible = true;
+                            break;
+                        }
+                        case 56: // Remove Guardians
+                        {
+                            lblUpdateEntryTooltip.Text = "Unsummons all Guardian Pets with the given creature Id that are owned by the source Unit. If no creature Id is provided, it unsummons all of them.";
+                            cmbUpdateEntryTeam.Visible = false;
+                            lblUpdateEntryTeam.Visible = false;
+                            break;
+                        }
+                    }
+
                     uint creatureId = selectedAction.Datalong;
                     if (creatureId > 0)
                         btnUpdateEntryCreatureId.Text = GameData.FindCreatureName(creatureId) + " (" + creatureId.ToString() + ")";
@@ -1511,6 +1533,33 @@ namespace ScriptEditor
                     txtSetSpellsTemplateChance3.Text = selectedAction.Dataint3.ToString();
                     txtSetSpellsTemplateChance4.Text = selectedAction.Dataint4.ToString();
                     frmCommandSetSpellsTemplate.Visible = true;
+                    break;
+                }
+                case 57: // Add Spell Cooldown
+                case 58: // Remove Spell Cooldown
+                {
+                    switch (selectedAction.Command)
+                    {
+                        case 57: // Add Spell Cooldown
+                        {
+                            lblSpellCooldownTooltip.Text = "Adds a spell cooldown lasting a specified amount of time to the source Unit.";
+                            lblSpellCooldownSeconds.Visible = true;
+                            txtSpellCooldownSeconds.Visible = true;
+                            break;
+                        }
+                        case 58: // Remove Spell Cooldown
+                        {
+                            lblSpellCooldownTooltip.Text = "Removes a spell cooldown from the source Unit. If not spell Id is provided, all spell cooldowns will be cleared.";
+                            lblSpellCooldownSeconds.Visible = false;
+                            txtSpellCooldownSeconds.Visible = false;
+                            break;
+                        }
+                    }
+                    uint spellId = selectedAction.Datalong;
+                    if (spellId > 0)
+                        btnSpellCooldownId.Text = GameData.FindSpellName(spellId) + " (" + spellId.ToString() + ")";
+                    txtSpellCooldownSeconds.Text = selectedAction.Datalong2.ToString();
+                    frmCommandSpellCooldown.Visible = true;
                     break;
                 }
             }
@@ -3692,6 +3741,16 @@ namespace ScriptEditor
                 btnFind_Click(this, new EventArgs());
                 e.Handled = true;
             }
+        }
+
+        private void btnSpellCooldownId_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormSpellFinder>(btnSpellCooldownId, null, GameData.FindSpellName, "Datalong");
+        }
+
+        private void txtSpellCooldownSeconds_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSpellCooldownSeconds, "Datalong2");
         }
     }
 
