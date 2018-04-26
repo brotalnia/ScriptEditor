@@ -57,7 +57,8 @@ namespace ScriptEditor
         "Summoned Unit Despawned",  // 26
         "Missing Aura",             // 27
         "Target Missing Aura",      // 28
-        "Movement Inform"           // 29
+        "Movement Inform",          // 29
+        "Leave Combat"              // 30
         };
         
         public FormEventEditor()
@@ -379,6 +380,7 @@ namespace ScriptEditor
                 case 7: // EVENT_T_EVADE
                 case 11: // EVENT_T_SPAWNED
                 case 21: // EVENT_T_REACHED_HOME
+                case 30: // EVENT_T_LEAVE_COMBAT
                 {
                     switch (selectedEvent.Type)
                     {
@@ -394,7 +396,7 @@ namespace ScriptEditor
                         }
                         case 7: // EVENT_T_EVADE
                         {
-                            lblEventAggroTooltip.Text = "Expires when the creature enters evade mode. This event has no additional parameters.";
+                            lblEventAggroTooltip.Text = "Expires when the creature enters evade mode. Does not trigger for some types of pets. This event has no additional parameters.";
                             break;
                         }
                         case 11: // EVENT_T_SPAWNED
@@ -405,6 +407,11 @@ namespace ScriptEditor
                         case 21: // EVENT_T_REACHED_HOME
                         {
                             lblEventAggroTooltip.Text = "Expires when the creature reaches its home location after an evade. This event has no additional parameters.";
+                            break;
+                        }
+                        case 30: // EVENT_T_LEAVE_COMBAT
+                        {
+                            lblEventAggroTooltip.Text = "Expires when the creature leaves combat. This event has no additional parameters.";
                             break;
                         }
                     }
