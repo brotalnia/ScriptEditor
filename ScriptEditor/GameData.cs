@@ -1563,6 +1563,10 @@ namespace ScriptEditor
             ConditionNamesList.Add(new ComboboxPair("INSTANCE_DATA_LESS", 36));
             ConditionNamesList.Add(new ComboboxPair("LINE_OF_SIGHT", 37));
             ConditionNamesList.Add(new ComboboxPair("DISTANCE", 38));
+            ConditionNamesList.Add(new ComboboxPair("IS_MOVING", 39));
+            ConditionNamesList.Add(new ComboboxPair("HAS_PET", 40));
+            ConditionNamesList.Add(new ComboboxPair("HEALTH_PERCENT", 41));
+            ConditionNamesList.Add(new ComboboxPair("MANA_PERCENT", 42));
         }
     }
     public struct BroadcastText

@@ -441,6 +441,10 @@
             this.btnSpellCooldownId = new System.Windows.Forms.Button();
             this.lblSpellCooldownId = new System.Windows.Forms.Label();
             this.lblSpellCooldownTooltip = new System.Windows.Forms.Label();
+            this.frmCommandSetReactState = new System.Windows.Forms.Panel();
+            this.cmbSetReactState = new System.Windows.Forms.ComboBox();
+            this.lblReactState = new System.Windows.Forms.Label();
+            this.lblSetReactStateTooltip = new System.Windows.Forms.Label();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -491,6 +495,7 @@
             this.frmCommandGameEvent.SuspendLayout();
             this.frmCommandSetSpellsTemplate.SuspendLayout();
             this.frmCommandSpellCooldown.SuspendLayout();
+            this.frmCommandSetReactState.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstActions
@@ -4806,11 +4811,56 @@
             this.lblSpellCooldownTooltip.TabIndex = 0;
             this.lblSpellCooldownTooltip.Text = "Adds a spell cooldown lasting a specified amount of time to the source Unit.";
             // 
+            // frmCommandSetReactState
+            // 
+            this.frmCommandSetReactState.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandSetReactState.Controls.Add(this.cmbSetReactState);
+            this.frmCommandSetReactState.Controls.Add(this.lblReactState);
+            this.frmCommandSetReactState.Controls.Add(this.lblSetReactStateTooltip);
+            this.frmCommandSetReactState.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandSetReactState.Name = "frmCommandSetReactState";
+            this.frmCommandSetReactState.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandSetReactState.TabIndex = 56;
+            this.frmCommandSetReactState.Visible = false;
+            // 
+            // cmbSetReactState
+            // 
+            this.cmbSetReactState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSetReactState.FormattingEnabled = true;
+            this.cmbSetReactState.Items.AddRange(new object[] {
+            "REACT_PASSIVE",
+            "REACT_DEFENSIVE",
+            "REACT_AGGRESSIVE"});
+            this.cmbSetReactState.Location = new System.Drawing.Point(99, 58);
+            this.cmbSetReactState.Name = "cmbSetReactState";
+            this.cmbSetReactState.Size = new System.Drawing.Size(374, 21);
+            this.cmbSetReactState.TabIndex = 2;
+            this.cmbSetReactState.SelectedIndexChanged += new System.EventHandler(this.cmbSetReactState_SelectedIndexChanged);
+            // 
+            // lblReactState
+            // 
+            this.lblReactState.AutoSize = true;
+            this.lblReactState.Location = new System.Drawing.Point(29, 61);
+            this.lblReactState.Name = "lblReactState";
+            this.lblReactState.Size = new System.Drawing.Size(67, 13);
+            this.lblReactState.TabIndex = 1;
+            this.lblReactState.Text = "React State:";
+            // 
+            // lblSetReactStateTooltip
+            // 
+            this.lblSetReactStateTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblSetReactStateTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblSetReactStateTooltip.Name = "lblSetReactStateTooltip";
+            this.lblSetReactStateTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblSetReactStateTooltip.TabIndex = 0;
+            this.lblSetReactStateTooltip.Text = "Changes the source Creature\'s current react state.";
+            // 
             // FormScriptEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 620);
+            this.Controls.Add(this.frmCommandSetReactState);
             this.Controls.Add(this.frmCommandSpellCooldown);
             this.Controls.Add(this.frmCommandSetSpellsTemplate);
             this.Controls.Add(this.frmCommandGameEvent);
@@ -4973,6 +5023,8 @@
             this.frmCommandSetSpellsTemplate.PerformLayout();
             this.frmCommandSpellCooldown.ResumeLayout(false);
             this.frmCommandSpellCooldown.PerformLayout();
+            this.frmCommandSetReactState.ResumeLayout(false);
+            this.frmCommandSetReactState.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -5392,6 +5444,10 @@
         private System.Windows.Forms.Button btnSpellCooldownId;
         private System.Windows.Forms.Label lblSpellCooldownId;
         private System.Windows.Forms.Label lblSpellCooldownTooltip;
+        private System.Windows.Forms.Panel frmCommandSetReactState;
+        private System.Windows.Forms.ComboBox cmbSetReactState;
+        private System.Windows.Forms.Label lblReactState;
+        private System.Windows.Forms.Label lblSetReactStateTooltip;
     }
 }
 

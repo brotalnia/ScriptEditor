@@ -119,6 +119,7 @@ namespace ScriptEditor
             cmbCommandId.Items.Add(new ComboboxPair("Remove Guardians", 56));
             cmbCommandId.Items.Add(new ComboboxPair("Add Spell Cooldown", 57));
             cmbCommandId.Items.Add(new ComboboxPair("Remove Spell Cooldown", 58));
+            cmbCommandId.Items.Add(new ComboboxPair("Set React State", 59));
             cmbCommandId.SelectedIndex = 0;
 
             // Add option to Buddy Type combo box.
@@ -709,6 +710,10 @@ namespace ScriptEditor
             btnSpellCooldownId.Text = "-NONE-";
             txtSpellCooldownSeconds.Text = "";
             frmCommandSpellCooldown.Visible = false;
+
+            // Set React State (59)
+            cmbSetReactState.SelectedIndex = 0;
+            frmCommandSetReactState.Visible = false;
 
             dontUpdate = false;
         }
@@ -1560,6 +1565,12 @@ namespace ScriptEditor
                         btnSpellCooldownId.Text = GameData.FindSpellName(spellId) + " (" + spellId.ToString() + ")";
                     txtSpellCooldownSeconds.Text = selectedAction.Datalong2.ToString();
                     frmCommandSpellCooldown.Visible = true;
+                    break;
+                }
+                case 59: // Set React State
+                {
+                    cmbSetReactState.SelectedIndex = (int)selectedAction.Datalong;
+                    frmCommandSetReactState.Visible = true;
                     break;
                 }
             }
@@ -3751,6 +3762,11 @@ namespace ScriptEditor
         private void txtSpellCooldownSeconds_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSpellCooldownSeconds, "Datalong2");
+        }
+
+        private void cmbSetReactState_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbSetReactState, "Datalong", false);
         }
     }
 
