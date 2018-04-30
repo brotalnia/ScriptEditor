@@ -1567,6 +1567,8 @@ namespace ScriptEditor
             ConditionNamesList.Add(new ComboboxPair("HAS_PET", 40));
             ConditionNamesList.Add(new ComboboxPair("HEALTH_PERCENT", 41));
             ConditionNamesList.Add(new ComboboxPair("MANA_PERCENT", 42));
+            ConditionNamesList.Add(new ComboboxPair("IS_IN_COMBAT", 43));
+            ConditionNamesList.Add(new ComboboxPair("IS_HOSTILE_TO", 44));
         }
     }
     public struct BroadcastText
