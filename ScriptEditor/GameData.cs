@@ -59,12 +59,24 @@ namespace ScriptEditor
         }
         public static int FindIndexOfMotionTypeFull(uint id)
         {
+            if (id >= 1024)
+                return FindIndexOfMotionTypeFullInternal(1024);
+            else if ((id >= 512) && (id < 1024))
+                return FindIndexOfMotionTypeFullInternal(512);
+            else if ((id >= 256) && (id < 512))
+                return FindIndexOfMotionTypeFullInternal(256);
+
+            return FindIndexOfMotionTypeFullInternal(id);
+        }
+        private static int FindIndexOfMotionTypeFullInternal(uint id)
+        {
             for (int i = 0; i < MotionTypesFullList.Count; i++)
             {
                 if (id == (uint)(MotionTypesFullList[i] as ComboboxPair).Value)
                     return i;
             }
-            return 0;
+
+            return -1;
         }
         public static int FindIndexOfFlagsField(uint id)
         {
@@ -1229,7 +1241,9 @@ namespace ScriptEditor
             MotionTypesFullList.Add(new ComboboxPair("EFFECT_MOTION_TYPE", 15));
             MotionTypesFullList.Add(new ComboboxPair("PATROL_MOTION_TYPE", 16));
             MotionTypesFullList.Add(new ComboboxPair("CHARGE_MOTION_TYPE", 17));
-
+            MotionTypesFullList.Add(new ComboboxPair("WAYPOINT_SPECIAL_REACHED", 256));
+            MotionTypesFullList.Add(new ComboboxPair("WAYPOINT_SPECIAL_STARTED", 512));
+            MotionTypesFullList.Add(new ComboboxPair("WAYPOINT_SPECIAL_FINISHED_LAST", 1024));
 
             // Add taxi paths to list.
             TaxiInfoList.Add(new TaxiInfo(6, "Stormwind, Elwynn", "Sentinel Hill, Westfall"));

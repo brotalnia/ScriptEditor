@@ -79,6 +79,15 @@ namespace ScriptEditor
             }
         }
 
+        private void txtCreatureId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                btnFind_Click(this, new EventArgs());
+                e.Handled = true;
+            }
+        }
+
         private void LoadControls()
         {
             dontUpdate = true;
@@ -96,6 +105,10 @@ namespace ScriptEditor
 
             // Add options to Movement Inform combo box.
             cmbMovementInformType.DataSource = GameData.MotionTypesFullList;
+
+            // Fix size of textbox.
+            txtMovementInformType.AutoSize = false;
+            txtMovementInformType.Height = 21;
 
             dontUpdate = false;
         }
@@ -521,6 +534,7 @@ namespace ScriptEditor
                 }
                 case 29: // EVENT_T_MOVEMENT_INFORM
                 {
+                    txtMovementInformType.Text = selectedEvent.Param1.ToString();
                     cmbMovementInformType.SelectedIndex = GameData.FindIndexOfMotionTypeFull((uint)selectedEvent.Param1);
                     txtMovementInformPoint.Text = selectedEvent.Param2.ToString();
                     txtMovementInformRepeatMin.Text = selectedEvent.Param3.ToString();
@@ -1262,7 +1276,34 @@ namespace ScriptEditor
 
         private void cmbMovementInformType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (dontUpdate)
+                return;
+
             SetScriptFieldFromCombobox(cmbMovementInformType, "Param1", true);
+            txtMovementInformType.Text = (cmbMovementInformType.SelectedItem as ComboboxPair).Value.ToString();
+        }
+
+        private void txtMovementInformType_Leave(object sender, EventArgs e)
+        {
+            if (dontUpdate)
+                return;
+
+            uint motion_type;
+            if (uint.TryParse(txtMovementInformType.Text, out motion_type) && (GameData.FindIndexOfMotionTypeFull(motion_type) != -1))
+            {
+                dontUpdate = true;
+                cmbMovementInformType.SelectedIndex = GameData.FindIndexOfMotionTypeFull(motion_type);
+                dontUpdate = false;
+                SetScriptFieldFromValue(motion_type, "Param1");
+            }
+            else
+            {
+                dontUpdate = true;
+                txtMovementInformType.Text = "0";
+                cmbMovementInformType.SelectedIndex = 0;
+                dontUpdate = false;
+                SetScriptFieldFromValue(0, "Param1");
+            }
         }
 
         private void txtMovementInformPoint_Leave(object sender, EventArgs e)
@@ -1278,15 +1319,6 @@ namespace ScriptEditor
         private void txtMovementInformRepeatMax_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtMovementInformRepeatMax, "Param4");
-        }
-
-        private void txtCreatureId_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)13)
-            {
-                btnFind_Click(this, new EventArgs());
-                e.Handled = true;
-            }
         }
     }
 }

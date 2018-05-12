@@ -120,6 +120,7 @@ namespace ScriptEditor
             cmbCommandId.Items.Add(new ComboboxPair("Add Spell Cooldown", 57));
             cmbCommandId.Items.Add(new ComboboxPair("Remove Spell Cooldown", 58));
             cmbCommandId.Items.Add(new ComboboxPair("Set React State", 59));
+            cmbCommandId.Items.Add(new ComboboxPair("Start Waypoints", 60));
             cmbCommandId.SelectedIndex = 0;
 
             // Add option to Buddy Type combo box.
@@ -456,6 +457,8 @@ namespace ScriptEditor
             chkMoveOptions256.Checked = false;
             chkMoveToFlagsForce.Checked = false;
             chkMoveToFlagsPointMovement.Checked = false;
+            txtMoveToPointId.Text = "";
+            txtMoveToPointId.Enabled = false;
             frmCommandMoveTo.Visible = false;
 
             // Modify Flags Command (4)
@@ -715,6 +718,15 @@ namespace ScriptEditor
             cmbSetReactState.SelectedIndex = 0;
             frmCommandSetReactState.Visible = false;
 
+            // Start Waypoints Command (60)
+            cmbStartWaypointsRepeat.SelectedIndex = 0;
+            cmbStartWaypointsSource.SelectedIndex = 0;
+            txtStartWaypointsStartPoint.Text = "";
+            txtStartWaypointsInitialDelay.Text = "";
+            txtStartWaypointsPathId.Text = "";
+            txtStartWaypointsEntry.Text = "";
+            frmCommandStartWaypoints.Visible = false;
+
             dontUpdate = false;
         }
         private void ShowCommandSpecificForm(ScriptAction selectedAction)
@@ -816,12 +828,21 @@ namespace ScriptEditor
                     if ((selectedAction.Datalong3 & 256) != 0)
                         chkMoveOptions256.Checked = true;
 
-                    // move to flags
+                    // Force Movement Flag
                     if ((selectedAction.Datalong4 & 1) != 0)
                         chkMoveToFlagsForce.Checked = true;
 
+                    // Use Point Movement Flag
                     if ((selectedAction.Datalong4 & 2) != 0)
+                    {
+                        txtMoveToPointId.Text = selectedAction.Dataint.ToString();
+                        txtMoveToPointId.Enabled = true;
                         chkMoveToFlagsPointMovement.Checked = true;
+                    }
+                    else
+                    {
+                        txtMoveToPointId.Enabled = false;
+                    } 
 
                     // some fields unavailable based on coordinates_type
                     switch (selectedAction.Datalong)
@@ -1113,6 +1134,9 @@ namespace ScriptEditor
                             cmbSetMovementBoolParam.Enabled = true;
                             cmbSetMovementBoolParam.SelectedIndex = (int)selectedAction.Datalong2;
                             lblSetMovementBoolParam.Text = "Repeat:";
+                            lblSetMovementIntParam.Text = "Start Point:";
+                            txtSetMovementIntParam.Enabled = true;
+                            txtSetMovementIntParam.Text = selectedAction.Datalong3.ToString();
                             break;
                         }
                         case 5: // CHASE_MOTION_TYPE
@@ -1571,6 +1595,17 @@ namespace ScriptEditor
                 {
                     cmbSetReactState.SelectedIndex = (int)selectedAction.Datalong;
                     frmCommandSetReactState.Visible = true;
+                    break;
+                }
+                case 60: // Start Waypoints
+                {
+                    cmbStartWaypointsRepeat.SelectedIndex = (int)selectedAction.Datalong4;
+                    cmbStartWaypointsSource.SelectedIndex = (int)selectedAction.Datalong;
+                    txtStartWaypointsStartPoint.Text = selectedAction.Datalong2.ToString();
+                    txtStartWaypointsInitialDelay.Text = selectedAction.Datalong3.ToString();
+                    txtStartWaypointsPathId.Text = selectedAction.Dataint.ToString();
+                    txtStartWaypointsEntry.Text = selectedAction.Dataint2.ToString();
+                    frmCommandStartWaypoints.Visible = true;
                     break;
                 }
             }
@@ -2097,7 +2132,21 @@ namespace ScriptEditor
 
         private void chkMoveToFlagsPointMovement_CheckedChanged(object sender, EventArgs e)
         {
+            if (dontUpdate)
+                return;
+
             SetScriptFlagsFromCheckbox(chkMoveToFlagsPointMovement, "Datalong4", 2);
+            if (chkMoveToFlagsPointMovement.Checked)
+            {
+                txtMoveToPointId.Text = "0";
+                txtMoveToPointId.Enabled = true;
+            }
+            else
+            {
+                SetScriptFieldFromValue(0, "Dataint");
+                txtMoveToPointId.Text = "";
+                txtMoveToPointId.Enabled = false;
+            }
         }
 
         private void chkMoveOptions1_CheckedChanged(object sender, EventArgs e)
@@ -2191,6 +2240,11 @@ namespace ScriptEditor
         private void txtMoveToTime_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtMoveToTime, "Datalong2");
+        }
+
+        private void txtMoveToPointId_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtMoveToPointId, "Dataint");
         }
 
         private void Command4ResetAllCheckboxes()
@@ -3767,6 +3821,36 @@ namespace ScriptEditor
         private void cmbSetReactState_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbSetReactState, "Datalong", false);
+        }
+
+        private void cmbStartWaypointsSource_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbStartWaypointsSource, "Datalong", false);
+        }
+
+        private void cmbStartWaypointsRepeat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbStartWaypointsRepeat, "Datalong4", false);
+        }
+
+        private void txtStartWaypointsStartPoint_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtStartWaypointsStartPoint, "Datalong2");
+        }
+
+        private void txtStartWaypointsInitialDelay_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtStartWaypointsInitialDelay, "Datalong3");
+        }
+
+        private void txtStartWaypointsPathId_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtStartWaypointsPathId, "Dataint");
+        }
+
+        private void txtStartWaypointsEntry_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtStartWaypointsEntry, "Dataint2");
         }
     }
 

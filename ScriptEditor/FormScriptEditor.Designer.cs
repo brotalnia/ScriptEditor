@@ -87,6 +87,8 @@
             this.cmbFieldSetFields = new System.Windows.Forms.ComboBox();
             this.lblFieldSetTooltip = new System.Windows.Forms.Label();
             this.frmCommandMoveTo = new System.Windows.Forms.Panel();
+            this.lblMoveToPointId = new System.Windows.Forms.Label();
+            this.txtMoveToPointId = new System.Windows.Forms.TextBox();
             this.chkMoveToFlagsPointMovement = new System.Windows.Forms.CheckBox();
             this.chkMoveToFlagsForce = new System.Windows.Forms.CheckBox();
             this.lblMoveToO = new System.Windows.Forms.Label();
@@ -445,6 +447,20 @@
             this.cmbSetReactState = new System.Windows.Forms.ComboBox();
             this.lblReactState = new System.Windows.Forms.Label();
             this.lblSetReactStateTooltip = new System.Windows.Forms.Label();
+            this.frmCommandStartWaypoints = new System.Windows.Forms.Panel();
+            this.txtStartWaypointsEntry = new System.Windows.Forms.TextBox();
+            this.lblStartWaypointsEntry = new System.Windows.Forms.Label();
+            this.txtStartWaypointsPathId = new System.Windows.Forms.TextBox();
+            this.lblStartWaypointsPathId = new System.Windows.Forms.Label();
+            this.txtStartWaypointsInitialDelay = new System.Windows.Forms.TextBox();
+            this.lblStartWaypointsInitialDelay = new System.Windows.Forms.Label();
+            this.txtStartWaypointsStartPoint = new System.Windows.Forms.TextBox();
+            this.lblStartWaypointsStartPoint = new System.Windows.Forms.Label();
+            this.cmbStartWaypointsRepeat = new System.Windows.Forms.ComboBox();
+            this.lblStartWaypointsRepeat = new System.Windows.Forms.Label();
+            this.cmbStartWaypointsSource = new System.Windows.Forms.ComboBox();
+            this.lblStartWaypointsSource = new System.Windows.Forms.Label();
+            this.lblStartWaypointsTooltip = new System.Windows.Forms.Label();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -496,6 +512,7 @@
             this.frmCommandSetSpellsTemplate.SuspendLayout();
             this.frmCommandSpellCooldown.SuspendLayout();
             this.frmCommandSetReactState.SuspendLayout();
+            this.frmCommandStartWaypoints.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstActions
@@ -1077,6 +1094,8 @@
             // frmCommandMoveTo
             // 
             this.frmCommandMoveTo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandMoveTo.Controls.Add(this.lblMoveToPointId);
+            this.frmCommandMoveTo.Controls.Add(this.txtMoveToPointId);
             this.frmCommandMoveTo.Controls.Add(this.chkMoveToFlagsPointMovement);
             this.frmCommandMoveTo.Controls.Add(this.chkMoveToFlagsForce);
             this.frmCommandMoveTo.Controls.Add(this.lblMoveToO);
@@ -1099,10 +1118,27 @@
             this.frmCommandMoveTo.TabIndex = 13;
             this.frmCommandMoveTo.Visible = false;
             // 
+            // lblMoveToPointId
+            // 
+            this.lblMoveToPointId.AutoSize = true;
+            this.lblMoveToPointId.Location = new System.Drawing.Point(23, 146);
+            this.lblMoveToPointId.Name = "lblMoveToPointId";
+            this.lblMoveToPointId.Size = new System.Drawing.Size(46, 13);
+            this.lblMoveToPointId.TabIndex = 17;
+            this.lblMoveToPointId.Text = "Point Id:";
+            // 
+            // txtMoveToPointId
+            // 
+            this.txtMoveToPointId.Location = new System.Drawing.Point(20, 162);
+            this.txtMoveToPointId.Name = "txtMoveToPointId";
+            this.txtMoveToPointId.Size = new System.Drawing.Size(200, 20);
+            this.txtMoveToPointId.TabIndex = 16;
+            this.txtMoveToPointId.Leave += new System.EventHandler(this.txtMoveToPointId_Leave);
+            // 
             // chkMoveToFlagsPointMovement
             // 
             this.chkMoveToFlagsPointMovement.AutoSize = true;
-            this.chkMoveToFlagsPointMovement.Location = new System.Drawing.Point(20, 271);
+            this.chkMoveToFlagsPointMovement.Location = new System.Drawing.Point(20, 299);
             this.chkMoveToFlagsPointMovement.Name = "chkMoveToFlagsPointMovement";
             this.chkMoveToFlagsPointMovement.Size = new System.Drawing.Size(175, 17);
             this.chkMoveToFlagsPointMovement.TabIndex = 15;
@@ -1113,7 +1149,7 @@
             // chkMoveToFlagsForce
             // 
             this.chkMoveToFlagsForce.AutoSize = true;
-            this.chkMoveToFlagsForce.Location = new System.Drawing.Point(20, 248);
+            this.chkMoveToFlagsForce.Location = new System.Drawing.Point(20, 276);
             this.chkMoveToFlagsForce.Name = "chkMoveToFlagsForce";
             this.chkMoveToFlagsForce.Size = new System.Drawing.Size(106, 17);
             this.chkMoveToFlagsForce.TabIndex = 14;
@@ -1124,7 +1160,7 @@
             // lblMoveToO
             // 
             this.lblMoveToO.AutoSize = true;
-            this.lblMoveToO.Location = new System.Drawing.Point(131, 195);
+            this.lblMoveToO.Location = new System.Drawing.Point(131, 228);
             this.lblMoveToO.Name = "lblMoveToO";
             this.lblMoveToO.Size = new System.Drawing.Size(61, 13);
             this.lblMoveToO.TabIndex = 13;
@@ -1133,7 +1169,7 @@
             // lblMoveToZ
             // 
             this.lblMoveToZ.AutoSize = true;
-            this.lblMoveToZ.Location = new System.Drawing.Point(23, 195);
+            this.lblMoveToZ.Location = new System.Drawing.Point(23, 228);
             this.lblMoveToZ.Name = "lblMoveToZ";
             this.lblMoveToZ.Size = new System.Drawing.Size(70, 13);
             this.lblMoveToZ.TabIndex = 12;
@@ -1142,7 +1178,7 @@
             // lblMoveToY
             // 
             this.lblMoveToY.AutoSize = true;
-            this.lblMoveToY.Location = new System.Drawing.Point(132, 155);
+            this.lblMoveToY.Location = new System.Drawing.Point(132, 188);
             this.lblMoveToY.Name = "lblMoveToY";
             this.lblMoveToY.Size = new System.Drawing.Size(70, 13);
             this.lblMoveToY.TabIndex = 11;
@@ -1151,7 +1187,7 @@
             // lblMoveToX
             // 
             this.lblMoveToX.AutoSize = true;
-            this.lblMoveToX.Location = new System.Drawing.Point(23, 155);
+            this.lblMoveToX.Location = new System.Drawing.Point(23, 188);
             this.lblMoveToX.Name = "lblMoveToX";
             this.lblMoveToX.Size = new System.Drawing.Size(70, 13);
             this.lblMoveToX.TabIndex = 10;
@@ -1159,7 +1195,7 @@
             // 
             // txtMoveToO
             // 
-            this.txtMoveToO.Location = new System.Drawing.Point(128, 212);
+            this.txtMoveToO.Location = new System.Drawing.Point(128, 245);
             this.txtMoveToO.Name = "txtMoveToO";
             this.txtMoveToO.Size = new System.Drawing.Size(92, 20);
             this.txtMoveToO.TabIndex = 9;
@@ -1167,7 +1203,7 @@
             // 
             // txtMoveToZ
             // 
-            this.txtMoveToZ.Location = new System.Drawing.Point(19, 212);
+            this.txtMoveToZ.Location = new System.Drawing.Point(19, 245);
             this.txtMoveToZ.Name = "txtMoveToZ";
             this.txtMoveToZ.Size = new System.Drawing.Size(92, 20);
             this.txtMoveToZ.TabIndex = 8;
@@ -1175,7 +1211,7 @@
             // 
             // txtMoveToY
             // 
-            this.txtMoveToY.Location = new System.Drawing.Point(128, 172);
+            this.txtMoveToY.Location = new System.Drawing.Point(128, 205);
             this.txtMoveToY.Name = "txtMoveToY";
             this.txtMoveToY.Size = new System.Drawing.Size(92, 20);
             this.txtMoveToY.TabIndex = 7;
@@ -1183,7 +1219,7 @@
             // 
             // txtMoveToX
             // 
-            this.txtMoveToX.Location = new System.Drawing.Point(19, 172);
+            this.txtMoveToX.Location = new System.Drawing.Point(19, 205);
             this.txtMoveToX.Name = "txtMoveToX";
             this.txtMoveToX.Size = new System.Drawing.Size(92, 20);
             this.txtMoveToX.TabIndex = 6;
@@ -1309,7 +1345,7 @@
             // lblMoveToTime
             // 
             this.lblMoveToTime.AutoSize = true;
-            this.lblMoveToTime.Location = new System.Drawing.Point(23, 107);
+            this.lblMoveToTime.Location = new System.Drawing.Point(23, 103);
             this.lblMoveToTime.Name = "lblMoveToTime";
             this.lblMoveToTime.Size = new System.Drawing.Size(55, 13);
             this.lblMoveToTime.TabIndex = 4;
@@ -1317,7 +1353,7 @@
             // 
             // txtMoveToTime
             // 
-            this.txtMoveToTime.Location = new System.Drawing.Point(20, 123);
+            this.txtMoveToTime.Location = new System.Drawing.Point(20, 119);
             this.txtMoveToTime.Name = "txtMoveToTime";
             this.txtMoveToTime.Size = new System.Drawing.Size(200, 20);
             this.txtMoveToTime.TabIndex = 3;
@@ -4855,11 +4891,159 @@
             this.lblSetReactStateTooltip.TabIndex = 0;
             this.lblSetReactStateTooltip.Text = "Changes the source Creature\'s current react state.";
             // 
+            // frmCommandStartWaypoints
+            // 
+            this.frmCommandStartWaypoints.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandStartWaypoints.Controls.Add(this.txtStartWaypointsEntry);
+            this.frmCommandStartWaypoints.Controls.Add(this.lblStartWaypointsEntry);
+            this.frmCommandStartWaypoints.Controls.Add(this.txtStartWaypointsPathId);
+            this.frmCommandStartWaypoints.Controls.Add(this.lblStartWaypointsPathId);
+            this.frmCommandStartWaypoints.Controls.Add(this.txtStartWaypointsInitialDelay);
+            this.frmCommandStartWaypoints.Controls.Add(this.lblStartWaypointsInitialDelay);
+            this.frmCommandStartWaypoints.Controls.Add(this.txtStartWaypointsStartPoint);
+            this.frmCommandStartWaypoints.Controls.Add(this.lblStartWaypointsStartPoint);
+            this.frmCommandStartWaypoints.Controls.Add(this.cmbStartWaypointsRepeat);
+            this.frmCommandStartWaypoints.Controls.Add(this.lblStartWaypointsRepeat);
+            this.frmCommandStartWaypoints.Controls.Add(this.cmbStartWaypointsSource);
+            this.frmCommandStartWaypoints.Controls.Add(this.lblStartWaypointsSource);
+            this.frmCommandStartWaypoints.Controls.Add(this.lblStartWaypointsTooltip);
+            this.frmCommandStartWaypoints.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandStartWaypoints.Name = "frmCommandStartWaypoints";
+            this.frmCommandStartWaypoints.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandStartWaypoints.TabIndex = 57;
+            this.frmCommandStartWaypoints.Visible = false;
+            // 
+            // txtStartWaypointsEntry
+            // 
+            this.txtStartWaypointsEntry.Location = new System.Drawing.Point(99, 205);
+            this.txtStartWaypointsEntry.Name = "txtStartWaypointsEntry";
+            this.txtStartWaypointsEntry.Size = new System.Drawing.Size(374, 20);
+            this.txtStartWaypointsEntry.TabIndex = 13;
+            this.txtStartWaypointsEntry.Leave += new System.EventHandler(this.txtStartWaypointsEntry_Leave);
+            // 
+            // lblStartWaypointsEntry
+            // 
+            this.lblStartWaypointsEntry.AutoSize = true;
+            this.lblStartWaypointsEntry.Location = new System.Drawing.Point(62, 208);
+            this.lblStartWaypointsEntry.Name = "lblStartWaypointsEntry";
+            this.lblStartWaypointsEntry.Size = new System.Drawing.Size(34, 13);
+            this.lblStartWaypointsEntry.TabIndex = 12;
+            this.lblStartWaypointsEntry.Text = "Entry:";
+            // 
+            // txtStartWaypointsPathId
+            // 
+            this.txtStartWaypointsPathId.Location = new System.Drawing.Point(99, 176);
+            this.txtStartWaypointsPathId.Name = "txtStartWaypointsPathId";
+            this.txtStartWaypointsPathId.Size = new System.Drawing.Size(374, 20);
+            this.txtStartWaypointsPathId.TabIndex = 11;
+            this.txtStartWaypointsPathId.Leave += new System.EventHandler(this.txtStartWaypointsPathId_Leave);
+            // 
+            // lblStartWaypointsPathId
+            // 
+            this.lblStartWaypointsPathId.AutoSize = true;
+            this.lblStartWaypointsPathId.Location = new System.Drawing.Point(52, 179);
+            this.lblStartWaypointsPathId.Name = "lblStartWaypointsPathId";
+            this.lblStartWaypointsPathId.Size = new System.Drawing.Size(44, 13);
+            this.lblStartWaypointsPathId.TabIndex = 10;
+            this.lblStartWaypointsPathId.Text = "Path Id:";
+            // 
+            // txtStartWaypointsInitialDelay
+            // 
+            this.txtStartWaypointsInitialDelay.Location = new System.Drawing.Point(99, 147);
+            this.txtStartWaypointsInitialDelay.Name = "txtStartWaypointsInitialDelay";
+            this.txtStartWaypointsInitialDelay.Size = new System.Drawing.Size(374, 20);
+            this.txtStartWaypointsInitialDelay.TabIndex = 9;
+            this.txtStartWaypointsInitialDelay.Leave += new System.EventHandler(this.txtStartWaypointsInitialDelay_Leave);
+            // 
+            // lblStartWaypointsInitialDelay
+            // 
+            this.lblStartWaypointsInitialDelay.AutoSize = true;
+            this.lblStartWaypointsInitialDelay.Location = new System.Drawing.Point(32, 150);
+            this.lblStartWaypointsInitialDelay.Name = "lblStartWaypointsInitialDelay";
+            this.lblStartWaypointsInitialDelay.Size = new System.Drawing.Size(64, 13);
+            this.lblStartWaypointsInitialDelay.TabIndex = 8;
+            this.lblStartWaypointsInitialDelay.Text = "Initial Delay:";
+            // 
+            // txtStartWaypointsStartPoint
+            // 
+            this.txtStartWaypointsStartPoint.Location = new System.Drawing.Point(99, 118);
+            this.txtStartWaypointsStartPoint.Name = "txtStartWaypointsStartPoint";
+            this.txtStartWaypointsStartPoint.Size = new System.Drawing.Size(374, 20);
+            this.txtStartWaypointsStartPoint.TabIndex = 7;
+            this.txtStartWaypointsStartPoint.Leave += new System.EventHandler(this.txtStartWaypointsStartPoint_Leave);
+            // 
+            // lblStartWaypointsStartPoint
+            // 
+            this.lblStartWaypointsStartPoint.AutoSize = true;
+            this.lblStartWaypointsStartPoint.Location = new System.Drawing.Point(37, 121);
+            this.lblStartWaypointsStartPoint.Name = "lblStartWaypointsStartPoint";
+            this.lblStartWaypointsStartPoint.Size = new System.Drawing.Size(59, 13);
+            this.lblStartWaypointsStartPoint.TabIndex = 5;
+            this.lblStartWaypointsStartPoint.Text = "Start Point:";
+            // 
+            // cmbStartWaypointsRepeat
+            // 
+            this.cmbStartWaypointsRepeat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbStartWaypointsRepeat.FormattingEnabled = true;
+            this.cmbStartWaypointsRepeat.Items.AddRange(new object[] {
+            "False",
+            "True"});
+            this.cmbStartWaypointsRepeat.Location = new System.Drawing.Point(99, 88);
+            this.cmbStartWaypointsRepeat.Name = "cmbStartWaypointsRepeat";
+            this.cmbStartWaypointsRepeat.Size = new System.Drawing.Size(374, 21);
+            this.cmbStartWaypointsRepeat.TabIndex = 4;
+            this.cmbStartWaypointsRepeat.SelectedIndexChanged += new System.EventHandler(this.cmbStartWaypointsRepeat_SelectedIndexChanged);
+            // 
+            // lblStartWaypointsRepeat
+            // 
+            this.lblStartWaypointsRepeat.AutoSize = true;
+            this.lblStartWaypointsRepeat.Location = new System.Drawing.Point(51, 91);
+            this.lblStartWaypointsRepeat.Name = "lblStartWaypointsRepeat";
+            this.lblStartWaypointsRepeat.Size = new System.Drawing.Size(45, 13);
+            this.lblStartWaypointsRepeat.TabIndex = 3;
+            this.lblStartWaypointsRepeat.Text = "Repeat:";
+            // 
+            // cmbStartWaypointsSource
+            // 
+            this.cmbStartWaypointsSource.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbStartWaypointsSource.FormattingEnabled = true;
+            this.cmbStartWaypointsSource.Items.AddRange(new object[] {
+            "(Decide Automatically)",
+            "PATH_FROM_GUID",
+            "PATH_FROM_ENTRY",
+            "PATH_FROM_SPECIAL"});
+            this.cmbStartWaypointsSource.Location = new System.Drawing.Point(99, 58);
+            this.cmbStartWaypointsSource.Name = "cmbStartWaypointsSource";
+            this.cmbStartWaypointsSource.Size = new System.Drawing.Size(374, 21);
+            this.cmbStartWaypointsSource.TabIndex = 2;
+            this.cmbStartWaypointsSource.SelectedIndexChanged += new System.EventHandler(this.cmbStartWaypointsSource_SelectedIndexChanged);
+            // 
+            // lblStartWaypointsSource
+            // 
+            this.lblStartWaypointsSource.AutoSize = true;
+            this.lblStartWaypointsSource.Location = new System.Drawing.Point(52, 61);
+            this.lblStartWaypointsSource.Name = "lblStartWaypointsSource";
+            this.lblStartWaypointsSource.Size = new System.Drawing.Size(44, 13);
+            this.lblStartWaypointsSource.TabIndex = 1;
+            this.lblStartWaypointsSource.Text = "Source:";
+            // 
+            // lblStartWaypointsTooltip
+            // 
+            this.lblStartWaypointsTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblStartWaypointsTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblStartWaypointsTooltip.Name = "lblStartWaypointsTooltip";
+            this.lblStartWaypointsTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblStartWaypointsTooltip.TabIndex = 0;
+            this.lblStartWaypointsTooltip.Text = "The source Creature begins waypoint movement. Entry specifies creature template o" +
+    "r special waypoints Id. Path Id is used for specal waypoints only, it\'s sent to " +
+    "AI in movement inform.";
+            // 
             // FormScriptEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 620);
+            this.Controls.Add(this.frmCommandStartWaypoints);
             this.Controls.Add(this.frmCommandSetReactState);
             this.Controls.Add(this.frmCommandSpellCooldown);
             this.Controls.Add(this.frmCommandSetSpellsTemplate);
@@ -5025,6 +5209,8 @@
             this.frmCommandSpellCooldown.PerformLayout();
             this.frmCommandSetReactState.ResumeLayout(false);
             this.frmCommandSetReactState.PerformLayout();
+            this.frmCommandStartWaypoints.ResumeLayout(false);
+            this.frmCommandStartWaypoints.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -5448,6 +5634,22 @@
         private System.Windows.Forms.ComboBox cmbSetReactState;
         private System.Windows.Forms.Label lblReactState;
         private System.Windows.Forms.Label lblSetReactStateTooltip;
+        private System.Windows.Forms.Panel frmCommandStartWaypoints;
+        private System.Windows.Forms.TextBox txtStartWaypointsEntry;
+        private System.Windows.Forms.Label lblStartWaypointsEntry;
+        private System.Windows.Forms.TextBox txtStartWaypointsPathId;
+        private System.Windows.Forms.Label lblStartWaypointsPathId;
+        private System.Windows.Forms.TextBox txtStartWaypointsInitialDelay;
+        private System.Windows.Forms.Label lblStartWaypointsInitialDelay;
+        private System.Windows.Forms.TextBox txtStartWaypointsStartPoint;
+        private System.Windows.Forms.Label lblStartWaypointsStartPoint;
+        private System.Windows.Forms.ComboBox cmbStartWaypointsRepeat;
+        private System.Windows.Forms.Label lblStartWaypointsRepeat;
+        private System.Windows.Forms.ComboBox cmbStartWaypointsSource;
+        private System.Windows.Forms.Label lblStartWaypointsSource;
+        private System.Windows.Forms.Label lblStartWaypointsTooltip;
+        private System.Windows.Forms.Label lblMoveToPointId;
+        private System.Windows.Forms.TextBox txtMoveToPointId;
     }
 }
 
