@@ -58,7 +58,8 @@ namespace ScriptEditor
         "Missing Aura",             // 27
         "Target Missing Aura",      // 28
         "Movement Inform",          // 29
-        "Leave Combat"              // 30
+        "Leave Combat",             // 30
+        "Map Event Happened"        // 31
         };
         
         public FormEventEditor()
@@ -182,6 +183,7 @@ namespace ScriptEditor
             // EVENT_T_FRIENDLY_HP (14)
             // EVENT_T_FRIENDLY_IS_CC (15)
             // EVENT_T_TARGET_MANA (18)
+            // EVENT_T_MAP_SCRIPT_EVENT
             txtTimerInitialMin.Text = "";
             txtTimerInitialMax.Text = "";
             txtTimerRepeatMin.Text = "";
@@ -252,6 +254,7 @@ namespace ScriptEditor
                 case 14: // EVENT_T_FRIENDLY_HP
                 case 15: // EVENT_T_FRIENDLY_IS_CC
                 case 18: // EVENT_T_TARGET_MANA
+                case 31: // EVENT_T_MAP_SCRIPT_EVENT
                 {
                     switch (selectedEvent.Type)
                     {
@@ -374,6 +377,17 @@ namespace ScriptEditor
                             lblTimerRepeatMax.Visible = true;
                             txtTimerRepeatMin.Visible = true;
                             txtTimerRepeatMax.Visible = true;
+                            break;
+                        }
+                        case 31: // EVENT_T_MAP_SCRIPT_EVENT
+                        {
+                            lblEventTimerCombatTooltip.Text = "Expires upon receiving a notification from a scripted map event.";
+                            lblTimerInitialMin.Text = "Event Id:";
+                            lblTimerInitialMax.Text = "Data:";
+                            lblTimerRepeatMin.Visible = false;
+                            lblTimerRepeatMax.Visible = false;
+                            txtTimerRepeatMin.Visible = false;
+                            txtTimerRepeatMax.Visible = false;
                             break;
                         }
                     }

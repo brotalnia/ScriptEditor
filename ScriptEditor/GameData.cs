@@ -1572,9 +1572,9 @@ namespace ScriptEditor
             ConditionNamesList.Add(new ComboboxPair("HAS_FLAG", 31));
             ConditionNamesList.Add(new ComboboxPair("LAST_WAYPOINT", 32));
             ConditionNamesList.Add(new ComboboxPair("MAP_ID", 33));
-            ConditionNamesList.Add(new ComboboxPair("INSTANCE_DATA_EQUAL", 34));
-            ConditionNamesList.Add(new ComboboxPair("INSTANCE_DATA_GREATER", 35));
-            ConditionNamesList.Add(new ComboboxPair("INSTANCE_DATA_LESS", 36));
+            ConditionNamesList.Add(new ComboboxPair("INSTANCE_DATA", 34));
+            ConditionNamesList.Add(new ComboboxPair("MAP_EVENT_DATA", 35));
+            ConditionNamesList.Add(new ComboboxPair("MAP_EVENT_ACTIVE", 36));
             ConditionNamesList.Add(new ComboboxPair("LINE_OF_SIGHT", 37));
             ConditionNamesList.Add(new ComboboxPair("DISTANCE", 38));
             ConditionNamesList.Add(new ComboboxPair("IS_MOVING", 39));
@@ -1583,6 +1583,7 @@ namespace ScriptEditor
             ConditionNamesList.Add(new ComboboxPair("MANA_PERCENT", 42));
             ConditionNamesList.Add(new ComboboxPair("IS_IN_COMBAT", 43));
             ConditionNamesList.Add(new ComboboxPair("IS_HOSTILE_TO", 44));
+            ConditionNamesList.Add(new ComboboxPair("IS_IN_GROUP", 45));
         }
     }
     public struct BroadcastText

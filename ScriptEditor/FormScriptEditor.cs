@@ -34,6 +34,7 @@ namespace ScriptEditor
         public string[] CommandFlee_ComboOptions = { "Random Direction", "Seek Assistance" };
         public string[] CommandCombatPulse_ComboOptions = { "False", "True" };
         public string[] CommandSetSheathState_ComboOptions = { "Unarmed", "Melee", "Ranged" };
+        public string[] CommandSendScriptedMapEvent_ComboOptions = { "Main Targets Only", "Additional Targets Only", "All Targets" };
         public FormScriptEditor()
         {
             InitializeComponent();
@@ -121,6 +122,12 @@ namespace ScriptEditor
             cmbCommandId.Items.Add(new ComboboxPair("Remove Spell Cooldown", 58));
             cmbCommandId.Items.Add(new ComboboxPair("Set React State", 59));
             cmbCommandId.Items.Add(new ComboboxPair("Start Waypoints", 60));
+            cmbCommandId.Items.Add(new ComboboxPair("Start Map Event", 61));
+            cmbCommandId.Items.Add(new ComboboxPair("End Map Event", 62));
+            cmbCommandId.Items.Add(new ComboboxPair("Add Map Event Target", 63));
+            cmbCommandId.Items.Add(new ComboboxPair("Remove Map Event Target", 64));
+            cmbCommandId.Items.Add(new ComboboxPair("Set Map Event Data", 65));
+            cmbCommandId.Items.Add(new ComboboxPair("Send Map Event", 66));
             cmbCommandId.SelectedIndex = 0;
 
             // Add option to Buddy Type combo box.
@@ -144,6 +151,9 @@ namespace ScriptEditor
             cmbTargetType.Items.Add(new ComboboxPair("Friendly Missing Buff", 17));
             cmbTargetType.Items.Add(new ComboboxPair("Missing Buff Not Self", 18));
             cmbTargetType.Items.Add(new ComboboxPair("Friendly CC-ed", 19));
+            cmbTargetType.Items.Add(new ComboboxPair("Map Event Source", 20));
+            cmbTargetType.Items.Add(new ComboboxPair("Map Event Target", 21));
+            cmbTargetType.Items.Add(new ComboboxPair("Map Event Additional", 22));
             cmbTargetType.SelectedIndex = 0;
 
             // Add chat types to combo box.
@@ -668,6 +678,7 @@ namespace ScriptEditor
             // Set AI Phase Command (44)
             // Deal Damage Command (48)
             // Set Invincibility HP Command (52)
+            // End Scripted Map Event Command (62)
             txtSetPhasePhase.Text = "";
             cmbSetPhaseMode.SelectedIndex = 0;
             frmCommandSetPhase.Visible = false;
@@ -726,6 +737,30 @@ namespace ScriptEditor
             txtStartWaypointsPathId.Text = "";
             txtStartWaypointsEntry.Text = "";
             frmCommandStartWaypoints.Visible = false;
+
+            // Start Scripted Map Event Command (61)
+            // Add Scripted Map Event Target Command (63)
+            txtStartScriptedMapEventFailureScript.Text = "";
+            txtStartScriptedMapEventSuccessScript.Text = "";
+            txtStartScriptedMapEventId.Text = "";
+            txtStartScriptedMapEventTimeLimit.Text = "";
+            btnStartScriptedMapEventFailureCondition.Text = "-NONE-";
+            btnStartScriptedMapEventSuccessCondition.Text = "-NONE-";
+            frmCommandStartScriptedMapEvent.Visible = false;
+
+            // Remove Scripted Map Event Target Command (64)
+            btnRemoveScriptedMapEventTargetCondition.Text = "-NONE-";
+            txtRemoveScriptedMapEventTargetEventId.Text = "";
+            cmbRemoveScriptedMapEventTarget.SelectedIndex = 0;
+            frmCommandRemoveScriptedMapEventTarget.Visible = false;
+
+            // Set Scripted Map Event Data Command (65)
+            // Send Scripted Map Event Command (66)
+            txtSetScriptedMapEventData.Text = "";
+            txtSetScriptedMapEventDataEventId.Text = "";
+            txtSetScriptedMapEventDataIndex.Text = "";
+            cmbSetScriptedMapEventDataMode.SelectedIndex = 0;
+            frmCommandSetScriptedMapEventData.Visible = false;
 
             dontUpdate = false;
         }
@@ -1129,6 +1164,15 @@ namespace ScriptEditor
                     cmbSetMovementType.SelectedIndex = GameData.FindIndexOfMotionType(motionType);
                     switch (motionType)
                     {
+                        case 1: // RANDOM_MOTION_TYPE
+                        {
+                            cmbSetMovementBoolParam.Enabled = true;
+                            cmbSetMovementBoolParam.SelectedIndex = (int)selectedAction.Datalong2;
+                            lblSetMovementBoolParam.Text = "Current Position:";
+                            txtSetMovementDistance.Enabled = true;
+                            txtSetMovementDistance.Text = selectedAction.X.ToString();
+                            break;
+                        }
                         case 2: // WAYPOINT_MOTION_TYPE
                         {
                             cmbSetMovementBoolParam.Enabled = true;
@@ -1137,6 +1181,7 @@ namespace ScriptEditor
                             lblSetMovementIntParam.Text = "Start Point:";
                             txtSetMovementIntParam.Enabled = true;
                             txtSetMovementIntParam.Text = selectedAction.Datalong3.ToString();
+                            lblSetMovementIntParam.Text = "Start Point:";
                             break;
                         }
                         case 5: // CHASE_MOTION_TYPE
@@ -1414,6 +1459,7 @@ namespace ScriptEditor
                 case 44: // Set AI Phase
                 case 48: // Deal Damage
                 case 52: // Set Invincibility HP
+                case 62: // End Scripted Map Event
                 {
                     switch (selectedAction.Command)
                     {
@@ -1421,6 +1467,7 @@ namespace ScriptEditor
                         {
                             lblSetPhaseTooltip.Text = "Changes the current AI phase of the source Creature. Can only be used on creatures with EventAI.";
                             lblSetPhasePhase.Text = "Phase:";
+                            lblSetPhaseMode.Text = "Mode:";
                             cmbSetPhaseMode.DataSource = CommandSetPhase_ComboOptions;
                             break;
                         }
@@ -1428,6 +1475,7 @@ namespace ScriptEditor
                         {
                             lblSetPhaseTooltip.Text = "The source Unit deals the specified amount of damage to the Unit target.";
                             lblSetPhasePhase.Text = "Damage:";
+                            lblSetPhaseMode.Text = "Mode:";
                             cmbSetPhaseMode.DataSource = CommandDealDamage_ComboOptions;
                             break;
                         }
@@ -1435,11 +1483,21 @@ namespace ScriptEditor
                         {
                             lblSetPhaseTooltip.Text = "Makes the source Creature not take damage below the specified health level.";
                             lblSetPhasePhase.Text = "Health:";
+                            lblSetPhaseMode.Text = "Mode:";
                             cmbSetPhaseMode.DataSource = CommandDealDamage_ComboOptions;
+                            break;
+                        }
+                        case 62: // End Scripted Map Event
+                        {
+                            lblSetPhaseTooltip.Text = "Ends the scripted map event with the given Id.";
+                            lblSetPhasePhase.Text = "Event Id:";
+                            lblSetPhaseMode.Text = "Success:";
+                            cmbSetPhaseMode.DataSource = CommandCombatPulse_ComboOptions;
                             break;
                         }
                     }
                     lblSetPhasePhase.Location = new Point(cmbSetPhaseMode.Location.X - lblSetPhasePhase.Size.Width - 4, lblSetPhasePhase.Location.Y);
+                    lblSetPhaseMode.Location = new Point(cmbSetPhaseMode.Location.X - lblSetPhaseMode.Size.Width - 4, lblSetPhaseMode.Location.Y);
                     txtSetPhasePhase.Text = selectedAction.Datalong.ToString();
                     cmbSetPhaseMode.SelectedIndex = (int)selectedAction.Datalong2;
                     frmCommandSetPhase.Visible = true;
@@ -1606,6 +1664,72 @@ namespace ScriptEditor
                     txtStartWaypointsPathId.Text = selectedAction.Dataint.ToString();
                     txtStartWaypointsEntry.Text = selectedAction.Dataint2.ToString();
                     frmCommandStartWaypoints.Visible = true;
+                    break;
+                }
+                case 61: // Start Scripted Map Event
+                case 63: // Add Scripted Map Event Target
+                {
+                    if (selectedAction.Command == 61)
+                    {
+                        lblStartScriptedMapEventTooltip.Text = "Starts a scripted map event with the given Id, targets, conditions and scripts.";
+                        txtStartScriptedMapEventTimeLimit.Visible = true;
+                        lblStartScriptedMapEventTimeLimit.Visible = true;
+                        txtStartScriptedMapEventTimeLimit.Text = selectedAction.Datalong2.ToString();
+                    }
+                    else
+                    {
+                        lblStartScriptedMapEventTooltip.Text = "Adds the source WorldObject to the additional targets vector of the scripted map event with the given Id.";
+                        txtStartScriptedMapEventTimeLimit.Visible = false;
+                        lblStartScriptedMapEventTimeLimit.Visible = false;
+                    }
+                    txtStartScriptedMapEventFailureScript.Text = selectedAction.Dataint4.ToString();
+                    txtStartScriptedMapEventSuccessScript.Text = selectedAction.Dataint2.ToString();
+                    txtStartScriptedMapEventId.Text = selectedAction.Datalong.ToString();
+                    if (selectedAction.Dataint3 > 0)
+                        btnStartScriptedMapEventFailureCondition.Text = selectedAction.Dataint3.ToString();
+                    if (selectedAction.Dataint > 0)
+                        btnStartScriptedMapEventSuccessCondition.Text = selectedAction.Dataint.ToString();
+                    frmCommandStartScriptedMapEvent.Visible = true;
+                    break;
+                }
+                case 64: // Remove Scripted Map Event Target
+                {
+                    if (selectedAction.Datalong2 > 0)
+                        btnRemoveScriptedMapEventTargetCondition.Text = selectedAction.Datalong2.ToString();
+                    txtRemoveScriptedMapEventTargetEventId.Text = selectedAction.Datalong.ToString();
+                    cmbRemoveScriptedMapEventTarget.SelectedIndex = (int)selectedAction.Datalong3;
+                    frmCommandRemoveScriptedMapEventTarget.Visible = true;
+                    break;
+                }
+                case 65: // Set Scripted Map Event Data
+                case 66: // Send Scripted Map Event
+                {
+                    if (selectedAction.Command == 65)
+                    {
+                        lblSetScriptedMapEventDataTooltip.Text = "Saves data to the scripted map event with the given Id.";
+                        txtSetScriptedMapEventData.Text = selectedAction.Datalong3.ToString();
+                        cmbSetScriptedMapEventDataMode.DataSource = CommandSetData_ComboOptions;
+                        cmbSetScriptedMapEventDataMode.SelectedIndex = (int)selectedAction.Datalong4;
+                        lblSetScriptedMapEventDataIndex.Text = "Index:";
+                        lblSetScriptedMapEventDataMode.Text = "Mode:";
+                        lblSetScriptedMapEventData.Visible = true;
+                        txtSetScriptedMapEventData.Visible = true;
+                    }
+                    else
+                    {
+                        lblSetScriptedMapEventDataTooltip.Text = "Informs the AI of any Creature targets in the scripted map event with the given Id that something important has happened.";
+                        cmbSetScriptedMapEventDataMode.DataSource = CommandSendScriptedMapEvent_ComboOptions;
+                        cmbSetScriptedMapEventDataMode.SelectedIndex = (int)selectedAction.Datalong3;
+                        lblSetScriptedMapEventDataIndex.Text = "Data:";
+                        lblSetScriptedMapEventDataMode.Text = "Targets:";
+                        lblSetScriptedMapEventData.Visible = false;
+                        txtSetScriptedMapEventData.Visible = false;
+                    }
+                    lblSetScriptedMapEventDataIndex.Location = new Point(txtSetScriptedMapEventDataIndex.Location.X - lblSetScriptedMapEventDataIndex.Size.Width - 4, lblSetScriptedMapEventDataIndex.Location.Y);
+                    lblSetScriptedMapEventDataMode.Location = new Point(cmbSetScriptedMapEventDataMode.Location.X - lblSetScriptedMapEventDataMode.Size.Width - 4, lblSetScriptedMapEventDataMode.Location.Y);
+                    txtSetScriptedMapEventDataEventId.Text = selectedAction.Datalong.ToString();
+                    txtSetScriptedMapEventDataIndex.Text = selectedAction.Datalong2.ToString();
+                    frmCommandSetScriptedMapEventData.Visible = true;
                     break;
                 }
             }
@@ -1973,13 +2097,31 @@ namespace ScriptEditor
                     txtTargetParam2.Text = "";
                     break;
                 }
+                case 20: // Scripted Map Event Source
+                case 21: // Scripted Map Event Target
+                {
+                    lblTargetParam1.Text = "Event Id:";
+                    lblTargetParam2.Text = "N/A:";
+                    txtTargetParam1.Enabled = true;
+                    txtTargetParam2.Enabled = false;
+                    SetScriptFieldFromValue(0, "TargetParam2");
+                    txtTargetParam2.Text = "";
+                    break;
+                }
+                case 22: // Scripted Map Event Additional Target
+                {
+                    lblTargetParam1.Text = "Event Id:";
+                    lblTargetParam2.Text = "Entry:";
+                    txtTargetParam1.Enabled = true;
+                    txtTargetParam2.Enabled = true;
+                    break;
+                }
             }
         }
         private void cmbTargetType_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbTargetType, "TargetType", false);
             SetTargetControlsBasedOnType(cmbTargetType.SelectedIndex);
-            
         }
         private void txtCommandDelay_Leave(object sender, EventArgs e)
         {
@@ -3055,11 +3197,23 @@ namespace ScriptEditor
 
                 switch (selection)
                 {
+                    case 1: // RANDOM_MOTION_TYPE
+                    {
+                        cmbSetMovementBoolParam.Enabled = true;
+                        cmbSetMovementBoolParam.SelectedIndex = 0;
+                        lblSetMovementBoolParam.Text = "Current Position:";
+                        txtSetMovementDistance.Enabled = true;
+                        txtSetMovementDistance.Text = "0";
+                        break;
+                    }
                     case 2: // WAYPOINT_MOTION_TYPE
                     {
                         cmbSetMovementBoolParam.Enabled = true;
                         cmbSetMovementBoolParam.SelectedIndex = 0;
                         lblSetMovementBoolParam.Text = "Repeat:";
+                        txtSetMovementIntParam.Enabled = true;
+                        txtSetMovementIntParam.Text = "0";
+                        lblSetMovementIntParam.Text = "Start Point:";
                         break;
                     }
                     case 5: // CHASE_MOTION_TYPE
@@ -3851,6 +4005,143 @@ namespace ScriptEditor
         private void txtStartWaypointsEntry_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtStartWaypointsEntry, "Dataint2");
+        }
+
+        private void btnStartScriptedMapEventSuccessCondition_Click(object sender, EventArgs e)
+        {
+            FormConditionFinder frm = new FormConditionFinder();
+            if (frm.ShowDialog(GetScriptFieldValue("Dataint")) == System.Windows.Forms.DialogResult.OK)
+            {
+                int returnId = frm.ReturnValue;
+
+                if (returnId > 0)
+                    btnStartScriptedMapEventSuccessCondition.Text = returnId.ToString();
+                else
+                    btnStartScriptedMapEventSuccessCondition.Text = "-NONE-";
+
+                SetScriptFieldFromValue(returnId, "Dataint");
+            }
+        }
+
+        private void btnStartScriptedMapEventFailureCondition_Click(object sender, EventArgs e)
+        {
+            FormConditionFinder frm = new FormConditionFinder();
+            if (frm.ShowDialog(GetScriptFieldValue("Dataint3")) == System.Windows.Forms.DialogResult.OK)
+            {
+                int returnId = frm.ReturnValue;
+
+                if (returnId > 0)
+                    btnStartScriptedMapEventFailureCondition.Text = returnId.ToString();
+                else
+                    btnStartScriptedMapEventFailureCondition.Text = "-NONE-";
+
+                SetScriptFieldFromValue(returnId, "Dataint3");
+            }
+        }
+
+        private void txtStartScriptedMapEventSuccessScript_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtStartScriptedMapEventSuccessScript, "Dataint2");
+        }
+
+        private void txtStartScriptedMapEventFailureScript_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtStartScriptedMapEventFailureScript, "Dataint4");
+        }
+
+        private void btnStartScriptedMapEventSuccessScriptEdit_Click(object sender, EventArgs e)
+        {
+            uint script_id = 0;
+            uint.TryParse(txtStartScriptedMapEventSuccessScript.Text, out script_id);
+            if (script_id > 0)
+            {
+                FormScriptEditor formEditor = new FormScriptEditor();
+                formEditor.Show();
+                formEditor.LoadScript(script_id, "map_event_scripts");
+            }
+        }
+
+        private void btnStartScriptedMapEventFailureScriptEdit_Click(object sender, EventArgs e)
+        {
+            uint script_id = 0;
+            uint.TryParse(txtStartScriptedMapEventFailureScript.Text, out script_id);
+            if (script_id > 0)
+            {
+                FormScriptEditor formEditor = new FormScriptEditor();
+                formEditor.Show();
+                formEditor.LoadScript(script_id, "map_event_scripts");
+            }
+        }
+
+        private void txtStartScriptedMapEventId_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtStartScriptedMapEventId, "Datalong");
+        }
+
+        private void txtStartScriptedMapEventTimeLimit_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtStartScriptedMapEventTimeLimit, "Datalong2");
+        }
+
+        private void btnRemoveScriptedMapEventTargetCondition_Click(object sender, EventArgs e)
+        {
+            FormConditionFinder frm = new FormConditionFinder();
+            if (frm.ShowDialog(GetScriptFieldValue("Datalong2")) == System.Windows.Forms.DialogResult.OK)
+            {
+                int returnId = frm.ReturnValue;
+
+                if (returnId > 0)
+                    btnRemoveScriptedMapEventTargetCondition.Text = returnId.ToString();
+                else
+                    btnRemoveScriptedMapEventTargetCondition.Text = "-NONE-";
+
+                SetScriptFieldFromValue(returnId, "Datalong2");
+            }
+        }
+
+        private void txtRemoveScriptedMapEventTargetEventId_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtRemoveScriptedMapEventTargetEventId, "Datalong");
+        }
+
+        private void cmbRemoveScriptedMapEventTarget_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbRemoveScriptedMapEventTarget, "Datalong3", false);
+        }
+
+        private void txtSetScriptedMapEventDataEventId_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSetScriptedMapEventDataEventId, "Datalong");
+        }
+
+        private void txtSetScriptedMapEventDataIndex_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSetScriptedMapEventDataIndex, "Datalong2");
+        }
+
+        private void cmbSetScriptedMapEventDataMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (dontUpdate)
+                return;
+
+            if (lstActions.SelectedItems.Count > 0)
+            {
+                // Get the selected item in the listview.
+                ListViewItem currentItem = lstActions.SelectedItems[0];
+
+                // Get the associated ScriptAction.
+                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
+
+                if (currentAction.Command == 65) // Set Scripted Map Event Data
+                    currentAction.Datalong4 = (uint)cmbSetScriptedMapEventDataMode.SelectedIndex;
+                else                             // Send Scripted Map Event
+                    currentAction.Datalong3 = (uint)cmbSetScriptedMapEventDataMode.SelectedIndex;
+            }
+        }
+
+        private void txtSetScriptedMapEventData_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSetScriptedMapEventData, "Datalong4");
         }
     }
 

@@ -461,6 +461,40 @@
             this.cmbStartWaypointsSource = new System.Windows.Forms.ComboBox();
             this.lblStartWaypointsSource = new System.Windows.Forms.Label();
             this.lblStartWaypointsTooltip = new System.Windows.Forms.Label();
+            this.frmCommandStartScriptedMapEvent = new System.Windows.Forms.Panel();
+            this.btnStartScriptedMapEventFailureScriptEdit = new System.Windows.Forms.Button();
+            this.btnStartScriptedMapEventSuccessScriptEdit = new System.Windows.Forms.Button();
+            this.lblStartScriptedMapEventFailureScript = new System.Windows.Forms.Label();
+            this.btnStartScriptedMapEventFailureCondition = new System.Windows.Forms.Button();
+            this.txtStartScriptedMapEventFailureScript = new System.Windows.Forms.TextBox();
+            this.lblStartScriptedMapEventFailureCondition = new System.Windows.Forms.Label();
+            this.lblStartScriptedMapEventSuccessScript = new System.Windows.Forms.Label();
+            this.btnStartScriptedMapEventSuccessCondition = new System.Windows.Forms.Button();
+            this.txtStartScriptedMapEventTimeLimit = new System.Windows.Forms.TextBox();
+            this.lblStartScriptedMapEventTimeLimit = new System.Windows.Forms.Label();
+            this.txtStartScriptedMapEventId = new System.Windows.Forms.TextBox();
+            this.lblStartScriptedMapEventId = new System.Windows.Forms.Label();
+            this.txtStartScriptedMapEventSuccessScript = new System.Windows.Forms.TextBox();
+            this.lblStartScriptedMapEventSuccessCondition = new System.Windows.Forms.Label();
+            this.lblStartScriptedMapEventTooltip = new System.Windows.Forms.Label();
+            this.frmCommandRemoveScriptedMapEventTarget = new System.Windows.Forms.Panel();
+            this.txtRemoveScriptedMapEventTargetEventId = new System.Windows.Forms.TextBox();
+            this.cmbRemoveScriptedMapEventTarget = new System.Windows.Forms.ComboBox();
+            this.lblRemoveScriptedMapEventTarget = new System.Windows.Forms.Label();
+            this.lblRemoveScriptedMapEventTargetCondition = new System.Windows.Forms.Label();
+            this.lblRemoveScriptedMapEventTargetEventId = new System.Windows.Forms.Label();
+            this.btnRemoveScriptedMapEventTargetCondition = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.frmCommandSetScriptedMapEventData = new System.Windows.Forms.Panel();
+            this.txtSetScriptedMapEventData = new System.Windows.Forms.TextBox();
+            this.lblSetScriptedMapEventData = new System.Windows.Forms.Label();
+            this.txtSetScriptedMapEventDataIndex = new System.Windows.Forms.TextBox();
+            this.txtSetScriptedMapEventDataEventId = new System.Windows.Forms.TextBox();
+            this.cmbSetScriptedMapEventDataMode = new System.Windows.Forms.ComboBox();
+            this.lblSetScriptedMapEventDataMode = new System.Windows.Forms.Label();
+            this.lblSetScriptedMapEventDataIndex = new System.Windows.Forms.Label();
+            this.lblSetScriptedMapEventDataEventId = new System.Windows.Forms.Label();
+            this.lblSetScriptedMapEventDataTooltip = new System.Windows.Forms.Label();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -513,6 +547,9 @@
             this.frmCommandSpellCooldown.SuspendLayout();
             this.frmCommandSetReactState.SuspendLayout();
             this.frmCommandStartWaypoints.SuspendLayout();
+            this.frmCommandStartScriptedMapEvent.SuspendLayout();
+            this.frmCommandRemoveScriptedMapEventTarget.SuspendLayout();
+            this.frmCommandSetScriptedMapEventData.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstActions
@@ -5038,11 +5075,360 @@
     "r special waypoints Id. Path Id is used for specal waypoints only, it\'s sent to " +
     "AI in movement inform.";
             // 
+            // frmCommandStartScriptedMapEvent
+            // 
+            this.frmCommandStartScriptedMapEvent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandStartScriptedMapEvent.Controls.Add(this.btnStartScriptedMapEventFailureScriptEdit);
+            this.frmCommandStartScriptedMapEvent.Controls.Add(this.btnStartScriptedMapEventSuccessScriptEdit);
+            this.frmCommandStartScriptedMapEvent.Controls.Add(this.lblStartScriptedMapEventFailureScript);
+            this.frmCommandStartScriptedMapEvent.Controls.Add(this.btnStartScriptedMapEventFailureCondition);
+            this.frmCommandStartScriptedMapEvent.Controls.Add(this.txtStartScriptedMapEventFailureScript);
+            this.frmCommandStartScriptedMapEvent.Controls.Add(this.lblStartScriptedMapEventFailureCondition);
+            this.frmCommandStartScriptedMapEvent.Controls.Add(this.lblStartScriptedMapEventSuccessScript);
+            this.frmCommandStartScriptedMapEvent.Controls.Add(this.btnStartScriptedMapEventSuccessCondition);
+            this.frmCommandStartScriptedMapEvent.Controls.Add(this.txtStartScriptedMapEventTimeLimit);
+            this.frmCommandStartScriptedMapEvent.Controls.Add(this.lblStartScriptedMapEventTimeLimit);
+            this.frmCommandStartScriptedMapEvent.Controls.Add(this.txtStartScriptedMapEventId);
+            this.frmCommandStartScriptedMapEvent.Controls.Add(this.lblStartScriptedMapEventId);
+            this.frmCommandStartScriptedMapEvent.Controls.Add(this.txtStartScriptedMapEventSuccessScript);
+            this.frmCommandStartScriptedMapEvent.Controls.Add(this.lblStartScriptedMapEventSuccessCondition);
+            this.frmCommandStartScriptedMapEvent.Controls.Add(this.lblStartScriptedMapEventTooltip);
+            this.frmCommandStartScriptedMapEvent.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandStartScriptedMapEvent.Name = "frmCommandStartScriptedMapEvent";
+            this.frmCommandStartScriptedMapEvent.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandStartScriptedMapEvent.TabIndex = 58;
+            this.frmCommandStartScriptedMapEvent.Visible = false;
+            // 
+            // btnStartScriptedMapEventFailureScriptEdit
+            // 
+            this.btnStartScriptedMapEventFailureScriptEdit.Location = new System.Drawing.Point(430, 117);
+            this.btnStartScriptedMapEventFailureScriptEdit.Name = "btnStartScriptedMapEventFailureScriptEdit";
+            this.btnStartScriptedMapEventFailureScriptEdit.Size = new System.Drawing.Size(41, 21);
+            this.btnStartScriptedMapEventFailureScriptEdit.TabIndex = 21;
+            this.btnStartScriptedMapEventFailureScriptEdit.Text = "Edit";
+            this.btnStartScriptedMapEventFailureScriptEdit.UseVisualStyleBackColor = true;
+            this.btnStartScriptedMapEventFailureScriptEdit.Click += new System.EventHandler(this.btnStartScriptedMapEventFailureScriptEdit_Click);
+            // 
+            // btnStartScriptedMapEventSuccessScriptEdit
+            // 
+            this.btnStartScriptedMapEventSuccessScriptEdit.Location = new System.Drawing.Point(430, 73);
+            this.btnStartScriptedMapEventSuccessScriptEdit.Name = "btnStartScriptedMapEventSuccessScriptEdit";
+            this.btnStartScriptedMapEventSuccessScriptEdit.Size = new System.Drawing.Size(41, 21);
+            this.btnStartScriptedMapEventSuccessScriptEdit.TabIndex = 20;
+            this.btnStartScriptedMapEventSuccessScriptEdit.Text = "Edit";
+            this.btnStartScriptedMapEventSuccessScriptEdit.UseVisualStyleBackColor = true;
+            this.btnStartScriptedMapEventSuccessScriptEdit.Click += new System.EventHandler(this.btnStartScriptedMapEventSuccessScriptEdit_Click);
+            // 
+            // lblStartScriptedMapEventFailureScript
+            // 
+            this.lblStartScriptedMapEventFailureScript.AutoSize = true;
+            this.lblStartScriptedMapEventFailureScript.Location = new System.Drawing.Point(232, 101);
+            this.lblStartScriptedMapEventFailureScript.Name = "lblStartScriptedMapEventFailureScript";
+            this.lblStartScriptedMapEventFailureScript.Size = new System.Drawing.Size(71, 13);
+            this.lblStartScriptedMapEventFailureScript.TabIndex = 19;
+            this.lblStartScriptedMapEventFailureScript.Text = "Failure Script:";
+            // 
+            // btnStartScriptedMapEventFailureCondition
+            // 
+            this.btnStartScriptedMapEventFailureCondition.Location = new System.Drawing.Point(24, 117);
+            this.btnStartScriptedMapEventFailureCondition.Name = "btnStartScriptedMapEventFailureCondition";
+            this.btnStartScriptedMapEventFailureCondition.Size = new System.Drawing.Size(195, 21);
+            this.btnStartScriptedMapEventFailureCondition.TabIndex = 18;
+            this.btnStartScriptedMapEventFailureCondition.Text = "-NONE-";
+            this.btnStartScriptedMapEventFailureCondition.UseVisualStyleBackColor = true;
+            this.btnStartScriptedMapEventFailureCondition.Click += new System.EventHandler(this.btnStartScriptedMapEventFailureCondition_Click);
+            // 
+            // txtStartScriptedMapEventFailureScript
+            // 
+            this.txtStartScriptedMapEventFailureScript.Location = new System.Drawing.Point(229, 118);
+            this.txtStartScriptedMapEventFailureScript.Name = "txtStartScriptedMapEventFailureScript";
+            this.txtStartScriptedMapEventFailureScript.Size = new System.Drawing.Size(195, 20);
+            this.txtStartScriptedMapEventFailureScript.TabIndex = 17;
+            this.txtStartScriptedMapEventFailureScript.Leave += new System.EventHandler(this.txtStartScriptedMapEventFailureScript_Leave);
+            // 
+            // lblStartScriptedMapEventFailureCondition
+            // 
+            this.lblStartScriptedMapEventFailureCondition.AutoSize = true;
+            this.lblStartScriptedMapEventFailureCondition.Location = new System.Drawing.Point(27, 100);
+            this.lblStartScriptedMapEventFailureCondition.Name = "lblStartScriptedMapEventFailureCondition";
+            this.lblStartScriptedMapEventFailureCondition.Size = new System.Drawing.Size(88, 13);
+            this.lblStartScriptedMapEventFailureCondition.TabIndex = 16;
+            this.lblStartScriptedMapEventFailureCondition.Text = "Failure Condition:";
+            // 
+            // lblStartScriptedMapEventSuccessScript
+            // 
+            this.lblStartScriptedMapEventSuccessScript.AutoSize = true;
+            this.lblStartScriptedMapEventSuccessScript.Location = new System.Drawing.Point(232, 57);
+            this.lblStartScriptedMapEventSuccessScript.Name = "lblStartScriptedMapEventSuccessScript";
+            this.lblStartScriptedMapEventSuccessScript.Size = new System.Drawing.Size(81, 13);
+            this.lblStartScriptedMapEventSuccessScript.TabIndex = 15;
+            this.lblStartScriptedMapEventSuccessScript.Text = "Success Script:";
+            // 
+            // btnStartScriptedMapEventSuccessCondition
+            // 
+            this.btnStartScriptedMapEventSuccessCondition.Location = new System.Drawing.Point(24, 73);
+            this.btnStartScriptedMapEventSuccessCondition.Name = "btnStartScriptedMapEventSuccessCondition";
+            this.btnStartScriptedMapEventSuccessCondition.Size = new System.Drawing.Size(195, 21);
+            this.btnStartScriptedMapEventSuccessCondition.TabIndex = 14;
+            this.btnStartScriptedMapEventSuccessCondition.Text = "-NONE-";
+            this.btnStartScriptedMapEventSuccessCondition.UseVisualStyleBackColor = true;
+            this.btnStartScriptedMapEventSuccessCondition.Click += new System.EventHandler(this.btnStartScriptedMapEventSuccessCondition_Click);
+            // 
+            // txtStartScriptedMapEventTimeLimit
+            // 
+            this.txtStartScriptedMapEventTimeLimit.Location = new System.Drawing.Point(99, 181);
+            this.txtStartScriptedMapEventTimeLimit.Name = "txtStartScriptedMapEventTimeLimit";
+            this.txtStartScriptedMapEventTimeLimit.Size = new System.Drawing.Size(374, 20);
+            this.txtStartScriptedMapEventTimeLimit.TabIndex = 11;
+            this.txtStartScriptedMapEventTimeLimit.Leave += new System.EventHandler(this.txtStartScriptedMapEventTimeLimit_Leave);
+            // 
+            // lblStartScriptedMapEventTimeLimit
+            // 
+            this.lblStartScriptedMapEventTimeLimit.AutoSize = true;
+            this.lblStartScriptedMapEventTimeLimit.Location = new System.Drawing.Point(39, 184);
+            this.lblStartScriptedMapEventTimeLimit.Name = "lblStartScriptedMapEventTimeLimit";
+            this.lblStartScriptedMapEventTimeLimit.Size = new System.Drawing.Size(57, 13);
+            this.lblStartScriptedMapEventTimeLimit.TabIndex = 10;
+            this.lblStartScriptedMapEventTimeLimit.Text = "Time Limit:";
+            // 
+            // txtStartScriptedMapEventId
+            // 
+            this.txtStartScriptedMapEventId.Location = new System.Drawing.Point(99, 152);
+            this.txtStartScriptedMapEventId.Name = "txtStartScriptedMapEventId";
+            this.txtStartScriptedMapEventId.Size = new System.Drawing.Size(374, 20);
+            this.txtStartScriptedMapEventId.TabIndex = 9;
+            this.txtStartScriptedMapEventId.Leave += new System.EventHandler(this.txtStartScriptedMapEventId_Leave);
+            // 
+            // lblStartScriptedMapEventId
+            // 
+            this.lblStartScriptedMapEventId.AutoSize = true;
+            this.lblStartScriptedMapEventId.Location = new System.Drawing.Point(46, 155);
+            this.lblStartScriptedMapEventId.Name = "lblStartScriptedMapEventId";
+            this.lblStartScriptedMapEventId.Size = new System.Drawing.Size(50, 13);
+            this.lblStartScriptedMapEventId.TabIndex = 8;
+            this.lblStartScriptedMapEventId.Text = "Event Id:";
+            // 
+            // txtStartScriptedMapEventSuccessScript
+            // 
+            this.txtStartScriptedMapEventSuccessScript.Location = new System.Drawing.Point(229, 74);
+            this.txtStartScriptedMapEventSuccessScript.Name = "txtStartScriptedMapEventSuccessScript";
+            this.txtStartScriptedMapEventSuccessScript.Size = new System.Drawing.Size(195, 20);
+            this.txtStartScriptedMapEventSuccessScript.TabIndex = 7;
+            this.txtStartScriptedMapEventSuccessScript.Leave += new System.EventHandler(this.txtStartScriptedMapEventSuccessScript_Leave);
+            // 
+            // lblStartScriptedMapEventSuccessCondition
+            // 
+            this.lblStartScriptedMapEventSuccessCondition.AutoSize = true;
+            this.lblStartScriptedMapEventSuccessCondition.Location = new System.Drawing.Point(27, 56);
+            this.lblStartScriptedMapEventSuccessCondition.Name = "lblStartScriptedMapEventSuccessCondition";
+            this.lblStartScriptedMapEventSuccessCondition.Size = new System.Drawing.Size(98, 13);
+            this.lblStartScriptedMapEventSuccessCondition.TabIndex = 5;
+            this.lblStartScriptedMapEventSuccessCondition.Text = "Success Condition:";
+            // 
+            // lblStartScriptedMapEventTooltip
+            // 
+            this.lblStartScriptedMapEventTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblStartScriptedMapEventTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblStartScriptedMapEventTooltip.Name = "lblStartScriptedMapEventTooltip";
+            this.lblStartScriptedMapEventTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblStartScriptedMapEventTooltip.TabIndex = 0;
+            this.lblStartScriptedMapEventTooltip.Text = "Starts a scripted map event with the given Id, targets, conditions and scripts.";
+            // 
+            // frmCommandRemoveScriptedMapEventTarget
+            // 
+            this.frmCommandRemoveScriptedMapEventTarget.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandRemoveScriptedMapEventTarget.Controls.Add(this.txtRemoveScriptedMapEventTargetEventId);
+            this.frmCommandRemoveScriptedMapEventTarget.Controls.Add(this.cmbRemoveScriptedMapEventTarget);
+            this.frmCommandRemoveScriptedMapEventTarget.Controls.Add(this.lblRemoveScriptedMapEventTarget);
+            this.frmCommandRemoveScriptedMapEventTarget.Controls.Add(this.lblRemoveScriptedMapEventTargetCondition);
+            this.frmCommandRemoveScriptedMapEventTarget.Controls.Add(this.lblRemoveScriptedMapEventTargetEventId);
+            this.frmCommandRemoveScriptedMapEventTarget.Controls.Add(this.btnRemoveScriptedMapEventTargetCondition);
+            this.frmCommandRemoveScriptedMapEventTarget.Controls.Add(this.label5);
+            this.frmCommandRemoveScriptedMapEventTarget.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandRemoveScriptedMapEventTarget.Name = "frmCommandRemoveScriptedMapEventTarget";
+            this.frmCommandRemoveScriptedMapEventTarget.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandRemoveScriptedMapEventTarget.TabIndex = 59;
+            this.frmCommandRemoveScriptedMapEventTarget.Visible = false;
+            // 
+            // txtRemoveScriptedMapEventTargetEventId
+            // 
+            this.txtRemoveScriptedMapEventTargetEventId.Location = new System.Drawing.Point(99, 58);
+            this.txtRemoveScriptedMapEventTargetEventId.Name = "txtRemoveScriptedMapEventTargetEventId";
+            this.txtRemoveScriptedMapEventTargetEventId.Size = new System.Drawing.Size(374, 20);
+            this.txtRemoveScriptedMapEventTargetEventId.TabIndex = 8;
+            this.txtRemoveScriptedMapEventTargetEventId.Leave += new System.EventHandler(this.txtRemoveScriptedMapEventTargetEventId_Leave);
+            // 
+            // cmbRemoveScriptedMapEventTarget
+            // 
+            this.cmbRemoveScriptedMapEventTarget.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRemoveScriptedMapEventTarget.FormattingEnabled = true;
+            this.cmbRemoveScriptedMapEventTarget.Items.AddRange(new object[] {
+            "Self",
+            "One Matching Condition",
+            "All Matching Condition",
+            "All Targets"});
+            this.cmbRemoveScriptedMapEventTarget.Location = new System.Drawing.Point(99, 120);
+            this.cmbRemoveScriptedMapEventTarget.Name = "cmbRemoveScriptedMapEventTarget";
+            this.cmbRemoveScriptedMapEventTarget.Size = new System.Drawing.Size(374, 21);
+            this.cmbRemoveScriptedMapEventTarget.TabIndex = 7;
+            this.cmbRemoveScriptedMapEventTarget.SelectedIndexChanged += new System.EventHandler(this.cmbRemoveScriptedMapEventTarget_SelectedIndexChanged);
+            // 
+            // lblRemoveScriptedMapEventTarget
+            // 
+            this.lblRemoveScriptedMapEventTarget.AutoSize = true;
+            this.lblRemoveScriptedMapEventTarget.Location = new System.Drawing.Point(55, 123);
+            this.lblRemoveScriptedMapEventTarget.Name = "lblRemoveScriptedMapEventTarget";
+            this.lblRemoveScriptedMapEventTarget.Size = new System.Drawing.Size(41, 13);
+            this.lblRemoveScriptedMapEventTarget.TabIndex = 6;
+            this.lblRemoveScriptedMapEventTarget.Text = "Target:";
+            // 
+            // lblRemoveScriptedMapEventTargetCondition
+            // 
+            this.lblRemoveScriptedMapEventTargetCondition.AutoSize = true;
+            this.lblRemoveScriptedMapEventTargetCondition.Location = new System.Drawing.Point(30, 93);
+            this.lblRemoveScriptedMapEventTargetCondition.Name = "lblRemoveScriptedMapEventTargetCondition";
+            this.lblRemoveScriptedMapEventTargetCondition.Size = new System.Drawing.Size(66, 13);
+            this.lblRemoveScriptedMapEventTargetCondition.TabIndex = 4;
+            this.lblRemoveScriptedMapEventTargetCondition.Text = "Condition Id:";
+            // 
+            // lblRemoveScriptedMapEventTargetEventId
+            // 
+            this.lblRemoveScriptedMapEventTargetEventId.AutoSize = true;
+            this.lblRemoveScriptedMapEventTargetEventId.Location = new System.Drawing.Point(46, 61);
+            this.lblRemoveScriptedMapEventTargetEventId.Name = "lblRemoveScriptedMapEventTargetEventId";
+            this.lblRemoveScriptedMapEventTargetEventId.Size = new System.Drawing.Size(50, 13);
+            this.lblRemoveScriptedMapEventTargetEventId.TabIndex = 3;
+            this.lblRemoveScriptedMapEventTargetEventId.Text = "Event Id:";
+            // 
+            // btnRemoveScriptedMapEventTargetCondition
+            // 
+            this.btnRemoveScriptedMapEventTargetCondition.Location = new System.Drawing.Point(99, 90);
+            this.btnRemoveScriptedMapEventTargetCondition.Name = "btnRemoveScriptedMapEventTargetCondition";
+            this.btnRemoveScriptedMapEventTargetCondition.Size = new System.Drawing.Size(374, 23);
+            this.btnRemoveScriptedMapEventTargetCondition.TabIndex = 1;
+            this.btnRemoveScriptedMapEventTargetCondition.Text = "-NONE-";
+            this.btnRemoveScriptedMapEventTargetCondition.UseVisualStyleBackColor = true;
+            this.btnRemoveScriptedMapEventTargetCondition.Click += new System.EventHandler(this.btnRemoveScriptedMapEventTargetCondition_Click);
+            // 
+            // label5
+            // 
+            this.label5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label5.Location = new System.Drawing.Point(20, 10);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(453, 32);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Removes an additional WorldObject target from the scripted map event with the giv" +
+    "en Id.";
+            // 
+            // frmCommandSetScriptedMapEventData
+            // 
+            this.frmCommandSetScriptedMapEventData.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandSetScriptedMapEventData.Controls.Add(this.txtSetScriptedMapEventData);
+            this.frmCommandSetScriptedMapEventData.Controls.Add(this.lblSetScriptedMapEventData);
+            this.frmCommandSetScriptedMapEventData.Controls.Add(this.txtSetScriptedMapEventDataIndex);
+            this.frmCommandSetScriptedMapEventData.Controls.Add(this.txtSetScriptedMapEventDataEventId);
+            this.frmCommandSetScriptedMapEventData.Controls.Add(this.cmbSetScriptedMapEventDataMode);
+            this.frmCommandSetScriptedMapEventData.Controls.Add(this.lblSetScriptedMapEventDataMode);
+            this.frmCommandSetScriptedMapEventData.Controls.Add(this.lblSetScriptedMapEventDataIndex);
+            this.frmCommandSetScriptedMapEventData.Controls.Add(this.lblSetScriptedMapEventDataEventId);
+            this.frmCommandSetScriptedMapEventData.Controls.Add(this.lblSetScriptedMapEventDataTooltip);
+            this.frmCommandSetScriptedMapEventData.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandSetScriptedMapEventData.Name = "frmCommandSetScriptedMapEventData";
+            this.frmCommandSetScriptedMapEventData.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandSetScriptedMapEventData.TabIndex = 60;
+            this.frmCommandSetScriptedMapEventData.Visible = false;
+            // 
+            // txtSetScriptedMapEventData
+            // 
+            this.txtSetScriptedMapEventData.Location = new System.Drawing.Point(99, 155);
+            this.txtSetScriptedMapEventData.Name = "txtSetScriptedMapEventData";
+            this.txtSetScriptedMapEventData.Size = new System.Drawing.Size(374, 20);
+            this.txtSetScriptedMapEventData.TabIndex = 11;
+            this.txtSetScriptedMapEventData.Leave += new System.EventHandler(this.txtSetScriptedMapEventData_Leave);
+            // 
+            // lblSetScriptedMapEventData
+            // 
+            this.lblSetScriptedMapEventData.AutoSize = true;
+            this.lblSetScriptedMapEventData.Location = new System.Drawing.Point(62, 158);
+            this.lblSetScriptedMapEventData.Name = "lblSetScriptedMapEventData";
+            this.lblSetScriptedMapEventData.Size = new System.Drawing.Size(33, 13);
+            this.lblSetScriptedMapEventData.TabIndex = 10;
+            this.lblSetScriptedMapEventData.Text = "Data:";
+            // 
+            // txtSetScriptedMapEventDataIndex
+            // 
+            this.txtSetScriptedMapEventDataIndex.Location = new System.Drawing.Point(99, 90);
+            this.txtSetScriptedMapEventDataIndex.Name = "txtSetScriptedMapEventDataIndex";
+            this.txtSetScriptedMapEventDataIndex.Size = new System.Drawing.Size(374, 20);
+            this.txtSetScriptedMapEventDataIndex.TabIndex = 9;
+            this.txtSetScriptedMapEventDataIndex.Leave += new System.EventHandler(this.txtSetScriptedMapEventDataIndex_Leave);
+            // 
+            // txtSetScriptedMapEventDataEventId
+            // 
+            this.txtSetScriptedMapEventDataEventId.Location = new System.Drawing.Point(99, 58);
+            this.txtSetScriptedMapEventDataEventId.Name = "txtSetScriptedMapEventDataEventId";
+            this.txtSetScriptedMapEventDataEventId.Size = new System.Drawing.Size(374, 20);
+            this.txtSetScriptedMapEventDataEventId.TabIndex = 8;
+            this.txtSetScriptedMapEventDataEventId.Leave += new System.EventHandler(this.txtSetScriptedMapEventDataEventId_Leave);
+            // 
+            // cmbSetScriptedMapEventDataMode
+            // 
+            this.cmbSetScriptedMapEventDataMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSetScriptedMapEventDataMode.FormattingEnabled = true;
+            this.cmbSetScriptedMapEventDataMode.Items.AddRange(new object[] {
+            "Save Raw Value",
+            "Increment Existing Data",
+            "Decrement Existing Data"});
+            this.cmbSetScriptedMapEventDataMode.Location = new System.Drawing.Point(99, 122);
+            this.cmbSetScriptedMapEventDataMode.Name = "cmbSetScriptedMapEventDataMode";
+            this.cmbSetScriptedMapEventDataMode.Size = new System.Drawing.Size(374, 21);
+            this.cmbSetScriptedMapEventDataMode.TabIndex = 7;
+            this.cmbSetScriptedMapEventDataMode.SelectedIndexChanged += new System.EventHandler(this.cmbSetScriptedMapEventDataMode_SelectedIndexChanged);
+            // 
+            // lblSetScriptedMapEventDataMode
+            // 
+            this.lblSetScriptedMapEventDataMode.AutoSize = true;
+            this.lblSetScriptedMapEventDataMode.Location = new System.Drawing.Point(58, 125);
+            this.lblSetScriptedMapEventDataMode.Name = "lblSetScriptedMapEventDataMode";
+            this.lblSetScriptedMapEventDataMode.Size = new System.Drawing.Size(37, 13);
+            this.lblSetScriptedMapEventDataMode.TabIndex = 6;
+            this.lblSetScriptedMapEventDataMode.Text = "Mode:";
+            // 
+            // lblSetScriptedMapEventDataIndex
+            // 
+            this.lblSetScriptedMapEventDataIndex.AutoSize = true;
+            this.lblSetScriptedMapEventDataIndex.Location = new System.Drawing.Point(59, 93);
+            this.lblSetScriptedMapEventDataIndex.Name = "lblSetScriptedMapEventDataIndex";
+            this.lblSetScriptedMapEventDataIndex.Size = new System.Drawing.Size(36, 13);
+            this.lblSetScriptedMapEventDataIndex.TabIndex = 4;
+            this.lblSetScriptedMapEventDataIndex.Text = "Index:";
+            // 
+            // lblSetScriptedMapEventDataEventId
+            // 
+            this.lblSetScriptedMapEventDataEventId.AutoSize = true;
+            this.lblSetScriptedMapEventDataEventId.Location = new System.Drawing.Point(45, 61);
+            this.lblSetScriptedMapEventDataEventId.Name = "lblSetScriptedMapEventDataEventId";
+            this.lblSetScriptedMapEventDataEventId.Size = new System.Drawing.Size(50, 13);
+            this.lblSetScriptedMapEventDataEventId.TabIndex = 3;
+            this.lblSetScriptedMapEventDataEventId.Text = "Event Id:";
+            // 
+            // lblSetScriptedMapEventDataTooltip
+            // 
+            this.lblSetScriptedMapEventDataTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblSetScriptedMapEventDataTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblSetScriptedMapEventDataTooltip.Name = "lblSetScriptedMapEventDataTooltip";
+            this.lblSetScriptedMapEventDataTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblSetScriptedMapEventDataTooltip.TabIndex = 0;
+            this.lblSetScriptedMapEventDataTooltip.Text = "Saves data to a scripted map event.";
+            // 
             // FormScriptEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 620);
+            this.Controls.Add(this.frmCommandSetScriptedMapEventData);
+            this.Controls.Add(this.frmCommandRemoveScriptedMapEventTarget);
+            this.Controls.Add(this.frmCommandStartScriptedMapEvent);
             this.Controls.Add(this.frmCommandStartWaypoints);
             this.Controls.Add(this.frmCommandSetReactState);
             this.Controls.Add(this.frmCommandSpellCooldown);
@@ -5211,6 +5597,12 @@
             this.frmCommandSetReactState.PerformLayout();
             this.frmCommandStartWaypoints.ResumeLayout(false);
             this.frmCommandStartWaypoints.PerformLayout();
+            this.frmCommandStartScriptedMapEvent.ResumeLayout(false);
+            this.frmCommandStartScriptedMapEvent.PerformLayout();
+            this.frmCommandRemoveScriptedMapEventTarget.ResumeLayout(false);
+            this.frmCommandRemoveScriptedMapEventTarget.PerformLayout();
+            this.frmCommandSetScriptedMapEventData.ResumeLayout(false);
+            this.frmCommandSetScriptedMapEventData.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -5650,6 +6042,40 @@
         private System.Windows.Forms.Label lblStartWaypointsTooltip;
         private System.Windows.Forms.Label lblMoveToPointId;
         private System.Windows.Forms.TextBox txtMoveToPointId;
+        private System.Windows.Forms.Panel frmCommandStartScriptedMapEvent;
+        private System.Windows.Forms.Button btnStartScriptedMapEventFailureScriptEdit;
+        private System.Windows.Forms.Button btnStartScriptedMapEventSuccessScriptEdit;
+        private System.Windows.Forms.Label lblStartScriptedMapEventFailureScript;
+        private System.Windows.Forms.Button btnStartScriptedMapEventFailureCondition;
+        private System.Windows.Forms.TextBox txtStartScriptedMapEventFailureScript;
+        private System.Windows.Forms.Label lblStartScriptedMapEventFailureCondition;
+        private System.Windows.Forms.Label lblStartScriptedMapEventSuccessScript;
+        private System.Windows.Forms.Button btnStartScriptedMapEventSuccessCondition;
+        private System.Windows.Forms.TextBox txtStartScriptedMapEventTimeLimit;
+        private System.Windows.Forms.Label lblStartScriptedMapEventTimeLimit;
+        private System.Windows.Forms.TextBox txtStartScriptedMapEventId;
+        private System.Windows.Forms.Label lblStartScriptedMapEventId;
+        private System.Windows.Forms.TextBox txtStartScriptedMapEventSuccessScript;
+        private System.Windows.Forms.Label lblStartScriptedMapEventSuccessCondition;
+        private System.Windows.Forms.Label lblStartScriptedMapEventTooltip;
+        private System.Windows.Forms.Panel frmCommandRemoveScriptedMapEventTarget;
+        private System.Windows.Forms.ComboBox cmbRemoveScriptedMapEventTarget;
+        private System.Windows.Forms.Label lblRemoveScriptedMapEventTarget;
+        private System.Windows.Forms.Label lblRemoveScriptedMapEventTargetCondition;
+        private System.Windows.Forms.Label lblRemoveScriptedMapEventTargetEventId;
+        private System.Windows.Forms.Button btnRemoveScriptedMapEventTargetCondition;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtRemoveScriptedMapEventTargetEventId;
+        private System.Windows.Forms.Panel frmCommandSetScriptedMapEventData;
+        private System.Windows.Forms.TextBox txtSetScriptedMapEventData;
+        private System.Windows.Forms.Label lblSetScriptedMapEventData;
+        private System.Windows.Forms.TextBox txtSetScriptedMapEventDataIndex;
+        private System.Windows.Forms.TextBox txtSetScriptedMapEventDataEventId;
+        private System.Windows.Forms.ComboBox cmbSetScriptedMapEventDataMode;
+        private System.Windows.Forms.Label lblSetScriptedMapEventDataMode;
+        private System.Windows.Forms.Label lblSetScriptedMapEventDataIndex;
+        private System.Windows.Forms.Label lblSetScriptedMapEventDataEventId;
+        private System.Windows.Forms.Label lblSetScriptedMapEventDataTooltip;
     }
 }
 
