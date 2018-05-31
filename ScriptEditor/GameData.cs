@@ -1584,6 +1584,7 @@ namespace ScriptEditor
             ConditionNamesList.Add(new ComboboxPair("IS_IN_COMBAT", 43));
             ConditionNamesList.Add(new ComboboxPair("IS_HOSTILE_TO", 44));
             ConditionNamesList.Add(new ComboboxPair("IS_IN_GROUP", 45));
+            ConditionNamesList.Add(new ComboboxPair("IS_ALIVE", 46));
         }
     }
     public struct BroadcastText

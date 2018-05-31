@@ -128,6 +128,8 @@ namespace ScriptEditor
             cmbCommandId.Items.Add(new ComboboxPair("Remove Map Event Target", 64));
             cmbCommandId.Items.Add(new ComboboxPair("Set Map Event Data", 65));
             cmbCommandId.Items.Add(new ComboboxPair("Send Map Event", 66));
+            cmbCommandId.Items.Add(new ComboboxPair("Set Default Movement", 67));
+
             cmbCommandId.SelectedIndex = 0;
 
             // Add option to Buddy Type combo box.
@@ -424,7 +426,7 @@ namespace ScriptEditor
         {
             dontUpdate = true;
 
-            // Talk Command (0)
+            // Talk (0)
             frmCommandTalk.Visible = false;
             btnTalkText1.Text = "-NONE-";
             btnTalkText2.Text = "-NONE-";
@@ -436,16 +438,16 @@ namespace ScriptEditor
             txtTalkText4.Text = "";
             cmbTalkChatType.SelectedIndex = 0;
 
-            // Emote Command (1)
+            // Emote (1)
             frmCommandEmote.Visible = false;
             cmbEmoteId.SelectedIndex = 0;
 
-            // Field Set Command (2)
+            // Field Set (2)
             cmbFieldSetFields.SelectedIndex = 0;
             txtFieldSetValue.Text = "";
             frmCommandFieldSet.Visible = false;
 
-            // Move To Command (3)
+            // Move To (3)
             cmbMoveToType.SelectedIndex = 0;
             txtMoveToTime.Text = "";
             txtMoveToX.Text = "";
@@ -471,18 +473,18 @@ namespace ScriptEditor
             txtMoveToPointId.Enabled = false;
             frmCommandMoveTo.Visible = false;
 
-            // Modify Flags Command (4)
+            // Modify Flags (4)
             cmbModifyFlagsFieldId.SelectedIndex = 0;
             cmbModifyFlagsMode.SelectedIndex = 0;
             Command4ResetAllCheckboxes();
             frmCommandModifyFlags.Visible = false;
 
-            // Interrupt Casts Command (5)
+            // Interrupt Casts (5)
             btnInterruptCastsSpellId.Text = "-NONE-";
             cmbInterruptCastsWithDelayed.SelectedIndex = 0;
             frmCommandInterruptCasts.Visible = false;
 
-            // Teleport Command (6)
+            // Teleport (6)
             txtTeleportX.Text = "";
             txtTeleportY.Text = "";
             txtTeleportZ.Text = "";
@@ -496,22 +498,22 @@ namespace ScriptEditor
             chkTeleportOptions32.Checked = false;
             frmCommandTeleport.Visible = false;
 
-            // Quest Complete Command (7)
+            // Quest Complete (7)
             btnQuestCompleteId.Text = "-NONE-";
             txtQuestCompleteDistance.Text = "";
             frmCommandQuestComplete.Visible = false;
 
-            // Kill Credit Command (8)
+            // Kill Credit (8)
             btnKillCreditCreatureId.Text = "-NONE-";
             cmbKillCreditType.SelectedIndex = 0;
             frmCommandKillCredit.Visible = false;
 
-            // Respawn GameObject Command (9)
+            // Respawn GameObject (9)
             txtRespawnGameobjectDelay.Text = "";
             txtRespawnGameobjectGuid.Text = "";
             frmCommandRespawnGameobject.Visible = false;
 
-            // Summon Creature Command (10)
+            // Summon Creature (10)
             btnSummonCreatureId.Text = "-NONE-";
             txtSummonCreatureDelay.Text = "";
             txtSummonCreatureUniqueLimit.Text = "";
@@ -529,16 +531,16 @@ namespace ScriptEditor
             chkSummonCreatureFlags8.Checked = false;
             frmCommandSummonCreature.Visible = false;
 
-            // Open/Close Door and Activate GameObject Commands (11, 12, 13)
+            // Open/Close Door and Activate GameObject (11, 12, 13)
             txtDoorGuid.Text = "";
             txtDoorResetDelay.Text = "";
             frmCommandDoor.Visible = false;
 
-            // Remove Aura Command (14)
+            // Remove Aura (14)
             btnRemoveAuraSpellId.Text = "-NONE-";
             frmCommandRemoveAura.Visible = false;
 
-            // Cast Spell Command (15)
+            // Cast Spell (15)
             btnCastSpellId.Text = "-NONE-";
             chkCastSpellFlags1.Checked = false;
             chkCastSpellFlags2.Checked = false;
@@ -549,31 +551,32 @@ namespace ScriptEditor
             chkCastSpellFlags128.Checked = false;
             frmCommandCastSpell.Visible = false;
 
-            // Play Sound Command (16)
+            // Play Sound (16)
             btnPlaySoundId.Text = "-NONE-";
             chkPlaySoundFlags1.Checked = false;
             chkPlaySoundFlags2.Checked = false;
             frmCommandPlaySound.Visible = false;
 
-            // Create Item and Remove Item Commands (17, 40)
+            // Create Item and Remove Item (17, 40)
             btnCreateItemId.Text = "-NONE-";
             txtCreateItemAmount.Text = "";
             frmCommandCreateItem.Visible = false;
 
-            // Despawn Creature Command (18)
+            // Despawn Creature (18)
             txtDespawnCreatureDelay.Text = "";
             frmCommandDespawnCreature.Visible = false;
 
-            // Set Equipment Command (19)
+            // Set Equipment (19)
             btnSetEquipmentMainHand.Text = "-NONE-";
             btnSetEquipmentOffHand.Text = "-NONE-";
             btnSetEquipmentRanged.Text = "-NONE-";
             cmbSetEquipmentUseDefault.SelectedIndex = 0;
             frmCommandSetEquipment.Visible = false;
 
-            // Set Movement Command (20)
+            // Set Movement (20)
             cmbSetMovementType.SelectedIndex = 0;
             cmbSetMovementBoolParam.SelectedIndex = 0;
+            cmbSetMovementClearMotionMaster.SelectedIndex = 0;
             cmbSetMovementBoolParam.Enabled = false;
             lblSetMovementBoolParam.Text = "Bool Param:";
             txtSetMovementIntParam.Enabled = false;
@@ -587,61 +590,61 @@ namespace ScriptEditor
             lblSetMovementIntParam.Location = new Point(txtSetMovementIntParam.Location.X - lblSetMovementIntParam.Size.Width - 4, lblSetMovementIntParam.Location.Y);
             frmCommandSetMovement.Visible = false;
 
-            // Set Active Object Command (21)
-            // Set Melee Attack Command (42)
-            // Set Combat Movement Command (43)
+            // Set Active Object (21)
+            // Set Melee Attack (42)
+            // Set Combat Movement (43)
             cmbActiveObjectSetActive.SelectedIndex = 0;
             frmCommandActiveObject.Visible = false;
 
-            // Set Faction Command (22)
+            // Set Faction (22)
             btnSetFactionId.Text = "-NONE-";
             chkSetFactionFlag1.Checked = false;
             chkSetFactionFlag2.Checked = false;
             chkSetFactionFlag4.Checked = false;
             frmCommandSetFaction.Visible = false;
 
-            // Morph (23) and Mount Commands (24)
+            // Morph (23) and Mount (24)
             btnMorphOrMountId.Text = "-NONE-";
             cmbMorphOrMountType.SelectedIndex = 0;
             frmCommandMorphOrMount.Visible = false;
 
-            // Set Run Command (25)
+            // Set Run (25)
             cmbSetRunMode.SelectedIndex = 0;
             frmCommandSetRun.Visible = false;
 
-            // Update Entry Command (27)
-            // Remove Guardians Command (56)
+            // Update Entry (27)
+            // Remove Guardians (56)
             btnUpdateEntryCreatureId.Text = "-NONE-";
             cmbUpdateEntryTeam.SelectedIndex = 0;
             frmCommandUpdateEntry.Visible = false;
 
-            // Set Stand State Command (28)
+            // Set Stand State (28)
             cmbSetStandState.SelectedIndex = 0;
             frmCommandSetStandState.Visible = false;
 
-            // Modify Threat Command (29)
+            // Modify Threat (29)
             cmbModifyThreatTarget.SelectedIndex = 0;
             txtModifyThreatPercent.Text = "";
             frmCommandModifyThreat.Visible = false;
 
-            // Send Taxi Path Command (30)
+            // Send Taxi Path (30)
             btnSendTaxiPathId.Text = "-NONE-";
             txtSendTaxiPath.Text = "";
             frmCommandSendTaxiPath.Visible = false;
 
-            // Terminate Script Command (31)
+            // Terminate Script (31)
             btnTerminateScriptCreatureId.Text = "-NONE-";
             txtTerminateScriptSearchRadius.Text = "";
             cmbTerminateScriptCondition.SelectedIndex = 0;
             frmCommandTerminateScript.Visible = false;
 
-            // Terminate Condition Command (32)
+            // Terminate Condition (32)
             btnTerminateConditionId.Text = "-NONE-";
             btnTerminateConditionQuest.Text = "-NONE-";
             cmbTerminateConditionRule.SelectedIndex = 0;
             frmCommandTerminateCondition.Visible = false;
 
-            // Set Home Position Command (34)
+            // Set Home Position (34)
             cmbSetHomePositionMode.SelectedIndex = 0;
             txtSetHomePositionX.Text = "";
             txtSetHomePositionY.Text = "";
@@ -649,22 +652,22 @@ namespace ScriptEditor
             txtSetHomePositionO.Text = "";
             frmCommandSetHomePosition.Visible = false;
 
-            // Set Facing Command (35)
+            // Set Facing (35)
             txtSetFacingOrientation.Text = "";
             cmbSetFacingMode.SelectedIndex = 0;
             frmCommandSetFacing.Visible = false;
 
-            // Meeting Stone Command (36)
+            // Meeting Stone (36)
             btnMeetingStoneAreaId.Text = "-NONE-";
             frmCommandMeetingStone.Visible = false;
 
-            // Set Data Commands (37 and 38)
+            // Set Data (37 and 38)
             cmbSetDataMode.SelectedIndex = 0;
             txtSetDataField.Text = "";
             txtSetDataValue.Text = "";
             frmCommandSetData.Visible = false;
 
-            // Start Script Command (39)
+            // Start Script (39)
             txtStartScriptId1.Text = "";
             txtStartScriptId2.Text = "";
             txtStartScriptId3.Text = "";
@@ -675,34 +678,34 @@ namespace ScriptEditor
             txtStartScriptChance4.Text = "";
             frmCommandStartScript.Visible = false;
 
-            // Set AI Phase Command (44)
-            // Deal Damage Command (48)
-            // Set Invincibility HP Command (52)
-            // End Scripted Map Event Command (62)
+            // Set AI Phase (44)
+            // Deal Damage (48)
+            // Set Invincibility HP (52)
+            // End Scripted Map Event (62)
             txtSetPhasePhase.Text = "";
             cmbSetPhaseMode.SelectedIndex = 0;
             frmCommandSetPhase.Visible = false;
 
-            // Set Random AI Phase Command (45)
-            // Set Range AI Phase Command (46)
-            // Set Server Variable Command (54)
+            // Set Random AI Phase (45)
+            // Set Range AI Phase (46)
+            // Set Server Variable (54)
             txtSetRandomPhase1.Text = "";
             txtSetRandomPhase2.Text = "";
             txtSetRandomPhase3.Text = "";
             txtSetRandomPhase4.Text = "";
             frmCommandSetRandomPhase.Visible = false;
 
-            // Flee Command (47)
-            // Combat Pulse Command (49)
-            // Set Sheath State Command (51)
+            // Flee (47)
+            // Combat Pulse (49)
+            // Set Sheath State (51)
             cmbFleeMode.SelectedIndex = 0;
             frmCommandFlee.Visible = false;
 
-            // Call for Help Command (50)
+            // Call for Help (50)
             txtCallForHelpRadius.Text = "";
             frmCommandCallForHelp.Visible = false;
 
-            // Start Game Event Command (53)
+            // Start Game Event (53)
             btnGameEventId.Text = "-NONE-";
             cmbGameEventAction.SelectedIndex = 0;
             cmbGameEventOverwrite.SelectedIndex = 0;
@@ -729,7 +732,7 @@ namespace ScriptEditor
             cmbSetReactState.SelectedIndex = 0;
             frmCommandSetReactState.Visible = false;
 
-            // Start Waypoints Command (60)
+            // Start Waypoints (60)
             cmbStartWaypointsRepeat.SelectedIndex = 0;
             cmbStartWaypointsSource.SelectedIndex = 0;
             txtStartWaypointsStartPoint.Text = "";
@@ -738,8 +741,8 @@ namespace ScriptEditor
             txtStartWaypointsEntry.Text = "";
             frmCommandStartWaypoints.Visible = false;
 
-            // Start Scripted Map Event Command (61)
-            // Add Scripted Map Event Target Command (63)
+            // Start Scripted Map Event (61)
+            // Add Scripted Map Event Target (63)
             txtStartScriptedMapEventFailureScript.Text = "";
             txtStartScriptedMapEventSuccessScript.Text = "";
             txtStartScriptedMapEventId.Text = "";
@@ -748,19 +751,25 @@ namespace ScriptEditor
             btnStartScriptedMapEventSuccessCondition.Text = "-NONE-";
             frmCommandStartScriptedMapEvent.Visible = false;
 
-            // Remove Scripted Map Event Target Command (64)
+            // Remove Scripted Map Event Target (64)
             btnRemoveScriptedMapEventTargetCondition.Text = "-NONE-";
             txtRemoveScriptedMapEventTargetEventId.Text = "";
             cmbRemoveScriptedMapEventTarget.SelectedIndex = 0;
             frmCommandRemoveScriptedMapEventTarget.Visible = false;
 
-            // Set Scripted Map Event Data Command (65)
-            // Send Scripted Map Event Command (66)
+            // Set Scripted Map Event Data (65)
+            // Send Scripted Map Event (66)
             txtSetScriptedMapEventData.Text = "";
             txtSetScriptedMapEventDataEventId.Text = "";
             txtSetScriptedMapEventDataIndex.Text = "";
             cmbSetScriptedMapEventDataMode.SelectedIndex = 0;
             frmCommandSetScriptedMapEventData.Visible = false;
+
+            // Set Default Movement (67)
+            cmbSetDefaultMovementType.SelectedIndex = 0;
+            cmbSetDefaultMovementAlwaysReplace.SelectedIndex = 0;
+            txtSetDefaultMovementParam1.Text = "";
+            frmCommandSetDefaultMovement.Visible = false;
 
             dontUpdate = false;
         }
@@ -1164,6 +1173,12 @@ namespace ScriptEditor
                     cmbSetMovementType.SelectedIndex = GameData.FindIndexOfMotionType(motionType);
                     switch (motionType)
                     {
+                        case 0: // IDLE_MOTION_TYPE
+                        {
+                            cmbSetMovementClearMotionMaster.Enabled = true;
+                            cmbSetMovementClearMotionMaster.SelectedIndex = (int)selectedAction.Datalong4;
+                            break;
+                        }
                         case 1: // RANDOM_MOTION_TYPE
                         {
                             cmbSetMovementBoolParam.Enabled = true;
@@ -1171,6 +1186,8 @@ namespace ScriptEditor
                             lblSetMovementBoolParam.Text = "Current Position:";
                             txtSetMovementDistance.Enabled = true;
                             txtSetMovementDistance.Text = selectedAction.X.ToString();
+                            cmbSetMovementClearMotionMaster.Enabled = true;
+                            cmbSetMovementClearMotionMaster.SelectedIndex = (int)selectedAction.Datalong4;
                             break;
                         }
                         case 2: // WAYPOINT_MOTION_TYPE
@@ -1182,6 +1199,8 @@ namespace ScriptEditor
                             txtSetMovementIntParam.Enabled = true;
                             txtSetMovementIntParam.Text = selectedAction.Datalong3.ToString();
                             lblSetMovementIntParam.Text = "Start Point:";
+                            cmbSetMovementClearMotionMaster.Enabled = true;
+                            cmbSetMovementClearMotionMaster.SelectedIndex = (int)selectedAction.Datalong4;
                             break;
                         }
                         case 5: // CHASE_MOTION_TYPE
@@ -1381,23 +1400,29 @@ namespace ScriptEditor
                 case 34: // Set Home Position
                 {
                     cmbSetHomePositionMode.SelectedIndex = (int)selectedAction.Datalong;
-                    if (selectedAction.Datalong == 0) // Use provided coordinates
+                    switch (selectedAction.Datalong)
                     {
-                        txtSetHomePositionX.Text = selectedAction.X.ToString();
-                        txtSetHomePositionX.Enabled = true;
-                        txtSetHomePositionY.Text = selectedAction.Y.ToString();
-                        txtSetHomePositionY.Enabled = true;
-                        txtSetHomePositionZ.Text = selectedAction.Z.ToString();
-                        txtSetHomePositionZ.Enabled = true;
-                        txtSetHomePositionO.Text = selectedAction.O.ToString();
-                        txtSetHomePositionO.Enabled = true;
-                    }
-                    else // Use current position
-                    {
-                        txtSetHomePositionX.Enabled = false;
-                        txtSetHomePositionY.Enabled = false;
-                        txtSetHomePositionZ.Enabled = false;
-                        txtSetHomePositionO.Enabled = false;
+                        case 0: // Use provided coordinates
+                        {
+                            txtSetHomePositionX.Text = selectedAction.X.ToString();
+                            txtSetHomePositionX.Enabled = true;
+                            txtSetHomePositionY.Text = selectedAction.Y.ToString();
+                            txtSetHomePositionY.Enabled = true;
+                            txtSetHomePositionZ.Text = selectedAction.Z.ToString();
+                            txtSetHomePositionZ.Enabled = true;
+                            txtSetHomePositionO.Text = selectedAction.O.ToString();
+                            txtSetHomePositionO.Enabled = true;
+                            break;
+                        }
+                        case 1: // Use current position
+                        case 2: // Reset to Default
+                        {
+                            txtSetHomePositionX.Enabled = false;
+                            txtSetHomePositionY.Enabled = false;
+                            txtSetHomePositionZ.Enabled = false;
+                            txtSetHomePositionO.Enabled = false;
+                            break;
+                        }
                     }
                     frmCommandSetHomePosition.Visible = true;
                     break;
@@ -1730,6 +1755,36 @@ namespace ScriptEditor
                     txtSetScriptedMapEventDataEventId.Text = selectedAction.Datalong.ToString();
                     txtSetScriptedMapEventDataIndex.Text = selectedAction.Datalong2.ToString();
                     frmCommandSetScriptedMapEventData.Visible = true;
+                    break;
+                }
+                case 67: // Set Default Movement
+                {
+                    switch (selectedAction.Datalong)
+                    {
+                        case 0: // Idle Movement
+                        {
+                            lblSetDefaultMovementParam1.Text = "Param 1:";
+                            txtSetDefaultMovementParam1.Enabled = false;
+                            break;
+                        }
+                        case 1: // Random Movement
+                        {
+                            lblSetDefaultMovementParam1.Text = "Distance:";
+                            txtSetDefaultMovementParam1.Enabled = true;
+                            break;
+                        }
+                        case 2: // Waypoint Movement
+                        {
+                            lblSetDefaultMovementParam1.Text = "Start Point:";
+                            txtSetDefaultMovementParam1.Enabled = true;
+                            break;
+                        }
+                    }
+                    cmbSetDefaultMovementType.SelectedIndex = (int)selectedAction.Datalong;
+                    cmbSetDefaultMovementAlwaysReplace.SelectedIndex = (int)selectedAction.Datalong2;
+                    txtSetDefaultMovementParam1.Text = selectedAction.Datalong3.ToString();
+                    lblSetDefaultMovementParam1.Location = new Point(txtSetDefaultMovementParam1.Location.X - lblSetDefaultMovementParam1.Size.Width - 4, lblSetDefaultMovementParam1.Location.Y);
+                    frmCommandSetDefaultMovement.Visible = true;
                     break;
                 }
             }
@@ -3187,6 +3242,7 @@ namespace ScriptEditor
                 txtSetMovementDistance.Text = "";
                 txtSetMovementAngle.Enabled = false;
                 txtSetMovementAngle.Text = "";
+                cmbSetMovementClearMotionMaster.Enabled = false;
 
                 // Reseting script action data.
                 currentAction.Datalong2 = 0;
@@ -3197,6 +3253,11 @@ namespace ScriptEditor
 
                 switch (selection)
                 {
+                    case 0: // IDLE_MOTION_TYPE
+                    {
+                        cmbSetMovementClearMotionMaster.Enabled = true;
+                        break;
+                    }
                     case 1: // RANDOM_MOTION_TYPE
                     {
                         cmbSetMovementBoolParam.Enabled = true;
@@ -3204,6 +3265,7 @@ namespace ScriptEditor
                         lblSetMovementBoolParam.Text = "Current Position:";
                         txtSetMovementDistance.Enabled = true;
                         txtSetMovementDistance.Text = "0";
+                        cmbSetMovementClearMotionMaster.Enabled = true;
                         break;
                     }
                     case 2: // WAYPOINT_MOTION_TYPE
@@ -3214,6 +3276,7 @@ namespace ScriptEditor
                         txtSetMovementIntParam.Enabled = true;
                         txtSetMovementIntParam.Text = "0";
                         lblSetMovementIntParam.Text = "Start Point:";
+                        cmbSetMovementClearMotionMaster.Enabled = true;
                         break;
                     }
                     case 5: // CHASE_MOTION_TYPE
@@ -3288,6 +3351,11 @@ namespace ScriptEditor
         private void txtSetMovementAngle_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSetMovementAngle, "O");
+        }
+
+        private void cmbSetMovementClearMotionMaster_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbSetMovementClearMotionMaster, "Datalong4", false);
         }
 
         private void cmbActiveObjectSetActive_SelectedIndexChanged(object sender, EventArgs e)
@@ -3606,29 +3674,34 @@ namespace ScriptEditor
         private void cmbSetHomePositionMode_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbSetHomePositionMode, "Datalong", false);
-            if (cmbSetHomePositionMode.SelectedIndex == 1)
+            switch (cmbSetHomePositionMode.SelectedIndex)
             {
-                // Use current position
-                SetScriptFieldFromValue(0, "X");
-                SetScriptFieldFromValue(0, "Y");
-                SetScriptFieldFromValue(0, "Z");
-                SetScriptFieldFromValue(0, "O");
-                txtSetHomePositionX.Text = "";
-                txtSetHomePositionX.Enabled = false;
-                txtSetHomePositionY.Text = "";
-                txtSetHomePositionY.Enabled = false;
-                txtSetHomePositionZ.Text = "";
-                txtSetHomePositionZ.Enabled = false;
-                txtSetHomePositionO.Text = "";
-                txtSetHomePositionO.Enabled = false;
-            }
-            else
-            {
-                // Use provided coordinates
-                txtSetHomePositionX.Enabled = true;
-                txtSetHomePositionY.Enabled = true;
-                txtSetHomePositionZ.Enabled = true;
-                txtSetHomePositionO.Enabled = true;
+                case 0: // Use provided coordinates
+                {
+
+                    txtSetHomePositionX.Enabled = true;
+                    txtSetHomePositionY.Enabled = true;
+                    txtSetHomePositionZ.Enabled = true;
+                    txtSetHomePositionO.Enabled = true;
+                    break;
+                }
+                case 1: // Use current position
+                case 2: // Reset to Default
+                {
+                    SetScriptFieldFromValue(0, "X");
+                    SetScriptFieldFromValue(0, "Y");
+                    SetScriptFieldFromValue(0, "Z");
+                    SetScriptFieldFromValue(0, "O");
+                    txtSetHomePositionX.Text = "";
+                    txtSetHomePositionX.Enabled = false;
+                    txtSetHomePositionY.Text = "";
+                    txtSetHomePositionY.Enabled = false;
+                    txtSetHomePositionZ.Text = "";
+                    txtSetHomePositionZ.Enabled = false;
+                    txtSetHomePositionO.Text = "";
+                    txtSetHomePositionO.Enabled = false;
+                    break;
+                }
             }
         }
 
@@ -4142,6 +4215,49 @@ namespace ScriptEditor
         private void txtSetScriptedMapEventData_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSetScriptedMapEventData, "Datalong4");
+        }
+
+        private void cmbSetDefaultMovementType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (dontUpdate)
+                return;
+
+            SetScriptFieldFromCombobox(cmbSetDefaultMovementType, "Datalong", false);
+
+            switch (cmbSetDefaultMovementType.SelectedIndex)
+            {
+                case 0: // Idle Movement
+                {
+                    lblSetDefaultMovementParam1.Text = "Param 1:";
+                    txtSetDefaultMovementParam1.Enabled = false;
+                    txtSetDefaultMovementParam1.Text = "";
+                    SetScriptFieldFromValue(0, "Datalong3");
+                    break;
+                }
+                case 1: // Random Movement
+                {
+                    lblSetDefaultMovementParam1.Text = "Distance:";
+                    txtSetDefaultMovementParam1.Enabled = true;
+                    break;
+                }
+                case 2: // Waypoint Movement
+                {
+                    lblSetDefaultMovementParam1.Text = "Start Point:";
+                    txtSetDefaultMovementParam1.Enabled = true;
+                    break;
+                }
+            }
+            lblSetDefaultMovementParam1.Location = new Point(txtSetDefaultMovementParam1.Location.X - lblSetDefaultMovementParam1.Size.Width - 4, lblSetDefaultMovementParam1.Location.Y);
+        }
+
+        private void cmbSetDefaultMovementAlwaysReplace_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbSetDefaultMovementAlwaysReplace, "Datalong2", false);
+        }
+
+        private void txtSetDefaultMovementParam1_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSetDefaultMovementParam1, "Datalong3");
         }
     }
 
