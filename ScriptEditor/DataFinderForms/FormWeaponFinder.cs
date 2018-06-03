@@ -61,17 +61,10 @@ namespace ScriptEditor
             // Add this item to the listview.
             lstData.Items.Add(lvi);
         }
-        private void btnSelectUnchanged_Click(object sender, EventArgs e)
-        {
-            ReturnValue = -1;
-            DialogResult = DialogResult.OK;
-            Close();
-        }
 
         private void FormWeaponFinder_ResizeEnd(object sender, EventArgs e)
         {
             lstData.Columns[3].Width = lstData.ClientSize.Width - lstData.Columns[0].Width - lstData.Columns[1].Width - lstData.Columns[2].Width;
-            btnSelectUnchanged.Location = new Point(btnSelectNone.Location.X - btnSelectUnchanged.Size.Width - 6, btnSelectNone.Location.Y);
         }
     }
 }

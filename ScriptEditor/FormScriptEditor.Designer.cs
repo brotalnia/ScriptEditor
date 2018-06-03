@@ -152,6 +152,8 @@
             this.txtRespawnGameobjectGuid = new System.Windows.Forms.TextBox();
             this.lblRespawnGameobjectTooltip = new System.Windows.Forms.Label();
             this.frmCommandSummonCreature = new System.Windows.Forms.Panel();
+            this.btnSummonCreatureScriptIdEdit = new System.Windows.Forms.Button();
+            this.txtSummonCreatureScriptId = new System.Windows.Forms.TextBox();
             this.lblSummonCreatureDespawnType = new System.Windows.Forms.Label();
             this.cmbSummonCreatureDespawnType = new System.Windows.Forms.ComboBox();
             this.lblSummonCreatureO = new System.Windows.Forms.Label();
@@ -168,8 +170,7 @@
             this.txtSummonCreatureUniqueLimit = new System.Windows.Forms.TextBox();
             this.lblSummonCreatureAttackTarget = new System.Windows.Forms.Label();
             this.cmbSummonCreatureAttackTarget = new System.Windows.Forms.ComboBox();
-            this.lblSummonCreatureFacingOptions = new System.Windows.Forms.Label();
-            this.cmbSummonCreatureFacingOptions = new System.Windows.Forms.ComboBox();
+            this.lblSummonCreatureScriptId = new System.Windows.Forms.Label();
             this.lblSummonCreatureDelay = new System.Windows.Forms.Label();
             this.txtSummonCreatureDelay = new System.Windows.Forms.TextBox();
             this.lblSummonCreatureId = new System.Windows.Forms.Label();
@@ -505,6 +506,42 @@
             this.lblSetDefaultMovementAlwaysReplace = new System.Windows.Forms.Label();
             this.lblSetDefaultMovementType = new System.Windows.Forms.Label();
             this.lblSetDefaultMovementTooltip = new System.Windows.Forms.Label();
+            this.frmCommandStartScriptForAll = new System.Windows.Forms.Panel();
+            this.btnStartScriptForAllObjectEntry = new System.Windows.Forms.Button();
+            this.txtStartScriptForAllDistance = new System.Windows.Forms.TextBox();
+            this.lblStartScriptForAllDistance = new System.Windows.Forms.Label();
+            this.txtStartScriptForAllScriptId = new System.Windows.Forms.TextBox();
+            this.cmbStartScriptForAllObjectType = new System.Windows.Forms.ComboBox();
+            this.lblStartScriptForAllObjectEntry = new System.Windows.Forms.Label();
+            this.lblStartScriptForAllObjectType = new System.Windows.Forms.Label();
+            this.lblStartScriptForAllScriptId = new System.Windows.Forms.Label();
+            this.lblStartScriptForAllTooltip = new System.Windows.Forms.Label();
+            this.frmCommandUnknown = new System.Windows.Forms.Panel();
+            this.txtUnknownCommandO = new System.Windows.Forms.TextBox();
+            this.txtUnknownCommandZ = new System.Windows.Forms.TextBox();
+            this.lblUnknownCommandO = new System.Windows.Forms.Label();
+            this.lblUnknownCommandZ = new System.Windows.Forms.Label();
+            this.txtUnknownCommandDataint4 = new System.Windows.Forms.TextBox();
+            this.lblUnkownCommandDataint4 = new System.Windows.Forms.Label();
+            this.txtUnknownCommandDataint2 = new System.Windows.Forms.TextBox();
+            this.lblUnkownCommandDataint3 = new System.Windows.Forms.Label();
+            this.txtUnknownCommandDataint3 = new System.Windows.Forms.TextBox();
+            this.txtUnknownCommandDataint1 = new System.Windows.Forms.TextBox();
+            this.lblUnknownCommandDatalong4 = new System.Windows.Forms.Label();
+            this.lblUnknownCommandDatalong3 = new System.Windows.Forms.Label();
+            this.txtUnknownCommandDatalong4 = new System.Windows.Forms.TextBox();
+            this.lblUnknownCommandDataint2 = new System.Windows.Forms.Label();
+            this.txtUnknownCommandDatalong2 = new System.Windows.Forms.TextBox();
+            this.lblUnknownCommandDataint1 = new System.Windows.Forms.Label();
+            this.txtUnknownCommandY = new System.Windows.Forms.TextBox();
+            this.txtUnknownCommandX = new System.Windows.Forms.TextBox();
+            this.lblUnknownCommandY = new System.Windows.Forms.Label();
+            this.lblUnknownCommandX = new System.Windows.Forms.Label();
+            this.txtUnknownCommandDatalong3 = new System.Windows.Forms.TextBox();
+            this.txtUnknownCommandDatalong1 = new System.Windows.Forms.TextBox();
+            this.lblUnknownCommandDatalong2 = new System.Windows.Forms.Label();
+            this.lblUnknownCommandDatalong1 = new System.Windows.Forms.Label();
+            this.lblUnknownCommandTooltip = new System.Windows.Forms.Label();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -561,6 +598,8 @@
             this.frmCommandRemoveScriptedMapEventTarget.SuspendLayout();
             this.frmCommandSetScriptedMapEventData.SuspendLayout();
             this.frmCommandSetDefaultMovement.SuspendLayout();
+            this.frmCommandStartScriptForAll.SuspendLayout();
+            this.frmCommandUnknown.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstActions
@@ -1818,6 +1857,8 @@
             // frmCommandSummonCreature
             // 
             this.frmCommandSummonCreature.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandSummonCreature.Controls.Add(this.btnSummonCreatureScriptIdEdit);
+            this.frmCommandSummonCreature.Controls.Add(this.txtSummonCreatureScriptId);
             this.frmCommandSummonCreature.Controls.Add(this.lblSummonCreatureDespawnType);
             this.frmCommandSummonCreature.Controls.Add(this.cmbSummonCreatureDespawnType);
             this.frmCommandSummonCreature.Controls.Add(this.lblSummonCreatureO);
@@ -1834,8 +1875,7 @@
             this.frmCommandSummonCreature.Controls.Add(this.txtSummonCreatureUniqueLimit);
             this.frmCommandSummonCreature.Controls.Add(this.lblSummonCreatureAttackTarget);
             this.frmCommandSummonCreature.Controls.Add(this.cmbSummonCreatureAttackTarget);
-            this.frmCommandSummonCreature.Controls.Add(this.lblSummonCreatureFacingOptions);
-            this.frmCommandSummonCreature.Controls.Add(this.cmbSummonCreatureFacingOptions);
+            this.frmCommandSummonCreature.Controls.Add(this.lblSummonCreatureScriptId);
             this.frmCommandSummonCreature.Controls.Add(this.lblSummonCreatureDelay);
             this.frmCommandSummonCreature.Controls.Add(this.txtSummonCreatureDelay);
             this.frmCommandSummonCreature.Controls.Add(this.lblSummonCreatureId);
@@ -1847,6 +1887,24 @@
             this.frmCommandSummonCreature.Size = new System.Drawing.Size(495, 332);
             this.frmCommandSummonCreature.TabIndex = 18;
             this.frmCommandSummonCreature.Visible = false;
+            // 
+            // btnSummonCreatureScriptIdEdit
+            // 
+            this.btnSummonCreatureScriptIdEdit.Location = new System.Drawing.Point(429, 209);
+            this.btnSummonCreatureScriptIdEdit.Name = "btnSummonCreatureScriptIdEdit";
+            this.btnSummonCreatureScriptIdEdit.Size = new System.Drawing.Size(44, 22);
+            this.btnSummonCreatureScriptIdEdit.TabIndex = 25;
+            this.btnSummonCreatureScriptIdEdit.Text = "Edit";
+            this.btnSummonCreatureScriptIdEdit.UseVisualStyleBackColor = true;
+            this.btnSummonCreatureScriptIdEdit.Click += new System.EventHandler(this.btnSummonCreatureScriptIdEdit_Click);
+            // 
+            // txtSummonCreatureScriptId
+            // 
+            this.txtSummonCreatureScriptId.Location = new System.Drawing.Point(292, 210);
+            this.txtSummonCreatureScriptId.Name = "txtSummonCreatureScriptId";
+            this.txtSummonCreatureScriptId.Size = new System.Drawing.Size(131, 20);
+            this.txtSummonCreatureScriptId.TabIndex = 24;
+            this.txtSummonCreatureScriptId.Leave += new System.EventHandler(this.txtSummonCreatureScriptId_Leave);
             // 
             // lblSummonCreatureDespawnType
             // 
@@ -1988,28 +2046,14 @@
             this.cmbSummonCreatureAttackTarget.TabIndex = 8;
             this.cmbSummonCreatureAttackTarget.SelectedIndexChanged += new System.EventHandler(this.cmbSummonCreatureAttackTarget_SelectedIndexChanged);
             // 
-            // lblSummonCreatureFacingOptions
+            // lblSummonCreatureScriptId
             // 
-            this.lblSummonCreatureFacingOptions.AutoSize = true;
-            this.lblSummonCreatureFacingOptions.Location = new System.Drawing.Point(293, 191);
-            this.lblSummonCreatureFacingOptions.Name = "lblSummonCreatureFacingOptions";
-            this.lblSummonCreatureFacingOptions.Size = new System.Drawing.Size(79, 13);
-            this.lblSummonCreatureFacingOptions.TabIndex = 7;
-            this.lblSummonCreatureFacingOptions.Text = "Facing options:";
-            // 
-            // cmbSummonCreatureFacingOptions
-            // 
-            this.cmbSummonCreatureFacingOptions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSummonCreatureFacingOptions.FormattingEnabled = true;
-            this.cmbSummonCreatureFacingOptions.Items.AddRange(new object[] {
-            "Provided Orientation",
-            "Face Summoner",
-            "Face Target"});
-            this.cmbSummonCreatureFacingOptions.Location = new System.Drawing.Point(292, 210);
-            this.cmbSummonCreatureFacingOptions.Name = "cmbSummonCreatureFacingOptions";
-            this.cmbSummonCreatureFacingOptions.Size = new System.Drawing.Size(181, 21);
-            this.cmbSummonCreatureFacingOptions.TabIndex = 6;
-            this.cmbSummonCreatureFacingOptions.SelectedIndexChanged += new System.EventHandler(this.cmbSummonCreatureFacingOptions_SelectedIndexChanged);
+            this.lblSummonCreatureScriptId.AutoSize = true;
+            this.lblSummonCreatureScriptId.Location = new System.Drawing.Point(293, 191);
+            this.lblSummonCreatureScriptId.Name = "lblSummonCreatureScriptId";
+            this.lblSummonCreatureScriptId.Size = new System.Drawing.Size(49, 13);
+            this.lblSummonCreatureScriptId.TabIndex = 7;
+            this.lblSummonCreatureScriptId.Text = "Script Id:";
             // 
             // lblSummonCreatureDelay
             // 
@@ -5544,11 +5588,365 @@
             this.lblSetDefaultMovementTooltip.TabIndex = 0;
             this.lblSetDefaultMovementTooltip.Text = "Changes the source Creature\'s default out of combat movement type.";
             // 
+            // frmCommandStartScriptForAll
+            // 
+            this.frmCommandStartScriptForAll.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandStartScriptForAll.Controls.Add(this.btnStartScriptForAllObjectEntry);
+            this.frmCommandStartScriptForAll.Controls.Add(this.txtStartScriptForAllDistance);
+            this.frmCommandStartScriptForAll.Controls.Add(this.lblStartScriptForAllDistance);
+            this.frmCommandStartScriptForAll.Controls.Add(this.txtStartScriptForAllScriptId);
+            this.frmCommandStartScriptForAll.Controls.Add(this.cmbStartScriptForAllObjectType);
+            this.frmCommandStartScriptForAll.Controls.Add(this.lblStartScriptForAllObjectEntry);
+            this.frmCommandStartScriptForAll.Controls.Add(this.lblStartScriptForAllObjectType);
+            this.frmCommandStartScriptForAll.Controls.Add(this.lblStartScriptForAllScriptId);
+            this.frmCommandStartScriptForAll.Controls.Add(this.lblStartScriptForAllTooltip);
+            this.frmCommandStartScriptForAll.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandStartScriptForAll.Name = "frmCommandStartScriptForAll";
+            this.frmCommandStartScriptForAll.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandStartScriptForAll.TabIndex = 62;
+            this.frmCommandStartScriptForAll.Visible = false;
+            // 
+            // btnStartScriptForAllObjectEntry
+            // 
+            this.btnStartScriptForAllObjectEntry.Location = new System.Drawing.Point(99, 121);
+            this.btnStartScriptForAllObjectEntry.Name = "btnStartScriptForAllObjectEntry";
+            this.btnStartScriptForAllObjectEntry.Size = new System.Drawing.Size(374, 23);
+            this.btnStartScriptForAllObjectEntry.TabIndex = 16;
+            this.btnStartScriptForAllObjectEntry.Text = "-NONE-";
+            this.btnStartScriptForAllObjectEntry.UseVisualStyleBackColor = true;
+            this.btnStartScriptForAllObjectEntry.Click += new System.EventHandler(this.btnStartScriptForAllObjectEntry_Click);
+            // 
+            // txtStartScriptForAllDistance
+            // 
+            this.txtStartScriptForAllDistance.Location = new System.Drawing.Point(99, 153);
+            this.txtStartScriptForAllDistance.Name = "txtStartScriptForAllDistance";
+            this.txtStartScriptForAllDistance.Size = new System.Drawing.Size(374, 20);
+            this.txtStartScriptForAllDistance.TabIndex = 15;
+            this.txtStartScriptForAllDistance.Leave += new System.EventHandler(this.txtStartScriptForAllDistance_Leave);
+            // 
+            // lblStartScriptForAllDistance
+            // 
+            this.lblStartScriptForAllDistance.AutoSize = true;
+            this.lblStartScriptForAllDistance.Location = new System.Drawing.Point(43, 155);
+            this.lblStartScriptForAllDistance.Name = "lblStartScriptForAllDistance";
+            this.lblStartScriptForAllDistance.Size = new System.Drawing.Size(52, 13);
+            this.lblStartScriptForAllDistance.TabIndex = 14;
+            this.lblStartScriptForAllDistance.Text = "Distance:";
+            // 
+            // txtStartScriptForAllScriptId
+            // 
+            this.txtStartScriptForAllScriptId.Location = new System.Drawing.Point(99, 59);
+            this.txtStartScriptForAllScriptId.Name = "txtStartScriptForAllScriptId";
+            this.txtStartScriptForAllScriptId.Size = new System.Drawing.Size(374, 20);
+            this.txtStartScriptForAllScriptId.TabIndex = 13;
+            this.txtStartScriptForAllScriptId.Leave += new System.EventHandler(this.txtStartScriptForAllScriptId_Leave);
+            // 
+            // cmbStartScriptForAllObjectType
+            // 
+            this.cmbStartScriptForAllObjectType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbStartScriptForAllObjectType.FormattingEnabled = true;
+            this.cmbStartScriptForAllObjectType.Items.AddRange(new object[] {
+            "Gameobject",
+            "Unit",
+            "Creature",
+            "Player"});
+            this.cmbStartScriptForAllObjectType.Location = new System.Drawing.Point(99, 90);
+            this.cmbStartScriptForAllObjectType.Name = "cmbStartScriptForAllObjectType";
+            this.cmbStartScriptForAllObjectType.Size = new System.Drawing.Size(374, 21);
+            this.cmbStartScriptForAllObjectType.TabIndex = 12;
+            this.cmbStartScriptForAllObjectType.SelectedIndexChanged += new System.EventHandler(this.cmbStartScriptForAllObjectType_SelectedIndexChanged);
+            // 
+            // lblStartScriptForAllObjectEntry
+            // 
+            this.lblStartScriptForAllObjectEntry.AutoSize = true;
+            this.lblStartScriptForAllObjectEntry.Location = new System.Drawing.Point(61, 124);
+            this.lblStartScriptForAllObjectEntry.Name = "lblStartScriptForAllObjectEntry";
+            this.lblStartScriptForAllObjectEntry.Size = new System.Drawing.Size(34, 13);
+            this.lblStartScriptForAllObjectEntry.TabIndex = 6;
+            this.lblStartScriptForAllObjectEntry.Text = "Entry:";
+            // 
+            // lblStartScriptForAllObjectType
+            // 
+            this.lblStartScriptForAllObjectType.AutoSize = true;
+            this.lblStartScriptForAllObjectType.Location = new System.Drawing.Point(61, 93);
+            this.lblStartScriptForAllObjectType.Name = "lblStartScriptForAllObjectType";
+            this.lblStartScriptForAllObjectType.Size = new System.Drawing.Size(34, 13);
+            this.lblStartScriptForAllObjectType.TabIndex = 4;
+            this.lblStartScriptForAllObjectType.Text = "Type:";
+            // 
+            // lblStartScriptForAllScriptId
+            // 
+            this.lblStartScriptForAllScriptId.AutoSize = true;
+            this.lblStartScriptForAllScriptId.Location = new System.Drawing.Point(46, 61);
+            this.lblStartScriptForAllScriptId.Name = "lblStartScriptForAllScriptId";
+            this.lblStartScriptForAllScriptId.Size = new System.Drawing.Size(49, 13);
+            this.lblStartScriptForAllScriptId.TabIndex = 3;
+            this.lblStartScriptForAllScriptId.Text = "Script Id:";
+            // 
+            // lblStartScriptForAllTooltip
+            // 
+            this.lblStartScriptForAllTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblStartScriptForAllTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblStartScriptForAllTooltip.Name = "lblStartScriptForAllTooltip";
+            this.lblStartScriptForAllTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblStartScriptForAllTooltip.TabIndex = 0;
+            this.lblStartScriptForAllTooltip.Text = "Starts an event script with the given Id for all nearby objects. The object entry" +
+    " is not required.";
+            // 
+            // frmCommandUnknown
+            // 
+            this.frmCommandUnknown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandUnknown.Controls.Add(this.txtUnknownCommandO);
+            this.frmCommandUnknown.Controls.Add(this.txtUnknownCommandZ);
+            this.frmCommandUnknown.Controls.Add(this.lblUnknownCommandO);
+            this.frmCommandUnknown.Controls.Add(this.lblUnknownCommandZ);
+            this.frmCommandUnknown.Controls.Add(this.txtUnknownCommandDataint4);
+            this.frmCommandUnknown.Controls.Add(this.lblUnkownCommandDataint4);
+            this.frmCommandUnknown.Controls.Add(this.txtUnknownCommandDataint2);
+            this.frmCommandUnknown.Controls.Add(this.lblUnkownCommandDataint3);
+            this.frmCommandUnknown.Controls.Add(this.txtUnknownCommandDataint3);
+            this.frmCommandUnknown.Controls.Add(this.txtUnknownCommandDataint1);
+            this.frmCommandUnknown.Controls.Add(this.lblUnknownCommandDatalong4);
+            this.frmCommandUnknown.Controls.Add(this.lblUnknownCommandDatalong3);
+            this.frmCommandUnknown.Controls.Add(this.txtUnknownCommandDatalong4);
+            this.frmCommandUnknown.Controls.Add(this.lblUnknownCommandDataint2);
+            this.frmCommandUnknown.Controls.Add(this.txtUnknownCommandDatalong2);
+            this.frmCommandUnknown.Controls.Add(this.lblUnknownCommandDataint1);
+            this.frmCommandUnknown.Controls.Add(this.txtUnknownCommandY);
+            this.frmCommandUnknown.Controls.Add(this.txtUnknownCommandX);
+            this.frmCommandUnknown.Controls.Add(this.lblUnknownCommandY);
+            this.frmCommandUnknown.Controls.Add(this.lblUnknownCommandX);
+            this.frmCommandUnknown.Controls.Add(this.txtUnknownCommandDatalong3);
+            this.frmCommandUnknown.Controls.Add(this.txtUnknownCommandDatalong1);
+            this.frmCommandUnknown.Controls.Add(this.lblUnknownCommandDatalong2);
+            this.frmCommandUnknown.Controls.Add(this.lblUnknownCommandDatalong1);
+            this.frmCommandUnknown.Controls.Add(this.lblUnknownCommandTooltip);
+            this.frmCommandUnknown.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandUnknown.Name = "frmCommandUnknown";
+            this.frmCommandUnknown.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandUnknown.TabIndex = 63;
+            this.frmCommandUnknown.Visible = false;
+            // 
+            // txtUnknownCommandO
+            // 
+            this.txtUnknownCommandO.Location = new System.Drawing.Point(99, 276);
+            this.txtUnknownCommandO.Name = "txtUnknownCommandO";
+            this.txtUnknownCommandO.Size = new System.Drawing.Size(374, 20);
+            this.txtUnknownCommandO.TabIndex = 36;
+            this.txtUnknownCommandO.Leave += new System.EventHandler(this.txtUnknownCommandO_Leave);
+            // 
+            // txtUnknownCommandZ
+            // 
+            this.txtUnknownCommandZ.Location = new System.Drawing.Point(99, 245);
+            this.txtUnknownCommandZ.Name = "txtUnknownCommandZ";
+            this.txtUnknownCommandZ.Size = new System.Drawing.Size(374, 20);
+            this.txtUnknownCommandZ.TabIndex = 35;
+            this.txtUnknownCommandZ.Leave += new System.EventHandler(this.txtUnknownCommandZ_Leave);
+            // 
+            // lblUnknownCommandO
+            // 
+            this.lblUnknownCommandO.AutoSize = true;
+            this.lblUnknownCommandO.Location = new System.Drawing.Point(37, 279);
+            this.lblUnknownCommandO.Name = "lblUnknownCommandO";
+            this.lblUnknownCommandO.Size = new System.Drawing.Size(58, 13);
+            this.lblUnknownCommandO.TabIndex = 34;
+            this.lblUnknownCommandO.Text = "Position O:";
+            // 
+            // lblUnknownCommandZ
+            // 
+            this.lblUnknownCommandZ.AutoSize = true;
+            this.lblUnknownCommandZ.Location = new System.Drawing.Point(38, 247);
+            this.lblUnknownCommandZ.Name = "lblUnknownCommandZ";
+            this.lblUnknownCommandZ.Size = new System.Drawing.Size(57, 13);
+            this.lblUnknownCommandZ.TabIndex = 33;
+            this.lblUnknownCommandZ.Text = "Position Z:";
+            // 
+            // txtUnknownCommandDataint4
+            // 
+            this.txtUnknownCommandDataint4.Location = new System.Drawing.Point(323, 152);
+            this.txtUnknownCommandDataint4.Name = "txtUnknownCommandDataint4";
+            this.txtUnknownCommandDataint4.Size = new System.Drawing.Size(150, 20);
+            this.txtUnknownCommandDataint4.TabIndex = 32;
+            this.txtUnknownCommandDataint4.Leave += new System.EventHandler(this.txtUnknownCommandDataint4_Leave);
+            // 
+            // lblUnkownCommandDataint4
+            // 
+            this.lblUnkownCommandDataint4.AutoSize = true;
+            this.lblUnkownCommandDataint4.Location = new System.Drawing.Point(266, 155);
+            this.lblUnkownCommandDataint4.Name = "lblUnkownCommandDataint4";
+            this.lblUnkownCommandDataint4.Size = new System.Drawing.Size(53, 13);
+            this.lblUnkownCommandDataint4.TabIndex = 31;
+            this.lblUnkownCommandDataint4.Text = "Dataint 4:";
+            // 
+            // txtUnknownCommandDataint2
+            // 
+            this.txtUnknownCommandDataint2.Location = new System.Drawing.Point(323, 90);
+            this.txtUnknownCommandDataint2.Name = "txtUnknownCommandDataint2";
+            this.txtUnknownCommandDataint2.Size = new System.Drawing.Size(150, 20);
+            this.txtUnknownCommandDataint2.TabIndex = 30;
+            this.txtUnknownCommandDataint2.Leave += new System.EventHandler(this.txtUnknownCommandDataint2_Leave);
+            // 
+            // lblUnkownCommandDataint3
+            // 
+            this.lblUnkownCommandDataint3.AutoSize = true;
+            this.lblUnkownCommandDataint3.Location = new System.Drawing.Point(266, 123);
+            this.lblUnkownCommandDataint3.Name = "lblUnkownCommandDataint3";
+            this.lblUnkownCommandDataint3.Size = new System.Drawing.Size(53, 13);
+            this.lblUnkownCommandDataint3.TabIndex = 29;
+            this.lblUnkownCommandDataint3.Text = "Dataint 3:";
+            // 
+            // txtUnknownCommandDataint3
+            // 
+            this.txtUnknownCommandDataint3.Location = new System.Drawing.Point(323, 121);
+            this.txtUnknownCommandDataint3.Name = "txtUnknownCommandDataint3";
+            this.txtUnknownCommandDataint3.Size = new System.Drawing.Size(150, 20);
+            this.txtUnknownCommandDataint3.TabIndex = 28;
+            this.txtUnknownCommandDataint3.Leave += new System.EventHandler(this.txtUnknownCommandDataint3_Leave);
+            // 
+            // txtUnknownCommandDataint1
+            // 
+            this.txtUnknownCommandDataint1.Location = new System.Drawing.Point(323, 59);
+            this.txtUnknownCommandDataint1.Name = "txtUnknownCommandDataint1";
+            this.txtUnknownCommandDataint1.Size = new System.Drawing.Size(150, 20);
+            this.txtUnknownCommandDataint1.TabIndex = 27;
+            this.txtUnknownCommandDataint1.Leave += new System.EventHandler(this.txtUnknownCommandDataint1_Leave);
+            // 
+            // lblUnknownCommandDatalong4
+            // 
+            this.lblUnknownCommandDatalong4.AutoSize = true;
+            this.lblUnknownCommandDatalong4.Location = new System.Drawing.Point(33, 155);
+            this.lblUnknownCommandDatalong4.Name = "lblUnknownCommandDatalong4";
+            this.lblUnknownCommandDatalong4.Size = new System.Drawing.Size(62, 13);
+            this.lblUnknownCommandDatalong4.TabIndex = 26;
+            this.lblUnknownCommandDatalong4.Text = "Datalong 4:";
+            // 
+            // lblUnknownCommandDatalong3
+            // 
+            this.lblUnknownCommandDatalong3.AutoSize = true;
+            this.lblUnknownCommandDatalong3.Location = new System.Drawing.Point(33, 123);
+            this.lblUnknownCommandDatalong3.Name = "lblUnknownCommandDatalong3";
+            this.lblUnknownCommandDatalong3.Size = new System.Drawing.Size(62, 13);
+            this.lblUnknownCommandDatalong3.TabIndex = 25;
+            this.lblUnknownCommandDatalong3.Text = "Datalong 3:";
+            // 
+            // txtUnknownCommandDatalong4
+            // 
+            this.txtUnknownCommandDatalong4.Location = new System.Drawing.Point(99, 152);
+            this.txtUnknownCommandDatalong4.Name = "txtUnknownCommandDatalong4";
+            this.txtUnknownCommandDatalong4.Size = new System.Drawing.Size(150, 20);
+            this.txtUnknownCommandDatalong4.TabIndex = 24;
+            this.txtUnknownCommandDatalong4.Leave += new System.EventHandler(this.txtUnknownCommandDatalong4_Leave);
+            // 
+            // lblUnknownCommandDataint2
+            // 
+            this.lblUnknownCommandDataint2.AutoSize = true;
+            this.lblUnknownCommandDataint2.Location = new System.Drawing.Point(266, 93);
+            this.lblUnknownCommandDataint2.Name = "lblUnknownCommandDataint2";
+            this.lblUnknownCommandDataint2.Size = new System.Drawing.Size(53, 13);
+            this.lblUnknownCommandDataint2.TabIndex = 23;
+            this.lblUnknownCommandDataint2.Text = "Dataint 2:";
+            // 
+            // txtUnknownCommandDatalong2
+            // 
+            this.txtUnknownCommandDatalong2.Location = new System.Drawing.Point(99, 90);
+            this.txtUnknownCommandDatalong2.Name = "txtUnknownCommandDatalong2";
+            this.txtUnknownCommandDatalong2.Size = new System.Drawing.Size(150, 20);
+            this.txtUnknownCommandDatalong2.TabIndex = 22;
+            this.txtUnknownCommandDatalong2.Leave += new System.EventHandler(this.txtUnknownCommandDatalong2_Leave);
+            // 
+            // lblUnknownCommandDataint1
+            // 
+            this.lblUnknownCommandDataint1.AutoSize = true;
+            this.lblUnknownCommandDataint1.Location = new System.Drawing.Point(266, 61);
+            this.lblUnknownCommandDataint1.Name = "lblUnknownCommandDataint1";
+            this.lblUnknownCommandDataint1.Size = new System.Drawing.Size(53, 13);
+            this.lblUnknownCommandDataint1.TabIndex = 21;
+            this.lblUnknownCommandDataint1.Text = "Dataint 1:";
+            // 
+            // txtUnknownCommandY
+            // 
+            this.txtUnknownCommandY.Location = new System.Drawing.Point(99, 214);
+            this.txtUnknownCommandY.Name = "txtUnknownCommandY";
+            this.txtUnknownCommandY.Size = new System.Drawing.Size(374, 20);
+            this.txtUnknownCommandY.TabIndex = 20;
+            this.txtUnknownCommandY.Leave += new System.EventHandler(this.txtUnknownCommandY_Leave);
+            // 
+            // txtUnknownCommandX
+            // 
+            this.txtUnknownCommandX.Location = new System.Drawing.Point(99, 183);
+            this.txtUnknownCommandX.Name = "txtUnknownCommandX";
+            this.txtUnknownCommandX.Size = new System.Drawing.Size(374, 20);
+            this.txtUnknownCommandX.TabIndex = 19;
+            this.txtUnknownCommandX.Leave += new System.EventHandler(this.txtUnknownCommandX_Leave);
+            // 
+            // lblUnknownCommandY
+            // 
+            this.lblUnknownCommandY.AutoSize = true;
+            this.lblUnknownCommandY.Location = new System.Drawing.Point(38, 217);
+            this.lblUnknownCommandY.Name = "lblUnknownCommandY";
+            this.lblUnknownCommandY.Size = new System.Drawing.Size(57, 13);
+            this.lblUnknownCommandY.TabIndex = 18;
+            this.lblUnknownCommandY.Text = "Position Y:";
+            // 
+            // lblUnknownCommandX
+            // 
+            this.lblUnknownCommandX.AutoSize = true;
+            this.lblUnknownCommandX.Location = new System.Drawing.Point(38, 185);
+            this.lblUnknownCommandX.Name = "lblUnknownCommandX";
+            this.lblUnknownCommandX.Size = new System.Drawing.Size(57, 13);
+            this.lblUnknownCommandX.TabIndex = 17;
+            this.lblUnknownCommandX.Text = "Position X:";
+            // 
+            // txtUnknownCommandDatalong3
+            // 
+            this.txtUnknownCommandDatalong3.Location = new System.Drawing.Point(99, 121);
+            this.txtUnknownCommandDatalong3.Name = "txtUnknownCommandDatalong3";
+            this.txtUnknownCommandDatalong3.Size = new System.Drawing.Size(150, 20);
+            this.txtUnknownCommandDatalong3.TabIndex = 15;
+            this.txtUnknownCommandDatalong3.Leave += new System.EventHandler(this.txtUnknownCommandDatalong3_Leave);
+            // 
+            // txtUnknownCommandDatalong1
+            // 
+            this.txtUnknownCommandDatalong1.Location = new System.Drawing.Point(99, 59);
+            this.txtUnknownCommandDatalong1.Name = "txtUnknownCommandDatalong1";
+            this.txtUnknownCommandDatalong1.Size = new System.Drawing.Size(150, 20);
+            this.txtUnknownCommandDatalong1.TabIndex = 13;
+            this.txtUnknownCommandDatalong1.Leave += new System.EventHandler(this.txtUnknownCommandDatalong1_Leave);
+            // 
+            // lblUnknownCommandDatalong2
+            // 
+            this.lblUnknownCommandDatalong2.AutoSize = true;
+            this.lblUnknownCommandDatalong2.Location = new System.Drawing.Point(33, 93);
+            this.lblUnknownCommandDatalong2.Name = "lblUnknownCommandDatalong2";
+            this.lblUnknownCommandDatalong2.Size = new System.Drawing.Size(62, 13);
+            this.lblUnknownCommandDatalong2.TabIndex = 4;
+            this.lblUnknownCommandDatalong2.Text = "Datalong 2:";
+            // 
+            // lblUnknownCommandDatalong1
+            // 
+            this.lblUnknownCommandDatalong1.AutoSize = true;
+            this.lblUnknownCommandDatalong1.Location = new System.Drawing.Point(33, 61);
+            this.lblUnknownCommandDatalong1.Name = "lblUnknownCommandDatalong1";
+            this.lblUnknownCommandDatalong1.Size = new System.Drawing.Size(62, 13);
+            this.lblUnknownCommandDatalong1.TabIndex = 3;
+            this.lblUnknownCommandDatalong1.Text = "Datalong 1:";
+            // 
+            // lblUnknownCommandTooltip
+            // 
+            this.lblUnknownCommandTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblUnknownCommandTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblUnknownCommandTooltip.Name = "lblUnknownCommandTooltip";
+            this.lblUnknownCommandTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblUnknownCommandTooltip.TabIndex = 0;
+            this.lblUnknownCommandTooltip.Text = "This command is not currently supported by the script editor.";
+            // 
             // FormScriptEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 620);
+            this.Controls.Add(this.frmCommandUnknown);
+            this.Controls.Add(this.frmCommandStartScriptForAll);
             this.Controls.Add(this.frmCommandSetDefaultMovement);
             this.Controls.Add(this.frmCommandSetScriptedMapEventData);
             this.Controls.Add(this.frmCommandRemoveScriptedMapEventTarget);
@@ -5729,6 +6127,10 @@
             this.frmCommandSetScriptedMapEventData.PerformLayout();
             this.frmCommandSetDefaultMovement.ResumeLayout(false);
             this.frmCommandSetDefaultMovement.PerformLayout();
+            this.frmCommandStartScriptForAll.ResumeLayout(false);
+            this.frmCommandStartScriptForAll.PerformLayout();
+            this.frmCommandUnknown.ResumeLayout(false);
+            this.frmCommandUnknown.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -5871,8 +6273,7 @@
         private System.Windows.Forms.TextBox txtSummonCreatureUniqueLimit;
         private System.Windows.Forms.Label lblSummonCreatureAttackTarget;
         private System.Windows.Forms.ComboBox cmbSummonCreatureAttackTarget;
-        private System.Windows.Forms.Label lblSummonCreatureFacingOptions;
-        private System.Windows.Forms.ComboBox cmbSummonCreatureFacingOptions;
+        private System.Windows.Forms.Label lblSummonCreatureScriptId;
         private System.Windows.Forms.Label lblSummonCreatureO;
         private System.Windows.Forms.Label lblSummonCreatureZ;
         private System.Windows.Forms.Label lblSummonCreatureY;
@@ -6212,6 +6613,44 @@
         private System.Windows.Forms.Label lblSetDefaultMovementAlwaysReplace;
         private System.Windows.Forms.Label lblSetDefaultMovementType;
         private System.Windows.Forms.Label lblSetDefaultMovementTooltip;
+        private System.Windows.Forms.TextBox txtSummonCreatureScriptId;
+        private System.Windows.Forms.Button btnSummonCreatureScriptIdEdit;
+        private System.Windows.Forms.Panel frmCommandStartScriptForAll;
+        private System.Windows.Forms.Button btnStartScriptForAllObjectEntry;
+        private System.Windows.Forms.TextBox txtStartScriptForAllDistance;
+        private System.Windows.Forms.Label lblStartScriptForAllDistance;
+        private System.Windows.Forms.TextBox txtStartScriptForAllScriptId;
+        private System.Windows.Forms.ComboBox cmbStartScriptForAllObjectType;
+        private System.Windows.Forms.Label lblStartScriptForAllObjectEntry;
+        private System.Windows.Forms.Label lblStartScriptForAllObjectType;
+        private System.Windows.Forms.Label lblStartScriptForAllScriptId;
+        private System.Windows.Forms.Label lblStartScriptForAllTooltip;
+        private System.Windows.Forms.Panel frmCommandUnknown;
+        private System.Windows.Forms.TextBox txtUnknownCommandDatalong4;
+        private System.Windows.Forms.Label lblUnknownCommandDataint2;
+        private System.Windows.Forms.TextBox txtUnknownCommandDatalong2;
+        private System.Windows.Forms.Label lblUnknownCommandDataint1;
+        private System.Windows.Forms.TextBox txtUnknownCommandY;
+        private System.Windows.Forms.TextBox txtUnknownCommandX;
+        private System.Windows.Forms.Label lblUnknownCommandY;
+        private System.Windows.Forms.Label lblUnknownCommandX;
+        private System.Windows.Forms.TextBox txtUnknownCommandDatalong3;
+        private System.Windows.Forms.TextBox txtUnknownCommandDatalong1;
+        private System.Windows.Forms.Label lblUnknownCommandDatalong2;
+        private System.Windows.Forms.Label lblUnknownCommandDatalong1;
+        private System.Windows.Forms.Label lblUnknownCommandTooltip;
+        private System.Windows.Forms.TextBox txtUnknownCommandDataint4;
+        private System.Windows.Forms.Label lblUnkownCommandDataint4;
+        private System.Windows.Forms.TextBox txtUnknownCommandDataint2;
+        private System.Windows.Forms.Label lblUnkownCommandDataint3;
+        private System.Windows.Forms.TextBox txtUnknownCommandDataint3;
+        private System.Windows.Forms.TextBox txtUnknownCommandDataint1;
+        private System.Windows.Forms.Label lblUnknownCommandDatalong4;
+        private System.Windows.Forms.Label lblUnknownCommandDatalong3;
+        private System.Windows.Forms.TextBox txtUnknownCommandO;
+        private System.Windows.Forms.TextBox txtUnknownCommandZ;
+        private System.Windows.Forms.Label lblUnknownCommandO;
+        private System.Windows.Forms.Label lblUnknownCommandZ;
     }
 }
 

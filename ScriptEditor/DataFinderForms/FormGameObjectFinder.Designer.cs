@@ -1,6 +1,6 @@
-﻿namespace ScriptEditor
+﻿namespace ScriptEditor.DataFinderForms
 {
-    partial class FormWeaponFinder
+    partial class FormGameObjectFinder
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.columnInventoryType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnDisplayId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
@@ -36,14 +36,19 @@
             // lstData
             // 
             this.lstData.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnInventoryType,
+            this.columnType,
             this.columnDisplayId,
             this.columnName});
             // 
-            // columnInventoryType
+            // label1
             // 
-            this.columnInventoryType.Text = "Type";
-            this.columnInventoryType.Width = 90;
+            this.label1.Size = new System.Drawing.Size(150, 13);
+            this.label1.Text = "Enter name or Id to search for:";
+            // 
+            // columnType
+            // 
+            this.columnType.Text = "Type";
+            this.columnType.Width = 90;
             // 
             // columnDisplayId
             // 
@@ -55,20 +60,20 @@
             this.columnName.Text = "Name";
             this.columnName.Width = 415;
             // 
-            // FormWeaponFinder
+            // FormGameObjectFinder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(672, 393);
-            this.Name = "FormWeaponFinder";
-            this.Text = "Weapon Finder";
-            this.ResizeEnd += new System.EventHandler(this.FormWeaponFinder_ResizeEnd);
+            this.Name = "FormGameObjectFinder";
+            this.ResizeEnd += new System.EventHandler(this.FormGameObjectFinder_ResizeEnd);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.ColumnHeader columnInventoryType;
+
+        private System.Windows.Forms.ColumnHeader columnType;
         private System.Windows.Forms.ColumnHeader columnDisplayId;
         private System.Windows.Forms.ColumnHeader columnName;
     }

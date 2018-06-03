@@ -48,6 +48,8 @@ namespace ScriptEditor
             GameData.LoadBroadcastTexts(connString);
             Console.WriteLine("Loading quests...");
             GameData.LoadQuests(connString);
+            Console.WriteLine("Loading gameobjects...");
+            GameData.LoadGameObjects(connString);
             Console.WriteLine("Loading creatures...");
             GameData.LoadCreatures(connString);
             Console.WriteLine("Loading spells...");

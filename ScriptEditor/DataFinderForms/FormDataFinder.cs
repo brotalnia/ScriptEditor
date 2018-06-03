@@ -30,13 +30,17 @@ namespace ScriptEditor
             lstData.Activation = ItemActivation.TwoClick;
         }
 
-        public DialogResult ShowDialog(int current_id)
+        public DialogResult ShowDialog(int current_id, bool has_ignore_option = false)
         {
             if (current_id > 0)
             {
                 txtSearch.Text = current_id.ToString();
                 btnSearch_Click(null, null);
             }
+
+            if (has_ignore_option)
+                btnSelectUnchanged.Visible = true;
+
             return this.ShowDialog();
         }
 
@@ -117,6 +121,7 @@ namespace ScriptEditor
             btnSelectNone.Location = new Point(btnSelect.Location.X - btnSelectNone.Size.Width - 6, btnSelect.Location.Y);
             btnSearch.Location = new Point(lstData.Size.Width + lstData.Location.X - btnSearch.Size.Width, btnSearch.Location.Y);
             txtSearch.Width = btnSearch.Location.X - txtSearch.Location.X - 7;
+            btnSelectUnchanged.Location = new Point(btnSelectNone.Location.X - btnSelectUnchanged.Size.Width - 6, btnSelectNone.Location.Y);
         }
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
@@ -131,6 +136,13 @@ namespace ScriptEditor
         private void lstData_ItemActivate(object sender, EventArgs e)
         {
             btnSelect_Click(sender, e);
+        }
+
+        private void btnSelectUnchanged_Click(object sender, EventArgs e)
+        {
+            ReturnValue = -1;
+            DialogResult = DialogResult.OK;
+            Close();
         }
     }
 }

@@ -20,6 +20,7 @@ namespace ScriptEditor
         public static readonly List<FactionInfo> FactionInfoList = new List<FactionInfo>();
         public static readonly List<FactionTemplateInfo> FactionTemplateInfoList = new List<FactionTemplateInfo>();
         public static readonly List<GameEventInfo> GameEventInfoList = new List<GameEventInfo>();
+        public static readonly List<GameObjectInfo> GameObjectInfoList = new List<GameObjectInfo>();
         public static readonly List<CreatureSpellsInfo> CreatureSpellsInfoList = new List<CreatureSpellsInfo>();
         public static readonly List<ComboboxPair> UpdateFieldsList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> FlagFieldsList = new List<ComboboxPair>();
@@ -133,6 +134,16 @@ namespace ScriptEditor
             {
                 if (creature.ID == id)
                     return creature.Name;
+            }
+
+            return "";
+        }
+        public static string FindGameObjectName(uint id)
+        {
+            foreach (GameObjectInfo gameobject in GameObjectInfoList)
+            {
+                if (gameobject.ID == id)
+                    return gameobject.Name;
             }
 
             return "";
@@ -283,6 +294,31 @@ namespace ScriptEditor
                 {
                     // Add the new quest entry to the list.
                     QuestInfoList.Add(new QuestInfo(reader.GetUInt32(0), reader.GetUInt32(1), reader.GetUInt32(2), reader.GetString(3)));
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+            conn.Close();
+        }
+        public static void LoadGameObjects(string connString)
+        {
+            GameObjectInfoList.Clear();
+
+            MySqlConnection conn = new MySqlConnection(connString);
+            MySqlCommand command = conn.CreateCommand();
+            command.CommandText = "SELECT `entry`, `type`, `displayId`, `name` FROM `gameobject_template` t1 WHERE `patch`=(SELECT max(`patch`) FROM `gameobject_template` t2 WHERE t1.`entry`=t2.`entry`) ORDER BY `entry`";
+            try
+            {
+                conn.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    // Add the new gameobject entry to the list.
+                    GameObjectInfoList.Add(new GameObjectInfo(reader.GetUInt32(0), reader.GetUInt32(1), reader.GetUInt32(2), reader.GetString(3)));
                 }
                 reader.Close();
             }
@@ -1778,6 +1814,20 @@ namespace ScriptEditor
             Name = name;
             PatchMin = patchmin;
             PatchMax = patchmax;
+        }
+    }
+    public struct GameObjectInfo
+    {
+        public uint ID;
+        public uint Type;
+        public uint DisplayId;
+        public string Name;
+        public GameObjectInfo(uint id, uint type, uint displayid, string name)
+        {
+            ID = id;
+            Type = type;
+            DisplayId = displayid;
+            Name = name;
         }
     }
     public class ComboboxPair

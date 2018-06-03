@@ -36,6 +36,7 @@
             this.btnSelect = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.btnSelectUnchanged = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstData
@@ -116,12 +117,24 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // btnSelectUnchanged
+            // 
+            this.btnSelectUnchanged.Location = new System.Drawing.Point(305, 367);
+            this.btnSelectUnchanged.Name = "btnSelectUnchanged";
+            this.btnSelectUnchanged.Size = new System.Drawing.Size(100, 23);
+            this.btnSelectUnchanged.TabIndex = 8;
+            this.btnSelectUnchanged.Text = "Select -IGNORE-";
+            this.btnSelectUnchanged.UseVisualStyleBackColor = true;
+            this.btnSelectUnchanged.Visible = false;
+            this.btnSelectUnchanged.Click += new System.EventHandler(this.btnSelectUnchanged_Click);
+            // 
             // FormDataFinder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(672, 393);
             this.ControlBox = false;
+            this.Controls.Add(this.btnSelectUnchanged);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSelect);
@@ -152,5 +165,6 @@
         protected System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCancel;
         protected System.Windows.Forms.Button btnSelectNone;
+        private System.Windows.Forms.Button btnSelectUnchanged;
     }
 }

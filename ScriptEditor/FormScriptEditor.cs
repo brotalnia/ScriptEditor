@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using ScriptEditor.DataFinderForms;
 
 namespace ScriptEditor
 {
@@ -25,6 +26,83 @@ namespace ScriptEditor
 
         // Used to prevent control events triggering when resetting data.
         bool dontUpdate = false;
+
+        // Command Type Names
+        private string[] CommandTypeNames =
+        {
+        "Talk",                     // 0
+        "Emote",                    // 1
+        "Field Set",                // 2
+        "Move",                     // 3
+        "Modify Flags",             // 4
+        "Interrupt Casts",          // 5
+        "Teleport",                 // 6
+        "Complete Quest",           // 7
+        "Kill Credit",              // 8
+        "Respawn GameObject",       // 9
+        "Summon Creature",          // 10
+        "Open Door",                // 11
+        "Close Door",               // 12
+        "Activate GameObject",      // 13
+        "Remove Aura",              // 14
+        "Cast Spell",               // 15
+        "Play Sound",               // 16
+        "Create Item",              // 17
+        "Despawn Creature",         // 18
+        "Set Equipment",            // 19
+        "Set Movement Type",        // 20
+        "Make Active Object",       // 21
+        "Set Faction",              // 22
+        "Morph",                    // 23
+        "Mount",                    // 24
+        "Toggle Run or Walk",       // 25
+        "Start Attack",             // 26
+        "Update Entry",             // 27
+        "Set Stand State",          // 28
+        "Modify Threat",            // 29
+        "Start Taxi Path",          // 30
+        "Terminate Script",         // 31
+        "Terminate Condition",      // 32
+        "Enter Evade Mode",         // 33
+        "Set Home Position",        // 34
+        "Set Orientation",          // 35
+        "MeetingStone Queue",       // 36
+        "Set Data",                 // 37
+        "Set Data 64",              // 38
+        "Start Script",             // 39
+        "Remove Item",              // 40
+        "Remove Object",            // 41
+        "Set Melee Attack",         // 42
+        "Set Combat Movement",      // 43
+        "Set Phase",                // 44
+        "Set Phase Random",         // 45
+        "Set Phase Range",          // 46
+        "Flee",                     // 47
+        "Deal Damage",              // 48
+        "Combat Pulse",             // 49
+        "Call For Help",            // 50
+        "Set Sheath State",         // 51
+        "Set Invincibility HP",     // 52
+        "Start Game Event",         // 53
+        "Set Server Variable",      // 54
+        "Set Spells Template",      // 55
+        "Remove Guardians",         // 56
+        "Add Spell Cooldown",       // 57
+        "Remove Spell Cooldown",    // 58
+        "Set React State",          // 59
+        "Start Waypoints",          // 60
+        "Start Map Event",          // 61
+        "End Map Event",            // 62
+        "Add Map Event Target",     // 63
+        "Remove Map Event Target",  // 64
+        "Set Map Event Data",       // 65
+        "Send Map Event",           // 66
+        "Set Default Movement",     // 67
+        "Start Script For All",     // 68
+        "Edit Map Event",           // 69
+        "Fail Quest",               // 70
+        "Respawn Creature"          // 71
+        };
 
         // Options for combo boxes.
         public string[] CommandSetData_ComboOptions = { "Save Raw Value", "Increment Existing Data", "Decrement Existing Data" };
@@ -61,75 +139,7 @@ namespace ScriptEditor
             lstActions.ListViewItemSorter = new ActionSorter();
 
             // Add options to Commands combo box.
-            cmbCommandId.Items.Add(new ComboboxPair("Talk", 0));
-            cmbCommandId.Items.Add(new ComboboxPair("Emote", 1));
-            cmbCommandId.Items.Add(new ComboboxPair("Field Set", 2));
-            cmbCommandId.Items.Add(new ComboboxPair("Move", 3));
-            cmbCommandId.Items.Add(new ComboboxPair("Modify Flags", 4));
-            cmbCommandId.Items.Add(new ComboboxPair("Interrupt Casts", 5));
-            cmbCommandId.Items.Add(new ComboboxPair("Teleport", 6));
-            cmbCommandId.Items.Add(new ComboboxPair("Complete Quest", 7));
-            cmbCommandId.Items.Add(new ComboboxPair("Kill Credit", 8));
-            cmbCommandId.Items.Add(new ComboboxPair("Respawn GameObject", 9));
-            cmbCommandId.Items.Add(new ComboboxPair("Summon Creature", 10));
-            cmbCommandId.Items.Add(new ComboboxPair("Open Door", 11));
-            cmbCommandId.Items.Add(new ComboboxPair("Close Door", 12));
-            cmbCommandId.Items.Add(new ComboboxPair("Activate GameObject", 13));
-            cmbCommandId.Items.Add(new ComboboxPair("Remove Aura", 14));
-            cmbCommandId.Items.Add(new ComboboxPair("Cast Spell", 15));
-            cmbCommandId.Items.Add(new ComboboxPair("Play Sound", 16));
-            cmbCommandId.Items.Add(new ComboboxPair("Create Item", 17));
-            cmbCommandId.Items.Add(new ComboboxPair("Despawn Creature", 18));
-            cmbCommandId.Items.Add(new ComboboxPair("Set Equipment", 19));
-            cmbCommandId.Items.Add(new ComboboxPair("Set Movement Type", 20));
-            cmbCommandId.Items.Add(new ComboboxPair("Make Active Object", 21));
-            cmbCommandId.Items.Add(new ComboboxPair("Set Faction", 22));
-            cmbCommandId.Items.Add(new ComboboxPair("Morph", 23));
-            cmbCommandId.Items.Add(new ComboboxPair("Mount", 24));
-            cmbCommandId.Items.Add(new ComboboxPair("Toggle Run or Walk", 25));
-            cmbCommandId.Items.Add(new ComboboxPair("Start Attack", 26));
-            cmbCommandId.Items.Add(new ComboboxPair("Update Entry", 27));
-            cmbCommandId.Items.Add(new ComboboxPair("Set Stand State", 28));
-            cmbCommandId.Items.Add(new ComboboxPair("Modify Threat", 29));
-            cmbCommandId.Items.Add(new ComboboxPair("Start Taxi Path", 30));
-            cmbCommandId.Items.Add(new ComboboxPair("Terminate Script", 31));
-            cmbCommandId.Items.Add(new ComboboxPair("Terminate Condition", 32));
-            cmbCommandId.Items.Add(new ComboboxPair("Enter Evade Mode", 33));
-            cmbCommandId.Items.Add(new ComboboxPair("Set Home Position", 34));
-            cmbCommandId.Items.Add(new ComboboxPair("Set Orientation", 35));
-            cmbCommandId.Items.Add(new ComboboxPair("MeetingStone Queue", 36));
-            cmbCommandId.Items.Add(new ComboboxPair("Set Data", 37));
-            cmbCommandId.Items.Add(new ComboboxPair("Set Data 64", 38));
-            cmbCommandId.Items.Add(new ComboboxPair("Start Script", 39));
-            cmbCommandId.Items.Add(new ComboboxPair("Remove Item", 40));
-            cmbCommandId.Items.Add(new ComboboxPair("Remove Object", 41));
-            cmbCommandId.Items.Add(new ComboboxPair("Set Melee Attack", 42));
-            cmbCommandId.Items.Add(new ComboboxPair("Set Combat Movement", 43));
-            cmbCommandId.Items.Add(new ComboboxPair("Set Phase", 44));
-            cmbCommandId.Items.Add(new ComboboxPair("Set Phase Random", 45));
-            cmbCommandId.Items.Add(new ComboboxPair("Set Phase Range", 46));
-            cmbCommandId.Items.Add(new ComboboxPair("Flee", 47));
-            cmbCommandId.Items.Add(new ComboboxPair("Deal Damage", 48));
-            cmbCommandId.Items.Add(new ComboboxPair("Combat Pulse", 49));
-            cmbCommandId.Items.Add(new ComboboxPair("Call For Help", 50));
-            cmbCommandId.Items.Add(new ComboboxPair("Set Sheath State", 51));
-            cmbCommandId.Items.Add(new ComboboxPair("Set Invincibility HP", 52));
-            cmbCommandId.Items.Add(new ComboboxPair("Start Game Event", 53));
-            cmbCommandId.Items.Add(new ComboboxPair("Set Server Variable", 54));
-            cmbCommandId.Items.Add(new ComboboxPair("Set Spells Template", 55));
-            cmbCommandId.Items.Add(new ComboboxPair("Remove Guardians", 56));
-            cmbCommandId.Items.Add(new ComboboxPair("Add Spell Cooldown", 57));
-            cmbCommandId.Items.Add(new ComboboxPair("Remove Spell Cooldown", 58));
-            cmbCommandId.Items.Add(new ComboboxPair("Set React State", 59));
-            cmbCommandId.Items.Add(new ComboboxPair("Start Waypoints", 60));
-            cmbCommandId.Items.Add(new ComboboxPair("Start Map Event", 61));
-            cmbCommandId.Items.Add(new ComboboxPair("End Map Event", 62));
-            cmbCommandId.Items.Add(new ComboboxPair("Add Map Event Target", 63));
-            cmbCommandId.Items.Add(new ComboboxPair("Remove Map Event Target", 64));
-            cmbCommandId.Items.Add(new ComboboxPair("Set Map Event Data", 65));
-            cmbCommandId.Items.Add(new ComboboxPair("Send Map Event", 66));
-            cmbCommandId.Items.Add(new ComboboxPair("Set Default Movement", 67));
-
+            cmbCommandId.DataSource = CommandTypeNames;
             cmbCommandId.SelectedIndex = 0;
 
             // Add option to Buddy Type combo box.
@@ -223,7 +233,6 @@ namespace ScriptEditor
             cmbModifyFlagsFieldId.DataSource = GameData.FlagFieldsList;
 
             // Setting default selection for combo boxes.
-            cmbSummonCreatureFacingOptions.SelectedIndex = 0;
             cmbSummonCreatureAttackTarget.SelectedIndex = 0;
             cmbTable.SelectedIndex = 0;
             cmbSetMovementType.SelectedIndex = 0;
@@ -258,7 +267,14 @@ namespace ScriptEditor
             currentScriptTable = "";
             dontUpdate = false;
         }
-
+        private void txtScriptId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                btnFind_Click(this, new EventArgs());
+                e.Handled = true;
+            }
+        }
         private void btnViewRaw_Click(object sender, EventArgs e)
         {
             if (lstActions.SelectedItems.Count > 0)
@@ -426,6 +442,21 @@ namespace ScriptEditor
         {
             dontUpdate = true;
 
+            // Unsupported command
+            frmCommandUnknown.Visible = false;
+            txtUnknownCommandDatalong1.Text = "";
+            txtUnknownCommandDatalong2.Text = "";
+            txtUnknownCommandDatalong3.Text = "";
+            txtUnknownCommandDatalong4.Text = "";
+            txtUnknownCommandDataint1.Text = "";
+            txtUnknownCommandDataint2.Text = "";
+            txtUnknownCommandDataint3.Text = "";
+            txtUnknownCommandDataint4.Text = "";
+            txtUnknownCommandX.Text = "";
+            txtUnknownCommandY.Text = "";
+            txtUnknownCommandZ.Text = "";
+            txtUnknownCommandO.Text = "";
+
             // Talk (0)
             frmCommandTalk.Visible = false;
             btnTalkText1.Text = "-NONE-";
@@ -523,7 +554,7 @@ namespace ScriptEditor
             txtSummonCreatureZ.Text = "";
             txtSummonCreatureO.Text = "";
             cmbSummonCreatureAttackTarget.SelectedIndex = 0;
-            cmbSummonCreatureFacingOptions.SelectedIndex = 0;
+            txtSummonCreatureScriptId.Text = "";
             cmbSummonCreatureDespawnType.SelectedIndex = 0;
             chkSummonCreatureFlags1.Checked = false;
             chkSummonCreatureFlags2.Checked = false;
@@ -759,6 +790,7 @@ namespace ScriptEditor
 
             // Set Scripted Map Event Data (65)
             // Send Scripted Map Event (66)
+            // Edit Scripted Map Event (69)
             txtSetScriptedMapEventData.Text = "";
             txtSetScriptedMapEventDataEventId.Text = "";
             txtSetScriptedMapEventDataIndex.Text = "";
@@ -770,6 +802,13 @@ namespace ScriptEditor
             cmbSetDefaultMovementAlwaysReplace.SelectedIndex = 0;
             txtSetDefaultMovementParam1.Text = "";
             frmCommandSetDefaultMovement.Visible = false;
+
+            // Start Script For All (68)
+            txtStartScriptForAllScriptId.Text = "";
+            cmbStartScriptForAllObjectType.SelectedIndex = 0;
+            btnStartScriptForAllObjectEntry.Text = "-NONE-";
+            txtStartScriptForAllDistance.Text = "";
+            frmCommandStartScriptForAll.Visible = false;
 
             dontUpdate = false;
         }
@@ -952,11 +991,27 @@ namespace ScriptEditor
                     break;
                 }
                 case 7: // Complete Quest
+                case 70: // Fail Quest
                 {
                     uint questId = selectedAction.Datalong;
                     if (questId > 0)
                         btnQuestCompleteId.Text = GameData.FindQuestTitle(questId) + " (" + questId.ToString() + ")";
-                    txtQuestCompleteDistance.Text = selectedAction.Datalong2.ToString();
+                    switch (selectedAction.Command)
+                    {
+                        case 7: // Complete Quest
+                        {
+                            lblQuestCompleteTooltip.Text = "Completes the specified quest for the player. If a maximum distance is provided, but the player is out of range, the quest will be marked as failed instead.";
+                            txtQuestCompleteDistance.Text = selectedAction.Datalong2.ToString();
+                            txtQuestCompleteDistance.Enabled = true;
+                            break;
+                        }
+                        case 70: // Fail Quest
+                        {
+                            lblQuestCompleteTooltip.Text = "Fails the specified quest for the player and his group.";
+                            txtQuestCompleteDistance.Enabled = false;
+                            break;
+                        }
+                    }
                     frmCommandQuestComplete.Visible = true;
                     break;
                 }
@@ -1004,7 +1059,9 @@ namespace ScriptEditor
                             break;
                         }
                     }
-                    cmbSummonCreatureFacingOptions.SelectedIndex = selectedAction.Dataint2;
+
+                    txtSummonCreatureScriptId.Text = selectedAction.Dataint2.ToString();
+
                     if ((selectedAction.Dataint & 1) != 0)
                         chkSummonCreatureFlags1.Checked = true;
                     if ((selectedAction.Dataint & 2) != 0)
@@ -1580,6 +1637,7 @@ namespace ScriptEditor
                 case 47: // Flee
                 case 49: // Combat Pulse
                 case 51: // Set Sheath State
+                case 71: // Respawn Creature
                 {
                     switch (selectedAction.Command)
                     {
@@ -1602,6 +1660,13 @@ namespace ScriptEditor
                             lblFleeTooltip.Text = "Changes the source Unit's current sheath state.";
                             lblFleeMode.Text = "Sheath State:";
                             cmbFleeMode.DataSource = CommandSetSheathState_ComboOptions;
+                            break;
+                        }
+                        case 71: // Respawn Creature
+                        {
+                            lblFleeTooltip.Text = "Respawns the source Creature.";
+                            lblFleeMode.Text = "Even Alive:";
+                            cmbFleeMode.DataSource = CommandCombatPulse_ComboOptions;
                             break;
                         }
                     }
@@ -1693,27 +1758,45 @@ namespace ScriptEditor
                 }
                 case 61: // Start Scripted Map Event
                 case 63: // Add Scripted Map Event Target
+                case 69: // Edit Scripted Map Event
                 {
-                    if (selectedAction.Command == 61)
+                    switch (selectedAction.Command)
                     {
-                        lblStartScriptedMapEventTooltip.Text = "Starts a scripted map event with the given Id, targets, conditions and scripts.";
-                        txtStartScriptedMapEventTimeLimit.Visible = true;
-                        lblStartScriptedMapEventTimeLimit.Visible = true;
-                        txtStartScriptedMapEventTimeLimit.Text = selectedAction.Datalong2.ToString();
+                        case 61: // Start Scripted Map Event
+                        {
+                            lblStartScriptedMapEventTooltip.Text = "Starts a scripted map event with the given Id, targets, conditions and scripts.";
+                            txtStartScriptedMapEventTimeLimit.Visible = true;
+                            lblStartScriptedMapEventTimeLimit.Visible = true;
+                            txtStartScriptedMapEventTimeLimit.Text = selectedAction.Datalong2.ToString();
+                            break;
+                        }
+                        case 63: // Add Scripted Map Event Target
+                        {
+                            lblStartScriptedMapEventTooltip.Text = "Adds the source WorldObject to the additional targets vector of the scripted map event with the given Id.";
+                            txtStartScriptedMapEventTimeLimit.Visible = false;
+                            lblStartScriptedMapEventTimeLimit.Visible = false;
+                            break;
+                        }
+                        case 69: // Edit Scripted Map Event
+                        {
+                            lblStartScriptedMapEventTooltip.Text = "Changes the condition and script Ids used by the scripted map event with the given Id. Fields with a negative value will not be changed.";
+                            txtStartScriptedMapEventTimeLimit.Visible = false;
+                            lblStartScriptedMapEventTimeLimit.Visible = false;
+                            break;
+                        }
                     }
-                    else
-                    {
-                        lblStartScriptedMapEventTooltip.Text = "Adds the source WorldObject to the additional targets vector of the scripted map event with the given Id.";
-                        txtStartScriptedMapEventTimeLimit.Visible = false;
-                        lblStartScriptedMapEventTimeLimit.Visible = false;
-                    }
+
                     txtStartScriptedMapEventFailureScript.Text = selectedAction.Dataint4.ToString();
                     txtStartScriptedMapEventSuccessScript.Text = selectedAction.Dataint2.ToString();
                     txtStartScriptedMapEventId.Text = selectedAction.Datalong.ToString();
                     if (selectedAction.Dataint3 > 0)
                         btnStartScriptedMapEventFailureCondition.Text = selectedAction.Dataint3.ToString();
+                    else if (selectedAction.Dataint3 < 0)
+                        btnStartScriptedMapEventFailureCondition.Text = "-IGNORE";
                     if (selectedAction.Dataint > 0)
                         btnStartScriptedMapEventSuccessCondition.Text = selectedAction.Dataint.ToString();
+                    else if (selectedAction.Dataint < 0)
+                        btnStartScriptedMapEventSuccessCondition.Text = "-IGNORE";
                     frmCommandStartScriptedMapEvent.Visible = true;
                     break;
                 }
@@ -1787,6 +1870,55 @@ namespace ScriptEditor
                     frmCommandSetDefaultMovement.Visible = true;
                     break;
                 }
+                case 68: // Start Script For All
+                {
+                    txtStartScriptForAllScriptId.Text = selectedAction.Datalong.ToString();
+                    cmbStartScriptForAllObjectType.SelectedIndex = (int)selectedAction.Datalong2;
+                    switch (selectedAction.Datalong2)
+                    {
+                        case 0: // GameObject
+                        {
+                            btnStartScriptForAllObjectEntry.Enabled = true;
+                            uint objectId = selectedAction.Datalong3;
+                            if (objectId > 0)
+                                btnStartScriptForAllObjectEntry.Text = GameData.FindGameObjectName(objectId) + " (" + objectId.ToString() + ")";
+                            break;
+                        }
+                        case 2: // Creature
+                        {
+                            btnStartScriptForAllObjectEntry.Enabled = true;
+                            uint creatureId = selectedAction.Datalong3;
+                            if (creatureId > 0)
+                                btnStartScriptForAllObjectEntry.Text = GameData.FindCreatureName(creatureId) + " (" + creatureId.ToString() + ")";
+                            break;
+                        }
+                        default:
+                        {
+                            btnStartScriptForAllObjectEntry.Enabled = false;
+                            break;
+                        }
+                    }
+                    txtStartScriptForAllDistance.Text = selectedAction.Datalong4.ToString();
+                    frmCommandStartScriptForAll.Visible = true;
+                    break;
+                }
+                default: // Unsupported command
+                {
+                    txtUnknownCommandDatalong1.Text = selectedAction.Datalong.ToString();
+                    txtUnknownCommandDatalong2.Text = selectedAction.Datalong2.ToString();
+                    txtUnknownCommandDatalong3.Text = selectedAction.Datalong3.ToString();
+                    txtUnknownCommandDatalong4.Text = selectedAction.Datalong4.ToString();
+                    txtUnknownCommandDataint1.Text = selectedAction.Dataint.ToString();
+                    txtUnknownCommandDataint2.Text = selectedAction.Dataint2.ToString();
+                    txtUnknownCommandDataint3.Text = selectedAction.Dataint3.ToString();
+                    txtUnknownCommandDataint4.Text = selectedAction.Dataint4.ToString();
+                    txtUnknownCommandX.Text = selectedAction.X.ToString();
+                    txtUnknownCommandY.Text = selectedAction.Y.ToString();
+                    txtUnknownCommandZ.Text = selectedAction.Z.ToString();
+                    txtUnknownCommandO.Text = selectedAction.O.ToString();
+                    frmCommandUnknown.Visible = true;
+                    break;
+                }
             }
             dontUpdate = false;
         }
@@ -1808,7 +1940,11 @@ namespace ScriptEditor
             txtTargetParam1.Text = selectedAction.TargetParam1.ToString();
             txtTargetParam2.Text = selectedAction.TargetParam2.ToString();
             cmbTargetType.SelectedIndex = (int)selectedAction.TargetType;
-            cmbCommandId.SelectedIndex = (int)selectedAction.Command;
+
+            if (selectedAction.Command < CommandTypeNames.GetLength(0))
+                cmbCommandId.SelectedIndex = (int)selectedAction.Command;
+            else
+                cmbCommandId.SelectedIndex = -1;
 
             if (selectedAction.ConditionId > 0)
                 btnCommandCondition.Text = selectedAction.ConditionId.ToString();
@@ -1893,6 +2029,22 @@ namespace ScriptEditor
 
                 SetScriptFieldFromValue(returnId, "ConditionId");
             }
+        }
+
+        private int GetSelectedCommandType()
+        {
+            if (lstActions.SelectedItems.Count > 0)
+            {
+                // Get the selected item in the listview.
+                ListViewItem currentItem = lstActions.SelectedItems[0];
+
+                // Get the associated ScriptAction.
+                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
+
+                return (int)currentAction.Command;
+            }
+
+            return -1;
         }
 
         // Generic function for setting script field to specified value;
@@ -2019,31 +2171,6 @@ namespace ScriptEditor
 
             return 0;
         }
-        private void btnTalkText1_Click(object sender, EventArgs e)
-        {
-            SetScriptFieldFromDataFinderForm<FormTextFinder>(btnTalkText1, txtTalkText1, GameData.FindTextWithId, "Dataint");
-        }
-
-        private void btnTalkText2_Click(object sender, EventArgs e)
-        {
-            SetScriptFieldFromDataFinderForm<FormTextFinder>(btnTalkText2, txtTalkText2, GameData.FindTextWithId, "Dataint2");
-        }
-
-        private void btnTalkText3_Click(object sender, EventArgs e)
-        {
-            SetScriptFieldFromDataFinderForm<FormTextFinder>(btnTalkText3, txtTalkText3, GameData.FindTextWithId, "Dataint3");
-        }
-
-        private void btnTalkText4_Click(object sender, EventArgs e)
-        {
-            SetScriptFieldFromDataFinderForm<FormTextFinder>(btnTalkText4, txtTalkText4, GameData.FindTextWithId, "Dataint4");
-        }
-
-        private void cmbTalkChatType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SetScriptFieldFromCombobox(cmbTalkChatType, "Datalong", false);
-        }
-
         private void txtCommandComment_Leave(object sender, EventArgs e)
         {
             if (lstActions.SelectedItems.Count > 0)
@@ -2293,40 +2420,113 @@ namespace ScriptEditor
             }
         }
 
+        // Generic form for currently unsupported commands.
+        private void txtStartScriptForAllDistance_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtStartScriptForAllDistance, "Datalong4");
+        }
+        private void txtUnknownCommandDatalong1_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtUnknownCommandDatalong1, "Datalong");
+        }
+        private void txtUnknownCommandDatalong2_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtUnknownCommandDatalong2, "Datalong2");
+        }
+        private void txtUnknownCommandDatalong3_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtUnknownCommandDatalong3, "Datalong3");
+        }
+        private void txtUnknownCommandDatalong4_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtUnknownCommandDatalong4, "Datalong4");
+        }
+        private void txtUnknownCommandDataint1_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtUnknownCommandDataint1, "Dataint");
+        }
+        private void txtUnknownCommandDataint2_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtUnknownCommandDataint2, "Dataint2");
+        }
+        private void txtUnknownCommandDataint3_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtUnknownCommandDataint3, "Dataint3");
+        }
+        private void txtUnknownCommandDataint4_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtUnknownCommandDataint4, "Dataint4");
+        }
+        private void txtUnknownCommandX_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtUnknownCommandX, "X");
+        }
+        private void txtUnknownCommandY_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtUnknownCommandY, "Y");
+        }
+        private void txtUnknownCommandZ_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtUnknownCommandZ, "Z");
+        }
+        private void txtUnknownCommandO_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtUnknownCommandO, "O");
+        }
+
+        // SCRIPT_COMMAND_TALK (0)
+        private void btnTalkText1_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormTextFinder>(btnTalkText1, txtTalkText1, GameData.FindTextWithId, "Dataint");
+        }
+        private void btnTalkText2_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormTextFinder>(btnTalkText2, txtTalkText2, GameData.FindTextWithId, "Dataint2");
+        }
+        private void btnTalkText3_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormTextFinder>(btnTalkText3, txtTalkText3, GameData.FindTextWithId, "Dataint3");
+        }
+        private void btnTalkText4_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormTextFinder>(btnTalkText4, txtTalkText4, GameData.FindTextWithId, "Dataint4");
+        }
+        private void cmbTalkChatType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbTalkChatType, "Datalong", false);
+        }
+
+        // SCRIPT_COMMAND_FIELD_SET (2)
         private void cmbFieldSetFields_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbFieldSetFields, "Datalong", true);
         }
-
         private void txtFieldSetValue_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtFieldSetValue, "Datalong2");
         }
+
+        // SCRIPT_COMMAND_MOVE_TO (3)
         private void txtMoveToX_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtMoveToX, "X");
         }
-
         private void txtMoveToY_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtMoveToY, "Y");
         }
-
         private void txtMoveToZ_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtMoveToZ, "Z");
         }
-
         private void txtMoveToO_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtMoveToO, "O");
         }
-
         private void chkMoveToFlagsForce_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkMoveToFlagsForce, "Datalong4", 1);
         }
-
         private void chkMoveToFlagsPointMovement_CheckedChanged(object sender, EventArgs e)
         {
             if (dontUpdate)
@@ -2345,52 +2545,42 @@ namespace ScriptEditor
                 txtMoveToPointId.Enabled = false;
             }
         }
-
         private void chkMoveOptions1_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkMoveOptions1, "Datalong3", 1);
         }
-
         private void chkMoveOptions2_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkMoveOptions2, "Datalong3", 2);
         }
-
         private void chkMoveOptions4_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkMoveOptions4, "Datalong3", 4);
         }
-
         private void chkMoveOptions8_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkMoveOptions8, "Datalong3", 8);
         }
-
         private void chkMoveOptions16_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkMoveOptions16, "Datalong3", 16);
         }
-
         private void chkMoveOptions32_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkMoveOptions32, "Datalong3", 32);
         }
-
         private void chkMoveOptions64_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkMoveOptions64, "Datalong3", 64);
         }
-
         private void chkMoveOptions128_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkMoveOptions128, "Datalong3", 128);
         }
-
         private void chkMoveOptions256_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkMoveOptions256, "Datalong3", 256);
         }
-
         private void cmbMoveToType_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (dontUpdate)
@@ -2433,17 +2623,16 @@ namespace ScriptEditor
                 }
             }
         }
-
         private void txtMoveToTime_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtMoveToTime, "Datalong2");
         }
-
         private void txtMoveToPointId_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtMoveToPointId, "Dataint");
         }
 
+        // SCRIPT_COMMAND_MODIFY_FLAGS (4)
         private void Command4ResetAllCheckboxes()
         {
             chkModifyFlags1.Checked = false;
@@ -2570,7 +2759,6 @@ namespace ScriptEditor
             if ((flags & 536870912) != 0)
                 chkModifyFlags536870912.Checked = true;
         }
-
         private void Command4SetCheckboxNamesBasedOnFieldIndex(int field)
         {
             switch (field)
@@ -2823,180 +3011,291 @@ namespace ScriptEditor
                 }
             }
         }
+        private void cmbModifyFlagsFieldId_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (dontUpdate)
+                return;
 
+            SetScriptFieldFromCombobox(cmbModifyFlagsFieldId, "Datalong", true);
+            Command4ResetAllCheckboxes();
+            Command4SetCheckboxNamesBasedOnFieldIndex(cmbModifyFlagsFieldId.SelectedIndex);
+            SetScriptFieldFromValue(0, "Datalong2");
+        }
+        private void cmbModifyFlagsMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbModifyFlagsMode, "Datalong3", false);
+        }
+        private void chkModifyFlags1_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags1, "Datalong2", 1);
+        }
+        private void chkModifyFlags2_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags2, "Datalong2", 2);
+        }
+        private void chkModifyFlags4_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags4, "Datalong2", 4);
+        }
+        private void chkModifyFlags8_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags8, "Datalong2", 8);
+        }
+        private void chkModifyFlags16_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags16, "Datalong2", 16);
+        }
+        private void chkModifyFlags32_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags32, "Datalong2", 32);
+        }
+        private void chkModifyFlags64_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags64, "Datalong2", 64);
+        }
+        private void chkModifyFlags128_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags128, "Datalong2", 128);
+        }
+        private void chkModifyFlags256_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags256, "Datalong2", 256);
+        }
+        private void chkModifyFlags512_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags512, "Datalong2", 512);
+        }
+        private void chkModifyFlags1024_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags1024, "Datalong2", 1024);
+        }
+        private void chkModifyFlags2048_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags2048, "Datalong2", 2048);
+        }
+        private void chkModifyFlags4096_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags4096, "Datalong2", 4096);
+        }
+        private void chkModifyFlags8192_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags8192, "Datalong2", 8192);
+        }
+        private void chkModifyFlags16384_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags16384, "Datalong2", 16384);
+        }
+        private void chkModifyFlags32768_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags32768, "Datalong2", 32768);
+        }
+        private void chkModifyFlags65536_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags65536, "Datalong2", 65536);
+        }
+        private void chkModifyFlags131072_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags131072, "Datalong2", 131072);
+        }
+        private void chkModifyFlags262144_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags262144, "Datalong2", 262144);
+        }
+        private void chkModifyFlags524288_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags524288, "Datalong2", 524288);
+        }
+        private void chkModifyFlags1048576_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags1048576, "Datalong2", 1048576);
+        }
+        private void chkModifyFlags2097152_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags2097152, "Datalong2", 2097152);
+        }
+        private void chkModifyFlags4194304_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags4194304, "Datalong2", 4194304);
+        }
+        private void chkModifyFlags8388608_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags8388608, "Datalong2", 8388608);
+        }
+        private void chkModifyFlags16777216_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags16777216, "Datalong2", 16777216);
+        }
+        private void chkModifyFlags33554432_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags33554432, "Datalong2", 33554432);
+        }
+        private void chkModifyFlags67108864_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags67108864, "Datalong2", 67108864);
+        }
+        private void chkModifyFlags134217728_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags134217728, "Datalong2", 134217728);
+        }
+        private void chkModifyFlags268435456_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags268435456, "Datalong2", 268435456);
+        }
+        private void chkModifyFlags536870912_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkModifyFlags536870912, "Datalong2", 536870912);
+        }
+
+        // SCRIPT_COMMAND_INTERRUPT_CASTS (5)
+        private void btnInterruptCastsSpellId_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormSpellFinder>(btnInterruptCastsSpellId, null, GameData.FindSpellName, "Datalong2");
+        }
+        private void cmbInterruptCastsWithDelayed_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbInterruptCastsWithDelayed, "Datalong", false);
+        }
+
+        // SCRIPT_COMMAND_TELEPORT_TO (6)
         private void cmbTeleportMap_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbTeleportMap, "Datalong", true);
         }
-
         private void txtTeleportX_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtTeleportX, "X");
         }
-
         private void txtTeleportY_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtTeleportY, "Y");
         }
-
         private void txtTeleportZ_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtTeleportZ, "Z");
         }
-
         private void txtTeleportO_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtTeleportO, "O");
         }
-
         private void chkTeleportOptions1_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkTeleportOptions1, "Datalong2", 1);
         }
-
         private void chkTeleportOptions2_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkTeleportOptions2, "Datalong2", 2);
         }
-
         private void chkTeleportOptions4_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkTeleportOptions4, "Datalong2", 4);
         }
-
         private void chkTeleportOptions8_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkTeleportOptions8, "Datalong2", 8);
         }
-
         private void chkTeleportOptions16_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkTeleportOptions16, "Datalong2", 16);
         }
-
         private void chkTeleportOptions32_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkTeleportOptions32, "Datalong2", 32);
         }
 
+        // SCRIPT_COMMAND_QUEST_EXPLORED (7)
         private void btnQuestCompleteId_Click(object sender, EventArgs e)
         {
             SetScriptFieldFromDataFinderForm<FormQuestFinder>(btnQuestCompleteId, null, GameData.FindQuestTitle, "Datalong");
         }
-
         private void txtQuestCompleteDistance_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtQuestCompleteDistance, "Datalong2");
         }
 
+        // SCRIPT_COMMAND_KILL_CREDIT (8)
         private void cmbKillCreditType_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbKillCreditType, "Datalong2", false);
         }
-        
         private void btnKillCreditCreatureId_Click(object sender, EventArgs e)
         {
             SetScriptFieldFromDataFinderForm<FormCreatureFinder>(btnKillCreditCreatureId, null, GameData.FindCreatureName, "Datalong");
         }
 
+        // SCRIPT_COMMAND_RESPAWN_GAMEOBJECT (9)
         private void txtRespawnGameobjectDelay_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtRespawnGameobjectDelay, "Datalong2");
         }
-
         private void txtRespawnGameobjectGuid_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtRespawnGameobjectGuid, "Datalong");
         }
 
+        // SCRIPT_COMMAND_TEMP_SUMMON_CREATURE (10)
         private void btnSummonCreatureId_Click(object sender, EventArgs e)
         {
             SetScriptFieldFromDataFinderForm<FormCreatureFinder>(btnSummonCreatureId, null, GameData.FindCreatureName, "Datalong");
         }
-
         private void txtSummonCreatureDelay_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSummonCreatureDelay, "Datalong2");
         }
-
         private void txtSummonCreatureX_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSummonCreatureX, "X");
         }
-
         private void txtSummonCreatureY_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSummonCreatureY, "Y");
         }
-
         private void txtSummonCreatureZ_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSummonCreatureZ, "Z");
         }
-
         private void txtSummonCreatureO_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSummonCreatureO, "O");
         }
-
         private void cmbSummonCreatureAttackTarget_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbSummonCreatureAttackTarget, "Dataint3", true);
         }
-
         private void cmbSummonCreatureDespawnType_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbSummonCreatureDespawnType, "Dataint4", true);
         }
-
-        private void cmbSummonCreatureFacingOptions_SelectedIndexChanged(object sender, EventArgs e)
+        private void txtSummonCreatureScriptId_Leave(object sender, EventArgs e)
         {
-            if (dontUpdate)
-                return;
-
-            if (lstActions.SelectedItems.Count > 0)
+            SetScriptFieldFromTextbox(txtSummonCreatureScriptId, "Dataint2");
+        }
+        private void btnSummonCreatureScriptIdEdit_Click(object sender, EventArgs e)
+        {
+            uint script_id = 0;
+            uint.TryParse(txtSummonCreatureScriptId.Text, out script_id);
+            if (script_id > 0)
             {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                // Facing Options = Dataint2
-                currentAction.Dataint2 = cmbSummonCreatureFacingOptions.SelectedIndex;
-
-                // If facing source/target orientation is not needed.
-                if (cmbSummonCreatureFacingOptions.SelectedIndex > 0)
-                {
-                    currentAction.O = 0;
-                    txtSummonCreatureO.Text = "0";
-                    txtSummonCreatureO.Enabled = false;
-                }
-                else
-                    txtSummonCreatureO.Enabled = true;
+                FormScriptEditor formEditor = new FormScriptEditor();
+                formEditor.Show();
+                formEditor.LoadScript(script_id, "event_scripts");
             }
         }
-
         private void txtSummonCreatureUniqueLimit_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSummonCreatureUniqueLimit, "Datalong3");
         }
-
         private void txtSummonCreatureUniqueRange_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSummonCreatureUniqueRange, "Datalong4");
         }
-
         private void chkSummonCreatureFlags1_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkSummonCreatureFlags1, "Dataint", 1);
         }
-
         private void chkSummonCreatureFlags2_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkSummonCreatureFlags2, "Dataint", 2);
         }
-
         private void chkSummonCreatureFlags4_CheckedChanged(object sender, EventArgs e)
         {
             if (dontUpdate)
@@ -3033,7 +3332,6 @@ namespace ScriptEditor
                 }
             }
         }
-
         private void chkSummonCreatureFlags8_CheckStateChanged(object sender, EventArgs e)
         {
             if (dontUpdate)
@@ -3071,90 +3369,87 @@ namespace ScriptEditor
             }
         }
 
+        // SCRIPT_COMMAND_OPEN_DOOR (11)
         private void txtDoorGuid_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtDoorGuid, "Datalong");
         }
-
         private void txtDoorResetDelay_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtDoorResetDelay, "Datalong2");
         }
+
+        // SCRIPT_COMMAND_REMOVE_AURA (14)
         private void btnRemoveAuraSpellId_Click(object sender, EventArgs e)
         {
             SetScriptFieldFromDataFinderForm<FormSpellFinder>(btnRemoveAuraSpellId, null, GameData.FindSpellName, "Datalong");
         }
 
+        // SCRIPT_COMMAND_CAST_SPELL (15)
         private void btnCastSpellId_Click(object sender, EventArgs e)
         {
             SetScriptFieldFromDataFinderForm<FormSpellFinder>(btnCastSpellId, null, GameData.FindSpellName, "Datalong");
         }
-
         private void chkCastSpellFlags1_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkCastSpellFlags1, "Datalong2", 1);
         }
-
         private void chkCastSpellFlags2_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkCastSpellFlags2, "Datalong2", 2);
         }
-
         private void chkCastSpellFlags4_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkCastSpellFlags4, "Datalong2", 4);
         }
-
         private void chkCastSpellFlags16_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkCastSpellFlags16, "Datalong2", 16);
         }
-
         private void chkCastSpellFlags32_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkCastSpellFlags32, "Datalong2", 32);
         }
-
         private void chkCastSpellFlags64_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkCastSpellFlags64, "Datalong2", 64);
         }
-
         private void chkCastSpellFlags128_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkCastSpellFlags128, "Datalong2", 128);
         }
 
+        // SCRIPT_COMMAND_PLAY_SOUND (16)
         private void btnPlaySoundId_Click(object sender, EventArgs e)
         {
             SetScriptFieldFromDataFinderForm<FormSoundFinder>(btnPlaySoundId, null, GameData.FindSoundName, "Datalong");
         }
-
         private void chkPlaySoundFlags1_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkPlaySoundFlags1, "Datalong2", 1);
         }
-
         private void chkPlaySoundFlags2_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkPlaySoundFlags2, "Datalong2", 2);
         }
 
+        // SCRIPT_COMMAND_CREATE_ITEM (17)
         private void btnCreateItemId_Click(object sender, EventArgs e)
         {
             SetScriptFieldFromDataFinderForm<FormItemFinder>(btnCreateItemId, null, GameData.FindItemName, "Datalong");
         }
-
         private void txtCreateItemAmount_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtCreateItemAmount, "Datalong2");
         }
 
+        // SCRIPT_COMMAND_DESPAWN_CREATURE (18)
         private void txtDespawnCreatureDelay_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtDespawnCreatureDelay, "Datalong");
         }
 
+        // SCRIPT_COMMAND_SET_EQUIPMENT (19)
         private void cmbSetEquipmentUseDefault_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (dontUpdate)
@@ -3194,22 +3489,20 @@ namespace ScriptEditor
                 }
             }
         }
-
         private void btnSetEquipmentMainHand_Click(object sender, EventArgs e)
         {
             SetScriptFieldFromDataFinderForm<FormWeaponFinder>(btnSetEquipmentMainHand, null, GameData.FindItemName, "Dataint");
         }
-
         private void btnSetEquipmentOffHand_Click(object sender, EventArgs e)
         {
             SetScriptFieldFromDataFinderForm<FormWeaponFinder>(btnSetEquipmentOffHand, null, GameData.FindItemName, "Dataint2");
         }
-
         private void btnSetEquipmentRanged_Click(object sender, EventArgs e)
         {
             SetScriptFieldFromDataFinderForm<FormWeaponFinder>(btnSetEquipmentRanged, null, GameData.FindItemName, "Dataint3");
         }
 
+        // SCRIPT_COMMAND_MOVEMENT (20
         private void cmbSetMovementType_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (dontUpdate)
@@ -3332,57 +3625,53 @@ namespace ScriptEditor
                 dontUpdate = false;
             }
         }
-
         private void cmbSetMovementBoolParam_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbSetMovementBoolParam, "Datalong2", false);
         }
-
         private void txtSetMovementIntParam_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSetMovementIntParam, "Datalong3");
         }
-
         private void txtSetMovementDistance_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSetMovementDistance, "X");
         }
-
         private void txtSetMovementAngle_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSetMovementAngle, "O");
         }
-
         private void cmbSetMovementClearMotionMaster_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbSetMovementClearMotionMaster, "Datalong4", false);
         }
 
+        // SCRIPT_COMMAND_SET_ACTIVEOBJECT (21)
         private void cmbActiveObjectSetActive_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbActiveObjectSetActive, "Datalong", false);
         }
 
+        // SCRIPT_COMMAND_SET_FACTION (22)
         private void btnSetFactionId_Click(object sender, EventArgs e)
         {
             SetScriptFieldFromDataFinderForm<FormFactionTemplateFinder>(btnSetFactionId, null, GameData.FindFactionTemplateName, "Datalong");
         }
-
         private void chkSetFactionFlag1_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkSetFactionFlag1, "Datalong2", 1);
         }
-
         private void chkSetFactionFlag2_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkSetFactionFlag2, "Datalong2", 2);
         }
-
         private void chkSetFactionFlag4_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkSetFactionFlag4, "Datalong2", 4);
         }
 
+        // SCRIPT_COMMAND_MORPH_TO_ENTRY_OR_MODEL (23)
+        // SCRIPT_COMMAND_MOUNT_TO_ENTRY_OR_MODEL (24)
         private void btnMorphOrMountId_Click(object sender, EventArgs e)
         {
             if (cmbMorphOrMountType.SelectedIndex == 0) // Creature Id
@@ -3406,7 +3695,6 @@ namespace ScriptEditor
                 }
             }
         }
-
         private void cmbMorphOrMountType_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (dontUpdate)
@@ -3419,232 +3707,59 @@ namespace ScriptEditor
             btnMorphOrMountId.Text = "-NONE-";
         }
 
+        // SCRIPT_COMMAND_SET_RUN (25)
         private void cmbSetRunMode_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbSetRunMode, "Datalong", false);
         }
 
-        private void cmbModifyFlagsFieldId_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (dontUpdate)
-                return;
-
-            SetScriptFieldFromCombobox(cmbModifyFlagsFieldId, "Datalong", true);
-            Command4ResetAllCheckboxes();
-            Command4SetCheckboxNamesBasedOnFieldIndex(cmbModifyFlagsFieldId.SelectedIndex);
-            SetScriptFieldFromValue(0, "Datalong2");
-        }
-
-        private void cmbModifyFlagsMode_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SetScriptFieldFromCombobox(cmbModifyFlagsMode, "Datalong3", false);
-        }
-
-        private void chkModifyFlags1_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags1, "Datalong2", 1);
-        }
-
-        private void chkModifyFlags2_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags2, "Datalong2", 2);
-        }
-
-        private void chkModifyFlags4_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags4, "Datalong2", 4);
-        }
-
-        private void chkModifyFlags8_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags8, "Datalong2", 8);
-        }
-
-        private void chkModifyFlags16_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags16, "Datalong2", 16);
-        }
-
-        private void chkModifyFlags32_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags32, "Datalong2", 32);
-        }
-
-        private void chkModifyFlags64_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags64, "Datalong2", 64);
-        }
-
-        private void chkModifyFlags128_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags128, "Datalong2", 128);
-        }
-
-        private void chkModifyFlags256_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags256, "Datalong2", 256);
-        }
-
-        private void chkModifyFlags512_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags512, "Datalong2", 512);
-        }
-
-        private void chkModifyFlags1024_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags1024, "Datalong2", 1024);
-        }
-
-        private void chkModifyFlags2048_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags2048, "Datalong2", 2048);
-        }
-
-        private void chkModifyFlags4096_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags4096, "Datalong2", 4096);
-        }
-
-        private void chkModifyFlags8192_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags8192, "Datalong2", 8192);
-        }
-
-        private void chkModifyFlags16384_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags16384, "Datalong2", 16384);
-        }
-
-        private void chkModifyFlags32768_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags32768, "Datalong2", 32768);
-        }
-
-        private void chkModifyFlags65536_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags65536, "Datalong2", 65536);
-        }
-
-        private void chkModifyFlags131072_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags131072, "Datalong2", 131072);
-        }
-
-        private void chkModifyFlags262144_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags262144, "Datalong2", 262144);
-        }
-
-        private void chkModifyFlags524288_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags524288, "Datalong2", 524288);
-        }
-
-        private void chkModifyFlags1048576_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags1048576, "Datalong2", 1048576);
-        }
-
-        private void chkModifyFlags2097152_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags2097152, "Datalong2", 2097152);
-        }
-
-        private void chkModifyFlags4194304_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags4194304, "Datalong2", 4194304);
-        }
-
-        private void chkModifyFlags8388608_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags8388608, "Datalong2", 8388608);
-        }
-
-        private void chkModifyFlags16777216_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags16777216, "Datalong2", 16777216);
-        }
-
-        private void chkModifyFlags33554432_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags33554432, "Datalong2", 33554432);
-        }
-
-        private void chkModifyFlags67108864_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags67108864, "Datalong2", 67108864);
-        }
-
-        private void chkModifyFlags134217728_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags134217728, "Datalong2", 134217728);
-        }
-
-        private void chkModifyFlags268435456_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags268435456, "Datalong2", 268435456);
-        }
-
-        private void chkModifyFlags536870912_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags536870912, "Datalong2", 536870912);
-        }
-
-        private void btnInterruptCastsSpellId_Click(object sender, EventArgs e)
-        {
-            SetScriptFieldFromDataFinderForm<FormSpellFinder>(btnInterruptCastsSpellId, null, GameData.FindSpellName, "Datalong2");
-        }
-
-        private void cmbInterruptCastsWithDelayed_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SetScriptFieldFromCombobox(cmbInterruptCastsWithDelayed, "Datalong", false);
-        }
-
+        // SCRIPT_COMMAND_UPDATE_ENTRY (27)
         private void btnUpdateEntryCreatureId_Click(object sender, EventArgs e)
         {
             SetScriptFieldFromDataFinderForm<FormCreatureFinder>(btnUpdateEntryCreatureId, null, GameData.FindCreatureName, "Datalong");
         }
-
         private void cmbUpdateEntryTeam_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbUpdateEntryTeam, "Datalong2", false);
         }
 
+        // SCRIPT_COMMAND_STAND_STATE (28)
         private void cmbSetStandState_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbSetStandState, "Datalong", false);
         }
 
+        // SCRIPT_COMMAND_MODIFY_THREAT (29)
         private void cmbModifyThreatTarget_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbModifyThreatTarget, "Datalong", false);
         }
-
         private void txtModifyThreatPercent_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtModifyThreatPercent, "X");
         }
 
+        // SCRIPT_COMMAND_SEND_TAXI_PATH (30)
         private void btnSendTaxiPathId_Click(object sender, EventArgs e)
         {
             SetScriptFieldFromDataFinderForm<FormTaxiFinder>(btnSendTaxiPathId, txtSendTaxiPath, GameData.FindTaxiPathDestination, "Datalong");
         }
 
+        // SCRIPT_COMMAND_TERMINATE_SCRIPT (31)
         private void btnTerminateScriptCreatureId_Click(object sender, EventArgs e)
         {
             SetScriptFieldFromDataFinderForm<FormCreatureFinder>(btnTerminateScriptCreatureId, null, GameData.FindCreatureName, "Datalong");
         }
-
         private void txtTerminateScriptSearchRadius_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtTerminateScriptSearchRadius, "Datalong2");
         }
-
         private void cmbTerminateScriptCondition_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbTerminateScriptCondition, "Datalong3", false);
         }
 
+        // SCRIPT_COMMAND_TERMINATE_CONDITION (32)
         private void btnTerminateConditionId_Click(object sender, EventArgs e)
         {
             FormConditionFinder frm = new FormConditionFinder();
@@ -3660,17 +3775,16 @@ namespace ScriptEditor
                 SetScriptFieldFromValue(returnId, "Datalong");
             }
         }
-
         private void btnTerminateConditionQuest_Click(object sender, EventArgs e)
         {
             SetScriptFieldFromDataFinderForm<FormQuestFinder>(btnTerminateConditionQuest, null, GameData.FindQuestTitle, "Datalong2");
         }
-
         private void cmbTerminateConditionRule_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbTerminateConditionRule, "Datalong3", false);
         }
 
+        // SCRIPT_COMMAND_SET_HOME_POSITION (34)
         private void cmbSetHomePositionMode_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbSetHomePositionMode, "Datalong", false);
@@ -3704,27 +3818,24 @@ namespace ScriptEditor
                 }
             }
         }
-
         private void txtSetHomePositionX_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSetHomePositionX, "X");
         }
-
         private void txtSetHomePositionY_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSetHomePositionY, "Y");
         }
-
         private void txtSetHomePositionZ_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSetHomePositionZ, "Z");
         }
-
         private void txtSetHomePositionO_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSetHomePositionO, "O");
         }
 
+        // SCRIPT_COMMAND_TURN_TO (35)
         private void cmbSetFacingMode_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbSetFacingMode, "Datalong", false);
@@ -3741,27 +3852,27 @@ namespace ScriptEditor
                 txtSetFacingOrientation.Enabled = true;
             }
         }
-
         private void txtSetFacingOrientation_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSetFacingOrientation, "O");
         }
 
+        // SCRIPT_COMMAND_MEETINGSTONE (36)
         private void btnMeetingStoneAreaId_Click(object sender, EventArgs e)
         {
             SetScriptFieldFromDataFinderForm<FormAreaFinder>(btnMeetingStoneAreaId, null, GameData.FindAreaName, "Datalong");
         }
 
+        // SCRIPT_COMMAND_SET_INST_DATA (37)
+        // SCRIPT_COMMAND_SET_INST_DATA64 (38)
         private void txtSetDataField_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSetDataField, "Datalong");
         }
-
         private void txtSetDataValue_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSetDataValue, "Datalong2");
         }
-
         private void cmbSetDataMode_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (dontUpdate)
@@ -3795,46 +3906,39 @@ namespace ScriptEditor
             }
         }
 
+        // SCRIPT_COMMAND_START_SCRIPT (39)
         private void txtStartScriptId1_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtStartScriptId1, "Datalong");
         }
-
         private void txtStartScriptId2_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtStartScriptId2, "Datalong2");
         }
-
         private void txtStartScriptId3_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtStartScriptId3, "Datalong3");
         }
-
         private void txtStartScriptId4_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtStartScriptId4, "Datalong4");
         }
-
         private void txtStartScriptChance1_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtStartScriptChance1, "Dataint");
         }
-
         private void txtStartScriptChance2_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtStartScriptChance2, "Dataint2");
         }
-
         private void txtStartScriptChance3_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtStartScriptChance3, "Dataint3");
         }
-
         private void txtStartScriptChance4_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtStartScriptChance4, "Dataint4");
         }
-
         private void btnStartScriptEdit1_Click(object sender, EventArgs e)
         {
             uint script_id = 0;
@@ -3846,7 +3950,6 @@ namespace ScriptEditor
                 formEditor.LoadScript(script_id, "event_scripts");
             }
         }
-
         private void btnStartScriptEdit2_Click(object sender, EventArgs e)
         {
             uint script_id = 0;
@@ -3858,7 +3961,6 @@ namespace ScriptEditor
                 formEditor.LoadScript(script_id, "event_scripts");
             }
         }
-
         private void btnStartScriptEdit3_Click(object sender, EventArgs e)
         {
             uint script_id = 0;
@@ -3870,7 +3972,6 @@ namespace ScriptEditor
                 formEditor.LoadScript(script_id, "event_scripts");
             }
         }
-
         private void btnStartScriptEdit4_Click(object sender, EventArgs e)
         {
             uint script_id = 0;
@@ -3883,61 +3984,61 @@ namespace ScriptEditor
             }
         }
 
+        // SCRIPT_COMMAND_SET_PHASE (44)
         private void txtSetPhasePhase_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSetPhasePhase, "Datalong");
         }
-
         private void cmbSetPhaseMode_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbSetPhaseMode, "Datalong2", false);
         }
 
+        // SCRIPT_COMMAND_SET_PHASE_RANDOM (45)
         private void txtSetRandomPhase1_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSetRandomPhase1, "Datalong");
         }
-
         private void txtSetRandomPhase2_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSetRandomPhase2, "Datalong2");
         }
-
         private void txtSetRandomPhase3_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSetRandomPhase3, "Datalong3");
         }
-
         private void txtSetRandomPhase4_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSetRandomPhase4, "Datalong4");
         }
 
+        // SCRIPT_COMMAND_FLEE (47)
         private void cmbFleeMode_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbFleeMode, "Datalong", false);
         }
 
+        // SCRIPT_COMMAND_CALL_FOR_HELP (50)
         private void txtCallForHelpRadius_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtCallForHelpRadius, "X");
         }
 
+        // SCRIPT_COMMAND_GAME_EVENT (53)
         private void btnGameEventId_Click(object sender, EventArgs e)
         {
             SetScriptFieldFromDataFinderForm<FormEventFinder>(btnGameEventId, null, GameData.FindEventName, "Datalong");
         }
-
         private void cmbGameEventAction_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbGameEventAction, "Datalong2", false);
         }
-
         private void cmbGameEventOverwrite_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbGameEventOverwrite, "Datalong3", false);
         }
 
+        // SCRIPT_COMMAND_CREATURE_SPELLS (55)
         private void btnSetSpellsTemplate1_Click(object sender, EventArgs e)
         {
             FormCastsEditor frm = new FormCastsEditor();
@@ -3954,7 +4055,6 @@ namespace ScriptEditor
                 SetScriptFieldFromValue(returnId, "Datalong");
             }
         }
-
         private void btnSetSpellsTemplate2_Click(object sender, EventArgs e)
         {
             FormCastsEditor frm = new FormCastsEditor();
@@ -3971,7 +4071,6 @@ namespace ScriptEditor
                 SetScriptFieldFromValue(returnId, "Datalong2");
             }
         }
-
         private void btnSetSpellsTemplate3_Click(object sender, EventArgs e)
         {
             FormCastsEditor frm = new FormCastsEditor();
@@ -3988,7 +4087,6 @@ namespace ScriptEditor
                 SetScriptFieldFromValue(returnId, "Datalong3");
             }
         }
-
         private void btnSetSpellsTemplate4_Click(object sender, EventArgs e)
         {
             FormCastsEditor frm = new FormCastsEditor();
@@ -4005,85 +4103,71 @@ namespace ScriptEditor
                 SetScriptFieldFromValue(returnId, "Datalong4");
             }
         }
-
         private void txtSetSpellsTemplateChance1_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSetSpellsTemplateChance1, "Dataint");
         }
-
         private void txtSetSpellsTemplateChance2_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSetSpellsTemplateChance2, "Dataint2");
         }
-
         private void txtSetSpellsTemplateChance3_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSetSpellsTemplateChance3, "Dataint3");
         }
-
         private void txtSetSpellsTemplateChance4_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSetSpellsTemplateChance4, "Dataint4");
         }
 
-        private void txtScriptId_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)13)
-            {
-                btnFind_Click(this, new EventArgs());
-                e.Handled = true;
-            }
-        }
-
+        // SCRIPT_COMMAND_ADD_SPELL_COOLDOWN (57)
         private void btnSpellCooldownId_Click(object sender, EventArgs e)
         {
             SetScriptFieldFromDataFinderForm<FormSpellFinder>(btnSpellCooldownId, null, GameData.FindSpellName, "Datalong");
         }
-
         private void txtSpellCooldownSeconds_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSpellCooldownSeconds, "Datalong2");
         }
 
+        // SCRIPT_COMMAND_SET_REACT_STATE (59)
         private void cmbSetReactState_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbSetReactState, "Datalong", false);
         }
 
+        // SCRIPT_COMMAND_START_WAYPOINTS (60)
         private void cmbStartWaypointsSource_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbStartWaypointsSource, "Datalong", false);
         }
-
         private void cmbStartWaypointsRepeat_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbStartWaypointsRepeat, "Datalong4", false);
         }
-
         private void txtStartWaypointsStartPoint_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtStartWaypointsStartPoint, "Datalong2");
         }
-
         private void txtStartWaypointsInitialDelay_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtStartWaypointsInitialDelay, "Datalong3");
         }
-
         private void txtStartWaypointsPathId_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtStartWaypointsPathId, "Dataint");
         }
-
         private void txtStartWaypointsEntry_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtStartWaypointsEntry, "Dataint2");
         }
 
+        // SCRIPT_COMMAND_START_MAP_EVENT (61)
         private void btnStartScriptedMapEventSuccessCondition_Click(object sender, EventArgs e)
         {
             FormConditionFinder frm = new FormConditionFinder();
-            if (frm.ShowDialog(GetScriptFieldValue("Dataint")) == System.Windows.Forms.DialogResult.OK)
+            bool has_ignore = GetSelectedCommandType() == 69 ? true : false;
+            if (frm.ShowDialog(GetScriptFieldValue("Dataint"), has_ignore) == System.Windows.Forms.DialogResult.OK)
             {
                 int returnId = frm.ReturnValue;
 
@@ -4095,11 +4179,11 @@ namespace ScriptEditor
                 SetScriptFieldFromValue(returnId, "Dataint");
             }
         }
-
         private void btnStartScriptedMapEventFailureCondition_Click(object sender, EventArgs e)
         {
             FormConditionFinder frm = new FormConditionFinder();
-            if (frm.ShowDialog(GetScriptFieldValue("Dataint3")) == System.Windows.Forms.DialogResult.OK)
+            bool has_ignore = GetSelectedCommandType() == 69 ? true : false;
+            if (frm.ShowDialog(GetScriptFieldValue("Dataint3"), has_ignore) == System.Windows.Forms.DialogResult.OK)
             {
                 int returnId = frm.ReturnValue;
 
@@ -4111,17 +4195,14 @@ namespace ScriptEditor
                 SetScriptFieldFromValue(returnId, "Dataint3");
             }
         }
-
         private void txtStartScriptedMapEventSuccessScript_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtStartScriptedMapEventSuccessScript, "Dataint2");
         }
-
         private void txtStartScriptedMapEventFailureScript_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtStartScriptedMapEventFailureScript, "Dataint4");
         }
-
         private void btnStartScriptedMapEventSuccessScriptEdit_Click(object sender, EventArgs e)
         {
             uint script_id = 0;
@@ -4130,10 +4211,9 @@ namespace ScriptEditor
             {
                 FormScriptEditor formEditor = new FormScriptEditor();
                 formEditor.Show();
-                formEditor.LoadScript(script_id, "map_event_scripts");
+                formEditor.LoadScript(script_id, "event_scripts");
             }
         }
-
         private void btnStartScriptedMapEventFailureScriptEdit_Click(object sender, EventArgs e)
         {
             uint script_id = 0;
@@ -4142,20 +4222,19 @@ namespace ScriptEditor
             {
                 FormScriptEditor formEditor = new FormScriptEditor();
                 formEditor.Show();
-                formEditor.LoadScript(script_id, "map_event_scripts");
+                formEditor.LoadScript(script_id, "event_scripts");
             }
         }
-
         private void txtStartScriptedMapEventId_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtStartScriptedMapEventId, "Datalong");
         }
-
         private void txtStartScriptedMapEventTimeLimit_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtStartScriptedMapEventTimeLimit, "Datalong2");
         }
 
+        // SCRIPT_COMMAND_REMOVE_MAP_EVENT_TARGET (64)
         private void btnRemoveScriptedMapEventTargetCondition_Click(object sender, EventArgs e)
         {
             FormConditionFinder frm = new FormConditionFinder();
@@ -4171,27 +4250,24 @@ namespace ScriptEditor
                 SetScriptFieldFromValue(returnId, "Datalong2");
             }
         }
-
         private void txtRemoveScriptedMapEventTargetEventId_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtRemoveScriptedMapEventTargetEventId, "Datalong");
         }
-
         private void cmbRemoveScriptedMapEventTarget_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbRemoveScriptedMapEventTarget, "Datalong3", false);
         }
 
+        // SCRIPT_COMMAND_SET_MAP_EVENT_DATA (65)
         private void txtSetScriptedMapEventDataEventId_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSetScriptedMapEventDataEventId, "Datalong");
         }
-
         private void txtSetScriptedMapEventDataIndex_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSetScriptedMapEventDataIndex, "Datalong2");
         }
-
         private void cmbSetScriptedMapEventDataMode_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (dontUpdate)
@@ -4211,12 +4287,12 @@ namespace ScriptEditor
                     currentAction.Datalong3 = (uint)cmbSetScriptedMapEventDataMode.SelectedIndex;
             }
         }
-
         private void txtSetScriptedMapEventData_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSetScriptedMapEventData, "Datalong4");
         }
 
+        // SCRIPT_COMMAND_SET_DEFAULT_MOVEMENT (67)
         private void cmbSetDefaultMovementType_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (dontUpdate)
@@ -4249,15 +4325,62 @@ namespace ScriptEditor
             }
             lblSetDefaultMovementParam1.Location = new Point(txtSetDefaultMovementParam1.Location.X - lblSetDefaultMovementParam1.Size.Width - 4, lblSetDefaultMovementParam1.Location.Y);
         }
-
         private void cmbSetDefaultMovementAlwaysReplace_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbSetDefaultMovementAlwaysReplace, "Datalong2", false);
         }
-
         private void txtSetDefaultMovementParam1_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSetDefaultMovementParam1, "Datalong3");
+        }
+
+        // SCRIPT_COMMAND_START_SCRIPT_FOR_ALL (68)
+        private void txtStartScriptForAllScriptId_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtStartScriptForAllScriptId, "Datalong");
+        }
+        private void cmbStartScriptForAllObjectType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (dontUpdate)
+                return;
+
+            switch (cmbStartScriptForAllObjectType.SelectedIndex)
+            {
+                case 0: // GameObject
+                case 2: // Creature
+                {
+                    btnStartScriptForAllObjectEntry.Enabled = true;
+                    break;
+                }
+                default:
+                {
+                    btnStartScriptForAllObjectEntry.Enabled = false;
+                    break;
+                }
+            }
+
+            btnStartScriptForAllObjectEntry.Text = "-NONE-";
+            SetScriptFieldFromValue(0, "Datalong3");
+            SetScriptFieldFromCombobox(cmbStartScriptForAllObjectType, "Datalong2", false);
+        }
+        private void btnStartScriptForAllObjectEntry_Click(object sender, EventArgs e)
+        {
+            if (dontUpdate)
+                return;
+
+            switch (cmbStartScriptForAllObjectType.SelectedIndex)
+            {
+                case 0: // GameObject
+                {
+                    SetScriptFieldFromDataFinderForm<FormGameObjectFinder>(btnStartScriptForAllObjectEntry, null, GameData.FindGameObjectName, "Datalong3");
+                    break;
+                }
+                case 2: // Creature
+                {
+                    SetScriptFieldFromDataFinderForm<FormCreatureFinder>(btnStartScriptForAllObjectEntry, null, GameData.FindCreatureName, "Datalong3");
+                    break;
+                }
+            }
         }
     }
 
