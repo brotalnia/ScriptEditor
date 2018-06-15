@@ -30,6 +30,14 @@ namespace ScriptEditor.DataFinderForms
                     AddGameObjectToListView(gameobject);
             }
         }
+        protected override void AddByIdRange(uint minId, uint maxId)
+        {
+            foreach (GameObjectInfo gameobject in GameData.GameObjectInfoList)
+            {
+                if ((gameobject.ID >= minId) && (gameobject.ID <= maxId))
+                    AddGameObjectToListView(gameobject);
+            }
+        }
         protected override void AddByText(string searchText)
         {
             foreach (GameObjectInfo gameobject in GameData.GameObjectInfoList)

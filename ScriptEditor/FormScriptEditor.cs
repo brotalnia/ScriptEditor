@@ -101,7 +101,9 @@ namespace ScriptEditor
         "Start Script For All",     // 68
         "Edit Map Event",           // 69
         "Fail Quest",               // 70
-        "Respawn Creature"          // 71
+        "Respawn Creature",         // 71
+        "Assist Unit",              // 72
+        "Combat Stop",              // 73
         };
 
         // Options for combo boxes.
@@ -532,6 +534,7 @@ namespace ScriptEditor
             // Quest Complete (7)
             btnQuestCompleteId.Text = "-NONE-";
             txtQuestCompleteDistance.Text = "";
+            cmbQuestCompleteGroup.SelectedIndex = 0;
             frmCommandQuestComplete.Visible = false;
 
             // Kill Credit (8)
@@ -637,6 +640,7 @@ namespace ScriptEditor
             // Morph (23) and Mount (24)
             btnMorphOrMountId.Text = "-NONE-";
             cmbMorphOrMountType.SelectedIndex = 0;
+            cmbMorphOrMountPermanent.SelectedIndex = 0;
             frmCommandMorphOrMount.Visible = false;
 
             // Set Run (25)
@@ -1002,13 +1006,20 @@ namespace ScriptEditor
                         {
                             lblQuestCompleteTooltip.Text = "Completes the specified quest for the player. If a maximum distance is provided, but the player is out of range, the quest will be marked as failed instead.";
                             txtQuestCompleteDistance.Text = selectedAction.Datalong2.ToString();
-                            txtQuestCompleteDistance.Enabled = true;
+                            lblQuestCompleteDistance.Visible = true;
+                            txtQuestCompleteDistance.Visible = true;
+                            cmbQuestCompleteGroup.SelectedIndex = (int)selectedAction.Datalong3;
+                            cmbQuestCompleteGroup.Visible = true;
+                            lblQuestCompleteGroup.Visible = true;
                             break;
                         }
                         case 70: // Fail Quest
                         {
                             lblQuestCompleteTooltip.Text = "Fails the specified quest for the player and his group.";
-                            txtQuestCompleteDistance.Enabled = false;
+                            txtQuestCompleteDistance.Visible = false;
+                            lblQuestCompleteDistance.Visible = false;
+                            lblQuestCompleteGroup.Visible = false;
+                            cmbQuestCompleteGroup.Visible = false;
                             break;
                         }
                     }
@@ -1099,6 +1110,8 @@ namespace ScriptEditor
                 case 26: // Start Attack
                 case 33: // Enter Evade Mode
                 case 41: // Remove Object
+                case 72: // Assist Unit
+                case 73: // Combat Stop
                 {
                     txtDoorGuid.Visible = false;
                     txtDoorResetDelay.Visible = false;
@@ -1123,7 +1136,17 @@ namespace ScriptEditor
                         }
                         case 41:
                         {
-                            lblDoorTooltip.Text = "The source gameobject has its loot state changed to deactivated and is removed from the map. This command has no additional parameters.";
+                            lblDoorTooltip.Text = "The source GameObject has its loot state changed to deactivated and is removed from the map. This command has no additional parameters.";
+                            break;
+                        }
+                        case 72:
+                        {
+                            lblDoorTooltip.Text = "The source Creature begins attacking the target Unit's attacker, but only if it does not already have a victim. This command has no additional parameters.";
+                            break;
+                        }
+                        case 73:
+                        {
+                            lblDoorTooltip.Text = "The source Creature leaves combat without entering evade mode. This command has no additional parameters.";
                             break;
                         }
                     }
@@ -1368,9 +1391,18 @@ namespace ScriptEditor
                     }
 
                     if (selectedAction.Command == 23)
+                    {
                         lblMorphOrMountTooltip.Text = "Sets the source Creature's display Id to the provided value. Select NONE to restore the Creature's original display Id.";
+                        lblMorphOrMountPermanent.Visible = false;
+                        cmbMorphOrMountPermanent.Visible = false;
+                    }
                     else
+                    {
                         lblMorphOrMountTooltip.Text = "The source Creature gets mounted to the provided creature or display Id. Select NONE to unmount.";
+                        lblMorphOrMountPermanent.Visible = true;
+                        cmbMorphOrMountPermanent.Visible = true;
+                        cmbMorphOrMountPermanent.SelectedIndex = (int)selectedAction.Datalong3;
+                    }
 
                     frmCommandMorphOrMount.Visible = true;
                     break;
@@ -1388,7 +1420,7 @@ namespace ScriptEditor
                     {
                         case 27: // Update Entry
                         {
-                            lblUpdateEntryTooltip.Text = "Temporarily changes the creature\'s entry, but preserves the same AI. The team setting determines which display Id will be used if there is a different one for each faction.";
+                            lblUpdateEntryTooltip.Text = "Temporarily changes the source Creature\'s entry, but preserves the same AI. The team setting determines which display Id will be used if there is a different one for each faction.";
                             lblUpdateEntryTeam.Visible = true;
                             cmbUpdateEntryTeam.Visible = true;
                             break;
@@ -3211,6 +3243,10 @@ namespace ScriptEditor
         {
             SetScriptFieldFromTextbox(txtQuestCompleteDistance, "Datalong2");
         }
+        private void cmbQuestCompleteGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbQuestCompleteGroup, "Datalong3", false);
+        }
 
         // SCRIPT_COMMAND_KILL_CREDIT (8)
         private void cmbKillCreditType_SelectedIndexChanged(object sender, EventArgs e)
@@ -3705,6 +3741,11 @@ namespace ScriptEditor
             // Reseting Id.
             SetScriptFieldFromValue(0, "Datalong");
             btnMorphOrMountId.Text = "-NONE-";
+        }
+
+        private void cmbMorphOrMountPermanent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbMorphOrMountPermanent, "Datalong3", false);
         }
 
         // SCRIPT_COMMAND_SET_RUN (25)

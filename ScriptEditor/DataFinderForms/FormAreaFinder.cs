@@ -29,6 +29,14 @@ namespace ScriptEditor
                     AddAreaToListView(area);
             }
         }
+        protected override void AddByIdRange(uint minId, uint maxId)
+        {
+            foreach (AreaInfo area in GameData.AreaInfoList)
+            {
+                if ((area.ID >= minId) && (area.ID <= maxId))
+                    AddAreaToListView(area);
+            }
+        }
         protected override void AddByText(string searchText)
         {
             foreach (AreaInfo area in GameData.AreaInfoList)

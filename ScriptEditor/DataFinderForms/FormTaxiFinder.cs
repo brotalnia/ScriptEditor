@@ -29,6 +29,14 @@ namespace ScriptEditor
                     AddPathToListView(path);
             }
         }
+        protected override void AddByIdRange(uint minId, uint maxId)
+        {
+            foreach (TaxiInfo path in GameData.TaxiInfoList)
+            {
+                if ((path.ID >= minId) && (path.ID <= maxId))
+                    AddPathToListView(path);
+            }
+        }
         protected override void AddByText(string searchText)
         {
             foreach (TaxiInfo path in GameData.TaxiInfoList)

@@ -58,6 +58,14 @@ namespace ScriptEditor
                     AddTextToListView(bc);
             }
         }
+        protected override void AddByIdRange(uint minId, uint maxId)
+        {
+            foreach (BroadcastText bc in GameData.BroadcastTextsList)
+            {
+                if ((bc.ID >= minId) && (bc.ID <= maxId))
+                    AddTextToListView(bc);
+            }
+        }
         protected override void AddByText(string searchText)
         {
             foreach (BroadcastText bc in GameData.BroadcastTextsList)

@@ -29,6 +29,14 @@ namespace ScriptEditor
                     AddSoundToListView(sound);
             }
         }
+        protected override void AddByIdRange(uint minId, uint maxId)
+        {
+            foreach (SoundInfo sound in GameData.SoundInfoList)
+            {
+                if ((sound.ID >= minId) && (sound.ID <= maxId))
+                    AddSoundToListView(sound);
+            }
+        }
         protected override void AddByText(string searchText)
         {
             foreach (SoundInfo sound in GameData.SoundInfoList)

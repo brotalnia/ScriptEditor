@@ -124,6 +124,12 @@
             this.lblMovementInformType = new System.Windows.Forms.Label();
             this.lblMovementInformPoint = new System.Windows.Forms.Label();
             this.lblEventMovementInformTooltip = new System.Windows.Forms.Label();
+            this.frmEventGroupMemberDied = new System.Windows.Forms.Panel();
+            this.btnGroupMemberDiedCreatureId = new System.Windows.Forms.Button();
+            this.lblGroupMemberDiedCreatureId = new System.Windows.Forms.Label();
+            this.lblGroupMemberDiedIsLeader = new System.Windows.Forms.Label();
+            this.lblGroupMemberDiedTooltip = new System.Windows.Forms.Label();
+            this.cmbGroupMemberDiedIsLeader = new System.Windows.Forms.ComboBox();
             this.grpGeneral.SuspendLayout();
             this.grpEventFlags.SuspendLayout();
             this.frmEventTimerCombat.SuspendLayout();
@@ -133,6 +139,7 @@
             this.frmEventSummonedUnit.SuspendLayout();
             this.frmEventReceiveEmote.SuspendLayout();
             this.frmEventMovementInform.SuspendLayout();
+            this.frmEventGroupMemberDied.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstEvents
@@ -993,7 +1000,7 @@
             this.txtMovementInformType.Location = new System.Drawing.Point(99, 58);
             this.txtMovementInformType.MinimumSize = new System.Drawing.Size(82, 21);
             this.txtMovementInformType.Name = "txtMovementInformType";
-            this.txtMovementInformType.Size = new System.Drawing.Size(118, 21);
+            this.txtMovementInformType.Size = new System.Drawing.Size(118, 20);
             this.txtMovementInformType.TabIndex = 15;
             this.txtMovementInformType.Leave += new System.EventHandler(this.txtMovementInformType_Leave);
             // 
@@ -1077,11 +1084,77 @@
             this.lblEventMovementInformTooltip.Text = "Expires upon reaching a waypoint or finishing point movement. For special waypoin" +
     "ts, the provided path Id is added to the motion type.";
             // 
+            // frmEventGroupMemberDied
+            // 
+            this.frmEventGroupMemberDied.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmEventGroupMemberDied.Controls.Add(this.cmbGroupMemberDiedIsLeader);
+            this.frmEventGroupMemberDied.Controls.Add(this.btnGroupMemberDiedCreatureId);
+            this.frmEventGroupMemberDied.Controls.Add(this.lblGroupMemberDiedCreatureId);
+            this.frmEventGroupMemberDied.Controls.Add(this.lblGroupMemberDiedIsLeader);
+            this.frmEventGroupMemberDied.Controls.Add(this.lblGroupMemberDiedTooltip);
+            this.frmEventGroupMemberDied.Location = new System.Drawing.Point(433, 289);
+            this.frmEventGroupMemberDied.Name = "frmEventGroupMemberDied";
+            this.frmEventGroupMemberDied.Size = new System.Drawing.Size(495, 275);
+            this.frmEventGroupMemberDied.TabIndex = 68;
+            this.frmEventGroupMemberDied.Visible = false;
+            // 
+            // btnGroupMemberDiedCreatureId
+            // 
+            this.btnGroupMemberDiedCreatureId.Location = new System.Drawing.Point(99, 58);
+            this.btnGroupMemberDiedCreatureId.Name = "btnGroupMemberDiedCreatureId";
+            this.btnGroupMemberDiedCreatureId.Size = new System.Drawing.Size(374, 23);
+            this.btnGroupMemberDiedCreatureId.TabIndex = 13;
+            this.btnGroupMemberDiedCreatureId.Text = "-NONE-";
+            this.btnGroupMemberDiedCreatureId.UseVisualStyleBackColor = true;
+            this.btnGroupMemberDiedCreatureId.Click += new System.EventHandler(this.btnGroupMemberDiedCreatureId_Click);
+            // 
+            // lblGroupMemberDiedCreatureId
+            // 
+            this.lblGroupMemberDiedCreatureId.AutoSize = true;
+            this.lblGroupMemberDiedCreatureId.Location = new System.Drawing.Point(33, 61);
+            this.lblGroupMemberDiedCreatureId.Name = "lblGroupMemberDiedCreatureId";
+            this.lblGroupMemberDiedCreatureId.Size = new System.Drawing.Size(62, 13);
+            this.lblGroupMemberDiedCreatureId.TabIndex = 4;
+            this.lblGroupMemberDiedCreatureId.Text = "Creature Id:";
+            // 
+            // lblGroupMemberDiedIsLeader
+            // 
+            this.lblGroupMemberDiedIsLeader.AutoSize = true;
+            this.lblGroupMemberDiedIsLeader.Location = new System.Drawing.Point(41, 91);
+            this.lblGroupMemberDiedIsLeader.Name = "lblGroupMemberDiedIsLeader";
+            this.lblGroupMemberDiedIsLeader.Size = new System.Drawing.Size(54, 13);
+            this.lblGroupMemberDiedIsLeader.TabIndex = 3;
+            this.lblGroupMemberDiedIsLeader.Text = "Is Leader:";
+            // 
+            // lblGroupMemberDiedTooltip
+            // 
+            this.lblGroupMemberDiedTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblGroupMemberDiedTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblGroupMemberDiedTooltip.Name = "lblGroupMemberDiedTooltip";
+            this.lblGroupMemberDiedTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblGroupMemberDiedTooltip.TabIndex = 0;
+            this.lblGroupMemberDiedTooltip.Text = "Expires when a member of the creature\'s group dies. The group must have the appop" +
+    "riate flag for the event to trigger.";
+            // 
+            // cmbGroupMemberDiedIsLeader
+            // 
+            this.cmbGroupMemberDiedIsLeader.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGroupMemberDiedIsLeader.FormattingEnabled = true;
+            this.cmbGroupMemberDiedIsLeader.Items.AddRange(new object[] {
+            "False",
+            "True"});
+            this.cmbGroupMemberDiedIsLeader.Location = new System.Drawing.Point(99, 88);
+            this.cmbGroupMemberDiedIsLeader.Name = "cmbGroupMemberDiedIsLeader";
+            this.cmbGroupMemberDiedIsLeader.Size = new System.Drawing.Size(374, 21);
+            this.cmbGroupMemberDiedIsLeader.TabIndex = 14;
+            this.cmbGroupMemberDiedIsLeader.SelectedIndexChanged += new System.EventHandler(this.cmbGroupMemberDiedIsLeader_SelectedIndexChanged);
+            // 
             // FormEventEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 600);
+            this.Controls.Add(this.frmEventGroupMemberDied);
             this.Controls.Add(this.frmEventMovementInform);
             this.Controls.Add(this.frmEventReceiveEmote);
             this.Controls.Add(this.frmEventSummonedUnit);
@@ -1125,6 +1198,8 @@
             this.frmEventReceiveEmote.PerformLayout();
             this.frmEventMovementInform.ResumeLayout(false);
             this.frmEventMovementInform.PerformLayout();
+            this.frmEventGroupMemberDied.ResumeLayout(false);
+            this.frmEventGroupMemberDied.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1227,5 +1302,11 @@
         private System.Windows.Forms.Label lblMovementInformPoint;
         private System.Windows.Forms.Label lblEventMovementInformTooltip;
         private System.Windows.Forms.TextBox txtMovementInformType;
+        private System.Windows.Forms.Panel frmEventGroupMemberDied;
+        private System.Windows.Forms.ComboBox cmbGroupMemberDiedIsLeader;
+        private System.Windows.Forms.Button btnGroupMemberDiedCreatureId;
+        private System.Windows.Forms.Label lblGroupMemberDiedCreatureId;
+        private System.Windows.Forms.Label lblGroupMemberDiedIsLeader;
+        private System.Windows.Forms.Label lblGroupMemberDiedTooltip;
     }
 }

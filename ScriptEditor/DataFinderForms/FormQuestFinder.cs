@@ -30,6 +30,14 @@ namespace ScriptEditor
                     AddQuestToListView(quest);
             }
         }
+        protected override void AddByIdRange(uint minId, uint maxId)
+        {
+            foreach (QuestInfo quest in GameData.QuestInfoList)
+            {
+                if ((quest.ID >= minId) && (quest.ID <= maxId))
+                    AddQuestToListView(quest);
+            }
+        }
         protected override void AddByText(string searchText)
         {
             foreach (QuestInfo quest in GameData.QuestInfoList)

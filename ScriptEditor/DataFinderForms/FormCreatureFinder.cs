@@ -29,6 +29,14 @@ namespace ScriptEditor
                     AddCreatureToListView(creature);
             }
         }
+        protected override void AddByIdRange(uint minId, uint maxId)
+        {
+            foreach (CreatureInfo creature in GameData.CreatureInfoList)
+            {
+                if ((creature.ID >= minId) && (creature.ID <= maxId))
+                    AddCreatureToListView(creature);
+            }
+        }
         protected override void AddByText(string searchText)
         {
             foreach (CreatureInfo creature in GameData.CreatureInfoList)

@@ -42,6 +42,14 @@ namespace ScriptEditor
                     AddItemToListView(item);
             }
         }
+        protected override void AddByIdRange(uint minId, uint maxId)
+        {
+            foreach (ItemInfo item in GameData.ItemInfoList)
+            {
+                if ((item.ID >= minId) && (item.ID <= maxId))
+                    AddItemToListView(item);
+            }
+        }
         protected override void AddByText(string searchText)
         {
             foreach (ItemInfo item in GameData.ItemInfoList)

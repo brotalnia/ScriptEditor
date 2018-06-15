@@ -29,6 +29,14 @@ namespace ScriptEditor
                     AddFactionToListView(faction);
             }
         }
+        protected override void AddByIdRange(uint minId, uint maxId)
+        {
+            foreach (FactionTemplateInfo faction in GameData.FactionTemplateInfoList)
+            {
+                if ((faction.ID >= minId) && (faction.ID <= maxId))
+                    AddFactionToListView(faction);
+            }
+        }
         protected override void AddByText(string searchText)
         {
             foreach (FactionTemplateInfo faction in GameData.FactionTemplateInfoList)

@@ -32,6 +32,8 @@
             this.columnValue1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnValue2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnFlags = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnValue3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnValue4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lstData
@@ -40,6 +42,8 @@
             this.columnType,
             this.columnValue1,
             this.columnValue2,
+            this.columnValue3,
+            this.columnValue4,
             this.columnFlags});
             // 
             // label1
@@ -50,22 +54,32 @@
             // columnType
             // 
             this.columnType.Text = "Type";
-            this.columnType.Width = 200;
+            this.columnType.Width = 145;
             // 
             // columnValue1
             // 
             this.columnValue1.Text = "Value 1";
-            this.columnValue1.Width = 100;
+            this.columnValue1.Width = 90;
             // 
             // columnValue2
             // 
             this.columnValue2.Text = "Value 2";
-            this.columnValue2.Width = 100;
+            this.columnValue2.Width = 90;
             // 
             // columnFlags
             // 
             this.columnFlags.Text = "Flags";
             this.columnFlags.Width = 90;
+            // 
+            // columnValue3
+            // 
+            this.columnValue3.Text = "Value 3";
+            this.columnValue3.Width = 90;
+            // 
+            // columnValue4
+            // 
+            this.columnValue4.Text = "Value 4";
+            this.columnValue4.Width = 90;
             // 
             // FormConditionFinder
             // 
@@ -73,6 +87,7 @@
             this.ClientSize = new System.Drawing.Size(672, 393);
             this.Name = "FormConditionFinder";
             this.Text = "Condition Finder";
+            this.ResizeEnd += new System.EventHandler(this.FormConditionFinder_ResizeEnd);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -84,5 +99,7 @@
         private System.Windows.Forms.ColumnHeader columnValue1;
         private System.Windows.Forms.ColumnHeader columnValue2;
         private System.Windows.Forms.ColumnHeader columnFlags;
+        private System.Windows.Forms.ColumnHeader columnValue3;
+        private System.Windows.Forms.ColumnHeader columnValue4;
     }
 }

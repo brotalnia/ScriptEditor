@@ -134,6 +134,8 @@
             this.txtTeleportX = new System.Windows.Forms.TextBox();
             this.lblTeleportTooltip = new System.Windows.Forms.Label();
             this.frmCommandQuestComplete = new System.Windows.Forms.Panel();
+            this.lblQuestCompleteGroup = new System.Windows.Forms.Label();
+            this.cmbQuestCompleteGroup = new System.Windows.Forms.ComboBox();
             this.lblQuestCompleteId = new System.Windows.Forms.Label();
             this.lblQuestCompleteDistance = new System.Windows.Forms.Label();
             this.txtQuestCompleteDistance = new System.Windows.Forms.TextBox();
@@ -257,6 +259,8 @@
             this.lblSetFactionId = new System.Windows.Forms.Label();
             this.lblSetFactionTooltip = new System.Windows.Forms.Label();
             this.frmCommandMorphOrMount = new System.Windows.Forms.Panel();
+            this.cmbMorphOrMountPermanent = new System.Windows.Forms.ComboBox();
+            this.lblMorphOrMountPermanent = new System.Windows.Forms.Label();
             this.cmbMorphOrMountType = new System.Windows.Forms.ComboBox();
             this.lblMorphOrMountId = new System.Windows.Forms.Label();
             this.lblMorphOrMountType = new System.Windows.Forms.Label();
@@ -1678,6 +1682,8 @@
             // frmCommandQuestComplete
             // 
             this.frmCommandQuestComplete.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandQuestComplete.Controls.Add(this.lblQuestCompleteGroup);
+            this.frmCommandQuestComplete.Controls.Add(this.cmbQuestCompleteGroup);
             this.frmCommandQuestComplete.Controls.Add(this.lblQuestCompleteId);
             this.frmCommandQuestComplete.Controls.Add(this.lblQuestCompleteDistance);
             this.frmCommandQuestComplete.Controls.Add(this.txtQuestCompleteDistance);
@@ -1688,6 +1694,28 @@
             this.frmCommandQuestComplete.Size = new System.Drawing.Size(495, 332);
             this.frmCommandQuestComplete.TabIndex = 15;
             this.frmCommandQuestComplete.Visible = false;
+            // 
+            // lblQuestCompleteGroup
+            // 
+            this.lblQuestCompleteGroup.AutoSize = true;
+            this.lblQuestCompleteGroup.Location = new System.Drawing.Point(57, 125);
+            this.lblQuestCompleteGroup.Name = "lblQuestCompleteGroup";
+            this.lblQuestCompleteGroup.Size = new System.Drawing.Size(39, 13);
+            this.lblQuestCompleteGroup.TabIndex = 6;
+            this.lblQuestCompleteGroup.Text = "Group:";
+            // 
+            // cmbQuestCompleteGroup
+            // 
+            this.cmbQuestCompleteGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbQuestCompleteGroup.FormattingEnabled = true;
+            this.cmbQuestCompleteGroup.Items.AddRange(new object[] {
+            "False",
+            "True"});
+            this.cmbQuestCompleteGroup.Location = new System.Drawing.Point(99, 121);
+            this.cmbQuestCompleteGroup.Name = "cmbQuestCompleteGroup";
+            this.cmbQuestCompleteGroup.Size = new System.Drawing.Size(374, 21);
+            this.cmbQuestCompleteGroup.TabIndex = 5;
+            this.cmbQuestCompleteGroup.SelectedIndexChanged += new System.EventHandler(this.cmbQuestCompleteGroup_SelectedIndexChanged);
             // 
             // lblQuestCompleteId
             // 
@@ -2950,6 +2978,8 @@
             // frmCommandMorphOrMount
             // 
             this.frmCommandMorphOrMount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandMorphOrMount.Controls.Add(this.cmbMorphOrMountPermanent);
+            this.frmCommandMorphOrMount.Controls.Add(this.lblMorphOrMountPermanent);
             this.frmCommandMorphOrMount.Controls.Add(this.cmbMorphOrMountType);
             this.frmCommandMorphOrMount.Controls.Add(this.lblMorphOrMountId);
             this.frmCommandMorphOrMount.Controls.Add(this.lblMorphOrMountType);
@@ -2960,6 +2990,28 @@
             this.frmCommandMorphOrMount.Size = new System.Drawing.Size(495, 332);
             this.frmCommandMorphOrMount.TabIndex = 29;
             this.frmCommandMorphOrMount.Visible = false;
+            // 
+            // cmbMorphOrMountPermanent
+            // 
+            this.cmbMorphOrMountPermanent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMorphOrMountPermanent.FormattingEnabled = true;
+            this.cmbMorphOrMountPermanent.Items.AddRange(new object[] {
+            "False",
+            "True"});
+            this.cmbMorphOrMountPermanent.Location = new System.Drawing.Point(99, 120);
+            this.cmbMorphOrMountPermanent.Name = "cmbMorphOrMountPermanent";
+            this.cmbMorphOrMountPermanent.Size = new System.Drawing.Size(374, 21);
+            this.cmbMorphOrMountPermanent.TabIndex = 7;
+            this.cmbMorphOrMountPermanent.SelectedIndexChanged += new System.EventHandler(this.cmbMorphOrMountPermanent_SelectedIndexChanged);
+            // 
+            // lblMorphOrMountPermanent
+            // 
+            this.lblMorphOrMountPermanent.AutoSize = true;
+            this.lblMorphOrMountPermanent.Location = new System.Drawing.Point(35, 123);
+            this.lblMorphOrMountPermanent.Name = "lblMorphOrMountPermanent";
+            this.lblMorphOrMountPermanent.Size = new System.Drawing.Size(61, 13);
+            this.lblMorphOrMountPermanent.TabIndex = 6;
+            this.lblMorphOrMountPermanent.Text = "Permanent:";
             // 
             // cmbMorphOrMountType
             // 
@@ -3607,9 +3659,9 @@
             this.lblUpdateEntryTooltip.Name = "lblUpdateEntryTooltip";
             this.lblUpdateEntryTooltip.Size = new System.Drawing.Size(453, 32);
             this.lblUpdateEntryTooltip.TabIndex = 0;
-            this.lblUpdateEntryTooltip.Text = "Temporarily changes the creature\'s entry, but preserves the same AI. The team set" +
-    "ting determines which display Id will be used if there is a different one for ea" +
-    "ch faction.";
+            this.lblUpdateEntryTooltip.Text = "Temporarily changes the source Creature\'s entry, but preserves the same AI. The t" +
+    "eam setting determines which display Id will be used if there is a different one" +
+    " for each faction.";
             // 
             // frmCommandSetStandState
             // 
@@ -6651,6 +6703,10 @@
         private System.Windows.Forms.TextBox txtUnknownCommandZ;
         private System.Windows.Forms.Label lblUnknownCommandO;
         private System.Windows.Forms.Label lblUnknownCommandZ;
+        private System.Windows.Forms.Label lblQuestCompleteGroup;
+        private System.Windows.Forms.ComboBox cmbQuestCompleteGroup;
+        private System.Windows.Forms.ComboBox cmbMorphOrMountPermanent;
+        private System.Windows.Forms.Label lblMorphOrMountPermanent;
     }
 }
 

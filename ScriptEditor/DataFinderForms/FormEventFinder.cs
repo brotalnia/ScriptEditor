@@ -29,6 +29,14 @@ namespace ScriptEditor
                     AddGameEventToListView(game_event);
             }
         }
+        protected override void AddByIdRange(uint minId, uint maxId)
+        {
+            foreach (GameEventInfo game_event in GameData.GameEventInfoList)
+            {
+                if ((game_event.ID >= minId) && (game_event.ID <= maxId))
+                    AddGameEventToListView(game_event);
+            }
+        }
         protected override void AddByText(string searchText)
         {
             foreach (GameEventInfo game_event in GameData.GameEventInfoList)

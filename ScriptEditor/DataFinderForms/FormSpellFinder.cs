@@ -163,6 +163,14 @@ namespace ScriptEditor
                     AddSpellToListView(spell);
             }
         }
+        protected override void AddByIdRange(uint minId, uint maxId)
+        {
+            foreach (SpellInfo spell in GameData.SpellInfoList)
+            {
+                if ((spell.ID >= minId) && (spell.ID <= maxId))
+                    AddSpellToListView(spell);
+            }
+        }
         protected override void AddByText(string searchText)
         {
             foreach (SpellInfo spell in GameData.SpellInfoList)

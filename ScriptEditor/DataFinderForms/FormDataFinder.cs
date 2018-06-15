@@ -71,21 +71,55 @@ namespace ScriptEditor
             Close();
         }
 
+        private bool ExtractIdRange(ref uint minEntryId, ref uint maxEntryId)
+        {
+            if (txtSearch.Text.Contains("-"))
+            {
+                string[] idRanges = txtSearch.Text.Split('-');
+
+                if (idRanges.Length == 2)
+                {
+                    uint minId = 0;
+                    uint maxId = 0;
+                    if (uint.TryParse(idRanges[0], out minId) && uint.TryParse(idRanges[1], out maxId))
+                    {
+                        if (minId < maxId)
+                        {
+                            minEntryId = minId;
+                            maxEntryId = maxId;
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
             lstData.Items.Clear();
 
-            uint itemId;
+            uint minEntryId = 0;
+            uint maxEntryId = 0;
 
             if (txtSearch.Text == "") // Display all texts.
             {
                 lstData.ListViewItemSorter = null; // Disable sorter or it will take forever.
                 AddAllData();
             }
-            else if (uint.TryParse(txtSearch.Text, out itemId)) // If content is numeric search for id.
+            else if (uint.TryParse(txtSearch.Text, out minEntryId)) // If content is numeric search for id.
             {
-                AddById(itemId);
+                AddById(minEntryId);
                 lstData.ListViewItemSorter = textComparer;
+            }
+            else if (ExtractIdRange(ref minEntryId, ref maxEntryId)) // Check if a range is provided
+            {
+                if (minEntryId + 1000 < maxEntryId)
+                    lstData.ListViewItemSorter = null;
+                else
+                    lstData.ListViewItemSorter = textComparer;
+
+                AddByIdRange(minEntryId, maxEntryId);
             }
             else // Add items that contain this text.
             {
@@ -95,6 +129,7 @@ namespace ScriptEditor
         }
         protected virtual void AddAllData() { }
         protected virtual void AddById(uint id) { }
+        protected virtual void AddByIdRange(uint minId, uint maxId) { }
         protected virtual void AddByText(string searchText) { }
         private void lstData_ColumnClick(object sender, ColumnClickEventArgs e)
         {

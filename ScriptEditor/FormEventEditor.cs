@@ -59,7 +59,8 @@ namespace ScriptEditor
         "Target Missing Aura",      // 28
         "Movement Inform",          // 29
         "Leave Combat",             // 30
-        "Map Event Happened"        // 31
+        "Map Event Happened",       // 31
+        "Group Member Died"         // 32
         };
         
         public FormEventEditor()
@@ -234,6 +235,11 @@ namespace ScriptEditor
             txtMovementInformRepeatMin.Text = "";
             txtMovementInformRepeatMax.Text = "";
             frmEventMovementInform.Visible = false;
+
+            // EVENT_T_GROUP_MEMBER_DIED (32)
+            btnGroupMemberDiedCreatureId.Text = "-NONE-";
+            cmbGroupMemberDiedIsLeader.SelectedIndex = 0;
+            frmEventGroupMemberDied.Visible = false;
 
             dontUpdate = false;
         }
@@ -554,6 +560,15 @@ namespace ScriptEditor
                     txtMovementInformRepeatMin.Text = selectedEvent.Param3.ToString();
                     txtMovementInformRepeatMax.Text = selectedEvent.Param4.ToString();
                     frmEventMovementInform.Visible = true;
+                    break;
+                }
+                case 32: // EVENT_T_GROUP_MEMBER_DIED
+                {
+                    uint creatureId = (uint)selectedEvent.Param1;
+                    if (creatureId > 0)
+                        btnGroupMemberDiedCreatureId.Text = GameData.FindCreatureName(creatureId) + " (" + creatureId.ToString() + ")";
+                    cmbGroupMemberDiedIsLeader.SelectedIndex = selectedEvent.Param2;
+                    frmEventGroupMemberDied.Visible = true;
                     break;
                 }
             }
@@ -1333,6 +1348,16 @@ namespace ScriptEditor
         private void txtMovementInformRepeatMax_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtMovementInformRepeatMax, "Param4");
+        }
+
+        private void btnGroupMemberDiedCreatureId_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormCreatureFinder>(btnGroupMemberDiedCreatureId, null, GameData.FindCreatureName, "Param1");
+        }
+
+        private void cmbGroupMemberDiedIsLeader_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbGroupMemberDiedIsLeader, "Param2", false);
         }
     }
 }

@@ -482,7 +482,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT ID, effect1, effect2, effect3, name1, description1 FROM spell_template ORDER BY ID";
+            command.CommandText = "SELECT ID, effect1, effect2, effect3, name1, description1 FROM spell_template WHERE build=5875 ORDER BY ID";
             try
             {
                 conn.Open();
@@ -532,7 +532,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT condition_entry, type, value1, value2, flags FROM conditions ORDER BY condition_entry";
+            command.CommandText = "SELECT condition_entry, type, value1, value2, value3, value4, flags FROM conditions ORDER BY condition_entry";
             try
             {
                 conn.Open();
@@ -541,7 +541,7 @@ namespace ScriptEditor
                 while (reader.Read())
                 {
                     // Add the new condition entry to the list.
-                    ConditionInfoList.Add(new ConditionInfo(reader.GetUInt32(0), reader.GetInt32(1), reader.GetUInt32(2), reader.GetUInt32(3), reader.GetUInt32(4)));
+                    ConditionInfoList.Add(new ConditionInfo(reader.GetUInt32(0), reader.GetInt32(1), reader.GetUInt32(2), reader.GetUInt32(3), reader.GetUInt32(4), reader.GetUInt32(5), reader.GetUInt32(6)));
                 }
                 reader.Close();
             }
@@ -607,7 +607,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT ID, name1, description1 FROM faction ORDER BY ID";
+            command.CommandText = "SELECT ID, name1, description1 FROM faction WHERE build=5875 ORDER BY ID";
             try
             {
                 conn.Open();
@@ -632,7 +632,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT ID, factionId, factionFlags FROM faction_template ORDER BY ID";
+            command.CommandText = "SELECT ID, factionId, factionFlags FROM faction_template WHERE build=5875 ORDER BY ID";
             try
             {
                 conn.Open();
@@ -1621,6 +1621,7 @@ namespace ScriptEditor
             ConditionNamesList.Add(new ComboboxPair("IS_HOSTILE_TO", 44));
             ConditionNamesList.Add(new ComboboxPair("IS_IN_GROUP", 45));
             ConditionNamesList.Add(new ComboboxPair("IS_ALIVE", 46));
+            ConditionNamesList.Add(new ComboboxPair("MAP_EVENT_TARGETS", 47));
         }
     }
     public struct BroadcastText
@@ -1740,13 +1741,17 @@ namespace ScriptEditor
         public int Type;
         public uint Value1;
         public uint Value2;
+        public uint Value3;
+        public uint Value4;
         public uint Flags;
-        public ConditionInfo(uint id, int type, uint value1, uint value2, uint flags)
+        public ConditionInfo(uint id, int type, uint value1, uint value2, uint value3, uint value4, uint flags)
         {
             ID = id;
             Type = type;
             Value1 = value1;
             Value2 = value2;
+            Value3 = value3;
+            Value4 = value4;
             Flags = flags;
         }
     }
