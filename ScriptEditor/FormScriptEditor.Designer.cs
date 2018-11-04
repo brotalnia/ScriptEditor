@@ -190,6 +190,11 @@
             this.txtDoorGuid = new System.Windows.Forms.TextBox();
             this.lblDoorTooltip = new System.Windows.Forms.Label();
             this.frmCommandRemoveAura = new System.Windows.Forms.Panel();
+            this.grpAddAuraFlags = new System.Windows.Forms.GroupBox();
+            this.chkAddAuraFlag8 = new System.Windows.Forms.CheckBox();
+            this.chkAddAuraFlag4 = new System.Windows.Forms.CheckBox();
+            this.chkAddAuraFlag2 = new System.Windows.Forms.CheckBox();
+            this.chkAddAuraFlag1 = new System.Windows.Forms.CheckBox();
             this.btnRemoveAuraSpellId = new System.Windows.Forms.Button();
             this.lblRemoveAuraSpellId = new System.Windows.Forms.Label();
             this.lblRemoveAuraTooltip = new System.Windows.Forms.Label();
@@ -563,6 +568,7 @@
             this.grpSummonCreatureFlags.SuspendLayout();
             this.frmCommandDoor.SuspendLayout();
             this.frmCommandRemoveAura.SuspendLayout();
+            this.grpAddAuraFlags.SuspendLayout();
             this.frmCommandCastSpell.SuspendLayout();
             this.grpCastSpellFlags.SuspendLayout();
             this.frmCommandPlaySound.SuspendLayout();
@@ -2248,6 +2254,7 @@
             // frmCommandRemoveAura
             // 
             this.frmCommandRemoveAura.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandRemoveAura.Controls.Add(this.grpAddAuraFlags);
             this.frmCommandRemoveAura.Controls.Add(this.btnRemoveAuraSpellId);
             this.frmCommandRemoveAura.Controls.Add(this.lblRemoveAuraSpellId);
             this.frmCommandRemoveAura.Controls.Add(this.lblRemoveAuraTooltip);
@@ -2256,6 +2263,63 @@
             this.frmCommandRemoveAura.Size = new System.Drawing.Size(495, 332);
             this.frmCommandRemoveAura.TabIndex = 20;
             this.frmCommandRemoveAura.Visible = false;
+            // 
+            // grpAddAuraFlags
+            // 
+            this.grpAddAuraFlags.Controls.Add(this.chkAddAuraFlag8);
+            this.grpAddAuraFlags.Controls.Add(this.chkAddAuraFlag4);
+            this.grpAddAuraFlags.Controls.Add(this.chkAddAuraFlag2);
+            this.grpAddAuraFlags.Controls.Add(this.chkAddAuraFlag1);
+            this.grpAddAuraFlags.Location = new System.Drawing.Point(26, 93);
+            this.grpAddAuraFlags.Name = "grpAddAuraFlags";
+            this.grpAddAuraFlags.Size = new System.Drawing.Size(447, 50);
+            this.grpAddAuraFlags.TabIndex = 3;
+            this.grpAddAuraFlags.TabStop = false;
+            this.grpAddAuraFlags.Text = "Add Aura Flags";
+            // 
+            // chkAddAuraFlag8
+            // 
+            this.chkAddAuraFlag8.AutoSize = true;
+            this.chkAddAuraFlag8.Location = new System.Drawing.Point(234, 23);
+            this.chkAddAuraFlag8.Name = "chkAddAuraFlag8";
+            this.chkAddAuraFlag8.Size = new System.Drawing.Size(77, 17);
+            this.chkAddAuraFlag8.TabIndex = 3;
+            this.chkAddAuraFlag8.Text = "Permanent";
+            this.chkAddAuraFlag8.UseVisualStyleBackColor = true;
+            this.chkAddAuraFlag8.CheckedChanged += new System.EventHandler(this.chkAddAuraFlag8_CheckedChanged);
+            // 
+            // chkAddAuraFlag4
+            // 
+            this.chkAddAuraFlag4.AutoSize = true;
+            this.chkAddAuraFlag4.Location = new System.Drawing.Point(161, 23);
+            this.chkAddAuraFlag4.Name = "chkAddAuraFlag4";
+            this.chkAddAuraFlag4.Size = new System.Drawing.Size(63, 17);
+            this.chkAddAuraFlag4.TabIndex = 2;
+            this.chkAddAuraFlag4.Text = "Passive";
+            this.chkAddAuraFlag4.UseVisualStyleBackColor = true;
+            this.chkAddAuraFlag4.CheckedChanged += new System.EventHandler(this.chkAddAuraFlag4_CheckedChanged);
+            // 
+            // chkAddAuraFlag2
+            // 
+            this.chkAddAuraFlag2.AutoSize = true;
+            this.chkAddAuraFlag2.Location = new System.Drawing.Point(82, 23);
+            this.chkAddAuraFlag2.Name = "chkAddAuraFlag2";
+            this.chkAddAuraFlag2.Size = new System.Drawing.Size(69, 17);
+            this.chkAddAuraFlag2.TabIndex = 1;
+            this.chkAddAuraFlag2.Text = "Negative";
+            this.chkAddAuraFlag2.UseVisualStyleBackColor = true;
+            this.chkAddAuraFlag2.CheckedChanged += new System.EventHandler(this.chkAddAuraFlag2_CheckedChanged);
+            // 
+            // chkAddAuraFlag1
+            // 
+            this.chkAddAuraFlag1.AutoSize = true;
+            this.chkAddAuraFlag1.Location = new System.Drawing.Point(9, 23);
+            this.chkAddAuraFlag1.Name = "chkAddAuraFlag1";
+            this.chkAddAuraFlag1.Size = new System.Drawing.Size(63, 17);
+            this.chkAddAuraFlag1.TabIndex = 0;
+            this.chkAddAuraFlag1.Text = "Positive";
+            this.chkAddAuraFlag1.UseVisualStyleBackColor = true;
+            this.chkAddAuraFlag1.CheckedChanged += new System.EventHandler(this.chkAddAuraFlag1_CheckedChanged);
             // 
             // btnRemoveAuraSpellId
             // 
@@ -6101,6 +6165,8 @@
             this.frmCommandDoor.PerformLayout();
             this.frmCommandRemoveAura.ResumeLayout(false);
             this.frmCommandRemoveAura.PerformLayout();
+            this.grpAddAuraFlags.ResumeLayout(false);
+            this.grpAddAuraFlags.PerformLayout();
             this.frmCommandCastSpell.ResumeLayout(false);
             this.frmCommandCastSpell.PerformLayout();
             this.grpCastSpellFlags.ResumeLayout(false);
@@ -6707,6 +6773,11 @@
         private System.Windows.Forms.ComboBox cmbQuestCompleteGroup;
         private System.Windows.Forms.ComboBox cmbMorphOrMountPermanent;
         private System.Windows.Forms.Label lblMorphOrMountPermanent;
+        private System.Windows.Forms.GroupBox grpAddAuraFlags;
+        private System.Windows.Forms.CheckBox chkAddAuraFlag1;
+        private System.Windows.Forms.CheckBox chkAddAuraFlag2;
+        private System.Windows.Forms.CheckBox chkAddAuraFlag8;
+        private System.Windows.Forms.CheckBox chkAddAuraFlag4;
     }
 }
 

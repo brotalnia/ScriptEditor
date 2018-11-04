@@ -104,6 +104,8 @@ namespace ScriptEditor
         "Respawn Creature",         // 71
         "Assist Unit",              // 72
         "Combat Stop",              // 73
+        "Add Aura",                 // 74
+        "Add Threat",               // 75
         };
 
         // Options for combo boxes.
@@ -571,7 +573,12 @@ namespace ScriptEditor
             frmCommandDoor.Visible = false;
 
             // Remove Aura (14)
+            // Add Aura (74)
             btnRemoveAuraSpellId.Text = "-NONE-";
+            chkAddAuraFlag1.Checked = false;
+            chkAddAuraFlag2.Checked = false;
+            chkAddAuraFlag4.Checked = false;
+            chkAddAuraFlag8.Checked = false;
             frmCommandRemoveAura.Visible = false;
 
             // Cast Spell (15)
@@ -1113,6 +1120,7 @@ namespace ScriptEditor
                 case 41: // Remove Object
                 case 72: // Assist Unit
                 case 73: // Combat Stop
+                case 75: // Add Threat
                 {
                     txtDoorGuid.Visible = false;
                     txtDoorResetDelay.Visible = false;
@@ -1150,15 +1158,46 @@ namespace ScriptEditor
                             lblDoorTooltip.Text = "The source Creature leaves combat without entering evade mode. This command has no additional parameters.";
                             break;
                         }
+                        case 75:
+                        {
+                            lblDoorTooltip.Text = "The target Unit is added to the source Creature's threat list. This command has no additional parameters.";
+                            break;
+                        }
                     }
                     frmCommandDoor.Visible = true;
                     break;
                 }
                 case 14: // Remove Aura
+                case 74: // Add Aura
                 {
                     uint spellId = selectedAction.Datalong;
                     if (spellId > 0)
                         btnRemoveAuraSpellId.Text = GameData.FindSpellName(spellId) + " (" + spellId.ToString() + ")";
+
+                    switch (selectedAction.Command)
+                    {
+                        case 14: // Remove Aura
+                        {
+                            lblRemoveAuraTooltip.Text = "Removes any auras from the source Unit caused by the specified spell.";
+                            grpAddAuraFlags.Visible = false;
+                            break;
+                        }
+                        case 74: // Add Aura
+                        {
+                            lblRemoveAuraTooltip.Text = "Directly adds any auras applied by the specified spell to the source Unit.";
+                            grpAddAuraFlags.Visible = true;
+                            if ((selectedAction.Datalong2 & 1) != 0)
+                                chkAddAuraFlag1.Checked = true;
+                            if ((selectedAction.Datalong2 & 2) != 0)
+                                chkAddAuraFlag2.Checked = true;
+                            if ((selectedAction.Datalong2 & 4) != 0)
+                                chkAddAuraFlag4.Checked = true;
+                            if ((selectedAction.Datalong2 & 8) != 0)
+                                chkAddAuraFlag8.Checked = true;
+                            break;
+                        }
+                    }
+
                     frmCommandRemoveAura.Visible = true;
                     break;
                 }
@@ -3426,9 +3465,26 @@ namespace ScriptEditor
         }
 
         // SCRIPT_COMMAND_REMOVE_AURA (14)
+        // SCRIPT_COMMAND_ADD_AURA (74)
         private void btnRemoveAuraSpellId_Click(object sender, EventArgs e)
         {
             SetScriptFieldFromDataFinderForm<FormSpellFinder>(btnRemoveAuraSpellId, null, GameData.FindSpellName, "Datalong");
+        }
+        private void chkAddAuraFlag1_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkAddAuraFlag1, "Datalong2", 1);
+        }
+        private void chkAddAuraFlag2_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkAddAuraFlag2, "Datalong2", 2);
+        }
+        private void chkAddAuraFlag4_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkAddAuraFlag4, "Datalong2", 4);
+        }
+        private void chkAddAuraFlag8_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkAddAuraFlag8, "Datalong2", 8);
         }
 
         // SCRIPT_COMMAND_CAST_SPELL (15)
