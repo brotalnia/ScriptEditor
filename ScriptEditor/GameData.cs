@@ -507,7 +507,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT entry, RequiredLevel, ItemLevel, InventoryType, displayid, name FROM item_template t1 WHERE patch=(SELECT max(patch) FROM item_template t2 WHERE t1.entry=t2.entry) ORDER BY entry";
+            command.CommandText = "SELECT entry, required_level, item_level, inventory_type, display_id, name FROM item_template t1 WHERE patch=(SELECT max(patch) FROM item_template t2 WHERE t1.entry=t2.entry) ORDER BY entry";
             try
             {
                 conn.Open();
@@ -1624,6 +1624,10 @@ namespace ScriptEditor
             ConditionNamesList.Add(new ComboboxPair("IS_IN_GROUP", 45));
             ConditionNamesList.Add(new ComboboxPair("IS_ALIVE", 46));
             ConditionNamesList.Add(new ComboboxPair("MAP_EVENT_TARGETS", 47));
+            ConditionNamesList.Add(new ComboboxPair("CANT_PATH_TO_VICTIM", 48));
+            ConditionNamesList.Add(new ComboboxPair("IS_PLAYER", 49));
+            ConditionNamesList.Add(new ComboboxPair("OBJECT_IS_SPAWNED", 50));
+            ConditionNamesList.Add(new ComboboxPair("OBJECT_LOOT_STATE", 51));
         }
     }
     public struct BroadcastText
