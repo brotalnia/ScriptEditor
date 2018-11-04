@@ -1258,6 +1258,7 @@ namespace ScriptEditor
             MotionTypesList.Add(new ComboboxPair("DISTRACT_MOTION_TYPE", 10));
             MotionTypesList.Add(new ComboboxPair("FOLLOW_MOTION_TYPE", 14));
             MotionTypesList.Add(new ComboboxPair("CHARGE_MOTION_TYPE", 17));
+            MotionTypesList.Add(new ComboboxPair("DISTANCING_MOTION_TYPE", 18));
 
             // Add all motion types to list.
             MotionTypesFullList.Add(new ComboboxPair("IDLE_MOTION_TYPE", 0));
@@ -1277,6 +1278,7 @@ namespace ScriptEditor
             MotionTypesFullList.Add(new ComboboxPair("EFFECT_MOTION_TYPE", 15));
             MotionTypesFullList.Add(new ComboboxPair("PATROL_MOTION_TYPE", 16));
             MotionTypesFullList.Add(new ComboboxPair("CHARGE_MOTION_TYPE", 17));
+            MotionTypesFullList.Add(new ComboboxPair("DISTANCING_MOTION_TYPE", 18));
             MotionTypesFullList.Add(new ComboboxPair("WAYPOINT_SPECIAL_REACHED", 256));
             MotionTypesFullList.Add(new ComboboxPair("WAYPOINT_SPECIAL_STARTED", 512));
             MotionTypesFullList.Add(new ComboboxPair("WAYPOINT_SPECIAL_FINISHED_LAST", 1024));

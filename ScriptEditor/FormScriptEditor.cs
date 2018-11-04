@@ -611,6 +611,7 @@ namespace ScriptEditor
             cmbSetMovementType.SelectedIndex = 0;
             cmbSetMovementBoolParam.SelectedIndex = 0;
             cmbSetMovementClearMotionMaster.SelectedIndex = 0;
+            cmbSetMovementClearMotionMaster.Enabled = false;
             cmbSetMovementBoolParam.Enabled = false;
             lblSetMovementBoolParam.Text = "Bool Param:";
             txtSetMovementIntParam.Enabled = false;
@@ -1327,6 +1328,15 @@ namespace ScriptEditor
                             txtSetMovementIntParam.Enabled = true;
                             txtSetMovementIntParam.Text = selectedAction.Datalong3.ToString();
                             lblSetMovementIntParam.Text = "Delay:";
+                            break;
+                        }
+                        case 18: // DISTANCING_MOTION_TYPE
+                        {
+                            txtSetMovementDistance.Enabled = true;
+                            txtSetMovementDistance.Text = selectedAction.X.ToString();
+                            txtSetMovementIntParam.Enabled = true;
+                            txtSetMovementIntParam.Text = selectedAction.Datalong3.ToString();
+                            lblSetMovementIntParam.Text = "Min Mana %:";
                             break;
                         }
                     }
@@ -3652,6 +3662,15 @@ namespace ScriptEditor
                         txtSetMovementIntParam.Enabled = true;
                         txtSetMovementIntParam.Text = "0";
                         lblSetMovementIntParam.Text = "Delay:";
+                        break;
+                    }
+                    case 18: // DISTANCING_MOTION_TYPE
+                    {
+                        txtSetMovementDistance.Enabled = true;
+                        txtSetMovementDistance.Text = "0";
+                        txtSetMovementIntParam.Enabled = true;
+                        txtSetMovementIntParam.Text = "0";
+                        lblSetMovementIntParam.Text = "Min Mana %:";
                         break;
                     }
                 }

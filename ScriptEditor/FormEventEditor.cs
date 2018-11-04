@@ -33,7 +33,7 @@ namespace ScriptEditor
         "HP",                       // 2
         "Mana",                     // 3
         "Aggro",                    // 4
-        "Killed Player",            // 5
+        "Killed Unit",              // 5
         "Death",                    // 6
         "Evade",                    // 7
         "Hit By Spell",             // 8
@@ -60,7 +60,8 @@ namespace ScriptEditor
         "Movement Inform",          // 29
         "Leave Combat",             // 30
         "Map Event Happened",       // 31
-        "Group Member Died"         // 32
+        "Group Member Died",        // 32
+        "Victim Rooted"             // 33
         };
         
         public FormEventEditor()
@@ -176,7 +177,6 @@ namespace ScriptEditor
             // EVENT_T_TIMER_OOC (1)
             // EVENT_T_HP (2)
             // EVENT_T_MANA (3)
-            // EVENT_T_KILL (5)
             // EVENT_T_RANGE (9)
             // EVENT_T_SPAWNED (11)
             // EVENT_T_TARGET_HP (12)
@@ -184,7 +184,8 @@ namespace ScriptEditor
             // EVENT_T_FRIENDLY_HP (14)
             // EVENT_T_FRIENDLY_IS_CC (15)
             // EVENT_T_TARGET_MANA (18)
-            // EVENT_T_MAP_SCRIPT_EVENT
+            // EVENT_T_MAP_SCRIPT_EVENT (31)
+            // EVENT_T_VICTIM_ROOTED (33)
             txtTimerInitialMin.Text = "";
             txtTimerInitialMax.Text = "";
             txtTimerRepeatMin.Text = "";
@@ -197,6 +198,12 @@ namespace ScriptEditor
             // EVENT_T_SPAWNED (11)
             // EVENT_T_REACHED_HOME (21)
             frmEventAggro.Visible = false;
+
+            // EVENT_T_KILL (5)
+            txtKilledUnitRepeatMin.Text = "";
+            txtKilledUnitRepeatMax.Text = "";
+            cmbKilledUnitTarget.SelectedIndex = 0;
+            frmEventKilledUnit.Visible = false;
 
             // EVENT_T_SPELLHIT (8)
             // EVENT_T_FRIENDLY_MISSING_BUFF (16)
@@ -253,7 +260,6 @@ namespace ScriptEditor
                 case 1: // EVENT_T_TIMER_OOC
                 case 2: // EVENT_T_HP
                 case 3: // EVENT_T_MANA
-                case 5: // EVENT_T_KILL
                 case 9: // EVENT_T_RANGE
                 case 12: // EVENT_T_TARGET_HP
                 case 13: // EVENT_T_TARGET_CASTING
@@ -261,6 +267,7 @@ namespace ScriptEditor
                 case 15: // EVENT_T_FRIENDLY_IS_CC
                 case 18: // EVENT_T_TARGET_MANA
                 case 31: // EVENT_T_MAP_SCRIPT_EVENT
+                case 33: // EVENT_T_VICTIM_ROOTED
                 {
                     switch (selectedEvent.Type)
                     {
@@ -306,17 +313,6 @@ namespace ScriptEditor
                             lblTimerRepeatMax.Visible = true;
                             txtTimerRepeatMin.Visible = true;
                             txtTimerRepeatMax.Visible = true;
-                            break;
-                        }
-                        case 5: // EVENT_T_KILL
-                        {
-                            lblEventTimerCombatTooltip.Text = "Expires upon killing a player. ";
-                            lblTimerInitialMin.Text = "Repeat Min:";
-                            lblTimerInitialMax.Text = "Repeat Max:";
-                            lblTimerRepeatMin.Visible = false;
-                            lblTimerRepeatMax.Visible = false;
-                            txtTimerRepeatMin.Visible = false;
-                            txtTimerRepeatMax.Visible = false;
                             break;
                         }
                         case 9: // EVENT_T_RANGE
@@ -396,6 +392,17 @@ namespace ScriptEditor
                             txtTimerRepeatMax.Visible = false;
                             break;
                         }
+                        case 33: // EVENT_T_VICTIM_ROOTED
+                        {
+                            lblEventTimerCombatTooltip.Text = "Expires when the current victim becomes rooted.";
+                            lblTimerInitialMin.Text = "Repeat Min:";
+                            lblTimerInitialMax.Text = "Repeat Max:";
+                            lblTimerRepeatMin.Visible = false;
+                            lblTimerRepeatMax.Visible = false;
+                            txtTimerRepeatMin.Visible = false;
+                            txtTimerRepeatMax.Visible = false;
+                            break;
+                        }
                     }
                     txtTimerInitialMin.Text = selectedEvent.Param1.ToString();
                     lblTimerInitialMin.Location = new Point(txtTimerInitialMin.Location.X - lblTimerInitialMin.Size.Width - 4, lblTimerInitialMin.Location.Y);
@@ -449,6 +456,14 @@ namespace ScriptEditor
                         }
                     }
                     frmEventAggro.Visible = true;
+                    break;
+                }
+                case 5: // EVENT_T_KILL
+                {
+                    txtKilledUnitRepeatMin.Text = selectedEvent.Param1.ToString();
+                    txtKilledUnitRepeatMax.Text = selectedEvent.Param2.ToString();
+                    cmbKilledUnitTarget.SelectedIndex = selectedEvent.Param3;
+                    frmEventKilledUnit.Visible = true;
                     break;
                 }
                 case 8: // EVENT_T_SPELLHIT
@@ -1358,6 +1373,21 @@ namespace ScriptEditor
         private void cmbGroupMemberDiedIsLeader_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbGroupMemberDiedIsLeader, "Param2", false);
+        }
+
+        private void cmbKilledUnitTarget_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbKilledUnitTarget, "Param3", false);
+        }
+
+        private void txtKilledUnitRepeatMin_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtKilledUnitRepeatMin, "Param1");
+        }
+
+        private void txtKilledUnitRepeatMax_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtKilledUnitRepeatMax, "Param2");
         }
     }
 }

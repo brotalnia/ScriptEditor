@@ -125,11 +125,19 @@
             this.lblMovementInformPoint = new System.Windows.Forms.Label();
             this.lblEventMovementInformTooltip = new System.Windows.Forms.Label();
             this.frmEventGroupMemberDied = new System.Windows.Forms.Panel();
+            this.cmbGroupMemberDiedIsLeader = new System.Windows.Forms.ComboBox();
             this.btnGroupMemberDiedCreatureId = new System.Windows.Forms.Button();
             this.lblGroupMemberDiedCreatureId = new System.Windows.Forms.Label();
             this.lblGroupMemberDiedIsLeader = new System.Windows.Forms.Label();
             this.lblGroupMemberDiedTooltip = new System.Windows.Forms.Label();
-            this.cmbGroupMemberDiedIsLeader = new System.Windows.Forms.ComboBox();
+            this.frmEventKilledUnit = new System.Windows.Forms.Panel();
+            this.cmbKilledUnitTarget = new System.Windows.Forms.ComboBox();
+            this.txtKilledUnitRepeatMax = new System.Windows.Forms.TextBox();
+            this.txtKilledUnitRepeatMin = new System.Windows.Forms.TextBox();
+            this.lblKilledUnitRepeatMax = new System.Windows.Forms.Label();
+            this.lblKilledUnitTarget = new System.Windows.Forms.Label();
+            this.lblKilledUnitRepeatMin = new System.Windows.Forms.Label();
+            this.lblKilledUnitTooltip = new System.Windows.Forms.Label();
             this.grpGeneral.SuspendLayout();
             this.grpEventFlags.SuspendLayout();
             this.frmEventTimerCombat.SuspendLayout();
@@ -140,6 +148,7 @@
             this.frmEventReceiveEmote.SuspendLayout();
             this.frmEventMovementInform.SuspendLayout();
             this.frmEventGroupMemberDied.SuspendLayout();
+            this.frmEventKilledUnit.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstEvents
@@ -1098,6 +1107,19 @@
             this.frmEventGroupMemberDied.TabIndex = 68;
             this.frmEventGroupMemberDied.Visible = false;
             // 
+            // cmbGroupMemberDiedIsLeader
+            // 
+            this.cmbGroupMemberDiedIsLeader.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGroupMemberDiedIsLeader.FormattingEnabled = true;
+            this.cmbGroupMemberDiedIsLeader.Items.AddRange(new object[] {
+            "False",
+            "True"});
+            this.cmbGroupMemberDiedIsLeader.Location = new System.Drawing.Point(99, 88);
+            this.cmbGroupMemberDiedIsLeader.Name = "cmbGroupMemberDiedIsLeader";
+            this.cmbGroupMemberDiedIsLeader.Size = new System.Drawing.Size(374, 21);
+            this.cmbGroupMemberDiedIsLeader.TabIndex = 14;
+            this.cmbGroupMemberDiedIsLeader.SelectedIndexChanged += new System.EventHandler(this.cmbGroupMemberDiedIsLeader_SelectedIndexChanged);
+            // 
             // btnGroupMemberDiedCreatureId
             // 
             this.btnGroupMemberDiedCreatureId.Location = new System.Drawing.Point(99, 58);
@@ -1136,24 +1158,93 @@
             this.lblGroupMemberDiedTooltip.Text = "Expires when a member of the creature\'s group dies. The group must have the appop" +
     "riate flag for the event to trigger.";
             // 
-            // cmbGroupMemberDiedIsLeader
+            // frmEventKilledUnit
             // 
-            this.cmbGroupMemberDiedIsLeader.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbGroupMemberDiedIsLeader.FormattingEnabled = true;
-            this.cmbGroupMemberDiedIsLeader.Items.AddRange(new object[] {
-            "False",
-            "True"});
-            this.cmbGroupMemberDiedIsLeader.Location = new System.Drawing.Point(99, 88);
-            this.cmbGroupMemberDiedIsLeader.Name = "cmbGroupMemberDiedIsLeader";
-            this.cmbGroupMemberDiedIsLeader.Size = new System.Drawing.Size(374, 21);
-            this.cmbGroupMemberDiedIsLeader.TabIndex = 14;
-            this.cmbGroupMemberDiedIsLeader.SelectedIndexChanged += new System.EventHandler(this.cmbGroupMemberDiedIsLeader_SelectedIndexChanged);
+            this.frmEventKilledUnit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmEventKilledUnit.Controls.Add(this.cmbKilledUnitTarget);
+            this.frmEventKilledUnit.Controls.Add(this.txtKilledUnitRepeatMax);
+            this.frmEventKilledUnit.Controls.Add(this.txtKilledUnitRepeatMin);
+            this.frmEventKilledUnit.Controls.Add(this.lblKilledUnitRepeatMax);
+            this.frmEventKilledUnit.Controls.Add(this.lblKilledUnitTarget);
+            this.frmEventKilledUnit.Controls.Add(this.lblKilledUnitRepeatMin);
+            this.frmEventKilledUnit.Controls.Add(this.lblKilledUnitTooltip);
+            this.frmEventKilledUnit.Location = new System.Drawing.Point(433, 289);
+            this.frmEventKilledUnit.Name = "frmEventKilledUnit";
+            this.frmEventKilledUnit.Size = new System.Drawing.Size(495, 275);
+            this.frmEventKilledUnit.TabIndex = 69;
+            this.frmEventKilledUnit.Visible = false;
+            // 
+            // cmbKilledUnitTarget
+            // 
+            this.cmbKilledUnitTarget.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbKilledUnitTarget.FormattingEnabled = true;
+            this.cmbKilledUnitTarget.Items.AddRange(new object[] {
+            "Any Unit",
+            "Only Player"});
+            this.cmbKilledUnitTarget.Location = new System.Drawing.Point(99, 58);
+            this.cmbKilledUnitTarget.Name = "cmbKilledUnitTarget";
+            this.cmbKilledUnitTarget.Size = new System.Drawing.Size(374, 21);
+            this.cmbKilledUnitTarget.TabIndex = 14;
+            this.cmbKilledUnitTarget.SelectedIndexChanged += new System.EventHandler(this.cmbKilledUnitTarget_SelectedIndexChanged);
+            // 
+            // txtKilledUnitRepeatMax
+            // 
+            this.txtKilledUnitRepeatMax.Location = new System.Drawing.Point(99, 118);
+            this.txtKilledUnitRepeatMax.Name = "txtKilledUnitRepeatMax";
+            this.txtKilledUnitRepeatMax.Size = new System.Drawing.Size(374, 20);
+            this.txtKilledUnitRepeatMax.TabIndex = 10;
+            this.txtKilledUnitRepeatMax.Leave += new System.EventHandler(this.txtKilledUnitRepeatMax_Leave);
+            // 
+            // txtKilledUnitRepeatMin
+            // 
+            this.txtKilledUnitRepeatMin.Location = new System.Drawing.Point(99, 88);
+            this.txtKilledUnitRepeatMin.Name = "txtKilledUnitRepeatMin";
+            this.txtKilledUnitRepeatMin.Size = new System.Drawing.Size(374, 20);
+            this.txtKilledUnitRepeatMin.TabIndex = 9;
+            this.txtKilledUnitRepeatMin.Leave += new System.EventHandler(this.txtKilledUnitRepeatMin_Leave);
+            // 
+            // lblKilledUnitRepeatMax
+            // 
+            this.lblKilledUnitRepeatMax.AutoSize = true;
+            this.lblKilledUnitRepeatMax.Location = new System.Drawing.Point(27, 121);
+            this.lblKilledUnitRepeatMax.Name = "lblKilledUnitRepeatMax";
+            this.lblKilledUnitRepeatMax.Size = new System.Drawing.Size(68, 13);
+            this.lblKilledUnitRepeatMax.TabIndex = 6;
+            this.lblKilledUnitRepeatMax.Text = "Repeat Max:";
+            // 
+            // lblKilledUnitTarget
+            // 
+            this.lblKilledUnitTarget.AutoSize = true;
+            this.lblKilledUnitTarget.Location = new System.Drawing.Point(54, 61);
+            this.lblKilledUnitTarget.Name = "lblKilledUnitTarget";
+            this.lblKilledUnitTarget.Size = new System.Drawing.Size(41, 13);
+            this.lblKilledUnitTarget.TabIndex = 4;
+            this.lblKilledUnitTarget.Text = "Target:";
+            // 
+            // lblKilledUnitRepeatMin
+            // 
+            this.lblKilledUnitRepeatMin.AutoSize = true;
+            this.lblKilledUnitRepeatMin.Location = new System.Drawing.Point(30, 91);
+            this.lblKilledUnitRepeatMin.Name = "lblKilledUnitRepeatMin";
+            this.lblKilledUnitRepeatMin.Size = new System.Drawing.Size(65, 13);
+            this.lblKilledUnitRepeatMin.TabIndex = 3;
+            this.lblKilledUnitRepeatMin.Text = "Repeat Min:";
+            // 
+            // lblKilledUnitTooltip
+            // 
+            this.lblKilledUnitTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblKilledUnitTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblKilledUnitTooltip.Name = "lblKilledUnitTooltip";
+            this.lblKilledUnitTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblKilledUnitTooltip.TabIndex = 0;
+            this.lblKilledUnitTooltip.Text = "Expires upon killing an unit.";
             // 
             // FormEventEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 600);
+            this.Controls.Add(this.frmEventKilledUnit);
             this.Controls.Add(this.frmEventGroupMemberDied);
             this.Controls.Add(this.frmEventMovementInform);
             this.Controls.Add(this.frmEventReceiveEmote);
@@ -1200,6 +1291,8 @@
             this.frmEventMovementInform.PerformLayout();
             this.frmEventGroupMemberDied.ResumeLayout(false);
             this.frmEventGroupMemberDied.PerformLayout();
+            this.frmEventKilledUnit.ResumeLayout(false);
+            this.frmEventKilledUnit.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1308,5 +1401,13 @@
         private System.Windows.Forms.Label lblGroupMemberDiedCreatureId;
         private System.Windows.Forms.Label lblGroupMemberDiedIsLeader;
         private System.Windows.Forms.Label lblGroupMemberDiedTooltip;
+        private System.Windows.Forms.Panel frmEventKilledUnit;
+        private System.Windows.Forms.ComboBox cmbKilledUnitTarget;
+        private System.Windows.Forms.TextBox txtKilledUnitRepeatMax;
+        private System.Windows.Forms.TextBox txtKilledUnitRepeatMin;
+        private System.Windows.Forms.Label lblKilledUnitRepeatMax;
+        private System.Windows.Forms.Label lblKilledUnitTarget;
+        private System.Windows.Forms.Label lblKilledUnitRepeatMin;
+        private System.Windows.Forms.Label lblKilledUnitTooltip;
     }
 }
