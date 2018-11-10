@@ -110,7 +110,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Light\'s Hope Developer Tools";
+            this.Text = "VMaNGOS Developer Tools";
             ((System.ComponentModel.ISupportInitialize)(this.picScriptEditor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picEventEditor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picGitLink)).EndInit();

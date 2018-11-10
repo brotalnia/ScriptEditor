@@ -124,7 +124,7 @@
             this.txtFilter.Location = new System.Drawing.Point(12, 8);
             this.txtFilter.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtFilter.Name = "txtFilter";
-            this.txtFilter.Size = new System.Drawing.Size(206, 23);
+            this.txtFilter.Size = new System.Drawing.Size(206, 21);
             this.txtFilter.TabIndex = 0;
             this.txtFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFilter_KeyPress);
             // 
@@ -153,7 +153,7 @@
             this.txtName.Location = new System.Drawing.Point(348, 21);
             this.txtName.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(270, 23);
+            this.txtName.Size = new System.Drawing.Size(270, 20);
             this.txtName.TabIndex = 3;
             this.txtName.Leave += new System.EventHandler(this.txtName_Leave);
             // 
@@ -187,7 +187,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(12, 422);
+            this.btnAdd.Location = new System.Drawing.Point(12, 424);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 8;
@@ -197,7 +197,7 @@
             // 
             // btnCopy
             // 
-            this.btnCopy.Location = new System.Drawing.Point(93, 422);
+            this.btnCopy.Location = new System.Drawing.Point(93, 424);
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(75, 23);
             this.btnCopy.TabIndex = 9;
@@ -207,7 +207,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(174, 422);
+            this.btnDelete.Location = new System.Drawing.Point(174, 424);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 10;
@@ -220,7 +220,7 @@
             this.txtSpell1Probability.Location = new System.Drawing.Point(2, 6);
             this.txtSpell1Probability.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell1Probability.Name = "txtSpell1Probability";
-            this.txtSpell1Probability.Size = new System.Drawing.Size(58, 23);
+            this.txtSpell1Probability.Size = new System.Drawing.Size(58, 20);
             this.txtSpell1Probability.TabIndex = 11;
             this.txtSpell1Probability.Leave += new System.EventHandler(this.txtSpell1Probability_Leave);
             // 
@@ -258,7 +258,7 @@
             this.txtSpell1DelayInitialMin.Location = new System.Drawing.Point(538, 6);
             this.txtSpell1DelayInitialMin.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell1DelayInitialMin.Name = "txtSpell1DelayInitialMin";
-            this.txtSpell1DelayInitialMin.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell1DelayInitialMin.Size = new System.Drawing.Size(43, 20);
             this.txtSpell1DelayInitialMin.TabIndex = 15;
             this.txtSpell1DelayInitialMin.Leave += new System.EventHandler(this.txtSpell1DelayInitialMin_Leave);
             // 
@@ -294,7 +294,7 @@
             this.txtSpell1DelayInitialMax.Location = new System.Drawing.Point(587, 6);
             this.txtSpell1DelayInitialMax.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell1DelayInitialMax.Name = "txtSpell1DelayInitialMax";
-            this.txtSpell1DelayInitialMax.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell1DelayInitialMax.Size = new System.Drawing.Size(43, 20);
             this.txtSpell1DelayInitialMax.TabIndex = 18;
             this.txtSpell1DelayInitialMax.Leave += new System.EventHandler(this.txtSpell1DelayInitialMax_Leave);
             // 
@@ -312,7 +312,7 @@
             this.txtSpell1DelayRepeatMin.Location = new System.Drawing.Point(636, 6);
             this.txtSpell1DelayRepeatMin.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell1DelayRepeatMin.Name = "txtSpell1DelayRepeatMin";
-            this.txtSpell1DelayRepeatMin.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell1DelayRepeatMin.Size = new System.Drawing.Size(43, 20);
             this.txtSpell1DelayRepeatMin.TabIndex = 20;
             this.txtSpell1DelayRepeatMin.Leave += new System.EventHandler(this.txtSpell1DelayRepeatMin_Leave);
             // 
@@ -330,7 +330,7 @@
             this.txtSpell1DelayRepeatMax.Location = new System.Drawing.Point(685, 6);
             this.txtSpell1DelayRepeatMax.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell1DelayRepeatMax.Name = "txtSpell1DelayRepeatMax";
-            this.txtSpell1DelayRepeatMax.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell1DelayRepeatMax.Size = new System.Drawing.Size(43, 20);
             this.txtSpell1DelayRepeatMax.TabIndex = 22;
             this.txtSpell1DelayRepeatMax.Leave += new System.EventHandler(this.txtSpell1DelayRepeatMax_Leave);
             // 
@@ -370,7 +370,7 @@
             this.txtSpell2DelayRepeatMax.Location = new System.Drawing.Point(685, 42);
             this.txtSpell2DelayRepeatMax.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell2DelayRepeatMax.Name = "txtSpell2DelayRepeatMax";
-            this.txtSpell2DelayRepeatMax.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell2DelayRepeatMax.Size = new System.Drawing.Size(43, 20);
             this.txtSpell2DelayRepeatMax.TabIndex = 32;
             this.txtSpell2DelayRepeatMax.Leave += new System.EventHandler(this.txtSpell2DelayRepeatMax_Leave);
             // 
@@ -379,7 +379,7 @@
             this.txtSpell2DelayRepeatMin.Location = new System.Drawing.Point(636, 42);
             this.txtSpell2DelayRepeatMin.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell2DelayRepeatMin.Name = "txtSpell2DelayRepeatMin";
-            this.txtSpell2DelayRepeatMin.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell2DelayRepeatMin.Size = new System.Drawing.Size(43, 20);
             this.txtSpell2DelayRepeatMin.TabIndex = 31;
             this.txtSpell2DelayRepeatMin.Leave += new System.EventHandler(this.txtSpell2DelayRepeatMin_Leave);
             // 
@@ -388,7 +388,7 @@
             this.txtSpell2DelayInitialMax.Location = new System.Drawing.Point(587, 42);
             this.txtSpell2DelayInitialMax.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell2DelayInitialMax.Name = "txtSpell2DelayInitialMax";
-            this.txtSpell2DelayInitialMax.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell2DelayInitialMax.Size = new System.Drawing.Size(43, 20);
             this.txtSpell2DelayInitialMax.TabIndex = 30;
             this.txtSpell2DelayInitialMax.Leave += new System.EventHandler(this.txtSpell2DelayInitialMax_Leave);
             // 
@@ -397,7 +397,7 @@
             this.txtSpell2DelayInitialMin.Location = new System.Drawing.Point(538, 42);
             this.txtSpell2DelayInitialMin.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell2DelayInitialMin.Name = "txtSpell2DelayInitialMin";
-            this.txtSpell2DelayInitialMin.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell2DelayInitialMin.Size = new System.Drawing.Size(43, 20);
             this.txtSpell2DelayInitialMin.TabIndex = 29;
             this.txtSpell2DelayInitialMin.Leave += new System.EventHandler(this.txtSpell2DelayInitialMin_Leave);
             // 
@@ -426,7 +426,7 @@
             this.txtSpell2Probability.Location = new System.Drawing.Point(2, 42);
             this.txtSpell2Probability.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell2Probability.Name = "txtSpell2Probability";
-            this.txtSpell2Probability.Size = new System.Drawing.Size(58, 23);
+            this.txtSpell2Probability.Size = new System.Drawing.Size(58, 20);
             this.txtSpell2Probability.TabIndex = 26;
             this.txtSpell2Probability.Leave += new System.EventHandler(this.txtSpell2Probability_Leave);
             // 
@@ -446,7 +446,7 @@
             this.txtSpell3DelayRepeatMax.Location = new System.Drawing.Point(685, 78);
             this.txtSpell3DelayRepeatMax.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell3DelayRepeatMax.Name = "txtSpell3DelayRepeatMax";
-            this.txtSpell3DelayRepeatMax.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell3DelayRepeatMax.Size = new System.Drawing.Size(43, 20);
             this.txtSpell3DelayRepeatMax.TabIndex = 40;
             this.txtSpell3DelayRepeatMax.Leave += new System.EventHandler(this.txtSpell3DelayRepeatMax_Leave);
             // 
@@ -455,7 +455,7 @@
             this.txtSpell3DelayRepeatMin.Location = new System.Drawing.Point(636, 78);
             this.txtSpell3DelayRepeatMin.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell3DelayRepeatMin.Name = "txtSpell3DelayRepeatMin";
-            this.txtSpell3DelayRepeatMin.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell3DelayRepeatMin.Size = new System.Drawing.Size(43, 20);
             this.txtSpell3DelayRepeatMin.TabIndex = 39;
             this.txtSpell3DelayRepeatMin.Leave += new System.EventHandler(this.txtSpell3DelayRepeatMin_Leave);
             // 
@@ -464,7 +464,7 @@
             this.txtSpell3DelayInitialMax.Location = new System.Drawing.Point(587, 78);
             this.txtSpell3DelayInitialMax.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell3DelayInitialMax.Name = "txtSpell3DelayInitialMax";
-            this.txtSpell3DelayInitialMax.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell3DelayInitialMax.Size = new System.Drawing.Size(43, 20);
             this.txtSpell3DelayInitialMax.TabIndex = 38;
             this.txtSpell3DelayInitialMax.Leave += new System.EventHandler(this.txtSpell3DelayInitialMax_Leave);
             // 
@@ -473,7 +473,7 @@
             this.txtSpell3DelayInitialMin.Location = new System.Drawing.Point(538, 78);
             this.txtSpell3DelayInitialMin.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell3DelayInitialMin.Name = "txtSpell3DelayInitialMin";
-            this.txtSpell3DelayInitialMin.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell3DelayInitialMin.Size = new System.Drawing.Size(43, 20);
             this.txtSpell3DelayInitialMin.TabIndex = 37;
             this.txtSpell3DelayInitialMin.Leave += new System.EventHandler(this.txtSpell3DelayInitialMin_Leave);
             // 
@@ -502,7 +502,7 @@
             this.txtSpell3Probability.Location = new System.Drawing.Point(2, 78);
             this.txtSpell3Probability.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell3Probability.Name = "txtSpell3Probability";
-            this.txtSpell3Probability.Size = new System.Drawing.Size(58, 23);
+            this.txtSpell3Probability.Size = new System.Drawing.Size(58, 20);
             this.txtSpell3Probability.TabIndex = 34;
             this.txtSpell3Probability.Leave += new System.EventHandler(this.txtSpell3Probability_Leave);
             // 
@@ -522,7 +522,7 @@
             this.txtSpell4DelayRepeatMax.Location = new System.Drawing.Point(685, 114);
             this.txtSpell4DelayRepeatMax.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell4DelayRepeatMax.Name = "txtSpell4DelayRepeatMax";
-            this.txtSpell4DelayRepeatMax.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell4DelayRepeatMax.Size = new System.Drawing.Size(43, 20);
             this.txtSpell4DelayRepeatMax.TabIndex = 48;
             this.txtSpell4DelayRepeatMax.Leave += new System.EventHandler(this.txtSpell4DelayRepeatMax_Leave);
             // 
@@ -531,7 +531,7 @@
             this.txtSpell4DelayRepeatMin.Location = new System.Drawing.Point(636, 114);
             this.txtSpell4DelayRepeatMin.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell4DelayRepeatMin.Name = "txtSpell4DelayRepeatMin";
-            this.txtSpell4DelayRepeatMin.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell4DelayRepeatMin.Size = new System.Drawing.Size(43, 20);
             this.txtSpell4DelayRepeatMin.TabIndex = 47;
             this.txtSpell4DelayRepeatMin.Leave += new System.EventHandler(this.txtSpell4DelayRepeatMin_Leave);
             // 
@@ -540,7 +540,7 @@
             this.txtSpell4DelayInitialMax.Location = new System.Drawing.Point(587, 114);
             this.txtSpell4DelayInitialMax.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell4DelayInitialMax.Name = "txtSpell4DelayInitialMax";
-            this.txtSpell4DelayInitialMax.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell4DelayInitialMax.Size = new System.Drawing.Size(43, 20);
             this.txtSpell4DelayInitialMax.TabIndex = 46;
             this.txtSpell4DelayInitialMax.Leave += new System.EventHandler(this.txtSpell4DelayInitialMax_Leave);
             // 
@@ -549,7 +549,7 @@
             this.txtSpell4DelayInitialMin.Location = new System.Drawing.Point(538, 114);
             this.txtSpell4DelayInitialMin.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell4DelayInitialMin.Name = "txtSpell4DelayInitialMin";
-            this.txtSpell4DelayInitialMin.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell4DelayInitialMin.Size = new System.Drawing.Size(43, 20);
             this.txtSpell4DelayInitialMin.TabIndex = 45;
             this.txtSpell4DelayInitialMin.Leave += new System.EventHandler(this.txtSpell4DelayInitialMin_Leave);
             // 
@@ -578,7 +578,7 @@
             this.txtSpell4Probability.Location = new System.Drawing.Point(2, 114);
             this.txtSpell4Probability.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell4Probability.Name = "txtSpell4Probability";
-            this.txtSpell4Probability.Size = new System.Drawing.Size(58, 23);
+            this.txtSpell4Probability.Size = new System.Drawing.Size(58, 20);
             this.txtSpell4Probability.TabIndex = 42;
             this.txtSpell4Probability.Leave += new System.EventHandler(this.txtSpell4Probability_Leave);
             // 
@@ -598,7 +598,7 @@
             this.txtSpell5DelayRepeatMax.Location = new System.Drawing.Point(685, 150);
             this.txtSpell5DelayRepeatMax.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell5DelayRepeatMax.Name = "txtSpell5DelayRepeatMax";
-            this.txtSpell5DelayRepeatMax.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell5DelayRepeatMax.Size = new System.Drawing.Size(43, 20);
             this.txtSpell5DelayRepeatMax.TabIndex = 56;
             this.txtSpell5DelayRepeatMax.Leave += new System.EventHandler(this.txtSpell5DelayRepeatMax_Leave);
             // 
@@ -607,7 +607,7 @@
             this.txtSpell5DelayRepeatMin.Location = new System.Drawing.Point(636, 150);
             this.txtSpell5DelayRepeatMin.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell5DelayRepeatMin.Name = "txtSpell5DelayRepeatMin";
-            this.txtSpell5DelayRepeatMin.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell5DelayRepeatMin.Size = new System.Drawing.Size(43, 20);
             this.txtSpell5DelayRepeatMin.TabIndex = 55;
             this.txtSpell5DelayRepeatMin.Leave += new System.EventHandler(this.txtSpell5DelayRepeatMin_Leave);
             // 
@@ -616,7 +616,7 @@
             this.txtSpell5DelayInitialMax.Location = new System.Drawing.Point(587, 150);
             this.txtSpell5DelayInitialMax.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell5DelayInitialMax.Name = "txtSpell5DelayInitialMax";
-            this.txtSpell5DelayInitialMax.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell5DelayInitialMax.Size = new System.Drawing.Size(43, 20);
             this.txtSpell5DelayInitialMax.TabIndex = 54;
             this.txtSpell5DelayInitialMax.Leave += new System.EventHandler(this.txtSpell5DelayInitialMax_Leave);
             // 
@@ -625,7 +625,7 @@
             this.txtSpell5DelayInitialMin.Location = new System.Drawing.Point(538, 150);
             this.txtSpell5DelayInitialMin.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell5DelayInitialMin.Name = "txtSpell5DelayInitialMin";
-            this.txtSpell5DelayInitialMin.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell5DelayInitialMin.Size = new System.Drawing.Size(43, 20);
             this.txtSpell5DelayInitialMin.TabIndex = 53;
             this.txtSpell5DelayInitialMin.Leave += new System.EventHandler(this.txtSpell5DelayInitialMin_Leave);
             // 
@@ -654,7 +654,7 @@
             this.txtSpell5Probability.Location = new System.Drawing.Point(2, 150);
             this.txtSpell5Probability.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell5Probability.Name = "txtSpell5Probability";
-            this.txtSpell5Probability.Size = new System.Drawing.Size(58, 23);
+            this.txtSpell5Probability.Size = new System.Drawing.Size(58, 20);
             this.txtSpell5Probability.TabIndex = 50;
             this.txtSpell5Probability.Leave += new System.EventHandler(this.txtSpell5Probability_Leave);
             // 
@@ -674,7 +674,7 @@
             this.txtSpell6DelayRepeatMax.Location = new System.Drawing.Point(685, 186);
             this.txtSpell6DelayRepeatMax.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell6DelayRepeatMax.Name = "txtSpell6DelayRepeatMax";
-            this.txtSpell6DelayRepeatMax.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell6DelayRepeatMax.Size = new System.Drawing.Size(43, 20);
             this.txtSpell6DelayRepeatMax.TabIndex = 64;
             this.txtSpell6DelayRepeatMax.Leave += new System.EventHandler(this.txtSpell6DelayRepeatMax_Leave);
             // 
@@ -683,7 +683,7 @@
             this.txtSpell6DelayRepeatMin.Location = new System.Drawing.Point(636, 186);
             this.txtSpell6DelayRepeatMin.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell6DelayRepeatMin.Name = "txtSpell6DelayRepeatMin";
-            this.txtSpell6DelayRepeatMin.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell6DelayRepeatMin.Size = new System.Drawing.Size(43, 20);
             this.txtSpell6DelayRepeatMin.TabIndex = 63;
             this.txtSpell6DelayRepeatMin.Leave += new System.EventHandler(this.txtSpell6DelayRepeatMin_Leave);
             // 
@@ -692,7 +692,7 @@
             this.txtSpell6DelayInitialMax.Location = new System.Drawing.Point(587, 186);
             this.txtSpell6DelayInitialMax.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell6DelayInitialMax.Name = "txtSpell6DelayInitialMax";
-            this.txtSpell6DelayInitialMax.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell6DelayInitialMax.Size = new System.Drawing.Size(43, 20);
             this.txtSpell6DelayInitialMax.TabIndex = 62;
             this.txtSpell6DelayInitialMax.Leave += new System.EventHandler(this.txtSpell6DelayInitialMax_Leave);
             // 
@@ -701,7 +701,7 @@
             this.txtSpell6DelayInitialMin.Location = new System.Drawing.Point(538, 186);
             this.txtSpell6DelayInitialMin.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell6DelayInitialMin.Name = "txtSpell6DelayInitialMin";
-            this.txtSpell6DelayInitialMin.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell6DelayInitialMin.Size = new System.Drawing.Size(43, 20);
             this.txtSpell6DelayInitialMin.TabIndex = 61;
             this.txtSpell6DelayInitialMin.Leave += new System.EventHandler(this.txtSpell6DelayInitialMin_Leave);
             // 
@@ -730,7 +730,7 @@
             this.txtSpell6Probability.Location = new System.Drawing.Point(2, 186);
             this.txtSpell6Probability.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell6Probability.Name = "txtSpell6Probability";
-            this.txtSpell6Probability.Size = new System.Drawing.Size(58, 23);
+            this.txtSpell6Probability.Size = new System.Drawing.Size(58, 20);
             this.txtSpell6Probability.TabIndex = 58;
             this.txtSpell6Probability.Leave += new System.EventHandler(this.txtSpell6Probability_Leave);
             // 
@@ -750,7 +750,7 @@
             this.txtSpell7DelayRepeatMax.Location = new System.Drawing.Point(685, 222);
             this.txtSpell7DelayRepeatMax.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell7DelayRepeatMax.Name = "txtSpell7DelayRepeatMax";
-            this.txtSpell7DelayRepeatMax.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell7DelayRepeatMax.Size = new System.Drawing.Size(43, 20);
             this.txtSpell7DelayRepeatMax.TabIndex = 72;
             this.txtSpell7DelayRepeatMax.Leave += new System.EventHandler(this.txtSpell7DelayRepeatMax_Leave);
             // 
@@ -759,7 +759,7 @@
             this.txtSpell7DelayRepeatMin.Location = new System.Drawing.Point(636, 222);
             this.txtSpell7DelayRepeatMin.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell7DelayRepeatMin.Name = "txtSpell7DelayRepeatMin";
-            this.txtSpell7DelayRepeatMin.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell7DelayRepeatMin.Size = new System.Drawing.Size(43, 20);
             this.txtSpell7DelayRepeatMin.TabIndex = 71;
             this.txtSpell7DelayRepeatMin.Leave += new System.EventHandler(this.txtSpell7DelayRepeatMin_Leave);
             // 
@@ -768,7 +768,7 @@
             this.txtSpell7DelayInitialMax.Location = new System.Drawing.Point(587, 222);
             this.txtSpell7DelayInitialMax.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell7DelayInitialMax.Name = "txtSpell7DelayInitialMax";
-            this.txtSpell7DelayInitialMax.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell7DelayInitialMax.Size = new System.Drawing.Size(43, 20);
             this.txtSpell7DelayInitialMax.TabIndex = 70;
             this.txtSpell7DelayInitialMax.Leave += new System.EventHandler(this.txtSpell7DelayInitialMax_Leave);
             // 
@@ -777,7 +777,7 @@
             this.txtSpell7DelayInitialMin.Location = new System.Drawing.Point(538, 222);
             this.txtSpell7DelayInitialMin.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell7DelayInitialMin.Name = "txtSpell7DelayInitialMin";
-            this.txtSpell7DelayInitialMin.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell7DelayInitialMin.Size = new System.Drawing.Size(43, 20);
             this.txtSpell7DelayInitialMin.TabIndex = 69;
             this.txtSpell7DelayInitialMin.Leave += new System.EventHandler(this.txtSpell7DelayInitialMin_Leave);
             // 
@@ -806,7 +806,7 @@
             this.txtSpell7Probability.Location = new System.Drawing.Point(2, 222);
             this.txtSpell7Probability.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell7Probability.Name = "txtSpell7Probability";
-            this.txtSpell7Probability.Size = new System.Drawing.Size(58, 23);
+            this.txtSpell7Probability.Size = new System.Drawing.Size(58, 20);
             this.txtSpell7Probability.TabIndex = 66;
             this.txtSpell7Probability.Leave += new System.EventHandler(this.txtSpell7Probability_Leave);
             // 
@@ -826,7 +826,7 @@
             this.txtSpell8DelayRepeatMax.Location = new System.Drawing.Point(685, 258);
             this.txtSpell8DelayRepeatMax.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell8DelayRepeatMax.Name = "txtSpell8DelayRepeatMax";
-            this.txtSpell8DelayRepeatMax.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell8DelayRepeatMax.Size = new System.Drawing.Size(43, 20);
             this.txtSpell8DelayRepeatMax.TabIndex = 80;
             this.txtSpell8DelayRepeatMax.Leave += new System.EventHandler(this.txtSpell8DelayRepeatMax_Leave);
             // 
@@ -835,7 +835,7 @@
             this.txtSpell8DelayRepeatMin.Location = new System.Drawing.Point(636, 258);
             this.txtSpell8DelayRepeatMin.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell8DelayRepeatMin.Name = "txtSpell8DelayRepeatMin";
-            this.txtSpell8DelayRepeatMin.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell8DelayRepeatMin.Size = new System.Drawing.Size(43, 20);
             this.txtSpell8DelayRepeatMin.TabIndex = 79;
             this.txtSpell8DelayRepeatMin.Leave += new System.EventHandler(this.txtSpell8DelayRepeatMin_Leave);
             // 
@@ -844,7 +844,7 @@
             this.txtSpell8DelayInitialMax.Location = new System.Drawing.Point(587, 258);
             this.txtSpell8DelayInitialMax.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell8DelayInitialMax.Name = "txtSpell8DelayInitialMax";
-            this.txtSpell8DelayInitialMax.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell8DelayInitialMax.Size = new System.Drawing.Size(43, 20);
             this.txtSpell8DelayInitialMax.TabIndex = 78;
             this.txtSpell8DelayInitialMax.Leave += new System.EventHandler(this.txtSpell8DelayInitialMax_Leave);
             // 
@@ -853,7 +853,7 @@
             this.txtSpell8DelayInitialMin.Location = new System.Drawing.Point(538, 258);
             this.txtSpell8DelayInitialMin.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell8DelayInitialMin.Name = "txtSpell8DelayInitialMin";
-            this.txtSpell8DelayInitialMin.Size = new System.Drawing.Size(43, 23);
+            this.txtSpell8DelayInitialMin.Size = new System.Drawing.Size(43, 20);
             this.txtSpell8DelayInitialMin.TabIndex = 77;
             this.txtSpell8DelayInitialMin.Leave += new System.EventHandler(this.txtSpell8DelayInitialMin_Leave);
             // 
@@ -882,7 +882,7 @@
             this.txtSpell8Probability.Location = new System.Drawing.Point(2, 258);
             this.txtSpell8Probability.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtSpell8Probability.Name = "txtSpell8Probability";
-            this.txtSpell8Probability.Size = new System.Drawing.Size(58, 23);
+            this.txtSpell8Probability.Size = new System.Drawing.Size(58, 20);
             this.txtSpell8Probability.TabIndex = 74;
             this.txtSpell8Probability.Leave += new System.EventHandler(this.txtSpell8Probability_Leave);
             // 
@@ -980,7 +980,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(937, 422);
+            this.btnCancel.Location = new System.Drawing.Point(937, 424);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(85, 23);
             this.btnCancel.TabIndex = 87;
@@ -990,7 +990,7 @@
             // 
             // btnSelect
             // 
-            this.btnSelect.Location = new System.Drawing.Point(843, 422);
+            this.btnSelect.Location = new System.Drawing.Point(843, 424);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(85, 23);
             this.btnSelect.TabIndex = 86;
@@ -1000,7 +1000,7 @@
             // 
             // btnSelectNone
             // 
-            this.btnSelectNone.Location = new System.Drawing.Point(749, 422);
+            this.btnSelectNone.Location = new System.Drawing.Point(749, 424);
             this.btnSelectNone.Name = "btnSelectNone";
             this.btnSelectNone.Size = new System.Drawing.Size(85, 23);
             this.btnSelectNone.TabIndex = 85;
@@ -1012,7 +1012,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1035, 451);
+            this.ClientSize = new System.Drawing.Size(1035, 453);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.btnSelectNone);

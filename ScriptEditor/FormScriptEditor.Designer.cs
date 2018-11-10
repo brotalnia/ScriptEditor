@@ -551,6 +551,20 @@
             this.lblUnknownCommandDatalong2 = new System.Windows.Forms.Label();
             this.lblUnknownCommandDatalong1 = new System.Windows.Forms.Label();
             this.lblUnknownCommandTooltip = new System.Windows.Forms.Label();
+            this.frmCommandSummonObject = new System.Windows.Forms.Panel();
+            this.lblSummonObjectRespawnTime = new System.Windows.Forms.Label();
+            this.txtSummonObjectRespawnTime = new System.Windows.Forms.TextBox();
+            this.btnSummonObjectId = new System.Windows.Forms.Button();
+            this.lblSummonObjectO = new System.Windows.Forms.Label();
+            this.lblSummonObjectZ = new System.Windows.Forms.Label();
+            this.txtSummonObjectO = new System.Windows.Forms.TextBox();
+            this.txtSummonObjectZ = new System.Windows.Forms.TextBox();
+            this.lblSummonObjectY = new System.Windows.Forms.Label();
+            this.lblSummonObjectX = new System.Windows.Forms.Label();
+            this.txtSummonObjectY = new System.Windows.Forms.TextBox();
+            this.txtSummonObjectX = new System.Windows.Forms.TextBox();
+            this.lblSummonObjectId = new System.Windows.Forms.Label();
+            this.lblSummonObjectTooltip = new System.Windows.Forms.Label();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -610,6 +624,7 @@
             this.frmCommandSetDefaultMovement.SuspendLayout();
             this.frmCommandStartScriptForAll.SuspendLayout();
             this.frmCommandUnknown.SuspendLayout();
+            this.frmCommandSummonObject.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstActions
@@ -622,7 +637,7 @@
             this.lstActions.GridLines = true;
             this.lstActions.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lstActions.HideSelection = false;
-            this.lstActions.Location = new System.Drawing.Point(20, 62);
+            this.lstActions.Location = new System.Drawing.Point(20, 64);
             this.lstActions.MultiSelect = false;
             this.lstActions.Name = "lstActions";
             this.lstActions.Size = new System.Drawing.Size(355, 520);
@@ -648,7 +663,7 @@
             // lblId
             // 
             this.lblId.AutoSize = true;
-            this.lblId.Location = new System.Drawing.Point(19, 40);
+            this.lblId.Location = new System.Drawing.Point(19, 41);
             this.lblId.Name = "lblId";
             this.lblId.Size = new System.Drawing.Size(87, 13);
             this.lblId.TabIndex = 1;
@@ -704,7 +719,7 @@
             this.grpGeneral.Controls.Add(this.lblCommand);
             this.grpGeneral.Controls.Add(this.cmbCommandId);
             this.grpGeneral.Enabled = false;
-            this.grpGeneral.Location = new System.Drawing.Point(410, 62);
+            this.grpGeneral.Location = new System.Drawing.Point(410, 64);
             this.grpGeneral.Name = "grpGeneral";
             this.grpGeneral.Size = new System.Drawing.Size(495, 182);
             this.grpGeneral.TabIndex = 5;
@@ -924,7 +939,7 @@
             this.frmCommandTalk.Controls.Add(this.btnTalkText1);
             this.frmCommandTalk.Controls.Add(this.cmbTalkChatType);
             this.frmCommandTalk.Controls.Add(this.lblTalkChatType);
-            this.frmCommandTalk.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandTalk.Location = new System.Drawing.Point(410, 252);
             this.frmCommandTalk.Name = "frmCommandTalk";
             this.frmCommandTalk.Size = new System.Drawing.Size(495, 332);
             this.frmCommandTalk.TabIndex = 6;
@@ -1051,7 +1066,7 @@
             // 
             // btnActionDelete
             // 
-            this.btnActionDelete.Location = new System.Drawing.Point(300, 588);
+            this.btnActionDelete.Location = new System.Drawing.Point(182, 590);
             this.btnActionDelete.Name = "btnActionDelete";
             this.btnActionDelete.Size = new System.Drawing.Size(75, 23);
             this.btnActionDelete.TabIndex = 7;
@@ -1061,7 +1076,7 @@
             // 
             // btnActionAdd
             // 
-            this.btnActionAdd.Location = new System.Drawing.Point(138, 588);
+            this.btnActionAdd.Location = new System.Drawing.Point(20, 590);
             this.btnActionAdd.Name = "btnActionAdd";
             this.btnActionAdd.Size = new System.Drawing.Size(75, 23);
             this.btnActionAdd.TabIndex = 8;
@@ -1093,7 +1108,7 @@
             this.frmCommandEmote.Controls.Add(this.lblEmoteTooltip);
             this.frmCommandEmote.Controls.Add(this.cmbEmoteId);
             this.frmCommandEmote.Controls.Add(this.lblEmoteId);
-            this.frmCommandEmote.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandEmote.Location = new System.Drawing.Point(410, 252);
             this.frmCommandEmote.Name = "frmCommandEmote";
             this.frmCommandEmote.Size = new System.Drawing.Size(495, 332);
             this.frmCommandEmote.TabIndex = 11;
@@ -1135,7 +1150,7 @@
             this.frmCommandFieldSet.Controls.Add(this.txtFieldSetValue);
             this.frmCommandFieldSet.Controls.Add(this.cmbFieldSetFields);
             this.frmCommandFieldSet.Controls.Add(this.lblFieldSetTooltip);
-            this.frmCommandFieldSet.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandFieldSet.Location = new System.Drawing.Point(410, 252);
             this.frmCommandFieldSet.Name = "frmCommandFieldSet";
             this.frmCommandFieldSet.Size = new System.Drawing.Size(495, 332);
             this.frmCommandFieldSet.TabIndex = 12;
@@ -1209,7 +1224,7 @@
             this.frmCommandMoveTo.Controls.Add(this.lblMoveToType);
             this.frmCommandMoveTo.Controls.Add(this.cmbMoveToType);
             this.frmCommandMoveTo.Controls.Add(this.lblMoveToTooltip);
-            this.frmCommandMoveTo.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandMoveTo.Location = new System.Drawing.Point(410, 252);
             this.frmCommandMoveTo.Name = "frmCommandMoveTo";
             this.frmCommandMoveTo.Size = new System.Drawing.Size(495, 332);
             this.frmCommandMoveTo.TabIndex = 13;
@@ -1501,7 +1516,7 @@
             this.frmCommandTeleport.Controls.Add(this.txtTeleportY);
             this.frmCommandTeleport.Controls.Add(this.txtTeleportX);
             this.frmCommandTeleport.Controls.Add(this.lblTeleportTooltip);
-            this.frmCommandTeleport.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandTeleport.Location = new System.Drawing.Point(410, 252);
             this.frmCommandTeleport.Name = "frmCommandTeleport";
             this.frmCommandTeleport.Size = new System.Drawing.Size(495, 332);
             this.frmCommandTeleport.TabIndex = 14;
@@ -1695,7 +1710,7 @@
             this.frmCommandQuestComplete.Controls.Add(this.txtQuestCompleteDistance);
             this.frmCommandQuestComplete.Controls.Add(this.btnQuestCompleteId);
             this.frmCommandQuestComplete.Controls.Add(this.lblQuestCompleteTooltip);
-            this.frmCommandQuestComplete.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandQuestComplete.Location = new System.Drawing.Point(410, 252);
             this.frmCommandQuestComplete.Name = "frmCommandQuestComplete";
             this.frmCommandQuestComplete.Size = new System.Drawing.Size(495, 332);
             this.frmCommandQuestComplete.TabIndex = 15;
@@ -1777,7 +1792,7 @@
             this.frmCommandKillCredit.Controls.Add(this.lblKillCreditType);
             this.frmCommandKillCredit.Controls.Add(this.btnKillCreditCreatureId);
             this.frmCommandKillCredit.Controls.Add(this.lblKillCreditTooltip);
-            this.frmCommandKillCredit.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandKillCredit.Location = new System.Drawing.Point(410, 252);
             this.frmCommandKillCredit.Name = "frmCommandKillCredit";
             this.frmCommandKillCredit.Size = new System.Drawing.Size(495, 332);
             this.frmCommandKillCredit.TabIndex = 16;
@@ -1838,7 +1853,7 @@
             this.frmCommandRespawnGameobject.Controls.Add(this.txtRespawnGameobjectDelay);
             this.frmCommandRespawnGameobject.Controls.Add(this.txtRespawnGameobjectGuid);
             this.frmCommandRespawnGameobject.Controls.Add(this.lblRespawnGameobjectTooltip);
-            this.frmCommandRespawnGameobject.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandRespawnGameobject.Location = new System.Drawing.Point(410, 252);
             this.frmCommandRespawnGameobject.Name = "frmCommandRespawnGameobject";
             this.frmCommandRespawnGameobject.Size = new System.Drawing.Size(495, 332);
             this.frmCommandRespawnGameobject.TabIndex = 17;
@@ -1916,7 +1931,7 @@
             this.frmCommandSummonCreature.Controls.Add(this.grpSummonCreatureFlags);
             this.frmCommandSummonCreature.Controls.Add(this.btnSummonCreatureId);
             this.frmCommandSummonCreature.Controls.Add(this.lblSummonCreatureTooltip);
-            this.frmCommandSummonCreature.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandSummonCreature.Location = new System.Drawing.Point(410, 252);
             this.frmCommandSummonCreature.Name = "frmCommandSummonCreature";
             this.frmCommandSummonCreature.Size = new System.Drawing.Size(495, 332);
             this.frmCommandSummonCreature.TabIndex = 18;
@@ -2200,7 +2215,7 @@
             this.frmCommandDoor.Controls.Add(this.txtDoorResetDelay);
             this.frmCommandDoor.Controls.Add(this.txtDoorGuid);
             this.frmCommandDoor.Controls.Add(this.lblDoorTooltip);
-            this.frmCommandDoor.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandDoor.Location = new System.Drawing.Point(410, 252);
             this.frmCommandDoor.Name = "frmCommandDoor";
             this.frmCommandDoor.Size = new System.Drawing.Size(495, 332);
             this.frmCommandDoor.TabIndex = 19;
@@ -2258,7 +2273,7 @@
             this.frmCommandRemoveAura.Controls.Add(this.btnRemoveAuraSpellId);
             this.frmCommandRemoveAura.Controls.Add(this.lblRemoveAuraSpellId);
             this.frmCommandRemoveAura.Controls.Add(this.lblRemoveAuraTooltip);
-            this.frmCommandRemoveAura.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandRemoveAura.Location = new System.Drawing.Point(410, 252);
             this.frmCommandRemoveAura.Name = "frmCommandRemoveAura";
             this.frmCommandRemoveAura.Size = new System.Drawing.Size(495, 332);
             this.frmCommandRemoveAura.TabIndex = 20;
@@ -2356,7 +2371,7 @@
             this.frmCommandCastSpell.Controls.Add(this.btnCastSpellId);
             this.frmCommandCastSpell.Controls.Add(this.lblCastSpellId);
             this.frmCommandCastSpell.Controls.Add(this.lblCastSpellTooltip);
-            this.frmCommandCastSpell.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandCastSpell.Location = new System.Drawing.Point(410, 252);
             this.frmCommandCastSpell.Name = "frmCommandCastSpell";
             this.frmCommandCastSpell.Size = new System.Drawing.Size(495, 332);
             this.frmCommandCastSpell.TabIndex = 21;
@@ -2490,7 +2505,7 @@
             this.frmCommandPlaySound.Controls.Add(this.grpPlaySoundFlags);
             this.frmCommandPlaySound.Controls.Add(this.lblPlaySoundId);
             this.frmCommandPlaySound.Controls.Add(this.lblPlaySoundTooltip);
-            this.frmCommandPlaySound.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandPlaySound.Location = new System.Drawing.Point(410, 252);
             this.frmCommandPlaySound.Name = "frmCommandPlaySound";
             this.frmCommandPlaySound.Size = new System.Drawing.Size(495, 332);
             this.frmCommandPlaySound.TabIndex = 22;
@@ -2565,7 +2580,7 @@
             this.frmCommandCreateItem.Controls.Add(this.btnCreateItemId);
             this.frmCommandCreateItem.Controls.Add(this.lblCreateItemId);
             this.frmCommandCreateItem.Controls.Add(this.lblCreateItemTooltip);
-            this.frmCommandCreateItem.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandCreateItem.Location = new System.Drawing.Point(410, 252);
             this.frmCommandCreateItem.Name = "frmCommandCreateItem";
             this.frmCommandCreateItem.Size = new System.Drawing.Size(495, 332);
             this.frmCommandCreateItem.TabIndex = 23;
@@ -2622,7 +2637,7 @@
             this.frmCommandDespawnCreature.Controls.Add(this.lblDespawnCreatureDelay);
             this.frmCommandDespawnCreature.Controls.Add(this.txtDespawnCreatureDelay);
             this.frmCommandDespawnCreature.Controls.Add(this.lblDespawnCreatureTooltip);
-            this.frmCommandDespawnCreature.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandDespawnCreature.Location = new System.Drawing.Point(410, 252);
             this.frmCommandDespawnCreature.Name = "frmCommandDespawnCreature";
             this.frmCommandDespawnCreature.Size = new System.Drawing.Size(495, 332);
             this.frmCommandDespawnCreature.TabIndex = 24;
@@ -2666,7 +2681,7 @@
             this.frmCommandSetEquipment.Controls.Add(this.cmbSetEquipmentUseDefault);
             this.frmCommandSetEquipment.Controls.Add(this.lblSetEquipmentUseDefault);
             this.frmCommandSetEquipment.Controls.Add(this.lblSetEquipmentTooltip);
-            this.frmCommandSetEquipment.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandSetEquipment.Location = new System.Drawing.Point(410, 252);
             this.frmCommandSetEquipment.Name = "frmCommandSetEquipment";
             this.frmCommandSetEquipment.Size = new System.Drawing.Size(495, 332);
             this.frmCommandSetEquipment.TabIndex = 25;
@@ -2776,7 +2791,7 @@
             this.frmCommandSetMovement.Controls.Add(this.cmbSetMovementType);
             this.frmCommandSetMovement.Controls.Add(this.lblSetMovementType);
             this.frmCommandSetMovement.Controls.Add(this.lblSetMovementTooltip);
-            this.frmCommandSetMovement.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandSetMovement.Location = new System.Drawing.Point(410, 252);
             this.frmCommandSetMovement.Name = "frmCommandSetMovement";
             this.frmCommandSetMovement.Size = new System.Drawing.Size(495, 332);
             this.frmCommandSetMovement.TabIndex = 26;
@@ -2914,7 +2929,7 @@
             this.frmCommandActiveObject.Controls.Add(this.cmbActiveObjectSetActive);
             this.frmCommandActiveObject.Controls.Add(this.lblActiveObjectSetActive);
             this.frmCommandActiveObject.Controls.Add(this.lblActiveObjectTooltip);
-            this.frmCommandActiveObject.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandActiveObject.Location = new System.Drawing.Point(410, 252);
             this.frmCommandActiveObject.Name = "frmCommandActiveObject";
             this.frmCommandActiveObject.Size = new System.Drawing.Size(495, 332);
             this.frmCommandActiveObject.TabIndex = 27;
@@ -2959,7 +2974,7 @@
             this.frmCommandSetFaction.Controls.Add(this.grpSetFactionFlags);
             this.frmCommandSetFaction.Controls.Add(this.lblSetFactionId);
             this.frmCommandSetFaction.Controls.Add(this.lblSetFactionTooltip);
-            this.frmCommandSetFaction.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandSetFaction.Location = new System.Drawing.Point(410, 252);
             this.frmCommandSetFaction.Name = "frmCommandSetFaction";
             this.frmCommandSetFaction.Size = new System.Drawing.Size(495, 332);
             this.frmCommandSetFaction.TabIndex = 28;
@@ -3049,7 +3064,7 @@
             this.frmCommandMorphOrMount.Controls.Add(this.lblMorphOrMountType);
             this.frmCommandMorphOrMount.Controls.Add(this.btnMorphOrMountId);
             this.frmCommandMorphOrMount.Controls.Add(this.lblMorphOrMountTooltip);
-            this.frmCommandMorphOrMount.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandMorphOrMount.Location = new System.Drawing.Point(410, 252);
             this.frmCommandMorphOrMount.Name = "frmCommandMorphOrMount";
             this.frmCommandMorphOrMount.Size = new System.Drawing.Size(495, 332);
             this.frmCommandMorphOrMount.TabIndex = 29;
@@ -3133,7 +3148,7 @@
             this.frmCommandSetRun.Controls.Add(this.cmbSetRunMode);
             this.frmCommandSetRun.Controls.Add(this.lblSetRunMode);
             this.frmCommandSetRun.Controls.Add(this.lblSetRunTooltip);
-            this.frmCommandSetRun.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandSetRun.Location = new System.Drawing.Point(410, 252);
             this.frmCommandSetRun.Name = "frmCommandSetRun";
             this.frmCommandSetRun.Size = new System.Drawing.Size(495, 332);
             this.frmCommandSetRun.TabIndex = 30;
@@ -3208,7 +3223,7 @@
             this.frmCommandModifyFlags.Controls.Add(this.cmbModifyFlagsFieldId);
             this.frmCommandModifyFlags.Controls.Add(this.lblModifyFlagsField);
             this.frmCommandModifyFlags.Controls.Add(this.lblModifyFlagsTooltip);
-            this.frmCommandModifyFlags.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandModifyFlags.Location = new System.Drawing.Point(410, 252);
             this.frmCommandModifyFlags.Name = "frmCommandModifyFlags";
             this.frmCommandModifyFlags.Size = new System.Drawing.Size(495, 332);
             this.frmCommandModifyFlags.TabIndex = 31;
@@ -3604,7 +3619,7 @@
             this.frmCommandInterruptCasts.Controls.Add(this.lblInterruptCastsWithDelayed);
             this.frmCommandInterruptCasts.Controls.Add(this.btnInterruptCastsSpellId);
             this.frmCommandInterruptCasts.Controls.Add(this.lblInterruptCastsTooltip);
-            this.frmCommandInterruptCasts.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandInterruptCasts.Location = new System.Drawing.Point(410, 252);
             this.frmCommandInterruptCasts.Name = "frmCommandInterruptCasts";
             this.frmCommandInterruptCasts.Size = new System.Drawing.Size(495, 332);
             this.frmCommandInterruptCasts.TabIndex = 32;
@@ -3669,7 +3684,7 @@
             this.frmCommandUpdateEntry.Controls.Add(this.lblUpdateEntryTeam);
             this.frmCommandUpdateEntry.Controls.Add(this.btnUpdateEntryCreatureId);
             this.frmCommandUpdateEntry.Controls.Add(this.lblUpdateEntryTooltip);
-            this.frmCommandUpdateEntry.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandUpdateEntry.Location = new System.Drawing.Point(410, 252);
             this.frmCommandUpdateEntry.Name = "frmCommandUpdateEntry";
             this.frmCommandUpdateEntry.Size = new System.Drawing.Size(495, 332);
             this.frmCommandUpdateEntry.TabIndex = 33;
@@ -3733,7 +3748,7 @@
             this.frmCommandSetStandState.Controls.Add(this.cmbSetStandState);
             this.frmCommandSetStandState.Controls.Add(this.lblSetStandState);
             this.frmCommandSetStandState.Controls.Add(this.lblSetStandStateTooltip);
-            this.frmCommandSetStandState.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandSetStandState.Location = new System.Drawing.Point(410, 252);
             this.frmCommandSetStandState.Name = "frmCommandSetStandState";
             this.frmCommandSetStandState.Size = new System.Drawing.Size(495, 332);
             this.frmCommandSetStandState.TabIndex = 34;
@@ -3785,7 +3800,7 @@
             this.frmCommandModifyThreat.Controls.Add(this.cmbModifyThreatTarget);
             this.frmCommandModifyThreat.Controls.Add(this.lblModifyThreatTarget);
             this.frmCommandModifyThreat.Controls.Add(this.lblModifyThreatTooltip);
-            this.frmCommandModifyThreat.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandModifyThreat.Location = new System.Drawing.Point(410, 252);
             this.frmCommandModifyThreat.Name = "frmCommandModifyThreat";
             this.frmCommandModifyThreat.Size = new System.Drawing.Size(495, 332);
             this.frmCommandModifyThreat.TabIndex = 35;
@@ -3815,6 +3830,10 @@
             this.cmbModifyThreatTarget.Items.AddRange(new object[] {
             "Provided Target",
             "Current Victim",
+            "Second on Threat",
+            "Last on Threat",
+            "Random Attacker",
+            "Random Not Top",
             "All Attackers"});
             this.cmbModifyThreatTarget.Location = new System.Drawing.Point(99, 58);
             this.cmbModifyThreatTarget.Name = "cmbModifyThreatTarget";
@@ -3848,7 +3867,7 @@
             this.frmCommandSendTaxiPath.Controls.Add(this.btnSendTaxiPathId);
             this.frmCommandSendTaxiPath.Controls.Add(this.lblSendTaxiPathId);
             this.frmCommandSendTaxiPath.Controls.Add(this.lblSendTaxiPathTooltip);
-            this.frmCommandSendTaxiPath.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandSendTaxiPath.Location = new System.Drawing.Point(410, 252);
             this.frmCommandSendTaxiPath.Name = "frmCommandSendTaxiPath";
             this.frmCommandSendTaxiPath.Size = new System.Drawing.Size(495, 332);
             this.frmCommandSendTaxiPath.TabIndex = 36;
@@ -3909,7 +3928,7 @@
             this.frmCommandTerminateScript.Controls.Add(this.txtTerminateScriptSearchRadius);
             this.frmCommandTerminateScript.Controls.Add(this.btnTerminateScriptCreatureId);
             this.frmCommandTerminateScript.Controls.Add(this.lblTerminateScriptTooltip);
-            this.frmCommandTerminateScript.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandTerminateScript.Location = new System.Drawing.Point(410, 252);
             this.frmCommandTerminateScript.Name = "frmCommandTerminateScript";
             this.frmCommandTerminateScript.Size = new System.Drawing.Size(495, 332);
             this.frmCommandTerminateScript.TabIndex = 37;
@@ -3993,7 +4012,7 @@
             this.frmCommandTerminateCondition.Controls.Add(this.lblTerminateConditionQuestId);
             this.frmCommandTerminateCondition.Controls.Add(this.btnTerminateConditionId);
             this.frmCommandTerminateCondition.Controls.Add(this.lblTerminateConditionTooltip);
-            this.frmCommandTerminateCondition.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandTerminateCondition.Location = new System.Drawing.Point(410, 252);
             this.frmCommandTerminateCondition.Name = "frmCommandTerminateCondition";
             this.frmCommandTerminateCondition.Size = new System.Drawing.Size(495, 332);
             this.frmCommandTerminateCondition.TabIndex = 38;
@@ -4084,7 +4103,7 @@
             this.frmCommandSetHomePosition.Controls.Add(this.cmbSetHomePositionMode);
             this.frmCommandSetHomePosition.Controls.Add(this.lblSetHomePositionMode);
             this.frmCommandSetHomePosition.Controls.Add(this.lblSetHomePositionTooltip);
-            this.frmCommandSetHomePosition.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandSetHomePosition.Location = new System.Drawing.Point(410, 252);
             this.frmCommandSetHomePosition.Name = "frmCommandSetHomePosition";
             this.frmCommandSetHomePosition.Size = new System.Drawing.Size(495, 332);
             this.frmCommandSetHomePosition.TabIndex = 39;
@@ -4198,7 +4217,7 @@
             this.frmCommandSetFacing.Controls.Add(this.cmbSetFacingMode);
             this.frmCommandSetFacing.Controls.Add(this.lblSetFacingMode);
             this.frmCommandSetFacing.Controls.Add(this.lblSetFacingTooltip);
-            this.frmCommandSetFacing.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandSetFacing.Location = new System.Drawing.Point(410, 252);
             this.frmCommandSetFacing.Name = "frmCommandSetFacing";
             this.frmCommandSetFacing.Size = new System.Drawing.Size(495, 332);
             this.frmCommandSetFacing.TabIndex = 40;
@@ -4259,7 +4278,7 @@
             this.frmCommandMeetingStone.Controls.Add(this.btnMeetingStoneAreaId);
             this.frmCommandMeetingStone.Controls.Add(this.lblMeetingStoneAreaId);
             this.frmCommandMeetingStone.Controls.Add(this.lblMeetingStoneTooltip);
-            this.frmCommandMeetingStone.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandMeetingStone.Location = new System.Drawing.Point(410, 252);
             this.frmCommandMeetingStone.Name = "frmCommandMeetingStone";
             this.frmCommandMeetingStone.Size = new System.Drawing.Size(495, 332);
             this.frmCommandMeetingStone.TabIndex = 41;
@@ -4303,7 +4322,7 @@
             this.frmCommandSetData.Controls.Add(this.cmbSetDataMode);
             this.frmCommandSetData.Controls.Add(this.lblSetDataMode);
             this.frmCommandSetData.Controls.Add(this.lblSetDataTooltip);
-            this.frmCommandSetData.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandSetData.Location = new System.Drawing.Point(410, 252);
             this.frmCommandSetData.Name = "frmCommandSetData";
             this.frmCommandSetData.Size = new System.Drawing.Size(495, 332);
             this.frmCommandSetData.TabIndex = 42;
@@ -4377,7 +4396,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(830, 588);
+            this.btnSave.Location = new System.Drawing.Point(830, 590);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 43;
@@ -4403,7 +4422,7 @@
             this.frmCommandStartScript.Controls.Add(this.lblStartScriptChance);
             this.frmCommandStartScript.Controls.Add(this.lblStartScriptId);
             this.frmCommandStartScript.Controls.Add(this.lblStartScriptTooltip);
-            this.frmCommandStartScript.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandStartScript.Location = new System.Drawing.Point(410, 252);
             this.frmCommandStartScript.Name = "frmCommandStartScript";
             this.frmCommandStartScript.Size = new System.Drawing.Size(495, 332);
             this.frmCommandStartScript.TabIndex = 44;
@@ -4553,7 +4572,7 @@
             // 
             this.lblNoAction.AutoSize = true;
             this.lblNoAction.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoAction.Location = new System.Drawing.Point(575, 406);
+            this.lblNoAction.Location = new System.Drawing.Point(575, 408);
             this.lblNoAction.Name = "lblNoAction";
             this.lblNoAction.Size = new System.Drawing.Size(163, 20);
             this.lblNoAction.TabIndex = 46;
@@ -4561,7 +4580,7 @@
             // 
             // btnActionCopy
             // 
-            this.btnActionCopy.Location = new System.Drawing.Point(219, 588);
+            this.btnActionCopy.Location = new System.Drawing.Point(101, 590);
             this.btnActionCopy.Name = "btnActionCopy";
             this.btnActionCopy.Size = new System.Drawing.Size(75, 23);
             this.btnActionCopy.TabIndex = 47;
@@ -4571,7 +4590,7 @@
             // 
             // btnViewRaw
             // 
-            this.btnViewRaw.Location = new System.Drawing.Point(751, 588);
+            this.btnViewRaw.Location = new System.Drawing.Point(751, 590);
             this.btnViewRaw.Name = "btnViewRaw";
             this.btnViewRaw.Size = new System.Drawing.Size(75, 23);
             this.btnViewRaw.TabIndex = 48;
@@ -4587,7 +4606,7 @@
             this.frmCommandSetPhase.Controls.Add(this.txtSetPhasePhase);
             this.frmCommandSetPhase.Controls.Add(this.cmbSetPhaseMode);
             this.frmCommandSetPhase.Controls.Add(this.lblSetPhaseTooltip);
-            this.frmCommandSetPhase.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandSetPhase.Location = new System.Drawing.Point(410, 252);
             this.frmCommandSetPhase.Name = "frmCommandSetPhase";
             this.frmCommandSetPhase.Size = new System.Drawing.Size(495, 332);
             this.frmCommandSetPhase.TabIndex = 49;
@@ -4651,7 +4670,7 @@
             this.frmCommandSetRandomPhase.Controls.Add(this.lblSetRandomPhase1);
             this.frmCommandSetRandomPhase.Controls.Add(this.txtSetRandomPhase2);
             this.frmCommandSetRandomPhase.Controls.Add(this.lblSetRandomPhaseTooltip);
-            this.frmCommandSetRandomPhase.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandSetRandomPhase.Location = new System.Drawing.Point(410, 252);
             this.frmCommandSetRandomPhase.Name = "frmCommandSetRandomPhase";
             this.frmCommandSetRandomPhase.Size = new System.Drawing.Size(495, 332);
             this.frmCommandSetRandomPhase.TabIndex = 50;
@@ -4741,7 +4760,7 @@
             this.frmCommandFlee.Controls.Add(this.cmbFleeMode);
             this.frmCommandFlee.Controls.Add(this.lblFleeMode);
             this.frmCommandFlee.Controls.Add(this.lblFleeTooltip);
-            this.frmCommandFlee.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandFlee.Location = new System.Drawing.Point(410, 252);
             this.frmCommandFlee.Name = "frmCommandFlee";
             this.frmCommandFlee.Size = new System.Drawing.Size(495, 332);
             this.frmCommandFlee.TabIndex = 51;
@@ -4781,7 +4800,7 @@
             this.frmCommandCallForHelp.Controls.Add(this.lblCallForHelpRadius);
             this.frmCommandCallForHelp.Controls.Add(this.txtCallForHelpRadius);
             this.frmCommandCallForHelp.Controls.Add(this.lblCallForHelpTooltip);
-            this.frmCommandCallForHelp.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandCallForHelp.Location = new System.Drawing.Point(410, 252);
             this.frmCommandCallForHelp.Name = "frmCommandCallForHelp";
             this.frmCommandCallForHelp.Size = new System.Drawing.Size(495, 332);
             this.frmCommandCallForHelp.TabIndex = 52;
@@ -4824,7 +4843,7 @@
             this.frmCommandGameEvent.Controls.Add(this.lblGameEventAction);
             this.frmCommandGameEvent.Controls.Add(this.btnGameEventId);
             this.frmCommandGameEvent.Controls.Add(this.lblCommandGameEventTooltip);
-            this.frmCommandGameEvent.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandGameEvent.Location = new System.Drawing.Point(410, 252);
             this.frmCommandGameEvent.Name = "frmCommandGameEvent";
             this.frmCommandGameEvent.Size = new System.Drawing.Size(495, 332);
             this.frmCommandGameEvent.TabIndex = 53;
@@ -4916,7 +4935,7 @@
             this.frmCommandSetSpellsTemplate.Controls.Add(this.label1);
             this.frmCommandSetSpellsTemplate.Controls.Add(this.lblSetSpellsTempalteId);
             this.frmCommandSetSpellsTemplate.Controls.Add(this.lblSetSpellsTemplateTooltip);
-            this.frmCommandSetSpellsTemplate.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandSetSpellsTemplate.Location = new System.Drawing.Point(410, 252);
             this.frmCommandSetSpellsTemplate.Name = "frmCommandSetSpellsTemplate";
             this.frmCommandSetSpellsTemplate.Size = new System.Drawing.Size(495, 332);
             this.frmCommandSetSpellsTemplate.TabIndex = 54;
@@ -5029,7 +5048,7 @@
             this.frmCommandSpellCooldown.Controls.Add(this.btnSpellCooldownId);
             this.frmCommandSpellCooldown.Controls.Add(this.lblSpellCooldownId);
             this.frmCommandSpellCooldown.Controls.Add(this.lblSpellCooldownTooltip);
-            this.frmCommandSpellCooldown.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandSpellCooldown.Location = new System.Drawing.Point(410, 252);
             this.frmCommandSpellCooldown.Name = "frmCommandSpellCooldown";
             this.frmCommandSpellCooldown.Size = new System.Drawing.Size(495, 332);
             this.frmCommandSpellCooldown.TabIndex = 55;
@@ -5086,7 +5105,7 @@
             this.frmCommandSetReactState.Controls.Add(this.cmbSetReactState);
             this.frmCommandSetReactState.Controls.Add(this.lblReactState);
             this.frmCommandSetReactState.Controls.Add(this.lblSetReactStateTooltip);
-            this.frmCommandSetReactState.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandSetReactState.Location = new System.Drawing.Point(410, 252);
             this.frmCommandSetReactState.Name = "frmCommandSetReactState";
             this.frmCommandSetReactState.Size = new System.Drawing.Size(495, 332);
             this.frmCommandSetReactState.TabIndex = 56;
@@ -5140,7 +5159,7 @@
             this.frmCommandStartWaypoints.Controls.Add(this.cmbStartWaypointsSource);
             this.frmCommandStartWaypoints.Controls.Add(this.lblStartWaypointsSource);
             this.frmCommandStartWaypoints.Controls.Add(this.lblStartWaypointsTooltip);
-            this.frmCommandStartWaypoints.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandStartWaypoints.Location = new System.Drawing.Point(410, 252);
             this.frmCommandStartWaypoints.Name = "frmCommandStartWaypoints";
             this.frmCommandStartWaypoints.Size = new System.Drawing.Size(495, 332);
             this.frmCommandStartWaypoints.TabIndex = 57;
@@ -5289,7 +5308,7 @@
             this.frmCommandStartScriptedMapEvent.Controls.Add(this.txtStartScriptedMapEventSuccessScript);
             this.frmCommandStartScriptedMapEvent.Controls.Add(this.lblStartScriptedMapEventSuccessCondition);
             this.frmCommandStartScriptedMapEvent.Controls.Add(this.lblStartScriptedMapEventTooltip);
-            this.frmCommandStartScriptedMapEvent.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandStartScriptedMapEvent.Location = new System.Drawing.Point(410, 252);
             this.frmCommandStartScriptedMapEvent.Name = "frmCommandStartScriptedMapEvent";
             this.frmCommandStartScriptedMapEvent.Size = new System.Drawing.Size(495, 332);
             this.frmCommandStartScriptedMapEvent.TabIndex = 58;
@@ -5440,7 +5459,7 @@
             this.frmCommandRemoveScriptedMapEventTarget.Controls.Add(this.lblRemoveScriptedMapEventTargetEventId);
             this.frmCommandRemoveScriptedMapEventTarget.Controls.Add(this.btnRemoveScriptedMapEventTargetCondition);
             this.frmCommandRemoveScriptedMapEventTarget.Controls.Add(this.label5);
-            this.frmCommandRemoveScriptedMapEventTarget.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandRemoveScriptedMapEventTarget.Location = new System.Drawing.Point(410, 252);
             this.frmCommandRemoveScriptedMapEventTarget.Name = "frmCommandRemoveScriptedMapEventTarget";
             this.frmCommandRemoveScriptedMapEventTarget.Size = new System.Drawing.Size(495, 332);
             this.frmCommandRemoveScriptedMapEventTarget.TabIndex = 59;
@@ -5528,7 +5547,7 @@
             this.frmCommandSetScriptedMapEventData.Controls.Add(this.lblSetScriptedMapEventDataIndex);
             this.frmCommandSetScriptedMapEventData.Controls.Add(this.lblSetScriptedMapEventDataEventId);
             this.frmCommandSetScriptedMapEventData.Controls.Add(this.lblSetScriptedMapEventDataTooltip);
-            this.frmCommandSetScriptedMapEventData.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandSetScriptedMapEventData.Location = new System.Drawing.Point(410, 252);
             this.frmCommandSetScriptedMapEventData.Name = "frmCommandSetScriptedMapEventData";
             this.frmCommandSetScriptedMapEventData.Size = new System.Drawing.Size(495, 332);
             this.frmCommandSetScriptedMapEventData.TabIndex = 60;
@@ -5627,7 +5646,7 @@
             this.frmCommandSetDefaultMovement.Controls.Add(this.lblSetDefaultMovementAlwaysReplace);
             this.frmCommandSetDefaultMovement.Controls.Add(this.lblSetDefaultMovementType);
             this.frmCommandSetDefaultMovement.Controls.Add(this.lblSetDefaultMovementTooltip);
-            this.frmCommandSetDefaultMovement.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandSetDefaultMovement.Location = new System.Drawing.Point(410, 252);
             this.frmCommandSetDefaultMovement.Name = "frmCommandSetDefaultMovement";
             this.frmCommandSetDefaultMovement.Size = new System.Drawing.Size(495, 332);
             this.frmCommandSetDefaultMovement.TabIndex = 61;
@@ -5716,7 +5735,7 @@
             this.frmCommandStartScriptForAll.Controls.Add(this.lblStartScriptForAllObjectType);
             this.frmCommandStartScriptForAll.Controls.Add(this.lblStartScriptForAllScriptId);
             this.frmCommandStartScriptForAll.Controls.Add(this.lblStartScriptForAllTooltip);
-            this.frmCommandStartScriptForAll.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandStartScriptForAll.Location = new System.Drawing.Point(410, 252);
             this.frmCommandStartScriptForAll.Name = "frmCommandStartScriptForAll";
             this.frmCommandStartScriptForAll.Size = new System.Drawing.Size(495, 332);
             this.frmCommandStartScriptForAll.TabIndex = 62;
@@ -5837,7 +5856,7 @@
             this.frmCommandUnknown.Controls.Add(this.lblUnknownCommandDatalong2);
             this.frmCommandUnknown.Controls.Add(this.lblUnknownCommandDatalong1);
             this.frmCommandUnknown.Controls.Add(this.lblUnknownCommandTooltip);
-            this.frmCommandUnknown.Location = new System.Drawing.Point(410, 250);
+            this.frmCommandUnknown.Location = new System.Drawing.Point(410, 252);
             this.frmCommandUnknown.Name = "frmCommandUnknown";
             this.frmCommandUnknown.Size = new System.Drawing.Size(495, 332);
             this.frmCommandUnknown.TabIndex = 63;
@@ -6056,11 +6075,147 @@
             this.lblUnknownCommandTooltip.TabIndex = 0;
             this.lblUnknownCommandTooltip.Text = "This command is not currently supported by the script editor.";
             // 
+            // frmCommandSummonObject
+            // 
+            this.frmCommandSummonObject.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandSummonObject.Controls.Add(this.lblSummonObjectRespawnTime);
+            this.frmCommandSummonObject.Controls.Add(this.txtSummonObjectRespawnTime);
+            this.frmCommandSummonObject.Controls.Add(this.btnSummonObjectId);
+            this.frmCommandSummonObject.Controls.Add(this.lblSummonObjectO);
+            this.frmCommandSummonObject.Controls.Add(this.lblSummonObjectZ);
+            this.frmCommandSummonObject.Controls.Add(this.txtSummonObjectO);
+            this.frmCommandSummonObject.Controls.Add(this.txtSummonObjectZ);
+            this.frmCommandSummonObject.Controls.Add(this.lblSummonObjectY);
+            this.frmCommandSummonObject.Controls.Add(this.lblSummonObjectX);
+            this.frmCommandSummonObject.Controls.Add(this.txtSummonObjectY);
+            this.frmCommandSummonObject.Controls.Add(this.txtSummonObjectX);
+            this.frmCommandSummonObject.Controls.Add(this.lblSummonObjectId);
+            this.frmCommandSummonObject.Controls.Add(this.lblSummonObjectTooltip);
+            this.frmCommandSummonObject.Location = new System.Drawing.Point(410, 252);
+            this.frmCommandSummonObject.Name = "frmCommandSummonObject";
+            this.frmCommandSummonObject.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandSummonObject.TabIndex = 64;
+            this.frmCommandSummonObject.Visible = false;
+            // 
+            // lblSummonObjectRespawnTime
+            // 
+            this.lblSummonObjectRespawnTime.AutoSize = true;
+            this.lblSummonObjectRespawnTime.Location = new System.Drawing.Point(41, 96);
+            this.lblSummonObjectRespawnTime.Name = "lblSummonObjectRespawnTime";
+            this.lblSummonObjectRespawnTime.Size = new System.Drawing.Size(55, 13);
+            this.lblSummonObjectRespawnTime.TabIndex = 13;
+            this.lblSummonObjectRespawnTime.Text = "Respawn:";
+            // 
+            // txtSummonObjectRespawnTime
+            // 
+            this.txtSummonObjectRespawnTime.Location = new System.Drawing.Point(99, 92);
+            this.txtSummonObjectRespawnTime.Name = "txtSummonObjectRespawnTime";
+            this.txtSummonObjectRespawnTime.Size = new System.Drawing.Size(374, 20);
+            this.txtSummonObjectRespawnTime.TabIndex = 12;
+            this.txtSummonObjectRespawnTime.Leave += new System.EventHandler(this.txtSummonObjectRespawnTime_Leave);
+            // 
+            // btnSummonObjectId
+            // 
+            this.btnSummonObjectId.Location = new System.Drawing.Point(99, 58);
+            this.btnSummonObjectId.Name = "btnSummonObjectId";
+            this.btnSummonObjectId.Size = new System.Drawing.Size(374, 23);
+            this.btnSummonObjectId.TabIndex = 11;
+            this.btnSummonObjectId.Text = "-NONE-";
+            this.btnSummonObjectId.UseVisualStyleBackColor = true;
+            this.btnSummonObjectId.Click += new System.EventHandler(this.btnSummonObjectId_Click);
+            // 
+            // lblSummonObjectO
+            // 
+            this.lblSummonObjectO.AutoSize = true;
+            this.lblSummonObjectO.Location = new System.Drawing.Point(264, 157);
+            this.lblSummonObjectO.Name = "lblSummonObjectO";
+            this.lblSummonObjectO.Size = new System.Drawing.Size(61, 13);
+            this.lblSummonObjectO.TabIndex = 10;
+            this.lblSummonObjectO.Text = "Orientation:";
+            // 
+            // lblSummonObjectZ
+            // 
+            this.lblSummonObjectZ.AutoSize = true;
+            this.lblSummonObjectZ.Location = new System.Drawing.Point(26, 157);
+            this.lblSummonObjectZ.Name = "lblSummonObjectZ";
+            this.lblSummonObjectZ.Size = new System.Drawing.Size(70, 13);
+            this.lblSummonObjectZ.TabIndex = 9;
+            this.lblSummonObjectZ.Text = "Z coordinate:";
+            // 
+            // txtSummonObjectO
+            // 
+            this.txtSummonObjectO.Location = new System.Drawing.Point(328, 154);
+            this.txtSummonObjectO.Name = "txtSummonObjectO";
+            this.txtSummonObjectO.Size = new System.Drawing.Size(145, 20);
+            this.txtSummonObjectO.TabIndex = 8;
+            this.txtSummonObjectO.Leave += new System.EventHandler(this.txtSummonObjectO_Leave);
+            // 
+            // txtSummonObjectZ
+            // 
+            this.txtSummonObjectZ.Location = new System.Drawing.Point(99, 154);
+            this.txtSummonObjectZ.Name = "txtSummonObjectZ";
+            this.txtSummonObjectZ.Size = new System.Drawing.Size(145, 20);
+            this.txtSummonObjectZ.TabIndex = 7;
+            this.txtSummonObjectZ.Leave += new System.EventHandler(this.txtSummonObjectZ_Leave);
+            // 
+            // lblSummonObjectY
+            // 
+            this.lblSummonObjectY.AutoSize = true;
+            this.lblSummonObjectY.Location = new System.Drawing.Point(255, 126);
+            this.lblSummonObjectY.Name = "lblSummonObjectY";
+            this.lblSummonObjectY.Size = new System.Drawing.Size(70, 13);
+            this.lblSummonObjectY.TabIndex = 6;
+            this.lblSummonObjectY.Text = "Y coordinate:";
+            // 
+            // lblSummonObjectX
+            // 
+            this.lblSummonObjectX.AutoSize = true;
+            this.lblSummonObjectX.Location = new System.Drawing.Point(26, 126);
+            this.lblSummonObjectX.Name = "lblSummonObjectX";
+            this.lblSummonObjectX.Size = new System.Drawing.Size(70, 13);
+            this.lblSummonObjectX.TabIndex = 5;
+            this.lblSummonObjectX.Text = "X coordinate:";
+            // 
+            // txtSummonObjectY
+            // 
+            this.txtSummonObjectY.Location = new System.Drawing.Point(328, 123);
+            this.txtSummonObjectY.Name = "txtSummonObjectY";
+            this.txtSummonObjectY.Size = new System.Drawing.Size(145, 20);
+            this.txtSummonObjectY.TabIndex = 4;
+            this.txtSummonObjectY.Leave += new System.EventHandler(this.txtSummonObjectY_Leave);
+            // 
+            // txtSummonObjectX
+            // 
+            this.txtSummonObjectX.Location = new System.Drawing.Point(99, 123);
+            this.txtSummonObjectX.Name = "txtSummonObjectX";
+            this.txtSummonObjectX.Size = new System.Drawing.Size(145, 20);
+            this.txtSummonObjectX.TabIndex = 3;
+            this.txtSummonObjectX.Leave += new System.EventHandler(this.txtSummonObjectX_Leave);
+            // 
+            // lblSummonObjectId
+            // 
+            this.lblSummonObjectId.AutoSize = true;
+            this.lblSummonObjectId.Location = new System.Drawing.Point(43, 61);
+            this.lblSummonObjectId.Name = "lblSummonObjectId";
+            this.lblSummonObjectId.Size = new System.Drawing.Size(53, 13);
+            this.lblSummonObjectId.TabIndex = 1;
+            this.lblSummonObjectId.Text = "Object Id:";
+            // 
+            // lblSummonObjectTooltip
+            // 
+            this.lblSummonObjectTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblSummonObjectTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblSummonObjectTooltip.Name = "lblSummonObjectTooltip";
+            this.lblSummonObjectTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblSummonObjectTooltip.TabIndex = 0;
+            this.lblSummonObjectTooltip.Text = "Summons a GameObject at the specified position.";
+            // 
             // FormScriptEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 620);
+            this.Controls.Add(this.frmCommandSummonObject);
             this.Controls.Add(this.frmCommandUnknown);
             this.Controls.Add(this.frmCommandStartScriptForAll);
             this.Controls.Add(this.frmCommandSetDefaultMovement);
@@ -6249,6 +6404,8 @@
             this.frmCommandStartScriptForAll.PerformLayout();
             this.frmCommandUnknown.ResumeLayout(false);
             this.frmCommandUnknown.PerformLayout();
+            this.frmCommandSummonObject.ResumeLayout(false);
+            this.frmCommandSummonObject.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -6778,6 +6935,20 @@
         private System.Windows.Forms.CheckBox chkAddAuraFlag2;
         private System.Windows.Forms.CheckBox chkAddAuraFlag8;
         private System.Windows.Forms.CheckBox chkAddAuraFlag4;
+        private System.Windows.Forms.Panel frmCommandSummonObject;
+        private System.Windows.Forms.Label lblSummonObjectRespawnTime;
+        private System.Windows.Forms.TextBox txtSummonObjectRespawnTime;
+        private System.Windows.Forms.Button btnSummonObjectId;
+        private System.Windows.Forms.Label lblSummonObjectO;
+        private System.Windows.Forms.Label lblSummonObjectZ;
+        private System.Windows.Forms.TextBox txtSummonObjectO;
+        private System.Windows.Forms.TextBox txtSummonObjectZ;
+        private System.Windows.Forms.Label lblSummonObjectY;
+        private System.Windows.Forms.Label lblSummonObjectX;
+        private System.Windows.Forms.TextBox txtSummonObjectY;
+        private System.Windows.Forms.TextBox txtSummonObjectX;
+        private System.Windows.Forms.Label lblSummonObjectId;
+        private System.Windows.Forms.Label lblSummonObjectTooltip;
     }
 }
 

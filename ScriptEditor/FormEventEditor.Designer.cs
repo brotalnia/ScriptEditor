@@ -587,7 +587,7 @@
             // 
             // btnEventCopy
             // 
-            this.btnEventCopy.Location = new System.Drawing.Point(245, 571);
+            this.btnEventCopy.Location = new System.Drawing.Point(93, 570);
             this.btnEventCopy.Name = "btnEventCopy";
             this.btnEventCopy.Size = new System.Drawing.Size(75, 23);
             this.btnEventCopy.TabIndex = 58;
@@ -597,7 +597,7 @@
             // 
             // btnEventAdd
             // 
-            this.btnEventAdd.Location = new System.Drawing.Point(164, 571);
+            this.btnEventAdd.Location = new System.Drawing.Point(12, 570);
             this.btnEventAdd.Name = "btnEventAdd";
             this.btnEventAdd.Size = new System.Drawing.Size(75, 23);
             this.btnEventAdd.TabIndex = 57;
@@ -607,7 +607,7 @@
             // 
             // btnEventDelete
             // 
-            this.btnEventDelete.Location = new System.Drawing.Point(326, 571);
+            this.btnEventDelete.Location = new System.Drawing.Point(174, 570);
             this.btnEventDelete.Name = "btnEventDelete";
             this.btnEventDelete.Size = new System.Drawing.Size(75, 23);
             this.btnEventDelete.TabIndex = 56;

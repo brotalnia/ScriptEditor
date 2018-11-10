@@ -106,6 +106,7 @@ namespace ScriptEditor
         "Combat Stop",              // 73
         "Add Aura",                 // 74
         "Add Threat",               // 75
+        "Summon Object",            // 76
         };
 
         // Options for combo boxes.
@@ -821,6 +822,15 @@ namespace ScriptEditor
             btnStartScriptForAllObjectEntry.Text = "-NONE-";
             txtStartScriptForAllDistance.Text = "";
             frmCommandStartScriptForAll.Visible = false;
+
+            // Summon Object (76)
+            btnSummonObjectId.Text = "-NONE-";
+            txtSummonObjectRespawnTime.Text = "";
+            txtSummonObjectX.Text = "";
+            txtSummonObjectY.Text = "";
+            txtSummonObjectZ.Text = "";
+            txtSummonObjectO.Text = "";
+            frmCommandSummonObject.Visible = false;
 
             dontUpdate = false;
         }
@@ -1981,6 +1991,19 @@ namespace ScriptEditor
                     }
                     txtStartScriptForAllDistance.Text = selectedAction.Datalong4.ToString();
                     frmCommandStartScriptForAll.Visible = true;
+                    break;
+                }
+                case 76: // Summon Object 76
+                {
+                    uint objectId = selectedAction.Datalong;
+                    if (objectId > 0)
+                        btnSummonObjectId.Text = GameData.FindGameObjectName(objectId) + " (" + objectId.ToString() + ")";
+                    txtSummonObjectRespawnTime.Text = selectedAction.Datalong2.ToString();
+                    txtSummonObjectX.Text = selectedAction.X.ToString();
+                    txtSummonObjectY.Text = selectedAction.Y.ToString();
+                    txtSummonObjectZ.Text = selectedAction.Z.ToString();
+                    txtSummonObjectO.Text = selectedAction.O.ToString();
+                    frmCommandSummonObject.Visible = true;
                     break;
                 }
                 default: // Unsupported command
@@ -4497,6 +4520,32 @@ namespace ScriptEditor
                     break;
                 }
             }
+        }
+
+        //SCRIPT_COMMAND_SUMMON_OBJECT (76)
+        private void btnSummonObjectId_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormGameObjectFinder>(btnSummonObjectId, null, GameData.FindGameObjectName, "Datalong");
+        }
+        private void txtSummonObjectRespawnTime_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSummonObjectRespawnTime, "Datalong2");
+        }
+        private void txtSummonObjectX_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSummonObjectX, "X");
+        }
+        private void txtSummonObjectY_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSummonObjectY, "Y");
+        }
+        private void txtSummonObjectZ_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSummonObjectZ, "Z");
+        }
+        private void txtSummonObjectO_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSummonObjectO, "O");
         }
     }
 

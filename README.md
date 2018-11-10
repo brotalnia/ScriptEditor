@@ -1,5 +1,5 @@
 # ScriptEditor
-Database scripts editor for the Light's Hope emulator.
+Database scripts editor for the VMaNGOS emulator.
 
 Preview:
 ![script editor gui](https://i.imgur.com/zxgHXAv.png)
