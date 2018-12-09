@@ -254,7 +254,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT ID, MaleText, FemaleText, Type, Language FROM broadcast_text ORDER BY ID";
+            command.CommandText = "SELECT `ID`, `MaleText`, `FemaleText`, `Type`, `Language` FROM `broadcast_text` ORDER BY `ID`";
             try
             {
                 conn.Open();
@@ -284,7 +284,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT entry, MinLevel, QuestLevel, Title FROM quest_template t1 WHERE patch=(SELECT max(patch) FROM quest_template t2 WHERE t1.entry=t2.entry) ORDER BY entry";
+            command.CommandText = "SELECT `entry`, `MinLevel`, `QuestLevel`, `Title` FROM `quest_template` t1 WHERE `patch`=(SELECT max(`patch`) FROM `quest_template` t2 WHERE t1.`entry`=t2.`entry`) ORDER BY `entry`";
             try
             {
                 conn.Open();
@@ -334,7 +334,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT entry, minlevel, maxlevel, rank, name, spells_template FROM creature_template t1 WHERE patch=(SELECT max(patch) FROM creature_template t2 WHERE t1.entry=t2.entry) ORDER BY entry";
+            command.CommandText = "SELECT `entry`, `minlevel`, `maxlevel`, `rank`, `name`, `spells_template` FROM `creature_template` t1 WHERE `patch`=(SELECT max(`patch`) FROM `creature_template` t2 WHERE t1.`entry`=t2.`entry`) ORDER BY `entry`";
             try
             {
                 conn.Open();
@@ -359,7 +359,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT * FROM creature_spells ORDER BY entry";
+            command.CommandText = "SELECT * FROM `creature_spells` ORDER BY `entry`";
             try
             {
                 conn.Open();
@@ -482,7 +482,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT ID, effect1, effect2, effect3, name1, description1 FROM spell_template WHERE build=5875 ORDER BY ID";
+            command.CommandText = "SELECT `ID`, `effect1`, `effect2`, `effect3`, `name1`, `description1` FROM `spell_template` WHERE `build`=5875 ORDER BY `ID`";
             try
             {
                 conn.Open();
@@ -507,7 +507,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT entry, required_level, item_level, inventory_type, display_id, name FROM item_template t1 WHERE patch=(SELECT max(patch) FROM item_template t2 WHERE t1.entry=t2.entry) ORDER BY entry";
+            command.CommandText = "SELECT `entry`, `required_level`, `item_level`, `inventory_type`, `display_id`, `name` FROM `item_template` t1 WHERE `patch`=(SELECT max(`patch`) FROM `item_template` t2 WHERE t1.`entry`=t2.`entry`) ORDER BY `entry`";
             try
             {
                 conn.Open();
@@ -532,7 +532,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT condition_entry, type, value1, value2, value3, value4, flags FROM conditions ORDER BY condition_entry";
+            command.CommandText = "SELECT `condition_entry`, `type`, `value1`, `value2`, `value3`, `value4`, `flags` FROM `conditions` ORDER BY `condition_entry`";
             try
             {
                 conn.Open();
@@ -557,7 +557,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT Entry, MapId, ZoneId, Name FROM area_template ORDER BY Entry";
+            command.CommandText = "SELECT `entry`, `map_id`, `zone_id`, `name` FROM `area_template` ORDER BY `entry`";
             try
             {
                 conn.Open();
@@ -582,7 +582,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT ID, name FROM sound_entries ORDER BY ID";
+            command.CommandText = "SELECT `id`, `name` FROM `sound_entries` ORDER BY `id`";
             try
             {
                 conn.Open();
@@ -607,7 +607,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT ID, name1, description1 FROM faction WHERE build=5875 ORDER BY ID";
+            command.CommandText = "SELECT `id`, `name1`, `description1` FROM `faction` WHERE `build`=5875 ORDER BY `id`";
             try
             {
                 conn.Open();
@@ -632,7 +632,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT ID, factionId, factionFlags FROM faction_template WHERE build=5875 ORDER BY ID";
+            command.CommandText = "SELECT `id`, `faction_id`, `faction_flags` FROM `faction_template` WHERE `build`=5875 ORDER BY `id`";
             try
             {
                 conn.Open();
@@ -657,7 +657,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT entry, occurence, length, description, patch_min, patch_max FROM game_event ORDER BY entry";
+            command.CommandText = "SELECT `entry`, `occurence`, `length`, `description`, `patch_min`, `patch_max` FROM `game_event` ORDER BY `entry`";
             try
             {
                 conn.Open();
