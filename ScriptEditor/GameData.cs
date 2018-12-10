@@ -15,6 +15,7 @@ namespace ScriptEditor
         public static readonly List<ItemInfo> ItemInfoList = new List<ItemInfo>();
         public static readonly List<TaxiInfo> TaxiInfoList = new List<TaxiInfo>();
         public static readonly List<ConditionInfo> ConditionInfoList = new List<ConditionInfo>();
+        public static readonly List<ConditionInfo> OriginalConditionInfoList = new List<ConditionInfo>();
         public static readonly List<AreaInfo> AreaInfoList = new List<AreaInfo>();
         public static readonly List<SoundInfo> SoundInfoList = new List<SoundInfo>();
         public static readonly List<FactionInfo> FactionInfoList = new List<FactionInfo>();
@@ -178,12 +179,22 @@ namespace ScriptEditor
 
             return "";
         }
-        public static string FindConditionName(int id)
+        public static string FindConditionTypeName(int id)
         {
             foreach (ComboboxPair condition in ConditionNamesList)
             {
                 if (condition.Value == id)
                     return condition.Text;
+            }
+
+            return "";
+        }
+        public static string FindConditionName(uint id)
+        {
+            foreach (ConditionInfo condition in ConditionInfoList)
+            {
+                if (condition.ID == id)
+                    return FindConditionTypeName(condition.Type);
             }
 
             return "";
@@ -529,6 +540,7 @@ namespace ScriptEditor
         public static void LoadCondition(string connString)
         {
             ConditionInfoList.Clear();
+            OriginalConditionInfoList.Clear();
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
@@ -542,6 +554,7 @@ namespace ScriptEditor
                 {
                     // Add the new condition entry to the list.
                     ConditionInfoList.Add(new ConditionInfo(reader.GetUInt32(0), reader.GetInt32(1), reader.GetUInt32(2), reader.GetUInt32(3), reader.GetUInt32(4), reader.GetUInt32(5), reader.GetUInt32(6)));
+                    OriginalConditionInfoList.Add(new ConditionInfo(reader.GetUInt32(0), reader.GetInt32(1), reader.GetUInt32(2), reader.GetUInt32(3), reader.GetUInt32(4), reader.GetUInt32(5), reader.GetUInt32(6)));
                 }
                 reader.Close();
             }
@@ -1741,7 +1754,7 @@ namespace ScriptEditor
             Destination = destination;
         }
     }
-    public struct ConditionInfo
+    public class ConditionInfo
     {
         public uint ID;
         public int Type;
