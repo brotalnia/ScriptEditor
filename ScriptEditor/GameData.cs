@@ -620,7 +620,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT `id`, `name1`, `description1` FROM `faction` WHERE `build`=5875 ORDER BY `id`";
+            command.CommandText = "SELECT `id`, `reputation_list_id`, `team`, `name1`, `description1` FROM `faction` WHERE `build`=5875 ORDER BY `id`";
             try
             {
                 conn.Open();
@@ -629,7 +629,7 @@ namespace ScriptEditor
                 while (reader.Read())
                 {
                     // Add the new faction entry to the list.
-                    FactionInfoList.Add(new FactionInfo(reader.GetUInt32(0), reader.GetString(1), reader.GetString(2)));
+                    FactionInfoList.Add(new FactionInfo(reader.GetUInt32(0), reader.GetInt32(1), reader.GetUInt32(2), reader.GetString(3), reader.GetString(4)));
                 }
                 reader.Close();
             }
@@ -1801,11 +1801,15 @@ namespace ScriptEditor
     public struct FactionInfo
     {
         public uint ID;
+        public int Reputation;
+        public uint Team;
         public string Name;
         public string Description;
-        public FactionInfo(uint id, string name, string description)
+        public FactionInfo(uint id, int reputation, uint team, string name, string description)
         {
             ID = id;
+            Reputation = reputation;
+            Team = team;
             Name = name;
             Description = description;
         }

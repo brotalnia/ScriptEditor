@@ -15,6 +15,12 @@ namespace ScriptEditor
         private bool dontUpdate = false;
         private bool editMode = false;
 
+        private ComboboxPair[] ConditionTeam_ComboOptions =
+        {
+            new ComboboxPair("Horde", 67),
+            new ComboboxPair("Alliance", 469)
+        };
+
         private void ResetBaseControls()
         {
             cmbConditionType.SelectedIndex = -1;
@@ -34,6 +40,32 @@ namespace ScriptEditor
             btnConditionNotCondition1.Text = "-NONE-";
             btnConditionNotCondition2.Text = "-NONE-";
             frmConditionNot.Visible = false;
+
+            // CONDITION_AURA (1)
+            // CONDITION_SPELL (17)
+            btnAuraSpellId.Text = "-NONE-";
+            txtAuraEffectIndex.Text = "";
+            frmConditionAura.Visible = false;
+
+            // CONDITION_ITEM (2)
+            // CONDITION_ITEM_EQUIPPED (3)
+            // CONDITION_ITEM_WITH_BANK (23)
+            btnItemId.Text = "-NONE-";
+            txtItemCount.Text = "";
+            frmConditionItem.Visible = false;
+
+            // CONDITION_AREAID (4)
+            btnAreaId.Text = "-NONE-";
+            frmConditionArea.Visible = false;
+
+            // CONDITION_REPUTATION_RANK_MIN (5)
+            btnReputationFactionId.Text = "-NONE-";
+            cmbReputationRank.SelectedIndex = -1;
+            frmConditionReputation.Visible = false;
+
+            // CONDITION_TEAM (6)
+            cmbTeamId.SelectedIndex = -1;
+            frmConditionTeam.Visible = false;
         }
 
         private void ShowConditionSpecificForm(ConditionInfo selectedCondition)
@@ -99,6 +131,95 @@ namespace ScriptEditor
                     frmConditionNot.Visible = true;
                     break;
                 }
+                case 1: // CONDITION_AURA
+                case 17: // CONDITION_SPELL
+                {
+                    switch (selectedCondition.Type)
+                    {
+                        case 1: // CONDITION_AURA
+                        {
+                            lblConditionAuraTooltip.Text = "Returns true if the target Unit has an aura from the specified spell.";
+                            lblAuraEffectIndex.Text = "Effect Index:";
+                            break;
+                        }
+                        case 17: // CONDITION_SPELL
+                        {
+                            lblConditionAuraTooltip.Text = "Returns true if the target Player knows the specified spell.";
+                            lblAuraEffectIndex.Text = "Reverse Result:";
+                            break;
+                        }
+                    }
+                    
+                    uint spellId = selectedCondition.Value1;
+                    if (spellId > 0)
+                        btnAuraSpellId.Text = GameData.FindSpellName(spellId) + " (" + spellId.ToString() + ")";
+                    txtAuraEffectIndex.Text = selectedCondition.Value2.ToString();
+                    frmConditionAura.Visible = true;
+                    break;
+                }
+                case 2: // CONDITION_ITEM
+                case 3: // CONDITION_ITEM_EQUIPPED
+                case 23: // CONDITION_ITEM_WITH_BANK
+                {
+                    switch (selectedCondition.Type)
+                    {
+                        case 2: // CONDITION_ITEM
+                        {
+                            lblConditionItemTooltip.Text = "Returns true if the target Player has a minimum count of the specified item. Does not check his bank.";
+                            lblItemCount.Text = "Count:";
+                            lblItemCount.Visible = true;
+                            txtItemCount.Visible = true;
+                            break;
+                        }
+                        case 3: // CONDITION_ITEM_EQUIPPED
+                        {
+                            lblConditionItemTooltip.Text = "Returns true if the target Player has equipped the specified item.";
+                            lblItemCount.Visible = false;
+                            txtItemCount.Visible = false;
+                            break;
+                        }
+                        case 23: // CONDITION_ITEM_WITH_BANK
+                        {
+                            lblConditionItemTooltip.Text = "Returns true if the target Player has a minimum count of the specified item. Also checks his bank.";
+                            lblItemCount.Text = "Count:";
+                            lblItemCount.Visible = true;
+                            txtItemCount.Visible = true;
+                            break;
+                        }
+                    }
+                    uint itemId = selectedCondition.Value1;
+                    if (itemId > 0)
+                        btnItemId.Text = GameData.FindItemName(itemId) + " (" + itemId.ToString() + ")";
+                    txtItemCount.Text = selectedCondition.Value2.ToString();
+                    frmConditionItem.Visible = true;
+                    break;
+                }
+                case 4: // CONDITION_AREAID
+                {
+                    uint areaId = selectedCondition.Value1;
+                    if (areaId > 0)
+                        btnAreaId.Text = GameData.FindAreaName(areaId) + " (" + areaId.ToString() + ")";
+                    frmConditionArea.Visible = true;
+                    break;
+                }
+                case 5: // CONDITION_REPUTATION_RANK_MIN
+                {
+                    uint factionId = selectedCondition.Value1;
+                    if (factionId > 0)
+                        btnReputationFactionId.Text = GameData.FindFactionName(factionId) + " (" + factionId.ToString() + ")";
+                    cmbReputationRank.SelectedIndex = (int)selectedCondition.Value2;
+                    frmConditionReputation.Visible = true;
+                    break;
+                }
+                case 6: // CONDITION_TEAM
+                {
+                    if (selectedCondition.Value1 == 67)
+                        cmbTeamId.SelectedIndex = 0;
+                    else
+                        cmbTeamId.SelectedIndex = 1;
+                    frmConditionTeam.Visible = true;
+                    break;
+                }
             }
         }
 
@@ -111,6 +232,7 @@ namespace ScriptEditor
             txtConditionId.AutoSize = false;
             txtConditionId.Height = 21;
             cmbConditionType.SelectedIndex = -1;
+            cmbTeamId.DataSource = ConditionTeam_ComboOptions;
             dontUpdate = false;
         }
 
@@ -712,6 +834,45 @@ namespace ScriptEditor
                 SetScriptFieldFromValue(returnId, "Value2");
             }
         }
-
+        // CONDITION_AURA
+        // CONDITION_SPELL
+        private void btnAuraSpellId_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormSpellFinder>(btnAuraSpellId, null, GameData.FindSpellName, "Value1");
+        }
+        private void txtAuraEffectIndex_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtAuraEffectIndex, "Value2");
+        }
+        // CONDITION_ITEM
+        // CONDITION_ITEM_EQUIPPED
+        // CONDITION_ITEM_WITH_BANK
+        private void btnItemId_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormItemFinder>(btnItemId, null, GameData.FindItemName, "Value1");
+        }
+        private void txtItemCount_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtItemCount, "Value2");
+        }
+        // CONDITION_AREAID
+        private void btnAreaId_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormAreaFinder>(btnAreaId, null, GameData.FindAreaName, "Value1");
+        }
+        // CONDITION_REPUTATION_RANK_MIN
+        private void btnReputationFactionId_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormFactionFinder>(btnReputationFactionId, null, GameData.FindFactionName, "Value1");
+        }
+        private void cmbReputationRank_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbReputationRank, "Value2", false);
+        }
+        // CONDITION_TEAM
+        private void cmbTeamId_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbTeamId, "Value1", true);
+        }
     }
 }
