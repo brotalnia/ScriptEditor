@@ -1072,23 +1072,8 @@ namespace ScriptEditor
                     txtSummonCreatureY.Text = selectedAction.Y.ToString();
                     txtSummonCreatureZ.Text = selectedAction.Z.ToString();
                     txtSummonCreatureO.Text = selectedAction.O.ToString();
-                    for (int i = 0; i < cmbSummonCreatureAttackTarget.Items.Count; i++)
-                    {
-                        if ((cmbSummonCreatureAttackTarget.Items[i] as ComboboxPair).Value == selectedAction.Dataint3)
-                        {
-                            cmbSummonCreatureAttackTarget.SelectedIndex = i;
-                            break;
-                        }
-                    }
-                    for (int i = 0; i < cmbSummonCreatureDespawnType.Items.Count; i++)
-                    {
-                        if ((cmbSummonCreatureDespawnType.Items[i] as ComboboxPair).Value == selectedAction.Dataint4)
-                        {
-                            cmbSummonCreatureDespawnType.SelectedIndex = i;
-                            break;
-                        }
-                    }
-
+                    cmbSummonCreatureAttackTarget.SelectedIndex = ComboboxPair.GetIndexFromComboboxPairValue(cmbSummonCreatureAttackTarget, selectedAction.Dataint3);
+                    cmbSummonCreatureDespawnType.SelectedIndex = ComboboxPair.GetIndexFromComboboxPairValue(cmbSummonCreatureDespawnType, selectedAction.Dataint4);
                     txtSummonCreatureScriptId.Text = selectedAction.Dataint2.ToString();
 
                     if ((selectedAction.Dataint & 1) != 0)

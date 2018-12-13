@@ -75,12 +75,81 @@
             this.cmbTeamId = new System.Windows.Forms.ComboBox();
             this.lblTeamId = new System.Windows.Forms.Label();
             this.lblConditionTeamTooltip = new System.Windows.Forms.Label();
+            this.frmConditionSkill = new System.Windows.Forms.Panel();
+            this.txtSkillLevel = new System.Windows.Forms.TextBox();
+            this.cmbSkillId = new System.Windows.Forms.ComboBox();
+            this.lblSkillLevel = new System.Windows.Forms.Label();
+            this.lblSkillId = new System.Windows.Forms.Label();
+            this.lblConditionSkillTooltip = new System.Windows.Forms.Label();
+            this.frmConditionQuest = new System.Windows.Forms.Panel();
+            this.btnQuestId = new System.Windows.Forms.Button();
+            this.cmbQuestState = new System.Windows.Forms.ComboBox();
+            this.lblQuestState = new System.Windows.Forms.Label();
+            this.lblQuestId = new System.Windows.Forms.Label();
+            this.lblConditionQuestTooltip = new System.Windows.Forms.Label();
+            this.frmConditionWarEffort = new System.Windows.Forms.Panel();
+            this.txtWarEffortStage = new System.Windows.Forms.TextBox();
+            this.cmbWarEffortComparison = new System.Windows.Forms.ComboBox();
+            this.lblWarEffortComparison = new System.Windows.Forms.Label();
+            this.lblWarEffortStage = new System.Windows.Forms.Label();
+            this.lblConditionWarEffortTooltip = new System.Windows.Forms.Label();
+            this.frmConditionGameEvent = new System.Windows.Forms.Panel();
+            this.btnGameEventId = new System.Windows.Forms.Button();
+            this.lvlGameEventId = new System.Windows.Forms.Label();
+            this.lblConditionGameEventTooltip = new System.Windows.Forms.Label();
+            this.frmConditionRaceClass = new System.Windows.Forms.Panel();
+            this.btnClassMask = new System.Windows.Forms.Button();
+            this.btnRaceMask = new System.Windows.Forms.Button();
+            this.lblClassMask = new System.Windows.Forms.Label();
+            this.lblRaceMask = new System.Windows.Forms.Label();
+            this.lblConditionRaceClassTooltip = new System.Windows.Forms.Label();
+            this.frmConditionInstanceScript = new System.Windows.Forms.Panel();
+            this.txtInstanceScriptValue2 = new System.Windows.Forms.TextBox();
+            this.txtInstanceScriptValue1 = new System.Windows.Forms.TextBox();
+            this.lblInstanceScriptValue2 = new System.Windows.Forms.Label();
+            this.lblInstanceScriptValue1 = new System.Windows.Forms.Label();
+            this.lblConditionInstanceScriptTooltip = new System.Windows.Forms.Label();
+            this.frmConditionNearbyCreature = new System.Windows.Forms.Panel();
+            this.btnNearbyCreatureId = new System.Windows.Forms.Button();
+            this.txtNearbyCreatureDistance = new System.Windows.Forms.TextBox();
+            this.lblNearbyCreatureDistance = new System.Windows.Forms.Label();
+            this.lblNearbyCreatureId = new System.Windows.Forms.Label();
+            this.lblConditionNearbyCreatureTooltip = new System.Windows.Forms.Label();
+            this.frmConditionNearbyObject = new System.Windows.Forms.Panel();
+            this.btnNearbyObjectId = new System.Windows.Forms.Button();
+            this.txtNearbyObjectDistance = new System.Windows.Forms.TextBox();
+            this.lblNearbyObjectDistance = new System.Windows.Forms.Label();
+            this.lblNearbyObjectId = new System.Windows.Forms.Label();
+            this.lblConditionNearbyObjectTooltip = new System.Windows.Forms.Label();
+            this.frmConditionContentPatch = new System.Windows.Forms.Panel();
+            this.cmbContentPatchComparison = new System.Windows.Forms.ComboBox();
+            this.cmbContentPatch = new System.Windows.Forms.ComboBox();
+            this.lblContentPatchComparison = new System.Windows.Forms.Label();
+            this.lblContentPatch = new System.Windows.Forms.Label();
+            this.lblConditionContentPatchTooltip = new System.Windows.Forms.Label();
+            this.frmConditionEscort = new System.Windows.Forms.Panel();
+            this.lblEscortDistance = new System.Windows.Forms.Label();
+            this.lblEscortFlags = new System.Windows.Forms.Label();
+            this.lblConditionEscortTooltip = new System.Windows.Forms.Label();
+            this.txtEscortDistance = new System.Windows.Forms.TextBox();
+            this.chkEscortSourceDead = new System.Windows.Forms.CheckBox();
+            this.chkEscortTargetDead = new System.Windows.Forms.CheckBox();
             this.frmConditionNot.SuspendLayout();
             this.frmConditionAura.SuspendLayout();
             this.frmConditionItem.SuspendLayout();
             this.frmConditionArea.SuspendLayout();
             this.frmConditionReputation.SuspendLayout();
             this.frmConditionTeam.SuspendLayout();
+            this.frmConditionSkill.SuspendLayout();
+            this.frmConditionQuest.SuspendLayout();
+            this.frmConditionWarEffort.SuspendLayout();
+            this.frmConditionGameEvent.SuspendLayout();
+            this.frmConditionRaceClass.SuspendLayout();
+            this.frmConditionInstanceScript.SuspendLayout();
+            this.frmConditionNearbyCreature.SuspendLayout();
+            this.frmConditionNearbyObject.SuspendLayout();
+            this.frmConditionContentPatch.SuspendLayout();
+            this.frmConditionEscort.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstData
@@ -562,10 +631,635 @@
             this.lblConditionTeamTooltip.TabIndex = 0;
             this.lblConditionTeamTooltip.Text = "Returns true if the target Player is a member of the specified team.";
             // 
+            // frmConditionSkill
+            // 
+            this.frmConditionSkill.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmConditionSkill.Controls.Add(this.txtSkillLevel);
+            this.frmConditionSkill.Controls.Add(this.cmbSkillId);
+            this.frmConditionSkill.Controls.Add(this.lblSkillLevel);
+            this.frmConditionSkill.Controls.Add(this.lblSkillId);
+            this.frmConditionSkill.Controls.Add(this.lblConditionSkillTooltip);
+            this.frmConditionSkill.Location = new System.Drawing.Point(12, 212);
+            this.frmConditionSkill.Name = "frmConditionSkill";
+            this.frmConditionSkill.Size = new System.Drawing.Size(650, 150);
+            this.frmConditionSkill.TabIndex = 25;
+            this.frmConditionSkill.Visible = false;
+            // 
+            // txtSkillLevel
+            // 
+            this.txtSkillLevel.Location = new System.Drawing.Point(100, 101);
+            this.txtSkillLevel.Name = "txtSkillLevel";
+            this.txtSkillLevel.Size = new System.Drawing.Size(536, 20);
+            this.txtSkillLevel.TabIndex = 7;
+            this.txtSkillLevel.Leave += new System.EventHandler(this.txtSkillLevel_Leave);
+            // 
+            // cmbSkillId
+            // 
+            this.cmbSkillId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSkillId.FormattingEnabled = true;
+            this.cmbSkillId.Location = new System.Drawing.Point(100, 68);
+            this.cmbSkillId.Name = "cmbSkillId";
+            this.cmbSkillId.Size = new System.Drawing.Size(536, 21);
+            this.cmbSkillId.TabIndex = 6;
+            this.cmbSkillId.SelectedIndexChanged += new System.EventHandler(this.cmbSkillId_SelectedIndexChanged);
+            // 
+            // lblSkillLevel
+            // 
+            this.lblSkillLevel.AutoSize = true;
+            this.lblSkillLevel.Location = new System.Drawing.Point(11, 106);
+            this.lblSkillLevel.Name = "lblSkillLevel";
+            this.lblSkillLevel.Size = new System.Drawing.Size(58, 13);
+            this.lblSkillLevel.TabIndex = 2;
+            this.lblSkillLevel.Text = "Skill Level:";
+            // 
+            // lblSkillId
+            // 
+            this.lblSkillId.AutoSize = true;
+            this.lblSkillId.Location = new System.Drawing.Point(11, 73);
+            this.lblSkillId.Name = "lblSkillId";
+            this.lblSkillId.Size = new System.Drawing.Size(41, 13);
+            this.lblSkillId.TabIndex = 1;
+            this.lblSkillId.Text = "Skill Id:";
+            // 
+            // lblConditionSkillTooltip
+            // 
+            this.lblConditionSkillTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblConditionSkillTooltip.Location = new System.Drawing.Point(12, 8);
+            this.lblConditionSkillTooltip.Name = "lblConditionSkillTooltip";
+            this.lblConditionSkillTooltip.Size = new System.Drawing.Size(624, 42);
+            this.lblConditionSkillTooltip.TabIndex = 0;
+            this.lblConditionSkillTooltip.Text = "Returns true if the target Player has reached a minimum skill level.";
+            // 
+            // frmConditionQuest
+            // 
+            this.frmConditionQuest.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmConditionQuest.Controls.Add(this.btnQuestId);
+            this.frmConditionQuest.Controls.Add(this.cmbQuestState);
+            this.frmConditionQuest.Controls.Add(this.lblQuestState);
+            this.frmConditionQuest.Controls.Add(this.lblQuestId);
+            this.frmConditionQuest.Controls.Add(this.lblConditionQuestTooltip);
+            this.frmConditionQuest.Location = new System.Drawing.Point(12, 212);
+            this.frmConditionQuest.Name = "frmConditionQuest";
+            this.frmConditionQuest.Size = new System.Drawing.Size(650, 150);
+            this.frmConditionQuest.TabIndex = 26;
+            this.frmConditionQuest.Visible = false;
+            // 
+            // btnQuestId
+            // 
+            this.btnQuestId.Location = new System.Drawing.Point(100, 68);
+            this.btnQuestId.Name = "btnQuestId";
+            this.btnQuestId.Size = new System.Drawing.Size(536, 23);
+            this.btnQuestId.TabIndex = 7;
+            this.btnQuestId.Text = "-NONE-";
+            this.btnQuestId.UseVisualStyleBackColor = true;
+            this.btnQuestId.Click += new System.EventHandler(this.btnQuestId_Click);
+            // 
+            // cmbQuestState
+            // 
+            this.cmbQuestState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbQuestState.FormattingEnabled = true;
+            this.cmbQuestState.Items.AddRange(new object[] {
+            "Any",
+            "Incomplete",
+            "Complete"});
+            this.cmbQuestState.Location = new System.Drawing.Point(100, 101);
+            this.cmbQuestState.Name = "cmbQuestState";
+            this.cmbQuestState.Size = new System.Drawing.Size(536, 21);
+            this.cmbQuestState.TabIndex = 6;
+            this.cmbQuestState.Leave += new System.EventHandler(this.cmbQuestState_Leave);
+            // 
+            // lblQuestState
+            // 
+            this.lblQuestState.AutoSize = true;
+            this.lblQuestState.Location = new System.Drawing.Point(11, 106);
+            this.lblQuestState.Name = "lblQuestState";
+            this.lblQuestState.Size = new System.Drawing.Size(35, 13);
+            this.lblQuestState.TabIndex = 2;
+            this.lblQuestState.Text = "State:";
+            // 
+            // lblQuestId
+            // 
+            this.lblQuestId.AutoSize = true;
+            this.lblQuestId.Location = new System.Drawing.Point(11, 73);
+            this.lblQuestId.Name = "lblQuestId";
+            this.lblQuestId.Size = new System.Drawing.Size(50, 13);
+            this.lblQuestId.TabIndex = 1;
+            this.lblQuestId.Text = "Quest Id:";
+            // 
+            // lblConditionQuestTooltip
+            // 
+            this.lblConditionQuestTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblConditionQuestTooltip.Location = new System.Drawing.Point(12, 8);
+            this.lblConditionQuestTooltip.Name = "lblConditionQuestTooltip";
+            this.lblConditionQuestTooltip.Size = new System.Drawing.Size(624, 42);
+            this.lblConditionQuestTooltip.TabIndex = 0;
+            this.lblConditionQuestTooltip.Text = "Returns true if the target Player has previously completed the specified quest.";
+            // 
+            // frmConditionWarEffort
+            // 
+            this.frmConditionWarEffort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmConditionWarEffort.Controls.Add(this.txtWarEffortStage);
+            this.frmConditionWarEffort.Controls.Add(this.cmbWarEffortComparison);
+            this.frmConditionWarEffort.Controls.Add(this.lblWarEffortComparison);
+            this.frmConditionWarEffort.Controls.Add(this.lblWarEffortStage);
+            this.frmConditionWarEffort.Controls.Add(this.lblConditionWarEffortTooltip);
+            this.frmConditionWarEffort.Location = new System.Drawing.Point(12, 212);
+            this.frmConditionWarEffort.Name = "frmConditionWarEffort";
+            this.frmConditionWarEffort.Size = new System.Drawing.Size(650, 150);
+            this.frmConditionWarEffort.TabIndex = 27;
+            this.frmConditionWarEffort.Visible = false;
+            // 
+            // txtWarEffortStage
+            // 
+            this.txtWarEffortStage.Location = new System.Drawing.Point(100, 68);
+            this.txtWarEffortStage.Name = "txtWarEffortStage";
+            this.txtWarEffortStage.Size = new System.Drawing.Size(536, 20);
+            this.txtWarEffortStage.TabIndex = 8;
+            this.txtWarEffortStage.Leave += new System.EventHandler(this.txtWarEffortStage_Leave);
+            // 
+            // cmbWarEffortComparison
+            // 
+            this.cmbWarEffortComparison.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbWarEffortComparison.FormattingEnabled = true;
+            this.cmbWarEffortComparison.Items.AddRange(new object[] {
+            "==",
+            ">=",
+            "<="});
+            this.cmbWarEffortComparison.Location = new System.Drawing.Point(100, 101);
+            this.cmbWarEffortComparison.Name = "cmbWarEffortComparison";
+            this.cmbWarEffortComparison.Size = new System.Drawing.Size(536, 21);
+            this.cmbWarEffortComparison.TabIndex = 6;
+            this.cmbWarEffortComparison.SelectedIndexChanged += new System.EventHandler(this.cmbWarEffortComparison_SelectedIndexChanged);
+            // 
+            // lblWarEffortComparison
+            // 
+            this.lblWarEffortComparison.AutoSize = true;
+            this.lblWarEffortComparison.Location = new System.Drawing.Point(11, 106);
+            this.lblWarEffortComparison.Name = "lblWarEffortComparison";
+            this.lblWarEffortComparison.Size = new System.Drawing.Size(65, 13);
+            this.lblWarEffortComparison.TabIndex = 2;
+            this.lblWarEffortComparison.Text = "Comparison:";
+            // 
+            // lblWarEffortStage
+            // 
+            this.lblWarEffortStage.AutoSize = true;
+            this.lblWarEffortStage.Location = new System.Drawing.Point(11, 73);
+            this.lblWarEffortStage.Name = "lblWarEffortStage";
+            this.lblWarEffortStage.Size = new System.Drawing.Size(38, 13);
+            this.lblWarEffortStage.TabIndex = 1;
+            this.lblWarEffortStage.Text = "Stage:";
+            // 
+            // lblConditionWarEffortTooltip
+            // 
+            this.lblConditionWarEffortTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblConditionWarEffortTooltip.Location = new System.Drawing.Point(12, 8);
+            this.lblConditionWarEffortTooltip.Name = "lblConditionWarEffortTooltip";
+            this.lblConditionWarEffortTooltip.Size = new System.Drawing.Size(624, 42);
+            this.lblConditionWarEffortTooltip.TabIndex = 0;
+            this.lblConditionWarEffortTooltip.Text = "Returns true if the War Effort event is at the specified stage.";
+            // 
+            // frmConditionGameEvent
+            // 
+            this.frmConditionGameEvent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmConditionGameEvent.Controls.Add(this.btnGameEventId);
+            this.frmConditionGameEvent.Controls.Add(this.lvlGameEventId);
+            this.frmConditionGameEvent.Controls.Add(this.lblConditionGameEventTooltip);
+            this.frmConditionGameEvent.Location = new System.Drawing.Point(12, 212);
+            this.frmConditionGameEvent.Name = "frmConditionGameEvent";
+            this.frmConditionGameEvent.Size = new System.Drawing.Size(650, 150);
+            this.frmConditionGameEvent.TabIndex = 28;
+            this.frmConditionGameEvent.Visible = false;
+            // 
+            // btnGameEventId
+            // 
+            this.btnGameEventId.Location = new System.Drawing.Point(100, 68);
+            this.btnGameEventId.Name = "btnGameEventId";
+            this.btnGameEventId.Size = new System.Drawing.Size(536, 23);
+            this.btnGameEventId.TabIndex = 9;
+            this.btnGameEventId.Text = "-NONE-";
+            this.btnGameEventId.UseVisualStyleBackColor = true;
+            this.btnGameEventId.Click += new System.EventHandler(this.btnGameEventId_Click);
+            // 
+            // lvlGameEventId
+            // 
+            this.lvlGameEventId.AutoSize = true;
+            this.lvlGameEventId.Location = new System.Drawing.Point(11, 73);
+            this.lvlGameEventId.Name = "lvlGameEventId";
+            this.lvlGameEventId.Size = new System.Drawing.Size(50, 13);
+            this.lvlGameEventId.TabIndex = 1;
+            this.lvlGameEventId.Text = "Event Id:";
+            // 
+            // lblConditionGameEventTooltip
+            // 
+            this.lblConditionGameEventTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblConditionGameEventTooltip.Location = new System.Drawing.Point(12, 8);
+            this.lblConditionGameEventTooltip.Name = "lblConditionGameEventTooltip";
+            this.lblConditionGameEventTooltip.Size = new System.Drawing.Size(624, 42);
+            this.lblConditionGameEventTooltip.TabIndex = 0;
+            this.lblConditionGameEventTooltip.Text = "Returns true if the specified game event is currently active.";
+            // 
+            // frmConditionRaceClass
+            // 
+            this.frmConditionRaceClass.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmConditionRaceClass.Controls.Add(this.btnClassMask);
+            this.frmConditionRaceClass.Controls.Add(this.btnRaceMask);
+            this.frmConditionRaceClass.Controls.Add(this.lblClassMask);
+            this.frmConditionRaceClass.Controls.Add(this.lblRaceMask);
+            this.frmConditionRaceClass.Controls.Add(this.lblConditionRaceClassTooltip);
+            this.frmConditionRaceClass.Location = new System.Drawing.Point(12, 212);
+            this.frmConditionRaceClass.Name = "frmConditionRaceClass";
+            this.frmConditionRaceClass.Size = new System.Drawing.Size(650, 150);
+            this.frmConditionRaceClass.TabIndex = 29;
+            this.frmConditionRaceClass.Visible = false;
+            // 
+            // btnClassMask
+            // 
+            this.btnClassMask.Location = new System.Drawing.Point(100, 101);
+            this.btnClassMask.Name = "btnClassMask";
+            this.btnClassMask.Size = new System.Drawing.Size(536, 23);
+            this.btnClassMask.TabIndex = 10;
+            this.btnClassMask.Text = "-NONE-";
+            this.btnClassMask.UseVisualStyleBackColor = true;
+            this.btnClassMask.Click += new System.EventHandler(this.btnClassMask_Click);
+            // 
+            // btnRaceMask
+            // 
+            this.btnRaceMask.Location = new System.Drawing.Point(100, 68);
+            this.btnRaceMask.Name = "btnRaceMask";
+            this.btnRaceMask.Size = new System.Drawing.Size(536, 23);
+            this.btnRaceMask.TabIndex = 9;
+            this.btnRaceMask.Text = "-NONE-";
+            this.btnRaceMask.UseVisualStyleBackColor = true;
+            this.btnRaceMask.Click += new System.EventHandler(this.btnRaceMask_Click);
+            // 
+            // lblClassMask
+            // 
+            this.lblClassMask.AutoSize = true;
+            this.lblClassMask.Location = new System.Drawing.Point(11, 106);
+            this.lblClassMask.Name = "lblClassMask";
+            this.lblClassMask.Size = new System.Drawing.Size(46, 13);
+            this.lblClassMask.TabIndex = 2;
+            this.lblClassMask.Text = "Classes:";
+            // 
+            // lblRaceMask
+            // 
+            this.lblRaceMask.AutoSize = true;
+            this.lblRaceMask.Location = new System.Drawing.Point(11, 73);
+            this.lblRaceMask.Name = "lblRaceMask";
+            this.lblRaceMask.Size = new System.Drawing.Size(41, 13);
+            this.lblRaceMask.TabIndex = 1;
+            this.lblRaceMask.Text = "Races:";
+            // 
+            // lblConditionRaceClassTooltip
+            // 
+            this.lblConditionRaceClassTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblConditionRaceClassTooltip.Location = new System.Drawing.Point(12, 8);
+            this.lblConditionRaceClassTooltip.Name = "lblConditionRaceClassTooltip";
+            this.lblConditionRaceClassTooltip.Size = new System.Drawing.Size(624, 42);
+            this.lblConditionRaceClassTooltip.TabIndex = 0;
+            this.lblConditionRaceClassTooltip.Text = "Returns true if the target Player fits the specified race and class masks.";
+            // 
+            // frmConditionInstanceScript
+            // 
+            this.frmConditionInstanceScript.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmConditionInstanceScript.Controls.Add(this.txtInstanceScriptValue2);
+            this.frmConditionInstanceScript.Controls.Add(this.txtInstanceScriptValue1);
+            this.frmConditionInstanceScript.Controls.Add(this.lblInstanceScriptValue2);
+            this.frmConditionInstanceScript.Controls.Add(this.lblInstanceScriptValue1);
+            this.frmConditionInstanceScript.Controls.Add(this.lblConditionInstanceScriptTooltip);
+            this.frmConditionInstanceScript.Location = new System.Drawing.Point(12, 212);
+            this.frmConditionInstanceScript.Name = "frmConditionInstanceScript";
+            this.frmConditionInstanceScript.Size = new System.Drawing.Size(650, 150);
+            this.frmConditionInstanceScript.TabIndex = 30;
+            this.frmConditionInstanceScript.Visible = false;
+            // 
+            // txtInstanceScriptValue2
+            // 
+            this.txtInstanceScriptValue2.Location = new System.Drawing.Point(100, 101);
+            this.txtInstanceScriptValue2.Name = "txtInstanceScriptValue2";
+            this.txtInstanceScriptValue2.Size = new System.Drawing.Size(536, 20);
+            this.txtInstanceScriptValue2.TabIndex = 12;
+            this.txtInstanceScriptValue2.Leave += new System.EventHandler(this.txtInstanceScriptValue2_Leave);
+            // 
+            // txtInstanceScriptValue1
+            // 
+            this.txtInstanceScriptValue1.Location = new System.Drawing.Point(100, 68);
+            this.txtInstanceScriptValue1.Name = "txtInstanceScriptValue1";
+            this.txtInstanceScriptValue1.Size = new System.Drawing.Size(536, 20);
+            this.txtInstanceScriptValue1.TabIndex = 11;
+            this.txtInstanceScriptValue1.Leave += new System.EventHandler(this.txtInstanceScriptValue1_Leave);
+            // 
+            // lblInstanceScriptValue2
+            // 
+            this.lblInstanceScriptValue2.AutoSize = true;
+            this.lblInstanceScriptValue2.Location = new System.Drawing.Point(11, 106);
+            this.lblInstanceScriptValue2.Name = "lblInstanceScriptValue2";
+            this.lblInstanceScriptValue2.Size = new System.Drawing.Size(46, 13);
+            this.lblInstanceScriptValue2.TabIndex = 2;
+            this.lblInstanceScriptValue2.Text = "Value 2:";
+            // 
+            // lblInstanceScriptValue1
+            // 
+            this.lblInstanceScriptValue1.AutoSize = true;
+            this.lblInstanceScriptValue1.Location = new System.Drawing.Point(11, 73);
+            this.lblInstanceScriptValue1.Name = "lblInstanceScriptValue1";
+            this.lblInstanceScriptValue1.Size = new System.Drawing.Size(46, 13);
+            this.lblInstanceScriptValue1.TabIndex = 1;
+            this.lblInstanceScriptValue1.Text = "Value 1:";
+            // 
+            // lblConditionInstanceScriptTooltip
+            // 
+            this.lblConditionInstanceScriptTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblConditionInstanceScriptTooltip.Location = new System.Drawing.Point(12, 8);
+            this.lblConditionInstanceScriptTooltip.Name = "lblConditionInstanceScriptTooltip";
+            this.lblConditionInstanceScriptTooltip.Size = new System.Drawing.Size(624, 42);
+            this.lblConditionInstanceScriptTooltip.TabIndex = 0;
+            this.lblConditionInstanceScriptTooltip.Text = "Return value determined by the hardcoded instance script.";
+            // 
+            // frmConditionNearbyCreature
+            // 
+            this.frmConditionNearbyCreature.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmConditionNearbyCreature.Controls.Add(this.btnNearbyCreatureId);
+            this.frmConditionNearbyCreature.Controls.Add(this.txtNearbyCreatureDistance);
+            this.frmConditionNearbyCreature.Controls.Add(this.lblNearbyCreatureDistance);
+            this.frmConditionNearbyCreature.Controls.Add(this.lblNearbyCreatureId);
+            this.frmConditionNearbyCreature.Controls.Add(this.lblConditionNearbyCreatureTooltip);
+            this.frmConditionNearbyCreature.Location = new System.Drawing.Point(12, 212);
+            this.frmConditionNearbyCreature.Name = "frmConditionNearbyCreature";
+            this.frmConditionNearbyCreature.Size = new System.Drawing.Size(650, 150);
+            this.frmConditionNearbyCreature.TabIndex = 31;
+            this.frmConditionNearbyCreature.Visible = false;
+            // 
+            // btnNearbyCreatureId
+            // 
+            this.btnNearbyCreatureId.Location = new System.Drawing.Point(100, 68);
+            this.btnNearbyCreatureId.Name = "btnNearbyCreatureId";
+            this.btnNearbyCreatureId.Size = new System.Drawing.Size(536, 23);
+            this.btnNearbyCreatureId.TabIndex = 13;
+            this.btnNearbyCreatureId.Text = "-NONE-";
+            this.btnNearbyCreatureId.UseVisualStyleBackColor = true;
+            this.btnNearbyCreatureId.Click += new System.EventHandler(this.btnNearbyCreatureId_Click);
+            // 
+            // txtNearbyCreatureDistance
+            // 
+            this.txtNearbyCreatureDistance.Location = new System.Drawing.Point(100, 101);
+            this.txtNearbyCreatureDistance.Name = "txtNearbyCreatureDistance";
+            this.txtNearbyCreatureDistance.Size = new System.Drawing.Size(536, 20);
+            this.txtNearbyCreatureDistance.TabIndex = 12;
+            this.txtNearbyCreatureDistance.Leave += new System.EventHandler(this.txtNearbyCreatureDistance_Leave);
+            // 
+            // lblNearbyCreatureDistance
+            // 
+            this.lblNearbyCreatureDistance.AutoSize = true;
+            this.lblNearbyCreatureDistance.Location = new System.Drawing.Point(11, 106);
+            this.lblNearbyCreatureDistance.Name = "lblNearbyCreatureDistance";
+            this.lblNearbyCreatureDistance.Size = new System.Drawing.Size(52, 13);
+            this.lblNearbyCreatureDistance.TabIndex = 2;
+            this.lblNearbyCreatureDistance.Text = "Distance:";
+            // 
+            // lblNearbyCreatureId
+            // 
+            this.lblNearbyCreatureId.AutoSize = true;
+            this.lblNearbyCreatureId.Location = new System.Drawing.Point(11, 73);
+            this.lblNearbyCreatureId.Name = "lblNearbyCreatureId";
+            this.lblNearbyCreatureId.Size = new System.Drawing.Size(62, 13);
+            this.lblNearbyCreatureId.TabIndex = 1;
+            this.lblNearbyCreatureId.Text = "Creature Id:";
+            // 
+            // lblConditionNearbyCreatureTooltip
+            // 
+            this.lblConditionNearbyCreatureTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblConditionNearbyCreatureTooltip.Location = new System.Drawing.Point(12, 8);
+            this.lblConditionNearbyCreatureTooltip.Name = "lblConditionNearbyCreatureTooltip";
+            this.lblConditionNearbyCreatureTooltip.Size = new System.Drawing.Size(624, 42);
+            this.lblConditionNearbyCreatureTooltip.TabIndex = 0;
+            this.lblConditionNearbyCreatureTooltip.Text = "Returns true if a Creature of the specified entry is found within a given distanc" +
+    "e.";
+            // 
+            // frmConditionNearbyObject
+            // 
+            this.frmConditionNearbyObject.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmConditionNearbyObject.Controls.Add(this.btnNearbyObjectId);
+            this.frmConditionNearbyObject.Controls.Add(this.txtNearbyObjectDistance);
+            this.frmConditionNearbyObject.Controls.Add(this.lblNearbyObjectDistance);
+            this.frmConditionNearbyObject.Controls.Add(this.lblNearbyObjectId);
+            this.frmConditionNearbyObject.Controls.Add(this.lblConditionNearbyObjectTooltip);
+            this.frmConditionNearbyObject.Location = new System.Drawing.Point(12, 212);
+            this.frmConditionNearbyObject.Name = "frmConditionNearbyObject";
+            this.frmConditionNearbyObject.Size = new System.Drawing.Size(650, 150);
+            this.frmConditionNearbyObject.TabIndex = 32;
+            this.frmConditionNearbyObject.Visible = false;
+            // 
+            // btnNearbyObjectId
+            // 
+            this.btnNearbyObjectId.Location = new System.Drawing.Point(100, 68);
+            this.btnNearbyObjectId.Name = "btnNearbyObjectId";
+            this.btnNearbyObjectId.Size = new System.Drawing.Size(536, 23);
+            this.btnNearbyObjectId.TabIndex = 13;
+            this.btnNearbyObjectId.Text = "-NONE-";
+            this.btnNearbyObjectId.UseVisualStyleBackColor = true;
+            this.btnNearbyObjectId.Click += new System.EventHandler(this.btnNearbyObjectId_Click);
+            // 
+            // txtNearbyObjectDistance
+            // 
+            this.txtNearbyObjectDistance.Location = new System.Drawing.Point(100, 101);
+            this.txtNearbyObjectDistance.Name = "txtNearbyObjectDistance";
+            this.txtNearbyObjectDistance.Size = new System.Drawing.Size(536, 20);
+            this.txtNearbyObjectDistance.TabIndex = 12;
+            this.txtNearbyObjectDistance.Leave += new System.EventHandler(this.txtNearbyObjectDistance_Leave);
+            // 
+            // lblNearbyObjectDistance
+            // 
+            this.lblNearbyObjectDistance.AutoSize = true;
+            this.lblNearbyObjectDistance.Location = new System.Drawing.Point(11, 106);
+            this.lblNearbyObjectDistance.Name = "lblNearbyObjectDistance";
+            this.lblNearbyObjectDistance.Size = new System.Drawing.Size(52, 13);
+            this.lblNearbyObjectDistance.TabIndex = 2;
+            this.lblNearbyObjectDistance.Text = "Distance:";
+            // 
+            // lblNearbyObjectId
+            // 
+            this.lblNearbyObjectId.AutoSize = true;
+            this.lblNearbyObjectId.Location = new System.Drawing.Point(11, 73);
+            this.lblNearbyObjectId.Name = "lblNearbyObjectId";
+            this.lblNearbyObjectId.Size = new System.Drawing.Size(81, 13);
+            this.lblNearbyObjectId.TabIndex = 1;
+            this.lblNearbyObjectId.Text = "GameObject Id:";
+            // 
+            // lblConditionNearbyObjectTooltip
+            // 
+            this.lblConditionNearbyObjectTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblConditionNearbyObjectTooltip.Location = new System.Drawing.Point(12, 8);
+            this.lblConditionNearbyObjectTooltip.Name = "lblConditionNearbyObjectTooltip";
+            this.lblConditionNearbyObjectTooltip.Size = new System.Drawing.Size(624, 42);
+            this.lblConditionNearbyObjectTooltip.TabIndex = 0;
+            this.lblConditionNearbyObjectTooltip.Text = "Returns true if a GameObject of the specified entry is found within a given dista" +
+    "nce.";
+            // 
+            // frmConditionContentPatch
+            // 
+            this.frmConditionContentPatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmConditionContentPatch.Controls.Add(this.cmbContentPatchComparison);
+            this.frmConditionContentPatch.Controls.Add(this.cmbContentPatch);
+            this.frmConditionContentPatch.Controls.Add(this.lblContentPatchComparison);
+            this.frmConditionContentPatch.Controls.Add(this.lblContentPatch);
+            this.frmConditionContentPatch.Controls.Add(this.lblConditionContentPatchTooltip);
+            this.frmConditionContentPatch.Location = new System.Drawing.Point(12, 212);
+            this.frmConditionContentPatch.Name = "frmConditionContentPatch";
+            this.frmConditionContentPatch.Size = new System.Drawing.Size(650, 150);
+            this.frmConditionContentPatch.TabIndex = 33;
+            this.frmConditionContentPatch.Visible = false;
+            // 
+            // cmbContentPatchComparison
+            // 
+            this.cmbContentPatchComparison.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbContentPatchComparison.FormattingEnabled = true;
+            this.cmbContentPatchComparison.Items.AddRange(new object[] {
+            "==",
+            ">=",
+            "<="});
+            this.cmbContentPatchComparison.Location = new System.Drawing.Point(100, 101);
+            this.cmbContentPatchComparison.Name = "cmbContentPatchComparison";
+            this.cmbContentPatchComparison.Size = new System.Drawing.Size(536, 21);
+            this.cmbContentPatchComparison.TabIndex = 15;
+            this.cmbContentPatchComparison.SelectedIndexChanged += new System.EventHandler(this.cmbContentPatchComparison_SelectedIndexChanged);
+            // 
+            // cmbContentPatch
+            // 
+            this.cmbContentPatch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbContentPatch.FormattingEnabled = true;
+            this.cmbContentPatch.Items.AddRange(new object[] {
+            "1.2 - Mysteries of Maraudon",
+            "1.3 - Ruins of the Dire Maul",
+            "1.4 - The Call to War",
+            "1.5 - Battlegrounds",
+            "1.6 - Assault on Blackwing Lair",
+            "1.7 - Rise of the Blood God",
+            "1.8 - Dragons of Nightmare",
+            "1.9 - The Gates of Ahn\'Qiraj",
+            "1.10 - Storms of Azeroth",
+            "1.11 - Shadow of the Necropolis",
+            "1.12 - Drums of War"});
+            this.cmbContentPatch.Location = new System.Drawing.Point(100, 68);
+            this.cmbContentPatch.Name = "cmbContentPatch";
+            this.cmbContentPatch.Size = new System.Drawing.Size(536, 21);
+            this.cmbContentPatch.TabIndex = 14;
+            this.cmbContentPatch.SelectedIndexChanged += new System.EventHandler(this.cmbContentPatch_SelectedIndexChanged);
+            // 
+            // lblContentPatchComparison
+            // 
+            this.lblContentPatchComparison.AutoSize = true;
+            this.lblContentPatchComparison.Location = new System.Drawing.Point(11, 106);
+            this.lblContentPatchComparison.Name = "lblContentPatchComparison";
+            this.lblContentPatchComparison.Size = new System.Drawing.Size(65, 13);
+            this.lblContentPatchComparison.TabIndex = 2;
+            this.lblContentPatchComparison.Text = "Comparison:";
+            // 
+            // lblContentPatch
+            // 
+            this.lblContentPatch.AutoSize = true;
+            this.lblContentPatch.Location = new System.Drawing.Point(11, 73);
+            this.lblContentPatch.Name = "lblContentPatch";
+            this.lblContentPatch.Size = new System.Drawing.Size(38, 13);
+            this.lblContentPatch.TabIndex = 1;
+            this.lblContentPatch.Text = "Patch:";
+            // 
+            // lblConditionContentPatchTooltip
+            // 
+            this.lblConditionContentPatchTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblConditionContentPatchTooltip.Location = new System.Drawing.Point(12, 8);
+            this.lblConditionContentPatchTooltip.Name = "lblConditionContentPatchTooltip";
+            this.lblConditionContentPatchTooltip.Size = new System.Drawing.Size(624, 42);
+            this.lblConditionContentPatchTooltip.TabIndex = 0;
+            this.lblConditionContentPatchTooltip.Text = "Returns true if the current content patch matches the one specified.";
+            // 
+            // frmConditionEscort
+            // 
+            this.frmConditionEscort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmConditionEscort.Controls.Add(this.chkEscortTargetDead);
+            this.frmConditionEscort.Controls.Add(this.chkEscortSourceDead);
+            this.frmConditionEscort.Controls.Add(this.txtEscortDistance);
+            this.frmConditionEscort.Controls.Add(this.lblEscortDistance);
+            this.frmConditionEscort.Controls.Add(this.lblEscortFlags);
+            this.frmConditionEscort.Controls.Add(this.lblConditionEscortTooltip);
+            this.frmConditionEscort.Location = new System.Drawing.Point(12, 212);
+            this.frmConditionEscort.Name = "frmConditionEscort";
+            this.frmConditionEscort.Size = new System.Drawing.Size(650, 150);
+            this.frmConditionEscort.TabIndex = 34;
+            this.frmConditionEscort.Visible = false;
+            // 
+            // lblEscortDistance
+            // 
+            this.lblEscortDistance.AutoSize = true;
+            this.lblEscortDistance.Location = new System.Drawing.Point(11, 106);
+            this.lblEscortDistance.Name = "lblEscortDistance";
+            this.lblEscortDistance.Size = new System.Drawing.Size(75, 13);
+            this.lblEscortDistance.TabIndex = 2;
+            this.lblEscortDistance.Text = "Max Distance:";
+            // 
+            // lblEscortFlags
+            // 
+            this.lblEscortFlags.AutoSize = true;
+            this.lblEscortFlags.Location = new System.Drawing.Point(11, 73);
+            this.lblEscortFlags.Name = "lblEscortFlags";
+            this.lblEscortFlags.Size = new System.Drawing.Size(75, 13);
+            this.lblEscortFlags.TabIndex = 1;
+            this.lblEscortFlags.Text = "Requirements:";
+            // 
+            // lblConditionEscortTooltip
+            // 
+            this.lblConditionEscortTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblConditionEscortTooltip.Location = new System.Drawing.Point(12, 8);
+            this.lblConditionEscortTooltip.Name = "lblConditionEscortTooltip";
+            this.lblConditionEscortTooltip.Size = new System.Drawing.Size(624, 42);
+            this.lblConditionEscortTooltip.TabIndex = 0;
+            this.lblConditionEscortTooltip.Text = "Returns true when one of the requirements is not satisfied. This condition is use" +
+    "d for escort quests.";
+            // 
+            // txtEscortDistance
+            // 
+            this.txtEscortDistance.Location = new System.Drawing.Point(100, 101);
+            this.txtEscortDistance.Name = "txtEscortDistance";
+            this.txtEscortDistance.Size = new System.Drawing.Size(536, 20);
+            this.txtEscortDistance.TabIndex = 16;
+            this.txtEscortDistance.Leave += new System.EventHandler(this.txtEscortDistance_Leave);
+            // 
+            // chkEscortSourceDead
+            // 
+            this.chkEscortSourceDead.AutoSize = true;
+            this.chkEscortSourceDead.Location = new System.Drawing.Point(100, 72);
+            this.chkEscortSourceDead.Name = "chkEscortSourceDead";
+            this.chkEscortSourceDead.Size = new System.Drawing.Size(122, 17);
+            this.chkEscortSourceDead.TabIndex = 17;
+            this.chkEscortSourceDead.Text = "Source must survive";
+            this.chkEscortSourceDead.UseVisualStyleBackColor = true;
+            this.chkEscortSourceDead.CheckedChanged += new System.EventHandler(this.chkEscortSourceDead_CheckedChanged);
+            // 
+            // chkEscortTargetDead
+            // 
+            this.chkEscortTargetDead.AutoSize = true;
+            this.chkEscortTargetDead.Location = new System.Drawing.Point(228, 72);
+            this.chkEscortTargetDead.Name = "chkEscortTargetDead";
+            this.chkEscortTargetDead.Size = new System.Drawing.Size(119, 17);
+            this.chkEscortTargetDead.TabIndex = 18;
+            this.chkEscortTargetDead.Text = "Target must survive";
+            this.chkEscortTargetDead.UseVisualStyleBackColor = true;
+            this.chkEscortTargetDead.CheckedChanged += new System.EventHandler(this.chkEscortTargetDead_CheckedChanged);
+            // 
             // FormConditionFinder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(674, 395);
+            this.Controls.Add(this.frmConditionEscort);
+            this.Controls.Add(this.frmConditionContentPatch);
+            this.Controls.Add(this.frmConditionNearbyObject);
+            this.Controls.Add(this.frmConditionNearbyCreature);
+            this.Controls.Add(this.frmConditionInstanceScript);
+            this.Controls.Add(this.frmConditionRaceClass);
+            this.Controls.Add(this.frmConditionGameEvent);
+            this.Controls.Add(this.frmConditionWarEffort);
+            this.Controls.Add(this.frmConditionQuest);
+            this.Controls.Add(this.frmConditionSkill);
             this.Controls.Add(this.frmConditionTeam);
             this.Controls.Add(this.frmConditionReputation);
             this.Controls.Add(this.frmConditionArea);
@@ -598,11 +1292,21 @@
             this.Controls.SetChildIndex(this.frmConditionAura, 0);
             this.Controls.SetChildIndex(this.frmConditionItem, 0);
             this.Controls.SetChildIndex(this.frmConditionArea, 0);
+            this.Controls.SetChildIndex(this.frmConditionReputation, 0);
+            this.Controls.SetChildIndex(this.frmConditionTeam, 0);
+            this.Controls.SetChildIndex(this.frmConditionSkill, 0);
+            this.Controls.SetChildIndex(this.frmConditionQuest, 0);
+            this.Controls.SetChildIndex(this.frmConditionWarEffort, 0);
+            this.Controls.SetChildIndex(this.frmConditionGameEvent, 0);
             this.Controls.SetChildIndex(this.lstData, 0);
             this.Controls.SetChildIndex(this.btnSelectNone, 0);
             this.Controls.SetChildIndex(this.label1, 0);
-            this.Controls.SetChildIndex(this.frmConditionReputation, 0);
-            this.Controls.SetChildIndex(this.frmConditionTeam, 0);
+            this.Controls.SetChildIndex(this.frmConditionRaceClass, 0);
+            this.Controls.SetChildIndex(this.frmConditionInstanceScript, 0);
+            this.Controls.SetChildIndex(this.frmConditionNearbyCreature, 0);
+            this.Controls.SetChildIndex(this.frmConditionNearbyObject, 0);
+            this.Controls.SetChildIndex(this.frmConditionContentPatch, 0);
+            this.Controls.SetChildIndex(this.frmConditionEscort, 0);
             this.frmConditionNot.ResumeLayout(false);
             this.frmConditionNot.PerformLayout();
             this.frmConditionAura.ResumeLayout(false);
@@ -615,6 +1319,26 @@
             this.frmConditionReputation.PerformLayout();
             this.frmConditionTeam.ResumeLayout(false);
             this.frmConditionTeam.PerformLayout();
+            this.frmConditionSkill.ResumeLayout(false);
+            this.frmConditionSkill.PerformLayout();
+            this.frmConditionQuest.ResumeLayout(false);
+            this.frmConditionQuest.PerformLayout();
+            this.frmConditionWarEffort.ResumeLayout(false);
+            this.frmConditionWarEffort.PerformLayout();
+            this.frmConditionGameEvent.ResumeLayout(false);
+            this.frmConditionGameEvent.PerformLayout();
+            this.frmConditionRaceClass.ResumeLayout(false);
+            this.frmConditionRaceClass.PerformLayout();
+            this.frmConditionInstanceScript.ResumeLayout(false);
+            this.frmConditionInstanceScript.PerformLayout();
+            this.frmConditionNearbyCreature.ResumeLayout(false);
+            this.frmConditionNearbyCreature.PerformLayout();
+            this.frmConditionNearbyObject.ResumeLayout(false);
+            this.frmConditionNearbyObject.PerformLayout();
+            this.frmConditionContentPatch.ResumeLayout(false);
+            this.frmConditionContentPatch.PerformLayout();
+            this.frmConditionEscort.ResumeLayout(false);
+            this.frmConditionEscort.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -669,5 +1393,64 @@
         private System.Windows.Forms.ComboBox cmbTeamId;
         private System.Windows.Forms.Label lblTeamId;
         private System.Windows.Forms.Label lblConditionTeamTooltip;
+        private System.Windows.Forms.Panel frmConditionSkill;
+        private System.Windows.Forms.TextBox txtSkillLevel;
+        private System.Windows.Forms.ComboBox cmbSkillId;
+        private System.Windows.Forms.Label lblSkillLevel;
+        private System.Windows.Forms.Label lblSkillId;
+        private System.Windows.Forms.Label lblConditionSkillTooltip;
+        private System.Windows.Forms.Panel frmConditionQuest;
+        private System.Windows.Forms.Button btnQuestId;
+        private System.Windows.Forms.ComboBox cmbQuestState;
+        private System.Windows.Forms.Label lblQuestState;
+        private System.Windows.Forms.Label lblQuestId;
+        private System.Windows.Forms.Label lblConditionQuestTooltip;
+        private System.Windows.Forms.Panel frmConditionWarEffort;
+        private System.Windows.Forms.TextBox txtWarEffortStage;
+        private System.Windows.Forms.ComboBox cmbWarEffortComparison;
+        private System.Windows.Forms.Label lblWarEffortComparison;
+        private System.Windows.Forms.Label lblWarEffortStage;
+        private System.Windows.Forms.Label lblConditionWarEffortTooltip;
+        private System.Windows.Forms.Panel frmConditionGameEvent;
+        private System.Windows.Forms.Button btnGameEventId;
+        private System.Windows.Forms.Label lvlGameEventId;
+        private System.Windows.Forms.Label lblConditionGameEventTooltip;
+        private System.Windows.Forms.Panel frmConditionRaceClass;
+        private System.Windows.Forms.Button btnClassMask;
+        private System.Windows.Forms.Button btnRaceMask;
+        private System.Windows.Forms.Label lblClassMask;
+        private System.Windows.Forms.Label lblRaceMask;
+        private System.Windows.Forms.Label lblConditionRaceClassTooltip;
+        private System.Windows.Forms.Panel frmConditionInstanceScript;
+        private System.Windows.Forms.TextBox txtInstanceScriptValue2;
+        private System.Windows.Forms.TextBox txtInstanceScriptValue1;
+        private System.Windows.Forms.Label lblInstanceScriptValue2;
+        private System.Windows.Forms.Label lblInstanceScriptValue1;
+        private System.Windows.Forms.Label lblConditionInstanceScriptTooltip;
+        private System.Windows.Forms.Panel frmConditionNearbyCreature;
+        private System.Windows.Forms.Button btnNearbyCreatureId;
+        private System.Windows.Forms.TextBox txtNearbyCreatureDistance;
+        private System.Windows.Forms.Label lblNearbyCreatureDistance;
+        private System.Windows.Forms.Label lblNearbyCreatureId;
+        private System.Windows.Forms.Label lblConditionNearbyCreatureTooltip;
+        private System.Windows.Forms.Panel frmConditionNearbyObject;
+        private System.Windows.Forms.Button btnNearbyObjectId;
+        private System.Windows.Forms.TextBox txtNearbyObjectDistance;
+        private System.Windows.Forms.Label lblNearbyObjectDistance;
+        private System.Windows.Forms.Label lblNearbyObjectId;
+        private System.Windows.Forms.Label lblConditionNearbyObjectTooltip;
+        private System.Windows.Forms.Panel frmConditionContentPatch;
+        private System.Windows.Forms.Label lblContentPatchComparison;
+        private System.Windows.Forms.Label lblContentPatch;
+        private System.Windows.Forms.Label lblConditionContentPatchTooltip;
+        private System.Windows.Forms.ComboBox cmbContentPatchComparison;
+        private System.Windows.Forms.ComboBox cmbContentPatch;
+        private System.Windows.Forms.Panel frmConditionEscort;
+        private System.Windows.Forms.CheckBox chkEscortTargetDead;
+        private System.Windows.Forms.CheckBox chkEscortSourceDead;
+        private System.Windows.Forms.TextBox txtEscortDistance;
+        private System.Windows.Forms.Label lblEscortDistance;
+        private System.Windows.Forms.Label lblEscortFlags;
+        private System.Windows.Forms.Label lblConditionEscortTooltip;
     }
 }

@@ -60,12 +60,68 @@ namespace ScriptEditor
 
             // CONDITION_REPUTATION_RANK_MIN (5)
             btnReputationFactionId.Text = "-NONE-";
-            cmbReputationRank.SelectedIndex = -1;
+            cmbReputationRank.SelectedIndex = 0;
             frmConditionReputation.Visible = false;
 
             // CONDITION_TEAM (6)
-            cmbTeamId.SelectedIndex = -1;
+            cmbTeamId.SelectedIndex = 0;
             frmConditionTeam.Visible = false;
+
+            // CONDITION_SKILL (7)
+            // CONDITION_SKILL_BELOW (29)
+            cmbSkillId.SelectedIndex = 0;
+            txtSkillLevel.Text = "";
+            frmConditionSkill.Visible = false;
+
+            // CONDITION_QUESTREWARDED (8)
+            // CONDITION_QUESTTAKEN (9)
+            // CONDITION_QUESTAVAILABLE (19)
+            // CONDITION_QUEST_NONE (22)
+            btnQuestId.Text = "-NONE-";
+            cmbQuestState.SelectedIndex = 0;
+            frmConditionQuest.Visible = false;
+
+            // CONDITION_WAR_EFFORT_STAGE (11)
+            // CONDITION_LEVEL (15)
+            // CONDITION_SOURCE_ENTRY (16)
+            txtWarEffortStage.Text = "";
+            cmbWarEffortComparison.SelectedIndex = 0;
+            frmConditionWarEffort.Visible = false;
+
+            // CONDITION_ACTIVE_GAME_EVENT (12)
+            btnGameEventId.Text = "-NONE-";
+            frmConditionGameEvent.Visible = false;
+
+            // CONDITION_RACE_CLASS (14)
+            btnRaceMask.Text = "-NONE-";
+            btnClassMask.Text = "-NONE-";
+            frmConditionRaceClass.Visible = false;
+
+            // CONDITION_INSTANCE_SCRIPT (18)
+            txtInstanceScriptValue1.Text = "";
+            txtInstanceScriptValue2.Text = "";
+            frmConditionInstanceScript.Visible = false;
+
+            // CONDITION_NEARBY_CREATURE (20)
+            btnNearbyCreatureId.Text = "-NONE-";
+            txtNearbyCreatureDistance.Text = "";
+            frmConditionNearbyCreature.Visible = false;
+
+            // CONDITION_NEARBY_GAMEOBJECT (21)
+            btnNearbyObjectId.Text = "-NONE-";
+            txtNearbyObjectDistance.Text = "";
+            frmConditionNearbyObject.Visible = false;
+
+            // CONDITION_WOW_PATCH (24)
+            cmbContentPatch.SelectedIndex = 0;
+            cmbContentPatchComparison.SelectedIndex = 0;
+            frmConditionContentPatch.Visible = false;
+
+            // CONDITION_ESCORT (25)
+            chkEscortSourceDead.Checked = false;
+            chkEscortTargetDead.Checked = false;
+            txtEscortDistance.Text = "";
+            frmConditionEscort.Visible = false;
         }
 
         private void ShowConditionSpecificForm(ConditionInfo selectedCondition)
@@ -122,8 +178,21 @@ namespace ScriptEditor
                     break;
                 }
                 case 0: // CONDITION_NONE
+                case 10: // CONDITION_AD_COMMISSION_AURA
                 {
-                    lblConditionNotTooltip.Text = "Always returns true. This condition has no additional parameters.";
+                    switch (selectedCondition.Type)
+                    {
+                        case 0: // CONDITION_NONE
+                        {
+                            lblConditionNotTooltip.Text = "Always returns true. This condition has no additional parameters.";
+                            break;
+                        }
+                        case 10: // CONDITION_AD_COMMISSION_AURA
+                        {
+                            lblConditionNotTooltip.Text = "Returns true if the target Player has an Argent Dawn commission aura.";
+                            break;
+                        }
+                    }
                     lblConditionNotCondition1.Visible = false;
                     lblConditionNotCondition2.Visible = false;
                     btnConditionNotCondition1.Visible = false;
@@ -213,11 +282,166 @@ namespace ScriptEditor
                 }
                 case 6: // CONDITION_TEAM
                 {
-                    if (selectedCondition.Value1 == 67)
-                        cmbTeamId.SelectedIndex = 0;
-                    else
-                        cmbTeamId.SelectedIndex = 1;
+                    cmbTeamId.SelectedIndex = ComboboxPair.GetIndexFromComboboxPairValue(cmbTeamId, (int)selectedCondition.Value1);
                     frmConditionTeam.Visible = true;
+                    break;
+                }
+                case 7: // CONDITION_SKILL
+                case 29: // CONDITION_SKILL_BELOW
+                {
+                    switch (selectedCondition.Type)
+                    {
+                        case 7: // CONDITION_SKILL
+                        {
+                            lblConditionSkillTooltip.Text = "Returns true if the target Player has reached a minimum skill level.";
+                            break;
+                        }
+                        case 29: // CONDITION_SKILL_BEL
+                        {
+                            lblConditionSkillTooltip.Text = "Returns true if the target Player knows the skill itself but his skill level is below the specified value.";
+                            break;
+                        }
+                    }
+
+                    cmbSkillId.SelectedIndex = ComboboxPair.GetIndexFromComboboxPairValue(cmbSkillId, (int)selectedCondition.Value1);
+                    txtSkillLevel.Text = selectedCondition.Value2.ToString();
+                    frmConditionSkill.Visible = true;
+                    break;
+                }
+                case 8: // CONDITION_QUESTREWARDED
+                case 9: // CONDITION_QUESTTAKEN
+                case 19: // CONDITION_QUESTAVAILABLE
+                case 22: // CONDITION_QUEST_NONE
+                {
+                    switch (selectedCondition.Type)
+                    {
+                        case 8: // CONDITION_QUESTREWARDED
+                        {
+                            lblConditionQuestTooltip.Text = "Returns true if the target Player has previously completed and turned in the specified quest.";
+                            lblQuestState.Visible = false;
+                            cmbQuestState.Visible = false;
+                            break;
+                        }
+                        case 9: // CONDITION_QUESTTAKEN
+                        {
+                            lblConditionQuestTooltip.Text = "Returns true if the target Player currently has the specified quest in his quest log.";
+                            lblQuestState.Visible = true;
+                            cmbQuestState.Visible = true;
+                            cmbQuestState.SelectedIndex = (int)selectedCondition.Value2;
+                            break;
+                        }
+                        case 19: // CONDITION_QUESTAVAILABLE
+                        {
+                            lblConditionQuestTooltip.Text = "Returns true if the target Player fits the requirements for the specified quest.";
+                            lblQuestState.Visible = false;
+                            cmbQuestState.Visible = false;
+                            break;
+                        }
+                        case 22: // CONDITION_QUEST_NONE
+                        {
+                            lblConditionQuestTooltip.Text = "Returns true if the target Player does not currently have the specified quest and has not previously completed it.";
+                            lblQuestState.Visible = false;
+                            cmbQuestState.Visible = false;
+                            break;
+                        }
+                    }
+                    uint questId = selectedCondition.Value1;
+                    if (questId > 0)
+                        btnQuestId.Text = GameData.FindQuestTitle(questId) + " (" + questId.ToString() + ")";
+                    frmConditionQuest.Visible = true;
+                    break;
+                }
+                case 11: // CONDITION_WAR_EFFORT_STAGE
+                case 15: // CONDITION_LEVEL
+                case 16: // CONDITION_SOURCE_ENTRY
+                {
+                    switch (selectedCondition.Type)
+                    {
+                        case 11: // CONDITION_WAR_EFFORT_STAGE
+                        {
+                            lblConditionWarEffortTooltip.Text = "Returns true if the War Effort event is at the specified stage.";
+                            cmbWarEffortComparison.Visible = true;
+                            lblWarEffortComparison.Visible = true;
+                            lblWarEffortStage.Text = "Stage:";
+                            break;
+                        }
+                        case 15: // CONDITION_LEVEL
+                        {
+                            lblConditionWarEffortTooltip.Text = "Returns true if the target Player fits the specified level requirement.";
+                            cmbWarEffortComparison.Visible = true;
+                            lblWarEffortComparison.Visible = true;
+                            lblWarEffortStage.Text = "Level:";
+                            break;
+                        }
+                        case 16: // CONDITION_SOURCE_ENTRY
+                        {
+                            lblConditionWarEffortTooltip.Text = "Returns true if the source WorldObject's entry Id matches the one specified.";
+                            cmbWarEffortComparison.Visible = false;
+                            lblWarEffortComparison.Visible = false;
+                            lblWarEffortStage.Text = "Entry:";
+                            break;
+                        }
+                    }
+                    txtWarEffortStage.Text = selectedCondition.Value1.ToString();
+                    cmbWarEffortComparison.SelectedIndex = (int)selectedCondition.Value2;
+                    frmConditionWarEffort.Visible = true;
+                    break;
+                }
+                case 12: // CONDITION_ACTIVE_GAME_EVENT
+                {
+                    uint eventId = selectedCondition.Value1;
+                    if (eventId > 0)
+                        btnGameEventId.Text = GameData.FindEventName(eventId) + " (" + eventId.ToString() + ")";
+                    frmConditionGameEvent.Visible = true;
+                    break;
+                }
+                case 14: // CONDITION_RACE_CLASS
+                {
+                    btnRaceMask.Text = GetRaceNamesFromMask(selectedCondition.Value1);
+                    btnClassMask.Text = GetClassNamesFromMask(selectedCondition.Value2);
+                    frmConditionRaceClass.Visible = true;
+                    break;
+                }
+                case 18: // CONDITION_INSTANCE_SCRIPT
+                {
+                    txtInstanceScriptValue1.Text = selectedCondition.Value1.ToString();
+                    txtInstanceScriptValue2.Text = selectedCondition.Value2.ToString();
+                    frmConditionInstanceScript.Visible = true;
+                    break;
+                }
+                case 20: // CONDITION_NEARBY_CREATURE
+                {
+                    uint creatureId = selectedCondition.Value1;
+                    if (creatureId > 0)
+                        btnNearbyCreatureId.Text = GameData.FindCreatureName(creatureId) + " (" + creatureId.ToString() + ")";
+                    txtNearbyCreatureDistance.Text = selectedCondition.Value2.ToString();
+                    frmConditionNearbyCreature.Visible = true;
+                    break;
+                }
+                case 21: // CONDITION_NEARBY_GAMEOBJECT
+                {
+                    uint objectId = selectedCondition.Value1;
+                    if (objectId > 0)
+                        btnNearbyObjectId.Text = GameData.FindGameObjectName(objectId) + " (" + objectId.ToString() + ")";
+                    txtNearbyObjectDistance.Text = selectedCondition.Value2.ToString();
+                    frmConditionNearbyObject.Visible = true;
+                    break;
+                }
+                case 24: // CONDITION_WOW_PATCH
+                {
+                    cmbContentPatch.SelectedIndex = (int)selectedCondition.Value1;
+                    cmbContentPatchComparison.SelectedIndex = (int)selectedCondition.Value2;
+                    frmConditionContentPatch.Visible = true;
+                    break;
+                }
+                case 25: // CONDITION_ESCORT
+                {
+                    if ((selectedCondition.Value1 & 1) != 0)
+                        chkEscortSourceDead.Checked = true;
+                    if ((selectedCondition.Value1 & 2) != 0)
+                        chkEscortTargetDead.Checked = true;
+                    txtEscortDistance.Text = selectedCondition.Value2.ToString();
+                    frmConditionEscort.Visible = true;
                     break;
                 }
             }
@@ -233,6 +457,7 @@ namespace ScriptEditor
             txtConditionId.Height = 21;
             cmbConditionType.SelectedIndex = -1;
             cmbTeamId.DataSource = ConditionTeam_ComboOptions;
+            cmbSkillId.DataSource = GameData.SkillsList;
             dontUpdate = false;
         }
 
@@ -873,6 +1098,182 @@ namespace ScriptEditor
         private void cmbTeamId_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbTeamId, "Value1", true);
+        }
+        // CONDITION_SKILL
+        // CONDITION_SKILL_BELOW
+        private void cmbSkillId_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbSkillId, "Value1", true);
+        }
+        private void txtSkillLevel_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtSkillLevel, "Value2");
+        }
+        // CONDITION_QUESTREWARDED
+        // CONDITION_QUESTTAKEN
+        // CONDITION_QUESTAVAILABLE
+        // CONDITION_QUEST_NONE
+        private void btnQuestId_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormQuestFinder>(btnQuestId, null, GameData.FindQuestTitle, "Value1");
+        }
+        private void cmbQuestState_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbQuestState, "Value2", false);
+        }
+        // CONDITION_WAR_EFFORT_STAGE
+        private void txtWarEffortStage_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtWarEffortStage, "Value1");
+        }
+        private void cmbWarEffortComparison_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbWarEffortComparison, "Value2", false);
+        }
+        // CONDITION_ACTIVE_GAME_EVENT
+        private void btnGameEventId_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormEventFinder>(btnGameEventId, null, GameData.FindEventName, "Value1");
+        }
+        // CONDITION_RACE_CLASS
+        private string GetRaceNamesFromMask(uint mask)
+        {
+            List<string> races = new List<string>();
+            if ((mask & 1) != 0)
+                races.Add("Human");
+            if ((mask & 2) != 0)
+                races.Add("Orc");
+            if ((mask & 4) != 0)
+                races.Add("Dwarf");
+            if ((mask & 8) != 0)
+                races.Add("Night Elf");
+            if ((mask & 16) != 0)
+                races.Add("Undead");
+            if ((mask & 32) != 0)
+                races.Add("Tauren");
+            if ((mask & 64) != 0)
+                races.Add("Gnome");
+            if ((mask & 128) != 0)
+                races.Add("Troll");
+
+            if (races.Count > 0)
+            {
+                string return_string = "";
+                for (int i = 0; i < races.Count; i++)
+                {
+                    if (i != 0)
+                        return_string += ", ";
+                    return_string += races[i];
+                }
+                return return_string;
+            }
+
+            return "-NONE-";
+        }
+        private string GetClassNamesFromMask(uint mask)
+        {
+            List<string> classes = new List<string>();
+            if ((mask & 1) != 0)
+                classes.Add("Warrior");
+            if ((mask & 2) != 0)
+                classes.Add("Paladin");
+            if ((mask & 4) != 0)
+                classes.Add("Hunter");
+            if ((mask & 8) != 0)
+                classes.Add("Rogue");
+            if ((mask & 16) != 0)
+                classes.Add("Priest");
+            if ((mask & 32) != 0)
+                classes.Add("Shaman");
+            if ((mask & 64) != 0)
+                classes.Add("Mage");
+            if ((mask & 128) != 0)
+                classes.Add("Warlock");
+            if ((mask & 256) != 0)
+                classes.Add("Druid");
+
+            if (classes.Count > 0)
+            {
+                string return_string = "";
+                for (int i = 0; i < classes.Count; i++)
+                {
+                    if (i != 0)
+                        return_string += ", ";
+                    return_string += classes[i];
+                }
+                return return_string;
+            }
+
+            return "-NONE-";
+        }
+        private void btnRaceMask_Click(object sender, EventArgs e)
+        {
+            uint race_mask = (uint)GetScriptFieldValue("Value1");
+            FormRaceMask formRaceMask = new FormRaceMask(race_mask);
+            if (formRaceMask.ShowDialog() == DialogResult.OK)
+            {
+                SetScriptFieldFromValue(formRaceMask.ReturnValue, "Value1");
+                btnRaceMask.Text = GetRaceNamesFromMask(formRaceMask.ReturnValue);
+            }
+        }
+        private void btnClassMask_Click(object sender, EventArgs e)
+        {
+            uint class_mask = (uint)GetScriptFieldValue("Value2");
+            FormClassMask formClassMask = new FormClassMask(class_mask);
+            if (formClassMask.ShowDialog() == DialogResult.OK)
+            {
+                SetScriptFieldFromValue(formClassMask.ReturnValue, "Value2");
+                btnClassMask.Text = GetClassNamesFromMask(formClassMask.ReturnValue);
+            }
+        }
+        // CONDITION_INSTANCE_SCRIPT
+        private void txtInstanceScriptValue1_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtInstanceScriptValue1, "Value1");
+        }
+        private void txtInstanceScriptValue2_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtInstanceScriptValue2, "Value2");
+        }
+        // CONDITION_NEARBY_CREATURE
+        private void btnNearbyCreatureId_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormCreatureFinder>(btnNearbyCreatureId, null, GameData.FindCreatureName, "Value1");
+        }
+        private void txtNearbyCreatureDistance_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtNearbyCreatureDistance, "Value2");
+        }
+        // CONDITION_NEARBY_GAMEOBJECT
+        private void btnNearbyObjectId_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<DataFinderForms.FormGameObjectFinder>(btnNearbyObjectId, null, GameData.FindGameObjectName, "Value1");
+        }
+        private void txtNearbyObjectDistance_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtNearbyObjectDistance, "Value2");
+        }
+        // CONDITION_WOW_PATCH
+        private void cmbContentPatch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbContentPatch, "Value1", false);
+        }
+        private void cmbContentPatchComparison_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbContentPatchComparison, "Value2", false);
+        }
+        // CONDITION_ESCORT
+        private void chkEscortSourceDead_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkEscortSourceDead, "Value1", 1);
+        }
+        private void chkEscortTargetDead_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkEscortTargetDead, "Value1", 2);
+        }
+        private void txtEscortDistance_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtEscortDistance, "Value2");
         }
     }
 }

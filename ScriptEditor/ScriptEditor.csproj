@@ -82,6 +82,18 @@
     <Compile Include="FormCastsEditor.Designer.cs">
       <DependentUpon>FormCastsEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormClassMask.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormClassMask.Designer.cs">
+      <DependentUpon>FormClassMask.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRaceMask.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRaceMask.Designer.cs">
+      <DependentUpon>FormRaceMask.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormScriptEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,6 +210,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCastsEditor.resx">
       <DependentUpon>FormCastsEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormClassMask.resx">
+      <DependentUpon>FormClassMask.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRaceMask.resx">
+      <DependentUpon>FormRaceMask.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormScriptEditor.resx">
       <DependentUpon>FormScriptEditor.cs</DependentUpon>

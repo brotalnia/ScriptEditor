@@ -32,6 +32,7 @@ namespace ScriptEditor
         public static readonly List<ComboboxPair> MotionTypesList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> MotionTypesFullList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> ConditionNamesList = new List<ComboboxPair>();
+        public static readonly List<ComboboxPair> SkillsList = new List<ComboboxPair>();
         public static int FindIndexOfMap(uint id)
         {
             for (int i = 0; i < MapsList.Count; i++)
@@ -1641,6 +1642,131 @@ namespace ScriptEditor
             ConditionNamesList.Add(new ComboboxPair("IS_PLAYER", 49));
             ConditionNamesList.Add(new ComboboxPair("OBJECT_IS_SPAWNED", 50));
             ConditionNamesList.Add(new ComboboxPair("OBJECT_LOOT_STATE", 51));
+
+            // Add skill names.
+            SkillsList.Add(new ComboboxPair("Frost", 6));
+            SkillsList.Add(new ComboboxPair("Fire", 8));
+            SkillsList.Add(new ComboboxPair("Arms", 26));
+            SkillsList.Add(new ComboboxPair("Combat", 38));
+            SkillsList.Add(new ComboboxPair("Subtlety", 39));
+            SkillsList.Add(new ComboboxPair("Poisons", 40));
+            SkillsList.Add(new ComboboxPair("Swords", 43));
+            SkillsList.Add(new ComboboxPair("Axes", 44));
+            SkillsList.Add(new ComboboxPair("Bows", 45));
+            SkillsList.Add(new ComboboxPair("Guns", 46));
+            SkillsList.Add(new ComboboxPair("Beast Mastery", 50));
+            SkillsList.Add(new ComboboxPair("Survival", 51));
+            SkillsList.Add(new ComboboxPair("Maces", 54));
+            SkillsList.Add(new ComboboxPair("Two-Handed Swords", 55));
+            SkillsList.Add(new ComboboxPair("Holy", 56));
+            SkillsList.Add(new ComboboxPair("Shadow Magic", 78));
+            SkillsList.Add(new ComboboxPair("Defense", 95));
+            SkillsList.Add(new ComboboxPair("Language: Common", 98));
+            SkillsList.Add(new ComboboxPair("Dwarven Racial", 101));
+            SkillsList.Add(new ComboboxPair("Language: Orcish", 109));
+            SkillsList.Add(new ComboboxPair("Language: Dwarven", 111));
+            SkillsList.Add(new ComboboxPair("Language: Darnassian", 113));
+            SkillsList.Add(new ComboboxPair("Language: Taurahe", 115));
+            SkillsList.Add(new ComboboxPair("Dual Wield", 118));
+            SkillsList.Add(new ComboboxPair("Tauren Racial", 124));
+            SkillsList.Add(new ComboboxPair("Orc Racial", 125));
+            SkillsList.Add(new ComboboxPair("Night Elf Racial", 126));
+            SkillsList.Add(new ComboboxPair("First Aid", 129));
+            SkillsList.Add(new ComboboxPair("Feral Combat", 134));
+            SkillsList.Add(new ComboboxPair("Staves", 136));
+            SkillsList.Add(new ComboboxPair("Language: Thalassian", 137));
+            SkillsList.Add(new ComboboxPair("Language: Draconic", 138));
+            SkillsList.Add(new ComboboxPair("Language: Demon Tongue", 139));
+            SkillsList.Add(new ComboboxPair("Language: Titan", 140));
+            SkillsList.Add(new ComboboxPair("Language: Old Tongue", 141));
+            SkillsList.Add(new ComboboxPair("Survival", 142));
+            SkillsList.Add(new ComboboxPair("Horse Riding", 148));
+            SkillsList.Add(new ComboboxPair("Wolf Riding", 149));
+            SkillsList.Add(new ComboboxPair("Tiger Riding", 150));
+            SkillsList.Add(new ComboboxPair("Ram Riding", 152));
+            SkillsList.Add(new ComboboxPair("Swimming", 155));
+            SkillsList.Add(new ComboboxPair("Two-Handed Maces", 160));
+            SkillsList.Add(new ComboboxPair("Unarmed", 162));
+            SkillsList.Add(new ComboboxPair("Marksmanship", 163));
+            SkillsList.Add(new ComboboxPair("Blacksmithing", 164));
+            SkillsList.Add(new ComboboxPair("Leatherworking", 165));
+            SkillsList.Add(new ComboboxPair("Alchemy", 171));
+            SkillsList.Add(new ComboboxPair("Two-Handed Axes", 172));
+            SkillsList.Add(new ComboboxPair("Daggers", 173));
+            SkillsList.Add(new ComboboxPair("Thrown", 176));
+            SkillsList.Add(new ComboboxPair("Herbalism", 182));
+            SkillsList.Add(new ComboboxPair("GENERIC (DND)", 183));
+            SkillsList.Add(new ComboboxPair("Retribution", 184));
+            SkillsList.Add(new ComboboxPair("Cooking", 185));
+            SkillsList.Add(new ComboboxPair("Mining", 186));
+            SkillsList.Add(new ComboboxPair("Pet - Imp", 188));
+            SkillsList.Add(new ComboboxPair("Pet - Felhunter", 189));
+            SkillsList.Add(new ComboboxPair("Tailoring", 197));
+            SkillsList.Add(new ComboboxPair("Engineering", 202));
+            SkillsList.Add(new ComboboxPair("Pet - Spider", 203));
+            SkillsList.Add(new ComboboxPair("Pet - Voidwalker", 204));
+            SkillsList.Add(new ComboboxPair("Pet - Succubus", 205));
+            SkillsList.Add(new ComboboxPair("Pet - Infernal", 206));
+            SkillsList.Add(new ComboboxPair("Pet - Doomguard", 207));
+            SkillsList.Add(new ComboboxPair("Pet - Wolf", 208));
+            SkillsList.Add(new ComboboxPair("Pet - Cat", 209));
+            SkillsList.Add(new ComboboxPair("Pet - Bear", 210));
+            SkillsList.Add(new ComboboxPair("Pet - Boar", 211));
+            SkillsList.Add(new ComboboxPair("Pet - Crocilisk", 212));
+            SkillsList.Add(new ComboboxPair("Pet - Carrion Bird", 213));
+            SkillsList.Add(new ComboboxPair("Pet - Crab", 214));
+            SkillsList.Add(new ComboboxPair("Pet - Gorilla", 215));
+            SkillsList.Add(new ComboboxPair("Pet - Raptor", 217));
+            SkillsList.Add(new ComboboxPair("Pet - Tallstrider", 218));
+            SkillsList.Add(new ComboboxPair("Racial - Undead", 220));
+            SkillsList.Add(new ComboboxPair("Crossbows", 226));
+            SkillsList.Add(new ComboboxPair("Wands", 228));
+            SkillsList.Add(new ComboboxPair("Polearms", 229));
+            SkillsList.Add(new ComboboxPair("Pet - Scorpid", 236));
+            SkillsList.Add(new ComboboxPair("Arcane", 237));
+            SkillsList.Add(new ComboboxPair("Pet - Turtle", 251));
+            SkillsList.Add(new ComboboxPair("Assassination", 253));
+            SkillsList.Add(new ComboboxPair("Fury", 256));
+            SkillsList.Add(new ComboboxPair("Protection", 257));
+            SkillsList.Add(new ComboboxPair("Beast Training", 261));
+            SkillsList.Add(new ComboboxPair("Protection", 267));
+            SkillsList.Add(new ComboboxPair("Pet - Generic", 270));
+            SkillsList.Add(new ComboboxPair("Plate Mail", 293));
+            SkillsList.Add(new ComboboxPair("Language: Gnomish", 313));
+            SkillsList.Add(new ComboboxPair("Language: Troll", 315));
+            SkillsList.Add(new ComboboxPair("Enchanting", 333));
+            SkillsList.Add(new ComboboxPair("Demonology", 354));
+            SkillsList.Add(new ComboboxPair("Affliction", 355));
+            SkillsList.Add(new ComboboxPair("Fishing", 356));
+            SkillsList.Add(new ComboboxPair("Enhancement", 373));
+            SkillsList.Add(new ComboboxPair("Restoration", 374));
+            SkillsList.Add(new ComboboxPair("Elemental Combat", 375));
+            SkillsList.Add(new ComboboxPair("Skinning", 393));
+            SkillsList.Add(new ComboboxPair("Mail", 413));
+            SkillsList.Add(new ComboboxPair("Leather", 414));
+            SkillsList.Add(new ComboboxPair("Cloth", 415));
+            SkillsList.Add(new ComboboxPair("Shield", 433));
+            SkillsList.Add(new ComboboxPair("Fist Weapons", 473));
+            SkillsList.Add(new ComboboxPair("Raptor Riding", 533));
+            SkillsList.Add(new ComboboxPair("Mechanostrider Piloting", 553));
+            SkillsList.Add(new ComboboxPair("Undead Horsemanship", 554));
+            SkillsList.Add(new ComboboxPair("Restoration", 573));
+            SkillsList.Add(new ComboboxPair("Balance", 574));
+            SkillsList.Add(new ComboboxPair("Destruction", 593));
+            SkillsList.Add(new ComboboxPair("Holy", 594));
+            SkillsList.Add(new ComboboxPair("Discipline", 613));
+            SkillsList.Add(new ComboboxPair("Lockpicking", 633));
+            SkillsList.Add(new ComboboxPair("Pet - Bat", 653));
+            SkillsList.Add(new ComboboxPair("Pet - Hyena", 654));
+            SkillsList.Add(new ComboboxPair("Pet - Owl", 655));
+            SkillsList.Add(new ComboboxPair("Pet - Wind Serpent", 656));
+            SkillsList.Add(new ComboboxPair("Language: Gutterspeak", 673));
+            SkillsList.Add(new ComboboxPair("Kodo Riding", 713));
+            SkillsList.Add(new ComboboxPair("Racial - Troll", 733));
+            SkillsList.Add(new ComboboxPair("Racial - Gnome", 753));
+            SkillsList.Add(new ComboboxPair("Racial - Human", 754));
+            SkillsList.Add(new ComboboxPair("Pet - Event - Remote Control", 758));
+            SkillsList.Add(new ComboboxPair("Riding", 762));
         }
     }
     public struct BroadcastText
@@ -1872,5 +1998,17 @@ namespace ScriptEditor
         {
             return Text;
         }
+
+        public static int GetIndexFromComboboxPairValue(System.Windows.Forms.ComboBox cmb, int value)
+        {
+            for (int i = 0; i < cmb.Items.Count; i++)
+            {
+                if ((cmb.Items[i] as ComboboxPair).Value == value)
+                    return i;
+            }
+            return -1;
+        }
     }
+
+    
 }
