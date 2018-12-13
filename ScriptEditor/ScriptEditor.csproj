@@ -330,6 +330,12 @@
   <ItemGroup>
     <None Include="Resources\mage.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\condition_editor_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\condition_editor_button_black.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

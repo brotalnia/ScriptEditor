@@ -1603,7 +1603,7 @@ namespace ScriptEditor
             ConditionNamesList.Add(new ComboboxPair("AD_COMMISSION_AURA", 10));
             ConditionNamesList.Add(new ComboboxPair("WAR_EFFORT_STAGE", 11));
             ConditionNamesList.Add(new ComboboxPair("ACTIVE_GAME_EVENT", 12));
-            ConditionNamesList.Add(new ComboboxPair("AREA_FLAG", 13));
+            ConditionNamesList.Add(new ComboboxPair("CANT_PATH_TO_VICTIM", 13));
             ConditionNamesList.Add(new ComboboxPair("RACE_CLASS", 14));
             ConditionNamesList.Add(new ComboboxPair("LEVEL", 15));
             ConditionNamesList.Add(new ComboboxPair("SOURCE_ENTRY", 16));
@@ -1617,8 +1617,8 @@ namespace ScriptEditor
             ConditionNamesList.Add(new ComboboxPair("WOW_PATCH", 24));
             ConditionNamesList.Add(new ComboboxPair("DEAD_OR_AWAY", 25));
             ConditionNamesList.Add(new ComboboxPair("ACTIVE_HOLIDAY", 26));
-            ConditionNamesList.Add(new ComboboxPair("TARGET_GENDER", 27));
-            ConditionNamesList.Add(new ComboboxPair("LEARNABLE_ABILITY", 28));
+            ConditionNamesList.Add(new ComboboxPair("GENDER", 27));
+            ConditionNamesList.Add(new ComboboxPair("IS_PLAYER", 28));
             ConditionNamesList.Add(new ComboboxPair("SKILL_BELOW", 29));
             ConditionNamesList.Add(new ComboboxPair("REPUTATION_RANK_MAX", 30));
             ConditionNamesList.Add(new ComboboxPair("HAS_FLAG", 31));
@@ -1638,10 +1638,8 @@ namespace ScriptEditor
             ConditionNamesList.Add(new ComboboxPair("IS_IN_GROUP", 45));
             ConditionNamesList.Add(new ComboboxPair("IS_ALIVE", 46));
             ConditionNamesList.Add(new ComboboxPair("MAP_EVENT_TARGETS", 47));
-            ConditionNamesList.Add(new ComboboxPair("CANT_PATH_TO_VICTIM", 48));
-            ConditionNamesList.Add(new ComboboxPair("IS_PLAYER", 49));
-            ConditionNamesList.Add(new ComboboxPair("OBJECT_IS_SPAWNED", 50));
-            ConditionNamesList.Add(new ComboboxPair("OBJECT_LOOT_STATE", 51));
+            ConditionNamesList.Add(new ComboboxPair("OBJECT_IS_SPAWNED", 48));
+            ConditionNamesList.Add(new ComboboxPair("OBJECT_LOOT_STATE", 49));
 
             // Add skill names.
             SkillsList.Add(new ComboboxPair("Frost", 6));

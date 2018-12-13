@@ -13,13 +13,38 @@ namespace ScriptEditor
     public partial class FormConditionFinder : ScriptEditor.FormDataFinder
     {
         private bool dontUpdate = false;
-        private bool editMode = false;
 
         private ComboboxPair[] ConditionTeam_ComboOptions =
         {
             new ComboboxPair("Horde", 67),
             new ComboboxPair("Alliance", 469)
         };
+
+        private ComboboxPair[] ConditionGender_ComboOptions =
+        {
+            new ComboboxPair("Male", 0),
+            new ComboboxPair("Female", 1),
+            new ComboboxPair("None", 2)
+        };
+
+        private ComboboxPair[] ConditionObjectLootState_ComboOptions =
+        {
+            new ComboboxPair("Not Ready", 0),
+            new ComboboxPair("Ready", 1),
+            new ComboboxPair("Activated", 2),
+            new ComboboxPair("Just Deactivated", 3),
+        };
+
+        public void ShowStandalone()
+        {
+            this.ControlBox = true;
+            this.MinimizeBox = true;
+            this.ShowIcon = true;
+            this.Text = "Condition Editor";
+            this.ShowInTaskbar = true;
+            btnEditAdd_Click(null, null);
+            this.Show();
+        }
 
         private void ResetBaseControls()
         {
@@ -64,11 +89,15 @@ namespace ScriptEditor
             frmConditionReputation.Visible = false;
 
             // CONDITION_TEAM (6)
+            // CONDITION_TARGET_GENDER (27)
+            // CONDITION_MAP_ID (33)
+            // CONDITION_OBJECT_LOOT_STATE (49)
             cmbTeamId.SelectedIndex = 0;
             frmConditionTeam.Visible = false;
 
             // CONDITION_SKILL (7)
             // CONDITION_SKILL_BELOW (29)
+            // CONDITION_HAS_FLAG (31)
             cmbSkillId.SelectedIndex = 0;
             txtSkillLevel.Text = "";
             frmConditionSkill.Visible = false;
@@ -84,6 +113,9 @@ namespace ScriptEditor
             // CONDITION_WAR_EFFORT_STAGE (11)
             // CONDITION_LEVEL (15)
             // CONDITION_SOURCE_ENTRY (16)
+            // CONDITION_LAST_WAYPOINT (32)
+            // CONDITION_MAP_EVENT_ACTIVE (36)
+            // CONDITION_DISTANCE (38)
             txtWarEffortStage.Text = "";
             cmbWarEffortComparison.SelectedIndex = 0;
             frmConditionWarEffort.Visible = false;
@@ -122,6 +154,31 @@ namespace ScriptEditor
             chkEscortTargetDead.Checked = false;
             txtEscortDistance.Text = "";
             frmConditionEscort.Visible = false;
+
+            // CONDITION_INSTANCE_DATA (34)
+            txtInstanceDataIndex.Text = "";
+            txtInstanceDataValue.Text = "";
+            cmbInstanceDataComparison.SelectedIndex = 0;
+            frmConditionInstanceData.Visible = false;
+
+            // CONDITION_MAP_EVENT_DATA (35)
+            txtMapEventDataEventId.Text = "";
+            txtMapEventDataIndex.Text = "";
+            txtMapEventDataValue.Text = "";
+            cmbMapEventDataComparison.SelectedIndex = 0;
+            frmConditionMapEventData.Visible = false;
+
+            // CONDITION_MAP_EVENT_TARGETS (47)
+            txtMapEventTargetsEventId.Text = "";
+            btnMapEventTargetsConditionId.Text = "-NONE-";
+            frmConditionMapEventTargets.Visible = false;
+
+            // Unknown Condition Id
+            txtUnknownValue1.Text = "";
+            txtUnknownValue2.Text = "";
+            txtUnknownValue3.Text = "";
+            txtUnknownValue4.Text = "";
+            frmConditionUnknown.Visible = false;
         }
 
         private void ShowConditionSpecificForm(ConditionInfo selectedCondition)
@@ -179,6 +236,16 @@ namespace ScriptEditor
                 }
                 case 0: // CONDITION_NONE
                 case 10: // CONDITION_AD_COMMISSION_AURA
+                case 13: // CONDITION_CANT_PATH_TO_VICTIM
+                case 28: // CONDITION_IS_PLAYER
+                case 37: // CONDITION_LINE_OF_SIGHT
+                case 39: // CONDITION_IS_MOVING
+                case 40: // CONDITION_HAS_PET
+                case 43: // CONDITION_IS_IN_COMBAT
+                case 44: // CONDITION_IS_HOSTILE_TO
+                case 45: // CONDITION_IS_IN_GROUP
+                case 46: // CONDITION_IS_ALIVE
+                case 48: // CONDITION_OBJECT_IS_SPAWNED
                 {
                     switch (selectedCondition.Type)
                     {
@@ -190,6 +257,56 @@ namespace ScriptEditor
                         case 10: // CONDITION_AD_COMMISSION_AURA
                         {
                             lblConditionNotTooltip.Text = "Returns true if the target Player has an Argent Dawn commission aura.";
+                            break;
+                        }
+                        case 13: // CONDITION_CANT_PATH_TO_VICTIM
+                        {
+                            lblConditionNotTooltip.Text = "Returns true if the source Creature cannot find a path to its victim.";
+                            break;
+                        }
+                        case 28: // CONDITION_IS_PLAYER
+                        {
+                            lblConditionNotTooltip.Text = "Returns true if the target WorldObject is a Player.";
+                            break;
+                        }
+                        case 37: // CONDITION_LINE_OF_SIGHT
+                        {
+                            lblConditionNotTooltip.Text = "Returns true if the source and target WorldObjects are within line of sight of each other.";
+                            break;
+                        }
+                        case 39: // CONDITION_IS_MOVING
+                        {
+                            lblConditionNotTooltip.Text = "Returns true if the target WorldObject is currently moving.";
+                            break;
+                        }
+                        case 40: // CONDITION_HAS_PET
+                        {
+                            lblConditionNotTooltip.Text = "Returns true if the target Unit has a pet.";
+                            break;
+                        }
+                        case 43: // CONDITION_IS_IN_COMBAT
+                        {
+                            lblConditionNotTooltip.Text = "Returns true if the target Unit is in combat.";
+                            break;
+                        }
+                        case 44: // CONDITION_IS_HOSTILE_TO
+                        {
+                            lblConditionNotTooltip.Text = "Returns true if the source and target Units are hostile to each other.";
+                            break;
+                        }
+                        case 45: // CONDITION_IS_IN_GROUP
+                        {
+                            lblConditionNotTooltip.Text = "Returns true if the target Player is currently in a group.";
+                            break;
+                        }
+                        case 46: // CONDITION_IS_ALIVE
+                        {
+                            lblConditionNotTooltip.Text = "Returns true if the target Unit is alive.";
+                            break;
+                        }
+                        case 48: // CONDITION_OBJECT_IS_SPAWNED
+                        {
+                            lblConditionNotTooltip.Text = "Returns true if the target GameObject is currently spawned.";
                             break;
                         }
                     }
@@ -272,7 +389,22 @@ namespace ScriptEditor
                     break;
                 }
                 case 5: // CONDITION_REPUTATION_RANK_MIN
+                case 30: // CONDITION_REPUTATION_RANK_MAX
                 {
+                    switch (selectedCondition.Type)
+                    {
+                        case 5: // CONDITION_REPUTATION_RANK_MIN
+                        {
+                            lblConditionReputationTooltip.Text = "Returns true if the target Player has reached a minimum reputation level with the specified faction.";
+                            break;
+                        }
+                        case 30: // CONDITION_REPUTATION_RANK_MAX
+                        {
+                            lblConditionReputationTooltip.Text = "Returns true if the target Player's reputiation is equal or below the specified level.";
+                            break;
+                        }
+                    }
+                    
                     uint factionId = selectedCondition.Value1;
                     if (factionId > 0)
                         btnReputationFactionId.Text = GameData.FindFactionName(factionId) + " (" + factionId.ToString() + ")";
@@ -281,24 +413,73 @@ namespace ScriptEditor
                     break;
                 }
                 case 6: // CONDITION_TEAM
+                case 27: // CONDITION_TARGET_GENDER
+                case 33: // CONDITION_MAP_ID
+                case 49: // CONDITION_OBJECT_LOOT_STATE
                 {
+                    switch (selectedCondition.Type)
+                    {
+                        case 6: // CONDITION_TEAM
+                        {
+                            lblConditionTeamTooltip.Text = "Returns true if the target Player is a member of the specified team.";
+                            lblTeamId.Text = "Team:";
+                            cmbTeamId.DataSource = ConditionTeam_ComboOptions; ;
+                            break;
+                        }
+                        case 27: // CONDITION_TARGET_GENDER
+                        {
+                            lblConditionTeamTooltip.Text = "Returns true if the target Unit is of the specified gender.";
+                            lblTeamId.Text = "Gender:";
+                            cmbTeamId.DataSource = ConditionGender_ComboOptions; ;
+                            break;
+                        }
+                        case 33: // CONDITION_MAP_ID
+                        {
+                            lblConditionTeamTooltip.Text = "Returns true if the current map Id matches the one specified..";
+                            lblTeamId.Text = "Map Id:";
+                            cmbTeamId.DataSource = GameData.MapsList;
+                            break;
+                        }
+                        case 49: // CONDITION_OBJECT_LOOT_STATE
+                        {
+                            lblConditionTeamTooltip.Text = "Returns true if the target GameObject's loot state matches the one specified.";
+                            lblTeamId.Text = "Loot State:";
+                            cmbTeamId.DataSource = ConditionObjectLootState_ComboOptions;
+                            break;
+                        }
+                    }
                     cmbTeamId.SelectedIndex = ComboboxPair.GetIndexFromComboboxPairValue(cmbTeamId, (int)selectedCondition.Value1);
                     frmConditionTeam.Visible = true;
                     break;
                 }
                 case 7: // CONDITION_SKILL
                 case 29: // CONDITION_SKILL_BELOW
+                case 31: // CONDITION_HAS_FLAG
                 {
                     switch (selectedCondition.Type)
                     {
                         case 7: // CONDITION_SKILL
                         {
                             lblConditionSkillTooltip.Text = "Returns true if the target Player has reached a minimum skill level.";
+                            cmbSkillId.DataSource = GameData.SkillsList;
+                            lblSkillId.Text = "Skill Id:";
+                            lblSkillLevel.Text = "Skill Level:";
                             break;
                         }
                         case 29: // CONDITION_SKILL_BEL
                         {
                             lblConditionSkillTooltip.Text = "Returns true if the target Player knows the skill itself but his skill level is below the specified value.";
+                            cmbSkillId.DataSource = GameData.SkillsList;
+                            lblSkillId.Text = "Skill Id:";
+                            lblSkillLevel.Text = "Skill Level:";
+                            break;
+                        }
+                        case 31: // CONDITION_HAS_FLAG
+                        {
+                            lblConditionSkillTooltip.Text = "Returns true if the source WorldObject has the specified flag.";
+                            cmbSkillId.DataSource = GameData.FlagFieldsList;
+                            lblSkillId.Text = "Field:";
+                            lblSkillLevel.Text = "Flag:";
                             break;
                         }
                     }
@@ -354,6 +535,12 @@ namespace ScriptEditor
                 case 11: // CONDITION_WAR_EFFORT_STAGE
                 case 15: // CONDITION_LEVEL
                 case 16: // CONDITION_SOURCE_ENTRY
+                case 26: // CONDITION_ACTIVE_HOLIDAY
+                case 32: // CONDITION_LAST_WAYPOINT
+                case 36: // CONDITION_MAP_EVENT_ACTIVE
+                case 38: // CONDITION_DISTANCE
+                case 41: // CONDITION_HEALTH_PERCENT
+                case 42: // CONDITION_MANA_PERCENT
                 {
                     switch (selectedCondition.Type)
                     {
@@ -379,6 +566,54 @@ namespace ScriptEditor
                             cmbWarEffortComparison.Visible = false;
                             lblWarEffortComparison.Visible = false;
                             lblWarEffortStage.Text = "Entry:";
+                            break;
+                        }
+                        case 26: // CONDITION_ACTIVE_HOLIDAY
+                        {
+                            lblConditionWarEffortTooltip.Text = "Returns true if the specified holiday is currently active.";
+                            cmbWarEffortComparison.Visible = false;
+                            lblWarEffortComparison.Visible = false;
+                            lblWarEffortStage.Text = "Holiday Id:";
+                            break;
+                        }
+                        case 32: // CONDITION_LAST_WAYPOINT
+                        {
+                            lblConditionWarEffortTooltip.Text = "Returns true if the source Creature's last reached waypoint matches the one specified.";
+                            cmbWarEffortComparison.Visible = true;
+                            lblWarEffortComparison.Visible = true;
+                            lblWarEffortStage.Text = "Waypoint:";
+                            break;
+                        }
+                        case 36: // CONDITION_MAP_EVENT_ACTIVE
+                        {
+                            lblConditionWarEffortTooltip.Text = "Returns true if a scripted map event with the specified Id is currently running.";
+                            cmbWarEffortComparison.Visible = false;
+                            lblWarEffortComparison.Visible = false;
+                            lblWarEffortStage.Text = "Event Id:";
+                            break;
+                        }
+                        case 38: // CONDITION_DISTANCE
+                        {
+                            lblConditionWarEffortTooltip.Text = "Returns true if the source and target WorldObjects are within a specified distance of each other.";
+                            cmbWarEffortComparison.Visible = true;
+                            lblWarEffortComparison.Visible = true;
+                            lblWarEffortStage.Text = "Distance:";
+                            break;
+                        }
+                        case 41: // CONDITION_HEALTH_PERCENT
+                        {
+                            lblConditionWarEffortTooltip.Text = "Returns true if the target Unit's remaining health percent matches the specified criteria.";
+                            cmbWarEffortComparison.Visible = true;
+                            lblWarEffortComparison.Visible = true;
+                            lblWarEffortStage.Text = "Health:";
+                            break;
+                        }
+                        case 42: // CONDITION_MANA_PERCENT
+                        {
+                            lblConditionWarEffortTooltip.Text = "Returns true if the target Unit's remaining mana percent matches the specified criteria.";
+                            cmbWarEffortComparison.Visible = true;
+                            lblWarEffortComparison.Visible = true;
+                            lblWarEffortStage.Text = "Mana:";
                             break;
                         }
                     }
@@ -444,6 +679,41 @@ namespace ScriptEditor
                     frmConditionEscort.Visible = true;
                     break;
                 }
+                case 34: // CONDITION_INSTANCE_DATA
+                {
+                    txtInstanceDataIndex.Text = selectedCondition.Value1.ToString();
+                    txtInstanceDataValue.Text = selectedCondition.Value2.ToString();
+                    cmbInstanceDataComparison.SelectedIndex = (int)selectedCondition.Value3;
+                    frmConditionInstanceData.Visible = true;
+                    break;
+                }
+                case 35: // CONDITION_MAP_EVENT_DATA
+                {
+                    txtMapEventDataEventId.Text = selectedCondition.Value1.ToString();
+                    txtMapEventDataIndex.Text = selectedCondition.Value2.ToString();
+                    txtMapEventDataValue.Text = selectedCondition.Value3.ToString();
+                    cmbMapEventDataComparison.SelectedIndex = (int)selectedCondition.Value4;
+                    frmConditionMapEventData.Visible = true;
+                    break;
+                }
+                case 47: // CONDITION_MAP_EVENT_TARGETS
+                {
+                    txtMapEventTargetsEventId.Text = selectedCondition.Value1.ToString();
+                    uint conditionId = selectedCondition.Value2;
+                    if (conditionId > 0)
+                        btnConditionNotCondition1.Text = conditionId.ToString() + " - " + GameData.FindConditionName(conditionId);
+                    frmConditionMapEventTargets.Visible = true;
+                    break;
+                }
+                default:
+                {
+                    txtUnknownValue1.Text = selectedCondition.Value1.ToString();
+                    txtUnknownValue2.Text = selectedCondition.Value2.ToString();
+                    txtUnknownValue3.Text = selectedCondition.Value3.ToString();
+                    txtUnknownValue4.Text = selectedCondition.Value4.ToString();
+                    frmConditionUnknown.Visible = true;
+                    break;
+                }
             }
         }
 
@@ -467,6 +737,8 @@ namespace ScriptEditor
             ResetBaseControls();
             ResetAndHideConditionSpecificForms();
             dontUpdate = false;
+
+            lstData.Columns[6].Width = 75;
 
             foreach (ConditionInfo condition in GameData.ConditionInfoList)
             {
@@ -493,6 +765,8 @@ namespace ScriptEditor
             ResetAndHideConditionSpecificForms();
             dontUpdate = false;
 
+            lstData.Columns[6].Width = 75;
+
             foreach (ConditionInfo condition in GameData.ConditionInfoList)
             {
                 if ((condition.ID >= minId) && (condition.ID <= maxId))
@@ -517,7 +791,12 @@ namespace ScriptEditor
 
         private void FormConditionFinder_ResizeEnd(object sender, EventArgs e)
         {
+            if (editMode)
+                return;
+
             lstData.Columns[1].Width = lstData.ClientSize.Width - lstData.Columns[0].Width - lstData.Columns[2].Width - lstData.Columns[3].Width - lstData.Columns[4].Width - lstData.Columns[5].Width - lstData.Columns[6].Width;
+            btnEditAdd.Location = new Point(btnEditAdd.Location.X, lstData.Location.Y + lstData.Height + 5);
+            btnDelete.Location = new Point(btnDelete.Location.X, lstData.Location.Y + lstData.Height + 5);
         }
         private void UpdateSelectedItem()
         {
@@ -823,7 +1102,19 @@ namespace ScriptEditor
             if (!editMode)
             {
                 editMode = true;
+
                 lstData.Height = 123;
+                lstData.Width = this.Size.Width - 30;
+                btnEditAdd.Location = new Point(btnEditAdd.Location.X, 367);
+                btnDelete.Location = new Point(btnDelete.Location.X, 367);
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                this.Size = new Size(680, 420);
+                btnSearch.Location = new Point(579, 28);
+                txtSearch.Width = 560;
+                btnCancel.Location = new Point(586, 367);
+                btnSelect.Location = new Point(505, 367);
+                btnSelectNone.Location = new Point(411, 367);
+
                 txtConditionId.Visible = true;
                 chkConditionFlag1.Visible = true;
                 chkConditionFlag2.Visible = true;
@@ -1274,6 +1565,62 @@ namespace ScriptEditor
         private void txtEscortDistance_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtEscortDistance, "Value2");
+        }
+        // CONDITION_INSTANCE_DATA
+        private void txtInstanceDataIndex_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtInstanceDataIndex, "Value1");
+        }
+        private void txtInstanceDataValue_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtInstanceDataValue, "Value2");
+        }
+        private void cmbInstanceDataComparison_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbInstanceDataComparison, "Value3", false);
+        }
+        // CONDITION_MAP_EVENT_DATA
+        private void txtMapEventDataEventId_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtMapEventDataEventId, "Value1");
+        }
+        private void txtMapEventDataIndex_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtMapEventDataIndex, "Value2");
+        }
+        private void txtMapEventDataValue_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtMapEventDataValue, "Value3");
+        }
+        private void cmbMapEventDataComparison_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbMapEventDataComparison, "Value4", false);
+        }
+        // CONDITION_MAP_EVENT_TARGETS
+        private void txtMapEventTargetsEventId_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtMapEventTargetsEventId, "Value1");
+        }
+        private void btnMapEventTargetsConditionId_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormConditionFinder>(btnMapEventTargetsConditionId, null, GameData.FindConditionName, "Value2");
+        }
+        // Unknown Condition Id
+        private void txtUnknownValue1_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtUnknownValue1, "Value1");
+        }
+        private void txtUnknownValue2_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtUnknownValue2, "Value2");
+        }
+        private void txtUnknownValue3_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtUnknownValue3, "Value3");
+        }
+        private void txtUnknownValue4_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtUnknownValue4, "Value4");
         }
     }
 }

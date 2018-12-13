@@ -2960,7 +2960,7 @@ namespace ScriptEditor
                     chkModifyFlags64.Visible = true;
                     chkModifyFlags128.Text = "NOT_ATTACKABLE_1";
                     chkModifyFlags128.Visible = true;
-                    chkModifyFlags256.Text = "OOC_NOT_ATTACKABLE";
+                    chkModifyFlags256.Text = "IMMUNE_TO_PLAYER";
                     chkModifyFlags256.Visible = true;
                     chkModifyFlags512.Text = "PASSIVE";
                     chkModifyFlags512.Visible = true;

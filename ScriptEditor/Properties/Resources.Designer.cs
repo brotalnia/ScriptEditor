@@ -93,6 +93,26 @@ namespace ScriptEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap condition_editor_button {
+            get {
+                object obj = ResourceManager.GetObject("condition_editor_button", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap condition_editor_button_black {
+            get {
+                object obj = ResourceManager.GetObject("condition_editor_button_black", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap event_editor_button {
             get {
                 object obj = ResourceManager.GetObject("event_editor_button", resourceCulture);

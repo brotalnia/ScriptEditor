@@ -21,6 +21,8 @@ namespace ScriptEditor
         Image imgEventEditorHighlighted = ScriptEditor.Properties.Resources.event_editor_button;
         Image imgCastsEditor = ScriptEditor.Properties.Resources.cast_editor_button_black;
         Image imgCastsEditorHighlighted = ScriptEditor.Properties.Resources.cast_editor_button;
+        Image imgConditionsEditor = ScriptEditor.Properties.Resources.condition_editor_button_black;
+        Image imgConditionsEditorHighlighted = ScriptEditor.Properties.Resources.condition_editor_button;
         Image imgGitLink = ScriptEditor.Properties.Resources.gitlink1;
         Image imgGitLinkHighlighted = ScriptEditor.Properties.Resources.gitlink2;
 
@@ -94,6 +96,23 @@ namespace ScriptEditor
         {
             FormCastsEditor editor = new FormCastsEditor();
             editor.Show();
+        }
+
+        private void picConditionEditor_MouseEnter(object sender, EventArgs e)
+        {
+            picConditionEditor.BackgroundImage = imgConditionsEditorHighlighted;
+            player.Play();
+        }
+
+        private void picConditionEditor_MouseLeave(object sender, EventArgs e)
+        {
+            picConditionEditor.BackgroundImage = imgConditionsEditor;
+        }
+
+        private void picConditionEditor_Click(object sender, EventArgs e)
+        {
+            FormConditionFinder editor = new FormConditionFinder();
+            editor.ShowStandalone();
         }
     }
 }

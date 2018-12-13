@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormConditionFinder));
             this.columnType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnValue1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnValue2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -128,12 +129,46 @@
             this.lblContentPatch = new System.Windows.Forms.Label();
             this.lblConditionContentPatchTooltip = new System.Windows.Forms.Label();
             this.frmConditionEscort = new System.Windows.Forms.Panel();
+            this.chkEscortTargetDead = new System.Windows.Forms.CheckBox();
+            this.chkEscortSourceDead = new System.Windows.Forms.CheckBox();
+            this.txtEscortDistance = new System.Windows.Forms.TextBox();
             this.lblEscortDistance = new System.Windows.Forms.Label();
             this.lblEscortFlags = new System.Windows.Forms.Label();
             this.lblConditionEscortTooltip = new System.Windows.Forms.Label();
-            this.txtEscortDistance = new System.Windows.Forms.TextBox();
-            this.chkEscortSourceDead = new System.Windows.Forms.CheckBox();
-            this.chkEscortTargetDead = new System.Windows.Forms.CheckBox();
+            this.frmConditionInstanceData = new System.Windows.Forms.Panel();
+            this.txtInstanceDataValue = new System.Windows.Forms.TextBox();
+            this.lblInstanceDataValue = new System.Windows.Forms.Label();
+            this.txtInstanceDataIndex = new System.Windows.Forms.TextBox();
+            this.cmbInstanceDataComparison = new System.Windows.Forms.ComboBox();
+            this.lblInstanceDataComparison = new System.Windows.Forms.Label();
+            this.lblInstanceDataIndex = new System.Windows.Forms.Label();
+            this.lblConditionInstanceDataTooltip = new System.Windows.Forms.Label();
+            this.frmConditionMapEventData = new System.Windows.Forms.Panel();
+            this.txtMapEventDataIndex = new System.Windows.Forms.TextBox();
+            this.lblMapEventDataIndex = new System.Windows.Forms.Label();
+            this.txtMapEventDataEventId = new System.Windows.Forms.TextBox();
+            this.lvlMapEventDataEventId = new System.Windows.Forms.Label();
+            this.txtMapEventDataValue = new System.Windows.Forms.TextBox();
+            this.cmbMapEventDataComparison = new System.Windows.Forms.ComboBox();
+            this.lblMapEventDataComparison = new System.Windows.Forms.Label();
+            this.lblMapEventDataValue = new System.Windows.Forms.Label();
+            this.lblConditionMapEventDataTooltip = new System.Windows.Forms.Label();
+            this.frmConditionUnknown = new System.Windows.Forms.Panel();
+            this.txtUnknownValue4 = new System.Windows.Forms.TextBox();
+            this.txtUnknownValue2 = new System.Windows.Forms.TextBox();
+            this.lblUnknownValue2 = new System.Windows.Forms.Label();
+            this.txtUnknownValue1 = new System.Windows.Forms.TextBox();
+            this.lblUnknownValue1 = new System.Windows.Forms.Label();
+            this.txtUnknownValue3 = new System.Windows.Forms.TextBox();
+            this.lblUnknownValue4 = new System.Windows.Forms.Label();
+            this.lblUnknownValue3 = new System.Windows.Forms.Label();
+            this.lblConditionUnknownTooltip = new System.Windows.Forms.Label();
+            this.frmConditionMapEventTargets = new System.Windows.Forms.Panel();
+            this.txtMapEventTargetsEventId = new System.Windows.Forms.TextBox();
+            this.btnMapEventTargetsConditionId = new System.Windows.Forms.Button();
+            this.lblMapEventTargetsConditionId = new System.Windows.Forms.Label();
+            this.lblMapEventTargetsEventId = new System.Windows.Forms.Label();
+            this.lblConditionMapEventTargetsTooltip = new System.Windows.Forms.Label();
             this.frmConditionNot.SuspendLayout();
             this.frmConditionAura.SuspendLayout();
             this.frmConditionItem.SuspendLayout();
@@ -150,6 +185,10 @@
             this.frmConditionNearbyObject.SuspendLayout();
             this.frmConditionContentPatch.SuspendLayout();
             this.frmConditionEscort.SuspendLayout();
+            this.frmConditionInstanceData.SuspendLayout();
+            this.frmConditionMapEventData.SuspendLayout();
+            this.frmConditionUnknown.SuspendLayout();
+            this.frmConditionMapEventTargets.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstData
@@ -1188,6 +1227,36 @@
             this.frmConditionEscort.TabIndex = 34;
             this.frmConditionEscort.Visible = false;
             // 
+            // chkEscortTargetDead
+            // 
+            this.chkEscortTargetDead.AutoSize = true;
+            this.chkEscortTargetDead.Location = new System.Drawing.Point(228, 72);
+            this.chkEscortTargetDead.Name = "chkEscortTargetDead";
+            this.chkEscortTargetDead.Size = new System.Drawing.Size(119, 17);
+            this.chkEscortTargetDead.TabIndex = 18;
+            this.chkEscortTargetDead.Text = "Target must survive";
+            this.chkEscortTargetDead.UseVisualStyleBackColor = true;
+            this.chkEscortTargetDead.CheckedChanged += new System.EventHandler(this.chkEscortTargetDead_CheckedChanged);
+            // 
+            // chkEscortSourceDead
+            // 
+            this.chkEscortSourceDead.AutoSize = true;
+            this.chkEscortSourceDead.Location = new System.Drawing.Point(100, 72);
+            this.chkEscortSourceDead.Name = "chkEscortSourceDead";
+            this.chkEscortSourceDead.Size = new System.Drawing.Size(122, 17);
+            this.chkEscortSourceDead.TabIndex = 17;
+            this.chkEscortSourceDead.Text = "Source must survive";
+            this.chkEscortSourceDead.UseVisualStyleBackColor = true;
+            this.chkEscortSourceDead.CheckedChanged += new System.EventHandler(this.chkEscortSourceDead_CheckedChanged);
+            // 
+            // txtEscortDistance
+            // 
+            this.txtEscortDistance.Location = new System.Drawing.Point(100, 101);
+            this.txtEscortDistance.Name = "txtEscortDistance";
+            this.txtEscortDistance.Size = new System.Drawing.Size(536, 20);
+            this.txtEscortDistance.TabIndex = 16;
+            this.txtEscortDistance.Leave += new System.EventHandler(this.txtEscortDistance_Leave);
+            // 
             // lblEscortDistance
             // 
             this.lblEscortDistance.AutoSize = true;
@@ -1216,40 +1285,354 @@
             this.lblConditionEscortTooltip.Text = "Returns true when one of the requirements is not satisfied. This condition is use" +
     "d for escort quests.";
             // 
-            // txtEscortDistance
+            // frmConditionInstanceData
             // 
-            this.txtEscortDistance.Location = new System.Drawing.Point(100, 101);
-            this.txtEscortDistance.Name = "txtEscortDistance";
-            this.txtEscortDistance.Size = new System.Drawing.Size(536, 20);
-            this.txtEscortDistance.TabIndex = 16;
-            this.txtEscortDistance.Leave += new System.EventHandler(this.txtEscortDistance_Leave);
+            this.frmConditionInstanceData.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmConditionInstanceData.Controls.Add(this.txtInstanceDataValue);
+            this.frmConditionInstanceData.Controls.Add(this.lblInstanceDataValue);
+            this.frmConditionInstanceData.Controls.Add(this.txtInstanceDataIndex);
+            this.frmConditionInstanceData.Controls.Add(this.cmbInstanceDataComparison);
+            this.frmConditionInstanceData.Controls.Add(this.lblInstanceDataComparison);
+            this.frmConditionInstanceData.Controls.Add(this.lblInstanceDataIndex);
+            this.frmConditionInstanceData.Controls.Add(this.lblConditionInstanceDataTooltip);
+            this.frmConditionInstanceData.Location = new System.Drawing.Point(12, 212);
+            this.frmConditionInstanceData.Name = "frmConditionInstanceData";
+            this.frmConditionInstanceData.Size = new System.Drawing.Size(650, 150);
+            this.frmConditionInstanceData.TabIndex = 35;
+            this.frmConditionInstanceData.Visible = false;
             // 
-            // chkEscortSourceDead
+            // txtInstanceDataValue
             // 
-            this.chkEscortSourceDead.AutoSize = true;
-            this.chkEscortSourceDead.Location = new System.Drawing.Point(100, 72);
-            this.chkEscortSourceDead.Name = "chkEscortSourceDead";
-            this.chkEscortSourceDead.Size = new System.Drawing.Size(122, 17);
-            this.chkEscortSourceDead.TabIndex = 17;
-            this.chkEscortSourceDead.Text = "Source must survive";
-            this.chkEscortSourceDead.UseVisualStyleBackColor = true;
-            this.chkEscortSourceDead.CheckedChanged += new System.EventHandler(this.chkEscortSourceDead_CheckedChanged);
+            this.txtInstanceDataValue.Location = new System.Drawing.Point(100, 91);
+            this.txtInstanceDataValue.Name = "txtInstanceDataValue";
+            this.txtInstanceDataValue.Size = new System.Drawing.Size(536, 20);
+            this.txtInstanceDataValue.TabIndex = 18;
+            this.txtInstanceDataValue.Leave += new System.EventHandler(this.txtInstanceDataValue_Leave);
             // 
-            // chkEscortTargetDead
+            // lblInstanceDataValue
             // 
-            this.chkEscortTargetDead.AutoSize = true;
-            this.chkEscortTargetDead.Location = new System.Drawing.Point(228, 72);
-            this.chkEscortTargetDead.Name = "chkEscortTargetDead";
-            this.chkEscortTargetDead.Size = new System.Drawing.Size(119, 17);
-            this.chkEscortTargetDead.TabIndex = 18;
-            this.chkEscortTargetDead.Text = "Target must survive";
-            this.chkEscortTargetDead.UseVisualStyleBackColor = true;
-            this.chkEscortTargetDead.CheckedChanged += new System.EventHandler(this.chkEscortTargetDead_CheckedChanged);
+            this.lblInstanceDataValue.AutoSize = true;
+            this.lblInstanceDataValue.Location = new System.Drawing.Point(11, 96);
+            this.lblInstanceDataValue.Name = "lblInstanceDataValue";
+            this.lblInstanceDataValue.Size = new System.Drawing.Size(37, 13);
+            this.lblInstanceDataValue.TabIndex = 17;
+            this.lblInstanceDataValue.Text = "Value:";
+            // 
+            // txtInstanceDataIndex
+            // 
+            this.txtInstanceDataIndex.Location = new System.Drawing.Point(100, 65);
+            this.txtInstanceDataIndex.Name = "txtInstanceDataIndex";
+            this.txtInstanceDataIndex.Size = new System.Drawing.Size(536, 20);
+            this.txtInstanceDataIndex.TabIndex = 16;
+            this.txtInstanceDataIndex.Leave += new System.EventHandler(this.txtInstanceDataIndex_Leave);
+            // 
+            // cmbInstanceDataComparison
+            // 
+            this.cmbInstanceDataComparison.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbInstanceDataComparison.FormattingEnabled = true;
+            this.cmbInstanceDataComparison.Items.AddRange(new object[] {
+            "==",
+            ">=",
+            "<="});
+            this.cmbInstanceDataComparison.Location = new System.Drawing.Point(100, 117);
+            this.cmbInstanceDataComparison.Name = "cmbInstanceDataComparison";
+            this.cmbInstanceDataComparison.Size = new System.Drawing.Size(536, 21);
+            this.cmbInstanceDataComparison.TabIndex = 15;
+            this.cmbInstanceDataComparison.SelectedIndexChanged += new System.EventHandler(this.cmbInstanceDataComparison_SelectedIndexChanged);
+            // 
+            // lblInstanceDataComparison
+            // 
+            this.lblInstanceDataComparison.AutoSize = true;
+            this.lblInstanceDataComparison.Location = new System.Drawing.Point(11, 122);
+            this.lblInstanceDataComparison.Name = "lblInstanceDataComparison";
+            this.lblInstanceDataComparison.Size = new System.Drawing.Size(65, 13);
+            this.lblInstanceDataComparison.TabIndex = 2;
+            this.lblInstanceDataComparison.Text = "Comparison:";
+            // 
+            // lblInstanceDataIndex
+            // 
+            this.lblInstanceDataIndex.AutoSize = true;
+            this.lblInstanceDataIndex.Location = new System.Drawing.Point(11, 70);
+            this.lblInstanceDataIndex.Name = "lblInstanceDataIndex";
+            this.lblInstanceDataIndex.Size = new System.Drawing.Size(36, 13);
+            this.lblInstanceDataIndex.TabIndex = 1;
+            this.lblInstanceDataIndex.Text = "Index:";
+            // 
+            // lblConditionInstanceDataTooltip
+            // 
+            this.lblConditionInstanceDataTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblConditionInstanceDataTooltip.Location = new System.Drawing.Point(12, 8);
+            this.lblConditionInstanceDataTooltip.Name = "lblConditionInstanceDataTooltip";
+            this.lblConditionInstanceDataTooltip.Size = new System.Drawing.Size(624, 42);
+            this.lblConditionInstanceDataTooltip.TabIndex = 0;
+            this.lblConditionInstanceDataTooltip.Text = "Returns true if the value in the specified instance data field fits the required " +
+    "criteria.";
+            // 
+            // frmConditionMapEventData
+            // 
+            this.frmConditionMapEventData.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmConditionMapEventData.Controls.Add(this.txtMapEventDataIndex);
+            this.frmConditionMapEventData.Controls.Add(this.lblMapEventDataIndex);
+            this.frmConditionMapEventData.Controls.Add(this.txtMapEventDataEventId);
+            this.frmConditionMapEventData.Controls.Add(this.lvlMapEventDataEventId);
+            this.frmConditionMapEventData.Controls.Add(this.txtMapEventDataValue);
+            this.frmConditionMapEventData.Controls.Add(this.cmbMapEventDataComparison);
+            this.frmConditionMapEventData.Controls.Add(this.lblMapEventDataComparison);
+            this.frmConditionMapEventData.Controls.Add(this.lblMapEventDataValue);
+            this.frmConditionMapEventData.Controls.Add(this.lblConditionMapEventDataTooltip);
+            this.frmConditionMapEventData.Location = new System.Drawing.Point(12, 212);
+            this.frmConditionMapEventData.Name = "frmConditionMapEventData";
+            this.frmConditionMapEventData.Size = new System.Drawing.Size(650, 150);
+            this.frmConditionMapEventData.TabIndex = 36;
+            this.frmConditionMapEventData.Visible = false;
+            // 
+            // txtMapEventDataIndex
+            // 
+            this.txtMapEventDataIndex.Location = new System.Drawing.Point(421, 75);
+            this.txtMapEventDataIndex.Name = "txtMapEventDataIndex";
+            this.txtMapEventDataIndex.Size = new System.Drawing.Size(215, 20);
+            this.txtMapEventDataIndex.TabIndex = 20;
+            this.txtMapEventDataIndex.Leave += new System.EventHandler(this.txtMapEventDataIndex_Leave);
+            // 
+            // lblMapEventDataIndex
+            // 
+            this.lblMapEventDataIndex.AutoSize = true;
+            this.lblMapEventDataIndex.Location = new System.Drawing.Point(332, 80);
+            this.lblMapEventDataIndex.Name = "lblMapEventDataIndex";
+            this.lblMapEventDataIndex.Size = new System.Drawing.Size(36, 13);
+            this.lblMapEventDataIndex.TabIndex = 19;
+            this.lblMapEventDataIndex.Text = "Index:";
+            // 
+            // txtMapEventDataEventId
+            // 
+            this.txtMapEventDataEventId.Location = new System.Drawing.Point(100, 75);
+            this.txtMapEventDataEventId.Name = "txtMapEventDataEventId";
+            this.txtMapEventDataEventId.Size = new System.Drawing.Size(215, 20);
+            this.txtMapEventDataEventId.TabIndex = 18;
+            this.txtMapEventDataEventId.Leave += new System.EventHandler(this.txtMapEventDataEventId_Leave);
+            // 
+            // lvlMapEventDataEventId
+            // 
+            this.lvlMapEventDataEventId.AutoSize = true;
+            this.lvlMapEventDataEventId.Location = new System.Drawing.Point(11, 80);
+            this.lvlMapEventDataEventId.Name = "lvlMapEventDataEventId";
+            this.lvlMapEventDataEventId.Size = new System.Drawing.Size(50, 13);
+            this.lvlMapEventDataEventId.TabIndex = 17;
+            this.lvlMapEventDataEventId.Text = "Event Id:";
+            // 
+            // txtMapEventDataValue
+            // 
+            this.txtMapEventDataValue.Location = new System.Drawing.Point(100, 106);
+            this.txtMapEventDataValue.Name = "txtMapEventDataValue";
+            this.txtMapEventDataValue.Size = new System.Drawing.Size(215, 20);
+            this.txtMapEventDataValue.TabIndex = 16;
+            this.txtMapEventDataValue.Leave += new System.EventHandler(this.txtMapEventDataValue_Leave);
+            // 
+            // cmbMapEventDataComparison
+            // 
+            this.cmbMapEventDataComparison.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMapEventDataComparison.FormattingEnabled = true;
+            this.cmbMapEventDataComparison.Items.AddRange(new object[] {
+            "==",
+            ">=",
+            "<="});
+            this.cmbMapEventDataComparison.Location = new System.Drawing.Point(421, 106);
+            this.cmbMapEventDataComparison.Name = "cmbMapEventDataComparison";
+            this.cmbMapEventDataComparison.Size = new System.Drawing.Size(215, 21);
+            this.cmbMapEventDataComparison.TabIndex = 15;
+            this.cmbMapEventDataComparison.SelectedIndexChanged += new System.EventHandler(this.cmbMapEventDataComparison_SelectedIndexChanged);
+            // 
+            // lblMapEventDataComparison
+            // 
+            this.lblMapEventDataComparison.AutoSize = true;
+            this.lblMapEventDataComparison.Location = new System.Drawing.Point(332, 111);
+            this.lblMapEventDataComparison.Name = "lblMapEventDataComparison";
+            this.lblMapEventDataComparison.Size = new System.Drawing.Size(65, 13);
+            this.lblMapEventDataComparison.TabIndex = 2;
+            this.lblMapEventDataComparison.Text = "Comparison:";
+            // 
+            // lblMapEventDataValue
+            // 
+            this.lblMapEventDataValue.AutoSize = true;
+            this.lblMapEventDataValue.Location = new System.Drawing.Point(11, 111);
+            this.lblMapEventDataValue.Name = "lblMapEventDataValue";
+            this.lblMapEventDataValue.Size = new System.Drawing.Size(37, 13);
+            this.lblMapEventDataValue.TabIndex = 1;
+            this.lblMapEventDataValue.Text = "Value:";
+            // 
+            // lblConditionMapEventDataTooltip
+            // 
+            this.lblConditionMapEventDataTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblConditionMapEventDataTooltip.Location = new System.Drawing.Point(12, 8);
+            this.lblConditionMapEventDataTooltip.Name = "lblConditionMapEventDataTooltip";
+            this.lblConditionMapEventDataTooltip.Size = new System.Drawing.Size(624, 42);
+            this.lblConditionMapEventDataTooltip.TabIndex = 0;
+            this.lblConditionMapEventDataTooltip.Text = "Returns true if the value in the specified map event data field fits the required" +
+    " criteria.";
+            // 
+            // frmConditionUnknown
+            // 
+            this.frmConditionUnknown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmConditionUnknown.Controls.Add(this.txtUnknownValue4);
+            this.frmConditionUnknown.Controls.Add(this.txtUnknownValue2);
+            this.frmConditionUnknown.Controls.Add(this.lblUnknownValue2);
+            this.frmConditionUnknown.Controls.Add(this.txtUnknownValue1);
+            this.frmConditionUnknown.Controls.Add(this.lblUnknownValue1);
+            this.frmConditionUnknown.Controls.Add(this.txtUnknownValue3);
+            this.frmConditionUnknown.Controls.Add(this.lblUnknownValue4);
+            this.frmConditionUnknown.Controls.Add(this.lblUnknownValue3);
+            this.frmConditionUnknown.Controls.Add(this.lblConditionUnknownTooltip);
+            this.frmConditionUnknown.Location = new System.Drawing.Point(12, 212);
+            this.frmConditionUnknown.Name = "frmConditionUnknown";
+            this.frmConditionUnknown.Size = new System.Drawing.Size(650, 150);
+            this.frmConditionUnknown.TabIndex = 37;
+            this.frmConditionUnknown.Visible = false;
+            // 
+            // txtUnknownValue4
+            // 
+            this.txtUnknownValue4.Location = new System.Drawing.Point(421, 106);
+            this.txtUnknownValue4.Name = "txtUnknownValue4";
+            this.txtUnknownValue4.Size = new System.Drawing.Size(215, 20);
+            this.txtUnknownValue4.TabIndex = 21;
+            this.txtUnknownValue4.Leave += new System.EventHandler(this.txtUnknownValue4_Leave);
+            // 
+            // txtUnknownValue2
+            // 
+            this.txtUnknownValue2.Location = new System.Drawing.Point(421, 75);
+            this.txtUnknownValue2.Name = "txtUnknownValue2";
+            this.txtUnknownValue2.Size = new System.Drawing.Size(215, 20);
+            this.txtUnknownValue2.TabIndex = 20;
+            this.txtUnknownValue2.Leave += new System.EventHandler(this.txtUnknownValue2_Leave);
+            // 
+            // lblUnknownValue2
+            // 
+            this.lblUnknownValue2.AutoSize = true;
+            this.lblUnknownValue2.Location = new System.Drawing.Point(332, 80);
+            this.lblUnknownValue2.Name = "lblUnknownValue2";
+            this.lblUnknownValue2.Size = new System.Drawing.Size(46, 13);
+            this.lblUnknownValue2.TabIndex = 19;
+            this.lblUnknownValue2.Text = "Value 2:";
+            // 
+            // txtUnknownValue1
+            // 
+            this.txtUnknownValue1.Location = new System.Drawing.Point(100, 75);
+            this.txtUnknownValue1.Name = "txtUnknownValue1";
+            this.txtUnknownValue1.Size = new System.Drawing.Size(215, 20);
+            this.txtUnknownValue1.TabIndex = 18;
+            this.txtUnknownValue1.Leave += new System.EventHandler(this.txtUnknownValue1_Leave);
+            // 
+            // lblUnknownValue1
+            // 
+            this.lblUnknownValue1.AutoSize = true;
+            this.lblUnknownValue1.Location = new System.Drawing.Point(11, 80);
+            this.lblUnknownValue1.Name = "lblUnknownValue1";
+            this.lblUnknownValue1.Size = new System.Drawing.Size(46, 13);
+            this.lblUnknownValue1.TabIndex = 17;
+            this.lblUnknownValue1.Text = "Value 1:";
+            // 
+            // txtUnknownValue3
+            // 
+            this.txtUnknownValue3.Location = new System.Drawing.Point(100, 106);
+            this.txtUnknownValue3.Name = "txtUnknownValue3";
+            this.txtUnknownValue3.Size = new System.Drawing.Size(215, 20);
+            this.txtUnknownValue3.TabIndex = 16;
+            this.txtUnknownValue3.Leave += new System.EventHandler(this.txtUnknownValue3_Leave);
+            // 
+            // lblUnknownValue4
+            // 
+            this.lblUnknownValue4.AutoSize = true;
+            this.lblUnknownValue4.Location = new System.Drawing.Point(332, 111);
+            this.lblUnknownValue4.Name = "lblUnknownValue4";
+            this.lblUnknownValue4.Size = new System.Drawing.Size(46, 13);
+            this.lblUnknownValue4.TabIndex = 2;
+            this.lblUnknownValue4.Text = "Value 4:";
+            // 
+            // lblUnknownValue3
+            // 
+            this.lblUnknownValue3.AutoSize = true;
+            this.lblUnknownValue3.Location = new System.Drawing.Point(11, 111);
+            this.lblUnknownValue3.Name = "lblUnknownValue3";
+            this.lblUnknownValue3.Size = new System.Drawing.Size(46, 13);
+            this.lblUnknownValue3.TabIndex = 1;
+            this.lblUnknownValue3.Text = "Value 3:";
+            // 
+            // lblConditionUnknownTooltip
+            // 
+            this.lblConditionUnknownTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblConditionUnknownTooltip.Location = new System.Drawing.Point(12, 8);
+            this.lblConditionUnknownTooltip.Name = "lblConditionUnknownTooltip";
+            this.lblConditionUnknownTooltip.Size = new System.Drawing.Size(624, 42);
+            this.lblConditionUnknownTooltip.TabIndex = 0;
+            this.lblConditionUnknownTooltip.Text = "This condition is not currently supported by the editor.";
+            // 
+            // frmConditionMapEventTargets
+            // 
+            this.frmConditionMapEventTargets.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmConditionMapEventTargets.Controls.Add(this.txtMapEventTargetsEventId);
+            this.frmConditionMapEventTargets.Controls.Add(this.btnMapEventTargetsConditionId);
+            this.frmConditionMapEventTargets.Controls.Add(this.lblMapEventTargetsConditionId);
+            this.frmConditionMapEventTargets.Controls.Add(this.lblMapEventTargetsEventId);
+            this.frmConditionMapEventTargets.Controls.Add(this.lblConditionMapEventTargetsTooltip);
+            this.frmConditionMapEventTargets.Location = new System.Drawing.Point(12, 212);
+            this.frmConditionMapEventTargets.Name = "frmConditionMapEventTargets";
+            this.frmConditionMapEventTargets.Size = new System.Drawing.Size(650, 150);
+            this.frmConditionMapEventTargets.TabIndex = 38;
+            this.frmConditionMapEventTargets.Visible = false;
+            // 
+            // txtMapEventTargetsEventId
+            // 
+            this.txtMapEventTargetsEventId.Location = new System.Drawing.Point(100, 68);
+            this.txtMapEventTargetsEventId.Name = "txtMapEventTargetsEventId";
+            this.txtMapEventTargetsEventId.Size = new System.Drawing.Size(536, 20);
+            this.txtMapEventTargetsEventId.TabIndex = 17;
+            this.txtMapEventTargetsEventId.Leave += new System.EventHandler(this.txtMapEventTargetsEventId_Leave);
+            // 
+            // btnMapEventTargetsConditionId
+            // 
+            this.btnMapEventTargetsConditionId.Location = new System.Drawing.Point(100, 101);
+            this.btnMapEventTargetsConditionId.Name = "btnMapEventTargetsConditionId";
+            this.btnMapEventTargetsConditionId.Size = new System.Drawing.Size(536, 23);
+            this.btnMapEventTargetsConditionId.TabIndex = 16;
+            this.btnMapEventTargetsConditionId.Text = "-NONE-";
+            this.btnMapEventTargetsConditionId.UseVisualStyleBackColor = true;
+            this.btnMapEventTargetsConditionId.Click += new System.EventHandler(this.btnMapEventTargetsConditionId_Click);
+            // 
+            // lblMapEventTargetsConditionId
+            // 
+            this.lblMapEventTargetsConditionId.AutoSize = true;
+            this.lblMapEventTargetsConditionId.Location = new System.Drawing.Point(11, 106);
+            this.lblMapEventTargetsConditionId.Name = "lblMapEventTargetsConditionId";
+            this.lblMapEventTargetsConditionId.Size = new System.Drawing.Size(66, 13);
+            this.lblMapEventTargetsConditionId.TabIndex = 2;
+            this.lblMapEventTargetsConditionId.Text = "Condition Id:";
+            // 
+            // lblMapEventTargetsEventId
+            // 
+            this.lblMapEventTargetsEventId.AutoSize = true;
+            this.lblMapEventTargetsEventId.Location = new System.Drawing.Point(11, 73);
+            this.lblMapEventTargetsEventId.Name = "lblMapEventTargetsEventId";
+            this.lblMapEventTargetsEventId.Size = new System.Drawing.Size(50, 13);
+            this.lblMapEventTargetsEventId.TabIndex = 1;
+            this.lblMapEventTargetsEventId.Text = "Event Id:";
+            // 
+            // lblConditionMapEventTargetsTooltip
+            // 
+            this.lblConditionMapEventTargetsTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblConditionMapEventTargetsTooltip.Location = new System.Drawing.Point(12, 8);
+            this.lblConditionMapEventTargetsTooltip.Name = "lblConditionMapEventTargetsTooltip";
+            this.lblConditionMapEventTargetsTooltip.Size = new System.Drawing.Size(624, 42);
+            this.lblConditionMapEventTargetsTooltip.TabIndex = 0;
+            this.lblConditionMapEventTargetsTooltip.Text = "Returns true if all of the extra targets part of the scripted map event satisfty " +
+    "the specified condition..";
             // 
             // FormConditionFinder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(674, 395);
+            this.Controls.Add(this.frmConditionMapEventTargets);
+            this.Controls.Add(this.frmConditionUnknown);
+            this.Controls.Add(this.frmConditionMapEventData);
+            this.Controls.Add(this.frmConditionInstanceData);
             this.Controls.Add(this.frmConditionEscort);
             this.Controls.Add(this.frmConditionContentPatch);
             this.Controls.Add(this.frmConditionNearbyObject);
@@ -1275,10 +1658,15 @@
             this.Controls.Add(this.cmbConditionType);
             this.Controls.Add(this.frmConditionNot);
             this.Controls.Add(this.lblNoSelection);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormConditionFinder";
             this.Text = "Condition Finder";
             this.ResizeEnd += new System.EventHandler(this.FormConditionFinder_ResizeEnd);
+            this.Controls.SetChildIndex(this.txtSearch, 0);
+            this.Controls.SetChildIndex(this.btnSearch, 0);
+            this.Controls.SetChildIndex(this.btnSelect, 0);
+            this.Controls.SetChildIndex(this.btnCancel, 0);
+            this.Controls.SetChildIndex(this.btnSelectUnchanged, 0);
             this.Controls.SetChildIndex(this.lblNoSelection, 0);
             this.Controls.SetChildIndex(this.frmConditionNot, 0);
             this.Controls.SetChildIndex(this.cmbConditionType, 0);
@@ -1307,6 +1695,10 @@
             this.Controls.SetChildIndex(this.frmConditionNearbyObject, 0);
             this.Controls.SetChildIndex(this.frmConditionContentPatch, 0);
             this.Controls.SetChildIndex(this.frmConditionEscort, 0);
+            this.Controls.SetChildIndex(this.frmConditionInstanceData, 0);
+            this.Controls.SetChildIndex(this.frmConditionMapEventData, 0);
+            this.Controls.SetChildIndex(this.frmConditionUnknown, 0);
+            this.Controls.SetChildIndex(this.frmConditionMapEventTargets, 0);
             this.frmConditionNot.ResumeLayout(false);
             this.frmConditionNot.PerformLayout();
             this.frmConditionAura.ResumeLayout(false);
@@ -1339,6 +1731,14 @@
             this.frmConditionContentPatch.PerformLayout();
             this.frmConditionEscort.ResumeLayout(false);
             this.frmConditionEscort.PerformLayout();
+            this.frmConditionInstanceData.ResumeLayout(false);
+            this.frmConditionInstanceData.PerformLayout();
+            this.frmConditionMapEventData.ResumeLayout(false);
+            this.frmConditionMapEventData.PerformLayout();
+            this.frmConditionUnknown.ResumeLayout(false);
+            this.frmConditionUnknown.PerformLayout();
+            this.frmConditionMapEventTargets.ResumeLayout(false);
+            this.frmConditionMapEventTargets.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1452,5 +1852,39 @@
         private System.Windows.Forms.Label lblEscortDistance;
         private System.Windows.Forms.Label lblEscortFlags;
         private System.Windows.Forms.Label lblConditionEscortTooltip;
+        private System.Windows.Forms.Panel frmConditionInstanceData;
+        private System.Windows.Forms.TextBox txtInstanceDataValue;
+        private System.Windows.Forms.Label lblInstanceDataValue;
+        private System.Windows.Forms.TextBox txtInstanceDataIndex;
+        private System.Windows.Forms.ComboBox cmbInstanceDataComparison;
+        private System.Windows.Forms.Label lblInstanceDataComparison;
+        private System.Windows.Forms.Label lblInstanceDataIndex;
+        private System.Windows.Forms.Label lblConditionInstanceDataTooltip;
+        private System.Windows.Forms.Panel frmConditionMapEventData;
+        private System.Windows.Forms.TextBox txtMapEventDataIndex;
+        private System.Windows.Forms.Label lblMapEventDataIndex;
+        private System.Windows.Forms.TextBox txtMapEventDataEventId;
+        private System.Windows.Forms.Label lvlMapEventDataEventId;
+        private System.Windows.Forms.TextBox txtMapEventDataValue;
+        private System.Windows.Forms.ComboBox cmbMapEventDataComparison;
+        private System.Windows.Forms.Label lblMapEventDataComparison;
+        private System.Windows.Forms.Label lblMapEventDataValue;
+        private System.Windows.Forms.Label lblConditionMapEventDataTooltip;
+        private System.Windows.Forms.Panel frmConditionUnknown;
+        private System.Windows.Forms.TextBox txtUnknownValue4;
+        private System.Windows.Forms.TextBox txtUnknownValue2;
+        private System.Windows.Forms.Label lblUnknownValue2;
+        private System.Windows.Forms.TextBox txtUnknownValue1;
+        private System.Windows.Forms.Label lblUnknownValue1;
+        private System.Windows.Forms.TextBox txtUnknownValue3;
+        private System.Windows.Forms.Label lblUnknownValue4;
+        private System.Windows.Forms.Label lblUnknownValue3;
+        private System.Windows.Forms.Label lblConditionUnknownTooltip;
+        private System.Windows.Forms.Panel frmConditionMapEventTargets;
+        private System.Windows.Forms.TextBox txtMapEventTargetsEventId;
+        private System.Windows.Forms.Button btnMapEventTargetsConditionId;
+        private System.Windows.Forms.Label lblMapEventTargetsConditionId;
+        private System.Windows.Forms.Label lblMapEventTargetsEventId;
+        private System.Windows.Forms.Label lblConditionMapEventTargetsTooltip;
     }
 }

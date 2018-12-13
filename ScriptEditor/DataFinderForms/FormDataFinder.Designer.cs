@@ -159,12 +159,12 @@
 
         protected System.Windows.Forms.ListView lstData;
         protected System.Windows.Forms.ColumnHeader columnID;
-        private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.Button btnSelect;
+        protected System.Windows.Forms.TextBox txtSearch;
+        protected System.Windows.Forms.Button btnSearch;
+        protected System.Windows.Forms.Button btnSelect;
         protected System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnCancel;
+        protected System.Windows.Forms.Button btnCancel;
         protected System.Windows.Forms.Button btnSelectNone;
-        private System.Windows.Forms.Button btnSelectUnchanged;
+        protected System.Windows.Forms.Button btnSelectUnchanged;
     }
 }

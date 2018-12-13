@@ -33,10 +33,12 @@
             this.picEventEditor = new System.Windows.Forms.PictureBox();
             this.picGitLink = new System.Windows.Forms.PictureBox();
             this.picCastsEditor = new System.Windows.Forms.PictureBox();
+            this.picConditionEditor = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picScriptEditor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picEventEditor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picGitLink)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCastsEditor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picConditionEditor)).BeginInit();
             this.SuspendLayout();
             // 
             // picScriptEditor
@@ -85,7 +87,7 @@
             this.picCastsEditor.BackColor = System.Drawing.Color.Transparent;
             this.picCastsEditor.BackgroundImage = global::ScriptEditor.Properties.Resources.cast_editor_button_black;
             this.picCastsEditor.InitialImage = null;
-            this.picCastsEditor.Location = new System.Drawing.Point(96, 233);
+            this.picCastsEditor.Location = new System.Drawing.Point(17, 233);
             this.picCastsEditor.Name = "picCastsEditor";
             this.picCastsEditor.Size = new System.Drawing.Size(138, 97);
             this.picCastsEditor.TabIndex = 3;
@@ -94,6 +96,20 @@
             this.picCastsEditor.MouseEnter += new System.EventHandler(this.picCastsEditor_MouseEnter);
             this.picCastsEditor.MouseLeave += new System.EventHandler(this.picCastsEditor_MouseLeave);
             // 
+            // picConditionEditor
+            // 
+            this.picConditionEditor.BackColor = System.Drawing.Color.Transparent;
+            this.picConditionEditor.BackgroundImage = global::ScriptEditor.Properties.Resources.condition_editor_button_black;
+            this.picConditionEditor.InitialImage = null;
+            this.picConditionEditor.Location = new System.Drawing.Point(175, 233);
+            this.picConditionEditor.Name = "picConditionEditor";
+            this.picConditionEditor.Size = new System.Drawing.Size(138, 97);
+            this.picConditionEditor.TabIndex = 4;
+            this.picConditionEditor.TabStop = false;
+            this.picConditionEditor.Click += new System.EventHandler(this.picConditionEditor_Click);
+            this.picConditionEditor.MouseEnter += new System.EventHandler(this.picConditionEditor_MouseEnter);
+            this.picConditionEditor.MouseLeave += new System.EventHandler(this.picConditionEditor_MouseLeave);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -101,6 +117,7 @@
             this.BackgroundImage = global::ScriptEditor.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(330, 371);
+            this.Controls.Add(this.picConditionEditor);
             this.Controls.Add(this.picCastsEditor);
             this.Controls.Add(this.picGitLink);
             this.Controls.Add(this.picEventEditor);
@@ -115,6 +132,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picEventEditor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picGitLink)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCastsEditor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picConditionEditor)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -125,5 +143,6 @@
         private System.Windows.Forms.PictureBox picEventEditor;
         private System.Windows.Forms.PictureBox picGitLink;
         private System.Windows.Forms.PictureBox picCastsEditor;
+        private System.Windows.Forms.PictureBox picConditionEditor;
     }
 }

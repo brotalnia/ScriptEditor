@@ -13,6 +13,7 @@ namespace ScriptEditor
     public partial class FormDataFinder : Form
     {
         public int ReturnValue { get; set; } // we return the chosen id in this
+        protected bool editMode = false;
 
         System.Collections.IComparer textComparer;
 
@@ -149,6 +150,9 @@ namespace ScriptEditor
 
         private void FormDataFinder_ResizeEnd(object sender, EventArgs e)
         {
+            if (editMode)
+                return;
+
             lstData.Width = this.Size.Width - 30;
             lstData.Height = this.Size.Height - lstData.Location.Y - 65;
             btnCancel.Location = new Point(lstData.Size.Width + lstData.Location.X - btnCancel.Size.Width, lstData.Location.Y + lstData.Height + 5);
