@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Globalization;
+using System.Reflection;
 
 namespace ScriptEditor
 {
@@ -18,6 +20,9 @@ namespace ScriptEditor
 
         // Highlight non-default values.
         public static bool highlight = false;
+
+        // Desired culture info.
+        public static string locale = "en-US";
 
         internal sealed class NativeMethods
         {
@@ -73,6 +78,9 @@ namespace ScriptEditor
             // Closes the temporary console window.
             NativeMethods.FreeConsole();
 
+            // Apply locale settings.
+            SetDefaultCulture(new CultureInfo(locale));
+
             // Start the main form.
             Application.Run(new Form1());
         }
@@ -97,11 +105,50 @@ namespace ScriptEditor
                     mysqlHost = line.Replace("Host=", "");
                 else if (line.Contains("DB="))
                     mysqlDB = line.Replace("DB=", "");
+                else if (line.Contains("Locale="))
+                    locale = line.Replace("Locale=", "");
                 else if (line.Contains("Highlight=true"))
                     highlight = true;
             }
 
             connString = "Server=" + mysqlHost + ";Database=" + mysqlDB + ";Uid=" + mysqlUser + ";Pwd=" + mysqlPass + ";";
+        }
+
+        static void SetDefaultCulture(CultureInfo culture)
+        {
+            Type type = typeof(CultureInfo);
+
+            try
+            {
+                type.InvokeMember("s_userDefaultCulture",
+                                    BindingFlags.SetField | BindingFlags.NonPublic | BindingFlags.Static,
+                                    null,
+                                    culture,
+                                    new object[] { culture });
+
+                type.InvokeMember("s_userDefaultUICulture",
+                                    BindingFlags.SetField | BindingFlags.NonPublic | BindingFlags.Static,
+                                    null,
+                                    culture,
+                                    new object[] { culture });
+            }
+            catch { }
+
+            try
+            {
+                type.InvokeMember("m_userDefaultCulture",
+                                    BindingFlags.SetField | BindingFlags.NonPublic | BindingFlags.Static,
+                                    null,
+                                    culture,
+                                    new object[] { culture });
+
+                type.InvokeMember("m_userDefaultUICulture",
+                                    BindingFlags.SetField | BindingFlags.NonPublic | BindingFlags.Static,
+                                    null,
+                                    culture,
+                                    new object[] { culture });
+            }
+            catch { }
         }
     }
 }

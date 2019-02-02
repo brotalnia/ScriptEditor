@@ -807,11 +807,96 @@ namespace ScriptEditor
         private void FormConditionFinder_ResizeEnd(object sender, EventArgs e)
         {
             if (editMode)
-                return;
+            {
+                frmConditionArea.Width = this.Size.Width - 32;
+                frmConditionArea.Location = new Point(frmConditionArea.Location.X, this.Size.Height - 217);
+                lblConditionAreaTooltip.Width = frmConditionArea.Size.Width - lblConditionAreaTooltip.Location.X - 14;
+                frmConditionAura.Width = this.Size.Width - 32;
+                frmConditionAura.Location = new Point(frmConditionAura.Location.X, this.Size.Height - 217);
+                lblConditionAuraTooltip.Width = frmConditionAura.Size.Width - lblConditionAuraTooltip.Location.X - 14;
+                frmConditionContentPatch.Width = this.Size.Width - 32;
+                frmConditionContentPatch.Location = new Point(frmConditionContentPatch.Location.X, this.Size.Height - 217);
+                lblConditionContentPatchTooltip.Width = frmConditionContentPatch.Size.Width - lblConditionContentPatchTooltip.Location.X - 14;
+                frmConditionEscort.Width = this.Size.Width - 32;
+                frmConditionEscort.Location = new Point(frmConditionEscort.Location.X, this.Size.Height - 217);
+                lblConditionEscortTooltip.Width = frmConditionEscort.Size.Width - lblConditionEscortTooltip.Location.X - 14;
+                frmConditionGameEvent.Width = this.Size.Width - 32;
+                frmConditionGameEvent.Location = new Point(frmConditionGameEvent.Location.X, this.Size.Height - 217);
+                lblConditionGameEventTooltip.Width = frmConditionGameEvent.Size.Width - lblConditionGameEventTooltip.Location.X - 14;
+                frmConditionInstanceData.Width = this.Size.Width - 32;
+                frmConditionInstanceData.Location = new Point(frmConditionInstanceData.Location.X, this.Size.Height - 217);
+                lblConditionInstanceDataTooltip.Width = frmConditionInstanceData.Size.Width - lblConditionInstanceDataTooltip.Location.X - 14;
+                frmConditionInstanceScript.Width = this.Size.Width - 32;
+                frmConditionInstanceScript.Location = new Point(frmConditionInstanceScript.Location.X, this.Size.Height - 217);
+                lblConditionInstanceScriptTooltip.Width = frmConditionInstanceScript.Size.Width - lblConditionInstanceScriptTooltip.Location.X - 14;
+                frmConditionItem.Width = this.Size.Width - 32;
+                frmConditionItem.Location = new Point(frmConditionItem.Location.X, this.Size.Height - 217);
+                lblConditionItemTooltip.Width = frmConditionItem.Size.Width - lblConditionItemTooltip.Location.X - 14;
+                frmConditionMapEventData.Width = this.Size.Width - 32;
+                frmConditionMapEventData.Location = new Point(frmConditionMapEventData.Location.X, this.Size.Height - 217);
+                lblConditionMapEventDataTooltip.Width = frmConditionMapEventData.Size.Width - lblConditionMapEventDataTooltip.Location.X - 14;
+                frmConditionMapEventTargets.Width = this.Size.Width - 32;
+                frmConditionMapEventTargets.Location = new Point(frmConditionMapEventTargets.Location.X, this.Size.Height - 217);
+                lblConditionMapEventTargetsTooltip.Width = frmConditionMapEventTargets.Size.Width - lblConditionMapEventTargetsTooltip.Location.X - 14;
+                frmConditionNearbyCreature.Width = this.Size.Width - 32;
+                frmConditionNearbyCreature.Location = new Point(frmConditionNearbyCreature.Location.X, this.Size.Height - 217);
+                lblConditionNearbyCreatureTooltip.Width = frmConditionNearbyCreature.Size.Width - lblConditionNearbyCreatureTooltip.Location.X - 14;
+                frmConditionNearbyObject.Width = this.Size.Width - 32;
+                frmConditionNearbyObject.Location = new Point(frmConditionNearbyObject.Location.X, this.Size.Height - 217);
+                lblConditionNearbyObjectTooltip.Width = frmConditionNearbyObject.Size.Width - lblConditionNearbyObjectTooltip.Location.X - 14;
+                frmConditionNot.Width = this.Size.Width - 32;
+                frmConditionNot.Location = new Point(frmConditionNot.Location.X, this.Size.Height - 217);
+                lblConditionNotTooltip.Width = frmConditionNot.Size.Width - lblConditionNotTooltip.Location.X - 14;
+                frmConditionQuest.Width = this.Size.Width - 32;
+                frmConditionQuest.Location = new Point(frmConditionQuest.Location.X, this.Size.Height - 217);
+                lblConditionQuestTooltip.Width = frmConditionQuest.Size.Width - lblConditionQuestTooltip.Location.X - 14;
+                frmConditionRaceClass.Width = this.Size.Width - 32;
+                frmConditionRaceClass.Location = new Point(frmConditionRaceClass.Location.X, this.Size.Height - 217);
+                lblConditionRaceClassTooltip.Width = frmConditionRaceClass.Size.Width - lblConditionRaceClassTooltip.Location.X - 14;
+                frmConditionReputation.Width = this.Size.Width - 32;
+                frmConditionReputation.Location = new Point(frmConditionReputation.Location.X, this.Size.Height - 217);
+                lblConditionReputationTooltip.Width = frmConditionReputation.Size.Width - lblConditionReputationTooltip.Location.X - 14;
+                frmConditionSkill.Width = this.Size.Width - 32;
+                frmConditionSkill.Location = new Point(frmConditionSkill.Location.X, this.Size.Height - 217);
+                lblConditionSkillTooltip.Width = frmConditionSkill.Size.Width - lblConditionSkillTooltip.Location.X - 14;
+                frmConditionTeam.Width = this.Size.Width - 32;
+                frmConditionTeam.Location = new Point(frmConditionTeam.Location.X, this.Size.Height - 217);
+                lblConditionTeamTooltip.Width = frmConditionTeam.Size.Width - lblConditionTeamTooltip.Location.X - 14;
+                frmConditionWarEffort.Width = this.Size.Width - 32;
+                frmConditionWarEffort.Location = new Point(frmConditionWarEffort.Location.X, this.Size.Height - 217);
+                lblConditionWarEffortTooltip.Width = frmConditionWarEffort.Size.Width - lblConditionWarEffortTooltip.Location.X - 14;
+                frmConditionUnknown.Width = this.Size.Width - 32;
+                frmConditionUnknown.Location = new Point(frmConditionUnknown.Location.X, this.Size.Height - 217);
+                lblConditionUnknownTooltip.Width = frmConditionUnknown.Size.Width - lblConditionUnknownTooltip.Location.X - 14;
+                
+                lblNoSelection.Location = new Point(frmConditionUnknown.Location.X + (frmConditionUnknown.Size.Width / 2) - (lblNoSelection.Size.Width / 2), frmConditionUnknown.Location.Y + (frmConditionUnknown.Size.Height / 2) - (lblNoSelection.Size.Height / 2));
+
+                txtConditionId.Location = new Point(txtConditionId.Location.X, frmConditionUnknown.Location.Y - 28);
+                cmbConditionType.Location = new Point(cmbConditionType.Location.X, frmConditionUnknown.Location.Y - 28);
+                cmbConditionType.Width = this.Size.Width - 479;
+                chkConditionFlag1.Location = new Point(cmbConditionType.Location.X + cmbConditionType.Size.Width + 7, cmbConditionType.Location.Y + 3);
+                chkConditionFlag2.Location = new Point(chkConditionFlag1.Location.X + chkConditionFlag1.Size.Width + 6, cmbConditionType.Location.Y + 3);
+                btnSaveAll.Location = new Point(this.Size.Width - btnSaveAll.Size.Width - 20, frmConditionUnknown.Location.Y - 28);
+                btnSave.Location = new Point(btnSaveAll.Location.X - 81, frmConditionUnknown.Location.Y - 28);
+
+                lstData.Width = this.Size.Width - 32;
+                lstData.Height = this.Size.Height - lstData.Location.Y - 5 - (this.Size.Height - txtConditionId.Location.Y);
+                btnCancel.Location = new Point(this.Size.Width - btnCancel.Size.Width - 20, frmConditionUnknown.Location.Y + frmConditionUnknown.Size.Height + 5);
+                btnSelect.Location = new Point(btnCancel.Location.X - btnSelect.Size.Width - 6, btnCancel.Location.Y);
+                btnSelectNone.Location = new Point(btnSelect.Location.X - btnSelectNone.Size.Width - 6, btnCancel.Location.Y);
+                btnEditAdd.Location = new Point(btnEditAdd.Location.X, btnCancel.Location.Y);
+                btnDelete.Location = new Point(btnDelete.Location.X, btnCancel.Location.Y);
+                btnSearch.Location = new Point(lstData.Size.Width + lstData.Location.X - btnSearch.Size.Width, btnSearch.Location.Y);
+                txtSearch.Width = btnSearch.Location.X - txtSearch.Location.X - 7;
+                btnSelectUnchanged.Location = new Point(btnSelectNone.Location.X - btnSelectUnchanged.Size.Width - 6, btnCancel.Location.Y);
+            }
+            else
+            {
+                btnEditAdd.Location = new Point(btnEditAdd.Location.X, lstData.Location.Y + lstData.Height + 6);
+                btnDelete.Location = new Point(btnDelete.Location.X, lstData.Location.Y + lstData.Height + 6);
+            }
 
             lstData.Columns[1].Width = lstData.ClientSize.Width - lstData.Columns[0].Width - lstData.Columns[2].Width - lstData.Columns[3].Width - lstData.Columns[4].Width - lstData.Columns[5].Width - lstData.Columns[6].Width;
-            btnEditAdd.Location = new Point(btnEditAdd.Location.X, lstData.Location.Y + lstData.Height + 5);
-            btnDelete.Location = new Point(btnDelete.Location.X, lstData.Location.Y + lstData.Height + 5);
         }
         private void UpdateSelectedItem()
         {
@@ -1117,18 +1202,7 @@ namespace ScriptEditor
             if (!editMode)
             {
                 editMode = true;
-
-                lstData.Height = 123;
-                lstData.Width = this.Size.Width - 30;
-                btnEditAdd.Location = new Point(btnEditAdd.Location.X, 367);
-                btnDelete.Location = new Point(btnDelete.Location.X, 367);
-                this.FormBorderStyle = FormBorderStyle.FixedSingle;
-                this.Size = new Size(680, 420);
-                btnSearch.Location = new Point(579, 28);
-                txtSearch.Width = 560;
-                btnCancel.Location = new Point(586, 367);
-                btnSelect.Location = new Point(505, 367);
-                btnSelectNone.Location = new Point(411, 367);
+                FormConditionFinder_ResizeEnd(null, null);
 
                 txtConditionId.Visible = true;
                 chkConditionFlag1.Visible = true;

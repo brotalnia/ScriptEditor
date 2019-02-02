@@ -80,7 +80,7 @@
             // 
             // btnSelectNone
             // 
-            this.btnSelectNone.Location = new System.Drawing.Point(411, 367);
+            this.btnSelectNone.Location = new System.Drawing.Point(412, 367);
             this.btnSelectNone.Name = "btnSelectNone";
             this.btnSelectNone.Size = new System.Drawing.Size(88, 23);
             this.btnSelectNone.TabIndex = 3;
@@ -90,7 +90,7 @@
             // 
             // btnSelect
             // 
-            this.btnSelect.Location = new System.Drawing.Point(505, 367);
+            this.btnSelect.Location = new System.Drawing.Point(506, 367);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(75, 23);
             this.btnSelect.TabIndex = 4;
@@ -109,7 +109,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(586, 367);
+            this.btnCancel.Location = new System.Drawing.Point(587, 367);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 6;
@@ -119,7 +119,7 @@
             // 
             // btnSelectUnchanged
             // 
-            this.btnSelectUnchanged.Location = new System.Drawing.Point(305, 367);
+            this.btnSelectUnchanged.Location = new System.Drawing.Point(306, 367);
             this.btnSelectUnchanged.Name = "btnSelectUnchanged";
             this.btnSelectUnchanged.Size = new System.Drawing.Size(100, 23);
             this.btnSelectUnchanged.TabIndex = 8;
