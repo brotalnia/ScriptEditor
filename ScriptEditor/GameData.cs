@@ -250,7 +250,7 @@ namespace ScriptEditor
 
             return "";
         }
-        public static string FindCreatureSpellsTemplateName(uint id)
+        public static string FindCreatureSpellsListName(uint id)
         {
             foreach (CreatureSpellsInfo template in CreatureSpellsInfoList)
             {
@@ -346,7 +346,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT `entry`, `minlevel`, `maxlevel`, `rank`, `name`, `spells_template` FROM `creature_template` t1 WHERE `patch`=(SELECT max(`patch`) FROM `creature_template` t2 WHERE t1.`entry`=t2.`entry`) ORDER BY `entry`";
+            command.CommandText = "SELECT `entry`, `level_min`, `level_max`, `rank`, `name`, `spell_list_id` FROM `creature_template` t1 WHERE `patch`=(SELECT max(`patch`) FROM `creature_template` t2 WHERE t1.`entry`=t2.`entry`) ORDER BY `entry`";
             try
             {
                 conn.Open();
@@ -1801,16 +1801,16 @@ namespace ScriptEditor
         public uint MinLevel;
         public uint MaxLevel;
         public uint Rank;
-        public uint SpellsTemplate;
+        public uint SpellListId;
         public string Name;
-        public CreatureInfo(uint id, uint minlevel, uint maxlevel, uint rank, uint spellstemplate, string name)
+        public CreatureInfo(uint id, uint minlevel, uint maxlevel, uint rank, uint spelllistid, string name)
         {
             ID = id;
             Name = name;
             MinLevel = minlevel;
             MaxLevel = maxlevel;
             Rank = rank;
-            SpellsTemplate = spellstemplate;
+            SpellListId = spelllistid;
         }
     }
     public struct SpellInfo

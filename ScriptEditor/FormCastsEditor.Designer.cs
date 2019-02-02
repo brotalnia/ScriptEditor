@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.txtFilter = new System.Windows.Forms.TextBox();
-            this.lstSpellTemplates = new System.Windows.Forms.ListBox();
+            this.lstSpellLists = new System.Windows.Forms.ListBox();
             this.btnFilter = new System.Windows.Forms.Button();
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
@@ -128,14 +128,14 @@
             this.txtFilter.TabIndex = 0;
             this.txtFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFilter_KeyPress);
             // 
-            // lstSpellTemplates
+            // lstSpellLists
             // 
-            this.lstSpellTemplates.FormattingEnabled = true;
-            this.lstSpellTemplates.Location = new System.Drawing.Point(12, 37);
-            this.lstSpellTemplates.Name = "lstSpellTemplates";
-            this.lstSpellTemplates.Size = new System.Drawing.Size(270, 381);
-            this.lstSpellTemplates.TabIndex = 1;
-            this.lstSpellTemplates.SelectedIndexChanged += new System.EventHandler(this.lstSpellTemplates_SelectedIndexChanged);
+            this.lstSpellLists.FormattingEnabled = true;
+            this.lstSpellLists.Location = new System.Drawing.Point(12, 37);
+            this.lstSpellLists.Name = "lstSpellLists";
+            this.lstSpellLists.Size = new System.Drawing.Size(270, 381);
+            this.lstSpellLists.TabIndex = 1;
+            this.lstSpellLists.SelectedIndexChanged += new System.EventHandler(this.lstSpellLists_SelectedIndexChanged);
             // 
             // btnFilter
             // 
@@ -1034,7 +1034,7 @@
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.btnFilter);
-            this.Controls.Add(this.lstSpellTemplates);
+            this.Controls.Add(this.lstSpellLists);
             this.Controls.Add(this.txtFilter);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = global::ScriptEditor.Properties.Resources.mage;
@@ -1052,7 +1052,7 @@
         #endregion
 
         private System.Windows.Forms.TextBox txtFilter;
-        private System.Windows.Forms.ListBox lstSpellTemplates;
+        private System.Windows.Forms.ListBox lstSpellLists;
         private System.Windows.Forms.Button btnFilter;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label lblName;

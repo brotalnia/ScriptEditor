@@ -773,6 +773,21 @@ namespace ScriptEditor
                     AddConditionToListView(condition);
             }
         }
+        protected override void AddByText(string searchText)
+        {
+            dontUpdate = true;
+            ResetBaseControls();
+            ResetAndHideConditionSpecificForms();
+            dontUpdate = false;
+
+            lstData.Columns[6].Width = 75;
+
+            foreach (ConditionInfo condition in GameData.ConditionInfoList)
+            {
+                if (GameData.FindConditionTypeName(condition.Type).Contains(searchText))
+                    AddConditionToListView(condition);
+            }
+        }
         private void AddConditionToListView(ConditionInfo condition)
         {
             ListViewItem lvi = new ListViewItem();

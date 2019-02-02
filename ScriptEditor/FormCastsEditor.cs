@@ -34,8 +34,8 @@ namespace ScriptEditor
             {
                 txtFilter.Text = ReturnValue.ToString();
                 btnFilter_Click(this, new EventArgs());
-                if (lstSpellTemplates.Items.Count > 0)
-                    lstSpellTemplates.SelectedIndex = 0;
+                if (lstSpellLists.Items.Count > 0)
+                    lstSpellLists.SelectedIndex = 0;
             }
             dontUpdate = false;
         }
@@ -252,7 +252,7 @@ namespace ScriptEditor
         {
             dontUpdate = true;
 
-            lstSpellTemplates.Items.Clear();
+            lstSpellLists.Items.Clear();
             frmData.Enabled = false;
             txtName.Enabled = false;
             cmbUsedBy.Enabled = false;
@@ -269,7 +269,7 @@ namespace ScriptEditor
                     if (template.ID == id)
                     {
                         ListBoxItem lbi = new ListBoxItem(template.ID, template.Name, template);
-                        lstSpellTemplates.Items.Add(lbi);
+                        lstSpellLists.Items.Add(lbi);
                     }
                 }
             }
@@ -280,7 +280,7 @@ namespace ScriptEditor
                     if (template.Name.Contains(txtFilter.Text))
                     {
                         ListBoxItem lbi = new ListBoxItem(template.ID, template.Name, template);
-                        lstSpellTemplates.Items.Add(lbi);
+                        lstSpellLists.Items.Add(lbi);
                     }
                 }
             }
@@ -297,11 +297,11 @@ namespace ScriptEditor
             }
         }
 
-        private void lstSpellTemplates_SelectedIndexChanged(object sender, EventArgs e)
+        private void lstSpellLists_SelectedIndexChanged(object sender, EventArgs e)
         {
             ResetAllControls();
 
-            if (lstSpellTemplates.SelectedItems.Count == 0)
+            if (lstSpellLists.SelectedItems.Count == 0)
             {
                 frmData.Enabled = false;
                 txtName.Enabled = false;
@@ -311,14 +311,14 @@ namespace ScriptEditor
 
             dontUpdate = true;
 
-            ListBoxItem lbi = lstSpellTemplates.SelectedItem as ListBoxItem;
+            ListBoxItem lbi = lstSpellLists.SelectedItem as ListBoxItem;
 
             txtName.Text = lbi.Name;
 
             // Find creatures who use this template and add them to combo box.
             foreach (CreatureInfo creature in GameData.CreatureInfoList)
             {
-                if (creature.SpellsTemplate == lbi.Id)
+                if (creature.SpellListId == lbi.Id)
                 {
                     cmbUsedBy.Items.Add(creature.Name + " (" + creature.ID + ")");
                 }
@@ -450,18 +450,18 @@ namespace ScriptEditor
                 CreatureSpellsInfo new_template = new CreatureSpellsInfo(id, name);
                 GameData.CreatureSpellsInfoList.Add(new_template);
                 ListBoxItem lbi = new ListBoxItem(id, name, new_template);
-                lstSpellTemplates.Items.Add(lbi);
-                lstSpellTemplates.SelectedItem = lbi;
+                lstSpellLists.Items.Add(lbi);
+                lstSpellLists.SelectedItem = lbi;
                 NewTemplates.Add(id);
             }
         }
 
         private void btnCopy_Click(object sender, EventArgs e)
         {
-            if (lstSpellTemplates.SelectedItems.Count == 0)
+            if (lstSpellLists.SelectedItems.Count == 0)
                 return;
 
-            ListBoxItem selectedItem = lstSpellTemplates.SelectedItem as ListBoxItem;
+            ListBoxItem selectedItem = lstSpellLists.SelectedItem as ListBoxItem;
 
             string name = selectedItem.Name;
             DialogResult result_name = Helpers.ShowInputDialog(ref name, "Template Name");
@@ -490,18 +490,18 @@ namespace ScriptEditor
                 CreatureSpellsInfo new_template = new CreatureSpellsInfo(id, name, selectedItem.Template);
                 GameData.CreatureSpellsInfoList.Add(new_template);
                 ListBoxItem lbi = new ListBoxItem(id, name, new_template);
-                lstSpellTemplates.Items.Add(lbi);
-                lstSpellTemplates.SelectedItem = lbi;
+                lstSpellLists.Items.Add(lbi);
+                lstSpellLists.SelectedItem = lbi;
                 NewTemplates.Add(id);
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (lstSpellTemplates.SelectedItems.Count == 0)
+            if (lstSpellLists.SelectedItems.Count == 0)
                 return;
 
-            ListBoxItem selectedItem = lstSpellTemplates.SelectedItem as ListBoxItem;
+            ListBoxItem selectedItem = lstSpellLists.SelectedItem as ListBoxItem;
             DeletedTemplates.Add(selectedItem.Id);
 
             foreach (CreatureSpellsInfo template in GameData.CreatureSpellsInfoList)
@@ -512,8 +512,8 @@ namespace ScriptEditor
                     break;
                 }
             }
-            lstSpellTemplates.SelectedIndex = -1;
-            lstSpellTemplates.Items.Remove(selectedItem);
+            lstSpellLists.SelectedIndex = -1;
+            lstSpellLists.Items.Remove(selectedItem);
         }
         private string GenerateSaveTemplateQuery(CreatureSpellsInfo template)
         {
@@ -522,10 +522,10 @@ namespace ScriptEditor
         }
         private void btnSaveThis_Click(object sender, EventArgs e)
         {
-            if (lstSpellTemplates.SelectedItems.Count == 0)
+            if (lstSpellLists.SelectedItems.Count == 0)
                 return;
 
-            ListBoxItem selectedItem = lstSpellTemplates.SelectedItem as ListBoxItem;
+            ListBoxItem selectedItem = lstSpellLists.SelectedItem as ListBoxItem;
 
             string query = GenerateSaveTemplateQuery(selectedItem.Template);
             if (Helpers.ShowSaveDialog(ref query) == DialogResult.OK)
@@ -586,10 +586,10 @@ namespace ScriptEditor
             string query = "";
 
             if (deleted_templates.Length > 0)
-                query = "-- Removing unused creature spell templates.\n" + deleted_templates + "\n";
+                query = "-- Removing unused creature spell lists.\n" + deleted_templates + "\n";
 
             if (new_templates.Length > 0)
-                query += "-- New creature spell templates.\n" + new_templates;
+                query += "-- New creature spell lists.\n" + new_templates;
 
             if (Helpers.ShowSaveDialog(ref query) == DialogResult.OK)
             {
@@ -612,10 +612,10 @@ namespace ScriptEditor
         // Generic function for setting script field to specified value;
         private void SetScriptFieldFromValue(float fieldvalue, string fieldname)
         {
-            if (lstSpellTemplates.SelectedItems.Count > 0)
+            if (lstSpellLists.SelectedItems.Count > 0)
             {
                 // Get the selected item in the listview.
-                ListBoxItem currentItem = lstSpellTemplates.SelectedItem  as ListBoxItem;
+                ListBoxItem currentItem = lstSpellLists.SelectedItem  as ListBoxItem;
 
                 // Get the associated ScriptAction.
                 CreatureSpellsInfo currentTemplate = currentItem.Template;
@@ -691,10 +691,10 @@ namespace ScriptEditor
         // Generic function for getting int value in field.
         private int GetScriptFieldValue(string fieldname)
         {
-            if (lstSpellTemplates.SelectedItems.Count > 0)
+            if (lstSpellLists.SelectedItems.Count > 0)
             {
                 // Get the selected item in the listview.
-                ListBoxItem currentItem = lstSpellTemplates.SelectedItem as ListBoxItem;
+                ListBoxItem currentItem = lstSpellLists.SelectedItem as ListBoxItem;
 
                 // Get the associated ScriptAction.
                 CreatureSpellsInfo currentTemplate = currentItem.Template;
@@ -712,18 +712,18 @@ namespace ScriptEditor
         }
         private void txtName_Leave(object sender, EventArgs e)
         {
-            if ((lstSpellTemplates.SelectedItems.Count == 0) || (txtName.Text.Length < 1))
+            if ((lstSpellLists.SelectedItems.Count == 0) || (txtName.Text.Length < 1))
                 return;
 
-            ListBoxItem selectedItem = lstSpellTemplates.SelectedItem as ListBoxItem;
+            ListBoxItem selectedItem = lstSpellLists.SelectedItem as ListBoxItem;
 
             selectedItem.Template.Name = txtName.Text;
             selectedItem.Name = txtName.Text;
 
             // Update text on the listbox.
-            int index = lstSpellTemplates.SelectedIndex;
-            lstSpellTemplates.Items.RemoveAt(index);
-            lstSpellTemplates.Items.Insert(index, selectedItem);
+            int index = lstSpellLists.SelectedIndex;
+            lstSpellLists.Items.RemoveAt(index);
+            lstSpellLists.Items.Insert(index, selectedItem);
         }
 
         private void txtSpell1Probability_Leave(object sender, EventArgs e)
@@ -968,7 +968,7 @@ namespace ScriptEditor
 
         private void btnSpell1Id_Click(object sender, EventArgs e)
         {
-            if (lstSpellTemplates.SelectedItems.Count == 0)
+            if (lstSpellLists.SelectedItems.Count == 0)
                 return;
 
             string old_text = btnSpell1Id.Text;
@@ -980,7 +980,7 @@ namespace ScriptEditor
 
             dontUpdate = true;
 
-            ListBoxItem currentItem = lstSpellTemplates.SelectedItem as ListBoxItem;
+            ListBoxItem currentItem = lstSpellLists.SelectedItem as ListBoxItem;
 
             if (btnSpell1Id.Text == "-NONE-")
             {
@@ -1021,7 +1021,7 @@ namespace ScriptEditor
 
         private void btnSpell2Id_Click(object sender, EventArgs e)
         {
-            if (lstSpellTemplates.SelectedItems.Count == 0)
+            if (lstSpellLists.SelectedItems.Count == 0)
                 return;
 
             string old_text = btnSpell2Id.Text;
@@ -1033,7 +1033,7 @@ namespace ScriptEditor
 
             dontUpdate = true;
 
-            ListBoxItem currentItem = lstSpellTemplates.SelectedItem as ListBoxItem;
+            ListBoxItem currentItem = lstSpellLists.SelectedItem as ListBoxItem;
 
             if (btnSpell2Id.Text == "-NONE-")
             {
@@ -1074,7 +1074,7 @@ namespace ScriptEditor
 
         private void btnSpell3Id_Click(object sender, EventArgs e)
         {
-            if (lstSpellTemplates.SelectedItems.Count == 0)
+            if (lstSpellLists.SelectedItems.Count == 0)
                 return;
 
             string old_text = btnSpell3Id.Text;
@@ -1086,7 +1086,7 @@ namespace ScriptEditor
 
             dontUpdate = true;
 
-            ListBoxItem currentItem = lstSpellTemplates.SelectedItem as ListBoxItem;
+            ListBoxItem currentItem = lstSpellLists.SelectedItem as ListBoxItem;
 
             if (btnSpell3Id.Text == "-NONE-")
             {
@@ -1127,7 +1127,7 @@ namespace ScriptEditor
 
         private void btnSpell4Id_Click(object sender, EventArgs e)
         {
-            if (lstSpellTemplates.SelectedItems.Count == 0)
+            if (lstSpellLists.SelectedItems.Count == 0)
                 return;
 
             string old_text = btnSpell4Id.Text;
@@ -1139,7 +1139,7 @@ namespace ScriptEditor
 
             dontUpdate = true;
 
-            ListBoxItem currentItem = lstSpellTemplates.SelectedItem as ListBoxItem;
+            ListBoxItem currentItem = lstSpellLists.SelectedItem as ListBoxItem;
 
             if (btnSpell4Id.Text == "-NONE-")
             {
@@ -1180,7 +1180,7 @@ namespace ScriptEditor
 
         private void btnSpell5Id_Click(object sender, EventArgs e)
         {
-            if (lstSpellTemplates.SelectedItems.Count == 0)
+            if (lstSpellLists.SelectedItems.Count == 0)
                 return;
 
             string old_text = btnSpell5Id.Text;
@@ -1192,7 +1192,7 @@ namespace ScriptEditor
 
             dontUpdate = true;
 
-            ListBoxItem currentItem = lstSpellTemplates.SelectedItem as ListBoxItem;
+            ListBoxItem currentItem = lstSpellLists.SelectedItem as ListBoxItem;
 
             if (btnSpell5Id.Text == "-NONE-")
             {
@@ -1233,7 +1233,7 @@ namespace ScriptEditor
 
         private void btnSpell6Id_Click(object sender, EventArgs e)
         {
-            if (lstSpellTemplates.SelectedItems.Count == 0)
+            if (lstSpellLists.SelectedItems.Count == 0)
                 return;
 
             string old_text = btnSpell6Id.Text;
@@ -1245,7 +1245,7 @@ namespace ScriptEditor
 
             dontUpdate = true;
 
-            ListBoxItem currentItem = lstSpellTemplates.SelectedItem as ListBoxItem;
+            ListBoxItem currentItem = lstSpellLists.SelectedItem as ListBoxItem;
 
             if (btnSpell6Id.Text == "-NONE-")
             {
@@ -1286,7 +1286,7 @@ namespace ScriptEditor
 
         private void btnSpell7Id_Click(object sender, EventArgs e)
         {
-            if (lstSpellTemplates.SelectedItems.Count == 0)
+            if (lstSpellLists.SelectedItems.Count == 0)
                 return;
 
             string old_text = btnSpell7Id.Text;
@@ -1298,7 +1298,7 @@ namespace ScriptEditor
 
             dontUpdate = true;
 
-            ListBoxItem currentItem = lstSpellTemplates.SelectedItem as ListBoxItem;
+            ListBoxItem currentItem = lstSpellLists.SelectedItem as ListBoxItem;
 
             if (btnSpell7Id.Text == "-NONE-")
             {
@@ -1339,7 +1339,7 @@ namespace ScriptEditor
 
         private void btnSpell8Id_Click(object sender, EventArgs e)
         {
-            if (lstSpellTemplates.SelectedItems.Count == 0)
+            if (lstSpellLists.SelectedItems.Count == 0)
                 return;
 
             string old_text = btnSpell8Id.Text;
@@ -1351,7 +1351,7 @@ namespace ScriptEditor
 
             dontUpdate = true;
 
-            ListBoxItem currentItem = lstSpellTemplates.SelectedItem as ListBoxItem;
+            ListBoxItem currentItem = lstSpellLists.SelectedItem as ListBoxItem;
 
             if (btnSpell8Id.Text == "-NONE-")
             {
@@ -1392,10 +1392,10 @@ namespace ScriptEditor
 
         private void btnSpell1Edit_Click(object sender, EventArgs e)
         {
-            if (lstSpellTemplates.SelectedItems.Count == 0)
+            if (lstSpellLists.SelectedItems.Count == 0)
                 return;
 
-            ListBoxItem currentItem = lstSpellTemplates.SelectedItem as ListBoxItem;
+            ListBoxItem currentItem = lstSpellLists.SelectedItem as ListBoxItem;
 
             FormCastFlags flags_form = new FormCastFlags();
             if (flags_form.ShowDialog(ref currentItem.Template.CastFlags1, ref currentItem.Template.ScriptId1, currentItem.Template.CastTarget1, ref currentItem.Template.TargetParam1_1, ref currentItem.Template.TargetParam2_1) == true)
@@ -1404,10 +1404,10 @@ namespace ScriptEditor
 
         private void btnSpell2Edit_Click(object sender, EventArgs e)
         {
-            if (lstSpellTemplates.SelectedItems.Count == 0)
+            if (lstSpellLists.SelectedItems.Count == 0)
                 return;
 
-            ListBoxItem currentItem = lstSpellTemplates.SelectedItem as ListBoxItem;
+            ListBoxItem currentItem = lstSpellLists.SelectedItem as ListBoxItem;
 
             FormCastFlags flags_form = new FormCastFlags();
             if (flags_form.ShowDialog(ref currentItem.Template.CastFlags2, ref currentItem.Template.ScriptId2, currentItem.Template.CastTarget2, ref currentItem.Template.TargetParam1_2, ref currentItem.Template.TargetParam2_2) == true)
@@ -1416,10 +1416,10 @@ namespace ScriptEditor
 
         private void btnSpell3Edit_Click(object sender, EventArgs e)
         {
-            if (lstSpellTemplates.SelectedItems.Count == 0)
+            if (lstSpellLists.SelectedItems.Count == 0)
                 return;
 
-            ListBoxItem currentItem = lstSpellTemplates.SelectedItem as ListBoxItem;
+            ListBoxItem currentItem = lstSpellLists.SelectedItem as ListBoxItem;
 
             FormCastFlags flags_form = new FormCastFlags();
             if (flags_form.ShowDialog(ref currentItem.Template.CastFlags3, ref currentItem.Template.ScriptId3, currentItem.Template.CastTarget3, ref currentItem.Template.TargetParam1_3, ref currentItem.Template.TargetParam2_3) == true)
@@ -1428,10 +1428,10 @@ namespace ScriptEditor
 
         private void btnSpell4Edit_Click(object sender, EventArgs e)
         {
-            if (lstSpellTemplates.SelectedItems.Count == 0)
+            if (lstSpellLists.SelectedItems.Count == 0)
                 return;
 
-            ListBoxItem currentItem = lstSpellTemplates.SelectedItem as ListBoxItem;
+            ListBoxItem currentItem = lstSpellLists.SelectedItem as ListBoxItem;
 
             FormCastFlags flags_form = new FormCastFlags();
             if (flags_form.ShowDialog(ref currentItem.Template.CastFlags4, ref currentItem.Template.ScriptId4, currentItem.Template.CastTarget4, ref currentItem.Template.TargetParam1_4, ref currentItem.Template.TargetParam2_4) == true)
@@ -1440,10 +1440,10 @@ namespace ScriptEditor
 
         private void btnSpell5Edit_Click(object sender, EventArgs e)
         {
-            if (lstSpellTemplates.SelectedItems.Count == 0)
+            if (lstSpellLists.SelectedItems.Count == 0)
                 return;
 
-            ListBoxItem currentItem = lstSpellTemplates.SelectedItem as ListBoxItem;
+            ListBoxItem currentItem = lstSpellLists.SelectedItem as ListBoxItem;
 
             FormCastFlags flags_form = new FormCastFlags();
             if (flags_form.ShowDialog(ref currentItem.Template.CastFlags5, ref currentItem.Template.ScriptId5, currentItem.Template.CastTarget5, ref currentItem.Template.TargetParam1_5, ref currentItem.Template.TargetParam2_5) == true)
@@ -1452,10 +1452,10 @@ namespace ScriptEditor
 
         private void btnSpell6Edit_Click(object sender, EventArgs e)
         {
-            if (lstSpellTemplates.SelectedItems.Count == 0)
+            if (lstSpellLists.SelectedItems.Count == 0)
                 return;
 
-            ListBoxItem currentItem = lstSpellTemplates.SelectedItem as ListBoxItem;
+            ListBoxItem currentItem = lstSpellLists.SelectedItem as ListBoxItem;
 
             FormCastFlags flags_form = new FormCastFlags();
             if (flags_form.ShowDialog(ref currentItem.Template.CastFlags6, ref currentItem.Template.ScriptId6, currentItem.Template.CastTarget6, ref currentItem.Template.TargetParam1_6, ref currentItem.Template.TargetParam2_6) == true)
@@ -1464,10 +1464,10 @@ namespace ScriptEditor
 
         private void btnSpell7Edit_Click(object sender, EventArgs e)
         {
-            if (lstSpellTemplates.SelectedItems.Count == 0)
+            if (lstSpellLists.SelectedItems.Count == 0)
                 return;
 
-            ListBoxItem currentItem = lstSpellTemplates.SelectedItem as ListBoxItem;
+            ListBoxItem currentItem = lstSpellLists.SelectedItem as ListBoxItem;
 
             FormCastFlags flags_form = new FormCastFlags();
             if (flags_form.ShowDialog(ref currentItem.Template.CastFlags7, ref currentItem.Template.ScriptId7, currentItem.Template.CastTarget7, ref currentItem.Template.TargetParam1_7, ref currentItem.Template.TargetParam2_7) == true)
@@ -1476,10 +1476,10 @@ namespace ScriptEditor
 
         private void btnSpell8Edit_Click(object sender, EventArgs e)
         {
-            if (lstSpellTemplates.SelectedItems.Count == 0)
+            if (lstSpellLists.SelectedItems.Count == 0)
                 return;
 
-            ListBoxItem currentItem = lstSpellTemplates.SelectedItem as ListBoxItem;
+            ListBoxItem currentItem = lstSpellLists.SelectedItem as ListBoxItem;
 
             FormCastFlags flags_form = new FormCastFlags();
             if (flags_form.ShowDialog(ref currentItem.Template.CastFlags8, ref currentItem.Template.ScriptId8, currentItem.Template.CastTarget8, ref currentItem.Template.TargetParam1_8, ref currentItem.Template.TargetParam2_8) == true)
@@ -1495,9 +1495,9 @@ namespace ScriptEditor
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            if (lstSpellTemplates.SelectedItems.Count > 0)
+            if (lstSpellLists.SelectedItems.Count > 0)
             {
-                ListBoxItem selectedItem = lstSpellTemplates.SelectedItem as ListBoxItem;
+                ListBoxItem selectedItem = lstSpellLists.SelectedItem as ListBoxItem;
                 ReturnValue = selectedItem.Id;
                 DialogResult = DialogResult.OK;
                 Close();

@@ -85,7 +85,7 @@ namespace ScriptEditor
         "Set Invincibility HP",     // 52
         "Start Game Event",         // 53
         "Set Server Variable",      // 54
-        "Set Spells Template",      // 55
+        "Set Spells List",          // 55
         "Remove Guardians",         // 56
         "Add Spell Cooldown",       // 57
         "Remove Spell Cooldown",    // 58
@@ -756,15 +756,15 @@ namespace ScriptEditor
             frmCommandGameEvent.Visible = false;
 
             // Set Creature Spells Template (55)
-            btnSetSpellsTemplate1.Text = "-NONE-";
-            btnSetSpellsTemplate2.Text = "-NONE-";
-            btnSetSpellsTemplate3.Text = "-NONE-";
-            btnSetSpellsTemplate4.Text = "-NONE-";
-            txtSetSpellsTemplateChance1.Text = "";
-            txtSetSpellsTemplateChance2.Text = "";
-            txtSetSpellsTemplateChance3.Text = "";
-            txtSetSpellsTemplateChance4.Text = "";
-            frmCommandSetSpellsTemplate.Visible = false;
+            btnSetSpellsList1.Text = "-NONE-";
+            btnSetSpellsList2.Text = "-NONE-";
+            btnSetSpellsList3.Text = "-NONE-";
+            btnSetSpellsList4.Text = "-NONE-";
+            txtSetSpellsListChance1.Text = "";
+            txtSetSpellsListChance2.Text = "";
+            txtSetSpellsListChance3.Text = "";
+            txtSetSpellsListChance4.Text = "";
+            frmCommandSetSpellsList.Visible = false;
 
             // Add Spell Cooldown (57)
             // Remove Spell Cooldown (58)
@@ -1767,25 +1767,25 @@ namespace ScriptEditor
                     frmCommandGameEvent.Visible = true;
                     break;
                 }
-                case 55: // Set Creature Spells Template
+                case 55: // Set Creature Spells List
                 {
                     uint template1 = selectedAction.Datalong;
                     if (template1 > 0)
-                        btnSetSpellsTemplate1.Text = GameData.FindCreatureSpellsTemplateName(template1) + " (" + template1.ToString() + ")";
+                        btnSetSpellsList1.Text = GameData.FindCreatureSpellsListName(template1) + " (" + template1.ToString() + ")";
                     uint template2 = selectedAction.Datalong2;
                     if (template2 > 0)
-                        btnSetSpellsTemplate2.Text = GameData.FindCreatureSpellsTemplateName(template2) + " (" + template2.ToString() + ")";
+                        btnSetSpellsList2.Text = GameData.FindCreatureSpellsListName(template2) + " (" + template2.ToString() + ")";
                     uint template3 = selectedAction.Datalong3;
                     if (template3 > 0)
-                        btnSetSpellsTemplate3.Text = GameData.FindCreatureSpellsTemplateName(template3) + " (" + template3.ToString() + ")";
+                        btnSetSpellsList3.Text = GameData.FindCreatureSpellsListName(template3) + " (" + template3.ToString() + ")";
                     uint template4 = selectedAction.Datalong4;
                     if (template4 > 0)
-                        btnSetSpellsTemplate4.Text = GameData.FindCreatureSpellsTemplateName(template4) + " (" + template4.ToString() + ")";
-                    txtSetSpellsTemplateChance1.Text = selectedAction.Dataint.ToString();
-                    txtSetSpellsTemplateChance2.Text = selectedAction.Dataint2.ToString();
-                    txtSetSpellsTemplateChance3.Text = selectedAction.Dataint3.ToString();
-                    txtSetSpellsTemplateChance4.Text = selectedAction.Dataint4.ToString();
-                    frmCommandSetSpellsTemplate.Visible = true;
+                        btnSetSpellsList4.Text = GameData.FindCreatureSpellsListName(template4) + " (" + template4.ToString() + ")";
+                    txtSetSpellsListChance1.Text = selectedAction.Dataint.ToString();
+                    txtSetSpellsListChance2.Text = selectedAction.Dataint2.ToString();
+                    txtSetSpellsListChance3.Text = selectedAction.Dataint3.ToString();
+                    txtSetSpellsListChance4.Text = selectedAction.Dataint4.ToString();
+                    frmCommandSetSpellsList.Visible = true;
                     break;
                 }
                 case 57: // Add Spell Cooldown
@@ -4171,9 +4171,9 @@ namespace ScriptEditor
                 uint returnId = frm.ReturnValue;
 
                 if (returnId > 0)
-                    btnSetSpellsTemplate1.Text = GameData.FindCreatureSpellsTemplateName(returnId) + " (" + returnId.ToString() + ")";
+                    btnSetSpellsList1.Text = GameData.FindCreatureSpellsListName(returnId) + " (" + returnId.ToString() + ")";
                 else
-                    btnSetSpellsTemplate1.Text = "-NONE-";
+                    btnSetSpellsList1.Text = "-NONE-";
 
                 // Set the field value.
                 SetScriptFieldFromValue(returnId, "Datalong");
@@ -4187,9 +4187,9 @@ namespace ScriptEditor
                 uint returnId = frm.ReturnValue;
 
                 if (returnId > 0)
-                    btnSetSpellsTemplate2.Text = GameData.FindCreatureSpellsTemplateName(returnId) + " (" + returnId.ToString() + ")";
+                    btnSetSpellsList2.Text = GameData.FindCreatureSpellsListName(returnId) + " (" + returnId.ToString() + ")";
                 else
-                    btnSetSpellsTemplate2.Text = "-NONE-";
+                    btnSetSpellsList2.Text = "-NONE-";
 
                 // Set the field value.
                 SetScriptFieldFromValue(returnId, "Datalong2");
@@ -4203,9 +4203,9 @@ namespace ScriptEditor
                 uint returnId = frm.ReturnValue;
 
                 if (returnId > 0)
-                    btnSetSpellsTemplate3.Text = GameData.FindCreatureSpellsTemplateName(returnId) + " (" + returnId.ToString() + ")";
+                    btnSetSpellsList3.Text = GameData.FindCreatureSpellsListName(returnId) + " (" + returnId.ToString() + ")";
                 else
-                    btnSetSpellsTemplate3.Text = "-NONE-";
+                    btnSetSpellsList3.Text = "-NONE-";
 
                 // Set the field value.
                 SetScriptFieldFromValue(returnId, "Datalong3");
@@ -4219,9 +4219,9 @@ namespace ScriptEditor
                 uint returnId = frm.ReturnValue;
 
                 if (returnId > 0)
-                    btnSetSpellsTemplate4.Text = GameData.FindCreatureSpellsTemplateName(returnId) + " (" + returnId.ToString() + ")";
+                    btnSetSpellsList4.Text = GameData.FindCreatureSpellsListName(returnId) + " (" + returnId.ToString() + ")";
                 else
-                    btnSetSpellsTemplate4.Text = "-NONE-";
+                    btnSetSpellsList4.Text = "-NONE-";
 
                 // Set the field value.
                 SetScriptFieldFromValue(returnId, "Datalong4");
@@ -4229,19 +4229,19 @@ namespace ScriptEditor
         }
         private void txtSetSpellsTemplateChance1_Leave(object sender, EventArgs e)
         {
-            SetScriptFieldFromTextbox(txtSetSpellsTemplateChance1, "Dataint");
+            SetScriptFieldFromTextbox(txtSetSpellsListChance1, "Dataint");
         }
         private void txtSetSpellsTemplateChance2_Leave(object sender, EventArgs e)
         {
-            SetScriptFieldFromTextbox(txtSetSpellsTemplateChance2, "Dataint2");
+            SetScriptFieldFromTextbox(txtSetSpellsListChance2, "Dataint2");
         }
         private void txtSetSpellsTemplateChance3_Leave(object sender, EventArgs e)
         {
-            SetScriptFieldFromTextbox(txtSetSpellsTemplateChance3, "Dataint3");
+            SetScriptFieldFromTextbox(txtSetSpellsListChance3, "Dataint3");
         }
         private void txtSetSpellsTemplateChance4_Leave(object sender, EventArgs e)
         {
-            SetScriptFieldFromTextbox(txtSetSpellsTemplateChance4, "Dataint4");
+            SetScriptFieldFromTextbox(txtSetSpellsListChance4, "Dataint4");
         }
 
         // SCRIPT_COMMAND_ADD_SPELL_COOLDOWN (57)
