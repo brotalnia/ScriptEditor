@@ -12,10 +12,11 @@ namespace ScriptEditor
     static class Program
     {
         // MySQL connection data.
-        public static string connString = "Server=localhost;Database=mangos;Uid=root;Pwd=root;";
+        public static string connString = "Server=localhost;Database=mangos;Port=3306;Uid=root;Pwd=root;";
         public static string mysqlUser = "root";
         public static string mysqlPass = "root";
         public static string mysqlHost = "localhost";
+        public static string mysqlPort = "3306";
         public static string mysqlDB = "mangos";
 
         // Highlight non-default values.
@@ -103,6 +104,8 @@ namespace ScriptEditor
                     mysqlPass = line.Replace("Pass=", "");
                 else if (line.Contains("Host="))
                     mysqlHost = line.Replace("Host=", "");
+                else if (line.Contains("Port="))
+                    mysqlPort = line.Replace("Port=", "");
                 else if (line.Contains("DB="))
                     mysqlDB = line.Replace("DB=", "");
                 else if (line.Contains("Locale="))
@@ -111,7 +114,7 @@ namespace ScriptEditor
                     highlight = true;
             }
 
-            connString = "Server=" + mysqlHost + ";Database=" + mysqlDB + ";Uid=" + mysqlUser + ";Pwd=" + mysqlPass + ";";
+            connString = "Server=" + mysqlHost + ";Database=" + mysqlDB + ";Port=" + mysqlPort + ";Uid=" + mysqlUser + ";Pwd=" + mysqlPass + ";";
         }
 
         static void SetDefaultCulture(CultureInfo culture)
