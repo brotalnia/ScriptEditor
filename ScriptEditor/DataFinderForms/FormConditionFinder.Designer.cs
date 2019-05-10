@@ -1622,8 +1622,8 @@
             this.lblConditionMapEventTargetsTooltip.Name = "lblConditionMapEventTargetsTooltip";
             this.lblConditionMapEventTargetsTooltip.Size = new System.Drawing.Size(624, 42);
             this.lblConditionMapEventTargetsTooltip.TabIndex = 0;
-            this.lblConditionMapEventTargetsTooltip.Text = "Returns true if all of the extra targets part of the scripted map event satisfty " +
-    "the specified condition..";
+            this.lblConditionMapEventTargetsTooltip.Text = "Returns true if all of the extra targets part of the scripted map event satisfy t" +
+    "he specified condition.";
             // 
             // FormConditionFinder
             // 

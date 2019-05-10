@@ -107,6 +107,7 @@ namespace ScriptEditor
         "Add Aura",                 // 74
         "Add Threat",               // 75
         "Summon Object",            // 76
+        "Set Fly",                  // 77
         };
 
         // Options for combo boxes.
@@ -147,7 +148,7 @@ namespace ScriptEditor
             cmbCommandId.DataSource = CommandTypeNames;
             cmbCommandId.SelectedIndex = 0;
 
-            // Add option to Buddy Type combo box.
+            // Add option to Target Type combo box.
             cmbTargetType.Items.Add(new ComboboxPair("Provided Target", 0));
             cmbTargetType.Items.Add(new ComboboxPair("Current Victim", 1));
             cmbTargetType.Items.Add(new ComboboxPair("Second on Threat", 2));
@@ -171,6 +172,9 @@ namespace ScriptEditor
             cmbTargetType.Items.Add(new ComboboxPair("Map Event Source", 20));
             cmbTargetType.Items.Add(new ComboboxPair("Map Event Target", 21));
             cmbTargetType.Items.Add(new ComboboxPair("Map Event Additional", 22));
+            cmbTargetType.Items.Add(new ComboboxPair("Nearest Player", 23));
+            cmbTargetType.Items.Add(new ComboboxPair("Nearest Hostile Player", 24));
+            cmbTargetType.Items.Add(new ComboboxPair("Nearest Friendly Player", 25));
             cmbTargetType.SelectedIndex = 0;
 
             // Add chat types to combo box.
@@ -983,10 +987,10 @@ namespace ScriptEditor
                 }
                 case 5: // Interrupt Casts
                 {
-                    uint spellId = selectedAction.Datalong;
+                    uint spellId = selectedAction.Datalong2;
                     if (spellId > 0)
                         btnInterruptCastsSpellId.Text = GameData.FindSpellName(spellId) + " (" + spellId.ToString() + ")";
-                    cmbInterruptCastsWithDelayed.SelectedIndex = (int)selectedAction.Datalong2;
+                    cmbInterruptCastsWithDelayed.SelectedIndex = (int)selectedAction.Datalong;
                     frmCommandInterruptCasts.Visible = true;
                     break;
                 }
@@ -1382,6 +1386,7 @@ namespace ScriptEditor
                 case 21: // Set Active Object
                 case 42: // Set Melee Attack
                 case 43: // Set Combat Movement
+                case 77: // Set Fly
                 {
                     switch (selectedAction.Command)
                     {
@@ -1398,6 +1403,11 @@ namespace ScriptEditor
                         case 43: // Set Combat Movement
                         {
                             lblActiveObjectTooltip.Text = "Controls whether the source Creature will chase its target.";
+                            break;
+                        }
+                        case 77: // Set Fly
+                        {
+                            lblActiveObjectTooltip.Text = "Makes the source Unit able to fly.";
                             break;
                         }
                     }
@@ -2359,6 +2369,9 @@ namespace ScriptEditor
                     break;
                 }
                 case 19: // Friendly CC-ed
+                case 23: // Nearest Player
+                case 24: // Nearest Hostile Player
+                case 25: // Nearest Friendly Player
                 {
                     lblTargetParam1.Text = "Radius:";
                     lblTargetParam2.Text = "N/A:";

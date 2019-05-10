@@ -33,6 +33,7 @@ namespace ScriptEditor
         public static readonly List<ComboboxPair> MotionTypesFullList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> ConditionNamesList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> SkillsList = new List<ComboboxPair>();
+        public static readonly List<ComboboxPair> SpellEffectNamesList = new List<ComboboxPair>();
         public static int FindIndexOfMap(uint id)
         {
             for (int i = 0; i < MapsList.Count; i++)
@@ -259,6 +260,16 @@ namespace ScriptEditor
             }
 
             return "";
+        }
+        public static string FindSpellEffectName(uint id)
+        {
+            foreach (ComboboxPair spell in SpellEffectNamesList)
+            {
+                if (spell.Value == id)
+                    return spell.Text;
+            }
+
+            return id.ToString();
         }
         public static void LoadBroadcastTexts(string connString)
         {
@@ -1765,6 +1776,137 @@ namespace ScriptEditor
             SkillsList.Add(new ComboboxPair("Racial - Human", 754));
             SkillsList.Add(new ComboboxPair("Pet - Event - Remote Control", 758));
             SkillsList.Add(new ComboboxPair("Riding", 762));
+
+            // Add spell effect names.
+            SpellEffectNamesList.Add(new ComboboxPair("None", 0));
+            SpellEffectNamesList.Add(new ComboboxPair("Instakill", 1));
+            SpellEffectNamesList.Add(new ComboboxPair("School Damage", 2));
+            SpellEffectNamesList.Add(new ComboboxPair("Dummy", 3));
+            SpellEffectNamesList.Add(new ComboboxPair("Portal Teleport", 4));
+            SpellEffectNamesList.Add(new ComboboxPair("Teleport Units", 5));
+            SpellEffectNamesList.Add(new ComboboxPair("Apply Aura", 6));
+            SpellEffectNamesList.Add(new ComboboxPair("Environmental Damage", 7));
+            SpellEffectNamesList.Add(new ComboboxPair("Power Drain", 8));
+            SpellEffectNamesList.Add(new ComboboxPair("Health Leech", 9));
+            SpellEffectNamesList.Add(new ComboboxPair("Heal", 10));
+            SpellEffectNamesList.Add(new ComboboxPair("Bind", 11));
+            SpellEffectNamesList.Add(new ComboboxPair("Portal", 12));
+            SpellEffectNamesList.Add(new ComboboxPair("Ritual Base", 13));
+            SpellEffectNamesList.Add(new ComboboxPair("Ritual Specialize", 14));
+            SpellEffectNamesList.Add(new ComboboxPair("Ritual Activate Portal", 15));
+            SpellEffectNamesList.Add(new ComboboxPair("Quest Complete", 16));
+            SpellEffectNamesList.Add(new ComboboxPair("Weapon Damage + (noschool)", 17));
+            SpellEffectNamesList.Add(new ComboboxPair("Resurrect", 18));
+            SpellEffectNamesList.Add(new ComboboxPair("Extra Attacks", 19));
+            SpellEffectNamesList.Add(new ComboboxPair("Dodge", 20));
+            SpellEffectNamesList.Add(new ComboboxPair("Evade", 21));
+            SpellEffectNamesList.Add(new ComboboxPair("Parry", 22));
+            SpellEffectNamesList.Add(new ComboboxPair("Block", 23));
+            SpellEffectNamesList.Add(new ComboboxPair("Create Item", 24));
+            SpellEffectNamesList.Add(new ComboboxPair("Weapon", 25));
+            SpellEffectNamesList.Add(new ComboboxPair("Defense", 26));
+            SpellEffectNamesList.Add(new ComboboxPair("Persistent Area Aura", 27));
+            SpellEffectNamesList.Add(new ComboboxPair("Summon", 28));
+            SpellEffectNamesList.Add(new ComboboxPair("Leap", 29));
+            SpellEffectNamesList.Add(new ComboboxPair("Energize", 30));
+            SpellEffectNamesList.Add(new ComboboxPair("Weapon % Dmg", 31));
+            SpellEffectNamesList.Add(new ComboboxPair("Trigger Missile", 32));
+            SpellEffectNamesList.Add(new ComboboxPair("Open Lock", 33));
+            SpellEffectNamesList.Add(new ComboboxPair("Apply Area Aura", 35));
+            SpellEffectNamesList.Add(new ComboboxPair("Learn Spell", 36));
+            SpellEffectNamesList.Add(new ComboboxPair("Spell Defense", 37));
+            SpellEffectNamesList.Add(new ComboboxPair("Dispel", 38));
+            SpellEffectNamesList.Add(new ComboboxPair("Language", 39));
+            SpellEffectNamesList.Add(new ComboboxPair("Dual Wield", 40));
+            SpellEffectNamesList.Add(new ComboboxPair("Summon Wild", 41));
+            SpellEffectNamesList.Add(new ComboboxPair("Summon Guardian", 42));
+            SpellEffectNamesList.Add(new ComboboxPair("Teleport Units (Face Caster)", 43));
+            SpellEffectNamesList.Add(new ComboboxPair("Skill Step", 44));
+            SpellEffectNamesList.Add(new ComboboxPair("Add Honor", 45));
+            SpellEffectNamesList.Add(new ComboboxPair("Spawn", 46));
+            SpellEffectNamesList.Add(new ComboboxPair("Spell Cast UI", 47));
+            SpellEffectNamesList.Add(new ComboboxPair("Stealth", 48));
+            SpellEffectNamesList.Add(new ComboboxPair("Detect", 49));
+            SpellEffectNamesList.Add(new ComboboxPair("Summon Object", 50));
+            SpellEffectNamesList.Add(new ComboboxPair("Force Critical Hit", 51));
+            SpellEffectNamesList.Add(new ComboboxPair("Guarantee Hit", 52));
+            SpellEffectNamesList.Add(new ComboboxPair("Enchant Item Permanent", 53));
+            SpellEffectNamesList.Add(new ComboboxPair("Enchant Item Temporary", 54));
+            SpellEffectNamesList.Add(new ComboboxPair("Tame Creature", 55));
+            SpellEffectNamesList.Add(new ComboboxPair("Summon Pet", 56));
+            SpellEffectNamesList.Add(new ComboboxPair("Learn Pet Spell", 57));
+            SpellEffectNamesList.Add(new ComboboxPair("Weapon Damage +", 58));
+            SpellEffectNamesList.Add(new ComboboxPair("Open Lock (Item)", 59));
+            SpellEffectNamesList.Add(new ComboboxPair("Proficiency", 60));
+            SpellEffectNamesList.Add(new ComboboxPair("Send Event", 61));
+            SpellEffectNamesList.Add(new ComboboxPair("Power Burn", 62));
+            SpellEffectNamesList.Add(new ComboboxPair("Threat", 63));
+            SpellEffectNamesList.Add(new ComboboxPair("Trigger Spell", 64));
+            SpellEffectNamesList.Add(new ComboboxPair("Health Funnel", 65));
+            SpellEffectNamesList.Add(new ComboboxPair("Power Funnel", 66));
+            SpellEffectNamesList.Add(new ComboboxPair("Heal Max Health", 67));
+            SpellEffectNamesList.Add(new ComboboxPair("Interrupt Cast", 68));
+            SpellEffectNamesList.Add(new ComboboxPair("Distract", 69));
+            SpellEffectNamesList.Add(new ComboboxPair("Pull", 70));
+            SpellEffectNamesList.Add(new ComboboxPair("Pickpocket", 71));
+            SpellEffectNamesList.Add(new ComboboxPair("Add Farsight", 72));
+            SpellEffectNamesList.Add(new ComboboxPair("Summon Possessed", 73));
+            SpellEffectNamesList.Add(new ComboboxPair("Summon Totem", 74));
+            SpellEffectNamesList.Add(new ComboboxPair("Heal Mechanical", 75));
+            SpellEffectNamesList.Add(new ComboboxPair("Summon Object (Wild)", 76));
+            SpellEffectNamesList.Add(new ComboboxPair("Script Effect", 77));
+            SpellEffectNamesList.Add(new ComboboxPair("Attack", 78));
+            SpellEffectNamesList.Add(new ComboboxPair("Sanctuary", 79));
+            SpellEffectNamesList.Add(new ComboboxPair("Add Combo Points", 80));
+            SpellEffectNamesList.Add(new ComboboxPair("Create House", 81));
+            SpellEffectNamesList.Add(new ComboboxPair("Bind Sight", 82));
+            SpellEffectNamesList.Add(new ComboboxPair("Duel", 83));
+            SpellEffectNamesList.Add(new ComboboxPair("Stuck", 84));
+            SpellEffectNamesList.Add(new ComboboxPair("Summon Player", 85));
+            SpellEffectNamesList.Add(new ComboboxPair("Activate Object", 86));
+            SpellEffectNamesList.Add(new ComboboxPair("Summon Totem (slot 1)", 87));
+            SpellEffectNamesList.Add(new ComboboxPair("Summon Totem (slot 2)", 88));
+            SpellEffectNamesList.Add(new ComboboxPair("Summon Totem (slot 3)", 89));
+            SpellEffectNamesList.Add(new ComboboxPair("Summon Totem (slot 4)", 90));
+            SpellEffectNamesList.Add(new ComboboxPair("Threat (All)", 91));
+            SpellEffectNamesList.Add(new ComboboxPair("Enchant Held Item", 92));
+            SpellEffectNamesList.Add(new ComboboxPair("Summon Phantasm", 93));
+            SpellEffectNamesList.Add(new ComboboxPair("Self Resurrect", 94));
+            SpellEffectNamesList.Add(new ComboboxPair("Skinning", 95));
+            SpellEffectNamesList.Add(new ComboboxPair("Charge", 96));
+            SpellEffectNamesList.Add(new ComboboxPair("Summon Critter", 97));
+            SpellEffectNamesList.Add(new ComboboxPair("Knock Back", 98));
+            SpellEffectNamesList.Add(new ComboboxPair("Disenchant", 99));
+            SpellEffectNamesList.Add(new ComboboxPair("Inebriate", 100));
+            SpellEffectNamesList.Add(new ComboboxPair("Feed Pet", 101));
+            SpellEffectNamesList.Add(new ComboboxPair("Dismiss Pet", 102));
+            SpellEffectNamesList.Add(new ComboboxPair("Reputation", 103));
+            SpellEffectNamesList.Add(new ComboboxPair("Summon Object (slot 1)", 104));
+            SpellEffectNamesList.Add(new ComboboxPair("Summon Object (slot 2)", 105));
+            SpellEffectNamesList.Add(new ComboboxPair("Summon Object (slot 3)", 106));
+            SpellEffectNamesList.Add(new ComboboxPair("Summon Object (slot 4)", 107));
+            SpellEffectNamesList.Add(new ComboboxPair("Dispel Mechanic", 108));
+            SpellEffectNamesList.Add(new ComboboxPair("Summon Dead Pet", 109));
+            SpellEffectNamesList.Add(new ComboboxPair("Destroy All Totems", 110));
+            SpellEffectNamesList.Add(new ComboboxPair("Durability Damage", 111));
+            SpellEffectNamesList.Add(new ComboboxPair("Summon Demon", 112));
+            SpellEffectNamesList.Add(new ComboboxPair("Resurrect (Flat)", 113));
+            SpellEffectNamesList.Add(new ComboboxPair("Attack Me", 114));
+            SpellEffectNamesList.Add(new ComboboxPair("Durability Damage Pct(%)", 115));
+            SpellEffectNamesList.Add(new ComboboxPair("Skin Player Corpse", 116));
+            SpellEffectNamesList.Add(new ComboboxPair("Spirit Heal", 117));
+            SpellEffectNamesList.Add(new ComboboxPair("Skill", 118));
+            SpellEffectNamesList.Add(new ComboboxPair("Apply Area Aura Pet", 119));
+            SpellEffectNamesList.Add(new ComboboxPair("Teleport Graveyard", 120));
+            SpellEffectNamesList.Add(new ComboboxPair("Normalized Weapon Dmg", 121));
+            SpellEffectNamesList.Add(new ComboboxPair("Silithyst Cap Reward", 122));
+            SpellEffectNamesList.Add(new ComboboxPair("Send Taxi", 123));
+            SpellEffectNamesList.Add(new ComboboxPair("Pull Player", 124));
+            SpellEffectNamesList.Add(new ComboboxPair("Threat Pct(%)", 125));
+            SpellEffectNamesList.Add(new ComboboxPair("Unused 126", 126));
+            SpellEffectNamesList.Add(new ComboboxPair("Unused 127", 127));
+            SpellEffectNamesList.Add(new ComboboxPair("Apply Area Aura Friend", 128));
+            SpellEffectNamesList.Add(new ComboboxPair("Apply Area Aura Enemy", 129));
         }
     }
     public struct BroadcastText

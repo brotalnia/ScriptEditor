@@ -65,7 +65,10 @@ namespace ScriptEditor
                new ComboboxPair("Injured Not Self", 16),
                new ComboboxPair("No Buff Friendly", 17),
                new ComboboxPair("No Buff Not Self", 18),
-               new ComboboxPair("Friendly In CC", 19)
+               new ComboboxPair("Friendly In CC", 19),
+               new ComboboxPair("Nearest Player", 23),
+               new ComboboxPair("Hostile Player", 24),
+               new ComboboxPair("Friendly Player", 25)
              };
         }
         private void LoadControls()

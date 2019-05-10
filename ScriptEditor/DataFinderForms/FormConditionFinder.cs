@@ -35,6 +35,12 @@ namespace ScriptEditor
             new ComboboxPair("Just Deactivated", 3),
         };
 
+        private ComboboxPair[] ConditionIsPlayer_ComboOptions =
+        {
+            new ComboboxPair("Only Real Players", 0),
+            new ComboboxPair("Including Player Pets", 1)
+        };
+
         public void ShowStandalone()
         {
             this.ControlBox = true;
@@ -237,7 +243,6 @@ namespace ScriptEditor
                 case 0: // CONDITION_NONE
                 case 10: // CONDITION_AD_COMMISSION_AURA
                 case 13: // CONDITION_CANT_PATH_TO_VICTIM
-                case 28: // CONDITION_IS_PLAYER
                 case 37: // CONDITION_LINE_OF_SIGHT
                 case 39: // CONDITION_IS_MOVING
                 case 40: // CONDITION_HAS_PET
@@ -262,11 +267,6 @@ namespace ScriptEditor
                         case 13: // CONDITION_CANT_PATH_TO_VICTIM
                         {
                             lblConditionNotTooltip.Text = "Returns true if the source Creature cannot find a path to its victim.";
-                            break;
-                        }
-                        case 28: // CONDITION_IS_PLAYER
-                        {
-                            lblConditionNotTooltip.Text = "Returns true if the target WorldObject is a Player.";
                             break;
                         }
                         case 37: // CONDITION_LINE_OF_SIGHT
@@ -414,6 +414,7 @@ namespace ScriptEditor
                 }
                 case 6: // CONDITION_TEAM
                 case 27: // CONDITION_TARGET_GENDER
+                case 28: // CONDITION_IS_PLAYER
                 case 33: // CONDITION_MAP_ID
                 case 49: // CONDITION_OBJECT_LOOT_STATE
                 {
@@ -433,9 +434,16 @@ namespace ScriptEditor
                             cmbTeamId.DataSource = ConditionGender_ComboOptions; ;
                             break;
                         }
+                        case 28: // CONDITION_IS_PLAYER
+                        {
+                            lblConditionTeamTooltip.Text = "Returns true if the target WorldObject is a Player.";
+                            lblTeamId.Text = "Criteria:";
+                            cmbTeamId.DataSource = ConditionIsPlayer_ComboOptions; ;
+                            break;
+                        }
                         case 33: // CONDITION_MAP_ID
                         {
-                            lblConditionTeamTooltip.Text = "Returns true if the current map Id matches the one specified..";
+                            lblConditionTeamTooltip.Text = "Returns true if the current map Id matches the one specified.";
                             lblTeamId.Text = "Map Id:";
                             cmbTeamId.DataSource = GameData.MapsList;
                             break;
