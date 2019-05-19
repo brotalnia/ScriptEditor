@@ -61,8 +61,17 @@ namespace ScriptEditor
         "Leave Combat",             // 30
         "Map Event Happened",       // 31
         "Group Member Died",        // 32
-        "Victim Rooted"             // 33
+        "Victim Rooted",            // 33
+        "Hit By Aura"               // 34
         };
+
+        private string GetEventTypeName(uint type)
+        {
+            if (type < EventTypeNames.Count())
+                return EventTypeNames[type];
+
+            return "Unknown Event";
+        }
         
         public FormEventEditor()
         {
@@ -108,6 +117,9 @@ namespace ScriptEditor
 
             // Add options to Movement Inform combo box.
             cmbMovementInformType.DataSource = GameData.MotionTypesFullList;
+
+            // Add options to Hit By Aura combo box.
+            cmbHitByAuraType.DataSource = GameData.SpellAuraNamesList;
 
             // Fix size of textbox.
             txtMovementInformType.AutoSize = false;
@@ -205,7 +217,7 @@ namespace ScriptEditor
             cmbKilledUnitTarget.SelectedIndex = 0;
             frmEventKilledUnit.Visible = false;
 
-            // EVENT_T_SPELLHIT (8)
+            // EVENT_T_HIT_BY_SPELL (8)
             // EVENT_T_FRIENDLY_MISSING_BUFF (16)
             // EVENT_T_AURA (23)
             // EVENT_T_TARGET_AURA (24)
@@ -247,6 +259,19 @@ namespace ScriptEditor
             btnGroupMemberDiedCreatureId.Text = "-NONE-";
             cmbGroupMemberDiedIsLeader.SelectedIndex = 0;
             frmEventGroupMemberDied.Visible = false;
+
+            // EVENT_T_HIT_BY_AURA (34)
+            cmbHitByAuraType.SelectedIndex = 0;
+            txtHitByAuraRepeatMin.Text = "";
+            txtHitByAuraRepeatMax.Text = "";
+            frmEventHitByAura.Visible = false;
+
+            // Unsupported Event
+            txtUnkParam1.Text = "";
+            txtUnkParam2.Text = "";
+            txtUnkParam3.Text = "";
+            txtUnkParam4.Text = "";
+            frmUnsupportedEvent.Visible = false;
 
             dontUpdate = false;
         }
@@ -466,7 +491,7 @@ namespace ScriptEditor
                     frmEventKilledUnit.Visible = true;
                     break;
                 }
-                case 8: // EVENT_T_SPELLHIT
+                case 8: // EVENT_T_HIT_BY_SPELL
                 case 16: // EVENT_T_FRIENDLY_MISSING_BUFF
                 case 23: // EVENT_T_AURA
                 case 24: // EVENT_T_TARGET_AURA
@@ -478,7 +503,7 @@ namespace ScriptEditor
                         btnSpellHitSpellId.Text = GameData.FindSpellName(spellId) + " (" + spellId.ToString() + ")";
                     switch (selectedEvent.Type)
                     {
-                        case 8: // EVENT_T_SPELLHIT
+                        case 8: // EVENT_T_HIT_BY_SPELL
                         {
                             lblEventSpellHitTooltip.Text = "Expires when the creature is hit by a spell. If a spell Id is set, it will only expire when hit by that spell. Same logic applies when a school mask is set.";
                             lblSpellHitSchoolMask.Text = "School Mask:";
@@ -586,6 +611,23 @@ namespace ScriptEditor
                     frmEventGroupMemberDied.Visible = true;
                     break;
                 }
+                case 34: // EVENT_T_HIT_BY_AURA
+                {
+                    cmbHitByAuraType.SelectedIndex = GameData.FindIndexOfSpellAuraName((uint)selectedEvent.Param1);
+                    txtHitByAuraRepeatMin.Text = selectedEvent.Param3.ToString();
+                    txtHitByAuraRepeatMax.Text = selectedEvent.Param4.ToString();
+                    frmEventHitByAura.Visible = true;
+                    break;
+                }
+                default:
+                {
+                    txtUnkParam1.Text = selectedEvent.Param1.ToString();
+                    txtUnkParam2.Text = selectedEvent.Param2.ToString();
+                    txtUnkParam3.Text = selectedEvent.Param3.ToString();
+                    txtUnkParam4.Text = selectedEvent.Param4.ToString();
+                    frmUnsupportedEvent.Visible = true;
+                    break;
+                }
             }
             dontUpdate = false;
         }
@@ -639,7 +681,7 @@ namespace ScriptEditor
 
                     // We show only id, event type, and comment in the listview.
                     lvi.Text = creature_event.Id.ToString();
-                    lvi.SubItems.Add(EventTypeNames[creature_event.Type]);
+                    lvi.SubItems.Add(GetEventTypeName(creature_event.Type));
                     lvi.SubItems.Add(creature_event.Comment);
 
                     // Save the CreatureEvent to the Tag.
@@ -686,7 +728,10 @@ namespace ScriptEditor
             txtScriptId3.Text = selectedEvent.ScriptId3.ToString();
 
             // Combo Boxes
-            cmbEventType.SelectedIndex = (int)selectedEvent.Type;
+            if (selectedEvent.Type < cmbEventType.Items.Count)
+                cmbEventType.SelectedIndex = (int)selectedEvent.Type;
+            else
+                cmbEventType.SelectedIndex = -1;
 
             // Buttons
             if (selectedEvent.ConditionId > 0)
@@ -965,7 +1010,7 @@ namespace ScriptEditor
                 ShowEventSpecificForm(currentEvent);
 
                 // Update event type in listview.
-                currentItem.SubItems[1].Text = EventTypeNames[cmbEventType.SelectedIndex];
+                currentItem.SubItems[1].Text = GetEventTypeName((uint)cmbEventType.SelectedIndex);
             }
         }
 
@@ -1099,7 +1144,7 @@ namespace ScriptEditor
 
             // We show only id, event type, and comment in the listview.
             newItem.Text = newEvent.Id.ToString();
-            newItem.SubItems.Add(EventTypeNames[newEvent.Type]);
+            newItem.SubItems.Add(GetEventTypeName(newEvent.Type));
             newItem.SubItems.Add(newEvent.Comment);
 
             // Save the CreatureEvent to the Tag.
@@ -1144,7 +1189,7 @@ namespace ScriptEditor
 
                 // We show only id, event type, and comment in the listview.
                 newItem.Text = newEvent.Id.ToString();
-                newItem.SubItems.Add(EventTypeNames[newEvent.Type]);
+                newItem.SubItems.Add(GetEventTypeName(newEvent.Type));
                 newItem.SubItems.Add(newEvent.Comment);
 
                 // Save the CreatureEvent to the Tag.
@@ -1388,6 +1433,41 @@ namespace ScriptEditor
         private void txtKilledUnitRepeatMax_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtKilledUnitRepeatMax, "Param2");
+        }
+
+        private void txtUnkParam1_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtUnkParam1, "Param1");
+        }
+
+        private void txtUnkParam2_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtUnkParam2, "Param2");
+        }
+
+        private void txtUnkParam3_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtUnkParam3, "Param3");
+        }
+
+        private void txtUnkParam4_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtUnkParam4, "Param4");
+        }
+
+        private void cmbHitByAuraType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbHitByAuraType, "Param1", true);
+        }
+
+        private void txtHitByAuraRepeatMin_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtHitByAuraRepeatMin, "Param3");
+        }
+
+        private void txtHitByAuraRepeatMax_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtHitByAuraRepeatMax, "Param4");
         }
     }
 }

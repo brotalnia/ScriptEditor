@@ -138,6 +138,26 @@
             this.lblKilledUnitTarget = new System.Windows.Forms.Label();
             this.lblKilledUnitRepeatMin = new System.Windows.Forms.Label();
             this.lblKilledUnitTooltip = new System.Windows.Forms.Label();
+            this.frmUnsupportedEvent = new System.Windows.Forms.Panel();
+            this.txtUnkParam3 = new System.Windows.Forms.TextBox();
+            this.txtUnkParam2 = new System.Windows.Forms.TextBox();
+            this.lblUnkParam3 = new System.Windows.Forms.Label();
+            this.lblUnkParam1 = new System.Windows.Forms.Label();
+            this.lblUnkParam2 = new System.Windows.Forms.Label();
+            this.lvlUnsupportedEventTooltip = new System.Windows.Forms.Label();
+            this.txtUnkParam4 = new System.Windows.Forms.TextBox();
+            this.lblUnkParam4 = new System.Windows.Forms.Label();
+            this.txtUnkParam1 = new System.Windows.Forms.TextBox();
+            this.frmEventHitByAura = new System.Windows.Forms.Panel();
+            this.txtHitByAuraRepeatMax = new System.Windows.Forms.TextBox();
+            this.lblHitByAuraRepeatMax = new System.Windows.Forms.Label();
+            this.txtHitByAuraRepeatMin = new System.Windows.Forms.TextBox();
+            this.txtHitByAuraUnused = new System.Windows.Forms.TextBox();
+            this.lblHitByAuraRepeatMin = new System.Windows.Forms.Label();
+            this.lblHitByAuraType = new System.Windows.Forms.Label();
+            this.lblHitByAuraUnused = new System.Windows.Forms.Label();
+            this.lblHitByAuraTooltip = new System.Windows.Forms.Label();
+            this.cmbHitByAuraType = new System.Windows.Forms.ComboBox();
             this.grpGeneral.SuspendLayout();
             this.grpEventFlags.SuspendLayout();
             this.frmEventTimerCombat.SuspendLayout();
@@ -149,6 +169,8 @@
             this.frmEventMovementInform.SuspendLayout();
             this.frmEventGroupMemberDied.SuspendLayout();
             this.frmEventKilledUnit.SuspendLayout();
+            this.frmUnsupportedEvent.SuspendLayout();
+            this.frmEventHitByAura.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstEvents
@@ -1239,11 +1261,206 @@
             this.lblKilledUnitTooltip.TabIndex = 0;
             this.lblKilledUnitTooltip.Text = "Expires upon killing an unit.";
             // 
+            // frmUnsupportedEvent
+            // 
+            this.frmUnsupportedEvent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmUnsupportedEvent.Controls.Add(this.txtUnkParam1);
+            this.frmUnsupportedEvent.Controls.Add(this.txtUnkParam4);
+            this.frmUnsupportedEvent.Controls.Add(this.lblUnkParam4);
+            this.frmUnsupportedEvent.Controls.Add(this.txtUnkParam3);
+            this.frmUnsupportedEvent.Controls.Add(this.txtUnkParam2);
+            this.frmUnsupportedEvent.Controls.Add(this.lblUnkParam3);
+            this.frmUnsupportedEvent.Controls.Add(this.lblUnkParam1);
+            this.frmUnsupportedEvent.Controls.Add(this.lblUnkParam2);
+            this.frmUnsupportedEvent.Controls.Add(this.lvlUnsupportedEventTooltip);
+            this.frmUnsupportedEvent.Location = new System.Drawing.Point(433, 289);
+            this.frmUnsupportedEvent.Name = "frmUnsupportedEvent";
+            this.frmUnsupportedEvent.Size = new System.Drawing.Size(495, 275);
+            this.frmUnsupportedEvent.TabIndex = 70;
+            this.frmUnsupportedEvent.Visible = false;
+            // 
+            // txtUnkParam3
+            // 
+            this.txtUnkParam3.Location = new System.Drawing.Point(99, 118);
+            this.txtUnkParam3.Name = "txtUnkParam3";
+            this.txtUnkParam3.Size = new System.Drawing.Size(374, 20);
+            this.txtUnkParam3.TabIndex = 3;
+            this.txtUnkParam3.Leave += new System.EventHandler(this.txtUnkParam3_Leave);
+            // 
+            // txtUnkParam2
+            // 
+            this.txtUnkParam2.Location = new System.Drawing.Point(99, 88);
+            this.txtUnkParam2.Name = "txtUnkParam2";
+            this.txtUnkParam2.Size = new System.Drawing.Size(374, 20);
+            this.txtUnkParam2.TabIndex = 2;
+            this.txtUnkParam2.Leave += new System.EventHandler(this.txtUnkParam2_Leave);
+            // 
+            // lblUnkParam3
+            // 
+            this.lblUnkParam3.AutoSize = true;
+            this.lblUnkParam3.Location = new System.Drawing.Point(46, 121);
+            this.lblUnkParam3.Name = "lblUnkParam3";
+            this.lblUnkParam3.Size = new System.Drawing.Size(49, 13);
+            this.lblUnkParam3.TabIndex = 7;
+            this.lblUnkParam3.Text = "Param 3:";
+            // 
+            // lblUnkParam1
+            // 
+            this.lblUnkParam1.AutoSize = true;
+            this.lblUnkParam1.Location = new System.Drawing.Point(46, 61);
+            this.lblUnkParam1.Name = "lblUnkParam1";
+            this.lblUnkParam1.Size = new System.Drawing.Size(49, 13);
+            this.lblUnkParam1.TabIndex = 5;
+            this.lblUnkParam1.Text = "Param 1:";
+            // 
+            // lblUnkParam2
+            // 
+            this.lblUnkParam2.AutoSize = true;
+            this.lblUnkParam2.Location = new System.Drawing.Point(46, 91);
+            this.lblUnkParam2.Name = "lblUnkParam2";
+            this.lblUnkParam2.Size = new System.Drawing.Size(49, 13);
+            this.lblUnkParam2.TabIndex = 6;
+            this.lblUnkParam2.Text = "Param 2:";
+            // 
+            // lvlUnsupportedEventTooltip
+            // 
+            this.lvlUnsupportedEventTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lvlUnsupportedEventTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lvlUnsupportedEventTooltip.Name = "lvlUnsupportedEventTooltip";
+            this.lvlUnsupportedEventTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lvlUnsupportedEventTooltip.TabIndex = 0;
+            this.lvlUnsupportedEventTooltip.Text = "This event type is not currently supported by the editor.";
+            // 
+            // txtUnkParam4
+            // 
+            this.txtUnkParam4.Location = new System.Drawing.Point(99, 148);
+            this.txtUnkParam4.Name = "txtUnkParam4";
+            this.txtUnkParam4.Size = new System.Drawing.Size(374, 20);
+            this.txtUnkParam4.TabIndex = 4;
+            this.txtUnkParam4.Leave += new System.EventHandler(this.txtUnkParam4_Leave);
+            // 
+            // lblUnkParam4
+            // 
+            this.lblUnkParam4.AutoSize = true;
+            this.lblUnkParam4.Location = new System.Drawing.Point(46, 151);
+            this.lblUnkParam4.Name = "lblUnkParam4";
+            this.lblUnkParam4.Size = new System.Drawing.Size(49, 13);
+            this.lblUnkParam4.TabIndex = 8;
+            this.lblUnkParam4.Text = "Param 4:";
+            // 
+            // txtUnkParam1
+            // 
+            this.txtUnkParam1.Location = new System.Drawing.Point(99, 58);
+            this.txtUnkParam1.Name = "txtUnkParam1";
+            this.txtUnkParam1.Size = new System.Drawing.Size(374, 20);
+            this.txtUnkParam1.TabIndex = 1;
+            this.txtUnkParam1.Leave += new System.EventHandler(this.txtUnkParam1_Leave);
+            // 
+            // frmEventHitByAura
+            // 
+            this.frmEventHitByAura.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmEventHitByAura.Controls.Add(this.cmbHitByAuraType);
+            this.frmEventHitByAura.Controls.Add(this.txtHitByAuraRepeatMax);
+            this.frmEventHitByAura.Controls.Add(this.lblHitByAuraRepeatMax);
+            this.frmEventHitByAura.Controls.Add(this.txtHitByAuraRepeatMin);
+            this.frmEventHitByAura.Controls.Add(this.txtHitByAuraUnused);
+            this.frmEventHitByAura.Controls.Add(this.lblHitByAuraRepeatMin);
+            this.frmEventHitByAura.Controls.Add(this.lblHitByAuraType);
+            this.frmEventHitByAura.Controls.Add(this.lblHitByAuraUnused);
+            this.frmEventHitByAura.Controls.Add(this.lblHitByAuraTooltip);
+            this.frmEventHitByAura.Location = new System.Drawing.Point(433, 289);
+            this.frmEventHitByAura.Name = "frmEventHitByAura";
+            this.frmEventHitByAura.Size = new System.Drawing.Size(495, 275);
+            this.frmEventHitByAura.TabIndex = 71;
+            this.frmEventHitByAura.Visible = false;
+            // 
+            // txtHitByAuraRepeatMax
+            // 
+            this.txtHitByAuraRepeatMax.Location = new System.Drawing.Point(99, 148);
+            this.txtHitByAuraRepeatMax.Name = "txtHitByAuraRepeatMax";
+            this.txtHitByAuraRepeatMax.Size = new System.Drawing.Size(374, 20);
+            this.txtHitByAuraRepeatMax.TabIndex = 4;
+            this.txtHitByAuraRepeatMax.Leave += new System.EventHandler(this.txtHitByAuraRepeatMax_Leave);
+            // 
+            // lblHitByAuraRepeatMax
+            // 
+            this.lblHitByAuraRepeatMax.AutoSize = true;
+            this.lblHitByAuraRepeatMax.Location = new System.Drawing.Point(27, 151);
+            this.lblHitByAuraRepeatMax.Name = "lblHitByAuraRepeatMax";
+            this.lblHitByAuraRepeatMax.Size = new System.Drawing.Size(68, 13);
+            this.lblHitByAuraRepeatMax.TabIndex = 8;
+            this.lblHitByAuraRepeatMax.Text = "Repeat Max:";
+            // 
+            // txtHitByAuraRepeatMin
+            // 
+            this.txtHitByAuraRepeatMin.Location = new System.Drawing.Point(99, 118);
+            this.txtHitByAuraRepeatMin.Name = "txtHitByAuraRepeatMin";
+            this.txtHitByAuraRepeatMin.Size = new System.Drawing.Size(374, 20);
+            this.txtHitByAuraRepeatMin.TabIndex = 3;
+            this.txtHitByAuraRepeatMin.Leave += new System.EventHandler(this.txtHitByAuraRepeatMin_Leave);
+            // 
+            // txtHitByAuraUnused
+            // 
+            this.txtHitByAuraUnused.Enabled = false;
+            this.txtHitByAuraUnused.Location = new System.Drawing.Point(99, 88);
+            this.txtHitByAuraUnused.Name = "txtHitByAuraUnused";
+            this.txtHitByAuraUnused.Size = new System.Drawing.Size(374, 20);
+            this.txtHitByAuraUnused.TabIndex = 2;
+            // 
+            // lblHitByAuraRepeatMin
+            // 
+            this.lblHitByAuraRepeatMin.AutoSize = true;
+            this.lblHitByAuraRepeatMin.Location = new System.Drawing.Point(30, 121);
+            this.lblHitByAuraRepeatMin.Name = "lblHitByAuraRepeatMin";
+            this.lblHitByAuraRepeatMin.Size = new System.Drawing.Size(65, 13);
+            this.lblHitByAuraRepeatMin.TabIndex = 7;
+            this.lblHitByAuraRepeatMin.Text = "Repeat Min:";
+            // 
+            // lblHitByAuraType
+            // 
+            this.lblHitByAuraType.AutoSize = true;
+            this.lblHitByAuraType.Location = new System.Drawing.Point(61, 61);
+            this.lblHitByAuraType.Name = "lblHitByAuraType";
+            this.lblHitByAuraType.Size = new System.Drawing.Size(34, 13);
+            this.lblHitByAuraType.TabIndex = 5;
+            this.lblHitByAuraType.Text = "Type:";
+            // 
+            // lblHitByAuraUnused
+            // 
+            this.lblHitByAuraUnused.AutoSize = true;
+            this.lblHitByAuraUnused.Location = new System.Drawing.Point(48, 91);
+            this.lblHitByAuraUnused.Name = "lblHitByAuraUnused";
+            this.lblHitByAuraUnused.Size = new System.Drawing.Size(47, 13);
+            this.lblHitByAuraUnused.TabIndex = 6;
+            this.lblHitByAuraUnused.Text = "Unused:";
+            // 
+            // lblHitByAuraTooltip
+            // 
+            this.lblHitByAuraTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblHitByAuraTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblHitByAuraTooltip.Name = "lblHitByAuraTooltip";
+            this.lblHitByAuraTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblHitByAuraTooltip.TabIndex = 0;
+            this.lblHitByAuraTooltip.Text = "Expires when the creature is hit by a spell that applies an aura of a specific ty" +
+    "pe.";
+            // 
+            // cmbHitByAuraType
+            // 
+            this.cmbHitByAuraType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbHitByAuraType.FormattingEnabled = true;
+            this.cmbHitByAuraType.Location = new System.Drawing.Point(99, 58);
+            this.cmbHitByAuraType.Name = "cmbHitByAuraType";
+            this.cmbHitByAuraType.Size = new System.Drawing.Size(374, 21);
+            this.cmbHitByAuraType.TabIndex = 9;
+            this.cmbHitByAuraType.SelectedIndexChanged += new System.EventHandler(this.cmbHitByAuraType_SelectedIndexChanged);
+            // 
             // FormEventEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 600);
+            this.Controls.Add(this.frmEventHitByAura);
+            this.Controls.Add(this.frmUnsupportedEvent);
             this.Controls.Add(this.frmEventKilledUnit);
             this.Controls.Add(this.frmEventGroupMemberDied);
             this.Controls.Add(this.frmEventMovementInform);
@@ -1293,6 +1510,10 @@
             this.frmEventGroupMemberDied.PerformLayout();
             this.frmEventKilledUnit.ResumeLayout(false);
             this.frmEventKilledUnit.PerformLayout();
+            this.frmUnsupportedEvent.ResumeLayout(false);
+            this.frmUnsupportedEvent.PerformLayout();
+            this.frmEventHitByAura.ResumeLayout(false);
+            this.frmEventHitByAura.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1409,5 +1630,25 @@
         private System.Windows.Forms.Label lblKilledUnitTarget;
         private System.Windows.Forms.Label lblKilledUnitRepeatMin;
         private System.Windows.Forms.Label lblKilledUnitTooltip;
+        private System.Windows.Forms.Panel frmUnsupportedEvent;
+        private System.Windows.Forms.TextBox txtUnkParam1;
+        private System.Windows.Forms.TextBox txtUnkParam4;
+        private System.Windows.Forms.Label lblUnkParam4;
+        private System.Windows.Forms.TextBox txtUnkParam3;
+        private System.Windows.Forms.TextBox txtUnkParam2;
+        private System.Windows.Forms.Label lblUnkParam3;
+        private System.Windows.Forms.Label lblUnkParam1;
+        private System.Windows.Forms.Label lblUnkParam2;
+        private System.Windows.Forms.Label lvlUnsupportedEventTooltip;
+        private System.Windows.Forms.Panel frmEventHitByAura;
+        private System.Windows.Forms.ComboBox cmbHitByAuraType;
+        private System.Windows.Forms.TextBox txtHitByAuraRepeatMax;
+        private System.Windows.Forms.Label lblHitByAuraRepeatMax;
+        private System.Windows.Forms.TextBox txtHitByAuraRepeatMin;
+        private System.Windows.Forms.TextBox txtHitByAuraUnused;
+        private System.Windows.Forms.Label lblHitByAuraRepeatMin;
+        private System.Windows.Forms.Label lblHitByAuraType;
+        private System.Windows.Forms.Label lblHitByAuraUnused;
+        private System.Windows.Forms.Label lblHitByAuraTooltip;
     }
 }

@@ -34,6 +34,7 @@ namespace ScriptEditor
         public static readonly List<ComboboxPair> ConditionNamesList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> SkillsList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> SpellEffectNamesList = new List<ComboboxPair>();
+        public static readonly List<ComboboxPair> SpellAuraNamesList = new List<ComboboxPair>();
         public static int FindIndexOfMap(uint id)
         {
             for (int i = 0; i < MapsList.Count; i++)
@@ -269,8 +270,29 @@ namespace ScriptEditor
                     return spell.Text;
             }
 
-            return id.ToString();
+            return "Effect " + id.ToString();
         }
+        public static string FindSpellAuraName(uint id)
+        {
+            foreach (ComboboxPair spell in SpellAuraNamesList)
+            {
+                if (spell.Value == id)
+                    return spell.Text;
+            }
+
+            return "Aura " + id.ToString();
+        }
+
+        public static int FindIndexOfSpellAuraName(uint id)
+        {
+            for (int i = 0; i < SpellAuraNamesList.Count; i++)
+            {
+                if (id == (uint)(SpellAuraNamesList[i] as ComboboxPair).Value)
+                    return i;
+            }
+            return 0;
+        }
+
         public static void LoadBroadcastTexts(string connString)
         {
             BroadcastTextsList.Clear();
@@ -1907,6 +1929,201 @@ namespace ScriptEditor
             SpellEffectNamesList.Add(new ComboboxPair("Unused 127", 127));
             SpellEffectNamesList.Add(new ComboboxPair("Apply Area Aura Friend", 128));
             SpellEffectNamesList.Add(new ComboboxPair("Apply Area Aura Enemy", 129));
+            
+            // Add spell aura names.
+            SpellAuraNamesList.Add(new ComboboxPair("None", 0));
+            SpellAuraNamesList.Add(new ComboboxPair("Bind Sight", 1));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Possess", 2));
+            SpellAuraNamesList.Add(new ComboboxPair("Periodic Damage", 3));
+            SpellAuraNamesList.Add(new ComboboxPair("Dummy", 4));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Confuse", 5));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Charm", 6));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Fear", 7));
+            SpellAuraNamesList.Add(new ComboboxPair("Periodic Heal", 8));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Attack Speed", 9));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Threat", 10));
+            SpellAuraNamesList.Add(new ComboboxPair("Taunt", 11));
+            SpellAuraNamesList.Add(new ComboboxPair("Stun", 12));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Damage Done", 13));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Damage Taken", 14));
+            SpellAuraNamesList.Add(new ComboboxPair("Damage Shield", 15));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Stealth", 16));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Detect", 17));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Invisibility", 18));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Invisibility Detection", 19));
+            SpellAuraNamesList.Add(new ComboboxPair("OBS Mod Intellect", 20));
+            SpellAuraNamesList.Add(new ComboboxPair("OBS Mod Spirit", 21));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Resistance", 22));
+            SpellAuraNamesList.Add(new ComboboxPair("Periodic Trigger", 23));
+            SpellAuraNamesList.Add(new ComboboxPair("Periodic Energize", 24));
+            SpellAuraNamesList.Add(new ComboboxPair("Pacify", 25));
+            SpellAuraNamesList.Add(new ComboboxPair("Root", 26));
+            SpellAuraNamesList.Add(new ComboboxPair("Silence", 27));
+            SpellAuraNamesList.Add(new ComboboxPair("Reflect Spells %", 28));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Stat", 29));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Skill", 30));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Speed", 31));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Speed Mounted", 32));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Speed Slow", 33));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Increase Health", 34));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Increase Energy", 35));
+            SpellAuraNamesList.Add(new ComboboxPair("Shapeshift", 36));
+            SpellAuraNamesList.Add(new ComboboxPair("Immune Effect", 37));
+            SpellAuraNamesList.Add(new ComboboxPair("Immune State", 38));
+            SpellAuraNamesList.Add(new ComboboxPair("Immune School", 39));
+            SpellAuraNamesList.Add(new ComboboxPair("Immune Damage", 40));
+            SpellAuraNamesList.Add(new ComboboxPair("Immune Dispel Type", 41));
+            SpellAuraNamesList.Add(new ComboboxPair("Proc Trigger Spell", 42));
+            SpellAuraNamesList.Add(new ComboboxPair("Proc Trigger Damage", 43));
+            SpellAuraNamesList.Add(new ComboboxPair("Track Creatures", 44));
+            SpellAuraNamesList.Add(new ComboboxPair("Track Resources", 45));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Parry Skill", 46));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Parry Percent", 47));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Dodge Skill", 48));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Dodge Percent", 49));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Block Skill", 50));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Block Percent", 51));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Crit Percent", 52));
+            SpellAuraNamesList.Add(new ComboboxPair("Periodic Leech", 53));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Hit Chance", 54));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Spell Hit Chance", 55));
+            SpellAuraNamesList.Add(new ComboboxPair("Transform", 56));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Spell Crit Chance", 57));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Speed Swim", 58));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Creature Dmg Done", 59));
+            SpellAuraNamesList.Add(new ComboboxPair("Pacify & Silence", 60));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Scale", 61));
+            SpellAuraNamesList.Add(new ComboboxPair("Periodic Health Funnel", 62));
+            SpellAuraNamesList.Add(new ComboboxPair("Periodic Mana Funnel", 63));
+            SpellAuraNamesList.Add(new ComboboxPair("Periodic Mana Leech", 64));
+            SpellAuraNamesList.Add(new ComboboxPair("Haste - Spells", 65));
+            SpellAuraNamesList.Add(new ComboboxPair("Feign Death", 66));
+            SpellAuraNamesList.Add(new ComboboxPair("Disarm", 67));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Stalked", 68));
+            SpellAuraNamesList.Add(new ComboboxPair("School Absorb", 69));
+            SpellAuraNamesList.Add(new ComboboxPair("Extra Attacks", 70));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod School Spell Crit Chance", 71));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Power Cost", 72));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod School Power Cost", 73));
+            SpellAuraNamesList.Add(new ComboboxPair("Reflect School Spells %", 74));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Language", 75));
+            SpellAuraNamesList.Add(new ComboboxPair("Far Sight", 76));
+            SpellAuraNamesList.Add(new ComboboxPair("Immune Mechanic", 77));
+            SpellAuraNamesList.Add(new ComboboxPair("Mounted", 78));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Dmg %", 79));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Stat %", 80));
+            SpellAuraNamesList.Add(new ComboboxPair("Split Damage", 81));
+            SpellAuraNamesList.Add(new ComboboxPair("Water Breathing", 82));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Base Resistance", 83));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Health Regen", 84));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Power Regen", 85));
+            SpellAuraNamesList.Add(new ComboboxPair("Create Death Item", 86));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Dmg % Taken", 87));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Health Regen Percent", 88));
+            SpellAuraNamesList.Add(new ComboboxPair("Periodic Damage Percent", 89));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Resist Chance", 90));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Detect Range", 91));
+            SpellAuraNamesList.Add(new ComboboxPair("Prevent Fleeing", 92));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Uninteractible", 93));
+            SpellAuraNamesList.Add(new ComboboxPair("Interrupt Regen", 94));
+            SpellAuraNamesList.Add(new ComboboxPair("Ghost", 95));
+            SpellAuraNamesList.Add(new ComboboxPair("Spell Magnet", 96));
+            SpellAuraNamesList.Add(new ComboboxPair("Mana Shield", 97));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Skill Talent", 98));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Attack Power", 99));
+            SpellAuraNamesList.Add(new ComboboxPair("Auras Visible", 100));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Resistance %", 101));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Creature Attack Power", 102));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Total Threat (Fade)", 103));
+            SpellAuraNamesList.Add(new ComboboxPair("Water Walk", 104));
+            SpellAuraNamesList.Add(new ComboboxPair("Feather Fall", 105));
+            SpellAuraNamesList.Add(new ComboboxPair("Hover", 106));
+            SpellAuraNamesList.Add(new ComboboxPair("Add Flat Modifier", 107));
+            SpellAuraNamesList.Add(new ComboboxPair("Add % Modifier", 108));
+            SpellAuraNamesList.Add(new ComboboxPair("Add Class Target Trigger", 109));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Power Regen %", 110));
+            SpellAuraNamesList.Add(new ComboboxPair("Add Class Caster Hit Trigger", 111));
+            SpellAuraNamesList.Add(new ComboboxPair("Override Class Scripts", 112));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Ranged Dmg Taken", 113));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Ranged % Dmg Taken", 114));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Healing", 115));
+            SpellAuraNamesList.Add(new ComboboxPair("Regen During Combat", 116));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Mechanic Resistance", 117));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Healing %", 118));
+            SpellAuraNamesList.Add(new ComboboxPair("Share Pet Tracking", 119));
+            SpellAuraNamesList.Add(new ComboboxPair("Untrackable", 120));
+            SpellAuraNamesList.Add(new ComboboxPair("Empathy (Lore, whatever)", 121));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Offhand Dmg %", 122));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Power Cost %", 123));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Ranged Attack Power", 124));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Melee Dmg Taken", 125));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Melee % Dmg Taken", 126));
+            SpellAuraNamesList.Add(new ComboboxPair("Rngd Atk Pwr Attckr Bonus", 127));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Possess Pet", 128));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Speed Always", 129));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Mounted Speed Always", 130));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Creature Ranged Attack Power", 131));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Increase Energy %", 132));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Increase Health %", 133));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Interrupted Mana Regen", 134));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Healing Done", 135));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Healing Done %", 136));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Total Stat %", 137));
+            SpellAuraNamesList.Add(new ComboboxPair("Haste - Melee", 138));
+            SpellAuraNamesList.Add(new ComboboxPair("Force Reaction", 139));
+            SpellAuraNamesList.Add(new ComboboxPair("Haste - Ranged", 140));
+            SpellAuraNamesList.Add(new ComboboxPair("Haste - Ranged (Ammo Only)", 141));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Base Resistance %", 142));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Resistance Exclusive", 143));
+            SpellAuraNamesList.Add(new ComboboxPair("Safe Fall", 144));
+            SpellAuraNamesList.Add(new ComboboxPair("Charisma", 145));
+            SpellAuraNamesList.Add(new ComboboxPair("Persuaded", 146));
+            SpellAuraNamesList.Add(new ComboboxPair("Add Creature Immunity", 147));
+            SpellAuraNamesList.Add(new ComboboxPair("Retain Combo Points", 148));
+            SpellAuraNamesList.Add(new ComboboxPair("Resist Pushback", 149));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Shield Block %", 150));
+            SpellAuraNamesList.Add(new ComboboxPair("Track Stealthed", 151));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Detected Range", 152));
+            SpellAuraNamesList.Add(new ComboboxPair("Split Damage Flat", 153));
+            SpellAuraNamesList.Add(new ComboboxPair("Stealth Level Modifier", 154));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Water Breathing", 155));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Reputation Gain", 156));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Pet Damage", 157));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Shield Block", 158));
+            SpellAuraNamesList.Add(new ComboboxPair("No PVP Credit", 159));
+            SpellAuraNamesList.Add(new ComboboxPair("AoE Avoidance", 160));
+            SpellAuraNamesList.Add(new ComboboxPair("Health Regen In Combat", 161));
+            SpellAuraNamesList.Add(new ComboboxPair("Power Burn Mana", 162));
+            SpellAuraNamesList.Add(new ComboboxPair("Crit Damage Bonus", 163));
+            SpellAuraNamesList.Add(new ComboboxPair("Aura 164", 164));
+            SpellAuraNamesList.Add(new ComboboxPair("Melee AP Attacker Bonus", 165));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Attack Power %", 166));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Ranged Attack Power %", 167));
+            SpellAuraNamesList.Add(new ComboboxPair("Damage Done Versus", 168));
+            SpellAuraNamesList.Add(new ComboboxPair("Crit % Versus", 169));
+            SpellAuraNamesList.Add(new ComboboxPair("Detect Amore", 170));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Speed Not Stacking", 171));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Mounted Speed Not Stacking", 172));
+            SpellAuraNamesList.Add(new ComboboxPair("Allow Champion Spells", 173));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Spell Dmg of Stat %", 174));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Spell Heal of Stat %", 175));
+            SpellAuraNamesList.Add(new ComboboxPair("Spirit of Redemption", 176));
+            SpellAuraNamesList.Add(new ComboboxPair("AoE Charm", 177));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Debuff Resistance", 178));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Attacker Spell Crit Chance", 179));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Flat Spell Dmg Versus", 180));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Flat Spell Dmg Crit Versus", 181));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Resistance of Stat %", 182));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Critical Threat", 183));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Attacker Melee Hit Chance", 184));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Attacker Ranged Hit Chance", 185));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Attacker Spell Hit Chance", 186));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Attacker Melee Crit Chance", 187));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Attacker Ranged Crit Chance", 188));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Rating", 189));
+            SpellAuraNamesList.Add(new ComboboxPair("Mod Faction Reputation Gain", 190));
+            SpellAuraNamesList.Add(new ComboboxPair("Use Normal Movement Speed", 191));
+            SpellAuraNamesList.Add(new ComboboxPair("Custom Aura Spell", 192));
         }
     }
     public struct BroadcastText
