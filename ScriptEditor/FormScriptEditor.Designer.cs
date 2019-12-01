@@ -565,6 +565,21 @@
             this.txtSummonObjectX = new System.Windows.Forms.TextBox();
             this.lblSummonObjectId = new System.Windows.Forms.Label();
             this.lblSummonObjectTooltip = new System.Windows.Forms.Label();
+            this.frmCommandJoinCreatureGroup = new System.Windows.Forms.Panel();
+            this.joinCreatureGroupsFlagsGroupBox = new System.Windows.Forms.GroupBox();
+            this.chkJoinCreatureGroup128 = new System.Windows.Forms.CheckBox();
+            this.chkJoinCreatureGroup64 = new System.Windows.Forms.CheckBox();
+            this.chkJoinCreatureGroup32 = new System.Windows.Forms.CheckBox();
+            this.chkJoinCreatureGroup16 = new System.Windows.Forms.CheckBox();
+            this.chkJoinCreatureGroup8 = new System.Windows.Forms.CheckBox();
+            this.chkJoinCreatureGroup4 = new System.Windows.Forms.CheckBox();
+            this.chkJoinCreatureGroup2 = new System.Windows.Forms.CheckBox();
+            this.chkJoinCreatureGroup1 = new System.Windows.Forms.CheckBox();
+            this.lblJoinCreatureGroupAngle = new System.Windows.Forms.Label();
+            this.lblJoinCreatureGroupDistance = new System.Windows.Forms.Label();
+            this.txtJoinCreatureGroupAngle = new System.Windows.Forms.TextBox();
+            this.txtJoinCreatureGroupDistance = new System.Windows.Forms.TextBox();
+            this.lblJoinCreatureGroupTooltip = new System.Windows.Forms.Label();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -625,6 +640,8 @@
             this.frmCommandStartScriptForAll.SuspendLayout();
             this.frmCommandUnknown.SuspendLayout();
             this.frmCommandSummonObject.SuspendLayout();
+            this.frmCommandJoinCreatureGroup.SuspendLayout();
+            this.joinCreatureGroupsFlagsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstActions
@@ -6210,11 +6227,176 @@
             this.lblSummonObjectTooltip.TabIndex = 0;
             this.lblSummonObjectTooltip.Text = "Summons a GameObject at the specified position.";
             // 
+            // frmCommandJoinCreatureGroup
+            // 
+            this.frmCommandJoinCreatureGroup.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandJoinCreatureGroup.Controls.Add(this.joinCreatureGroupsFlagsGroupBox);
+            this.frmCommandJoinCreatureGroup.Controls.Add(this.lblJoinCreatureGroupAngle);
+            this.frmCommandJoinCreatureGroup.Controls.Add(this.lblJoinCreatureGroupDistance);
+            this.frmCommandJoinCreatureGroup.Controls.Add(this.txtJoinCreatureGroupAngle);
+            this.frmCommandJoinCreatureGroup.Controls.Add(this.txtJoinCreatureGroupDistance);
+            this.frmCommandJoinCreatureGroup.Controls.Add(this.lblJoinCreatureGroupTooltip);
+            this.frmCommandJoinCreatureGroup.Location = new System.Drawing.Point(410, 252);
+            this.frmCommandJoinCreatureGroup.Name = "frmCommandJoinCreatureGroup";
+            this.frmCommandJoinCreatureGroup.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandJoinCreatureGroup.TabIndex = 65;
+            this.frmCommandJoinCreatureGroup.Visible = false;
+            // 
+            // joinCreatureGroupsFlagsGroupBox
+            // 
+            this.joinCreatureGroupsFlagsGroupBox.Controls.Add(this.chkJoinCreatureGroup128);
+            this.joinCreatureGroupsFlagsGroupBox.Controls.Add(this.chkJoinCreatureGroup64);
+            this.joinCreatureGroupsFlagsGroupBox.Controls.Add(this.chkJoinCreatureGroup32);
+            this.joinCreatureGroupsFlagsGroupBox.Controls.Add(this.chkJoinCreatureGroup16);
+            this.joinCreatureGroupsFlagsGroupBox.Controls.Add(this.chkJoinCreatureGroup8);
+            this.joinCreatureGroupsFlagsGroupBox.Controls.Add(this.chkJoinCreatureGroup4);
+            this.joinCreatureGroupsFlagsGroupBox.Controls.Add(this.chkJoinCreatureGroup2);
+            this.joinCreatureGroupsFlagsGroupBox.Controls.Add(this.chkJoinCreatureGroup1);
+            this.joinCreatureGroupsFlagsGroupBox.Location = new System.Drawing.Point(99, 120);
+            this.joinCreatureGroupsFlagsGroupBox.Name = "joinCreatureGroupsFlagsGroupBox";
+            this.joinCreatureGroupsFlagsGroupBox.Size = new System.Drawing.Size(374, 121);
+            this.joinCreatureGroupsFlagsGroupBox.TabIndex = 5;
+            this.joinCreatureGroupsFlagsGroupBox.TabStop = false;
+            this.joinCreatureGroupsFlagsGroupBox.Text = "Group Flags";
+            // 
+            // chkJoinCreatureGroup128
+            // 
+            this.chkJoinCreatureGroup128.AutoSize = true;
+            this.chkJoinCreatureGroup128.Location = new System.Drawing.Point(182, 92);
+            this.chkJoinCreatureGroup128.Name = "chkJoinCreatureGroup128";
+            this.chkJoinCreatureGroup128.Size = new System.Drawing.Size(162, 17);
+            this.chkJoinCreatureGroup128.TabIndex = 7;
+            this.chkJoinCreatureGroup128.Text = "Inform Members on Any Died";
+            this.chkJoinCreatureGroup128.UseVisualStyleBackColor = true;
+            this.chkJoinCreatureGroup128.CheckedChanged += new System.EventHandler(this.chkJoinCreatureGroup128_CheckedChanged);
+            // 
+            // chkJoinCreatureGroup64
+            // 
+            this.chkJoinCreatureGroup64.AutoSize = true;
+            this.chkJoinCreatureGroup64.Location = new System.Drawing.Point(10, 91);
+            this.chkJoinCreatureGroup64.Name = "chkJoinCreatureGroup64";
+            this.chkJoinCreatureGroup64.Size = new System.Drawing.Size(172, 17);
+            this.chkJoinCreatureGroup64.TabIndex = 6;
+            this.chkJoinCreatureGroup64.Text = "Inform Leader on Member Died";
+            this.chkJoinCreatureGroup64.UseVisualStyleBackColor = true;
+            this.chkJoinCreatureGroup64.CheckedChanged += new System.EventHandler(this.chkJoinCreatureGroup64_CheckedChanged);
+            // 
+            // chkJoinCreatureGroup32
+            // 
+            this.chkJoinCreatureGroup32.AutoSize = true;
+            this.chkJoinCreatureGroup32.Location = new System.Drawing.Point(182, 69);
+            this.chkJoinCreatureGroup32.Name = "chkJoinCreatureGroup32";
+            this.chkJoinCreatureGroup32.Size = new System.Drawing.Size(141, 17);
+            this.chkJoinCreatureGroup32.TabIndex = 5;
+            this.chkJoinCreatureGroup32.Text = "Respawn on Any Evade";
+            this.chkJoinCreatureGroup32.UseVisualStyleBackColor = true;
+            this.chkJoinCreatureGroup32.CheckedChanged += new System.EventHandler(this.chkJoinCreatureGroup32_CheckedChanged);
+            // 
+            // chkJoinCreatureGroup16
+            // 
+            this.chkJoinCreatureGroup16.AutoSize = true;
+            this.chkJoinCreatureGroup16.Location = new System.Drawing.Point(10, 69);
+            this.chkJoinCreatureGroup16.Name = "chkJoinCreatureGroup16";
+            this.chkJoinCreatureGroup16.Size = new System.Drawing.Size(155, 17);
+            this.chkJoinCreatureGroup16.TabIndex = 4;
+            this.chkJoinCreatureGroup16.Text = "Respawn on Master Evade";
+            this.chkJoinCreatureGroup16.UseVisualStyleBackColor = true;
+            this.chkJoinCreatureGroup16.CheckedChanged += new System.EventHandler(this.chkJoinCreatureGroup16_CheckedChanged);
+            // 
+            // chkJoinCreatureGroup8
+            // 
+            this.chkJoinCreatureGroup8.AutoSize = true;
+            this.chkJoinCreatureGroup8.Location = new System.Drawing.Point(10, 47);
+            this.chkJoinCreatureGroup8.Name = "chkJoinCreatureGroup8";
+            this.chkJoinCreatureGroup8.Size = new System.Drawing.Size(117, 17);
+            this.chkJoinCreatureGroup8.TabIndex = 3;
+            this.chkJoinCreatureGroup8.Text = "Respawn Together";
+            this.chkJoinCreatureGroup8.UseVisualStyleBackColor = true;
+            this.chkJoinCreatureGroup8.CheckedChanged += new System.EventHandler(this.chkJoinCreatureGroup8_CheckedChanged);
+            // 
+            // chkJoinCreatureGroup4
+            // 
+            this.chkJoinCreatureGroup4.AutoSize = true;
+            this.chkJoinCreatureGroup4.Location = new System.Drawing.Point(242, 25);
+            this.chkJoinCreatureGroup4.Name = "chkJoinCreatureGroup4";
+            this.chkJoinCreatureGroup4.Size = new System.Drawing.Size(103, 17);
+            this.chkJoinCreatureGroup4.TabIndex = 2;
+            this.chkJoinCreatureGroup4.Text = "Evade Together";
+            this.chkJoinCreatureGroup4.UseVisualStyleBackColor = true;
+            this.chkJoinCreatureGroup4.CheckedChanged += new System.EventHandler(this.chkJoinCreatureGroup4_CheckedChanged);
+            // 
+            // chkJoinCreatureGroup2
+            // 
+            this.chkJoinCreatureGroup2.AutoSize = true;
+            this.chkJoinCreatureGroup2.Location = new System.Drawing.Point(127, 25);
+            this.chkJoinCreatureGroup2.Name = "chkJoinCreatureGroup2";
+            this.chkJoinCreatureGroup2.Size = new System.Drawing.Size(100, 17);
+            this.chkJoinCreatureGroup2.TabIndex = 1;
+            this.chkJoinCreatureGroup2.Text = "Aggro Together";
+            this.chkJoinCreatureGroup2.UseVisualStyleBackColor = true;
+            this.chkJoinCreatureGroup2.CheckedChanged += new System.EventHandler(this.chkJoinCreatureGroup2_CheckedChanged);
+            // 
+            // chkJoinCreatureGroup1
+            // 
+            this.chkJoinCreatureGroup1.AutoSize = true;
+            this.chkJoinCreatureGroup1.Location = new System.Drawing.Point(10, 25);
+            this.chkJoinCreatureGroup1.Name = "chkJoinCreatureGroup1";
+            this.chkJoinCreatureGroup1.Size = new System.Drawing.Size(102, 17);
+            this.chkJoinCreatureGroup1.TabIndex = 0;
+            this.chkJoinCreatureGroup1.Text = "Formation Move";
+            this.chkJoinCreatureGroup1.UseVisualStyleBackColor = true;
+            this.chkJoinCreatureGroup1.CheckedChanged += new System.EventHandler(this.chkJoinCreatureGroup1_CheckedChanged);
+            // 
+            // lblJoinCreatureGroupAngle
+            // 
+            this.lblJoinCreatureGroupAngle.AutoSize = true;
+            this.lblJoinCreatureGroupAngle.Location = new System.Drawing.Point(59, 93);
+            this.lblJoinCreatureGroupAngle.Name = "lblJoinCreatureGroupAngle";
+            this.lblJoinCreatureGroupAngle.Size = new System.Drawing.Size(37, 13);
+            this.lblJoinCreatureGroupAngle.TabIndex = 4;
+            this.lblJoinCreatureGroupAngle.Text = "Angle:";
+            // 
+            // lblJoinCreatureGroupDistance
+            // 
+            this.lblJoinCreatureGroupDistance.AutoSize = true;
+            this.lblJoinCreatureGroupDistance.Location = new System.Drawing.Point(44, 61);
+            this.lblJoinCreatureGroupDistance.Name = "lblJoinCreatureGroupDistance";
+            this.lblJoinCreatureGroupDistance.Size = new System.Drawing.Size(52, 13);
+            this.lblJoinCreatureGroupDistance.TabIndex = 3;
+            this.lblJoinCreatureGroupDistance.Text = "Distance:";
+            // 
+            // txtJoinCreatureGroupAngle
+            // 
+            this.txtJoinCreatureGroupAngle.Location = new System.Drawing.Point(99, 90);
+            this.txtJoinCreatureGroupAngle.Name = "txtJoinCreatureGroupAngle";
+            this.txtJoinCreatureGroupAngle.Size = new System.Drawing.Size(374, 20);
+            this.txtJoinCreatureGroupAngle.TabIndex = 2;
+            this.txtJoinCreatureGroupAngle.Leave += new System.EventHandler(this.txtJoinCreatureGroupAngle_Leave);
+            // 
+            // txtJoinCreatureGroupDistance
+            // 
+            this.txtJoinCreatureGroupDistance.Location = new System.Drawing.Point(99, 58);
+            this.txtJoinCreatureGroupDistance.Name = "txtJoinCreatureGroupDistance";
+            this.txtJoinCreatureGroupDistance.Size = new System.Drawing.Size(374, 20);
+            this.txtJoinCreatureGroupDistance.TabIndex = 1;
+            this.txtJoinCreatureGroupDistance.Leave += new System.EventHandler(this.txtJoinCreatureGroupDistance_Leave);
+            // 
+            // lblJoinCreatureGroupTooltip
+            // 
+            this.lblJoinCreatureGroupTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblJoinCreatureGroupTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblJoinCreatureGroupTooltip.Name = "lblJoinCreatureGroupTooltip";
+            this.lblJoinCreatureGroupTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblJoinCreatureGroupTooltip.TabIndex = 0;
+            this.lblJoinCreatureGroupTooltip.Text = "The source Creature joins the target Creature\'s group. If the target is not in a " +
+    "group, then a new group is created with the target as leader.";
+            // 
             // FormScriptEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 620);
+            this.Controls.Add(this.frmCommandJoinCreatureGroup);
             this.Controls.Add(this.frmCommandSummonObject);
             this.Controls.Add(this.frmCommandUnknown);
             this.Controls.Add(this.frmCommandStartScriptForAll);
@@ -6406,6 +6588,10 @@
             this.frmCommandUnknown.PerformLayout();
             this.frmCommandSummonObject.ResumeLayout(false);
             this.frmCommandSummonObject.PerformLayout();
+            this.frmCommandJoinCreatureGroup.ResumeLayout(false);
+            this.frmCommandJoinCreatureGroup.PerformLayout();
+            this.joinCreatureGroupsFlagsGroupBox.ResumeLayout(false);
+            this.joinCreatureGroupsFlagsGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -6949,6 +7135,21 @@
         private System.Windows.Forms.TextBox txtSummonObjectX;
         private System.Windows.Forms.Label lblSummonObjectId;
         private System.Windows.Forms.Label lblSummonObjectTooltip;
+        private System.Windows.Forms.Panel frmCommandJoinCreatureGroup;
+        private System.Windows.Forms.GroupBox joinCreatureGroupsFlagsGroupBox;
+        private System.Windows.Forms.CheckBox chkJoinCreatureGroup128;
+        private System.Windows.Forms.CheckBox chkJoinCreatureGroup64;
+        private System.Windows.Forms.CheckBox chkJoinCreatureGroup32;
+        private System.Windows.Forms.CheckBox chkJoinCreatureGroup16;
+        private System.Windows.Forms.CheckBox chkJoinCreatureGroup8;
+        private System.Windows.Forms.CheckBox chkJoinCreatureGroup4;
+        private System.Windows.Forms.CheckBox chkJoinCreatureGroup2;
+        private System.Windows.Forms.CheckBox chkJoinCreatureGroup1;
+        private System.Windows.Forms.Label lblJoinCreatureGroupAngle;
+        private System.Windows.Forms.Label lblJoinCreatureGroupDistance;
+        private System.Windows.Forms.TextBox txtJoinCreatureGroupAngle;
+        private System.Windows.Forms.TextBox txtJoinCreatureGroupDistance;
+        private System.Windows.Forms.Label lblJoinCreatureGroupTooltip;
     }
 }
 

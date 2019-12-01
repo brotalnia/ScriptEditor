@@ -1673,6 +1673,7 @@ namespace ScriptEditor
             ConditionNamesList.Add(new ComboboxPair("MAP_EVENT_TARGETS", 47));
             ConditionNamesList.Add(new ComboboxPair("OBJECT_IS_SPAWNED", 48));
             ConditionNamesList.Add(new ComboboxPair("OBJECT_LOOT_STATE", 49));
+            ConditionNamesList.Add(new ComboboxPair("OBJECT_FIT_CONDITION", 50));
 
             // Add skill names.
             SkillsList.Add(new ComboboxPair("Frost", 6));

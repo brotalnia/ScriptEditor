@@ -108,6 +108,9 @@ namespace ScriptEditor
         "Add Threat",               // 75
         "Summon Object",            // 76
         "Set Fly",                  // 77
+        "Join Creature Group",      // 78
+        "Leave Creature Group",     // 79
+        "Set GO State",             // 80
         };
 
         // Options for combo boxes.
@@ -119,6 +122,7 @@ namespace ScriptEditor
         public string[] CommandCombatPulse_ComboOptions = { "False", "True" };
         public string[] CommandSetSheathState_ComboOptions = { "Unarmed", "Melee", "Ranged" };
         public string[] CommandSendScriptedMapEvent_ComboOptions = { "Main Targets Only", "Additional Targets Only", "All Targets" };
+        public string[] CommandSetGOState_ComboOptions = { "Active", "Ready", "Active Alternative" };
         public FormScriptEditor()
         {
             InitializeComponent();
@@ -836,6 +840,19 @@ namespace ScriptEditor
             txtSummonObjectO.Text = "";
             frmCommandSummonObject.Visible = false;
 
+            // Join Creature Group (78)
+            txtJoinCreatureGroupDistance.Text = "";
+            txtJoinCreatureGroupAngle.Text = "";
+            chkJoinCreatureGroup1.Checked = false;
+            chkJoinCreatureGroup2.Checked = false;
+            chkJoinCreatureGroup4.Checked = false;
+            chkJoinCreatureGroup8.Checked = false;
+            chkJoinCreatureGroup16.Checked = false;
+            chkJoinCreatureGroup32.Checked = false;
+            chkJoinCreatureGroup64.Checked = false;
+            chkJoinCreatureGroup128.Checked = false;
+            frmCommandJoinCreatureGroup.Visible = false;
+
             dontUpdate = false;
         }
         private void ShowCommandSpecificForm(ScriptAction selectedAction)
@@ -1120,6 +1137,7 @@ namespace ScriptEditor
                 case 72: // Assist Unit
                 case 73: // Combat Stop
                 case 75: // Add Threat
+                case 79: // Leave Creature Group
                 {
                     txtDoorGuid.Visible = false;
                     txtDoorResetDelay.Visible = false;
@@ -1160,6 +1178,11 @@ namespace ScriptEditor
                         case 75:
                         {
                             lblDoorTooltip.Text = "The target Unit is added to the source Creature's threat list. This command has no additional parameters.";
+                            break;
+                        }
+                        case 79:
+                        {
+                            lblDoorTooltip.Text = "The source Creature leaves its current group. If it is the leader of the group, then the group is disbanded. This command has no additional parameters.";
                             break;
                         }
                     }
@@ -1724,6 +1747,7 @@ namespace ScriptEditor
                 case 49: // Combat Pulse
                 case 51: // Set Sheath State
                 case 71: // Respawn Creature
+                case 80: // Set GO State
                 {
                     switch (selectedAction.Command)
                     {
@@ -1753,6 +1777,13 @@ namespace ScriptEditor
                             lblFleeTooltip.Text = "Respawns the source Creature.";
                             lblFleeMode.Text = "Even Alive:";
                             cmbFleeMode.DataSource = CommandCombatPulse_ComboOptions;
+                            break;
+                        }
+                        case 80: // Set GO State
+                        {
+                            lblFleeTooltip.Text = "Changes the source GameObject's current state.";
+                            lblFleeMode.Text = "State:";
+                            cmbFleeMode.DataSource = CommandSetGOState_ComboOptions;
                             break;
                         }
                     }
@@ -1988,7 +2019,7 @@ namespace ScriptEditor
                     frmCommandStartScriptForAll.Visible = true;
                     break;
                 }
-                case 76: // Summon Object 76
+                case 76: // Summon Object
                 {
                     uint objectId = selectedAction.Datalong;
                     if (objectId > 0)
@@ -1999,6 +2030,29 @@ namespace ScriptEditor
                     txtSummonObjectZ.Text = selectedAction.Z.ToString();
                     txtSummonObjectO.Text = selectedAction.O.ToString();
                     frmCommandSummonObject.Visible = true;
+                    break;
+                }
+                case 78: // Join Creature Group
+                {
+                    if ((selectedAction.Datalong & 1) != 0)
+                        chkJoinCreatureGroup1.Checked = true;
+                    if ((selectedAction.Datalong & 2) != 0)
+                        chkJoinCreatureGroup2.Checked = true;
+                    if ((selectedAction.Datalong & 4) != 0)
+                        chkJoinCreatureGroup4.Checked = true;
+                    if ((selectedAction.Datalong & 8) != 0)
+                        chkJoinCreatureGroup8.Checked = true;
+                    if ((selectedAction.Datalong & 16) != 0)
+                        chkJoinCreatureGroup16.Checked = true;
+                    if ((selectedAction.Datalong & 32) != 0)
+                        chkJoinCreatureGroup32.Checked = true;
+                    if ((selectedAction.Datalong & 64) != 0)
+                        chkJoinCreatureGroup64.Checked = true;
+                    if ((selectedAction.Datalong & 128) != 0)
+                        chkJoinCreatureGroup128.Checked = true;
+                    txtJoinCreatureGroupDistance.Text = selectedAction.X.ToString();
+                    txtJoinCreatureGroupAngle.Text = selectedAction.O.ToString();
+                    frmCommandJoinCreatureGroup.Visible = true;
                     break;
                 }
                 default: // Unsupported command
@@ -4544,6 +4598,58 @@ namespace ScriptEditor
         private void txtSummonObjectO_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSummonObjectO, "O");
+        }
+
+        // SCRIPT_COMMAND_JOIN_CREATURE_GROUP (78)
+
+        private void txtJoinCreatureGroupDistance_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtJoinCreatureGroupDistance, "X");
+        }
+
+        private void txtJoinCreatureGroupAngle_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtJoinCreatureGroupAngle, "O");
+        }
+
+        private void chkJoinCreatureGroup1_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkJoinCreatureGroup1, "Datalong", 1);
+        }
+
+        private void chkJoinCreatureGroup2_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkJoinCreatureGroup2, "Datalong", 2);
+        }
+
+        private void chkJoinCreatureGroup4_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkJoinCreatureGroup4, "Datalong", 4);
+        }
+
+        private void chkJoinCreatureGroup8_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkJoinCreatureGroup8, "Datalong", 8);
+        }
+
+        private void chkJoinCreatureGroup16_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkJoinCreatureGroup16, "Datalong", 16);
+        }
+
+        private void chkJoinCreatureGroup32_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkJoinCreatureGroup32, "Datalong", 32);
+        }
+
+        private void chkJoinCreatureGroup64_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkJoinCreatureGroup64, "Datalong", 64);
+        }
+
+        private void chkJoinCreatureGroup128_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkJoinCreatureGroup128, "Datalong", 128);
         }
     }
 

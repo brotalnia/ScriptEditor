@@ -705,11 +705,27 @@ namespace ScriptEditor
                     break;
                 }
                 case 47: // CONDITION_MAP_EVENT_TARGETS
+                case 50: // CONDITION_OBJECT_FIT_CONDITION
                 {
+                    switch (selectedCondition.Type)
+                    {
+                        case 47: // CONDITION_MAP_EVENT_TARGETS
+                        {
+                            lblConditionMapEventTargetsTooltip.Text = "Returns true if all of the extra targets part of the scripted map event satisfy the specified condition.";
+                            lblMapEventTargetsEventId.Text = "Event Id:";
+                            break;
+                        }
+                        case 50: // CONDITION_OBJECT_FIT_CONDITION
+                        {
+                            lblConditionMapEventTargetsTooltip.Text = "Returns true if the GameObject whose guid has been provided satisfies the specified condition";
+                            lblMapEventTargetsEventId.Text = "GUID:";
+                            break;
+                        }
+                    }
                     txtMapEventTargetsEventId.Text = selectedCondition.Value1.ToString();
                     uint conditionId = selectedCondition.Value2;
                     if (conditionId > 0)
-                        btnConditionNotCondition1.Text = conditionId.ToString() + " - " + GameData.FindConditionName(conditionId);
+                        btnMapEventTargetsConditionId.Text = conditionId.ToString() + " - " + GameData.FindConditionName(conditionId);
                     frmConditionMapEventTargets.Visible = true;
                     break;
                 }
