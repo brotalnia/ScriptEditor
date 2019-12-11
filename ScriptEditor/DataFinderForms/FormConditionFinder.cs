@@ -66,11 +66,16 @@ namespace ScriptEditor
         private void ResetAndHideConditionSpecificForms()
         {
             // CONDITION_NOT (-3)
+            btnConditionNotCondition1.Text = "-NONE-";
+            frmConditionNot.Visible = false;
+
             // CONDITION_OR (-2)
             // CONDITION_AND (-1)
-            btnConditionNotCondition1.Text = "-NONE-";
-            btnConditionNotCondition2.Text = "-NONE-";
-            frmConditionNot.Visible = false;
+            btnConditionAndCondition1.Text = "-NONE-";
+            btnConditionAndCondition2.Text = "-NONE-";
+            btnConditionAndCondition3.Text = "-NONE-";
+            btnConditionAndCondition4.Text = "-NONE-";
+            frmConditionAnd.Visible = false;
 
             // CONDITION_AURA (1)
             // CONDITION_SPELL (17)
@@ -198,49 +203,48 @@ namespace ScriptEditor
             switch (selectedCondition.Type)
             {
                 case -3: // CONDITION_NOT
+                {
+                    lblConditionNotTooltip.Text = "Returns true if the specified condition is false. The referenced condition needs to have an entry Id that is lower than that of the current condition.";
+                    lblConditionNotCondition.Text = "Condition Id:";
+                    lblConditionNotCondition.Visible = true;
+                    btnConditionNotCondition1.Visible = true;
+                    uint conditionId1 = selectedCondition.Value1;
+                    if (conditionId1 > 0)
+                        btnConditionNotCondition1.Text = conditionId1.ToString() + " - " + GameData.FindConditionName(conditionId1);
+                    frmConditionNot.Visible = true;
+                    break;
+                }
                 case -2: // CONDITION_OR
                 case -1: // CONDITION_AND
                 {
                     switch (selectedCondition.Type)
                     {
-                        case -3: // CONDITION_NOT
-                        {
-                            lblConditionNotTooltip.Text = "Returns true if the specified condition is false. The referenced condition needs to have an entry Id that is lower than that of the current condition.";
-                            lblConditionNotCondition1.Text = "Condition Id:";
-                            lblConditionNotCondition2.Visible = false;
-                            btnConditionNotCondition2.Visible = false;
-                            break;
-                        }
                         case -2: // CONDITION_OR
                         {
-                            lblConditionNotTooltip.Text = "Returns true if either one of specified conditions is true. The referenced conditions need to have an entry Id that is lower than that of the current condition.";
-                            lblConditionNotCondition1.Text = "Condition Id 1:";
-                            lblConditionNotCondition2.Visible = true;
-                            btnConditionNotCondition2.Visible = true;
+                            lblConditionAndTooltip.Text = "Returns true if any of specified conditions are true. The referenced conditions need to have an entry Id that is lower than that of the current condition.";
                             break;
                         }
                         case -1: // CONDITION_AND
                         {
-                            lblConditionNotTooltip.Text = "Returns true only if both of the specified conditions return true. The referenced conditions need to have an entry Id that is lower than that of the current condition.";
-                            lblConditionNotCondition1.Text = "Condition Id 1:";
-                            lblConditionNotCondition2.Visible = true;
-                            btnConditionNotCondition2.Visible = true;
+                            lblConditionAndTooltip.Text = "Returns true only if all of the specified conditions return true. The referenced conditions need to have an entry Id that is lower than that of the current condition.";
                             break;
                         }
                     }
 
-                    lblConditionNotCondition1.Visible = true;
-                    btnConditionNotCondition1.Visible = true;
-
                     uint conditionId1 = selectedCondition.Value1;
                     if (conditionId1 > 0)
-                        btnConditionNotCondition1.Text = conditionId1.ToString() + " - " + GameData.FindConditionName(conditionId1);
+                        btnConditionAndCondition1.Text = conditionId1.ToString() + " - " + GameData.FindConditionName(conditionId1);
                     uint conditionId2 = selectedCondition.Value2;
                     if (conditionId2 > 0)
-                        btnConditionNotCondition2.Text = conditionId2.ToString() + " - " + GameData.FindConditionName(conditionId2);
+                        btnConditionAndCondition2.Text = conditionId2.ToString() + " - " + GameData.FindConditionName(conditionId2);
+                    uint conditionId3 = selectedCondition.Value3;
+                    if (conditionId3 > 0)
+                        btnConditionAndCondition3.Text = conditionId3.ToString() + " - " + GameData.FindConditionName(conditionId3);
+                    uint conditionId4 = selectedCondition.Value4;
+                    if (conditionId4 > 0)
+                        btnConditionAndCondition4.Text = conditionId4.ToString() + " - " + GameData.FindConditionName(conditionId4);
 
-
-                    frmConditionNot.Visible = true;
+                    frmConditionAnd.Visible = true;
                     break;
                 }
                 case 0: // CONDITION_NONE
@@ -264,59 +268,57 @@ namespace ScriptEditor
                         }
                         case 10: // CONDITION_AD_COMMISSION_AURA
                         {
-                            lblConditionNotTooltip.Text = "Returns true if the target Player has an Argent Dawn commission aura.";
+                            lblConditionNotTooltip.Text = "Returns true if the target Player has an Argent Dawn commission aura. This condition has no additional parameters.";
                             break;
                         }
                         case 13: // CONDITION_CANT_PATH_TO_VICTIM
                         {
-                            lblConditionNotTooltip.Text = "Returns true if the source Creature cannot find a path to its victim.";
+                            lblConditionNotTooltip.Text = "Returns true if the source Creature cannot find a path to its victim. This condition has no additional parameters.";
                             break;
                         }
                         case 37: // CONDITION_LINE_OF_SIGHT
                         {
-                            lblConditionNotTooltip.Text = "Returns true if the source and target WorldObjects are within line of sight of each other.";
+                            lblConditionNotTooltip.Text = "Returns true if the source and target WorldObjects are within line of sight of each other. This condition has no additional parameters.";
                             break;
                         }
                         case 39: // CONDITION_IS_MOVING
                         {
-                            lblConditionNotTooltip.Text = "Returns true if the target WorldObject is currently moving.";
+                            lblConditionNotTooltip.Text = "Returns true if the target WorldObject is currently moving. This condition has no additional parameters.";
                             break;
                         }
                         case 40: // CONDITION_HAS_PET
                         {
-                            lblConditionNotTooltip.Text = "Returns true if the target Unit has a pet.";
+                            lblConditionNotTooltip.Text = "Returns true if the target Unit has a pet. This condition has no additional parameters.";
                             break;
                         }
                         case 43: // CONDITION_IS_IN_COMBAT
                         {
-                            lblConditionNotTooltip.Text = "Returns true if the target Unit is in combat.";
+                            lblConditionNotTooltip.Text = "Returns true if the target Unit is in combat. This condition has no additional parameters.";
                             break;
                         }
                         case 44: // CONDITION_IS_HOSTILE_TO
                         {
-                            lblConditionNotTooltip.Text = "Returns true if the source and target Units are hostile to each other.";
+                            lblConditionNotTooltip.Text = "Returns true if the source and target Units are hostile to each other. This condition has no additional parameters.";
                             break;
                         }
                         case 45: // CONDITION_IS_IN_GROUP
                         {
-                            lblConditionNotTooltip.Text = "Returns true if the target Player is currently in a group.";
+                            lblConditionNotTooltip.Text = "Returns true if the target Player is currently in a group. This condition has no additional parameters.";
                             break;
                         }
                         case 46: // CONDITION_IS_ALIVE
                         {
-                            lblConditionNotTooltip.Text = "Returns true if the target Unit is alive.";
+                            lblConditionNotTooltip.Text = "Returns true if the target Unit is alive. This condition has no additional parameters.";
                             break;
                         }
                         case 48: // CONDITION_OBJECT_IS_SPAWNED
                         {
-                            lblConditionNotTooltip.Text = "Returns true if the target GameObject is currently spawned.";
+                            lblConditionNotTooltip.Text = "Returns true if the target GameObject is currently spawned. This condition has no additional parameters.";
                             break;
                         }
                     }
-                    lblConditionNotCondition1.Visible = false;
-                    lblConditionNotCondition2.Visible = false;
+                    lblConditionNotCondition.Visible = false;
                     btnConditionNotCondition1.Visible = false;
-                    btnConditionNotCondition2.Visible = false;
                     frmConditionNot.Visible = true;
                     break;
                 }
@@ -1443,8 +1445,6 @@ namespace ScriptEditor
         }
 
         // CONDITION_NOT
-        // CONDITION_OR
-        // CONDITION_AND
         private void btnConditionNotCondition1_Click(object sender, EventArgs e)
         {
             FormConditionFinder frm = new FormConditionFinder();
@@ -1460,7 +1460,24 @@ namespace ScriptEditor
                 SetScriptFieldFromValue(returnId, "Value1");
             }
         }
-        private void btnConditionNotCondition2_Click(object sender, EventArgs e)
+        // CONDITION_OR
+        // CONDITION_AND
+        private void btnConditionAndCondition1_Click(object sender, EventArgs e)
+        {
+            FormConditionFinder frm = new FormConditionFinder();
+            if (frm.ShowDialog(GetScriptFieldValue("Value1")) == System.Windows.Forms.DialogResult.OK)
+            {
+                int returnId = frm.ReturnValue;
+
+                if (returnId > 0)
+                    btnConditionAndCondition1.Text = returnId.ToString() + " - " + GameData.FindConditionName((uint)returnId);
+                else
+                    btnConditionAndCondition1.Text = "-NONE-";
+
+                SetScriptFieldFromValue(returnId, "Value1");
+            }
+        }
+        private void btnConditionAndCondition2_Click(object sender, EventArgs e)
         {
             FormConditionFinder frm = new FormConditionFinder();
             if (frm.ShowDialog(GetScriptFieldValue("Value2")) == System.Windows.Forms.DialogResult.OK)
@@ -1468,11 +1485,41 @@ namespace ScriptEditor
                 int returnId = frm.ReturnValue;
 
                 if (returnId > 0)
-                    btnConditionNotCondition2.Text = returnId.ToString() + " - " + GameData.FindConditionName((uint)returnId);
+                    btnConditionAndCondition2.Text = returnId.ToString() + " - " + GameData.FindConditionName((uint)returnId);
                 else
-                    btnConditionNotCondition2.Text = "-NONE-";
+                    btnConditionAndCondition2.Text = "-NONE-";
 
                 SetScriptFieldFromValue(returnId, "Value2");
+            }
+        }
+        private void btnConditionAndCondition3_Click(object sender, EventArgs e)
+        {
+            FormConditionFinder frm = new FormConditionFinder();
+            if (frm.ShowDialog(GetScriptFieldValue("Value3")) == System.Windows.Forms.DialogResult.OK)
+            {
+                int returnId = frm.ReturnValue;
+
+                if (returnId > 0)
+                    btnConditionAndCondition3.Text = returnId.ToString() + " - " + GameData.FindConditionName((uint)returnId);
+                else
+                    btnConditionAndCondition3.Text = "-NONE-";
+
+                SetScriptFieldFromValue(returnId, "Value3");
+            }
+        }
+        private void btnConditionAndCondition4_Click(object sender, EventArgs e)
+        {
+            FormConditionFinder frm = new FormConditionFinder();
+            if (frm.ShowDialog(GetScriptFieldValue("Value4")) == System.Windows.Forms.DialogResult.OK)
+            {
+                int returnId = frm.ReturnValue;
+
+                if (returnId > 0)
+                    btnConditionAndCondition4.Text = returnId.ToString() + " - " + GameData.FindConditionName((uint)returnId);
+                else
+                    btnConditionAndCondition4.Text = "-NONE-";
+
+                SetScriptFieldFromValue(returnId, "Value4");
             }
         }
         // CONDITION_AURA

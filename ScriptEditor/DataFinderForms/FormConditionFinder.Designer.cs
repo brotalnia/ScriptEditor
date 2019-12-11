@@ -36,10 +36,8 @@
             this.columnValue3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnValue4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.frmConditionNot = new System.Windows.Forms.Panel();
-            this.btnConditionNotCondition2 = new System.Windows.Forms.Button();
             this.btnConditionNotCondition1 = new System.Windows.Forms.Button();
-            this.lblConditionNotCondition2 = new System.Windows.Forms.Label();
-            this.lblConditionNotCondition1 = new System.Windows.Forms.Label();
+            this.lblConditionNotCondition = new System.Windows.Forms.Label();
             this.lblConditionNotTooltip = new System.Windows.Forms.Label();
             this.cmbConditionType = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
@@ -169,6 +167,16 @@
             this.lblMapEventTargetsConditionId = new System.Windows.Forms.Label();
             this.lblMapEventTargetsEventId = new System.Windows.Forms.Label();
             this.lblConditionMapEventTargetsTooltip = new System.Windows.Forms.Label();
+            this.frmConditionAnd = new System.Windows.Forms.Panel();
+            this.btnConditionAndCondition3 = new System.Windows.Forms.Button();
+            this.btnConditionAndCondition1 = new System.Windows.Forms.Button();
+            this.lblConditionAndCondition3 = new System.Windows.Forms.Label();
+            this.lblConditionAndCondition1 = new System.Windows.Forms.Label();
+            this.lblConditionAndTooltip = new System.Windows.Forms.Label();
+            this.btnConditionAndCondition4 = new System.Windows.Forms.Button();
+            this.btnConditionAndCondition2 = new System.Windows.Forms.Button();
+            this.lblConditionAndCondition4 = new System.Windows.Forms.Label();
+            this.lblConditionAndCondition2 = new System.Windows.Forms.Label();
             this.frmConditionNot.SuspendLayout();
             this.frmConditionAura.SuspendLayout();
             this.frmConditionItem.SuspendLayout();
@@ -189,6 +197,7 @@
             this.frmConditionMapEventData.SuspendLayout();
             this.frmConditionUnknown.SuspendLayout();
             this.frmConditionMapEventTargets.SuspendLayout();
+            this.frmConditionAnd.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstData
@@ -241,26 +250,14 @@
             // frmConditionNot
             // 
             this.frmConditionNot.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.frmConditionNot.Controls.Add(this.btnConditionNotCondition2);
             this.frmConditionNot.Controls.Add(this.btnConditionNotCondition1);
-            this.frmConditionNot.Controls.Add(this.lblConditionNotCondition2);
-            this.frmConditionNot.Controls.Add(this.lblConditionNotCondition1);
+            this.frmConditionNot.Controls.Add(this.lblConditionNotCondition);
             this.frmConditionNot.Controls.Add(this.lblConditionNotTooltip);
             this.frmConditionNot.Location = new System.Drawing.Point(12, 212);
             this.frmConditionNot.Name = "frmConditionNot";
             this.frmConditionNot.Size = new System.Drawing.Size(650, 150);
             this.frmConditionNot.TabIndex = 9;
             this.frmConditionNot.Visible = false;
-            // 
-            // btnConditionNotCondition2
-            // 
-            this.btnConditionNotCondition2.Location = new System.Drawing.Point(100, 101);
-            this.btnConditionNotCondition2.Name = "btnConditionNotCondition2";
-            this.btnConditionNotCondition2.Size = new System.Drawing.Size(536, 23);
-            this.btnConditionNotCondition2.TabIndex = 4;
-            this.btnConditionNotCondition2.Text = "-NONE-";
-            this.btnConditionNotCondition2.UseVisualStyleBackColor = true;
-            this.btnConditionNotCondition2.Click += new System.EventHandler(this.btnConditionNotCondition2_Click);
             // 
             // btnConditionNotCondition1
             // 
@@ -272,23 +269,14 @@
             this.btnConditionNotCondition1.UseVisualStyleBackColor = true;
             this.btnConditionNotCondition1.Click += new System.EventHandler(this.btnConditionNotCondition1_Click);
             // 
-            // lblConditionNotCondition2
+            // lblConditionNotCondition
             // 
-            this.lblConditionNotCondition2.AutoSize = true;
-            this.lblConditionNotCondition2.Location = new System.Drawing.Point(11, 106);
-            this.lblConditionNotCondition2.Name = "lblConditionNotCondition2";
-            this.lblConditionNotCondition2.Size = new System.Drawing.Size(75, 13);
-            this.lblConditionNotCondition2.TabIndex = 2;
-            this.lblConditionNotCondition2.Text = "Condition Id 2:";
-            // 
-            // lblConditionNotCondition1
-            // 
-            this.lblConditionNotCondition1.AutoSize = true;
-            this.lblConditionNotCondition1.Location = new System.Drawing.Point(11, 73);
-            this.lblConditionNotCondition1.Name = "lblConditionNotCondition1";
-            this.lblConditionNotCondition1.Size = new System.Drawing.Size(75, 13);
-            this.lblConditionNotCondition1.TabIndex = 1;
-            this.lblConditionNotCondition1.Text = "Condition Id 1:";
+            this.lblConditionNotCondition.AutoSize = true;
+            this.lblConditionNotCondition.Location = new System.Drawing.Point(11, 73);
+            this.lblConditionNotCondition.Name = "lblConditionNotCondition";
+            this.lblConditionNotCondition.Size = new System.Drawing.Size(75, 13);
+            this.lblConditionNotCondition.TabIndex = 1;
+            this.lblConditionNotCondition.Text = "Condition Id 1:";
             // 
             // lblConditionNotTooltip
             // 
@@ -1625,10 +1613,116 @@
             this.lblConditionMapEventTargetsTooltip.Text = "Returns true if all of the extra targets part of the scripted map event satisfy t" +
     "he specified condition.";
             // 
+            // frmConditionAnd
+            // 
+            this.frmConditionAnd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmConditionAnd.Controls.Add(this.btnConditionAndCondition4);
+            this.frmConditionAnd.Controls.Add(this.btnConditionAndCondition2);
+            this.frmConditionAnd.Controls.Add(this.lblConditionAndCondition4);
+            this.frmConditionAnd.Controls.Add(this.lblConditionAndCondition2);
+            this.frmConditionAnd.Controls.Add(this.btnConditionAndCondition3);
+            this.frmConditionAnd.Controls.Add(this.btnConditionAndCondition1);
+            this.frmConditionAnd.Controls.Add(this.lblConditionAndCondition3);
+            this.frmConditionAnd.Controls.Add(this.lblConditionAndCondition1);
+            this.frmConditionAnd.Controls.Add(this.lblConditionAndTooltip);
+            this.frmConditionAnd.Location = new System.Drawing.Point(12, 212);
+            this.frmConditionAnd.Name = "frmConditionAnd";
+            this.frmConditionAnd.Size = new System.Drawing.Size(650, 150);
+            this.frmConditionAnd.TabIndex = 39;
+            this.frmConditionAnd.Visible = false;
+            // 
+            // btnConditionAndCondition3
+            // 
+            this.btnConditionAndCondition3.Location = new System.Drawing.Point(100, 101);
+            this.btnConditionAndCondition3.Name = "btnConditionAndCondition3";
+            this.btnConditionAndCondition3.Size = new System.Drawing.Size(218, 23);
+            this.btnConditionAndCondition3.TabIndex = 4;
+            this.btnConditionAndCondition3.Text = "-NONE-";
+            this.btnConditionAndCondition3.UseVisualStyleBackColor = true;
+            this.btnConditionAndCondition3.Click += new System.EventHandler(this.btnConditionAndCondition3_Click);
+            // 
+            // btnConditionAndCondition1
+            // 
+            this.btnConditionAndCondition1.Location = new System.Drawing.Point(100, 68);
+            this.btnConditionAndCondition1.Name = "btnConditionAndCondition1";
+            this.btnConditionAndCondition1.Size = new System.Drawing.Size(218, 23);
+            this.btnConditionAndCondition1.TabIndex = 3;
+            this.btnConditionAndCondition1.Text = "-NONE-";
+            this.btnConditionAndCondition1.UseVisualStyleBackColor = true;
+            this.btnConditionAndCondition1.Click += new System.EventHandler(this.btnConditionAndCondition1_Click);
+            // 
+            // lblConditionAndCondition3
+            // 
+            this.lblConditionAndCondition3.AutoSize = true;
+            this.lblConditionAndCondition3.Location = new System.Drawing.Point(11, 106);
+            this.lblConditionAndCondition3.Name = "lblConditionAndCondition3";
+            this.lblConditionAndCondition3.Size = new System.Drawing.Size(75, 13);
+            this.lblConditionAndCondition3.TabIndex = 2;
+            this.lblConditionAndCondition3.Text = "Condition Id 3:";
+            // 
+            // lblConditionAndCondition1
+            // 
+            this.lblConditionAndCondition1.AutoSize = true;
+            this.lblConditionAndCondition1.Location = new System.Drawing.Point(11, 73);
+            this.lblConditionAndCondition1.Name = "lblConditionAndCondition1";
+            this.lblConditionAndCondition1.Size = new System.Drawing.Size(75, 13);
+            this.lblConditionAndCondition1.TabIndex = 1;
+            this.lblConditionAndCondition1.Text = "Condition Id 1:";
+            // 
+            // lblConditionAndTooltip
+            // 
+            this.lblConditionAndTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblConditionAndTooltip.Location = new System.Drawing.Point(12, 8);
+            this.lblConditionAndTooltip.Name = "lblConditionAndTooltip";
+            this.lblConditionAndTooltip.Size = new System.Drawing.Size(624, 42);
+            this.lblConditionAndTooltip.TabIndex = 0;
+            this.lblConditionAndTooltip.Text = "Returns true only if all of the specified conditions return true. The referenced " +
+    "conditions need to have an entry Id that is lower than that of the current condi" +
+    "tion.";
+            // 
+            // btnConditionAndCondition4
+            // 
+            this.btnConditionAndCondition4.Location = new System.Drawing.Point(412, 101);
+            this.btnConditionAndCondition4.Name = "btnConditionAndCondition4";
+            this.btnConditionAndCondition4.Size = new System.Drawing.Size(218, 23);
+            this.btnConditionAndCondition4.TabIndex = 8;
+            this.btnConditionAndCondition4.Text = "-NONE-";
+            this.btnConditionAndCondition4.UseVisualStyleBackColor = true;
+            this.btnConditionAndCondition4.Click += new System.EventHandler(this.btnConditionAndCondition4_Click);
+            // 
+            // btnConditionAndCondition2
+            // 
+            this.btnConditionAndCondition2.Location = new System.Drawing.Point(412, 68);
+            this.btnConditionAndCondition2.Name = "btnConditionAndCondition2";
+            this.btnConditionAndCondition2.Size = new System.Drawing.Size(218, 23);
+            this.btnConditionAndCondition2.TabIndex = 7;
+            this.btnConditionAndCondition2.Text = "-NONE-";
+            this.btnConditionAndCondition2.UseVisualStyleBackColor = true;
+            this.btnConditionAndCondition2.Click += new System.EventHandler(this.btnConditionAndCondition2_Click);
+            // 
+            // lblConditionAndCondition4
+            // 
+            this.lblConditionAndCondition4.AutoSize = true;
+            this.lblConditionAndCondition4.Location = new System.Drawing.Point(323, 106);
+            this.lblConditionAndCondition4.Name = "lblConditionAndCondition4";
+            this.lblConditionAndCondition4.Size = new System.Drawing.Size(75, 13);
+            this.lblConditionAndCondition4.TabIndex = 6;
+            this.lblConditionAndCondition4.Text = "Condition Id 4:";
+            // 
+            // lblConditionAndCondition2
+            // 
+            this.lblConditionAndCondition2.AutoSize = true;
+            this.lblConditionAndCondition2.Location = new System.Drawing.Point(323, 73);
+            this.lblConditionAndCondition2.Name = "lblConditionAndCondition2";
+            this.lblConditionAndCondition2.Size = new System.Drawing.Size(75, 13);
+            this.lblConditionAndCondition2.TabIndex = 5;
+            this.lblConditionAndCondition2.Text = "Condition Id 2:";
+            // 
             // FormConditionFinder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(674, 395);
+            this.Controls.Add(this.frmConditionAnd);
             this.Controls.Add(this.frmConditionMapEventTargets);
             this.Controls.Add(this.frmConditionUnknown);
             this.Controls.Add(this.frmConditionMapEventData);
@@ -1699,6 +1793,7 @@
             this.Controls.SetChildIndex(this.frmConditionMapEventData, 0);
             this.Controls.SetChildIndex(this.frmConditionUnknown, 0);
             this.Controls.SetChildIndex(this.frmConditionMapEventTargets, 0);
+            this.Controls.SetChildIndex(this.frmConditionAnd, 0);
             this.frmConditionNot.ResumeLayout(false);
             this.frmConditionNot.PerformLayout();
             this.frmConditionAura.ResumeLayout(false);
@@ -1739,6 +1834,8 @@
             this.frmConditionUnknown.PerformLayout();
             this.frmConditionMapEventTargets.ResumeLayout(false);
             this.frmConditionMapEventTargets.PerformLayout();
+            this.frmConditionAnd.ResumeLayout(false);
+            this.frmConditionAnd.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1753,10 +1850,8 @@
         private System.Windows.Forms.ColumnHeader columnValue3;
         private System.Windows.Forms.ColumnHeader columnValue4;
         private System.Windows.Forms.Panel frmConditionNot;
-        private System.Windows.Forms.Button btnConditionNotCondition2;
         private System.Windows.Forms.Button btnConditionNotCondition1;
-        private System.Windows.Forms.Label lblConditionNotCondition2;
-        private System.Windows.Forms.Label lblConditionNotCondition1;
+        private System.Windows.Forms.Label lblConditionNotCondition;
         private System.Windows.Forms.Label lblConditionNotTooltip;
         private System.Windows.Forms.ComboBox cmbConditionType;
         private System.Windows.Forms.Button btnSave;
@@ -1886,5 +1981,15 @@
         private System.Windows.Forms.Label lblMapEventTargetsConditionId;
         private System.Windows.Forms.Label lblMapEventTargetsEventId;
         private System.Windows.Forms.Label lblConditionMapEventTargetsTooltip;
+        private System.Windows.Forms.Panel frmConditionAnd;
+        private System.Windows.Forms.Button btnConditionAndCondition4;
+        private System.Windows.Forms.Button btnConditionAndCondition2;
+        private System.Windows.Forms.Label lblConditionAndCondition4;
+        private System.Windows.Forms.Label lblConditionAndCondition2;
+        private System.Windows.Forms.Button btnConditionAndCondition3;
+        private System.Windows.Forms.Button btnConditionAndCondition1;
+        private System.Windows.Forms.Label lblConditionAndCondition3;
+        private System.Windows.Forms.Label lblConditionAndCondition1;
+        private System.Windows.Forms.Label lblConditionAndTooltip;
     }
 }
