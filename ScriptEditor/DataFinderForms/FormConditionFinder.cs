@@ -122,6 +122,9 @@ namespace ScriptEditor
             // CONDITION_LAST_WAYPOINT (32)
             // CONDITION_MAP_EVENT_ACTIVE (36)
             // CONDITION_DISTANCE (38)
+            // CONDITION_HEALTH_PERCENT (41)
+            // CONDITION_MANA_PERCENT (42)
+            // CONDITION_PVP_RANK (51)
             txtWarEffortStage.Text = "";
             cmbWarEffortComparison.SelectedIndex = 0;
             frmConditionWarEffort.Visible = false;
@@ -549,6 +552,7 @@ namespace ScriptEditor
                 case 38: // CONDITION_DISTANCE
                 case 41: // CONDITION_HEALTH_PERCENT
                 case 42: // CONDITION_MANA_PERCENT
+                case 51: // CONDITION_PVP_RANK
                 {
                     switch (selectedCondition.Type)
                     {
@@ -624,7 +628,15 @@ namespace ScriptEditor
                             lblWarEffortStage.Text = "Mana:";
                             break;
                         }
-                    }
+                        case 51: // CONDITION_PVP_RANK
+                        {
+                            lblConditionWarEffortTooltip.Text = "Returns true if the target Player's honor rank matches the specified criteria.";
+                            cmbWarEffortComparison.Visible = true;
+                            lblWarEffortComparison.Visible = true;
+                            lblWarEffortStage.Text = "Rank:";
+                            break;
+                        }
+                        }
                     txtWarEffortStage.Text = selectedCondition.Value1.ToString();
                     cmbWarEffortComparison.SelectedIndex = (int)selectedCondition.Value2;
                     frmConditionWarEffort.Visible = true;

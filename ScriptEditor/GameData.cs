@@ -527,7 +527,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT `entry`, `effect1`, `effect2`, `effect3`, `name1`, `description1` FROM `spell_template` t1 WHERE `build`=(SELECT max(`build`) FROM `spell_template` t2 WHERE t1.`entry`=t2.`entry` && `build` <= 5875) ORDER BY `entry`";
+            command.CommandText = "SELECT `entry`, `effect1`, `effect2`, `effect3`, `name`, `description` FROM `spell_template` t1 WHERE `build`=(SELECT max(`build`) FROM `spell_template` t2 WHERE t1.`entry`=t2.`entry` && `build` <= 5875) ORDER BY `entry`";
             try
             {
                 conn.Open();
@@ -654,7 +654,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT `id`, `reputation_list_id`, `team`, `name1`, `description1` FROM `faction` t1 WHERE `build`=(SELECT max(`build`) FROM `faction` t2 WHERE t1.`id`=t2.`id` && `build` <= 5875) ORDER BY `id`";
+            command.CommandText = "SELECT `id`, `reputation_list_id`, `team`, `name`, `description` FROM `faction` t1 WHERE `build`=(SELECT max(`build`) FROM `faction` t2 WHERE t1.`id`=t2.`id` && `build` <= 5875) ORDER BY `id`";
             try
             {
                 conn.Open();
@@ -1674,6 +1674,7 @@ namespace ScriptEditor
             ConditionNamesList.Add(new ComboboxPair("OBJECT_IS_SPAWNED", 48));
             ConditionNamesList.Add(new ComboboxPair("OBJECT_LOOT_STATE", 49));
             ConditionNamesList.Add(new ComboboxPair("OBJECT_FIT_CONDITION", 50));
+            ConditionNamesList.Add(new ComboboxPair("PVP_RANK", 51));
 
             // Add skill names.
             SkillsList.Add(new ComboboxPair("Frost", 6));
