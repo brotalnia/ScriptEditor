@@ -299,7 +299,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT `ID`, `MaleText`, `FemaleText`, `Type`, `Language` FROM `broadcast_text` ORDER BY `ID`";
+            command.CommandText = "SELECT `entry`, `male_text`, `female_text`, `chat_type`, `language_id` FROM `broadcast_text` ORDER BY `entry`";
             try
             {
                 conn.Open();

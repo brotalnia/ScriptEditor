@@ -694,6 +694,7 @@
             "event_scripts",
             "gossip_scripts",
             "gameobject_scripts",
+            "gameobject_template_scripts",
             "spell_scripts",
             "quest_start_scripts",
             "quest_end_scripts",

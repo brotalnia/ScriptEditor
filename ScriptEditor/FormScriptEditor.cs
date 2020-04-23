@@ -179,6 +179,7 @@ namespace ScriptEditor
             cmbTargetType.Items.Add(new ComboboxPair("Nearest Player", 23));
             cmbTargetType.Items.Add(new ComboboxPair("Nearest Hostile Player", 24));
             cmbTargetType.Items.Add(new ComboboxPair("Nearest Friendly Player", 25));
+            cmbTargetType.Items.Add(new ComboboxPair("Random Creature", 26));
             cmbTargetType.SelectedIndex = 0;
 
             // Add chat types to combo box.
@@ -2365,8 +2366,9 @@ namespace ScriptEditor
                     txtTargetParam2.Enabled = false;
                     break;
                 }
-                case 8: // Creature Entry
-                case 11: // GameObject Entry
+                case 8: // Nearest Creature with Entry
+                case 11: // Nearest GameObject with Entry
+                case 26: // Random Creature with Entry
                 {
                     lblTargetParam1.Text = "Entry:";
                     lblTargetParam2.Text = "Radius:";
