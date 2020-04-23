@@ -177,6 +177,7 @@
             this.txtSummonCreatureDelay = new System.Windows.Forms.TextBox();
             this.lblSummonCreatureId = new System.Windows.Forms.Label();
             this.grpSummonCreatureFlags = new System.Windows.Forms.GroupBox();
+            this.chkSummonCreatureFlags16 = new System.Windows.Forms.CheckBox();
             this.chkSummonCreatureFlags1 = new System.Windows.Forms.CheckBox();
             this.chkSummonCreatureFlags8 = new System.Windows.Forms.CheckBox();
             this.chkSummonCreatureFlags4 = new System.Windows.Forms.CheckBox();
@@ -1957,7 +1958,7 @@
             // 
             // btnSummonCreatureScriptIdEdit
             // 
-            this.btnSummonCreatureScriptIdEdit.Location = new System.Drawing.Point(429, 209);
+            this.btnSummonCreatureScriptIdEdit.Location = new System.Drawing.Point(429, 245);
             this.btnSummonCreatureScriptIdEdit.Name = "btnSummonCreatureScriptIdEdit";
             this.btnSummonCreatureScriptIdEdit.Size = new System.Drawing.Size(44, 22);
             this.btnSummonCreatureScriptIdEdit.TabIndex = 25;
@@ -1967,7 +1968,7 @@
             // 
             // txtSummonCreatureScriptId
             // 
-            this.txtSummonCreatureScriptId.Location = new System.Drawing.Point(292, 210);
+            this.txtSummonCreatureScriptId.Location = new System.Drawing.Point(292, 246);
             this.txtSummonCreatureScriptId.Name = "txtSummonCreatureScriptId";
             this.txtSummonCreatureScriptId.Size = new System.Drawing.Size(131, 20);
             this.txtSummonCreatureScriptId.TabIndex = 24;
@@ -1995,7 +1996,7 @@
             // lblSummonCreatureO
             // 
             this.lblSummonCreatureO.AutoSize = true;
-            this.lblSummonCreatureO.Location = new System.Drawing.Point(64, 260);
+            this.lblSummonCreatureO.Location = new System.Drawing.Point(64, 292);
             this.lblSummonCreatureO.Name = "lblSummonCreatureO";
             this.lblSummonCreatureO.Size = new System.Drawing.Size(61, 13);
             this.lblSummonCreatureO.TabIndex = 21;
@@ -2004,7 +2005,7 @@
             // lblSummonCreatureZ
             // 
             this.lblSummonCreatureZ.AutoSize = true;
-            this.lblSummonCreatureZ.Location = new System.Drawing.Point(55, 231);
+            this.lblSummonCreatureZ.Location = new System.Drawing.Point(55, 263);
             this.lblSummonCreatureZ.Name = "lblSummonCreatureZ";
             this.lblSummonCreatureZ.Size = new System.Drawing.Size(70, 13);
             this.lblSummonCreatureZ.TabIndex = 20;
@@ -2013,7 +2014,7 @@
             // lblSummonCreatureY
             // 
             this.lblSummonCreatureY.AutoSize = true;
-            this.lblSummonCreatureY.Location = new System.Drawing.Point(55, 201);
+            this.lblSummonCreatureY.Location = new System.Drawing.Point(55, 233);
             this.lblSummonCreatureY.Name = "lblSummonCreatureY";
             this.lblSummonCreatureY.Size = new System.Drawing.Size(70, 13);
             this.lblSummonCreatureY.TabIndex = 19;
@@ -2022,7 +2023,7 @@
             // lblSummonCreatureX
             // 
             this.lblSummonCreatureX.AutoSize = true;
-            this.lblSummonCreatureX.Location = new System.Drawing.Point(55, 169);
+            this.lblSummonCreatureX.Location = new System.Drawing.Point(55, 201);
             this.lblSummonCreatureX.Name = "lblSummonCreatureX";
             this.lblSummonCreatureX.Size = new System.Drawing.Size(70, 13);
             this.lblSummonCreatureX.TabIndex = 18;
@@ -2030,7 +2031,7 @@
             // 
             // txtSummonCreatureO
             // 
-            this.txtSummonCreatureO.Location = new System.Drawing.Point(131, 259);
+            this.txtSummonCreatureO.Location = new System.Drawing.Point(131, 291);
             this.txtSummonCreatureO.Name = "txtSummonCreatureO";
             this.txtSummonCreatureO.Size = new System.Drawing.Size(143, 20);
             this.txtSummonCreatureO.TabIndex = 17;
@@ -2038,7 +2039,7 @@
             // 
             // txtSummonCreatureZ
             // 
-            this.txtSummonCreatureZ.Location = new System.Drawing.Point(132, 228);
+            this.txtSummonCreatureZ.Location = new System.Drawing.Point(132, 260);
             this.txtSummonCreatureZ.Name = "txtSummonCreatureZ";
             this.txtSummonCreatureZ.Size = new System.Drawing.Size(142, 20);
             this.txtSummonCreatureZ.TabIndex = 16;
@@ -2046,7 +2047,7 @@
             // 
             // txtSummonCreatureY
             // 
-            this.txtSummonCreatureY.Location = new System.Drawing.Point(131, 197);
+            this.txtSummonCreatureY.Location = new System.Drawing.Point(131, 229);
             this.txtSummonCreatureY.Name = "txtSummonCreatureY";
             this.txtSummonCreatureY.Size = new System.Drawing.Size(143, 20);
             this.txtSummonCreatureY.TabIndex = 15;
@@ -2054,7 +2055,7 @@
             // 
             // txtSummonCreatureX
             // 
-            this.txtSummonCreatureX.Location = new System.Drawing.Point(131, 166);
+            this.txtSummonCreatureX.Location = new System.Drawing.Point(131, 198);
             this.txtSummonCreatureX.Name = "txtSummonCreatureX";
             this.txtSummonCreatureX.Size = new System.Drawing.Size(143, 20);
             this.txtSummonCreatureX.TabIndex = 14;
@@ -2063,7 +2064,7 @@
             // lblSummonCreatureUniqueRange
             // 
             this.lblSummonCreatureUniqueRange.AutoSize = true;
-            this.lblSummonCreatureUniqueRange.Location = new System.Drawing.Point(389, 283);
+            this.lblSummonCreatureUniqueRange.Location = new System.Drawing.Point(389, 272);
             this.lblSummonCreatureUniqueRange.Name = "lblSummonCreatureUniqueRange";
             this.lblSummonCreatureUniqueRange.Size = new System.Drawing.Size(74, 13);
             this.lblSummonCreatureUniqueRange.TabIndex = 13;
@@ -2072,7 +2073,7 @@
             // lblSummonCreatureUniqueLimit
             // 
             this.lblSummonCreatureUniqueLimit.AutoSize = true;
-            this.lblSummonCreatureUniqueLimit.Location = new System.Drawing.Point(293, 283);
+            this.lblSummonCreatureUniqueLimit.Location = new System.Drawing.Point(293, 272);
             this.lblSummonCreatureUniqueLimit.Name = "lblSummonCreatureUniqueLimit";
             this.lblSummonCreatureUniqueLimit.Size = new System.Drawing.Size(64, 13);
             this.lblSummonCreatureUniqueLimit.TabIndex = 12;
@@ -2080,7 +2081,7 @@
             // 
             // txtSummonCreatureUniqueRange
             // 
-            this.txtSummonCreatureUniqueRange.Location = new System.Drawing.Point(388, 302);
+            this.txtSummonCreatureUniqueRange.Location = new System.Drawing.Point(388, 291);
             this.txtSummonCreatureUniqueRange.Name = "txtSummonCreatureUniqueRange";
             this.txtSummonCreatureUniqueRange.Size = new System.Drawing.Size(85, 20);
             this.txtSummonCreatureUniqueRange.TabIndex = 11;
@@ -2088,7 +2089,7 @@
             // 
             // txtSummonCreatureUniqueLimit
             // 
-            this.txtSummonCreatureUniqueLimit.Location = new System.Drawing.Point(292, 302);
+            this.txtSummonCreatureUniqueLimit.Location = new System.Drawing.Point(292, 291);
             this.txtSummonCreatureUniqueLimit.Name = "txtSummonCreatureUniqueLimit";
             this.txtSummonCreatureUniqueLimit.Size = new System.Drawing.Size(85, 20);
             this.txtSummonCreatureUniqueLimit.TabIndex = 10;
@@ -2097,7 +2098,7 @@
             // lblSummonCreatureAttackTarget
             // 
             this.lblSummonCreatureAttackTarget.AutoSize = true;
-            this.lblSummonCreatureAttackTarget.Location = new System.Drawing.Point(293, 236);
+            this.lblSummonCreatureAttackTarget.Location = new System.Drawing.Point(54, 169);
             this.lblSummonCreatureAttackTarget.Name = "lblSummonCreatureAttackTarget";
             this.lblSummonCreatureAttackTarget.Size = new System.Drawing.Size(71, 13);
             this.lblSummonCreatureAttackTarget.TabIndex = 9;
@@ -2107,16 +2108,16 @@
             // 
             this.cmbSummonCreatureAttackTarget.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSummonCreatureAttackTarget.FormattingEnabled = true;
-            this.cmbSummonCreatureAttackTarget.Location = new System.Drawing.Point(292, 255);
+            this.cmbSummonCreatureAttackTarget.Location = new System.Drawing.Point(131, 166);
             this.cmbSummonCreatureAttackTarget.Name = "cmbSummonCreatureAttackTarget";
-            this.cmbSummonCreatureAttackTarget.Size = new System.Drawing.Size(181, 21);
+            this.cmbSummonCreatureAttackTarget.Size = new System.Drawing.Size(143, 21);
             this.cmbSummonCreatureAttackTarget.TabIndex = 8;
             this.cmbSummonCreatureAttackTarget.SelectedIndexChanged += new System.EventHandler(this.cmbSummonCreatureAttackTarget_SelectedIndexChanged);
             // 
             // lblSummonCreatureScriptId
             // 
             this.lblSummonCreatureScriptId.AutoSize = true;
-            this.lblSummonCreatureScriptId.Location = new System.Drawing.Point(293, 191);
+            this.lblSummonCreatureScriptId.Location = new System.Drawing.Point(293, 227);
             this.lblSummonCreatureScriptId.Name = "lblSummonCreatureScriptId";
             this.lblSummonCreatureScriptId.Size = new System.Drawing.Size(49, 13);
             this.lblSummonCreatureScriptId.TabIndex = 7;
@@ -2150,16 +2151,28 @@
             // 
             // grpSummonCreatureFlags
             // 
+            this.grpSummonCreatureFlags.Controls.Add(this.chkSummonCreatureFlags16);
             this.grpSummonCreatureFlags.Controls.Add(this.chkSummonCreatureFlags1);
             this.grpSummonCreatureFlags.Controls.Add(this.chkSummonCreatureFlags8);
             this.grpSummonCreatureFlags.Controls.Add(this.chkSummonCreatureFlags4);
             this.grpSummonCreatureFlags.Controls.Add(this.chkSummonCreatureFlags2);
             this.grpSummonCreatureFlags.Location = new System.Drawing.Point(292, 58);
             this.grpSummonCreatureFlags.Name = "grpSummonCreatureFlags";
-            this.grpSummonCreatureFlags.Size = new System.Drawing.Size(181, 125);
+            this.grpSummonCreatureFlags.Size = new System.Drawing.Size(181, 156);
             this.grpSummonCreatureFlags.TabIndex = 2;
             this.grpSummonCreatureFlags.TabStop = false;
             this.grpSummonCreatureFlags.Text = "Summon Flags";
+            // 
+            // chkSummonCreatureFlags16
+            // 
+            this.chkSummonCreatureFlags16.AutoSize = true;
+            this.chkSummonCreatureFlags16.Location = new System.Drawing.Point(10, 124);
+            this.chkSummonCreatureFlags16.Name = "chkSummonCreatureFlags16";
+            this.chkSummonCreatureFlags16.Size = new System.Drawing.Size(74, 17);
+            this.chkSummonCreatureFlags16.TabIndex = 4;
+            this.chkSummonCreatureFlags16.Text = "Disable AI";
+            this.chkSummonCreatureFlags16.UseVisualStyleBackColor = true;
+            this.chkSummonCreatureFlags16.CheckStateChanged += new System.EventHandler(this.chkSummonCreatureFlags16_CheckStateChanged);
             // 
             // chkSummonCreatureFlags1
             // 
@@ -7151,6 +7164,7 @@
         private System.Windows.Forms.TextBox txtJoinCreatureGroupAngle;
         private System.Windows.Forms.TextBox txtJoinCreatureGroupDistance;
         private System.Windows.Forms.Label lblJoinCreatureGroupTooltip;
+        private System.Windows.Forms.CheckBox chkSummonCreatureFlags16;
     }
 }
 

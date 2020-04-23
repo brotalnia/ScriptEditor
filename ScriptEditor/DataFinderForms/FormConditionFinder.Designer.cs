@@ -109,6 +109,10 @@
             this.lblInstanceScriptValue1 = new System.Windows.Forms.Label();
             this.lblConditionInstanceScriptTooltip = new System.Windows.Forms.Label();
             this.frmConditionNearbyCreature = new System.Windows.Forms.Panel();
+            this.cmbNearbyCreatureNotSelf = new System.Windows.Forms.ComboBox();
+            this.lblNearbyCreatureNotSelf = new System.Windows.Forms.Label();
+            this.cmbNearbyCreatureDead = new System.Windows.Forms.ComboBox();
+            this.lblNearbyCreatureDead = new System.Windows.Forms.Label();
             this.btnNearbyCreatureId = new System.Windows.Forms.Button();
             this.txtNearbyCreatureDistance = new System.Windows.Forms.TextBox();
             this.lblNearbyCreatureDistance = new System.Windows.Forms.Label();
@@ -168,15 +172,15 @@
             this.lblMapEventTargetsEventId = new System.Windows.Forms.Label();
             this.lblConditionMapEventTargetsTooltip = new System.Windows.Forms.Label();
             this.frmConditionAnd = new System.Windows.Forms.Panel();
+            this.btnConditionAndCondition4 = new System.Windows.Forms.Button();
+            this.btnConditionAndCondition2 = new System.Windows.Forms.Button();
+            this.lblConditionAndCondition4 = new System.Windows.Forms.Label();
+            this.lblConditionAndCondition2 = new System.Windows.Forms.Label();
             this.btnConditionAndCondition3 = new System.Windows.Forms.Button();
             this.btnConditionAndCondition1 = new System.Windows.Forms.Button();
             this.lblConditionAndCondition3 = new System.Windows.Forms.Label();
             this.lblConditionAndCondition1 = new System.Windows.Forms.Label();
             this.lblConditionAndTooltip = new System.Windows.Forms.Label();
-            this.btnConditionAndCondition4 = new System.Windows.Forms.Button();
-            this.btnConditionAndCondition2 = new System.Windows.Forms.Button();
-            this.lblConditionAndCondition4 = new System.Windows.Forms.Label();
-            this.lblConditionAndCondition2 = new System.Windows.Forms.Label();
             this.frmConditionNot.SuspendLayout();
             this.frmConditionAura.SuspendLayout();
             this.frmConditionItem.SuspendLayout();
@@ -1006,6 +1010,10 @@
             // frmConditionNearbyCreature
             // 
             this.frmConditionNearbyCreature.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmConditionNearbyCreature.Controls.Add(this.cmbNearbyCreatureNotSelf);
+            this.frmConditionNearbyCreature.Controls.Add(this.lblNearbyCreatureNotSelf);
+            this.frmConditionNearbyCreature.Controls.Add(this.cmbNearbyCreatureDead);
+            this.frmConditionNearbyCreature.Controls.Add(this.lblNearbyCreatureDead);
             this.frmConditionNearbyCreature.Controls.Add(this.btnNearbyCreatureId);
             this.frmConditionNearbyCreature.Controls.Add(this.txtNearbyCreatureDistance);
             this.frmConditionNearbyCreature.Controls.Add(this.lblNearbyCreatureDistance);
@@ -1016,6 +1024,50 @@
             this.frmConditionNearbyCreature.Size = new System.Drawing.Size(650, 150);
             this.frmConditionNearbyCreature.TabIndex = 31;
             this.frmConditionNearbyCreature.Visible = false;
+            // 
+            // cmbNearbyCreatureNotSelf
+            // 
+            this.cmbNearbyCreatureNotSelf.FormattingEnabled = true;
+            this.cmbNearbyCreatureNotSelf.Items.AddRange(new object[] {
+            "False",
+            "True"});
+            this.cmbNearbyCreatureNotSelf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbNearbyCreatureNotSelf.Location = new System.Drawing.Point(316, 101);
+            this.cmbNearbyCreatureNotSelf.Name = "cmbNearbyCreatureNotSelf";
+            this.cmbNearbyCreatureNotSelf.Size = new System.Drawing.Size(130, 21);
+            this.cmbNearbyCreatureNotSelf.TabIndex = 19;
+            this.cmbNearbyCreatureNotSelf.SelectedIndexChanged += new System.EventHandler(this.cmbNearbyCreatureNotSelf_SelectedIndexChanged);
+            // 
+            // lblNearbyCreatureNotSelf
+            // 
+            this.lblNearbyCreatureNotSelf.AutoSize = true;
+            this.lblNearbyCreatureNotSelf.Location = new System.Drawing.Point(243, 106);
+            this.lblNearbyCreatureNotSelf.Name = "lblNearbyCreatureNotSelf";
+            this.lblNearbyCreatureNotSelf.Size = new System.Drawing.Size(67, 13);
+            this.lblNearbyCreatureNotSelf.TabIndex = 18;
+            this.lblNearbyCreatureNotSelf.Text = "Exclude self:";
+            // 
+            // cmbNearbyCreatureDead
+            // 
+            this.cmbNearbyCreatureDead.FormattingEnabled = true;
+            this.cmbNearbyCreatureDead.Items.AddRange(new object[] {
+            "Alive",
+            "Dead"});
+            this.cmbNearbyCreatureDead.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbNearbyCreatureDead.Location = new System.Drawing.Point(506, 101);
+            this.cmbNearbyCreatureDead.Name = "cmbNearbyCreatureDead";
+            this.cmbNearbyCreatureDead.Size = new System.Drawing.Size(130, 21);
+            this.cmbNearbyCreatureDead.TabIndex = 15;
+            this.cmbNearbyCreatureDead.SelectedIndexChanged += new System.EventHandler(this.cmbNearbyCreatureDead_SelectedIndexChanged);
+            // 
+            // lblNearbyCreatureDead
+            // 
+            this.lblNearbyCreatureDead.AutoSize = true;
+            this.lblNearbyCreatureDead.Location = new System.Drawing.Point(465, 106);
+            this.lblNearbyCreatureDead.Name = "lblNearbyCreatureDead";
+            this.lblNearbyCreatureDead.Size = new System.Drawing.Size(35, 13);
+            this.lblNearbyCreatureDead.TabIndex = 14;
+            this.lblNearbyCreatureDead.Text = "State:";
             // 
             // btnNearbyCreatureId
             // 
@@ -1031,7 +1083,7 @@
             // 
             this.txtNearbyCreatureDistance.Location = new System.Drawing.Point(100, 101);
             this.txtNearbyCreatureDistance.Name = "txtNearbyCreatureDistance";
-            this.txtNearbyCreatureDistance.Size = new System.Drawing.Size(536, 20);
+            this.txtNearbyCreatureDistance.Size = new System.Drawing.Size(130, 20);
             this.txtNearbyCreatureDistance.TabIndex = 12;
             this.txtNearbyCreatureDistance.Leave += new System.EventHandler(this.txtNearbyCreatureDistance_Leave);
             // 
@@ -1631,6 +1683,44 @@
             this.frmConditionAnd.TabIndex = 39;
             this.frmConditionAnd.Visible = false;
             // 
+            // btnConditionAndCondition4
+            // 
+            this.btnConditionAndCondition4.Location = new System.Drawing.Point(412, 101);
+            this.btnConditionAndCondition4.Name = "btnConditionAndCondition4";
+            this.btnConditionAndCondition4.Size = new System.Drawing.Size(218, 23);
+            this.btnConditionAndCondition4.TabIndex = 8;
+            this.btnConditionAndCondition4.Text = "-NONE-";
+            this.btnConditionAndCondition4.UseVisualStyleBackColor = true;
+            this.btnConditionAndCondition4.Click += new System.EventHandler(this.btnConditionAndCondition4_Click);
+            // 
+            // btnConditionAndCondition2
+            // 
+            this.btnConditionAndCondition2.Location = new System.Drawing.Point(412, 68);
+            this.btnConditionAndCondition2.Name = "btnConditionAndCondition2";
+            this.btnConditionAndCondition2.Size = new System.Drawing.Size(218, 23);
+            this.btnConditionAndCondition2.TabIndex = 7;
+            this.btnConditionAndCondition2.Text = "-NONE-";
+            this.btnConditionAndCondition2.UseVisualStyleBackColor = true;
+            this.btnConditionAndCondition2.Click += new System.EventHandler(this.btnConditionAndCondition2_Click);
+            // 
+            // lblConditionAndCondition4
+            // 
+            this.lblConditionAndCondition4.AutoSize = true;
+            this.lblConditionAndCondition4.Location = new System.Drawing.Point(323, 106);
+            this.lblConditionAndCondition4.Name = "lblConditionAndCondition4";
+            this.lblConditionAndCondition4.Size = new System.Drawing.Size(75, 13);
+            this.lblConditionAndCondition4.TabIndex = 6;
+            this.lblConditionAndCondition4.Text = "Condition Id 4:";
+            // 
+            // lblConditionAndCondition2
+            // 
+            this.lblConditionAndCondition2.AutoSize = true;
+            this.lblConditionAndCondition2.Location = new System.Drawing.Point(323, 73);
+            this.lblConditionAndCondition2.Name = "lblConditionAndCondition2";
+            this.lblConditionAndCondition2.Size = new System.Drawing.Size(75, 13);
+            this.lblConditionAndCondition2.TabIndex = 5;
+            this.lblConditionAndCondition2.Text = "Condition Id 2:";
+            // 
             // btnConditionAndCondition3
             // 
             this.btnConditionAndCondition3.Location = new System.Drawing.Point(100, 101);
@@ -1679,44 +1769,6 @@
             this.lblConditionAndTooltip.Text = "Returns true only if all of the specified conditions return true. The referenced " +
     "conditions need to have an entry Id that is lower than that of the current condi" +
     "tion.";
-            // 
-            // btnConditionAndCondition4
-            // 
-            this.btnConditionAndCondition4.Location = new System.Drawing.Point(412, 101);
-            this.btnConditionAndCondition4.Name = "btnConditionAndCondition4";
-            this.btnConditionAndCondition4.Size = new System.Drawing.Size(218, 23);
-            this.btnConditionAndCondition4.TabIndex = 8;
-            this.btnConditionAndCondition4.Text = "-NONE-";
-            this.btnConditionAndCondition4.UseVisualStyleBackColor = true;
-            this.btnConditionAndCondition4.Click += new System.EventHandler(this.btnConditionAndCondition4_Click);
-            // 
-            // btnConditionAndCondition2
-            // 
-            this.btnConditionAndCondition2.Location = new System.Drawing.Point(412, 68);
-            this.btnConditionAndCondition2.Name = "btnConditionAndCondition2";
-            this.btnConditionAndCondition2.Size = new System.Drawing.Size(218, 23);
-            this.btnConditionAndCondition2.TabIndex = 7;
-            this.btnConditionAndCondition2.Text = "-NONE-";
-            this.btnConditionAndCondition2.UseVisualStyleBackColor = true;
-            this.btnConditionAndCondition2.Click += new System.EventHandler(this.btnConditionAndCondition2_Click);
-            // 
-            // lblConditionAndCondition4
-            // 
-            this.lblConditionAndCondition4.AutoSize = true;
-            this.lblConditionAndCondition4.Location = new System.Drawing.Point(323, 106);
-            this.lblConditionAndCondition4.Name = "lblConditionAndCondition4";
-            this.lblConditionAndCondition4.Size = new System.Drawing.Size(75, 13);
-            this.lblConditionAndCondition4.TabIndex = 6;
-            this.lblConditionAndCondition4.Text = "Condition Id 4:";
-            // 
-            // lblConditionAndCondition2
-            // 
-            this.lblConditionAndCondition2.AutoSize = true;
-            this.lblConditionAndCondition2.Location = new System.Drawing.Point(323, 73);
-            this.lblConditionAndCondition2.Name = "lblConditionAndCondition2";
-            this.lblConditionAndCondition2.Size = new System.Drawing.Size(75, 13);
-            this.lblConditionAndCondition2.TabIndex = 5;
-            this.lblConditionAndCondition2.Text = "Condition Id 2:";
             // 
             // FormConditionFinder
             // 
@@ -1991,5 +2043,9 @@
         private System.Windows.Forms.Label lblConditionAndCondition3;
         private System.Windows.Forms.Label lblConditionAndCondition1;
         private System.Windows.Forms.Label lblConditionAndTooltip;
+        private System.Windows.Forms.ComboBox cmbNearbyCreatureNotSelf;
+        private System.Windows.Forms.Label lblNearbyCreatureNotSelf;
+        private System.Windows.Forms.ComboBox cmbNearbyCreatureDead;
+        private System.Windows.Forms.Label lblNearbyCreatureDead;
     }
 }

@@ -28,14 +28,14 @@ namespace ScriptEditor
                 chkClass8.Checked = true;
             if ((classmask & 16) != 0)
                 chkClass16.Checked = true;
-            if ((classmask & 32) != 0)
-                chkClass32.Checked = true;
             if ((classmask & 64) != 0)
                 chkClass64.Checked = true;
             if ((classmask & 128) != 0)
                 chkClass128.Checked = true;
             if ((classmask & 256) != 0)
                 chkClass256.Checked = true;
+            if ((classmask & 1024) != 0)
+                chkClass1024.Checked = true;
 
             initializing = false;
         }
@@ -63,6 +63,17 @@ namespace ScriptEditor
                 ReturnValue -= 1;
         }
 
+        private void chkClass2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (initializing)
+                return;
+
+            if (chkClass2.Checked)
+                ReturnValue += 2;
+            else
+                ReturnValue -= 2;
+        }
+
         private void chkClass4_CheckedChanged(object sender, EventArgs e)
         {
             if (initializing)
@@ -85,28 +96,6 @@ namespace ScriptEditor
                 ReturnValue -= 8;
         }
 
-        private void chkClass64_CheckedChanged(object sender, EventArgs e)
-        {
-            if (initializing)
-                return;
-
-            if (chkClass64.Checked)
-                ReturnValue += 64;
-            else
-                ReturnValue -= 64;
-        }
-
-        private void chkClass2_CheckedChanged(object sender, EventArgs e)
-        {
-            if (initializing)
-                return;
-
-            if (chkClass2.Checked)
-                ReturnValue += 2;
-            else
-                ReturnValue -= 2;
-        }
-
         private void chkClass16_CheckedChanged(object sender, EventArgs e)
         {
             if (initializing)
@@ -118,15 +107,15 @@ namespace ScriptEditor
                 ReturnValue -= 16;
         }
 
-        private void chkClass32_CheckedChanged(object sender, EventArgs e)
+        private void chkClass64_CheckedChanged(object sender, EventArgs e)
         {
             if (initializing)
                 return;
 
-            if (chkClass32.Checked)
-                ReturnValue += 32;
+            if (chkClass64.Checked)
+                ReturnValue += 64;
             else
-                ReturnValue -= 32;
+                ReturnValue -= 64;
         }
 
         private void chkClass128_CheckedChanged(object sender, EventArgs e)
@@ -149,6 +138,17 @@ namespace ScriptEditor
                 ReturnValue += 256;
             else
                 ReturnValue -= 256;
+        }
+
+        private void chkClass1024_CheckedChanged(object sender, EventArgs e)
+        {
+            if (initializing)
+                return;
+
+            if (chkClass1024.Checked)
+                ReturnValue += 1024;
+            else
+                ReturnValue -= 1024;
         }
     }
 }

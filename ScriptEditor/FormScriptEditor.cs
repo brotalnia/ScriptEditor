@@ -111,6 +111,8 @@ namespace ScriptEditor
         "Join Creature Group",      // 78
         "Leave Creature Group",     // 79
         "Set GO State",             // 80
+        "Despawn GameObject",       // 81
+        "Load GameObject",          // 82
         };
 
         // Options for combo boxes.
@@ -555,6 +557,8 @@ namespace ScriptEditor
             frmCommandKillCredit.Visible = false;
 
             // Respawn GameObject (9)
+            // Despawn GameObject (81)
+            // Load GameObject (82)
             txtRespawnGameobjectDelay.Text = "";
             txtRespawnGameobjectGuid.Text = "";
             frmCommandRespawnGameobject.Visible = false;
@@ -575,6 +579,7 @@ namespace ScriptEditor
             chkSummonCreatureFlags2.Checked = false;
             chkSummonCreatureFlags4.Checked = false;
             chkSummonCreatureFlags8.Checked = false;
+            chkSummonCreatureFlags16.Checked = false;
             frmCommandSummonCreature.Visible = false;
 
             // Open/Close Door and Activate GameObject (11, 12, 13)
@@ -1076,7 +1081,33 @@ namespace ScriptEditor
                     break;
                 }
                 case 9: // Respawn GameObject
+                case 81: // Despawn GameObject
+                case 82: // Load GameObject
                 {
+                    switch (selectedAction.Command)
+                    {
+                        case 9: // Respawn GameObject
+                        {
+                            lblRespawnGameobjectTooltip.Text = "Respawns the GameObject with the specified GUID, and then despawns it again when the delay expires.";
+                            txtRespawnGameobjectDelay.Visible = true;
+                            lblRespawnGameobjectDelay.Visible = true;
+                            break;
+                        }
+                        case 81: // Despawn GameObject
+                        {
+                            lblRespawnGameobjectTooltip.Text = "Despawns the GameObject with the specified GUID, and then respawns it again when the delay expires.";
+                            txtRespawnGameobjectDelay.Visible = true;
+                            lblRespawnGameobjectDelay.Visible = true;
+                            break;
+                        }
+                        case 82: // Load GameObject
+                        {
+                            lblRespawnGameobjectTooltip.Text = "Adds the GameObject spawn with the specified GUID to the current map. Not to be confused with command 9 which spawns a GameObject that is already loaded.";
+                            txtRespawnGameobjectDelay.Visible = false;
+                            lblRespawnGameobjectDelay.Visible = false;
+                            break;
+                        }
+                    }
                     txtRespawnGameobjectDelay.Text = selectedAction.Datalong2.ToString();
                     txtRespawnGameobjectGuid.Text = selectedAction.Datalong.ToString();
                     frmCommandRespawnGameobject.Visible = true;
@@ -1111,6 +1142,8 @@ namespace ScriptEditor
                         txtSummonCreatureUniqueLimit.Enabled = false;
                         txtSummonCreatureUniqueRange.Enabled = false;
                     }
+                    if ((selectedAction.Dataint & 16) != 0)
+                        chkSummonCreatureFlags16.Checked = true;
                     frmCommandSummonCreature.Visible = true;
                     break;
                 }
@@ -1163,7 +1196,7 @@ namespace ScriptEditor
                         }
                         case 41:
                         {
-                            lblDoorTooltip.Text = "The source GameObject has its loot state changed to deactivated and is removed from the map. This command has no additional parameters.";
+                            lblDoorTooltip.Text = "The source GameObject has its loot state changed to deactivated and is permanently removed from the map. It will not respawn again. This command has no additional parameters.";
                             break;
                         }
                         case 72:
@@ -3529,6 +3562,11 @@ namespace ScriptEditor
                     }
                 }
             }
+        }
+
+        private void chkSummonCreatureFlags16_CheckStateChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkSummonCreatureFlags16, "Dataint", 16);
         }
 
         // SCRIPT_COMMAND_OPEN_DOOR (11)

@@ -35,11 +35,11 @@
             this.chkClass2 = new System.Windows.Forms.CheckBox();
             this.chkClass4 = new System.Windows.Forms.CheckBox();
             this.chkClass8 = new System.Windows.Forms.CheckBox();
+            this.chkClass256 = new System.Windows.Forms.CheckBox();
             this.chkClass128 = new System.Windows.Forms.CheckBox();
             this.chkClass64 = new System.Windows.Forms.CheckBox();
-            this.chkClass32 = new System.Windows.Forms.CheckBox();
             this.chkClass16 = new System.Windows.Forms.CheckBox();
-            this.chkClass256 = new System.Windows.Forms.CheckBox();
+            this.chkClass1024 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // lblTooltip
@@ -115,38 +115,38 @@
             this.chkClass8.UseVisualStyleBackColor = true;
             this.chkClass8.CheckedChanged += new System.EventHandler(this.chkClass8_CheckedChanged);
             // 
+            // chkClass256
+            // 
+            this.chkClass256.AutoSize = true;
+            this.chkClass256.Location = new System.Drawing.Point(213, 73);
+            this.chkClass256.Name = "chkClass256";
+            this.chkClass256.Size = new System.Drawing.Size(66, 17);
+            this.chkClass256.TabIndex = 20;
+            this.chkClass256.Text = "Warlock";
+            this.chkClass256.UseVisualStyleBackColor = true;
+            this.chkClass256.CheckedChanged += new System.EventHandler(this.chkClass256_CheckedChanged);
+            // 
             // chkClass128
             // 
             this.chkClass128.AutoSize = true;
-            this.chkClass128.Location = new System.Drawing.Point(213, 73);
+            this.chkClass128.Location = new System.Drawing.Point(147, 73);
             this.chkClass128.Name = "chkClass128";
-            this.chkClass128.Size = new System.Drawing.Size(66, 17);
-            this.chkClass128.TabIndex = 20;
-            this.chkClass128.Text = "Warlock";
+            this.chkClass128.Size = new System.Drawing.Size(53, 17);
+            this.chkClass128.TabIndex = 19;
+            this.chkClass128.Text = "Mage";
             this.chkClass128.UseVisualStyleBackColor = true;
             this.chkClass128.CheckedChanged += new System.EventHandler(this.chkClass128_CheckedChanged);
             // 
             // chkClass64
             // 
             this.chkClass64.AutoSize = true;
-            this.chkClass64.Location = new System.Drawing.Point(147, 73);
+            this.chkClass64.Location = new System.Drawing.Point(81, 73);
             this.chkClass64.Name = "chkClass64";
-            this.chkClass64.Size = new System.Drawing.Size(53, 17);
-            this.chkClass64.TabIndex = 19;
-            this.chkClass64.Text = "Mage";
+            this.chkClass64.Size = new System.Drawing.Size(65, 17);
+            this.chkClass64.TabIndex = 18;
+            this.chkClass64.Text = "Shaman";
             this.chkClass64.UseVisualStyleBackColor = true;
             this.chkClass64.CheckedChanged += new System.EventHandler(this.chkClass64_CheckedChanged);
-            // 
-            // chkClass32
-            // 
-            this.chkClass32.AutoSize = true;
-            this.chkClass32.Location = new System.Drawing.Point(81, 73);
-            this.chkClass32.Name = "chkClass32";
-            this.chkClass32.Size = new System.Drawing.Size(65, 17);
-            this.chkClass32.TabIndex = 18;
-            this.chkClass32.Text = "Shaman";
-            this.chkClass32.UseVisualStyleBackColor = true;
-            this.chkClass32.CheckedChanged += new System.EventHandler(this.chkClass32_CheckedChanged);
             // 
             // chkClass16
             // 
@@ -159,16 +159,16 @@
             this.chkClass16.UseVisualStyleBackColor = true;
             this.chkClass16.CheckedChanged += new System.EventHandler(this.chkClass16_CheckedChanged);
             // 
-            // chkClass256
+            // chkClass1024
             // 
-            this.chkClass256.AutoSize = true;
-            this.chkClass256.Location = new System.Drawing.Point(117, 108);
-            this.chkClass256.Name = "chkClass256";
-            this.chkClass256.Size = new System.Drawing.Size(51, 17);
-            this.chkClass256.TabIndex = 21;
-            this.chkClass256.Text = "Druid";
-            this.chkClass256.UseVisualStyleBackColor = true;
-            this.chkClass256.CheckedChanged += new System.EventHandler(this.chkClass256_CheckedChanged);
+            this.chkClass1024.AutoSize = true;
+            this.chkClass1024.Location = new System.Drawing.Point(117, 108);
+            this.chkClass1024.Name = "chkClass1024";
+            this.chkClass1024.Size = new System.Drawing.Size(51, 17);
+            this.chkClass1024.TabIndex = 21;
+            this.chkClass1024.Text = "Druid";
+            this.chkClass1024.UseVisualStyleBackColor = true;
+            this.chkClass1024.CheckedChanged += new System.EventHandler(this.chkClass1024_CheckedChanged);
             // 
             // FormClassMask
             // 
@@ -176,10 +176,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 198);
             this.ControlBox = false;
+            this.Controls.Add(this.chkClass1024);
             this.Controls.Add(this.chkClass256);
             this.Controls.Add(this.chkClass128);
             this.Controls.Add(this.chkClass64);
-            this.Controls.Add(this.chkClass32);
             this.Controls.Add(this.chkClass16);
             this.Controls.Add(this.chkClass8);
             this.Controls.Add(this.chkClass4);
@@ -206,10 +206,10 @@
         private System.Windows.Forms.CheckBox chkClass2;
         private System.Windows.Forms.CheckBox chkClass4;
         private System.Windows.Forms.CheckBox chkClass8;
+        private System.Windows.Forms.CheckBox chkClass256;
         private System.Windows.Forms.CheckBox chkClass128;
         private System.Windows.Forms.CheckBox chkClass64;
-        private System.Windows.Forms.CheckBox chkClass32;
         private System.Windows.Forms.CheckBox chkClass16;
-        private System.Windows.Forms.CheckBox chkClass256;
+        private System.Windows.Forms.CheckBox chkClass1024;
     }
 }

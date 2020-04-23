@@ -130,6 +130,7 @@ namespace ScriptEditor
             // CONDITION_HEALTH_PERCENT (41)
             // CONDITION_MANA_PERCENT (42)
             // CONDITION_PVP_RANK (51)
+            // CONDITION_DB_GUID (52)
             txtWarEffortStage.Text = "";
             cmbWarEffortComparison.SelectedIndex = 0;
             frmConditionWarEffort.Visible = false;
@@ -151,6 +152,8 @@ namespace ScriptEditor
             // CONDITION_NEARBY_CREATURE (20)
             btnNearbyCreatureId.Text = "-NONE-";
             txtNearbyCreatureDistance.Text = "";
+            cmbNearbyCreatureDead.SelectedIndex = 0;
+            cmbNearbyCreatureNotSelf.SelectedIndex = 0;
             frmConditionNearbyCreature.Visible = false;
 
             // CONDITION_NEARBY_GAMEOBJECT (21)
@@ -273,7 +276,7 @@ namespace ScriptEditor
                         }
                         case 13: // CONDITION_CANT_PATH_TO_VICTIM
                         {
-                            lblConditionNotTooltip.Text = "Returns true if the source Creature cannot find a path to its victim. This condition has no additional parameters.";
+                            lblConditionNotTooltip.Text = "Returns true if the source Unit cannot find a path to its victim. This condition has no additional parameters.";
                             break;
                         }
                         case 37: // CONDITION_LINE_OF_SIGHT
@@ -555,6 +558,7 @@ namespace ScriptEditor
                 case 41: // CONDITION_HEALTH_PERCENT
                 case 42: // CONDITION_MANA_PERCENT
                 case 51: // CONDITION_PVP_RANK
+                case 52: // CONDITION_DB_GUID
                 {
                     switch (selectedCondition.Type)
                     {
@@ -638,7 +642,15 @@ namespace ScriptEditor
                             lblWarEffortStage.Text = "Rank:";
                             break;
                         }
+                        case 52: // CONDITION_DB_GUID
+                        {
+                            lblConditionWarEffortTooltip.Text = "Returns true if the source object's database guid matches the one specified.";
+                            cmbWarEffortComparison.Visible = false;
+                            lblWarEffortComparison.Visible = false;
+                            lblWarEffortStage.Text = "Guid:";
+                            break;
                         }
+                    }
                     txtWarEffortStage.Text = selectedCondition.Value1.ToString();
                     cmbWarEffortComparison.SelectedIndex = (int)selectedCondition.Value2;
                     frmConditionWarEffort.Visible = true;
@@ -672,6 +684,8 @@ namespace ScriptEditor
                     if (creatureId > 0)
                         btnNearbyCreatureId.Text = GameData.FindCreatureName(creatureId) + " (" + creatureId.ToString() + ")";
                     txtNearbyCreatureDistance.Text = selectedCondition.Value2.ToString();
+                    cmbNearbyCreatureDead.SelectedIndex = (int)selectedCondition.Value3;
+                    cmbNearbyCreatureNotSelf.SelectedIndex = (int)selectedCondition.Value4;
                     frmConditionNearbyCreature.Visible = true;
                     break;
                 }
@@ -1646,13 +1660,13 @@ namespace ScriptEditor
                 classes.Add("Rogue");
             if ((mask & 16) != 0)
                 classes.Add("Priest");
-            if ((mask & 32) != 0)
-                classes.Add("Shaman");
             if ((mask & 64) != 0)
-                classes.Add("Mage");
+                classes.Add("Shaman");
             if ((mask & 128) != 0)
-                classes.Add("Warlock");
+                classes.Add("Mage");
             if ((mask & 256) != 0)
+                classes.Add("Warlock");
+            if ((mask & 1024) != 0)
                 classes.Add("Druid");
 
             if (classes.Count > 0)
@@ -1706,6 +1720,14 @@ namespace ScriptEditor
         private void txtNearbyCreatureDistance_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtNearbyCreatureDistance, "Value2");
+        }
+        private void cmbNearbyCreatureDead_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbNearbyCreatureDead, "Value3", false);
+        }
+        private void cmbNearbyCreatureNotSelf_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbNearbyCreatureNotSelf, "Value4", false);
         }
         // CONDITION_NEARBY_GAMEOBJECT
         private void btnNearbyObjectId_Click(object sender, EventArgs e)
