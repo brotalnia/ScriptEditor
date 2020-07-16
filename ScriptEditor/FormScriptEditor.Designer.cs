@@ -77,6 +77,12 @@
             this.lblScriptId = new System.Windows.Forms.Label();
             this.lblTable = new System.Windows.Forms.Label();
             this.frmCommandEmote = new System.Windows.Forms.Panel();
+            this.cmbEmoteId4 = new System.Windows.Forms.ComboBox();
+            this.lblEmoteId4 = new System.Windows.Forms.Label();
+            this.cmbEmoteId3 = new System.Windows.Forms.ComboBox();
+            this.lblEmoteId3 = new System.Windows.Forms.Label();
+            this.cmbEmoteId2 = new System.Windows.Forms.ComboBox();
+            this.lblEmoteId2 = new System.Windows.Forms.Label();
             this.lblEmoteTooltip = new System.Windows.Forms.Label();
             this.cmbEmoteId = new System.Windows.Forms.ComboBox();
             this.lblEmoteId = new System.Windows.Forms.Label();
@@ -1124,6 +1130,12 @@
             // frmCommandEmote
             // 
             this.frmCommandEmote.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandEmote.Controls.Add(this.cmbEmoteId4);
+            this.frmCommandEmote.Controls.Add(this.lblEmoteId4);
+            this.frmCommandEmote.Controls.Add(this.cmbEmoteId3);
+            this.frmCommandEmote.Controls.Add(this.lblEmoteId3);
+            this.frmCommandEmote.Controls.Add(this.cmbEmoteId2);
+            this.frmCommandEmote.Controls.Add(this.lblEmoteId2);
             this.frmCommandEmote.Controls.Add(this.lblEmoteTooltip);
             this.frmCommandEmote.Controls.Add(this.cmbEmoteId);
             this.frmCommandEmote.Controls.Add(this.lblEmoteId);
@@ -1133,6 +1145,63 @@
             this.frmCommandEmote.TabIndex = 11;
             this.frmCommandEmote.Visible = false;
             // 
+            // cmbEmoteId4
+            // 
+            this.cmbEmoteId4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEmoteId4.FormattingEnabled = true;
+            this.cmbEmoteId4.Location = new System.Drawing.Point(99, 154);
+            this.cmbEmoteId4.Name = "cmbEmoteId4";
+            this.cmbEmoteId4.Size = new System.Drawing.Size(374, 21);
+            this.cmbEmoteId4.TabIndex = 8;
+            this.cmbEmoteId4.SelectedIndexChanged += new System.EventHandler(this.cmbEmoteId4_SelectedIndexChanged);
+            // 
+            // lblEmoteId4
+            // 
+            this.lblEmoteId4.AutoSize = true;
+            this.lblEmoteId4.Location = new System.Drawing.Point(47, 157);
+            this.lblEmoteId4.Name = "lblEmoteId4";
+            this.lblEmoteId4.Size = new System.Drawing.Size(49, 13);
+            this.lblEmoteId4.TabIndex = 7;
+            this.lblEmoteId4.Text = "Emote 4:";
+            // 
+            // cmbEmoteId3
+            // 
+            this.cmbEmoteId3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEmoteId3.FormattingEnabled = true;
+            this.cmbEmoteId3.Location = new System.Drawing.Point(99, 122);
+            this.cmbEmoteId3.Name = "cmbEmoteId3";
+            this.cmbEmoteId3.Size = new System.Drawing.Size(374, 21);
+            this.cmbEmoteId3.TabIndex = 6;
+            this.cmbEmoteId3.SelectedIndexChanged += new System.EventHandler(this.cmbEmoteId3_SelectedIndexChanged);
+            // 
+            // lblEmoteId3
+            // 
+            this.lblEmoteId3.AutoSize = true;
+            this.lblEmoteId3.Location = new System.Drawing.Point(47, 125);
+            this.lblEmoteId3.Name = "lblEmoteId3";
+            this.lblEmoteId3.Size = new System.Drawing.Size(49, 13);
+            this.lblEmoteId3.TabIndex = 5;
+            this.lblEmoteId3.Text = "Emote 3:";
+            // 
+            // cmbEmoteId2
+            // 
+            this.cmbEmoteId2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEmoteId2.FormattingEnabled = true;
+            this.cmbEmoteId2.Location = new System.Drawing.Point(99, 90);
+            this.cmbEmoteId2.Name = "cmbEmoteId2";
+            this.cmbEmoteId2.Size = new System.Drawing.Size(374, 21);
+            this.cmbEmoteId2.TabIndex = 4;
+            this.cmbEmoteId2.SelectedIndexChanged += new System.EventHandler(this.cmbEmoteId2_SelectedIndexChanged);
+            // 
+            // lblEmoteId2
+            // 
+            this.lblEmoteId2.AutoSize = true;
+            this.lblEmoteId2.Location = new System.Drawing.Point(47, 93);
+            this.lblEmoteId2.Name = "lblEmoteId2";
+            this.lblEmoteId2.Size = new System.Drawing.Size(49, 13);
+            this.lblEmoteId2.TabIndex = 3;
+            this.lblEmoteId2.Text = "Emote 2:";
+            // 
             // lblEmoteTooltip
             // 
             this.lblEmoteTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -1140,7 +1209,8 @@
             this.lblEmoteTooltip.Name = "lblEmoteTooltip";
             this.lblEmoteTooltip.Size = new System.Drawing.Size(453, 32);
             this.lblEmoteTooltip.TabIndex = 2;
-            this.lblEmoteTooltip.Text = "The source performs the specified visual emote. Can only be used by Units.";
+            this.lblEmoteTooltip.Text = "The source Unit performs the specified visual emote, or a random one of them if m" +
+    "ultiple are provided.";
             // 
             // cmbEmoteId
             // 
@@ -1155,11 +1225,11 @@
             // lblEmoteId
             // 
             this.lblEmoteId.AutoSize = true;
-            this.lblEmoteId.Location = new System.Drawing.Point(44, 61);
+            this.lblEmoteId.Location = new System.Drawing.Point(47, 61);
             this.lblEmoteId.Name = "lblEmoteId";
-            this.lblEmoteId.Size = new System.Drawing.Size(52, 13);
+            this.lblEmoteId.Size = new System.Drawing.Size(49, 13);
             this.lblEmoteId.TabIndex = 0;
-            this.lblEmoteId.Text = "Emote Id:";
+            this.lblEmoteId.Text = "Emote 1:";
             // 
             // frmCommandFieldSet
             // 
@@ -7165,6 +7235,12 @@
         private System.Windows.Forms.TextBox txtJoinCreatureGroupDistance;
         private System.Windows.Forms.Label lblJoinCreatureGroupTooltip;
         private System.Windows.Forms.CheckBox chkSummonCreatureFlags16;
+        private System.Windows.Forms.ComboBox cmbEmoteId4;
+        private System.Windows.Forms.Label lblEmoteId4;
+        private System.Windows.Forms.ComboBox cmbEmoteId3;
+        private System.Windows.Forms.Label lblEmoteId3;
+        private System.Windows.Forms.ComboBox cmbEmoteId2;
+        private System.Windows.Forms.Label lblEmoteId2;
     }
 }
 

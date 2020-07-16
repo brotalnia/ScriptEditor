@@ -13,7 +13,56 @@ namespace ScriptEditor
     public partial class FormConditionFinder : ScriptEditor.FormDataFinder
     {
         private bool dontUpdate = false;
-
+        private List<Panel> conditionFormsList = new List<Panel>();
+        private List<Label> conditionTooltipsList = new List<Label>();
+        private void AddControlsToLists()
+        {
+            conditionFormsList.Clear();
+            conditionFormsList.Add(frmConditionNot);
+            conditionFormsList.Add(frmConditionAnd);
+            conditionFormsList.Add(frmConditionNot);
+            conditionFormsList.Add(frmConditionAura);
+            conditionFormsList.Add(frmConditionItem);
+            conditionFormsList.Add(frmConditionArea);
+            conditionFormsList.Add(frmConditionReputation);
+            conditionFormsList.Add(frmConditionTeam);
+            conditionFormsList.Add(frmConditionSkill);
+            conditionFormsList.Add(frmConditionQuest);
+            conditionFormsList.Add(frmConditionWarEffort);
+            conditionFormsList.Add(frmConditionGameEvent);
+            conditionFormsList.Add(frmConditionRaceClass);
+            conditionFormsList.Add(frmConditionInstanceScript);
+            conditionFormsList.Add(frmConditionNearbyCreature);
+            conditionFormsList.Add(frmConditionNearbyObject);
+            conditionFormsList.Add(frmConditionContentPatch);
+            conditionFormsList.Add(frmConditionEscort);
+            conditionFormsList.Add(frmConditionInstanceData);
+            conditionFormsList.Add(frmConditionMapEventData);
+            conditionFormsList.Add(frmConditionMapEventTargets);
+            conditionFormsList.Add(frmConditionUnknown);
+            conditionTooltipsList.Clear();
+            conditionTooltipsList.Add(lblConditionNotTooltip);
+            conditionTooltipsList.Add(lblConditionAndTooltip);
+            conditionTooltipsList.Add(lblConditionAuraTooltip);
+            conditionTooltipsList.Add(lblConditionItemTooltip);
+            conditionTooltipsList.Add(lblConditionAreaTooltip);
+            conditionTooltipsList.Add(lblConditionReputationTooltip);
+            conditionTooltipsList.Add(lblConditionTeamTooltip);
+            conditionTooltipsList.Add(lblConditionSkillTooltip);
+            conditionTooltipsList.Add(lblConditionQuestTooltip);
+            conditionTooltipsList.Add(lblConditionWarEffortTooltip);
+            conditionTooltipsList.Add(lblConditionGameEventTooltip);
+            conditionTooltipsList.Add(lblConditionRaceClassTooltip);
+            conditionTooltipsList.Add(lblConditionInstanceScriptTooltip);
+            conditionTooltipsList.Add(lblConditionNearbyCreatureTooltip);
+            conditionTooltipsList.Add(lblConditionNearbyObjectTooltip);
+            conditionTooltipsList.Add(lblConditionContentPatchTooltip);
+            conditionTooltipsList.Add(lblConditionEscortTooltip);
+            conditionTooltipsList.Add(lblConditionInstanceDataTooltip);
+            conditionTooltipsList.Add(lblConditionMapEventDataTooltip);
+            conditionTooltipsList.Add(lblConditionMapEventTargetsTooltip);
+            conditionTooltipsList.Add(lblConditionUnknownTooltip);
+        }
         private ComboboxPair[] ConditionTeam_ComboOptions =
         {
             new ComboboxPair("Horde", 67),
@@ -772,6 +821,7 @@ namespace ScriptEditor
         public FormConditionFinder()
         {
             InitializeComponent();
+            AddControlsToLists();
             dontUpdate = true;
             lstData.Height = 305;
             cmbConditionType.DataSource = GameData.ConditionNamesList;
@@ -860,66 +910,15 @@ namespace ScriptEditor
         {
             if (editMode)
             {
-                frmConditionArea.Width = this.Size.Width - 32;
-                frmConditionArea.Location = new Point(frmConditionArea.Location.X, this.Size.Height - 217);
-                lblConditionAreaTooltip.Width = frmConditionArea.Size.Width - lblConditionAreaTooltip.Location.X - 14;
-                frmConditionAura.Width = this.Size.Width - 32;
-                frmConditionAura.Location = new Point(frmConditionAura.Location.X, this.Size.Height - 217);
-                lblConditionAuraTooltip.Width = frmConditionAura.Size.Width - lblConditionAuraTooltip.Location.X - 14;
-                frmConditionContentPatch.Width = this.Size.Width - 32;
-                frmConditionContentPatch.Location = new Point(frmConditionContentPatch.Location.X, this.Size.Height - 217);
-                lblConditionContentPatchTooltip.Width = frmConditionContentPatch.Size.Width - lblConditionContentPatchTooltip.Location.X - 14;
-                frmConditionEscort.Width = this.Size.Width - 32;
-                frmConditionEscort.Location = new Point(frmConditionEscort.Location.X, this.Size.Height - 217);
-                lblConditionEscortTooltip.Width = frmConditionEscort.Size.Width - lblConditionEscortTooltip.Location.X - 14;
-                frmConditionGameEvent.Width = this.Size.Width - 32;
-                frmConditionGameEvent.Location = new Point(frmConditionGameEvent.Location.X, this.Size.Height - 217);
-                lblConditionGameEventTooltip.Width = frmConditionGameEvent.Size.Width - lblConditionGameEventTooltip.Location.X - 14;
-                frmConditionInstanceData.Width = this.Size.Width - 32;
-                frmConditionInstanceData.Location = new Point(frmConditionInstanceData.Location.X, this.Size.Height - 217);
-                lblConditionInstanceDataTooltip.Width = frmConditionInstanceData.Size.Width - lblConditionInstanceDataTooltip.Location.X - 14;
-                frmConditionInstanceScript.Width = this.Size.Width - 32;
-                frmConditionInstanceScript.Location = new Point(frmConditionInstanceScript.Location.X, this.Size.Height - 217);
-                lblConditionInstanceScriptTooltip.Width = frmConditionInstanceScript.Size.Width - lblConditionInstanceScriptTooltip.Location.X - 14;
-                frmConditionItem.Width = this.Size.Width - 32;
-                frmConditionItem.Location = new Point(frmConditionItem.Location.X, this.Size.Height - 217);
-                lblConditionItemTooltip.Width = frmConditionItem.Size.Width - lblConditionItemTooltip.Location.X - 14;
-                frmConditionMapEventData.Width = this.Size.Width - 32;
-                frmConditionMapEventData.Location = new Point(frmConditionMapEventData.Location.X, this.Size.Height - 217);
-                lblConditionMapEventDataTooltip.Width = frmConditionMapEventData.Size.Width - lblConditionMapEventDataTooltip.Location.X - 14;
-                frmConditionMapEventTargets.Width = this.Size.Width - 32;
-                frmConditionMapEventTargets.Location = new Point(frmConditionMapEventTargets.Location.X, this.Size.Height - 217);
-                lblConditionMapEventTargetsTooltip.Width = frmConditionMapEventTargets.Size.Width - lblConditionMapEventTargetsTooltip.Location.X - 14;
-                frmConditionNearbyCreature.Width = this.Size.Width - 32;
-                frmConditionNearbyCreature.Location = new Point(frmConditionNearbyCreature.Location.X, this.Size.Height - 217);
-                lblConditionNearbyCreatureTooltip.Width = frmConditionNearbyCreature.Size.Width - lblConditionNearbyCreatureTooltip.Location.X - 14;
-                frmConditionNearbyObject.Width = this.Size.Width - 32;
-                frmConditionNearbyObject.Location = new Point(frmConditionNearbyObject.Location.X, this.Size.Height - 217);
-                lblConditionNearbyObjectTooltip.Width = frmConditionNearbyObject.Size.Width - lblConditionNearbyObjectTooltip.Location.X - 14;
-                frmConditionNot.Width = this.Size.Width - 32;
-                frmConditionNot.Location = new Point(frmConditionNot.Location.X, this.Size.Height - 217);
-                lblConditionNotTooltip.Width = frmConditionNot.Size.Width - lblConditionNotTooltip.Location.X - 14;
-                frmConditionQuest.Width = this.Size.Width - 32;
-                frmConditionQuest.Location = new Point(frmConditionQuest.Location.X, this.Size.Height - 217);
-                lblConditionQuestTooltip.Width = frmConditionQuest.Size.Width - lblConditionQuestTooltip.Location.X - 14;
-                frmConditionRaceClass.Width = this.Size.Width - 32;
-                frmConditionRaceClass.Location = new Point(frmConditionRaceClass.Location.X, this.Size.Height - 217);
-                lblConditionRaceClassTooltip.Width = frmConditionRaceClass.Size.Width - lblConditionRaceClassTooltip.Location.X - 14;
-                frmConditionReputation.Width = this.Size.Width - 32;
-                frmConditionReputation.Location = new Point(frmConditionReputation.Location.X, this.Size.Height - 217);
-                lblConditionReputationTooltip.Width = frmConditionReputation.Size.Width - lblConditionReputationTooltip.Location.X - 14;
-                frmConditionSkill.Width = this.Size.Width - 32;
-                frmConditionSkill.Location = new Point(frmConditionSkill.Location.X, this.Size.Height - 217);
-                lblConditionSkillTooltip.Width = frmConditionSkill.Size.Width - lblConditionSkillTooltip.Location.X - 14;
-                frmConditionTeam.Width = this.Size.Width - 32;
-                frmConditionTeam.Location = new Point(frmConditionTeam.Location.X, this.Size.Height - 217);
-                lblConditionTeamTooltip.Width = frmConditionTeam.Size.Width - lblConditionTeamTooltip.Location.X - 14;
-                frmConditionWarEffort.Width = this.Size.Width - 32;
-                frmConditionWarEffort.Location = new Point(frmConditionWarEffort.Location.X, this.Size.Height - 217);
-                lblConditionWarEffortTooltip.Width = frmConditionWarEffort.Size.Width - lblConditionWarEffortTooltip.Location.X - 14;
-                frmConditionUnknown.Width = this.Size.Width - 32;
-                frmConditionUnknown.Location = new Point(frmConditionUnknown.Location.X, this.Size.Height - 217);
-                lblConditionUnknownTooltip.Width = frmConditionUnknown.Size.Width - lblConditionUnknownTooltip.Location.X - 14;
+                foreach(Panel frm in conditionFormsList)
+                {
+                    frm.Width = this.Size.Width - 32;
+                    frm.Location = new Point(frm.Location.X, this.Size.Height - 217);
+                }
+                foreach (Label lbl in conditionTooltipsList)
+                {
+                    lbl.Width = lbl.Parent.Size.Width - lbl.Location.X - 14;
+                }
                 
                 lblNoSelection.Location = new Point(frmConditionUnknown.Location.X + (frmConditionUnknown.Size.Width / 2) - (lblNoSelection.Size.Width / 2), frmConditionUnknown.Location.Y + (frmConditionUnknown.Size.Height / 2) - (lblNoSelection.Size.Height / 2));
 

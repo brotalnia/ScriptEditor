@@ -113,6 +113,8 @@ namespace ScriptEditor
         "Set GO State",             // 80
         "Despawn GameObject",       // 81
         "Load GameObject",          // 82
+        "Quest Credit",             // 83
+        "Set Gossip Menu",          // 84
         };
 
         // Options for combo boxes.
@@ -195,7 +197,14 @@ namespace ScriptEditor
             cmbTalkChatType.SelectedIndex = 0;
 
             // Assign emotes list to combo box.
+            cmbEmoteId.BindingContext = new BindingContext();
             cmbEmoteId.DataSource = GameData.EmotesList;
+            cmbEmoteId2.BindingContext = new BindingContext();
+            cmbEmoteId2.DataSource = GameData.EmotesList;
+            cmbEmoteId3.BindingContext = new BindingContext();
+            cmbEmoteId3.DataSource = GameData.EmotesList;
+            cmbEmoteId4.BindingContext = new BindingContext();
+            cmbEmoteId4.DataSource = GameData.EmotesList;
 
             // Assign fields list to combo box.
             cmbFieldSetFields.DataSource = GameData.FlagFieldsList;
@@ -488,6 +497,9 @@ namespace ScriptEditor
             // Emote (1)
             frmCommandEmote.Visible = false;
             cmbEmoteId.SelectedIndex = 0;
+            cmbEmoteId2.SelectedIndex = 0;
+            cmbEmoteId3.SelectedIndex = 0;
+            cmbEmoteId4.SelectedIndex = 0;
 
             // Field Set (2)
             cmbFieldSetFields.SelectedIndex = 0;
@@ -619,6 +631,7 @@ namespace ScriptEditor
             frmCommandCreateItem.Visible = false;
 
             // Despawn Creature (18)
+            // Set Gossip Menu (84)
             txtDespawnCreatureDelay.Text = "";
             frmCommandDespawnCreature.Visible = false;
 
@@ -919,6 +932,9 @@ namespace ScriptEditor
                 case 1: // Emote
                 {
                     cmbEmoteId.SelectedIndex = GameData.FindIndexOfEmote(selectedAction.Datalong);
+                    cmbEmoteId2.SelectedIndex = GameData.FindIndexOfEmote(selectedAction.Datalong2);
+                    cmbEmoteId3.SelectedIndex = GameData.FindIndexOfEmote(selectedAction.Datalong3);
+                    cmbEmoteId4.SelectedIndex = GameData.FindIndexOfEmote(selectedAction.Datalong4);
                     frmCommandEmote.Visible = true;
                     break;
                 }
@@ -1172,6 +1188,7 @@ namespace ScriptEditor
                 case 73: // Combat Stop
                 case 75: // Add Threat
                 case 79: // Leave Creature Group
+                case 83: // Quest Credit
                 {
                     txtDoorGuid.Visible = false;
                     txtDoorResetDelay.Visible = false;
@@ -1217,6 +1234,11 @@ namespace ScriptEditor
                         case 79:
                         {
                             lblDoorTooltip.Text = "The source Creature leaves its current group. If it is the leader of the group, then the group is disbanded. This command has no additional parameters.";
+                            break;
+                        }
+                        case 83:
+                        {
+                            lblDoorTooltip.Text = "Gives the source Player quest credit for killing or using the target Object. This command has no additional parameters.";
                             break;
                         }
                     }
@@ -1305,8 +1327,25 @@ namespace ScriptEditor
                     frmCommandCreateItem.Visible = true;
                     break;
                 }
-                case 18: // Despawn Creture
+                case 18: // Despawn Creature
+                case 84: // Set Gossip Menu
                 {
+                    switch (selectedAction.Command)
+                    {
+                        case 18: // Despawn Creature
+                        {
+                            lblDespawnCreatureTooltip.Text = "Despawns the source Creature after the specified delay.";
+                            lblDespawnCreatureDelay.Text = "Delay:";
+                            break;
+                        }
+                        case 84: // Set Gossip Menu
+                        {
+                            lblDespawnCreatureTooltip.Text = "Changes the source Creature's default gossip menu to the one specified.";
+                            lblDespawnCreatureDelay.Text = "Menu:";
+                            break;
+                        }
+                    }
+
                     txtDespawnCreatureDelay.Text = selectedAction.Datalong.ToString();
                     frmCommandDespawnCreature.Visible = true;
                     break;
@@ -2549,11 +2588,6 @@ namespace ScriptEditor
             SetScriptFlagsFromCheckbox(chkAbortScript, "DataFlags", 8);
         }
 
-        private void cmbEmoteId_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SetScriptFieldFromCombobox(cmbEmoteId, "Datalong", true);
-        }
-
         private void btnActionAdd_Click(object sender, EventArgs e)
         {
             ListViewItem newItem = new ListViewItem();
@@ -2685,6 +2719,28 @@ namespace ScriptEditor
         private void cmbTalkChatType_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbTalkChatType, "Datalong", false);
+        }
+
+        // SCRIPT_COMMAND_EMOTE (1)
+
+        private void cmbEmoteId_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbEmoteId, "Datalong", true);
+        }
+
+        private void cmbEmoteId2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbEmoteId2, "Datalong2", true);
+        }
+
+        private void cmbEmoteId3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbEmoteId3, "Datalong3", true);
+        }
+
+        private void cmbEmoteId4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbEmoteId4, "Datalong4", true);
         }
 
         // SCRIPT_COMMAND_FIELD_SET (2)
