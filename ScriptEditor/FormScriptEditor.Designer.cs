@@ -698,16 +698,16 @@
             this.cmbTable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTable.FormattingEnabled = true;
             this.cmbTable.Items.AddRange(new object[] {
-            "event_scripts",
-            "gossip_scripts",
-            "gameobject_scripts",
-            "gameobject_template_scripts",
-            "spell_scripts",
-            "quest_start_scripts",
-            "quest_end_scripts",
+            "creature_ai_scripts",
             "creature_movement_scripts",
             "creature_spells_scripts",
-            "creature_ai_scripts"});
+            "event_scripts",
+            "gameobject_scripts",
+            "generic_scripts",
+            "gossip_scripts",
+            "quest_end_scripts",
+            "quest_start_scripts",
+            "spell_scripts"});
             this.cmbTable.Location = new System.Drawing.Point(672, 24);
             this.cmbTable.Name = "cmbTable";
             this.cmbTable.Size = new System.Drawing.Size(154, 21);

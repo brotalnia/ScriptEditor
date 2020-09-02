@@ -179,7 +179,6 @@ namespace ScriptEditor
             // CONDITION_HEALTH_PERCENT (41)
             // CONDITION_MANA_PERCENT (42)
             // CONDITION_PVP_RANK (51)
-            // CONDITION_DB_GUID (52)
             txtWarEffortStage.Text = "";
             cmbWarEffortComparison.SelectedIndex = 0;
             frmConditionWarEffort.Visible = false;
@@ -238,6 +237,13 @@ namespace ScriptEditor
             txtMapEventTargetsEventId.Text = "";
             btnMapEventTargetsConditionId.Text = "-NONE-";
             frmConditionMapEventTargets.Visible = false;
+
+            // CONDITION_DB_GUID (52)
+            txtConditionDbGuid1.Text = "";
+            txtConditionDbGuid2.Text = "";
+            txtConditionDbGuid3.Text = "";
+            txtConditionDbGuid4.Text = "";
+            frmConditionDbGuid.Visible = false;
 
             // Unknown Condition Id
             txtUnknownValue1.Text = "";
@@ -607,7 +613,6 @@ namespace ScriptEditor
                 case 41: // CONDITION_HEALTH_PERCENT
                 case 42: // CONDITION_MANA_PERCENT
                 case 51: // CONDITION_PVP_RANK
-                case 52: // CONDITION_DB_GUID
                 {
                     switch (selectedCondition.Type)
                     {
@@ -615,6 +620,7 @@ namespace ScriptEditor
                         {
                             lblConditionWarEffortTooltip.Text = "Returns true if the War Effort event is at the specified stage.";
                             cmbWarEffortComparison.Visible = true;
+                            cmbWarEffortComparison.SelectedIndex = (int)selectedCondition.Value2;
                             lblWarEffortComparison.Visible = true;
                             lblWarEffortStage.Text = "Stage:";
                             break;
@@ -623,6 +629,7 @@ namespace ScriptEditor
                         {
                             lblConditionWarEffortTooltip.Text = "Returns true if the target Player fits the specified level requirement.";
                             cmbWarEffortComparison.Visible = true;
+                            cmbWarEffortComparison.SelectedIndex = (int)selectedCondition.Value2;
                             lblWarEffortComparison.Visible = true;
                             lblWarEffortStage.Text = "Level:";
                             break;
@@ -647,6 +654,7 @@ namespace ScriptEditor
                         {
                             lblConditionWarEffortTooltip.Text = "Returns true if the source Creature's last reached waypoint matches the one specified.";
                             cmbWarEffortComparison.Visible = true;
+                            cmbWarEffortComparison.SelectedIndex = (int)selectedCondition.Value2;
                             lblWarEffortComparison.Visible = true;
                             lblWarEffortStage.Text = "Waypoint:";
                             break;
@@ -663,6 +671,7 @@ namespace ScriptEditor
                         {
                             lblConditionWarEffortTooltip.Text = "Returns true if the source and target WorldObjects are within a specified distance of each other.";
                             cmbWarEffortComparison.Visible = true;
+                            cmbWarEffortComparison.SelectedIndex = (int)selectedCondition.Value2;
                             lblWarEffortComparison.Visible = true;
                             lblWarEffortStage.Text = "Distance:";
                             break;
@@ -671,6 +680,7 @@ namespace ScriptEditor
                         {
                             lblConditionWarEffortTooltip.Text = "Returns true if the target Unit's remaining health percent matches the specified criteria.";
                             cmbWarEffortComparison.Visible = true;
+                            cmbWarEffortComparison.SelectedIndex = (int)selectedCondition.Value2;
                             lblWarEffortComparison.Visible = true;
                             lblWarEffortStage.Text = "Health:";
                             break;
@@ -679,6 +689,7 @@ namespace ScriptEditor
                         {
                             lblConditionWarEffortTooltip.Text = "Returns true if the target Unit's remaining mana percent matches the specified criteria.";
                             cmbWarEffortComparison.Visible = true;
+                            cmbWarEffortComparison.SelectedIndex = (int)selectedCondition.Value2;
                             lblWarEffortComparison.Visible = true;
                             lblWarEffortStage.Text = "Mana:";
                             break;
@@ -687,21 +698,13 @@ namespace ScriptEditor
                         {
                             lblConditionWarEffortTooltip.Text = "Returns true if the target Player's honor rank matches the specified criteria.";
                             cmbWarEffortComparison.Visible = true;
+                            cmbWarEffortComparison.SelectedIndex = (int)selectedCondition.Value2;
                             lblWarEffortComparison.Visible = true;
                             lblWarEffortStage.Text = "Rank:";
                             break;
                         }
-                        case 52: // CONDITION_DB_GUID
-                        {
-                            lblConditionWarEffortTooltip.Text = "Returns true if the source object's database guid matches the one specified.";
-                            cmbWarEffortComparison.Visible = false;
-                            lblWarEffortComparison.Visible = false;
-                            lblWarEffortStage.Text = "Guid:";
-                            break;
-                        }
                     }
                     txtWarEffortStage.Text = selectedCondition.Value1.ToString();
-                    cmbWarEffortComparison.SelectedIndex = (int)selectedCondition.Value2;
                     frmConditionWarEffort.Visible = true;
                     break;
                 }
@@ -804,6 +807,15 @@ namespace ScriptEditor
                     if (conditionId > 0)
                         btnMapEventTargetsConditionId.Text = conditionId.ToString() + " - " + GameData.FindConditionName(conditionId);
                     frmConditionMapEventTargets.Visible = true;
+                    break;
+                }
+                case 52: // CONDITION_DB_GUID
+                {
+                    txtConditionDbGuid1.Text = selectedCondition.Value1.ToString();
+                    txtConditionDbGuid2.Text = selectedCondition.Value2.ToString();
+                    txtConditionDbGuid3.Text = selectedCondition.Value3.ToString();
+                    txtConditionDbGuid4.Text = selectedCondition.Value4.ToString();
+                    frmConditionDbGuid.Visible = true;
                     break;
                 }
                 default:
@@ -1797,6 +1809,23 @@ namespace ScriptEditor
         private void btnMapEventTargetsConditionId_Click(object sender, EventArgs e)
         {
             SetScriptFieldFromDataFinderForm<FormConditionFinder>(btnMapEventTargetsConditionId, null, GameData.FindConditionName, "Value2");
+        }
+        // CONDITION_DB_GUID
+        private void txtConditionDbGuid1_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtConditionDbGuid1, "Value1");
+        }
+        private void txtConditionDbGuid2_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtConditionDbGuid2, "Value2");
+        }
+        private void txtConditionDbGuid3_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtConditionDbGuid3, "Value3");
+        }
+        private void txtConditionDbGuid4_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtConditionDbGuid4, "Value4");
         }
         // Unknown Condition Id
         private void txtUnknownValue1_Leave(object sender, EventArgs e)

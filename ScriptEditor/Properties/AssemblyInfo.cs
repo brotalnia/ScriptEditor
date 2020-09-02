@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Vanilla MaNGOS")]
 [assembly: AssemblyProduct("ScriptEditor")]
-[assembly: AssemblyCopyright("Copyright © brotalnia 2019")]
+[assembly: AssemblyCopyright("Copyright © brotalnia 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("7.6.0.0")]
-[assembly: AssemblyFileVersion("7.6.0.0")]
+[assembly: AssemblyVersion("7.7.0.0")]
+[assembly: AssemblyFileVersion("7.7.0.0")]

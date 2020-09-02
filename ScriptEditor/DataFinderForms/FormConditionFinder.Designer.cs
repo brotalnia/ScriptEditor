@@ -181,6 +181,16 @@
             this.lblConditionAndCondition3 = new System.Windows.Forms.Label();
             this.lblConditionAndCondition1 = new System.Windows.Forms.Label();
             this.lblConditionAndTooltip = new System.Windows.Forms.Label();
+            this.frmConditionDbGuid = new System.Windows.Forms.Panel();
+            this.txtConditionDbGuid4 = new System.Windows.Forms.TextBox();
+            this.txtConditionDbGuid3 = new System.Windows.Forms.TextBox();
+            this.txtConditionDbGuid2 = new System.Windows.Forms.TextBox();
+            this.txtConditionDbGuid1 = new System.Windows.Forms.TextBox();
+            this.lblConditionDbGuid4 = new System.Windows.Forms.Label();
+            this.lblConditionDbGuid2 = new System.Windows.Forms.Label();
+            this.lblConditionDbGuid3 = new System.Windows.Forms.Label();
+            this.lblConditionDbGuid1 = new System.Windows.Forms.Label();
+            this.lblConditionDbGuidTooltip = new System.Windows.Forms.Label();
             this.frmConditionNot.SuspendLayout();
             this.frmConditionAura.SuspendLayout();
             this.frmConditionItem.SuspendLayout();
@@ -202,6 +212,7 @@
             this.frmConditionUnknown.SuspendLayout();
             this.frmConditionMapEventTargets.SuspendLayout();
             this.frmConditionAnd.SuspendLayout();
+            this.frmConditionDbGuid.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstData
@@ -1027,11 +1038,11 @@
             // 
             // cmbNearbyCreatureNotSelf
             // 
+            this.cmbNearbyCreatureNotSelf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbNearbyCreatureNotSelf.FormattingEnabled = true;
             this.cmbNearbyCreatureNotSelf.Items.AddRange(new object[] {
             "False",
             "True"});
-            this.cmbNearbyCreatureNotSelf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbNearbyCreatureNotSelf.Location = new System.Drawing.Point(316, 101);
             this.cmbNearbyCreatureNotSelf.Name = "cmbNearbyCreatureNotSelf";
             this.cmbNearbyCreatureNotSelf.Size = new System.Drawing.Size(130, 21);
@@ -1049,11 +1060,11 @@
             // 
             // cmbNearbyCreatureDead
             // 
+            this.cmbNearbyCreatureDead.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbNearbyCreatureDead.FormattingEnabled = true;
             this.cmbNearbyCreatureDead.Items.AddRange(new object[] {
             "Alive",
             "Dead"});
-            this.cmbNearbyCreatureDead.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbNearbyCreatureDead.Location = new System.Drawing.Point(506, 101);
             this.cmbNearbyCreatureDead.Name = "cmbNearbyCreatureDead";
             this.cmbNearbyCreatureDead.Size = new System.Drawing.Size(130, 21);
@@ -1770,10 +1781,107 @@
     "conditions need to have an entry Id that is lower than that of the current condi" +
     "tion.";
             // 
+            // frmConditionDbGuid
+            // 
+            this.frmConditionDbGuid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmConditionDbGuid.Controls.Add(this.txtConditionDbGuid4);
+            this.frmConditionDbGuid.Controls.Add(this.txtConditionDbGuid3);
+            this.frmConditionDbGuid.Controls.Add(this.txtConditionDbGuid2);
+            this.frmConditionDbGuid.Controls.Add(this.txtConditionDbGuid1);
+            this.frmConditionDbGuid.Controls.Add(this.lblConditionDbGuid4);
+            this.frmConditionDbGuid.Controls.Add(this.lblConditionDbGuid2);
+            this.frmConditionDbGuid.Controls.Add(this.lblConditionDbGuid3);
+            this.frmConditionDbGuid.Controls.Add(this.lblConditionDbGuid1);
+            this.frmConditionDbGuid.Controls.Add(this.lblConditionDbGuidTooltip);
+            this.frmConditionDbGuid.Location = new System.Drawing.Point(12, 212);
+            this.frmConditionDbGuid.Name = "frmConditionDbGuid";
+            this.frmConditionDbGuid.Size = new System.Drawing.Size(650, 150);
+            this.frmConditionDbGuid.TabIndex = 40;
+            this.frmConditionDbGuid.Visible = false;
+            // 
+            // txtConditionDbGuid4
+            // 
+            this.txtConditionDbGuid4.Location = new System.Drawing.Point(412, 101);
+            this.txtConditionDbGuid4.Name = "txtConditionDbGuid4";
+            this.txtConditionDbGuid4.Size = new System.Drawing.Size(218, 20);
+            this.txtConditionDbGuid4.TabIndex = 12;
+            this.txtConditionDbGuid4.Leave += new System.EventHandler(this.txtConditionDbGuid4_Leave);
+            // 
+            // txtConditionDbGuid3
+            // 
+            this.txtConditionDbGuid3.Location = new System.Drawing.Point(100, 101);
+            this.txtConditionDbGuid3.Name = "txtConditionDbGuid3";
+            this.txtConditionDbGuid3.Size = new System.Drawing.Size(218, 20);
+            this.txtConditionDbGuid3.TabIndex = 11;
+            this.txtConditionDbGuid3.Leave += new System.EventHandler(this.txtConditionDbGuid3_Leave);
+            // 
+            // txtConditionDbGuid2
+            // 
+            this.txtConditionDbGuid2.Location = new System.Drawing.Point(412, 68);
+            this.txtConditionDbGuid2.Name = "txtConditionDbGuid2";
+            this.txtConditionDbGuid2.Size = new System.Drawing.Size(218, 20);
+            this.txtConditionDbGuid2.TabIndex = 10;
+            this.txtConditionDbGuid2.Leave += new System.EventHandler(this.txtConditionDbGuid2_Leave);
+            // 
+            // txtConditionDbGuid1
+            // 
+            this.txtConditionDbGuid1.Location = new System.Drawing.Point(100, 68);
+            this.txtConditionDbGuid1.Name = "txtConditionDbGuid1";
+            this.txtConditionDbGuid1.Size = new System.Drawing.Size(218, 20);
+            this.txtConditionDbGuid1.TabIndex = 9;
+            this.txtConditionDbGuid1.Leave += new System.EventHandler(this.txtConditionDbGuid1_Leave);
+            // 
+            // lblConditionDbGuid4
+            // 
+            this.lblConditionDbGuid4.AutoSize = true;
+            this.lblConditionDbGuid4.Location = new System.Drawing.Point(352, 106);
+            this.lblConditionDbGuid4.Name = "lblConditionDbGuid4";
+            this.lblConditionDbGuid4.Size = new System.Drawing.Size(46, 13);
+            this.lblConditionDbGuid4.TabIndex = 6;
+            this.lblConditionDbGuid4.Text = "GUID 4:";
+            // 
+            // lblConditionDbGuid2
+            // 
+            this.lblConditionDbGuid2.AutoSize = true;
+            this.lblConditionDbGuid2.Location = new System.Drawing.Point(352, 73);
+            this.lblConditionDbGuid2.Name = "lblConditionDbGuid2";
+            this.lblConditionDbGuid2.Size = new System.Drawing.Size(46, 13);
+            this.lblConditionDbGuid2.TabIndex = 5;
+            this.lblConditionDbGuid2.Text = "GUID 2:";
+            // 
+            // lblConditionDbGuid3
+            // 
+            this.lblConditionDbGuid3.AutoSize = true;
+            this.lblConditionDbGuid3.Location = new System.Drawing.Point(40, 106);
+            this.lblConditionDbGuid3.Name = "lblConditionDbGuid3";
+            this.lblConditionDbGuid3.Size = new System.Drawing.Size(46, 13);
+            this.lblConditionDbGuid3.TabIndex = 2;
+            this.lblConditionDbGuid3.Text = "GUID 3:";
+            // 
+            // lblConditionDbGuid1
+            // 
+            this.lblConditionDbGuid1.AutoSize = true;
+            this.lblConditionDbGuid1.Location = new System.Drawing.Point(40, 73);
+            this.lblConditionDbGuid1.Name = "lblConditionDbGuid1";
+            this.lblConditionDbGuid1.Size = new System.Drawing.Size(46, 13);
+            this.lblConditionDbGuid1.TabIndex = 1;
+            this.lblConditionDbGuid1.Text = "GUID 1:";
+            // 
+            // lblConditionDbGuidTooltip
+            // 
+            this.lblConditionDbGuidTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblConditionDbGuidTooltip.Location = new System.Drawing.Point(12, 8);
+            this.lblConditionDbGuidTooltip.Name = "lblConditionDbGuidTooltip";
+            this.lblConditionDbGuidTooltip.Size = new System.Drawing.Size(624, 42);
+            this.lblConditionDbGuidTooltip.TabIndex = 0;
+            this.lblConditionDbGuidTooltip.Text = "Returns true if the source object\'s database guid matches any of the ones specifi" +
+    "ed.";
+            // 
             // FormConditionFinder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(674, 395);
+            this.Controls.Add(this.frmConditionDbGuid);
             this.Controls.Add(this.frmConditionAnd);
             this.Controls.Add(this.frmConditionMapEventTargets);
             this.Controls.Add(this.frmConditionUnknown);
@@ -1846,6 +1954,7 @@
             this.Controls.SetChildIndex(this.frmConditionUnknown, 0);
             this.Controls.SetChildIndex(this.frmConditionMapEventTargets, 0);
             this.Controls.SetChildIndex(this.frmConditionAnd, 0);
+            this.Controls.SetChildIndex(this.frmConditionDbGuid, 0);
             this.frmConditionNot.ResumeLayout(false);
             this.frmConditionNot.PerformLayout();
             this.frmConditionAura.ResumeLayout(false);
@@ -1888,6 +1997,8 @@
             this.frmConditionMapEventTargets.PerformLayout();
             this.frmConditionAnd.ResumeLayout(false);
             this.frmConditionAnd.PerformLayout();
+            this.frmConditionDbGuid.ResumeLayout(false);
+            this.frmConditionDbGuid.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2047,5 +2158,15 @@
         private System.Windows.Forms.Label lblNearbyCreatureNotSelf;
         private System.Windows.Forms.ComboBox cmbNearbyCreatureDead;
         private System.Windows.Forms.Label lblNearbyCreatureDead;
+        private System.Windows.Forms.Panel frmConditionDbGuid;
+        private System.Windows.Forms.TextBox txtConditionDbGuid4;
+        private System.Windows.Forms.TextBox txtConditionDbGuid3;
+        private System.Windows.Forms.TextBox txtConditionDbGuid2;
+        private System.Windows.Forms.TextBox txtConditionDbGuid1;
+        private System.Windows.Forms.Label lblConditionDbGuid4;
+        private System.Windows.Forms.Label lblConditionDbGuid2;
+        private System.Windows.Forms.Label lblConditionDbGuid3;
+        private System.Windows.Forms.Label lblConditionDbGuid1;
+        private System.Windows.Forms.Label lblConditionDbGuidTooltip;
     }
 }

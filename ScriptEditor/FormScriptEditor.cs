@@ -3528,7 +3528,7 @@ namespace ScriptEditor
             {
                 FormScriptEditor formEditor = new FormScriptEditor();
                 formEditor.Show();
-                formEditor.LoadScript(script_id, "event_scripts");
+                formEditor.LoadScript(script_id, "generic_scripts");
             }
         }
         private void txtSummonCreatureUniqueLimit_Leave(object sender, EventArgs e)
@@ -4234,7 +4234,7 @@ namespace ScriptEditor
             {
                 FormScriptEditor formEditor = new FormScriptEditor();
                 formEditor.Show();
-                formEditor.LoadScript(script_id, "event_scripts");
+                formEditor.LoadScript(script_id, "generic_scripts");
             }
         }
         private void btnStartScriptEdit2_Click(object sender, EventArgs e)
@@ -4245,7 +4245,7 @@ namespace ScriptEditor
             {
                 FormScriptEditor formEditor = new FormScriptEditor();
                 formEditor.Show();
-                formEditor.LoadScript(script_id, "event_scripts");
+                formEditor.LoadScript(script_id, "generic_scripts");
             }
         }
         private void btnStartScriptEdit3_Click(object sender, EventArgs e)
@@ -4256,7 +4256,7 @@ namespace ScriptEditor
             {
                 FormScriptEditor formEditor = new FormScriptEditor();
                 formEditor.Show();
-                formEditor.LoadScript(script_id, "event_scripts");
+                formEditor.LoadScript(script_id, "generic_scripts");
             }
         }
         private void btnStartScriptEdit4_Click(object sender, EventArgs e)
@@ -4267,7 +4267,7 @@ namespace ScriptEditor
             {
                 FormScriptEditor formEditor = new FormScriptEditor();
                 formEditor.Show();
-                formEditor.LoadScript(script_id, "event_scripts");
+                formEditor.LoadScript(script_id, "generic_scripts");
             }
         }
 
@@ -4498,7 +4498,7 @@ namespace ScriptEditor
             {
                 FormScriptEditor formEditor = new FormScriptEditor();
                 formEditor.Show();
-                formEditor.LoadScript(script_id, "event_scripts");
+                formEditor.LoadScript(script_id, "generic_scripts");
             }
         }
         private void btnStartScriptedMapEventFailureScriptEdit_Click(object sender, EventArgs e)
@@ -4509,7 +4509,7 @@ namespace ScriptEditor
             {
                 FormScriptEditor formEditor = new FormScriptEditor();
                 formEditor.Show();
-                formEditor.LoadScript(script_id, "event_scripts");
+                formEditor.LoadScript(script_id, "generic_scripts");
             }
         }
         private void txtStartScriptedMapEventId_Leave(object sender, EventArgs e)
