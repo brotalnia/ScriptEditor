@@ -1676,6 +1676,7 @@ namespace ScriptEditor
             ConditionNamesList.Add(new ComboboxPair("OBJECT_FIT_CONDITION", 50));
             ConditionNamesList.Add(new ComboboxPair("PVP_RANK", 51));
             ConditionNamesList.Add(new ComboboxPair("DB_GUID", 52));
+            ConditionNamesList.Add(new ComboboxPair("LOCAL_TIME", 53));
 
             // Add skill names.
             SkillsList.Add(new ComboboxPair("Frost", 6));

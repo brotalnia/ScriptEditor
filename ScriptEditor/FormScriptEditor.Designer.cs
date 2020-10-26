@@ -4657,7 +4657,7 @@
             this.lblStartScriptId.Name = "lblStartScriptId";
             this.lblStartScriptId.Size = new System.Drawing.Size(82, 13);
             this.lblStartScriptId.TabIndex = 11;
-            this.lblStartScriptId.Text = "Event Script ID:";
+            this.lblStartScriptId.Text = "Generic Script ID:";
             // 
             // lblStartScriptTooltip
             // 
@@ -4666,7 +4666,7 @@
             this.lblStartScriptTooltip.Name = "lblStartScriptTooltip";
             this.lblStartScriptTooltip.Size = new System.Drawing.Size(453, 32);
             this.lblStartScriptTooltip.TabIndex = 10;
-            this.lblStartScriptTooltip.Text = "Starts one of the specified event script Ids. Chosen script is determined by a ra" +
+            this.lblStartScriptTooltip.Text = "Starts one of the specified generic script Ids. Chosen script is determined by a ra" +
     "ndom chance roll. Total chance must not exceed 100%.";
             // 
             // lblNoAction

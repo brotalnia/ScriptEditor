@@ -191,6 +191,18 @@
             this.lblConditionDbGuid3 = new System.Windows.Forms.Label();
             this.lblConditionDbGuid1 = new System.Windows.Forms.Label();
             this.lblConditionDbGuidTooltip = new System.Windows.Forms.Label();
+            this.frmConditionLocalTime = new System.Windows.Forms.Panel();
+            this.txtLocalTimeEndMinutes = new System.Windows.Forms.TextBox();
+            this.txtLocalTimeEndHour = new System.Windows.Forms.TextBox();
+            this.txtLocalTimeStartMinutes = new System.Windows.Forms.TextBox();
+            this.txtLocalTimeStartHour = new System.Windows.Forms.TextBox();
+            this.lblLocalTimeTwoDots2 = new System.Windows.Forms.Label();
+            this.lblLocalTimeTwoDots1 = new System.Windows.Forms.Label();
+            this.lblLocalTimeEndTime = new System.Windows.Forms.Label();
+            this.lblLocalTimeStartTime = new System.Windows.Forms.Label();
+            this.lblConditionLocalTimeTooltip = new System.Windows.Forms.Label();
+            this.lblLocalTimeHour = new System.Windows.Forms.Label();
+            this.lblLocalTimeMinutes = new System.Windows.Forms.Label();
             this.frmConditionNot.SuspendLayout();
             this.frmConditionAura.SuspendLayout();
             this.frmConditionItem.SuspendLayout();
@@ -213,6 +225,7 @@
             this.frmConditionMapEventTargets.SuspendLayout();
             this.frmConditionAnd.SuspendLayout();
             this.frmConditionDbGuid.SuspendLayout();
+            this.frmConditionLocalTime.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstData
@@ -1877,10 +1890,127 @@
             this.lblConditionDbGuidTooltip.Text = "Returns true if the source object\'s database guid matches any of the ones specifi" +
     "ed.";
             // 
+            // frmConditionLocalTime
+            // 
+            this.frmConditionLocalTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmConditionLocalTime.Controls.Add(this.lblLocalTimeMinutes);
+            this.frmConditionLocalTime.Controls.Add(this.lblLocalTimeHour);
+            this.frmConditionLocalTime.Controls.Add(this.txtLocalTimeEndMinutes);
+            this.frmConditionLocalTime.Controls.Add(this.txtLocalTimeEndHour);
+            this.frmConditionLocalTime.Controls.Add(this.txtLocalTimeStartMinutes);
+            this.frmConditionLocalTime.Controls.Add(this.txtLocalTimeStartHour);
+            this.frmConditionLocalTime.Controls.Add(this.lblLocalTimeTwoDots2);
+            this.frmConditionLocalTime.Controls.Add(this.lblLocalTimeTwoDots1);
+            this.frmConditionLocalTime.Controls.Add(this.lblLocalTimeEndTime);
+            this.frmConditionLocalTime.Controls.Add(this.lblLocalTimeStartTime);
+            this.frmConditionLocalTime.Controls.Add(this.lblConditionLocalTimeTooltip);
+            this.frmConditionLocalTime.Location = new System.Drawing.Point(12, 212);
+            this.frmConditionLocalTime.Name = "frmConditionLocalTime";
+            this.frmConditionLocalTime.Size = new System.Drawing.Size(650, 150);
+            this.frmConditionLocalTime.TabIndex = 41;
+            this.frmConditionLocalTime.Visible = false;
+            // 
+            // txtLocalTimeEndMinutes
+            // 
+            this.txtLocalTimeEndMinutes.Location = new System.Drawing.Point(374, 117);
+            this.txtLocalTimeEndMinutes.Name = "txtLocalTimeEndMinutes";
+            this.txtLocalTimeEndMinutes.Size = new System.Drawing.Size(255, 20);
+            this.txtLocalTimeEndMinutes.TabIndex = 12;
+            this.txtLocalTimeEndMinutes.Leave += new System.EventHandler(this.txtLocalTimeEndMinutes_Leave);
+            // 
+            // txtLocalTimeEndHour
+            // 
+            this.txtLocalTimeEndHour.Location = new System.Drawing.Point(100, 117);
+            this.txtLocalTimeEndHour.Name = "txtLocalTimeEndHour";
+            this.txtLocalTimeEndHour.Size = new System.Drawing.Size(255, 20);
+            this.txtLocalTimeEndHour.TabIndex = 11;
+            this.txtLocalTimeEndHour.Leave += new System.EventHandler(this.txtLocalTimeEndHour_Leave);
+            // 
+            // txtLocalTimeStartMinutes
+            // 
+            this.txtLocalTimeStartMinutes.Location = new System.Drawing.Point(374, 84);
+            this.txtLocalTimeStartMinutes.Name = "txtLocalTimeStartMinutes";
+            this.txtLocalTimeStartMinutes.Size = new System.Drawing.Size(255, 20);
+            this.txtLocalTimeStartMinutes.TabIndex = 10;
+            this.txtLocalTimeStartMinutes.Leave += new System.EventHandler(this.txtLocalTimeStartMinutes_Leave);
+            // 
+            // txtLocalTimeStartHour
+            // 
+            this.txtLocalTimeStartHour.Location = new System.Drawing.Point(100, 84);
+            this.txtLocalTimeStartHour.Name = "txtLocalTimeStartHour";
+            this.txtLocalTimeStartHour.Size = new System.Drawing.Size(255, 20);
+            this.txtLocalTimeStartHour.TabIndex = 9;
+            this.txtLocalTimeStartHour.Leave += new System.EventHandler(this.txtLocalTimeStartHour_Leave);
+            // 
+            // lblLocalTimeTwoDots2
+            // 
+            this.lblLocalTimeTwoDots2.AutoSize = true;
+            this.lblLocalTimeTwoDots2.Location = new System.Drawing.Point(361, 122);
+            this.lblLocalTimeTwoDots2.Name = "lblLocalTimeTwoDots2";
+            this.lblLocalTimeTwoDots2.Size = new System.Drawing.Size(10, 13);
+            this.lblLocalTimeTwoDots2.TabIndex = 6;
+            this.lblLocalTimeTwoDots2.Text = ":";
+            // 
+            // lblLocalTimeTwoDots1
+            // 
+            this.lblLocalTimeTwoDots1.AutoSize = true;
+            this.lblLocalTimeTwoDots1.Location = new System.Drawing.Point(361, 89);
+            this.lblLocalTimeTwoDots1.Name = "lblLocalTimeTwoDots1";
+            this.lblLocalTimeTwoDots1.Size = new System.Drawing.Size(10, 13);
+            this.lblLocalTimeTwoDots1.TabIndex = 5;
+            this.lblLocalTimeTwoDots1.Text = ":";
+            // 
+            // lblLocalTimeEndTime
+            // 
+            this.lblLocalTimeEndTime.AutoSize = true;
+            this.lblLocalTimeEndTime.Location = new System.Drawing.Point(31, 122);
+            this.lblLocalTimeEndTime.Name = "lblLocalTimeEndTime";
+            this.lblLocalTimeEndTime.Size = new System.Drawing.Size(55, 13);
+            this.lblLocalTimeEndTime.TabIndex = 2;
+            this.lblLocalTimeEndTime.Text = "End Time:";
+            // 
+            // lblLocalTimeStartTime
+            // 
+            this.lblLocalTimeStartTime.AutoSize = true;
+            this.lblLocalTimeStartTime.Location = new System.Drawing.Point(28, 89);
+            this.lblLocalTimeStartTime.Name = "lblLocalTimeStartTime";
+            this.lblLocalTimeStartTime.Size = new System.Drawing.Size(58, 13);
+            this.lblLocalTimeStartTime.TabIndex = 1;
+            this.lblLocalTimeStartTime.Text = "Start Time:";
+            // 
+            // lblConditionLocalTimeTooltip
+            // 
+            this.lblConditionLocalTimeTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblConditionLocalTimeTooltip.Location = new System.Drawing.Point(12, 8);
+            this.lblConditionLocalTimeTooltip.Name = "lblConditionLocalTimeTooltip";
+            this.lblConditionLocalTimeTooltip.Size = new System.Drawing.Size(624, 42);
+            this.lblConditionLocalTimeTooltip.TabIndex = 0;
+            this.lblConditionLocalTimeTooltip.Text = "Returns true if the current time is in the specified range. The range is inclusiv" +
+    "e.";
+            // 
+            // lblLocalTimeHour
+            // 
+            this.lblLocalTimeHour.AutoSize = true;
+            this.lblLocalTimeHour.Location = new System.Drawing.Point(103, 65);
+            this.lblLocalTimeHour.Name = "lblLocalTimeHour";
+            this.lblLocalTimeHour.Size = new System.Drawing.Size(30, 13);
+            this.lblLocalTimeHour.TabIndex = 13;
+            this.lblLocalTimeHour.Text = "Hour";
+            // 
+            // lblLocalTimeMinutes
+            // 
+            this.lblLocalTimeMinutes.AutoSize = true;
+            this.lblLocalTimeMinutes.Location = new System.Drawing.Point(377, 65);
+            this.lblLocalTimeMinutes.Name = "lblLocalTimeMinutes";
+            this.lblLocalTimeMinutes.Size = new System.Drawing.Size(44, 13);
+            this.lblLocalTimeMinutes.TabIndex = 14;
+            this.lblLocalTimeMinutes.Text = "Minutes";
+            // 
             // FormConditionFinder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(674, 395);
+            this.Controls.Add(this.frmConditionLocalTime);
             this.Controls.Add(this.frmConditionDbGuid);
             this.Controls.Add(this.frmConditionAnd);
             this.Controls.Add(this.frmConditionMapEventTargets);
@@ -1955,6 +2085,7 @@
             this.Controls.SetChildIndex(this.frmConditionMapEventTargets, 0);
             this.Controls.SetChildIndex(this.frmConditionAnd, 0);
             this.Controls.SetChildIndex(this.frmConditionDbGuid, 0);
+            this.Controls.SetChildIndex(this.frmConditionLocalTime, 0);
             this.frmConditionNot.ResumeLayout(false);
             this.frmConditionNot.PerformLayout();
             this.frmConditionAura.ResumeLayout(false);
@@ -1999,6 +2130,8 @@
             this.frmConditionAnd.PerformLayout();
             this.frmConditionDbGuid.ResumeLayout(false);
             this.frmConditionDbGuid.PerformLayout();
+            this.frmConditionLocalTime.ResumeLayout(false);
+            this.frmConditionLocalTime.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2168,5 +2301,17 @@
         private System.Windows.Forms.Label lblConditionDbGuid3;
         private System.Windows.Forms.Label lblConditionDbGuid1;
         private System.Windows.Forms.Label lblConditionDbGuidTooltip;
+        private System.Windows.Forms.Panel frmConditionLocalTime;
+        private System.Windows.Forms.Label lblLocalTimeMinutes;
+        private System.Windows.Forms.Label lblLocalTimeHour;
+        private System.Windows.Forms.TextBox txtLocalTimeEndMinutes;
+        private System.Windows.Forms.TextBox txtLocalTimeEndHour;
+        private System.Windows.Forms.TextBox txtLocalTimeStartMinutes;
+        private System.Windows.Forms.TextBox txtLocalTimeStartHour;
+        private System.Windows.Forms.Label lblLocalTimeTwoDots2;
+        private System.Windows.Forms.Label lblLocalTimeTwoDots1;
+        private System.Windows.Forms.Label lblLocalTimeEndTime;
+        private System.Windows.Forms.Label lblLocalTimeStartTime;
+        private System.Windows.Forms.Label lblConditionLocalTimeTooltip;
     }
 }

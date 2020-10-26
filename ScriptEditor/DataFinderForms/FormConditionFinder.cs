@@ -39,6 +39,8 @@ namespace ScriptEditor
             conditionFormsList.Add(frmConditionInstanceData);
             conditionFormsList.Add(frmConditionMapEventData);
             conditionFormsList.Add(frmConditionMapEventTargets);
+            conditionFormsList.Add(frmConditionDbGuid);
+            conditionFormsList.Add(frmConditionLocalTime);
             conditionFormsList.Add(frmConditionUnknown);
             conditionTooltipsList.Clear();
             conditionTooltipsList.Add(lblConditionNotTooltip);
@@ -61,6 +63,8 @@ namespace ScriptEditor
             conditionTooltipsList.Add(lblConditionInstanceDataTooltip);
             conditionTooltipsList.Add(lblConditionMapEventDataTooltip);
             conditionTooltipsList.Add(lblConditionMapEventTargetsTooltip);
+            conditionTooltipsList.Add(lblConditionDbGuidTooltip);
+            conditionTooltipsList.Add(lblConditionLocalTimeTooltip);
             conditionTooltipsList.Add(lblConditionUnknownTooltip);
         }
         private ComboboxPair[] ConditionTeam_ComboOptions =
@@ -244,6 +248,13 @@ namespace ScriptEditor
             txtConditionDbGuid3.Text = "";
             txtConditionDbGuid4.Text = "";
             frmConditionDbGuid.Visible = false;
+
+            // CONDITION_LOCAL_TIME (53)
+            txtLocalTimeStartHour.Text = "";
+            txtLocalTimeStartMinutes.Text = "";
+            txtLocalTimeEndHour.Text = "";
+            txtLocalTimeEndMinutes.Text = "";
+            frmConditionLocalTime.Visible = false;
 
             // Unknown Condition Id
             txtUnknownValue1.Text = "";
@@ -816,6 +827,15 @@ namespace ScriptEditor
                     txtConditionDbGuid3.Text = selectedCondition.Value3.ToString();
                     txtConditionDbGuid4.Text = selectedCondition.Value4.ToString();
                     frmConditionDbGuid.Visible = true;
+                    break;
+                }
+                case 53: // CONDITION_LOCAL_TIME
+                {
+                    txtLocalTimeStartHour.Text = selectedCondition.Value1.ToString();
+                    txtLocalTimeStartMinutes.Text = selectedCondition.Value2.ToString();
+                    txtLocalTimeEndHour.Text = selectedCondition.Value3.ToString();
+                    txtLocalTimeEndMinutes.Text = selectedCondition.Value4.ToString();
+                    frmConditionLocalTime.Visible = true;
                     break;
                 }
                 default:
@@ -1826,6 +1846,23 @@ namespace ScriptEditor
         private void txtConditionDbGuid4_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtConditionDbGuid4, "Value4");
+        }
+        // CONDITION_LOCAL_TIME
+        private void txtLocalTimeStartHour_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtLocalTimeStartHour, "Value1");
+        }
+        private void txtLocalTimeStartMinutes_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtLocalTimeStartMinutes, "Value2");
+        }
+        private void txtLocalTimeEndHour_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtLocalTimeEndHour, "Value3");
+        }
+        private void txtLocalTimeEndMinutes_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtLocalTimeEndMinutes, "Value4");
         }
         // Unknown Condition Id
         private void txtUnknownValue1_Leave(object sender, EventArgs e)

@@ -115,6 +115,7 @@ namespace ScriptEditor
         "Load GameObject",          // 82
         "Quest Credit",             // 83
         "Set Gossip Menu",          // 84
+        "Send AI Event",            // 85
         };
 
         // Options for combo boxes.
@@ -760,6 +761,7 @@ namespace ScriptEditor
             // Set Random AI Phase (45)
             // Set Range AI Phase (46)
             // Set Server Variable (54)
+            // Send AI Event (85)
             txtSetRandomPhase1.Text = "";
             txtSetRandomPhase2.Text = "";
             txtSetRandomPhase3.Text = "";
@@ -1770,6 +1772,7 @@ namespace ScriptEditor
                 case 45: // Set Random AI Phase
                 case 46: // Set Range AI Phase
                 case 54: // Set Server Variable
+                case 85: // Send AI Event
                 {
                     txtSetRandomPhase1.Text = selectedAction.Datalong.ToString();
                     txtSetRandomPhase2.Text = selectedAction.Datalong2.ToString();
@@ -1808,6 +1811,17 @@ namespace ScriptEditor
                             txtSetRandomPhase4.Visible = false;
                             lblSetRandomPhase1.Text = "Index:";
                             lblSetRandomPhase2.Text = "Value:";
+                            break;
+                        }
+                        case 85: // Send AI Event
+                        {
+                            lblSetRandomPhaseTooltip.Text = "Notifies the source Creature's AI that an event took place.";
+                            lblSetRandomPhase3.Visible = false;
+                            lblSetRandomPhase4.Visible = false;
+                            txtSetRandomPhase3.Visible = false;
+                            txtSetRandomPhase4.Visible = false;
+                            lblSetRandomPhase1.Text = "Event Id:";
+                            lblSetRandomPhase2.Text = "Data:";
                             break;
                         }
                     }
