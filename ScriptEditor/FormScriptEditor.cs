@@ -223,13 +223,15 @@ namespace ScriptEditor
             cmbKillCreditType.Items.Add(new ComboboxPair("Group credit", 1));
 
             // Add options to Summon Creature Attack Target combo box.
-            cmbSummonCreatureAttackTarget.Items.Add(new ComboboxPair("None", 6));
+            cmbSummonCreatureAttackTarget.Items.Add(new ComboboxPair("None", -1));
             cmbSummonCreatureAttackTarget.Items.Add(new ComboboxPair("Provided Target", 0));
             cmbSummonCreatureAttackTarget.Items.Add(new ComboboxPair("Current Victim", 1));
             cmbSummonCreatureAttackTarget.Items.Add(new ComboboxPair("Second on Threat", 2));
             cmbSummonCreatureAttackTarget.Items.Add(new ComboboxPair("Last on Threat", 3));
             cmbSummonCreatureAttackTarget.Items.Add(new ComboboxPair("Random Attacker", 4));
             cmbSummonCreatureAttackTarget.Items.Add(new ComboboxPair("Random Not Top", 5));
+            cmbSummonCreatureAttackTarget.Items.Add(new ComboboxPair("Owner or Self", 6));
+            cmbSummonCreatureAttackTarget.Items.Add(new ComboboxPair("Owner", 7));
 
             // Add options to Summon Creature Despawn Type combo box.
             cmbSummonCreatureDespawnType.Items.Add(new ComboboxPair("Timer OOC or Disappear", 1));
