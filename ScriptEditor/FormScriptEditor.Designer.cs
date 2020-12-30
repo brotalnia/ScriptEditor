@@ -469,8 +469,8 @@
             this.frmCommandStartWaypoints = new System.Windows.Forms.Panel();
             this.txtStartWaypointsEntry = new System.Windows.Forms.TextBox();
             this.lblStartWaypointsEntry = new System.Windows.Forms.Label();
-            this.txtStartWaypointsPathId = new System.Windows.Forms.TextBox();
-            this.lblStartWaypointsPathId = new System.Windows.Forms.Label();
+            this.txtStartWaypointsGuid = new System.Windows.Forms.TextBox();
+            this.lblStartWaypointsGuid = new System.Windows.Forms.Label();
             this.txtStartWaypointsInitialDelay = new System.Windows.Forms.TextBox();
             this.lblStartWaypointsInitialDelay = new System.Windows.Forms.Label();
             this.txtStartWaypointsStartPoint = new System.Windows.Forms.TextBox();
@@ -1932,7 +1932,7 @@
             this.lblKillCreditTooltip.Name = "lblKillCreditTooltip";
             this.lblKillCreditTooltip.Size = new System.Drawing.Size(453, 32);
             this.lblKillCreditTooltip.TabIndex = 0;
-            this.lblKillCreditTooltip.Text = "Gives the player or his group credit for killing the specified creature.";
+            this.lblKillCreditTooltip.Text = "Gives the target or source Player and his group credit for killing the specified creature.";
             // 
             // frmCommandRespawnGameobject
             // 
@@ -4017,7 +4017,7 @@
             this.lblSendTaxiPathTooltip.Name = "lblSendTaxiPathTooltip";
             this.lblSendTaxiPathTooltip.Size = new System.Drawing.Size(453, 32);
             this.lblSendTaxiPathTooltip.TabIndex = 0;
-            this.lblSendTaxiPathTooltip.Text = "Sends the Player on the specified taxi path.";
+            this.lblSendTaxiPathTooltip.Text = "Sends the target or source Player on the specified taxi path.";
             // 
             // frmCommandTerminateScript
             // 
@@ -4411,7 +4411,7 @@
             this.lblMeetingStoneTooltip.Name = "lblMeetingStoneTooltip";
             this.lblMeetingStoneTooltip.Size = new System.Drawing.Size(453, 32);
             this.lblMeetingStoneTooltip.TabIndex = 0;
-            this.lblMeetingStoneTooltip.Text = "The source Player gets put into a queue for the chosen dungeon.";
+            this.lblMeetingStoneTooltip.Text = "The target or source Player gets put into a queue for the chosen dungeon.";
             // 
             // frmCommandSetData
             // 
@@ -4655,7 +4655,7 @@
             this.lblStartScriptId.AutoSize = true;
             this.lblStartScriptId.Location = new System.Drawing.Point(22, 63);
             this.lblStartScriptId.Name = "lblStartScriptId";
-            this.lblStartScriptId.Size = new System.Drawing.Size(82, 13);
+            this.lblStartScriptId.Size = new System.Drawing.Size(91, 13);
             this.lblStartScriptId.TabIndex = 11;
             this.lblStartScriptId.Text = "Generic Script ID:";
             // 
@@ -4666,8 +4666,8 @@
             this.lblStartScriptTooltip.Name = "lblStartScriptTooltip";
             this.lblStartScriptTooltip.Size = new System.Drawing.Size(453, 32);
             this.lblStartScriptTooltip.TabIndex = 10;
-            this.lblStartScriptTooltip.Text = "Starts one of the specified generic script Ids. Chosen script is determined by a ra" +
-    "ndom chance roll. Total chance must not exceed 100%.";
+            this.lblStartScriptTooltip.Text = "Starts one of the specified generic script Ids. Chosen script is determined by a " +
+    "random chance roll. Total chance must not exceed 100%.";
             // 
             // lblNoAction
             // 
@@ -5249,8 +5249,8 @@
             this.frmCommandStartWaypoints.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.frmCommandStartWaypoints.Controls.Add(this.txtStartWaypointsEntry);
             this.frmCommandStartWaypoints.Controls.Add(this.lblStartWaypointsEntry);
-            this.frmCommandStartWaypoints.Controls.Add(this.txtStartWaypointsPathId);
-            this.frmCommandStartWaypoints.Controls.Add(this.lblStartWaypointsPathId);
+            this.frmCommandStartWaypoints.Controls.Add(this.txtStartWaypointsGuid);
+            this.frmCommandStartWaypoints.Controls.Add(this.lblStartWaypointsGuid);
             this.frmCommandStartWaypoints.Controls.Add(this.txtStartWaypointsInitialDelay);
             this.frmCommandStartWaypoints.Controls.Add(this.lblStartWaypointsInitialDelay);
             this.frmCommandStartWaypoints.Controls.Add(this.txtStartWaypointsStartPoint);
@@ -5283,22 +5283,22 @@
             this.lblStartWaypointsEntry.TabIndex = 12;
             this.lblStartWaypointsEntry.Text = "Entry:";
             // 
-            // txtStartWaypointsPathId
+            // txtStartWaypointsGuid
             // 
-            this.txtStartWaypointsPathId.Location = new System.Drawing.Point(99, 176);
-            this.txtStartWaypointsPathId.Name = "txtStartWaypointsPathId";
-            this.txtStartWaypointsPathId.Size = new System.Drawing.Size(374, 20);
-            this.txtStartWaypointsPathId.TabIndex = 11;
-            this.txtStartWaypointsPathId.Leave += new System.EventHandler(this.txtStartWaypointsPathId_Leave);
+            this.txtStartWaypointsGuid.Location = new System.Drawing.Point(99, 176);
+            this.txtStartWaypointsGuid.Name = "txtStartWaypointsGuid";
+            this.txtStartWaypointsGuid.Size = new System.Drawing.Size(374, 20);
+            this.txtStartWaypointsGuid.TabIndex = 11;
+            this.txtStartWaypointsGuid.Leave += new System.EventHandler(this.txtStartWaypointsGuid_Leave);
             // 
-            // lblStartWaypointsPathId
+            // lblStartWaypointsGuid
             // 
-            this.lblStartWaypointsPathId.AutoSize = true;
-            this.lblStartWaypointsPathId.Location = new System.Drawing.Point(52, 179);
-            this.lblStartWaypointsPathId.Name = "lblStartWaypointsPathId";
-            this.lblStartWaypointsPathId.Size = new System.Drawing.Size(44, 13);
-            this.lblStartWaypointsPathId.TabIndex = 10;
-            this.lblStartWaypointsPathId.Text = "Path Id:";
+            this.lblStartWaypointsGuid.AutoSize = true;
+            this.lblStartWaypointsGuid.Location = new System.Drawing.Point(64, 179);
+            this.lblStartWaypointsGuid.Name = "lblStartWaypointsGuid";
+            this.lblStartWaypointsGuid.Size = new System.Drawing.Size(32, 13);
+            this.lblStartWaypointsGuid.TabIndex = 10;
+            this.lblStartWaypointsGuid.Text = "Guid:";
             // 
             // txtStartWaypointsInitialDelay
             // 
@@ -5387,9 +5387,8 @@
             this.lblStartWaypointsTooltip.Name = "lblStartWaypointsTooltip";
             this.lblStartWaypointsTooltip.Size = new System.Drawing.Size(453, 32);
             this.lblStartWaypointsTooltip.TabIndex = 0;
-            this.lblStartWaypointsTooltip.Text = "The source Creature begins waypoint movement. Entry specifies creature template o" +
-    "r special waypoints Id. Path Id is used for specal waypoints only, it\'s sent to " +
-    "AI in movement inform.";
+            this.lblStartWaypointsTooltip.Text = "The source Creature begins waypoint movement. Guid and Entry can be overriden to " +
+    "take waypoints from another npc.";
             // 
             // frmCommandStartScriptedMapEvent
             // 
@@ -7101,8 +7100,8 @@
         private System.Windows.Forms.Panel frmCommandStartWaypoints;
         private System.Windows.Forms.TextBox txtStartWaypointsEntry;
         private System.Windows.Forms.Label lblStartWaypointsEntry;
-        private System.Windows.Forms.TextBox txtStartWaypointsPathId;
-        private System.Windows.Forms.Label lblStartWaypointsPathId;
+        private System.Windows.Forms.TextBox txtStartWaypointsGuid;
+        private System.Windows.Forms.Label lblStartWaypointsGuid;
         private System.Windows.Forms.TextBox txtStartWaypointsInitialDelay;
         private System.Windows.Forms.Label lblStartWaypointsInitialDelay;
         private System.Windows.Forms.TextBox txtStartWaypointsStartPoint;

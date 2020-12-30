@@ -116,6 +116,7 @@ namespace ScriptEditor
         "Quest Credit",             // 83
         "Set Gossip Menu",          // 84
         "Send AI Event",            // 85
+        "Set PvP",                  // 86
         };
 
         // Options for combo boxes.
@@ -217,6 +218,7 @@ namespace ScriptEditor
             cmbMoveToType.Items.Add(new ComboboxPair("Normal coordinates", 0));
             cmbMoveToType.Items.Add(new ComboboxPair("Relative to target", 1));
             cmbMoveToType.Items.Add(new ComboboxPair("Distance from target", 2));
+            cmbMoveToType.Items.Add(new ComboboxPair("Random point around coordinates", 2));
 
             // Add options to Kill Credit Type combo box.
             cmbKillCreditType.Items.Add(new ComboboxPair("Personal credit", 0));
@@ -812,7 +814,7 @@ namespace ScriptEditor
             cmbStartWaypointsSource.SelectedIndex = 0;
             txtStartWaypointsStartPoint.Text = "";
             txtStartWaypointsInitialDelay.Text = "";
-            txtStartWaypointsPathId.Text = "";
+            txtStartWaypointsGuid.Text = "";
             txtStartWaypointsEntry.Text = "";
             frmCommandStartWaypoints.Visible = false;
 
@@ -952,6 +954,7 @@ namespace ScriptEditor
                 case 3: // Move To
                 {
                     cmbMoveToType.SelectedIndex = (int)selectedAction.Datalong;
+                    OnMoveCommandTypeChanged(selectedAction, selectedAction.Datalong);
                     txtMoveToTime.Text = selectedAction.Datalong2.ToString();
 
                     // coordinates
@@ -994,26 +997,6 @@ namespace ScriptEditor
                     else
                     {
                         txtMoveToPointId.Enabled = false;
-                    } 
-
-                    // some fields unavailable based on coordinates_type
-                    switch (selectedAction.Datalong)
-                    {
-                        case 0: // SO_MOVETO_COORDINATES_NORMAL
-                        case 1: // SO_MOVETO_COORDINATES_RELATIVE_TO_TARGET
-                        {
-                            lblMoveToX.Text = "X coordinate:";
-                            txtMoveToY.Enabled = true;
-                            txtMoveToZ.Enabled = true;
-                            break;
-                        }
-                        case 2: // SO_MOVETO_COORDINATES_DISTANCE_FROM_TARGET
-                        {
-                            lblMoveToX.Text = "Distance:";
-                            txtMoveToY.Enabled = false;
-                            txtMoveToZ.Enabled = false;
-                            break;
-                        }
                     }
 
                     frmCommandMoveTo.Visible = true;
@@ -1069,7 +1052,7 @@ namespace ScriptEditor
                     {
                         case 7: // Complete Quest
                         {
-                            lblQuestCompleteTooltip.Text = "Completes the specified quest for the player. If a maximum distance is provided, but the player is out of range, the quest will be marked as failed instead.";
+                            lblQuestCompleteTooltip.Text = "Completes the specified quest for the target or source Player. If a maximum distance is provided, but the player is out of range, the quest will be marked as failed instead.";
                             txtQuestCompleteDistance.Text = selectedAction.Datalong2.ToString();
                             lblQuestCompleteDistance.Visible = true;
                             txtQuestCompleteDistance.Visible = true;
@@ -1080,7 +1063,7 @@ namespace ScriptEditor
                         }
                         case 70: // Fail Quest
                         {
-                            lblQuestCompleteTooltip.Text = "Fails the specified quest for the player and his group.";
+                            lblQuestCompleteTooltip.Text = "Fails the specified quest for the target or source Player and his group.";
                             txtQuestCompleteDistance.Visible = false;
                             lblQuestCompleteDistance.Visible = false;
                             lblQuestCompleteGroup.Visible = false;
@@ -1242,7 +1225,7 @@ namespace ScriptEditor
                         }
                         case 83:
                         {
-                            lblDoorTooltip.Text = "Gives the source Player quest credit for killing or using the target Object. This command has no additional parameters.";
+                            lblDoorTooltip.Text = "Gives the target or source Player quest credit for killing or using the target Object. This command has no additional parameters.";
                             break;
                         }
                     }
@@ -1325,9 +1308,9 @@ namespace ScriptEditor
                         btnCreateItemId.Text = GameData.FindItemName(itemId) + " (" + itemId.ToString() + ")";
                     txtCreateItemAmount.Text = selectedAction.Datalong2.ToString();
                     if (selectedAction.Command == 17)
-                        lblCreateItemTooltip.Text = "Adds the specified item to the target Player\'s inventory.";
+                        lblCreateItemTooltip.Text = "Adds the specified item to the target or source Player\'s inventory.";
                     else
-                        lblCreateItemTooltip.Text = "Removes the specified item from the target Player\'s inventory.";
+                        lblCreateItemTooltip.Text = "Removes the specified item from the target or source Player\'s inventory.";
                     frmCommandCreateItem.Visible = true;
                     break;
                 }
@@ -1487,6 +1470,7 @@ namespace ScriptEditor
                 case 42: // Set Melee Attack
                 case 43: // Set Combat Movement
                 case 77: // Set Fly
+                case 86: // Set PvP
                 {
                     switch (selectedAction.Command)
                     {
@@ -1508,6 +1492,11 @@ namespace ScriptEditor
                         case 77: // Set Fly
                         {
                             lblActiveObjectTooltip.Text = "Makes the source Unit able to fly.";
+                            break;
+                        }
+                        case 86: // Set PvP
+                        {
+                            lblActiveObjectTooltip.Text = "Flags the target or source Player for PvP combat.";
                             break;
                         }
                     }
@@ -1955,9 +1944,10 @@ namespace ScriptEditor
                 {
                     cmbStartWaypointsRepeat.SelectedIndex = (int)selectedAction.Datalong4;
                     cmbStartWaypointsSource.SelectedIndex = (int)selectedAction.Datalong;
+                    OnWaypointsSourceChanged();
                     txtStartWaypointsStartPoint.Text = selectedAction.Datalong2.ToString();
                     txtStartWaypointsInitialDelay.Text = selectedAction.Datalong3.ToString();
-                    txtStartWaypointsPathId.Text = selectedAction.Dataint.ToString();
+                    txtStartWaypointsGuid.Text = selectedAction.Dataint.ToString();
                     txtStartWaypointsEntry.Text = selectedAction.Dataint2.ToString();
                     frmCommandStartWaypoints.Visible = true;
                     break;
@@ -2844,6 +2834,41 @@ namespace ScriptEditor
         {
             SetScriptFlagsFromCheckbox(chkMoveOptions256, "Datalong3", 256);
         }
+        private void OnMoveCommandTypeChanged(ScriptAction currentAction, uint coordinatesType)
+        {
+            switch (coordinatesType)
+            {
+                case 0: // SO_MOVETO_COORDINATES_NORMAL
+                case 1: // SO_MOVETO_COORDINATES_RELATIVE_TO_TARGET
+                {
+                    lblMoveToX.Text = "X coordinate:";
+                    lblMoveToO.Text = "Orientation:";
+                    txtMoveToY.Enabled = true;
+                    txtMoveToZ.Enabled = true;
+                    break;
+                }
+                case 2: // SO_MOVETO_COORDINATES_DISTANCE_FROM_TARGET
+                {
+                    lblMoveToX.Text = "Distance:";
+                    lblMoveToO.Text = "Angle:";
+                    txtMoveToY.Enabled = false;
+                    txtMoveToY.Text = "0";
+                    currentAction.Y = 0;
+                    txtMoveToZ.Enabled = false;
+                    txtMoveToZ.Text = "0";
+                    currentAction.Z = 0;
+                    break;
+                }
+                case 3: // SO_MOVETO_COORDINATES_RANDOM_POINT
+                {
+                    lblMoveToX.Text = "X coordinate:";
+                    lblMoveToO.Text = "Distance:";
+                    txtMoveToY.Enabled = true;
+                    txtMoveToZ.Enabled = true;
+                    break;
+                }
+            }
+        }
         private void cmbMoveToType_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (dontUpdate)
@@ -2862,28 +2887,7 @@ namespace ScriptEditor
                 // Coordiantes type = datalong.
                 currentAction.Datalong = coordinatesType;
 
-                switch (coordinatesType)
-                {
-                    case 0: // SO_MOVETO_COORDINATES_NORMAL
-                    case 1: // SO_MOVETO_COORDINATES_RELATIVE_TO_TARGET
-                    {
-                        lblMoveToX.Text = "X coordinate:";
-                        txtMoveToY.Enabled = true;
-                        txtMoveToZ.Enabled = true;
-                        break;
-                    }
-                    case 2: // SO_MOVETO_COORDINATES_DISTANCE_FROM_TARGET
-                    {
-                        lblMoveToX.Text = "Distance:";
-                        txtMoveToY.Enabled = false;
-                        txtMoveToY.Text = "";
-                        currentAction.Y = 0;
-                        txtMoveToZ.Enabled = false;
-                        txtMoveToZ.Text = "";
-                        currentAction.Z = 0;
-                        break;
-                    }
-                }
+                OnMoveCommandTypeChanged(currentAction, coordinatesType);
             }
         }
         private void txtMoveToTime_Leave(object sender, EventArgs e)
@@ -4440,9 +4444,23 @@ namespace ScriptEditor
         }
 
         // SCRIPT_COMMAND_START_WAYPOINTS (60)
+        private void OnWaypointsSourceChanged()
+        {
+            if (cmbStartWaypointsSource.SelectedIndex == 3)
+            {
+                lblStartWaypointsGuid.Enabled = false;
+                txtStartWaypointsGuid.Enabled = false;
+            }
+            else
+            {
+                lblStartWaypointsGuid.Enabled = true;
+                txtStartWaypointsGuid.Enabled = true;
+            }
+        }
         private void cmbStartWaypointsSource_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbStartWaypointsSource, "Datalong", false);
+            OnWaypointsSourceChanged();
         }
         private void cmbStartWaypointsRepeat_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -4456,9 +4474,9 @@ namespace ScriptEditor
         {
             SetScriptFieldFromTextbox(txtStartWaypointsInitialDelay, "Datalong3");
         }
-        private void txtStartWaypointsPathId_Leave(object sender, EventArgs e)
+        private void txtStartWaypointsGuid_Leave(object sender, EventArgs e)
         {
-            SetScriptFieldFromTextbox(txtStartWaypointsPathId, "Dataint");
+            SetScriptFieldFromTextbox(txtStartWaypointsGuid, "Dataint");
         }
         private void txtStartWaypointsEntry_Leave(object sender, EventArgs e)
         {

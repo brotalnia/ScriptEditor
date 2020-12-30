@@ -1326,9 +1326,6 @@ namespace ScriptEditor
             MotionTypesFullList.Add(new ComboboxPair("PATROL_MOTION_TYPE", 16));
             MotionTypesFullList.Add(new ComboboxPair("CHARGE_MOTION_TYPE", 17));
             MotionTypesFullList.Add(new ComboboxPair("DISTANCING_MOTION_TYPE", 18));
-            MotionTypesFullList.Add(new ComboboxPair("WAYPOINT_SPECIAL_REACHED", 256));
-            MotionTypesFullList.Add(new ComboboxPair("WAYPOINT_SPECIAL_STARTED", 512));
-            MotionTypesFullList.Add(new ComboboxPair("WAYPOINT_SPECIAL_FINISHED_LAST", 1024));
 
             // Add taxi paths to list.
             TaxiInfoList.Add(new TaxiInfo(6, "Stormwind, Elwynn", "Sentinel Hill, Westfall"));

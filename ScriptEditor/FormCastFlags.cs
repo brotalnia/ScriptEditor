@@ -103,6 +103,10 @@ namespace ScriptEditor
             if ((flags & 128) != 0)
                 chkCastFlag128.Checked = true;
 
+            // CF_TARGET_CASTING
+            if ((flags & 256) != 0)
+                chkCastFlag256.Checked = true;
+
             // Show the form.
             this.ShowDialog();
 
@@ -143,6 +147,10 @@ namespace ScriptEditor
             // CF_NOT_IN_MELEE
             if (chkCastFlag128.Checked)
                 new_flags += 128;
+
+            // CF_TARGET_CASTING
+            if (chkCastFlag256.Checked)
+                new_flags += 256;
 
             uint new_targetparam1 = 0;
             uint.TryParse(txtTargetParam1.Text, out new_targetparam1);

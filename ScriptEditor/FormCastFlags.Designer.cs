@@ -45,12 +45,14 @@
             this.lblTargetParam1 = new System.Windows.Forms.Label();
             this.lblTargetParam2 = new System.Windows.Forms.Label();
             this.grpTargetParams = new System.Windows.Forms.GroupBox();
+            this.chkCastFlag256 = new System.Windows.Forms.CheckBox();
             this.grpFlags.SuspendLayout();
             this.grpTargetParams.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpFlags
             // 
+            this.grpFlags.Controls.Add(this.chkCastFlag256);
             this.grpFlags.Controls.Add(this.chkCastFlag128);
             this.grpFlags.Controls.Add(this.chkCastFlag64);
             this.grpFlags.Controls.Add(this.chkCastFlag32);
@@ -61,7 +63,7 @@
             this.grpFlags.Controls.Add(this.chkCastFlag1);
             this.grpFlags.Location = new System.Drawing.Point(12, 10);
             this.grpFlags.Name = "grpFlags";
-            this.grpFlags.Size = new System.Drawing.Size(268, 126);
+            this.grpFlags.Size = new System.Drawing.Size(268, 146);
             this.grpFlags.TabIndex = 0;
             this.grpFlags.TabStop = false;
             this.grpFlags.Text = "Cast Flags";
@@ -148,15 +150,15 @@
             // 
             // txtScriptId
             // 
-            this.txtScriptId.Location = new System.Drawing.Point(70, 212);
+            this.txtScriptId.Location = new System.Drawing.Point(70, 232);
             this.txtScriptId.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtScriptId.Name = "txtScriptId";
-            this.txtScriptId.Size = new System.Drawing.Size(136, 20);
+            this.txtScriptId.Size = new System.Drawing.Size(136, 23);
             this.txtScriptId.TabIndex = 1;
             // 
             // btnEditScript
             // 
-            this.btnEditScript.Location = new System.Drawing.Point(212, 212);
+            this.btnEditScript.Location = new System.Drawing.Point(212, 232);
             this.btnEditScript.Name = "btnEditScript";
             this.btnEditScript.Size = new System.Drawing.Size(68, 23);
             this.btnEditScript.TabIndex = 2;
@@ -167,7 +169,7 @@
             // lblScriptId
             // 
             this.lblScriptId.AutoSize = true;
-            this.lblScriptId.Location = new System.Drawing.Point(17, 216);
+            this.lblScriptId.Location = new System.Drawing.Point(17, 236);
             this.lblScriptId.Name = "lblScriptId";
             this.lblScriptId.Size = new System.Drawing.Size(49, 13);
             this.lblScriptId.TabIndex = 3;
@@ -213,17 +215,27 @@
             this.grpTargetParams.Controls.Add(this.lblTargetParam1);
             this.grpTargetParams.Controls.Add(this.txtTargetParam2);
             this.grpTargetParams.Enabled = false;
-            this.grpTargetParams.Location = new System.Drawing.Point(12, 142);
+            this.grpTargetParams.Location = new System.Drawing.Point(12, 162);
             this.grpTargetParams.Name = "grpTargetParams";
             this.grpTargetParams.Size = new System.Drawing.Size(268, 60);
             this.grpTargetParams.TabIndex = 8;
             this.grpTargetParams.TabStop = false;
             // 
+            // chkCastFlag256
+            // 
+            this.chkCastFlag256.AutoSize = true;
+            this.chkCastFlag256.Location = new System.Drawing.Point(6, 120);
+            this.chkCastFlag256.Name = "chkCastFlag256";
+            this.chkCastFlag256.Size = new System.Drawing.Size(95, 17);
+            this.chkCastFlag256.TabIndex = 8;
+            this.chkCastFlag256.Text = "Target Casting";
+            this.chkCastFlag256.UseVisualStyleBackColor = true;
+            // 
             // FormCastFlags
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 244);
+            this.ClientSize = new System.Drawing.Size(292, 264);
             this.Controls.Add(this.grpTargetParams);
             this.Controls.Add(this.lblScriptId);
             this.Controls.Add(this.btnEditScript);
@@ -264,5 +276,6 @@
         private System.Windows.Forms.GroupBox grpTargetParams;
         private System.Windows.Forms.CheckBox chkCastFlag128;
         private System.Windows.Forms.CheckBox chkCastFlag64;
+        private System.Windows.Forms.CheckBox chkCastFlag256;
     }
 }

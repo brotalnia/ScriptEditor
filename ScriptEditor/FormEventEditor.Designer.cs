@@ -114,7 +114,6 @@
             this.lblReceiveEmoteId = new System.Windows.Forms.Label();
             this.lblEventReceiveEmoteTooltip = new System.Windows.Forms.Label();
             this.frmEventMovementInform = new System.Windows.Forms.Panel();
-            this.txtMovementInformType = new System.Windows.Forms.TextBox();
             this.cmbMovementInformType = new System.Windows.Forms.ComboBox();
             this.txtMovementInformRepeatMax = new System.Windows.Forms.TextBox();
             this.lblMovementInformRepeatMax = new System.Windows.Forms.Label();
@@ -139,16 +138,17 @@
             this.lblKilledUnitRepeatMin = new System.Windows.Forms.Label();
             this.lblKilledUnitTooltip = new System.Windows.Forms.Label();
             this.frmUnsupportedEvent = new System.Windows.Forms.Panel();
+            this.txtUnkParam1 = new System.Windows.Forms.TextBox();
+            this.txtUnkParam4 = new System.Windows.Forms.TextBox();
+            this.lblUnkParam4 = new System.Windows.Forms.Label();
             this.txtUnkParam3 = new System.Windows.Forms.TextBox();
             this.txtUnkParam2 = new System.Windows.Forms.TextBox();
             this.lblUnkParam3 = new System.Windows.Forms.Label();
             this.lblUnkParam1 = new System.Windows.Forms.Label();
             this.lblUnkParam2 = new System.Windows.Forms.Label();
             this.lvlUnsupportedEventTooltip = new System.Windows.Forms.Label();
-            this.txtUnkParam4 = new System.Windows.Forms.TextBox();
-            this.lblUnkParam4 = new System.Windows.Forms.Label();
-            this.txtUnkParam1 = new System.Windows.Forms.TextBox();
             this.frmEventHitByAura = new System.Windows.Forms.Panel();
+            this.cmbHitByAuraType = new System.Windows.Forms.ComboBox();
             this.txtHitByAuraRepeatMax = new System.Windows.Forms.TextBox();
             this.lblHitByAuraRepeatMax = new System.Windows.Forms.Label();
             this.txtHitByAuraRepeatMin = new System.Windows.Forms.TextBox();
@@ -157,7 +157,6 @@
             this.lblHitByAuraType = new System.Windows.Forms.Label();
             this.lblHitByAuraUnused = new System.Windows.Forms.Label();
             this.lblHitByAuraTooltip = new System.Windows.Forms.Label();
-            this.cmbHitByAuraType = new System.Windows.Forms.ComboBox();
             this.grpGeneral.SuspendLayout();
             this.grpEventFlags.SuspendLayout();
             this.frmEventTimerCombat.SuspendLayout();
@@ -1010,7 +1009,6 @@
             // frmEventMovementInform
             // 
             this.frmEventMovementInform.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.frmEventMovementInform.Controls.Add(this.txtMovementInformType);
             this.frmEventMovementInform.Controls.Add(this.cmbMovementInformType);
             this.frmEventMovementInform.Controls.Add(this.txtMovementInformRepeatMax);
             this.frmEventMovementInform.Controls.Add(this.lblMovementInformRepeatMax);
@@ -1026,22 +1024,13 @@
             this.frmEventMovementInform.TabIndex = 67;
             this.frmEventMovementInform.Visible = false;
             // 
-            // txtMovementInformType
-            // 
-            this.txtMovementInformType.Location = new System.Drawing.Point(99, 58);
-            this.txtMovementInformType.MinimumSize = new System.Drawing.Size(82, 21);
-            this.txtMovementInformType.Name = "txtMovementInformType";
-            this.txtMovementInformType.Size = new System.Drawing.Size(118, 20);
-            this.txtMovementInformType.TabIndex = 15;
-            this.txtMovementInformType.Leave += new System.EventHandler(this.txtMovementInformType_Leave);
-            // 
             // cmbMovementInformType
             // 
             this.cmbMovementInformType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMovementInformType.FormattingEnabled = true;
-            this.cmbMovementInformType.Location = new System.Drawing.Point(223, 58);
+            this.cmbMovementInformType.Location = new System.Drawing.Point(99, 58);
             this.cmbMovementInformType.Name = "cmbMovementInformType";
-            this.cmbMovementInformType.Size = new System.Drawing.Size(250, 21);
+            this.cmbMovementInformType.Size = new System.Drawing.Size(374, 21);
             this.cmbMovementInformType.TabIndex = 14;
             this.cmbMovementInformType.SelectedIndexChanged += new System.EventHandler(this.cmbMovementInformType_SelectedIndexChanged);
             // 
@@ -1112,8 +1101,7 @@
             this.lblEventMovementInformTooltip.Name = "lblEventMovementInformTooltip";
             this.lblEventMovementInformTooltip.Size = new System.Drawing.Size(453, 32);
             this.lblEventMovementInformTooltip.TabIndex = 0;
-            this.lblEventMovementInformTooltip.Text = "Expires upon reaching a waypoint or finishing point movement. For special waypoin" +
-    "ts, the provided path Id is added to the motion type.";
+            this.lblEventMovementInformTooltip.Text = "Expires upon reaching a waypoint or finishing point movement.";
             // 
             // frmEventGroupMemberDied
             // 
@@ -1279,6 +1267,31 @@
             this.frmUnsupportedEvent.TabIndex = 70;
             this.frmUnsupportedEvent.Visible = false;
             // 
+            // txtUnkParam1
+            // 
+            this.txtUnkParam1.Location = new System.Drawing.Point(99, 58);
+            this.txtUnkParam1.Name = "txtUnkParam1";
+            this.txtUnkParam1.Size = new System.Drawing.Size(374, 20);
+            this.txtUnkParam1.TabIndex = 1;
+            this.txtUnkParam1.Leave += new System.EventHandler(this.txtUnkParam1_Leave);
+            // 
+            // txtUnkParam4
+            // 
+            this.txtUnkParam4.Location = new System.Drawing.Point(99, 148);
+            this.txtUnkParam4.Name = "txtUnkParam4";
+            this.txtUnkParam4.Size = new System.Drawing.Size(374, 20);
+            this.txtUnkParam4.TabIndex = 4;
+            this.txtUnkParam4.Leave += new System.EventHandler(this.txtUnkParam4_Leave);
+            // 
+            // lblUnkParam4
+            // 
+            this.lblUnkParam4.AutoSize = true;
+            this.lblUnkParam4.Location = new System.Drawing.Point(46, 151);
+            this.lblUnkParam4.Name = "lblUnkParam4";
+            this.lblUnkParam4.Size = new System.Drawing.Size(49, 13);
+            this.lblUnkParam4.TabIndex = 8;
+            this.lblUnkParam4.Text = "Param 4:";
+            // 
             // txtUnkParam3
             // 
             this.txtUnkParam3.Location = new System.Drawing.Point(99, 118);
@@ -1331,31 +1344,6 @@
             this.lvlUnsupportedEventTooltip.TabIndex = 0;
             this.lvlUnsupportedEventTooltip.Text = "This event type is not currently supported by the editor.";
             // 
-            // txtUnkParam4
-            // 
-            this.txtUnkParam4.Location = new System.Drawing.Point(99, 148);
-            this.txtUnkParam4.Name = "txtUnkParam4";
-            this.txtUnkParam4.Size = new System.Drawing.Size(374, 20);
-            this.txtUnkParam4.TabIndex = 4;
-            this.txtUnkParam4.Leave += new System.EventHandler(this.txtUnkParam4_Leave);
-            // 
-            // lblUnkParam4
-            // 
-            this.lblUnkParam4.AutoSize = true;
-            this.lblUnkParam4.Location = new System.Drawing.Point(46, 151);
-            this.lblUnkParam4.Name = "lblUnkParam4";
-            this.lblUnkParam4.Size = new System.Drawing.Size(49, 13);
-            this.lblUnkParam4.TabIndex = 8;
-            this.lblUnkParam4.Text = "Param 4:";
-            // 
-            // txtUnkParam1
-            // 
-            this.txtUnkParam1.Location = new System.Drawing.Point(99, 58);
-            this.txtUnkParam1.Name = "txtUnkParam1";
-            this.txtUnkParam1.Size = new System.Drawing.Size(374, 20);
-            this.txtUnkParam1.TabIndex = 1;
-            this.txtUnkParam1.Leave += new System.EventHandler(this.txtUnkParam1_Leave);
-            // 
             // frmEventHitByAura
             // 
             this.frmEventHitByAura.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -1373,6 +1361,16 @@
             this.frmEventHitByAura.Size = new System.Drawing.Size(495, 275);
             this.frmEventHitByAura.TabIndex = 71;
             this.frmEventHitByAura.Visible = false;
+            // 
+            // cmbHitByAuraType
+            // 
+            this.cmbHitByAuraType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbHitByAuraType.FormattingEnabled = true;
+            this.cmbHitByAuraType.Location = new System.Drawing.Point(99, 58);
+            this.cmbHitByAuraType.Name = "cmbHitByAuraType";
+            this.cmbHitByAuraType.Size = new System.Drawing.Size(374, 21);
+            this.cmbHitByAuraType.TabIndex = 9;
+            this.cmbHitByAuraType.SelectedIndexChanged += new System.EventHandler(this.cmbHitByAuraType_SelectedIndexChanged);
             // 
             // txtHitByAuraRepeatMax
             // 
@@ -1443,16 +1441,6 @@
             this.lblHitByAuraTooltip.TabIndex = 0;
             this.lblHitByAuraTooltip.Text = "Expires when the creature is hit by a spell that applies an aura of a specific ty" +
     "pe.";
-            // 
-            // cmbHitByAuraType
-            // 
-            this.cmbHitByAuraType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbHitByAuraType.FormattingEnabled = true;
-            this.cmbHitByAuraType.Location = new System.Drawing.Point(99, 58);
-            this.cmbHitByAuraType.Name = "cmbHitByAuraType";
-            this.cmbHitByAuraType.Size = new System.Drawing.Size(374, 21);
-            this.cmbHitByAuraType.TabIndex = 9;
-            this.cmbHitByAuraType.SelectedIndexChanged += new System.EventHandler(this.cmbHitByAuraType_SelectedIndexChanged);
             // 
             // FormEventEditor
             // 
@@ -1615,7 +1603,6 @@
         private System.Windows.Forms.Label lblMovementInformType;
         private System.Windows.Forms.Label lblMovementInformPoint;
         private System.Windows.Forms.Label lblEventMovementInformTooltip;
-        private System.Windows.Forms.TextBox txtMovementInformType;
         private System.Windows.Forms.Panel frmEventGroupMemberDied;
         private System.Windows.Forms.ComboBox cmbGroupMemberDiedIsLeader;
         private System.Windows.Forms.Button btnGroupMemberDiedCreatureId;
