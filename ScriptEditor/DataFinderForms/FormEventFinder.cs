@@ -41,7 +41,7 @@ namespace ScriptEditor
         {
             foreach (GameEventInfo game_event in GameData.GameEventInfoList)
             {
-                if (game_event.Name.Contains(searchText))
+                if (game_event.Name.ToUpper().Contains(searchText))
                     AddGameEventToListView(game_event);
             }
         }

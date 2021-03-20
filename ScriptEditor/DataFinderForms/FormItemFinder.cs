@@ -41,7 +41,7 @@ namespace ScriptEditor
         {
             foreach (ItemInfo item in GameData.ItemInfoList)
             {
-                if (item.Name.Contains(searchText))
+                if (item.Name.ToUpper().Contains(searchText))
                     AddItemToListView(item);
             }
         }

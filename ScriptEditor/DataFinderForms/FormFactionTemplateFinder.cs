@@ -41,7 +41,7 @@ namespace ScriptEditor
         {
             foreach (FactionTemplateInfo faction in GameData.FactionTemplateInfoList)
             {
-                if (GameData.FindFactionName(faction.FactionId).Contains(searchText))
+                if (GameData.FindFactionName(faction.FactionId).ToUpper().Contains(searchText))
                     AddFactionToListView(faction);
             }
         }

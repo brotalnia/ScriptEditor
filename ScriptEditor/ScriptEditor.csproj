@@ -190,6 +190,12 @@
     <Compile Include="FormMaskCalculator.Designer.cs">
       <DependentUpon>FormMaskCalculator.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormTargetSelectFlags.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTargetSelectFlags.Designer.cs">
+      <DependentUpon>FormTargetSelectFlags.cs</DependentUpon>
+    </Compile>
     <Compile Include="GameData.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="MixedListSorter.cs" />
@@ -264,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMaskCalculator.resx">
       <DependentUpon>FormMaskCalculator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTargetSelectFlags.resx">
+      <DependentUpon>FormTargetSelectFlags.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

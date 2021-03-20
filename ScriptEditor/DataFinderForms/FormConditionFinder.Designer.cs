@@ -192,6 +192,8 @@
             this.lblConditionDbGuid1 = new System.Windows.Forms.Label();
             this.lblConditionDbGuidTooltip = new System.Windows.Forms.Label();
             this.frmConditionLocalTime = new System.Windows.Forms.Panel();
+            this.lblLocalTimeMinutes = new System.Windows.Forms.Label();
+            this.lblLocalTimeHour = new System.Windows.Forms.Label();
             this.txtLocalTimeEndMinutes = new System.Windows.Forms.TextBox();
             this.txtLocalTimeEndHour = new System.Windows.Forms.TextBox();
             this.txtLocalTimeStartMinutes = new System.Windows.Forms.TextBox();
@@ -201,8 +203,6 @@
             this.lblLocalTimeEndTime = new System.Windows.Forms.Label();
             this.lblLocalTimeStartTime = new System.Windows.Forms.Label();
             this.lblConditionLocalTimeTooltip = new System.Windows.Forms.Label();
-            this.lblLocalTimeHour = new System.Windows.Forms.Label();
-            this.lblLocalTimeMinutes = new System.Windows.Forms.Label();
             this.frmConditionNot.SuspendLayout();
             this.frmConditionAura.SuspendLayout();
             this.frmConditionItem.SuspendLayout();
@@ -1910,6 +1910,24 @@
             this.frmConditionLocalTime.TabIndex = 41;
             this.frmConditionLocalTime.Visible = false;
             // 
+            // lblLocalTimeMinutes
+            // 
+            this.lblLocalTimeMinutes.AutoSize = true;
+            this.lblLocalTimeMinutes.Location = new System.Drawing.Point(377, 65);
+            this.lblLocalTimeMinutes.Name = "lblLocalTimeMinutes";
+            this.lblLocalTimeMinutes.Size = new System.Drawing.Size(44, 13);
+            this.lblLocalTimeMinutes.TabIndex = 14;
+            this.lblLocalTimeMinutes.Text = "Minutes";
+            // 
+            // lblLocalTimeHour
+            // 
+            this.lblLocalTimeHour.AutoSize = true;
+            this.lblLocalTimeHour.Location = new System.Drawing.Point(103, 65);
+            this.lblLocalTimeHour.Name = "lblLocalTimeHour";
+            this.lblLocalTimeHour.Size = new System.Drawing.Size(30, 13);
+            this.lblLocalTimeHour.TabIndex = 13;
+            this.lblLocalTimeHour.Text = "Hour";
+            // 
             // txtLocalTimeEndMinutes
             // 
             this.txtLocalTimeEndMinutes.Location = new System.Drawing.Point(374, 117);
@@ -1987,24 +2005,6 @@
             this.lblConditionLocalTimeTooltip.TabIndex = 0;
             this.lblConditionLocalTimeTooltip.Text = "Returns true if the current time is in the specified range. The range is inclusiv" +
     "e.";
-            // 
-            // lblLocalTimeHour
-            // 
-            this.lblLocalTimeHour.AutoSize = true;
-            this.lblLocalTimeHour.Location = new System.Drawing.Point(103, 65);
-            this.lblLocalTimeHour.Name = "lblLocalTimeHour";
-            this.lblLocalTimeHour.Size = new System.Drawing.Size(30, 13);
-            this.lblLocalTimeHour.TabIndex = 13;
-            this.lblLocalTimeHour.Text = "Hour";
-            // 
-            // lblLocalTimeMinutes
-            // 
-            this.lblLocalTimeMinutes.AutoSize = true;
-            this.lblLocalTimeMinutes.Location = new System.Drawing.Point(377, 65);
-            this.lblLocalTimeMinutes.Name = "lblLocalTimeMinutes";
-            this.lblLocalTimeMinutes.Size = new System.Drawing.Size(44, 13);
-            this.lblLocalTimeMinutes.TabIndex = 14;
-            this.lblLocalTimeMinutes.Text = "Minutes";
             // 
             // FormConditionFinder
             // 

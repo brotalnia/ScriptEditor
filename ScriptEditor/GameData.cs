@@ -586,9 +586,14 @@ namespace ScriptEditor
 
                 while (reader.Read())
                 {
+                    // Add unsupported condition types to the list.
+                    int conditionType = reader.GetInt32(1);
+                    if (String.IsNullOrEmpty(FindConditionTypeName(conditionType)))
+                        ConditionNamesList.Add(new ComboboxPair("UNKNOWN_" + conditionType.ToString(), conditionType));
+
                     // Add the new condition entry to the list.
-                    ConditionInfoList.Add(new ConditionInfo(reader.GetUInt32(0), reader.GetInt32(1), reader.GetUInt32(2), reader.GetUInt32(3), reader.GetUInt32(4), reader.GetUInt32(5), reader.GetUInt32(6)));
-                    OriginalConditionInfoList.Add(new ConditionInfo(reader.GetUInt32(0), reader.GetInt32(1), reader.GetUInt32(2), reader.GetUInt32(3), reader.GetUInt32(4), reader.GetUInt32(5), reader.GetUInt32(6)));
+                    ConditionInfoList.Add(new ConditionInfo(reader.GetUInt32(0), conditionType, reader.GetInt32(2), reader.GetInt32(3), reader.GetInt32(4), reader.GetInt32(5), reader.GetUInt32(6)));
+                    OriginalConditionInfoList.Add(new ConditionInfo(reader.GetUInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetInt32(3), reader.GetInt32(4), reader.GetInt32(5), reader.GetUInt32(6)));
                 }
                 reader.Close();
             }
@@ -1658,7 +1663,7 @@ namespace ScriptEditor
             ConditionNamesList.Add(new ComboboxPair("MAP_EVENT_DATA", 35));
             ConditionNamesList.Add(new ComboboxPair("MAP_EVENT_ACTIVE", 36));
             ConditionNamesList.Add(new ComboboxPair("LINE_OF_SIGHT", 37));
-            ConditionNamesList.Add(new ComboboxPair("DISTANCE", 38));
+            ConditionNamesList.Add(new ComboboxPair("DISTANCE_TO_TARGET", 38));
             ConditionNamesList.Add(new ComboboxPair("IS_MOVING", 39));
             ConditionNamesList.Add(new ComboboxPair("HAS_PET", 40));
             ConditionNamesList.Add(new ComboboxPair("HEALTH_PERCENT", 41));
@@ -1674,6 +1679,7 @@ namespace ScriptEditor
             ConditionNamesList.Add(new ComboboxPair("PVP_RANK", 51));
             ConditionNamesList.Add(new ComboboxPair("DB_GUID", 52));
             ConditionNamesList.Add(new ComboboxPair("LOCAL_TIME", 53));
+            ConditionNamesList.Add(new ComboboxPair("DISTANCE_TO_POSITION", 54));
 
             // Add skill names.
             SkillsList.Add(new ComboboxPair("Frost", 6));
@@ -2242,12 +2248,12 @@ namespace ScriptEditor
     {
         public uint ID;
         public int Type;
-        public uint Value1;
-        public uint Value2;
-        public uint Value3;
-        public uint Value4;
+        public int Value1;
+        public int Value2;
+        public int Value3;
+        public int Value4;
         public uint Flags;
-        public ConditionInfo(uint id, int type, uint value1, uint value2, uint value3, uint value4, uint flags)
+        public ConditionInfo(uint id, int type, int value1, int value2, int value3, int value4, uint flags)
         {
             ID = id;
             Type = type;

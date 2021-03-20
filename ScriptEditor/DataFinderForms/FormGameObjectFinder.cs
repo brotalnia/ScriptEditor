@@ -42,7 +42,7 @@ namespace ScriptEditor.DataFinderForms
         {
             foreach (GameObjectInfo gameobject in GameData.GameObjectInfoList)
             {
-                if (gameobject.Name.Contains(searchText))
+                if (gameobject.Name.ToUpper().Contains(searchText))
                     AddGameObjectToListView(gameobject);
             }
         }

@@ -41,7 +41,7 @@ namespace ScriptEditor
         {
             foreach (FactionInfo faction in GameData.FactionInfoList)
             {
-                if (faction.Name.Contains(searchText))
+                if (faction.Name.ToUpper().Contains(searchText))
                     AddFactionToListView(faction);
             }
         }

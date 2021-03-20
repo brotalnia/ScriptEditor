@@ -280,7 +280,7 @@ namespace ScriptEditor
             {
                 foreach (CreatureSpellsInfo template in GameData.CreatureSpellsInfoList)
                 {
-                    if (template.Name.Contains(txtFilter.Text))
+                    if (template.Name.ToUpper().Contains(txtFilter.Text.ToUpper()))
                     {
                         ListBoxItem lbi = new ListBoxItem(template.ID, template.Name, template);
                         lstSpellLists.Items.Add(lbi);
@@ -771,42 +771,122 @@ namespace ScriptEditor
 
         private void cmbSpell1Target_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (dontUpdate)
+                return;
+
             SetScriptFieldFromCombobox(cmbSpell1Target, "CastTarget1", true);
+
+            if (lstSpellLists.SelectedItems.Count == 0)
+                return;
+
+            ListBoxItem currentItem = lstSpellLists.SelectedItem as ListBoxItem;
+            currentItem.Template.TargetParam1_1 = 0;
+            currentItem.Template.TargetParam2_1 = 0;
         }
 
         private void cmbSpell2Target_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (dontUpdate)
+                return;
+
             SetScriptFieldFromCombobox(cmbSpell2Target, "CastTarget2", true);
+
+            if (lstSpellLists.SelectedItems.Count == 0)
+                return;
+
+            ListBoxItem currentItem = lstSpellLists.SelectedItem as ListBoxItem;
+            currentItem.Template.TargetParam1_2 = 0;
+            currentItem.Template.TargetParam2_2 = 0;
         }
 
         private void cmbSpell3Target_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (dontUpdate)
+                return;
+
             SetScriptFieldFromCombobox(cmbSpell3Target, "CastTarget3", true);
+
+            if (lstSpellLists.SelectedItems.Count == 0)
+                return;
+
+            ListBoxItem currentItem = lstSpellLists.SelectedItem as ListBoxItem;
+            currentItem.Template.TargetParam1_3 = 0;
+            currentItem.Template.TargetParam2_3 = 0;
         }
 
         private void cmbSpell4Target_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (dontUpdate)
+                return;
+
             SetScriptFieldFromCombobox(cmbSpell4Target, "CastTarget4", true);
+
+            if (lstSpellLists.SelectedItems.Count == 0)
+                return;
+
+            ListBoxItem currentItem = lstSpellLists.SelectedItem as ListBoxItem;
+            currentItem.Template.TargetParam1_4 = 0;
+            currentItem.Template.TargetParam2_4 = 0;
         }
 
         private void cmbSpell5Target_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (dontUpdate)
+                return;
+
             SetScriptFieldFromCombobox(cmbSpell5Target, "CastTarget5", true);
+
+            if (lstSpellLists.SelectedItems.Count == 0)
+                return;
+
+            ListBoxItem currentItem = lstSpellLists.SelectedItem as ListBoxItem;
+            currentItem.Template.TargetParam1_5 = 0;
+            currentItem.Template.TargetParam2_5 = 0;
         }
 
         private void cmbSpell6Target_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (dontUpdate)
+                return;
+
             SetScriptFieldFromCombobox(cmbSpell6Target, "CastTarget6", true);
+
+            if (lstSpellLists.SelectedItems.Count == 0)
+                return;
+
+            ListBoxItem currentItem = lstSpellLists.SelectedItem as ListBoxItem;
+            currentItem.Template.TargetParam1_6 = 0;
+            currentItem.Template.TargetParam2_6 = 0;
         }
 
         private void cmbSpell7Target_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (dontUpdate)
+                return;
+
             SetScriptFieldFromCombobox(cmbSpell7Target, "CastTarget7", true);
+
+            if (lstSpellLists.SelectedItems.Count == 0)
+                return;
+
+            ListBoxItem currentItem = lstSpellLists.SelectedItem as ListBoxItem;
+            currentItem.Template.TargetParam1_7 = 0;
+            currentItem.Template.TargetParam2_7 = 0;
         }
 
         private void cmbSpell8Target_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (dontUpdate)
+                return;
+
             SetScriptFieldFromCombobox(cmbSpell8Target, "CastTarget8", true);
+
+            if (lstSpellLists.SelectedItems.Count == 0)
+                return;
+
+            ListBoxItem currentItem = lstSpellLists.SelectedItem as ListBoxItem;
+            currentItem.Template.TargetParam1_8 = 0;
+            currentItem.Template.TargetParam2_8 = 0;
         }
 
         private void txtSpell1DelayInitialMin_Leave(object sender, EventArgs e)

@@ -688,8 +688,10 @@ namespace ScriptEditor
                 reader.Close();
 
                 currentCreatureId = creature_id;
-
-                lblCurrentCreature.Text = "Editing events for creature " + creature_id.ToString() + ".";
+                string creatureName = GameData.FindCreatureName(currentCreatureId);
+                if (String.IsNullOrEmpty(creatureName))
+                    creatureName = "Unknown";
+                lblCurrentCreature.Text = "Editing events for creature " + creatureName + " (" + creature_id.ToString() + ").";
                 this.Text = "Event Editor (" + creature_id.ToString() + ")";
             }
             catch (Exception ex)

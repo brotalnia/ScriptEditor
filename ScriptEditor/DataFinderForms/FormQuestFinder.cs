@@ -42,7 +42,7 @@ namespace ScriptEditor
         {
             foreach (QuestInfo quest in GameData.QuestInfoList)
             {
-                if (quest.Title.Contains(searchText))
+                if (quest.Title.ToUpper().Contains(searchText))
                     AddQuestToListView(quest);
             }
         }

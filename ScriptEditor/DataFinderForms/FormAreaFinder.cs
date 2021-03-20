@@ -41,7 +41,7 @@ namespace ScriptEditor
         {
             foreach (AreaInfo area in GameData.AreaInfoList)
             {
-                if (area.Name.Contains(searchText))
+                if (area.Name.ToUpper().Contains(searchText))
                     AddAreaToListView(area);
             }
         }

@@ -587,6 +587,7 @@
             this.txtJoinCreatureGroupAngle = new System.Windows.Forms.TextBox();
             this.txtJoinCreatureGroupDistance = new System.Windows.Forms.TextBox();
             this.lblJoinCreatureGroupTooltip = new System.Windows.Forms.Label();
+            this.btnTargetParam1 = new System.Windows.Forms.Button();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -846,6 +847,7 @@
             // 
             // grpBuddy
             // 
+            this.grpBuddy.Controls.Add(this.btnTargetParam1);
             this.grpBuddy.Controls.Add(this.lblTargetType);
             this.grpBuddy.Controls.Add(this.txtTargetParam1);
             this.grpBuddy.Controls.Add(this.cmbTargetType);
@@ -1932,7 +1934,8 @@
             this.lblKillCreditTooltip.Name = "lblKillCreditTooltip";
             this.lblKillCreditTooltip.Size = new System.Drawing.Size(453, 32);
             this.lblKillCreditTooltip.TabIndex = 0;
-            this.lblKillCreditTooltip.Text = "Gives the target or source Player and his group credit for killing the specified creature.";
+            this.lblKillCreditTooltip.Text = "Gives the target or source Player and his group credit for killing the specified " +
+    "creature.";
             // 
             // frmCommandRespawnGameobject
             // 
@@ -6474,6 +6477,16 @@
             this.lblJoinCreatureGroupTooltip.Text = "The source Creature joins the target Creature\'s group. If the target is not in a " +
     "group, then a new group is created with the target as leader.";
             // 
+            // btnTargetParam1
+            // 
+            this.btnTargetParam1.Location = new System.Drawing.Point(64, 23);
+            this.btnTargetParam1.Name = "btnTargetParam1";
+            this.btnTargetParam1.Size = new System.Drawing.Size(83, 20);
+            this.btnTargetParam1.TabIndex = 10;
+            this.btnTargetParam1.Text = "-NONE-";
+            this.btnTargetParam1.UseVisualStyleBackColor = true;
+            this.btnTargetParam1.Click += new System.EventHandler(this.btnTargetParam1_Click);
+            // 
             // FormScriptEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -7240,6 +7253,7 @@
         private System.Windows.Forms.Label lblEmoteId3;
         private System.Windows.Forms.ComboBox cmbEmoteId2;
         private System.Windows.Forms.Label lblEmoteId2;
+        private System.Windows.Forms.Button btnTargetParam1;
     }
 }
 

@@ -41,7 +41,7 @@ namespace ScriptEditor
         {
             foreach (CreatureInfo creature in GameData.CreatureInfoList)
             {
-                if (creature.Name.Contains(searchText))
+                if (creature.Name.ToUpper().Contains(searchText))
                     AddCreatureToListView(creature);
             }
         }

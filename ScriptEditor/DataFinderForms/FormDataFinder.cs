@@ -124,7 +124,7 @@ namespace ScriptEditor
             }
             else // Add items that contain this text.
             {
-                AddByText(txtSearch.Text);
+                AddByText(txtSearch.Text.ToUpper());
                 lstData.ListViewItemSorter = textComparer;
             }
         }

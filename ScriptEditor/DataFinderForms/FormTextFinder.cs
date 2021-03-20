@@ -71,7 +71,7 @@ namespace ScriptEditor
             foreach (BroadcastText bc in GameData.BroadcastTextsList)
             {
                 // If content is not numeric search for text.
-                if (bc.Text.Contains(searchText))
+                if (bc.Text.ToUpper().Contains(searchText))
                     AddTextToListView(bc);
             }
         }

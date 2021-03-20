@@ -41,7 +41,7 @@ namespace ScriptEditor
         {
             foreach (SoundInfo sound in GameData.SoundInfoList)
             {
-                if (sound.Name.Contains(searchText))
+                if (sound.Name.ToUpper().Contains(searchText))
                     AddSoundToListView(sound);
             }
         }

@@ -277,9 +277,9 @@ namespace ScriptEditor
                     lblConditionNotCondition.Text = "Condition Id:";
                     lblConditionNotCondition.Visible = true;
                     btnConditionNotCondition1.Visible = true;
-                    uint conditionId1 = selectedCondition.Value1;
+                    int conditionId1 = selectedCondition.Value1;
                     if (conditionId1 > 0)
-                        btnConditionNotCondition1.Text = conditionId1.ToString() + " - " + GameData.FindConditionName(conditionId1);
+                        btnConditionNotCondition1.Text = conditionId1.ToString() + " - " + GameData.FindConditionName((uint)conditionId1);
                     frmConditionNot.Visible = true;
                     break;
                 }
@@ -300,18 +300,18 @@ namespace ScriptEditor
                         }
                     }
 
-                    uint conditionId1 = selectedCondition.Value1;
+                    int conditionId1 = selectedCondition.Value1;
                     if (conditionId1 > 0)
-                        btnConditionAndCondition1.Text = conditionId1.ToString() + " - " + GameData.FindConditionName(conditionId1);
-                    uint conditionId2 = selectedCondition.Value2;
+                        btnConditionAndCondition1.Text = conditionId1.ToString() + " - " + GameData.FindConditionName((uint)conditionId1);
+                    int conditionId2 = selectedCondition.Value2;
                     if (conditionId2 > 0)
-                        btnConditionAndCondition2.Text = conditionId2.ToString() + " - " + GameData.FindConditionName(conditionId2);
-                    uint conditionId3 = selectedCondition.Value3;
+                        btnConditionAndCondition2.Text = conditionId2.ToString() + " - " + GameData.FindConditionName((uint)conditionId2);
+                    int conditionId3 = selectedCondition.Value3;
                     if (conditionId3 > 0)
-                        btnConditionAndCondition3.Text = conditionId3.ToString() + " - " + GameData.FindConditionName(conditionId3);
-                    uint conditionId4 = selectedCondition.Value4;
+                        btnConditionAndCondition3.Text = conditionId3.ToString() + " - " + GameData.FindConditionName((uint)conditionId3);
+                    int conditionId4 = selectedCondition.Value4;
                     if (conditionId4 > 0)
-                        btnConditionAndCondition4.Text = conditionId4.ToString() + " - " + GameData.FindConditionName(conditionId4);
+                        btnConditionAndCondition4.Text = conditionId4.ToString() + " - " + GameData.FindConditionName((uint)conditionId4);
 
                     frmConditionAnd.Visible = true;
                     break;
@@ -410,9 +410,9 @@ namespace ScriptEditor
                         }
                     }
                     
-                    uint spellId = selectedCondition.Value1;
+                    int spellId = selectedCondition.Value1;
                     if (spellId > 0)
-                        btnAuraSpellId.Text = GameData.FindSpellName(spellId) + " (" + spellId.ToString() + ")";
+                        btnAuraSpellId.Text = GameData.FindSpellName((uint)spellId) + " (" + spellId.ToString() + ")";
                     txtAuraEffectIndex.Text = selectedCondition.Value2.ToString();
                     frmConditionAura.Visible = true;
                     break;
@@ -447,18 +447,18 @@ namespace ScriptEditor
                             break;
                         }
                     }
-                    uint itemId = selectedCondition.Value1;
+                    int itemId = selectedCondition.Value1;
                     if (itemId > 0)
-                        btnItemId.Text = GameData.FindItemName(itemId) + " (" + itemId.ToString() + ")";
+                        btnItemId.Text = GameData.FindItemName((uint)itemId) + " (" + itemId.ToString() + ")";
                     txtItemCount.Text = selectedCondition.Value2.ToString();
                     frmConditionItem.Visible = true;
                     break;
                 }
                 case 4: // CONDITION_AREAID
                 {
-                    uint areaId = selectedCondition.Value1;
+                    int areaId = selectedCondition.Value1;
                     if (areaId > 0)
-                        btnAreaId.Text = GameData.FindAreaName(areaId) + " (" + areaId.ToString() + ")";
+                        btnAreaId.Text = GameData.FindAreaName((uint)areaId) + " (" + areaId.ToString() + ")";
                     frmConditionArea.Visible = true;
                     break;
                 }
@@ -479,9 +479,9 @@ namespace ScriptEditor
                         }
                     }
                     
-                    uint factionId = selectedCondition.Value1;
+                    int factionId = selectedCondition.Value1;
                     if (factionId > 0)
-                        btnReputationFactionId.Text = GameData.FindFactionName(factionId) + " (" + factionId.ToString() + ")";
+                        btnReputationFactionId.Text = GameData.FindFactionName((uint)factionId) + " (" + factionId.ToString() + ")";
                     cmbReputationRank.SelectedIndex = (int)selectedCondition.Value2;
                     frmConditionReputation.Visible = true;
                     break;
@@ -608,9 +608,9 @@ namespace ScriptEditor
                             break;
                         }
                     }
-                    uint questId = selectedCondition.Value1;
+                    int questId = selectedCondition.Value1;
                     if (questId > 0)
-                        btnQuestId.Text = GameData.FindQuestTitle(questId) + " (" + questId.ToString() + ")";
+                        btnQuestId.Text = GameData.FindQuestTitle((uint)questId) + " (" + questId.ToString() + ")";
                     frmConditionQuest.Visible = true;
                     break;
                 }
@@ -721,16 +721,16 @@ namespace ScriptEditor
                 }
                 case 12: // CONDITION_ACTIVE_GAME_EVENT
                 {
-                    uint eventId = selectedCondition.Value1;
+                    int eventId = selectedCondition.Value1;
                     if (eventId > 0)
-                        btnGameEventId.Text = GameData.FindEventName(eventId) + " (" + eventId.ToString() + ")";
+                        btnGameEventId.Text = GameData.FindEventName((uint)eventId) + " (" + eventId.ToString() + ")";
                     frmConditionGameEvent.Visible = true;
                     break;
                 }
                 case 14: // CONDITION_RACE_CLASS
                 {
-                    btnRaceMask.Text = GetRaceNamesFromMask(selectedCondition.Value1);
-                    btnClassMask.Text = GetClassNamesFromMask(selectedCondition.Value2);
+                    btnRaceMask.Text = GetRaceNamesFromMask((uint)selectedCondition.Value1);
+                    btnClassMask.Text = GetClassNamesFromMask((uint)selectedCondition.Value2);
                     frmConditionRaceClass.Visible = true;
                     break;
                 }
@@ -743,9 +743,9 @@ namespace ScriptEditor
                 }
                 case 20: // CONDITION_NEARBY_CREATURE
                 {
-                    uint creatureId = selectedCondition.Value1;
+                    int creatureId = selectedCondition.Value1;
                     if (creatureId > 0)
-                        btnNearbyCreatureId.Text = GameData.FindCreatureName(creatureId) + " (" + creatureId.ToString() + ")";
+                        btnNearbyCreatureId.Text = GameData.FindCreatureName((uint)creatureId) + " (" + creatureId.ToString() + ")";
                     txtNearbyCreatureDistance.Text = selectedCondition.Value2.ToString();
                     cmbNearbyCreatureDead.SelectedIndex = (int)selectedCondition.Value3;
                     cmbNearbyCreatureNotSelf.SelectedIndex = (int)selectedCondition.Value4;
@@ -754,9 +754,9 @@ namespace ScriptEditor
                 }
                 case 21: // CONDITION_NEARBY_GAMEOBJECT
                 {
-                    uint objectId = selectedCondition.Value1;
+                    int objectId = selectedCondition.Value1;
                     if (objectId > 0)
-                        btnNearbyObjectId.Text = GameData.FindGameObjectName(objectId) + " (" + objectId.ToString() + ")";
+                        btnNearbyObjectId.Text = GameData.FindGameObjectName((uint)objectId) + " (" + objectId.ToString() + ")";
                     txtNearbyObjectDistance.Text = selectedCondition.Value2.ToString();
                     frmConditionNearbyObject.Visible = true;
                     break;
@@ -814,14 +814,38 @@ namespace ScriptEditor
                         }
                     }
                     txtMapEventTargetsEventId.Text = selectedCondition.Value1.ToString();
-                    uint conditionId = selectedCondition.Value2;
+                    int conditionId = selectedCondition.Value2;
                     if (conditionId > 0)
-                        btnMapEventTargetsConditionId.Text = conditionId.ToString() + " - " + GameData.FindConditionName(conditionId);
+                        btnMapEventTargetsConditionId.Text = conditionId.ToString() + " - " + GameData.FindConditionName((uint)conditionId);
                     frmConditionMapEventTargets.Visible = true;
                     break;
                 }
                 case 52: // CONDITION_DB_GUID
+                case 54: // CONDITION_DISTANCE_TO_POSITION
                 {
+                    switch (selectedCondition.Type)
+                    {
+                        case 52: // CONDITION_DB_GUID
+                        {
+                            lblConditionDbGuidTooltip.Text = "Returns true if the source object\'s database guid matches any of the ones specified.";
+                            lblConditionDbGuid1.Text = "GUID 1:";
+                            lblConditionDbGuid2.Text = "GUID 2:";
+                            lblConditionDbGuid3.Text = "GUID 3:";
+                            lblConditionDbGuid4.Text = "GUID 4:";
+
+                            break;
+                        }
+                        case 54: // CONDITION_DISTANCE_TO_POSITION
+                        {
+                            lblConditionDbGuidTooltip.Text = "Returns true if the target object is within a given distance of the coordinates.";
+                            lblConditionDbGuid1.Text = "X:";
+                            lblConditionDbGuid2.Text = "Y:";
+                            lblConditionDbGuid3.Text = "Z:";
+                            lblConditionDbGuid4.Text = "Distance:";
+                            break;
+                        }
+                    }
+
                     txtConditionDbGuid1.Text = selectedCondition.Value1.ToString();
                     txtConditionDbGuid2.Text = selectedCondition.Value2.ToString();
                     txtConditionDbGuid3.Text = selectedCondition.Value3.ToString();
@@ -918,7 +942,7 @@ namespace ScriptEditor
 
             foreach (ConditionInfo condition in GameData.ConditionInfoList)
             {
-                if (GameData.FindConditionTypeName(condition.Type).Contains(searchText))
+                if (GameData.FindConditionTypeName(condition.Type).ToUpper().Contains(searchText))
                     AddConditionToListView(condition);
             }
         }
@@ -1015,7 +1039,18 @@ namespace ScriptEditor
             ListViewItem selectedItem = lstData.SelectedItems[0];
             ConditionInfo selectedCondition = (ConditionInfo)selectedItem.Tag;
 
-            cmbConditionType.SelectedIndex = selectedCondition.Type + 3;
+            int conditionIndex = -1;
+            foreach (var item in cmbConditionType.Items)
+            {
+                ComboboxPair conditionTypePair = item as ComboboxPair;
+                if (conditionTypePair.Value == selectedCondition.Type)
+                {
+                    conditionIndex = cmbConditionType.Items.IndexOf(item);
+                    break;
+                }
+            }
+
+            cmbConditionType.SelectedIndex = conditionIndex;
             cmbConditionType.Enabled = true;
 
             txtConditionId.Text = selectedCondition.ID.ToString();
@@ -1046,7 +1081,8 @@ namespace ScriptEditor
                 // Get the associated ConditionInfo.
                 ConditionInfo currentCondition = (ConditionInfo)currentItem.Tag;
 
-                currentCondition.Type = cmbConditionType.SelectedIndex - 3;
+                ComboboxPair selectedType = cmbConditionType.SelectedItem as ComboboxPair;
+                currentCondition.Type = selectedType.Value;
                 currentCondition.Value1 = 0;
                 currentCondition.Value2 = 0;
                 currentCondition.Value3 = 0;

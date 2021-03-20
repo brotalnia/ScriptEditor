@@ -11,6 +11,7 @@ namespace ScriptEditor
 {
     public partial class FormCastFlags : Form
     {
+        uint selectFlags = 0;
         public FormCastFlags()
         {
             InitializeComponent();
@@ -24,6 +25,20 @@ namespace ScriptEditor
 
             switch (targettype)
             {
+                case 2: // Second Aggro
+                case 3: // Last Aggro
+                case 4: // Random
+                case 5: // Random Not Top
+                {
+                    grpTargetParams.Enabled = true;
+                    lblTargetParam1.Text = "Select Flags:";
+                    if (targetparam1 != 0)
+                        btnTargetParam1.Text = targetparam1.ToString();
+                    selectFlags = targetparam1;
+                    txtTargetParam1.Text = targetparam1.ToString();
+                    btnTargetParam1.Visible = true;
+                    break;
+                }
                 case 14: // Friendly
                 {
                     grpTargetParams.Enabled = true;
@@ -60,6 +75,16 @@ namespace ScriptEditor
                     break;
                 }
                 case 19: // Friendly CC
+                {
+                    grpTargetParams.Enabled = true;
+                    lblTargetParam1.Text = "Radius:";
+                    txtTargetParam1.Enabled = true;
+                    txtTargetParam1.Text = targetparam1.ToString();
+                    break;
+                }
+                case 23: // Nearest Player
+                case 24: // Nearest Hostile Player
+                case 25: // Nearest Friendly Player
                 {
                     grpTargetParams.Enabled = true;
                     lblTargetParam1.Text = "Radius:";
@@ -182,6 +207,20 @@ namespace ScriptEditor
                 FormScriptEditor script_editor = new FormScriptEditor();
                 script_editor.Show();
                 script_editor.LoadScript(script_id, "creature_spells_scripts");
+            }
+        }
+
+        private void btnSelectFlags_Click(object sender, EventArgs e)
+        {
+            FormTargetSelectFlags formSelectFlags = new FormTargetSelectFlags(selectFlags);
+            if (formSelectFlags.ShowDialog() == DialogResult.OK)
+            {
+                selectFlags = formSelectFlags.ReturnValue;
+                txtTargetParam1.Text = selectFlags.ToString();
+                if (selectFlags != 0)
+                    btnTargetParam1.Text = selectFlags.ToString();
+                else
+                    btnTargetParam1.Text = "-NONE-";
             }
         }
     }

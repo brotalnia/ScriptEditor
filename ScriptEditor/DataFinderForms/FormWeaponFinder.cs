@@ -54,7 +54,7 @@ namespace ScriptEditor
         {
             foreach (ItemInfo item in GameData.ItemInfoList)
             {
-                if (item.Name.Contains(searchText) && item.IsHoldable())
+                if (item.Name.ToUpper().Contains(searchText) && item.IsHoldable())
                     AddItemToListView(item);
             }
         }

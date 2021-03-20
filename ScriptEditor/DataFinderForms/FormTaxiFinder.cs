@@ -41,7 +41,7 @@ namespace ScriptEditor
         {
             foreach (TaxiInfo path in GameData.TaxiInfoList)
             {
-                if (path.Source.Contains(searchText) || path.Destination.Contains(searchText))
+                if (path.Source.ToUpper().Contains(searchText) || path.Destination.ToUpper().Contains(searchText))
                     AddPathToListView(path);
             }
         }

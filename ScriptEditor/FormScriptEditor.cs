@@ -438,6 +438,8 @@ namespace ScriptEditor
             txtCommandComment.Text = "";
             txtTargetParam1.Text = "";
             txtTargetParam2.Text = "";
+            btnTargetParam1.Text = "-NONE-";
+            btnTargetParam1.Visible = false;
             
             // Combo Boxes.
             cmbTargetType.SelectedIndex = 0;
@@ -1968,7 +1970,7 @@ namespace ScriptEditor
                         }
                         case 63: // Add Scripted Map Event Target
                         {
-                            lblStartScriptedMapEventTooltip.Text = "Adds the source WorldObject to the additional targets vector of the scripted map event with the given Id.";
+                            lblStartScriptedMapEventTooltip.Text = "Adds the source WorldObject to the additional targets vector of the scripted map event with the given Id. The conditions will use the script source as target.";
                             txtStartScriptedMapEventTimeLimit.Visible = false;
                             lblStartScriptedMapEventTimeLimit.Visible = false;
                             break;
@@ -2173,6 +2175,11 @@ namespace ScriptEditor
             txtTargetParam2.Text = selectedAction.TargetParam2.ToString();
             cmbTargetType.SelectedIndex = (int)selectedAction.TargetType;
 
+            if (selectedAction.TargetParam1 != 0)
+                btnTargetParam1.Text = selectedAction.TargetParam1.ToString();
+            else
+                btnTargetParam1.Text = "-NONE-";
+
             if (selectedAction.Command < CommandTypeNames.GetLength(0))
                 cmbCommandId.SelectedIndex = (int)selectedAction.Command;
             else
@@ -2359,11 +2366,19 @@ namespace ScriptEditor
                 {
                     // If there is no textbox provided the text is shown on the button.
                     if (txtbox == null)
-                        btn.Text = finder((uint)returnId) + " (" + returnId.ToString() + ")";
+                    {
+                        if (finder == null)
+                            btn.Text = returnId.ToString();
+                        else
+                            btn.Text = finder((uint)returnId) + " (" + returnId.ToString() + ")";
+                    }
                     else
                     {
                         btn.Text = returnId.ToString();
-                        txtbox.Text = finder((uint)returnId);
+                        if (finder == null)
+                            txtbox.Text = returnId.ToString();
+                        else
+                            txtbox.Text = finder((uint)returnId);
                     }
                 }
                 else if (returnId < 0)
@@ -2423,14 +2438,26 @@ namespace ScriptEditor
 
         private void SetTargetControlsBasedOnType(int target_type)
         {
+            btnTargetParam1.Visible = false;
             switch (target_type)
             {
-                case 0: // Provided Target
-                case 1: // Current Victim
                 case 2: // Second Aggro
                 case 3: // Last Aggro
                 case 4: // Random
                 case 5: // Random Not Top
+                {
+                    lblTargetParam1.Text = "Flags:";
+                    lblTargetParam2.Text = "N/A:";
+                    txtTargetParam1.Text = "";
+                    txtTargetParam1.Enabled = false;
+                    btnTargetParam1.Visible = true;
+                    SetScriptFieldFromValue(0, "TargetParam2");
+                    txtTargetParam2.Text = "";
+                    txtTargetParam2.Enabled = false;
+                    break;
+                }
+                case 0: // Provided Target
+                case 1: // Current Victim
                 case 6: // Owner or Self
                 case 7: // Owner
                 {
@@ -2448,9 +2475,11 @@ namespace ScriptEditor
                 case 11: // Nearest GameObject with Entry
                 case 26: // Random Creature with Entry
                 {
+                    
                     lblTargetParam1.Text = "Entry:";
                     lblTargetParam2.Text = "Radius:";
-                    txtTargetParam1.Enabled = true;
+                    btnTargetParam1.Visible = true;
+                    txtTargetParam1.Enabled = false;
                     txtTargetParam2.Enabled = true;
                     break;
                 }
@@ -2561,6 +2590,43 @@ namespace ScriptEditor
                 // Update delay in listview.
                 currentItem.SubItems[0].Text = txtCommandDelay.Text;
                 lstActions.Sort();
+            }
+        }
+
+        private void btnTargetParam1_Click(object sender, EventArgs e)
+        {
+            switch (cmbTargetType.SelectedIndex)
+            {
+                case 2: // Second Aggro
+                case 3: // Last Aggro
+                case 4: // Random
+                case 5: // Random Not Top
+                {
+                    FormTargetSelectFlags frm = new FormTargetSelectFlags((uint)GetScriptFieldValue("TargetParam1"));
+                    if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        uint selectFlags = frm.ReturnValue;
+
+                        if (selectFlags != 0)
+                            btnTargetParam1.Text = selectFlags.ToString();
+                        else
+                            btnTargetParam1.Text = "-NONE-";
+
+                        SetScriptFieldFromValue(selectFlags, "TargetParam1");
+                    }
+                    break;
+                }
+                case 8: // Nearest Creature with Entry
+                case 26: // Random Creature with Entry
+                {
+                    SetScriptFieldFromDataFinderForm<FormCreatureFinder>(btnTargetParam1, null, null, "TargetParam1");
+                    break;
+                }
+                case 11: // Nearest GameObject with Entry
+                {
+                    SetScriptFieldFromDataFinderForm<FormGameObjectFinder>(btnTargetParam1, null, null, "TargetParam1");
+                    break;
+                }
             }
         }
 
@@ -4610,7 +4676,7 @@ namespace ScriptEditor
         }
         private void txtSetScriptedMapEventData_Leave(object sender, EventArgs e)
         {
-            SetScriptFieldFromTextbox(txtSetScriptedMapEventData, "Datalong4");
+            SetScriptFieldFromTextbox(txtSetScriptedMapEventData, "Datalong3");
         }
 
         // SCRIPT_COMMAND_SET_DEFAULT_MOVEMENT (67)

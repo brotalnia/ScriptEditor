@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.grpFlags = new System.Windows.Forms.GroupBox();
+            this.chkCastFlag256 = new System.Windows.Forms.CheckBox();
             this.chkCastFlag128 = new System.Windows.Forms.CheckBox();
             this.chkCastFlag64 = new System.Windows.Forms.CheckBox();
             this.chkCastFlag32 = new System.Windows.Forms.CheckBox();
@@ -45,7 +46,7 @@
             this.lblTargetParam1 = new System.Windows.Forms.Label();
             this.lblTargetParam2 = new System.Windows.Forms.Label();
             this.grpTargetParams = new System.Windows.Forms.GroupBox();
-            this.chkCastFlag256 = new System.Windows.Forms.CheckBox();
+            this.btnTargetParam1 = new System.Windows.Forms.Button();
             this.grpFlags.SuspendLayout();
             this.grpTargetParams.SuspendLayout();
             this.SuspendLayout();
@@ -67,6 +68,16 @@
             this.grpFlags.TabIndex = 0;
             this.grpFlags.TabStop = false;
             this.grpFlags.Text = "Cast Flags";
+            // 
+            // chkCastFlag256
+            // 
+            this.chkCastFlag256.AutoSize = true;
+            this.chkCastFlag256.Location = new System.Drawing.Point(6, 120);
+            this.chkCastFlag256.Name = "chkCastFlag256";
+            this.chkCastFlag256.Size = new System.Drawing.Size(95, 17);
+            this.chkCastFlag256.TabIndex = 8;
+            this.chkCastFlag256.Text = "Target Casting";
+            this.chkCastFlag256.UseVisualStyleBackColor = true;
             // 
             // chkCastFlag128
             // 
@@ -153,7 +164,7 @@
             this.txtScriptId.Location = new System.Drawing.Point(70, 232);
             this.txtScriptId.MinimumSize = new System.Drawing.Size(4, 23);
             this.txtScriptId.Name = "txtScriptId";
-            this.txtScriptId.Size = new System.Drawing.Size(136, 23);
+            this.txtScriptId.Size = new System.Drawing.Size(136, 20);
             this.txtScriptId.TabIndex = 1;
             // 
             // btnEditScript
@@ -185,6 +196,7 @@
             // 
             // txtTargetParam2
             // 
+            this.txtTargetParam2.Enabled = false;
             this.txtTargetParam2.Location = new System.Drawing.Point(143, 31);
             this.txtTargetParam2.Name = "txtTargetParam2";
             this.txtTargetParam2.Size = new System.Drawing.Size(110, 20);
@@ -210,6 +222,7 @@
             // 
             // grpTargetParams
             // 
+            this.grpTargetParams.Controls.Add(this.btnTargetParam1);
             this.grpTargetParams.Controls.Add(this.txtTargetParam1);
             this.grpTargetParams.Controls.Add(this.lblTargetParam2);
             this.grpTargetParams.Controls.Add(this.lblTargetParam1);
@@ -221,15 +234,16 @@
             this.grpTargetParams.TabIndex = 8;
             this.grpTargetParams.TabStop = false;
             // 
-            // chkCastFlag256
+            // btnTargetParam1
             // 
-            this.chkCastFlag256.AutoSize = true;
-            this.chkCastFlag256.Location = new System.Drawing.Point(6, 120);
-            this.chkCastFlag256.Name = "chkCastFlag256";
-            this.chkCastFlag256.Size = new System.Drawing.Size(95, 17);
-            this.chkCastFlag256.TabIndex = 8;
-            this.chkCastFlag256.Text = "Target Casting";
-            this.chkCastFlag256.UseVisualStyleBackColor = true;
+            this.btnTargetParam1.Location = new System.Drawing.Point(16, 31);
+            this.btnTargetParam1.Name = "btnTargetParam1";
+            this.btnTargetParam1.Size = new System.Drawing.Size(110, 20);
+            this.btnTargetParam1.TabIndex = 8;
+            this.btnTargetParam1.Text = "-NONE-";
+            this.btnTargetParam1.UseVisualStyleBackColor = true;
+            this.btnTargetParam1.Visible = false;
+            this.btnTargetParam1.Click += new System.EventHandler(this.btnSelectFlags_Click);
             // 
             // FormCastFlags
             // 
@@ -277,5 +291,6 @@
         private System.Windows.Forms.CheckBox chkCastFlag128;
         private System.Windows.Forms.CheckBox chkCastFlag64;
         private System.Windows.Forms.CheckBox chkCastFlag256;
+        private System.Windows.Forms.Button btnTargetParam1;
     }
 }

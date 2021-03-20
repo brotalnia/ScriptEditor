@@ -42,7 +42,7 @@ namespace ScriptEditor
             foreach (SpellInfo spell in GameData.SpellInfoList)
             {
                 // If content is not numeric search for text.
-                if (spell.Name.Contains(searchText) || spell.Description.Contains(searchText))
+                if (spell.Name.ToUpper().Contains(searchText) || spell.Description.ToUpper().Contains(searchText))
                     AddSpellToListView(spell);
             }
         }
