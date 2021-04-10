@@ -3124,69 +3124,7 @@ namespace ScriptEditor
                     chkModifyFlags4.Visible = true;
                     break;
                 }
-                case 2: // ITEM_FIELD_FLAGS
-                {
-                    chkModifyFlags1.Text = "BINDED";
-                    chkModifyFlags1.Visible = true;
-                    chkModifyFlags2.Text = "UNK1";
-                    chkModifyFlags2.Visible = true;
-                    chkModifyFlags4.Text = "UNLOCKED";
-                    chkModifyFlags4.Visible = true;
-                    chkModifyFlags8.Text = "WRAPPED";
-                    chkModifyFlags8.Visible = true;
-                    chkModifyFlags16.Text = "UNK4";
-                    chkModifyFlags16.Visible = true;
-                    chkModifyFlags32.Text = "UNK5";
-                    chkModifyFlags32.Visible = true;
-                    chkModifyFlags64.Text = "UNK6";
-                    chkModifyFlags64.Visible = true;
-                    chkModifyFlags128.Text = "UNK7";
-                    chkModifyFlags128.Visible = true;
-                    chkModifyFlags256.Text = "UNK8";
-                    chkModifyFlags256.Visible = true;
-                    chkModifyFlags512.Text = "READABLE";
-                    chkModifyFlags512.Visible = true;
-                    chkModifyFlags1024.Text = "UNK10";
-                    chkModifyFlags1024.Visible = true;
-                    chkModifyFlags2048.Text = "UNK11";
-                    chkModifyFlags2048.Visible = true;
-                    chkModifyFlags4096.Text = "UNK12";
-                    chkModifyFlags4096.Visible = true;
-                    chkModifyFlags8192.Text = "UNK13";
-                    chkModifyFlags8192.Visible = true;
-                    chkModifyFlags16384.Text = "UNK14";
-                    chkModifyFlags16384.Visible = true;
-                    chkModifyFlags32768.Text = "UNK15";
-                    chkModifyFlags32768.Visible = true;
-                    chkModifyFlags65536.Text = "UNK16";
-                    chkModifyFlags65536.Visible = true;
-                    chkModifyFlags131072.Text = "UNK17";
-                    chkModifyFlags131072.Visible = true;
-                    break;
-                }
-                case 3: // CORPSE_FIELD_FLAGS
-                {
-                    chkModifyFlags1.Text = "BONES";
-                    chkModifyFlags1.Visible = true;
-                    chkModifyFlags2.Text = "UNK1";
-                    chkModifyFlags2.Visible = true;
-                    chkModifyFlags4.Text = "UNK2";
-                    chkModifyFlags4.Visible = true;
-                    chkModifyFlags8.Text = "HIDE_HELM";
-                    chkModifyFlags8.Visible = true;
-                    chkModifyFlags16.Text = "HIDE_CLOAK";
-                    chkModifyFlags16.Visible = true;
-                    chkModifyFlags32.Text = "LOOTABLE";
-                    chkModifyFlags32.Visible = true;
-                    break;
-                }
-                case 4: // CORPSE_FIELD_DYNAMIC_FLAGS
-                {
-                    chkModifyFlags1.Text = "LOOTABLE";
-                    chkModifyFlags1.Visible = true;
-                    break;
-                }
-                case 5: // UNIT_FIELD_FLAGS
+                case 2: // UNIT_FIELD_FLAGS
                 {
                     chkModifyFlags1.Text = "UNK_0";
                     chkModifyFlags1.Visible = true;
@@ -3206,7 +3144,7 @@ namespace ScriptEditor
                     chkModifyFlags128.Visible = true;
                     chkModifyFlags256.Text = "IMMUNE_TO_PLAYER";
                     chkModifyFlags256.Visible = true;
-                    chkModifyFlags512.Text = "PASSIVE";
+                    chkModifyFlags512.Text = "IMMUNE_TO_NPC";
                     chkModifyFlags512.Visible = true;
                     chkModifyFlags1024.Text = "LOOTING";
                     chkModifyFlags1024.Visible = true;
@@ -3250,7 +3188,7 @@ namespace ScriptEditor
                     chkModifyFlags536870912.Visible = true;
                     break;
                 }
-                case 6: // UNIT_DYNAMIC_FLAGS
+                case 3: // UNIT_DYNAMIC_FLAGS
                 {
                     chkModifyFlags1.Text = "LOOTABLE";
                     chkModifyFlags1.Visible = true;
@@ -3266,7 +3204,7 @@ namespace ScriptEditor
                     chkModifyFlags32.Visible = true;
                     break;
                 }
-                case 7: // UNIT_NPC_FLAGS
+                case 4: // UNIT_NPC_FLAGS
                 {
                     chkModifyFlags1.Text = "GOSSIP";
                     chkModifyFlags1.Visible = true;
@@ -3300,7 +3238,7 @@ namespace ScriptEditor
                     chkModifyFlags16384.Visible = true;
                     break;
                 }
-                case 8: // PLAYER_FLAGS
+                case 5: // PLAYER_FLAGS
                 {
                     chkModifyFlags1.Text = "GROUP_LEADER";
                     chkModifyFlags1.Visible = true;

@@ -12,6 +12,9 @@ namespace ScriptEditor
         // Escape characters that will break the query.
         public static string MySQLEscape(string str)
         {
+            return MySql.Data.MySqlClient.MySqlHelper.EscapeString(str);
+
+            /*
             return Regex.Replace(str, @"[\x00'""\b\n\r\t\cZ\\%_]",
                 delegate (Match match)
                 {
@@ -34,6 +37,7 @@ namespace ScriptEditor
                         return "\\" + v;
                     }
                 });
+            */
         }
         // Shows an input box that returns a value.
         public static DialogResult ShowInputDialog(ref string input, string name)

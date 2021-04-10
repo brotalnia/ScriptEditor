@@ -984,9 +984,6 @@ namespace ScriptEditor
             // Add update fields with flags to a list.
             FlagFieldsList.Add(new ComboboxPair("GAMEOBJECT_FLAGS", 9));
             FlagFieldsList.Add(new ComboboxPair("GAMEOBJECT_DYN_FLAGS", 19));
-            FlagFieldsList.Add(new ComboboxPair("ITEM_FIELD_FLAGS", 21));
-            FlagFieldsList.Add(new ComboboxPair("CORPSE_FIELD_FLAGS", 35));
-            FlagFieldsList.Add(new ComboboxPair("CORPSE_FIELD_DYNAMIC_FLAGS", 36));
             FlagFieldsList.Add(new ComboboxPair("UNIT_FIELD_FLAGS", 46));
             FlagFieldsList.Add(new ComboboxPair("UNIT_DYNAMIC_FLAGS", 143));
             FlagFieldsList.Add(new ComboboxPair("UNIT_NPC_FLAGS", 147));
