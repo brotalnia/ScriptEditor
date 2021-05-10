@@ -117,6 +117,7 @@ namespace ScriptEditor
         "Set Gossip Menu",          // 84
         "Send AI Event",            // 85
         "Set PvP",                  // 86
+        "Reset Door or Button",     // 87
         };
 
         // Options for combo boxes.
@@ -601,7 +602,10 @@ namespace ScriptEditor
             chkSummonCreatureFlags16.Checked = false;
             frmCommandSummonCreature.Visible = false;
 
-            // Open/Close Door and Activate GameObject (11, 12, 13)
+            // Open Door (11)
+            // Close Door (12)
+            // Activate GameObject (13)
+            // Reset Door or Button (87)
             txtDoorGuid.Text = "";
             txtDoorResetDelay.Text = "";
             frmCommandDoor.Visible = false;
@@ -1178,6 +1182,7 @@ namespace ScriptEditor
                 case 75: // Add Threat
                 case 79: // Leave Creature Group
                 case 83: // Quest Credit
+                case 87: // Reset Door or Button
                 {
                     txtDoorGuid.Visible = false;
                     txtDoorResetDelay.Visible = false;
@@ -1228,6 +1233,11 @@ namespace ScriptEditor
                         case 83:
                         {
                             lblDoorTooltip.Text = "Gives the target or source Player quest credit for killing or using the target Object. This command has no additional parameters.";
+                            break;
+                        }
+                        case 87:
+                        {
+                            lblDoorTooltip.Text = "Resets the state of the source GameObject. Only intended for doors and buttons. This command has no additional parameters.";
                             break;
                         }
                     }
