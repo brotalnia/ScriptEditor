@@ -48,6 +48,7 @@
             this.chkSwapFinal = new System.Windows.Forms.CheckBox();
             this.chkSwapInitial = new System.Windows.Forms.CheckBox();
             this.grpBuddy = new System.Windows.Forms.GroupBox();
+            this.btnTargetParam1 = new System.Windows.Forms.Button();
             this.lblTargetType = new System.Windows.Forms.Label();
             this.txtTargetParam1 = new System.Windows.Forms.TextBox();
             this.cmbTargetType = new System.Windows.Forms.ComboBox();
@@ -325,9 +326,7 @@
             this.btnInterruptCastsSpellId = new System.Windows.Forms.Button();
             this.lblInterruptCastsTooltip = new System.Windows.Forms.Label();
             this.frmCommandUpdateEntry = new System.Windows.Forms.Panel();
-            this.cmbUpdateEntryTeam = new System.Windows.Forms.ComboBox();
             this.lblUpdateEntryCreatureId = new System.Windows.Forms.Label();
-            this.lblUpdateEntryTeam = new System.Windows.Forms.Label();
             this.btnUpdateEntryCreatureId = new System.Windows.Forms.Button();
             this.lblUpdateEntryTooltip = new System.Windows.Forms.Label();
             this.frmCommandSetStandState = new System.Windows.Forms.Panel();
@@ -587,7 +586,6 @@
             this.txtJoinCreatureGroupAngle = new System.Windows.Forms.TextBox();
             this.txtJoinCreatureGroupDistance = new System.Windows.Forms.TextBox();
             this.lblJoinCreatureGroupTooltip = new System.Windows.Forms.Label();
-            this.btnTargetParam1 = new System.Windows.Forms.Button();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -860,6 +858,16 @@
             this.grpBuddy.TabIndex = 9;
             this.grpBuddy.TabStop = false;
             this.grpBuddy.Text = "Target";
+            // 
+            // btnTargetParam1
+            // 
+            this.btnTargetParam1.Location = new System.Drawing.Point(64, 23);
+            this.btnTargetParam1.Name = "btnTargetParam1";
+            this.btnTargetParam1.Size = new System.Drawing.Size(83, 20);
+            this.btnTargetParam1.TabIndex = 10;
+            this.btnTargetParam1.Text = "-NONE-";
+            this.btnTargetParam1.UseVisualStyleBackColor = true;
+            this.btnTargetParam1.Click += new System.EventHandler(this.btnTargetParam1_Click);
             // 
             // lblTargetType
             // 
@@ -3783,9 +3791,7 @@
             // frmCommandUpdateEntry
             // 
             this.frmCommandUpdateEntry.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.frmCommandUpdateEntry.Controls.Add(this.cmbUpdateEntryTeam);
             this.frmCommandUpdateEntry.Controls.Add(this.lblUpdateEntryCreatureId);
-            this.frmCommandUpdateEntry.Controls.Add(this.lblUpdateEntryTeam);
             this.frmCommandUpdateEntry.Controls.Add(this.btnUpdateEntryCreatureId);
             this.frmCommandUpdateEntry.Controls.Add(this.lblUpdateEntryTooltip);
             this.frmCommandUpdateEntry.Location = new System.Drawing.Point(410, 252);
@@ -3793,19 +3799,6 @@
             this.frmCommandUpdateEntry.Size = new System.Drawing.Size(495, 332);
             this.frmCommandUpdateEntry.TabIndex = 33;
             this.frmCommandUpdateEntry.Visible = false;
-            // 
-            // cmbUpdateEntryTeam
-            // 
-            this.cmbUpdateEntryTeam.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbUpdateEntryTeam.FormattingEnabled = true;
-            this.cmbUpdateEntryTeam.Items.AddRange(new object[] {
-            "Alliance",
-            "Horde"});
-            this.cmbUpdateEntryTeam.Location = new System.Drawing.Point(99, 90);
-            this.cmbUpdateEntryTeam.Name = "cmbUpdateEntryTeam";
-            this.cmbUpdateEntryTeam.Size = new System.Drawing.Size(374, 21);
-            this.cmbUpdateEntryTeam.TabIndex = 5;
-            this.cmbUpdateEntryTeam.SelectedIndexChanged += new System.EventHandler(this.cmbUpdateEntryTeam_SelectedIndexChanged);
             // 
             // lblUpdateEntryCreatureId
             // 
@@ -3815,15 +3808,6 @@
             this.lblUpdateEntryCreatureId.Size = new System.Drawing.Size(62, 13);
             this.lblUpdateEntryCreatureId.TabIndex = 4;
             this.lblUpdateEntryCreatureId.Text = "Creature Id:";
-            // 
-            // lblUpdateEntryTeam
-            // 
-            this.lblUpdateEntryTeam.AutoSize = true;
-            this.lblUpdateEntryTeam.Location = new System.Drawing.Point(59, 93);
-            this.lblUpdateEntryTeam.Name = "lblUpdateEntryTeam";
-            this.lblUpdateEntryTeam.Size = new System.Drawing.Size(37, 13);
-            this.lblUpdateEntryTeam.TabIndex = 3;
-            this.lblUpdateEntryTeam.Text = "Team:";
             // 
             // btnUpdateEntryCreatureId
             // 
@@ -6477,16 +6461,6 @@
             this.lblJoinCreatureGroupTooltip.Text = "The source Creature joins the target Creature\'s group. If the target is not in a " +
     "group, then a new group is created with the target as leader.";
             // 
-            // btnTargetParam1
-            // 
-            this.btnTargetParam1.Location = new System.Drawing.Point(64, 23);
-            this.btnTargetParam1.Name = "btnTargetParam1";
-            this.btnTargetParam1.Size = new System.Drawing.Size(83, 20);
-            this.btnTargetParam1.TabIndex = 10;
-            this.btnTargetParam1.Text = "-NONE-";
-            this.btnTargetParam1.UseVisualStyleBackColor = true;
-            this.btnTargetParam1.Click += new System.EventHandler(this.btnTargetParam1_Click);
-            // 
             // FormScriptEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -6956,9 +6930,7 @@
         private System.Windows.Forms.Button btnInterruptCastsSpellId;
         private System.Windows.Forms.Label lblInterruptCastsTooltip;
         private System.Windows.Forms.Panel frmCommandUpdateEntry;
-        private System.Windows.Forms.ComboBox cmbUpdateEntryTeam;
         private System.Windows.Forms.Label lblUpdateEntryCreatureId;
-        private System.Windows.Forms.Label lblUpdateEntryTeam;
         private System.Windows.Forms.Button btnUpdateEntryCreatureId;
         private System.Windows.Forms.Label lblUpdateEntryTooltip;
         private System.Windows.Forms.Panel frmCommandSetStandState;

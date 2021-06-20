@@ -807,8 +807,9 @@
             this.cmbEnterLOSFaction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEnterLOSFaction.FormattingEnabled = true;
             this.cmbEnterLOSFaction.Items.AddRange(new object[] {
+            "Any",
             "Hostile",
-            "Friendly"});
+            "Non Hostile"});
             this.cmbEnterLOSFaction.Location = new System.Drawing.Point(99, 58);
             this.cmbEnterLOSFaction.Name = "cmbEnterLOSFaction";
             this.cmbEnterLOSFaction.Size = new System.Drawing.Size(374, 21);

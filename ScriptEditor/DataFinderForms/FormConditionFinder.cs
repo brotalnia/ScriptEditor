@@ -176,7 +176,6 @@ namespace ScriptEditor
 
             // CONDITION_WAR_EFFORT_STAGE (11)
             // CONDITION_LEVEL (15)
-            // CONDITION_SOURCE_ENTRY (16)
             // CONDITION_LAST_WAYPOINT (32)
             // CONDITION_MAP_EVENT_ACTIVE (36)
             // CONDITION_DISTANCE (38)
@@ -238,11 +237,14 @@ namespace ScriptEditor
             frmConditionMapEventData.Visible = false;
 
             // CONDITION_MAP_EVENT_TARGETS (47)
+            // CONDITION_OBJECT_FIT_CONDITION (50)
             txtMapEventTargetsEventId.Text = "";
             btnMapEventTargetsConditionId.Text = "-NONE-";
             frmConditionMapEventTargets.Visible = false;
 
+            // CONDITION_SOURCE_ENTRY (16)
             // CONDITION_DB_GUID (52)
+            // CONDITION_DISTANCE_TO_POSITION (54)
             txtConditionDbGuid1.Text = "";
             txtConditionDbGuid2.Text = "";
             txtConditionDbGuid3.Text = "";
@@ -616,7 +618,6 @@ namespace ScriptEditor
                 }
                 case 11: // CONDITION_WAR_EFFORT_STAGE
                 case 15: // CONDITION_LEVEL
-                case 16: // CONDITION_SOURCE_ENTRY
                 case 26: // CONDITION_ACTIVE_HOLIDAY
                 case 32: // CONDITION_LAST_WAYPOINT
                 case 36: // CONDITION_MAP_EVENT_ACTIVE
@@ -643,14 +644,6 @@ namespace ScriptEditor
                             cmbWarEffortComparison.SelectedIndex = (int)selectedCondition.Value2;
                             lblWarEffortComparison.Visible = true;
                             lblWarEffortStage.Text = "Level:";
-                            break;
-                        }
-                        case 16: // CONDITION_SOURCE_ENTRY
-                        {
-                            lblConditionWarEffortTooltip.Text = "Returns true if the source WorldObject's entry Id matches the one specified.";
-                            cmbWarEffortComparison.Visible = false;
-                            lblWarEffortComparison.Visible = false;
-                            lblWarEffortStage.Text = "Entry:";
                             break;
                         }
                         case 26: // CONDITION_ACTIVE_HOLIDAY
@@ -820,11 +813,22 @@ namespace ScriptEditor
                     frmConditionMapEventTargets.Visible = true;
                     break;
                 }
+                case 16: // CONDITION_SOURCE_ENTRY
                 case 52: // CONDITION_DB_GUID
                 case 54: // CONDITION_DISTANCE_TO_POSITION
                 {
                     switch (selectedCondition.Type)
                     {
+                        case 16: // CONDITION_SOURCE_ENTRY
+                        {
+                            lblConditionDbGuidTooltip.Text = "Returns true if the source object\'s entry matches any of the ones specified.";
+                            lblConditionDbGuid1.Text = "Entry 1:";
+                            lblConditionDbGuid2.Text = "Entry 2:";
+                            lblConditionDbGuid3.Text = "Entry 3:";
+                            lblConditionDbGuid4.Text = "Entry 4:";
+
+                            break;
+                        }
                         case 52: // CONDITION_DB_GUID
                         {
                             lblConditionDbGuidTooltip.Text = "Returns true if the source object\'s database guid matches any of the ones specified.";

@@ -187,6 +187,7 @@ namespace ScriptEditor
             cmbTargetType.Items.Add(new ComboboxPair("Nearest Hostile Player", 24));
             cmbTargetType.Items.Add(new ComboboxPair("Nearest Friendly Player", 25));
             cmbTargetType.Items.Add(new ComboboxPair("Random Creature", 26));
+            cmbTargetType.Items.Add(new ComboboxPair("Random Gameobject", 27));
             cmbTargetType.SelectedIndex = 0;
 
             // Add chat types to combo box.
@@ -697,7 +698,6 @@ namespace ScriptEditor
             // Update Entry (27)
             // Remove Guardians (56)
             btnUpdateEntryCreatureId.Text = "-NONE-";
-            cmbUpdateEntryTeam.SelectedIndex = 0;
             frmCommandUpdateEntry.Visible = false;
 
             // Set Stand State (28)
@@ -1575,16 +1575,12 @@ namespace ScriptEditor
                     {
                         case 27: // Update Entry
                         {
-                            lblUpdateEntryTooltip.Text = "Temporarily changes the source Creature\'s entry, but preserves the same AI. The team setting determines which display Id will be used if there is a different one for each faction.";
-                            lblUpdateEntryTeam.Visible = true;
-                            cmbUpdateEntryTeam.Visible = true;
+                            lblUpdateEntryTooltip.Text = "Temporarily changes the source Creature\'s entry, but preserves the same AI.";
                             break;
                         }
                         case 56: // Remove Guardians
                         {
                             lblUpdateEntryTooltip.Text = "Unsummons all Guardian Pets with the given creature Id that are owned by the source Unit. If no creature Id is provided, it unsummons all of them.";
-                            cmbUpdateEntryTeam.Visible = false;
-                            lblUpdateEntryTeam.Visible = false;
                             break;
                         }
                     }
@@ -1592,7 +1588,6 @@ namespace ScriptEditor
                     uint creatureId = selectedAction.Datalong;
                     if (creatureId > 0)
                         btnUpdateEntryCreatureId.Text = GameData.FindCreatureName(creatureId) + " (" + creatureId.ToString() + ")";
-                    cmbUpdateEntryTeam.SelectedIndex = (int)selectedAction.Datalong2;
                     frmCommandUpdateEntry.Visible = true;
                     break;
                 }
@@ -2484,6 +2479,7 @@ namespace ScriptEditor
                 case 8: // Nearest Creature with Entry
                 case 11: // Nearest GameObject with Entry
                 case 26: // Random Creature with Entry
+                case 27: // Random GameObject with Entry
                 {
                     
                     lblTargetParam1.Text = "Entry:";
@@ -2633,6 +2629,7 @@ namespace ScriptEditor
                     break;
                 }
                 case 11: // Nearest GameObject with Entry
+                case 27: // Random GameObject with Entry
                 {
                     SetScriptFieldFromDataFinderForm<FormGameObjectFinder>(btnTargetParam1, null, null, "TargetParam1");
                     break;
@@ -4038,10 +4035,6 @@ namespace ScriptEditor
         private void btnUpdateEntryCreatureId_Click(object sender, EventArgs e)
         {
             SetScriptFieldFromDataFinderForm<FormCreatureFinder>(btnUpdateEntryCreatureId, null, GameData.FindCreatureName, "Datalong");
-        }
-        private void cmbUpdateEntryTeam_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SetScriptFieldFromCombobox(cmbUpdateEntryTeam, "Datalong2", false);
         }
 
         // SCRIPT_COMMAND_STAND_STATE (28)
