@@ -78,6 +78,8 @@
             this.lblScriptId = new System.Windows.Forms.Label();
             this.lblTable = new System.Windows.Forms.Label();
             this.frmCommandEmote = new System.Windows.Forms.Panel();
+            this.cmbEmoteTargeted = new System.Windows.Forms.ComboBox();
+            this.lblEmoteTargeted = new System.Windows.Forms.Label();
             this.cmbEmoteId4 = new System.Windows.Forms.ComboBox();
             this.lblEmoteId4 = new System.Windows.Forms.Label();
             this.cmbEmoteId3 = new System.Windows.Forms.ComboBox();
@@ -1140,6 +1142,8 @@
             // frmCommandEmote
             // 
             this.frmCommandEmote.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandEmote.Controls.Add(this.cmbEmoteTargeted);
+            this.frmCommandEmote.Controls.Add(this.lblEmoteTargeted);
             this.frmCommandEmote.Controls.Add(this.cmbEmoteId4);
             this.frmCommandEmote.Controls.Add(this.lblEmoteId4);
             this.frmCommandEmote.Controls.Add(this.cmbEmoteId3);
@@ -1154,6 +1158,28 @@
             this.frmCommandEmote.Size = new System.Drawing.Size(495, 332);
             this.frmCommandEmote.TabIndex = 11;
             this.frmCommandEmote.Visible = false;
+            // 
+            // cmbEmoteTargeted
+            // 
+            this.cmbEmoteTargeted.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEmoteTargeted.FormattingEnabled = true;
+            this.cmbEmoteTargeted.Items.AddRange(new object[] {
+            "False",
+            "True"});
+            this.cmbEmoteTargeted.Location = new System.Drawing.Point(99, 186);
+            this.cmbEmoteTargeted.Name = "cmbEmoteTargeted";
+            this.cmbEmoteTargeted.Size = new System.Drawing.Size(374, 21);
+            this.cmbEmoteTargeted.TabIndex = 10;
+            this.cmbEmoteTargeted.SelectedIndexChanged += new System.EventHandler(this.cmbEmoteTargeted_SelectedIndexChanged);
+            // 
+            // lblEmoteTargeted
+            // 
+            this.lblEmoteTargeted.AutoSize = true;
+            this.lblEmoteTargeted.Location = new System.Drawing.Point(43, 189);
+            this.lblEmoteTargeted.Name = "lblEmoteTargeted";
+            this.lblEmoteTargeted.Size = new System.Drawing.Size(53, 13);
+            this.lblEmoteTargeted.TabIndex = 9;
+            this.lblEmoteTargeted.Text = "Targeted:";
             // 
             // cmbEmoteId4
             // 
@@ -7226,6 +7252,8 @@
         private System.Windows.Forms.ComboBox cmbEmoteId2;
         private System.Windows.Forms.Label lblEmoteId2;
         private System.Windows.Forms.Button btnTargetParam1;
+        private System.Windows.Forms.ComboBox cmbEmoteTargeted;
+        private System.Windows.Forms.Label lblEmoteTargeted;
     }
 }
 

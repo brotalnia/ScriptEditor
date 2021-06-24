@@ -509,6 +509,7 @@ namespace ScriptEditor
             cmbEmoteId2.SelectedIndex = 0;
             cmbEmoteId3.SelectedIndex = 0;
             cmbEmoteId4.SelectedIndex = 0;
+            cmbEmoteTargeted.SelectedIndex = 0;
 
             // Field Set (2)
             cmbFieldSetFields.SelectedIndex = 0;
@@ -947,6 +948,7 @@ namespace ScriptEditor
                     cmbEmoteId2.SelectedIndex = GameData.FindIndexOfEmote(selectedAction.Datalong2);
                     cmbEmoteId3.SelectedIndex = GameData.FindIndexOfEmote(selectedAction.Datalong3);
                     cmbEmoteId4.SelectedIndex = GameData.FindIndexOfEmote(selectedAction.Datalong4);
+                    cmbEmoteTargeted.SelectedIndex = selectedAction.Dataint;
                     frmCommandEmote.Visible = true;
                     break;
                 }
@@ -2820,6 +2822,11 @@ namespace ScriptEditor
         private void cmbEmoteId4_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbEmoteId4, "Datalong4", true);
+        }
+
+        private void cmbEmoteTargeted_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbEmoteTargeted, "Dataint", false);
         }
 
         // SCRIPT_COMMAND_FIELD_SET (2)
