@@ -35,6 +35,11 @@ namespace ScriptEditor
         public static readonly List<ComboboxPair> SkillsList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> SpellEffectNamesList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> SpellAuraNamesList = new List<ComboboxPair>();
+        public static readonly List<ComboboxPair> ReputationRankList = new List<ComboboxPair>();
+        public static readonly List<ComboboxPair> TeamNamesList = new List<ComboboxPair>();
+        public static readonly List<ComboboxPair> GenderNamesList = new List<ComboboxPair>();
+        public static readonly List<ComboboxPair> LootStateNamesList = new List<ComboboxPair>();
+        public static readonly List<ComboboxPair> GOStateNamesList = new List<ComboboxPair>();
         public static int FindIndexOfMap(uint id)
         {
             for (int i = 0; i < MapsList.Count; i++)
@@ -182,23 +187,31 @@ namespace ScriptEditor
 
             return "";
         }
-        public static string FindConditionTypeName(int id)
+        public static string FindConditionTypeName(int type)
         {
             foreach (ComboboxPair condition in ConditionNamesList)
             {
-                if (condition.Value == id)
+                if (condition.Value == type)
                     return condition.Text;
             }
 
             return "";
         }
-        public static string FindConditionName(uint id)
+        public static ConditionInfo FindConditionWithId(uint id)
         {
             foreach (ConditionInfo condition in ConditionInfoList)
             {
                 if (condition.ID == id)
-                    return FindConditionTypeName(condition.Type);
+                    return condition;
             }
+
+            return null;
+        }
+        public static string FindConditionName(uint id)
+        {
+            ConditionInfo condition = FindConditionWithId(id);
+            if (condition != null)
+                return FindConditionTypeName(condition.Type);
 
             return "";
         }
@@ -282,7 +295,6 @@ namespace ScriptEditor
 
             return "Aura " + id.ToString();
         }
-
         public static int FindIndexOfSpellAuraName(uint id)
         {
             for (int i = 0; i < SpellAuraNamesList.Count; i++)
@@ -291,6 +303,127 @@ namespace ScriptEditor
                     return i;
             }
             return 0;
+        }
+        public static string FindReputationRankName(uint id)
+        {
+            foreach (ComboboxPair rank in ReputationRankList)
+            {
+                if (rank.Value == id)
+                    return rank.Text;
+            }
+
+            return "Rank " + id.ToString();
+        }
+        public static string FindTeamName(uint id)
+        {
+            foreach (ComboboxPair team in TeamNamesList)
+            {
+                if (team.Value == id)
+                    return team.Text;
+            }
+
+            return id.ToString();
+        }
+        public static string FindGenderName(uint id)
+        {
+            foreach (ComboboxPair gender in GenderNamesList)
+            {
+                if (gender.Value == id)
+                    return gender.Text;
+            }
+
+            return id.ToString();
+        }
+        public static string FindLootStateName(uint id)
+        {
+            foreach (ComboboxPair state in LootStateNamesList)
+            {
+                if (state.Value == id)
+                    return state.Text;
+            }
+
+            return id.ToString();
+        }
+        public static string FindGOStateName(uint id)
+        {
+            foreach (ComboboxPair state in GOStateNamesList)
+            {
+                if (state.Value == id)
+                    return state.Text;
+            }
+
+            return id.ToString();
+        }
+
+        public static string GetRaceNamesFromMask(uint mask)
+        {
+            List<string> races = new List<string>();
+            if ((mask & 1) != 0)
+                races.Add("Human");
+            if ((mask & 2) != 0)
+                races.Add("Orc");
+            if ((mask & 4) != 0)
+                races.Add("Dwarf");
+            if ((mask & 8) != 0)
+                races.Add("Night Elf");
+            if ((mask & 16) != 0)
+                races.Add("Undead");
+            if ((mask & 32) != 0)
+                races.Add("Tauren");
+            if ((mask & 64) != 0)
+                races.Add("Gnome");
+            if ((mask & 128) != 0)
+                races.Add("Troll");
+
+            if (races.Count > 0)
+            {
+                string return_string = "";
+                for (int i = 0; i < races.Count; i++)
+                {
+                    if (i != 0)
+                        return_string += ", ";
+                    return_string += races[i];
+                }
+                return return_string;
+            }
+
+            return "-NONE-";
+        }
+        public static string GetClassNamesFromMask(uint mask)
+        {
+            List<string> classes = new List<string>();
+            if ((mask & 1) != 0)
+                classes.Add("Warrior");
+            if ((mask & 2) != 0)
+                classes.Add("Paladin");
+            if ((mask & 4) != 0)
+                classes.Add("Hunter");
+            if ((mask & 8) != 0)
+                classes.Add("Rogue");
+            if ((mask & 16) != 0)
+                classes.Add("Priest");
+            if ((mask & 64) != 0)
+                classes.Add("Shaman");
+            if ((mask & 128) != 0)
+                classes.Add("Mage");
+            if ((mask & 256) != 0)
+                classes.Add("Warlock");
+            if ((mask & 1024) != 0)
+                classes.Add("Druid");
+
+            if (classes.Count > 0)
+            {
+                string return_string = "";
+                for (int i = 0; i < classes.Count; i++)
+                {
+                    if (i != 0)
+                        return_string += ", ";
+                    return_string += classes[i];
+                }
+                return return_string;
+            }
+
+            return "-NONE-";
         }
 
         public static void LoadBroadcastTexts(string connString)
@@ -1677,6 +1810,7 @@ namespace ScriptEditor
             ConditionNamesList.Add(new ComboboxPair("DB_GUID", 52));
             ConditionNamesList.Add(new ComboboxPair("LOCAL_TIME", 53));
             ConditionNamesList.Add(new ComboboxPair("DISTANCE_TO_POSITION", 54));
+            ConditionNamesList.Add(new ComboboxPair("OBJECT_GO_STATE", 55));
 
             // Add skill names.
             SkillsList.Add(new ComboboxPair("Frost", 6));
@@ -2128,6 +2262,37 @@ namespace ScriptEditor
             SpellAuraNamesList.Add(new ComboboxPair("Mod Faction Reputation Gain", 190));
             SpellAuraNamesList.Add(new ComboboxPair("Use Normal Movement Speed", 191));
             SpellAuraNamesList.Add(new ComboboxPair("Custom Aura Spell", 192));
+
+            // Add reputation rank names.
+            ReputationRankList.Add(new ComboboxPair("Hated", 0));
+            ReputationRankList.Add(new ComboboxPair("Hostile", 1));
+            ReputationRankList.Add(new ComboboxPair("Unfriendly", 2));
+            ReputationRankList.Add(new ComboboxPair("Neutral", 3));
+            ReputationRankList.Add(new ComboboxPair("Friendly", 4));
+            ReputationRankList.Add(new ComboboxPair("Honored", 5));
+            ReputationRankList.Add(new ComboboxPair("Revered", 6));
+            ReputationRankList.Add(new ComboboxPair("Exalted", 7));
+
+            // Add team names.
+            TeamNamesList.Add(new ComboboxPair("Crossfaction", 1));
+            TeamNamesList.Add(new ComboboxPair("Horde", 67));
+            TeamNamesList.Add(new ComboboxPair("Alliance", 469));
+
+            // Add gender names.
+            GenderNamesList.Add(new ComboboxPair("Male", 0));
+            GenderNamesList.Add(new ComboboxPair("Female", 1));
+            GenderNamesList.Add(new ComboboxPair("None", 2));
+
+            // Add loot state names.
+            LootStateNamesList.Add(new ComboboxPair("Not Ready", 0));
+            LootStateNamesList.Add(new ComboboxPair("Ready", 1));
+            LootStateNamesList.Add(new ComboboxPair("Activated", 2));
+            LootStateNamesList.Add(new ComboboxPair("Just Deactivated", 3));
+
+            // Add GO state names.
+            GOStateNamesList.Add(new ComboboxPair("Active", 0));
+            GOStateNamesList.Add(new ComboboxPair("Ready", 1));
+            GOStateNamesList.Add(new ComboboxPair("Alternative", 2));
         }
     }
     public struct BroadcastText

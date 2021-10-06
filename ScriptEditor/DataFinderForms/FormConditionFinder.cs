@@ -80,6 +80,13 @@ namespace ScriptEditor
             new ComboboxPair("None", 2)
         };
 
+        private ComboboxPair[] ConditionObjectGoState_ComboOptions =
+        {
+            new ComboboxPair("Active", 0),
+            new ComboboxPair("Ready", 1),
+            new ComboboxPair("Alternative", 2),
+        };
+
         private ComboboxPair[] ConditionObjectLootState_ComboOptions =
         {
             new ComboboxPair("Not Ready", 0),
@@ -103,6 +110,466 @@ namespace ScriptEditor
             this.ShowInTaskbar = true;
             btnEditAdd_Click(null, null);
             this.Show();
+        }
+
+        private string GetComparisonOperatorName(int value)
+        {
+            switch (value)
+            {
+                case 0: // ==
+                    return "Equal To";
+                case 1: // >= 
+                    return "Equal Or Greater Than";
+                case 2: // <=
+                    return "Equal Or Less Than";
+            }
+            return "";
+        }
+
+        private string DescribeCondition(ConditionInfo condition, bool targetsSwapped)
+        {
+            string description = condition.ID + ": ";
+            if ((condition.Flags & 1) != 0) // reverse result
+                description += " Not (";
+            if ((condition.Flags & 2) != 0) // swap targets
+                targetsSwapped = !targetsSwapped;
+            string sourceName = targetsSwapped ? "Target" : "Source";
+            string targetName = targetsSwapped ? "Source" : "Target";
+            switch (condition.Type)
+            {
+                case -3: // Not
+                {
+                    description += "Not (";
+                    ConditionInfo reference = GameData.FindConditionWithId((uint)condition.Value1);
+                    if (reference != null)
+                        description += DescribeCondition(reference, targetsSwapped);
+                    else
+                        description += "Invalid Condition " + condition.Value1;
+                    description += ")";
+                    break;
+                }
+                case -2: // Or
+                {
+                    description += "(";
+                    ConditionInfo reference1 = GameData.FindConditionWithId((uint)condition.Value1);
+                    if (reference1 != null)
+                        description += DescribeCondition(reference1, targetsSwapped);
+                    else
+                        description += "Invalid Condition " + condition.Value1;
+                    description += ") Or (";
+                    ConditionInfo reference2 = GameData.FindConditionWithId((uint)condition.Value2);
+                    if (reference2 != null)
+                        description += DescribeCondition(reference2, targetsSwapped);
+                    else
+                        description += "Invalid Condition " + condition.Value2;
+                    description += ")";
+                    if (condition.Value3 != 0)
+                    {
+                        description += " Or (";
+                        ConditionInfo reference3 = GameData.FindConditionWithId((uint)condition.Value3);
+                        if (reference3 != null)
+                            description += DescribeCondition(reference3, targetsSwapped);
+                        else
+                            description += "Invalid Condition " + condition.Value3;
+                        description += ")";
+                    }
+                    if (condition.Value4 != 0)
+                    {
+                        description += " Or (";
+                        ConditionInfo reference4 = GameData.FindConditionWithId((uint)condition.Value4);
+                        if (reference4 != null)
+                            description += DescribeCondition(reference4, targetsSwapped);
+                        else
+                            description += "Invalid Condition " + condition.Value4;
+                        description += ")";
+                    }
+                    break;
+                }
+                case -1: // And
+                {
+                    description += "(";
+                    ConditionInfo reference1 = GameData.FindConditionWithId((uint)condition.Value1);
+                    if (reference1 != null)
+                        description += DescribeCondition(reference1, targetsSwapped);
+                    else
+                        description += condition.Value1 + ": Invalid Condition";
+                    description += ") And (";
+                    ConditionInfo reference2 = GameData.FindConditionWithId((uint)condition.Value2);
+                    if (reference2 != null)
+                        description += DescribeCondition(reference2, targetsSwapped);
+                    else
+                        description += condition.Value2 + ": Invalid Condition";
+                    description += ")";
+                    if (condition.Value3 != 0)
+                    {
+                        description += " And (";
+                        ConditionInfo reference3 = GameData.FindConditionWithId((uint)condition.Value3);
+                        if (reference3 != null)
+                            description += DescribeCondition(reference3, targetsSwapped);
+                        else
+                            description += condition.Value3 + ": Invalid Condition";
+                        description += ")";
+                    }
+                    if (condition.Value4 != 0)
+                    {
+                        description += " And (";
+                        ConditionInfo reference4 = GameData.FindConditionWithId((uint)condition.Value4);
+                        if (reference4 != null)
+                            description += DescribeCondition(reference4, targetsSwapped);
+                        else
+                            description += condition.Value4 + ": Invalid Condition";
+                        description += ")";
+                    }
+                    break;
+                }
+                case 0: // None
+                {
+                    description += "Always True";
+                    break;
+                }
+                case 1: // Aura
+                {
+                    description += targetName + " Has Aura " + condition.Value1 + " Index " + condition.Value2;
+                    break;
+                }
+                case 2: // Item
+                {
+                    description += targetName + " Has " + condition.Value2 + " Stacks Of Item " + condition.Value1 + " In Inventory";
+                    break;
+                }
+                case 3: // Item Equipped
+                {
+                    description += targetName + " Has Equpped Item " + condition.Value1;
+                    break;
+                }
+                case 4: // Area Id
+                {
+                    description += sourceName + " or " + targetName + " Is In Zone or Area " + condition.Value1;
+                    break;
+                }
+                case 5: // Reputation Rank Min
+                {
+                    description += targetName + " Is " + GameData.FindReputationRankName((uint)condition.Value2) + " Or Better With Faction " + condition.Value1;
+                    break;
+                }
+                case 6: // Team
+                {
+                    description += targetName + " Is Team " + GameData.FindTeamName((uint)condition.Value1);
+                    break;
+                }
+                case 7: // Skill
+                {
+                    description += targetName + " Has " + condition.Value2 + " Points In Skill " + condition.Value1;
+                    break;
+                }
+                case 8: // Quest Rewarded
+                {
+                    description += targetName + " Has Done Quest " + condition.Value1;
+                    break;
+                }
+                case 9: // Quest Taken
+                {
+                    string status = "";
+                    if (condition.Value2 == 1) // Incomplete
+                        status = "Incomplete ";
+                    else if (condition.Value2 == 2) // Complete
+                        status = "Complete ";
+                    description += targetName + " Has " + status + "Quest " + condition.Value1 + " In Log";
+                    break;
+                }
+                case 10: // AD Commission Aura
+                {
+                    description += targetName + " Has Argent Dawn Commission";
+                    break;
+                }
+                case 11: // War Effort Stage
+                {
+                    description += "War Effort Stage Is " + GetComparisonOperatorName(condition.Value2) + " " + condition.Value1;
+                    break;
+                }
+                case 12: // Active Game Event
+                {
+                    description += "Game Event " + condition.Value1 + " Is Active";
+                    break;
+                }
+                case 13: // Can't Path To Victim
+                {
+                    description += sourceName + " Can't Path To Victim";
+                    break;
+                }
+                case 14: // Race Class
+                {
+                    description += targetName + " ";
+                    if (condition.Value1 == 0 && condition.Value2 == 0)
+                        description += "Is Any Race or Class";
+                    else
+                    {
+                        if (condition.Value1 != 0)
+                        {
+                            description += "Is Race (" + GameData.GetRaceNamesFromMask((uint)condition.Value1) + ")";
+                            if (condition.Value2 != 0)
+                                description += " And ";
+                        }
+                        if (condition.Value2 != 0)
+                        {
+                            description += "Is Class (" + GameData.GetClassNamesFromMask((uint)condition.Value2) + ")";
+                        }
+                    }
+                    break;
+                }
+                case 15: // Level
+                {
+                    description += targetName + "'s Level Is " + GetComparisonOperatorName(condition.Value2) + " " + condition.Value1;
+                    break;
+                }
+                case 16: // Source Entry
+                {
+                    description += sourceName + "'s Entry Is " + condition.Value1;
+                    if (condition.Value2 != 0)
+                        description += " Or " + condition.Value2;
+                    if (condition.Value3 != 0)
+                        description += " Or " + condition.Value3;
+                    if (condition.Value4 != 0)
+                        description += " Or " + condition.Value4;
+                    break;
+                }
+                case 17: // Spell
+                {
+                    description += targetName + " Knows Spell " + condition.Value1;
+                    break;
+                }
+                case 18: // Instance Script
+                {
+                    description += "Hardcoded Condition " + condition.Value2 + " For Map " + condition.Value1;
+                    break;
+                }
+                case 19: // Quest Available
+                {
+                    description += targetName + " Can Accept Quest " + condition.Value1;
+                    break;
+                }
+                case 20: // Nearby Creature
+                {
+                    description += "Creature " + condition.Value1 + " Is " + (condition.Value3 == 0 ? "Alive" : "Dead") + " Within " + condition.Value2 + " Yards Of The " + targetName;
+                    if (condition.Value4 != 0)
+                        description += " But It's Not The " + targetName;
+                    break;
+                }
+                case 21: // Nearby GameObject
+                {
+                    description += "GameObject " + condition.Value1 + " Is Within " + condition.Value2 + " Yards Of The " + targetName;
+                    break;
+                }
+                case 22: // Quest None
+                {
+                    description += targetName + " Has Not Accepted or Completed Quest " + condition.Value1;
+                    break;
+                }
+                case 23: // Item With Bank
+                {
+                    description += targetName + " Has " + condition.Value2 + " Stacks of Item " + condition.Value1 + " In Inventory Or Bank";
+                    break;
+                }
+                case 24: // WoW Patch
+                {
+                    description += "Content Patch Is " + GetComparisonOperatorName(condition.Value2) + " 1." + (condition.Value1 + 2);
+                    break;
+                }
+                case 25: // Escort
+                {
+                    string tmp = "";
+                    if ((condition.Value1 & 1) != 0) // CF_ESCORT_SOURCE_DEAD
+                    {
+                        tmp += sourceName + " Is Dead";
+                    }
+                    if ((condition.Value1 & 2) != 0) // CF_ESCORT_TARGET_DEAD
+                    {
+                        if (!String.IsNullOrEmpty(tmp))
+                            tmp += " Or ";
+                        tmp += targetName + " Is Dead";
+                    }
+                    if (condition.Value2 != 0)
+                    {
+                        if (!String.IsNullOrEmpty(tmp))
+                            tmp += " Or ";
+                        tmp += sourceName + " Is Not Within " + condition.Value2 + " Yards Of " + targetName;
+                    }
+                    description += tmp;
+                    break;
+                }
+                case 26: // Active Holiday
+                {
+                    description += "Holiday " + condition.Value1 + " Is Active";
+                    break;
+                }
+                case 27: // Gender
+                {
+                    description += targetName + " Is Gender " + GameData.FindGenderName((uint)condition.Value1);
+                    break;
+                }
+                case 28: // Is Player
+                {
+                    description += targetName + " Is Player";
+                    if (condition.Value1 != 0)
+                        description += " Or Player Controlled";
+                    break;
+                }
+                case 29: // Skill Below
+                {
+                    description += targetName + " Has Less Than " + condition.Value2 + " Points In Skill " + condition.Value1;
+                    break;
+                }
+                case 30: // Reputation Rank Max
+                {
+                    description += targetName + " Is " + GameData.FindReputationRankName((uint)condition.Value2) + " Or Worse With Faction " + condition.Value1;
+                    break;
+                }
+                case 31: // Has Flag
+                {
+                    description += sourceName + " Has Flag " + condition.Value2 + " In Field " + condition.Value1;
+                    break;
+                }
+                case 32: // Last Waypoint
+                {
+                    description += sourceName + "'s Last Reached Waypoint Is " + GetComparisonOperatorName(condition.Value2) + " " + condition.Value1;
+                    break;
+                }
+                case 33: // Map Id
+                {
+                    description += "Current Map Id Is " + condition.Value1;
+                    break;
+                }
+                case 34: // Instance Data
+                {
+                    description += "Stored Value In Index " + condition.Value1 + " From Instance Script Is " + GetComparisonOperatorName(condition.Value3) + " " + condition.Value2;
+                    break;
+                }
+                case 35: // Map Event Data
+                {
+                    description += "Stored Value In Index " + condition.Value2 + " From Scripted Map Event " + condition.Value1 + " Is " + GetComparisonOperatorName(condition.Value4) + " " + condition.Value3;
+                    break;
+                }
+                case 36: // Map Event Active
+                {
+                    description += "Scripted Map Event " + condition.Value1 + " Is Active";
+                    break;
+                }
+                case 37: // Line Of Sight
+                {
+                    description += "Targets Are In Line Of Sight";
+                    break;
+                }
+                case 38: // Distance To Target
+                {
+                    description += "Distance Between Targets Is " + GetComparisonOperatorName(condition.Value2) + " " + condition.Value1 + " Yards";
+                    break;
+                }
+                case 39: // Is Moving
+                {
+                    description += targetName + " Is Moving";
+                    break;
+                }
+                case 40: // Has Pet
+                {
+                    description += targetName + " Has A Pet";
+                    break;
+                }
+                case 41: // Health Percent
+                {
+                    description += targetName + "'s Health Is " + GetComparisonOperatorName(condition.Value2) + " " + condition.Value1 + " Percent";
+                    break;
+                }
+                case 42: // Mana Percent
+                {
+                    description += targetName + "'s Mana Is " + GetComparisonOperatorName(condition.Value2) + " " + condition.Value1 + " Percent";
+                    break;
+                }
+                case 43: // Is In Combat
+                {
+                    description += targetName + " Is In Combat";
+                    break;
+                }
+                case 44: // Is Hostile To
+                {
+                    description += targetName + " Is Hostile To " +  sourceName;
+                    break;
+                }
+                case 45: // Is In Group
+                {
+                    description += targetName + " Is In Group";
+                    break;
+                }
+                case 46: // Is Alive
+                {
+                    description += targetName + " Is Alive";
+                    break;
+                }
+                case 47: // Map Event Targets
+                {
+                    description += "Extra Targets Of Scripted Map Event " + condition.Value1 + " Satisfy Condition (";
+                    ConditionInfo reference = GameData.FindConditionWithId((uint)condition.Value2);
+                    if (reference != null)
+                        description += DescribeCondition(reference, targetsSwapped);
+                    else
+                        description += condition.Value2 + ": Invalid Condition";
+                    description += ")";
+                    break;
+                }
+                case 48: // Object Is Spawned
+                {
+                    description += targetName + " GameObject Is Spawned";
+                    break;
+                }
+                case 49: // Object Loot State
+                {
+                    description += targetName + " GameObject's Loot State Is " + GameData.FindLootStateName((uint)condition.Value1);
+                    break;
+                }
+                case 50: // Object Fit Condition
+                {
+                    description += "GameObject With Guid " + condition.Value1 + " Satisfies Condition (";
+                    ConditionInfo reference = GameData.FindConditionWithId((uint)condition.Value2);
+                    if (reference != null)
+                        description += DescribeCondition(reference, targetsSwapped);
+                    else
+                        description += condition.Value2 + ": Invalid Condition";
+                    description += ")";
+                    break;
+                }
+                case 51: // PVP Rank
+                {
+                    description += targetName + "'s PvP Rank Is " + GetComparisonOperatorName(condition.Value2) + " " + condition.Value1;
+                    break;
+                }
+                case 52: // DB Guid
+                {
+                    description += sourceName + "'s Guid Is " + condition.Value1;
+                    if (condition.Value2 != 0)
+                        description += " Or " + condition.Value2;
+                    if (condition.Value3 != 0)
+                        description += " Or " + condition.Value3;
+                    if (condition.Value4 != 0)
+                        description += " Or " + condition.Value4;
+                    break;
+                }
+                case 53: // Local Time
+                {
+                    description += "Current Time Is Between " + condition.Value1 + ":" + condition.Value2 + " And " + condition.Value3 + ":" + condition.Value4;
+                    break;
+                }
+                case 54: // Distance To Position
+                {
+                    description += targetName + " Is Within " + condition.Value4 + " Yards Of X " + condition.Value1 + " Y " + condition.Value2 + " Z " + condition.Value3;
+                    break;
+                }
+                case 55: // Object GO State
+                {
+                    description += targetName + " GameObject's GO State Is " + GameData.FindGOStateName((uint)condition.Value1);
+                    break;
+                }
+            }
+
+            return description + (((condition.Flags & 1) != 0) ? ")" : "");
         }
 
         private void ResetBaseControls()
@@ -156,6 +623,7 @@ namespace ScriptEditor
             // CONDITION_TARGET_GENDER (27)
             // CONDITION_MAP_ID (33)
             // CONDITION_OBJECT_LOOT_STATE (49)
+            // CONDITION_OBJECT_GO_STATE (55)
             cmbTeamId.SelectedIndex = 0;
             frmConditionTeam.Visible = false;
 
@@ -493,6 +961,7 @@ namespace ScriptEditor
                 case 28: // CONDITION_IS_PLAYER
                 case 33: // CONDITION_MAP_ID
                 case 49: // CONDITION_OBJECT_LOOT_STATE
+                case 55: // CONDITION_OBJECT_GO_STATE
                 {
                     switch (selectedCondition.Type)
                     {
@@ -529,6 +998,13 @@ namespace ScriptEditor
                             lblConditionTeamTooltip.Text = "Returns true if the target GameObject's loot state matches the one specified.";
                             lblTeamId.Text = "Loot State:";
                             cmbTeamId.DataSource = ConditionObjectLootState_ComboOptions;
+                            break;
+                        }
+                        case 55: // CONDITION_OBJECT_GO_STATE
+                        {
+                            lblConditionTeamTooltip.Text = "Returns true if the target GameObject's GO state matches the one specified.";
+                            lblTeamId.Text = "GO State:";
+                            cmbTeamId.DataSource = ConditionObjectGoState_ComboOptions;
                             break;
                         }
                     }
@@ -722,8 +1198,8 @@ namespace ScriptEditor
                 }
                 case 14: // CONDITION_RACE_CLASS
                 {
-                    btnRaceMask.Text = GetRaceNamesFromMask((uint)selectedCondition.Value1);
-                    btnClassMask.Text = GetClassNamesFromMask((uint)selectedCondition.Value2);
+                    btnRaceMask.Text = GameData.GetRaceNamesFromMask((uint)selectedCondition.Value1);
+                    btnClassMask.Text = GameData.GetClassNamesFromMask((uint)selectedCondition.Value2);
                     frmConditionRaceClass.Visible = true;
                     break;
                 }
@@ -997,6 +1473,7 @@ namespace ScriptEditor
                 btnSelectNone.Location = new Point(btnSelect.Location.X - btnSelectNone.Size.Width - 6, btnCancel.Location.Y);
                 btnEditAdd.Location = new Point(btnEditAdd.Location.X, btnCancel.Location.Y);
                 btnDelete.Location = new Point(btnDelete.Location.X, btnCancel.Location.Y);
+                btnDescribe.Location = new Point(btnDescribe.Location.X, btnCancel.Location.Y);
                 btnSearch.Location = new Point(lstData.Size.Width + lstData.Location.X - btnSearch.Size.Width, btnSearch.Location.Y);
                 txtSearch.Width = btnSearch.Location.X - txtSearch.Location.X - 7;
                 btnSelectUnchanged.Location = new Point(btnSelectNone.Location.X - btnSelectUnchanged.Size.Width - 6, btnCancel.Location.Y);
@@ -1005,6 +1482,7 @@ namespace ScriptEditor
             {
                 btnEditAdd.Location = new Point(btnEditAdd.Location.X, lstData.Location.Y + lstData.Height + 6);
                 btnDelete.Location = new Point(btnDelete.Location.X, lstData.Location.Y + lstData.Height + 6);
+                btnDescribe.Location = new Point(btnDescribe.Location.X, lstData.Location.Y + lstData.Height + 6);
             }
 
             lstData.Columns[1].Width = lstData.ClientSize.Width - lstData.Columns[0].Width - lstData.Columns[2].Width - lstData.Columns[3].Width - lstData.Columns[4].Width - lstData.Columns[5].Width - lstData.Columns[6].Width;
@@ -1334,6 +1812,7 @@ namespace ScriptEditor
                 btnSave.Visible = true;
                 btnSaveAll.Visible = true;
                 btnDelete.Visible = true;
+                btnDescribe.Visible = true;
                 btnEditAdd.Text = "Add";
 
                 if (lstData.SelectedItems.Count > 0)
@@ -1404,10 +1883,28 @@ namespace ScriptEditor
             }
         }
 
+
+        private void btnDescribe_Click(object sender, EventArgs e)
+        {
+            if (lstData.SelectedItems.Count > 0)
+            {
+                // Get the selected item in the listview.
+                ListViewItem currentItem = lstData.SelectedItems[0];
+
+                // Get the associated ConditionInfo.
+                ConditionInfo currentCondition = (ConditionInfo)currentItem.Tag;
+
+                // Show condition description and copy it to clipboard.
+                string description = DescribeCondition(currentCondition, false);
+                Clipboard.SetText(description);
+                MessageBox.Show(description, "Condition Description");
+            }
+        }
+
         private string GenerateSaveQuery(ConditionInfo saveCondition)
         {
             ConditionInfo condition = GameData.OriginalConditionInfoList.Find(i => i.ID == saveCondition.ID);
-
+            string description = "-- " + DescribeCondition(saveCondition, false) + "\n";
             if (condition != null)
             {
                 // Update existing condition.
@@ -1427,7 +1924,7 @@ namespace ScriptEditor
 
                 if (fields.Count > 0)
                 {
-                    string query = "UPDATE `conditions` SET ";
+                    string query = description + "UPDATE `conditions` SET ";
                     for (int i = 0; i < fields.Count; i++)
                     {
                         if (i != 0)
@@ -1442,7 +1939,7 @@ namespace ScriptEditor
                 return "";
             }
             // Insert a new condition.
-            return "INSERT INTO `conditions` (`condition_entry`, `type`, `value1`, `value2`, `value3`, `value4`, `flags`) VALUES (" + saveCondition.ID.ToString() + ", " + saveCondition.Type.ToString() + ", " + saveCondition.Value1.ToString() + ", " + saveCondition.Value2.ToString() + ", " + saveCondition.Value3.ToString() + ", " + saveCondition.Value4.ToString() + ", " + saveCondition.Flags.ToString() + ");\n";
+            return description + "INSERT INTO `conditions` (`condition_entry`, `type`, `value1`, `value2`, `value3`, `value4`, `flags`) VALUES (" + saveCondition.ID.ToString() + ", " + saveCondition.Type.ToString() + ", " + saveCondition.Value1.ToString() + ", " + saveCondition.Value2.ToString() + ", " + saveCondition.Value3.ToString() + ", " + saveCondition.Value4.ToString() + ", " + saveCondition.Flags.ToString() + ");\n";
         }
         private void ShowDialogAndSave(string query)
         {
@@ -1684,76 +2181,6 @@ namespace ScriptEditor
             SetScriptFieldFromDataFinderForm<FormEventFinder>(btnGameEventId, null, GameData.FindEventName, "Value1");
         }
         // CONDITION_RACE_CLASS
-        private string GetRaceNamesFromMask(uint mask)
-        {
-            List<string> races = new List<string>();
-            if ((mask & 1) != 0)
-                races.Add("Human");
-            if ((mask & 2) != 0)
-                races.Add("Orc");
-            if ((mask & 4) != 0)
-                races.Add("Dwarf");
-            if ((mask & 8) != 0)
-                races.Add("Night Elf");
-            if ((mask & 16) != 0)
-                races.Add("Undead");
-            if ((mask & 32) != 0)
-                races.Add("Tauren");
-            if ((mask & 64) != 0)
-                races.Add("Gnome");
-            if ((mask & 128) != 0)
-                races.Add("Troll");
-
-            if (races.Count > 0)
-            {
-                string return_string = "";
-                for (int i = 0; i < races.Count; i++)
-                {
-                    if (i != 0)
-                        return_string += ", ";
-                    return_string += races[i];
-                }
-                return return_string;
-            }
-
-            return "-NONE-";
-        }
-        private string GetClassNamesFromMask(uint mask)
-        {
-            List<string> classes = new List<string>();
-            if ((mask & 1) != 0)
-                classes.Add("Warrior");
-            if ((mask & 2) != 0)
-                classes.Add("Paladin");
-            if ((mask & 4) != 0)
-                classes.Add("Hunter");
-            if ((mask & 8) != 0)
-                classes.Add("Rogue");
-            if ((mask & 16) != 0)
-                classes.Add("Priest");
-            if ((mask & 64) != 0)
-                classes.Add("Shaman");
-            if ((mask & 128) != 0)
-                classes.Add("Mage");
-            if ((mask & 256) != 0)
-                classes.Add("Warlock");
-            if ((mask & 1024) != 0)
-                classes.Add("Druid");
-
-            if (classes.Count > 0)
-            {
-                string return_string = "";
-                for (int i = 0; i < classes.Count; i++)
-                {
-                    if (i != 0)
-                        return_string += ", ";
-                    return_string += classes[i];
-                }
-                return return_string;
-            }
-
-            return "-NONE-";
-        }
         private void btnRaceMask_Click(object sender, EventArgs e)
         {
             uint race_mask = (uint)GetScriptFieldValue("Value1");
@@ -1761,7 +2188,7 @@ namespace ScriptEditor
             if (formRaceMask.ShowDialog() == DialogResult.OK)
             {
                 SetScriptFieldFromValue(formRaceMask.ReturnValue, "Value1");
-                btnRaceMask.Text = GetRaceNamesFromMask(formRaceMask.ReturnValue);
+                btnRaceMask.Text = GameData.GetRaceNamesFromMask(formRaceMask.ReturnValue);
             }
         }
         private void btnClassMask_Click(object sender, EventArgs e)
@@ -1771,7 +2198,7 @@ namespace ScriptEditor
             if (formClassMask.ShowDialog() == DialogResult.OK)
             {
                 SetScriptFieldFromValue(formClassMask.ReturnValue, "Value2");
-                btnClassMask.Text = GetClassNamesFromMask(formClassMask.ReturnValue);
+                btnClassMask.Text = GameData.GetClassNamesFromMask(formClassMask.ReturnValue);
             }
         }
         // CONDITION_INSTANCE_SCRIPT

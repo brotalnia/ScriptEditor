@@ -203,6 +203,7 @@
             this.lblLocalTimeEndTime = new System.Windows.Forms.Label();
             this.lblLocalTimeStartTime = new System.Windows.Forms.Label();
             this.lblConditionLocalTimeTooltip = new System.Windows.Forms.Label();
+            this.btnDescribe = new System.Windows.Forms.Button();
             this.frmConditionNot.SuspendLayout();
             this.frmConditionAura.SuspendLayout();
             this.frmConditionItem.SuspendLayout();
@@ -2006,10 +2007,22 @@
             this.lblConditionLocalTimeTooltip.Text = "Returns true if the current time is in the specified range. The range is inclusiv" +
     "e.";
             // 
+            // btnDescribe
+            // 
+            this.btnDescribe.Location = new System.Drawing.Point(174, 367);
+            this.btnDescribe.Name = "btnDescribe";
+            this.btnDescribe.Size = new System.Drawing.Size(75, 23);
+            this.btnDescribe.TabIndex = 42;
+            this.btnDescribe.Text = "Describe";
+            this.btnDescribe.UseVisualStyleBackColor = true;
+            this.btnDescribe.Visible = false;
+            this.btnDescribe.Click += new System.EventHandler(this.btnDescribe_Click);
+            // 
             // FormConditionFinder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(674, 395);
+            this.Controls.Add(this.btnDescribe);
             this.Controls.Add(this.frmConditionLocalTime);
             this.Controls.Add(this.frmConditionDbGuid);
             this.Controls.Add(this.frmConditionAnd);
@@ -2086,6 +2099,7 @@
             this.Controls.SetChildIndex(this.frmConditionAnd, 0);
             this.Controls.SetChildIndex(this.frmConditionDbGuid, 0);
             this.Controls.SetChildIndex(this.frmConditionLocalTime, 0);
+            this.Controls.SetChildIndex(this.btnDescribe, 0);
             this.frmConditionNot.ResumeLayout(false);
             this.frmConditionNot.PerformLayout();
             this.frmConditionAura.ResumeLayout(false);
@@ -2313,5 +2327,6 @@
         private System.Windows.Forms.Label lblLocalTimeEndTime;
         private System.Windows.Forms.Label lblLocalTimeStartTime;
         private System.Windows.Forms.Label lblConditionLocalTimeTooltip;
+        private System.Windows.Forms.Button btnDescribe;
     }
 }
