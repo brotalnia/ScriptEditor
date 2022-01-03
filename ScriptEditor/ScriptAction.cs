@@ -9,6 +9,7 @@ namespace ScriptEditor
     {
         public uint Id;
         public uint Delay;
+        public uint Priority;
         public uint Command;
         public uint Datalong;
         public uint Datalong2;
@@ -28,10 +29,11 @@ namespace ScriptEditor
         public float O;
         public uint ConditionId;
         public string Comments;
-        public ScriptAction(uint id, uint delay, uint command, uint datalong, uint datalong2, uint datalong3, uint datalong4, uint targetparam1, uint targetparam2, uint targettype, uint dataflags, int dataint, int dataint2, int dataint3, int dataint4, float x, float y, float z, float o, uint conditionid, string comments)
+        public ScriptAction(uint id, uint delay, uint priority, uint command, uint datalong, uint datalong2, uint datalong3, uint datalong4, uint targetparam1, uint targetparam2, uint targettype, uint dataflags, int dataint, int dataint2, int dataint3, int dataint4, float x, float y, float z, float o, uint conditionid, string comments)
         {
             Id = id;
             Delay = delay;
+            Priority = priority;
             Command = command;
             Datalong = datalong;
             Datalong2 = datalong2;
@@ -56,6 +58,7 @@ namespace ScriptEditor
         {
             Id = id;
             Delay = 0;
+            Priority = 0;
             Command = 0;
             Datalong = 0;
             Datalong2 = 0;

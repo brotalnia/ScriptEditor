@@ -588,6 +588,8 @@
             this.txtJoinCreatureGroupAngle = new System.Windows.Forms.TextBox();
             this.txtJoinCreatureGroupDistance = new System.Windows.Forms.TextBox();
             this.lblJoinCreatureGroupTooltip = new System.Windows.Forms.Label();
+            this.txtCommandPriority = new System.Windows.Forms.TextBox();
+            this.lblPriority = new System.Windows.Forms.Label();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -734,6 +736,8 @@
             // 
             // grpGeneral
             // 
+            this.grpGeneral.Controls.Add(this.lblPriority);
+            this.grpGeneral.Controls.Add(this.txtCommandPriority);
             this.grpGeneral.Controls.Add(this.lblCommandCondition);
             this.grpGeneral.Controls.Add(this.btnCommandCondition);
             this.grpGeneral.Controls.Add(this.lblComment);
@@ -755,7 +759,7 @@
             // lblCommandCondition
             // 
             this.lblCommandCondition.AutoSize = true;
-            this.lblCommandCondition.Location = new System.Drawing.Point(21, 109);
+            this.lblCommandCondition.Location = new System.Drawing.Point(22, 109);
             this.lblCommandCondition.Name = "lblCommandCondition";
             this.lblCommandCondition.Size = new System.Drawing.Size(54, 13);
             this.lblCommandCondition.TabIndex = 14;
@@ -928,14 +932,14 @@
             // 
             this.txtCommandDelay.Location = new System.Drawing.Point(24, 42);
             this.txtCommandDelay.Name = "txtCommandDelay";
-            this.txtCommandDelay.Size = new System.Drawing.Size(132, 20);
+            this.txtCommandDelay.Size = new System.Drawing.Size(65, 20);
             this.txtCommandDelay.TabIndex = 3;
             this.txtCommandDelay.Leave += new System.EventHandler(this.txtCommandDelay_Leave);
             // 
             // lblDelay
             // 
             this.lblDelay.AutoSize = true;
-            this.lblDelay.Location = new System.Drawing.Point(20, 26);
+            this.lblDelay.Location = new System.Drawing.Point(21, 26);
             this.lblDelay.Name = "lblDelay";
             this.lblDelay.Size = new System.Drawing.Size(51, 13);
             this.lblDelay.TabIndex = 2;
@@ -944,7 +948,7 @@
             // lblCommand
             // 
             this.lblCommand.AutoSize = true;
-            this.lblCommand.Location = new System.Drawing.Point(21, 67);
+            this.lblCommand.Location = new System.Drawing.Point(22, 67);
             this.lblCommand.Name = "lblCommand";
             this.lblCommand.Size = new System.Drawing.Size(57, 13);
             this.lblCommand.TabIndex = 1;
@@ -954,9 +958,9 @@
             // 
             this.cmbCommandId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCommandId.FormattingEnabled = true;
-            this.cmbCommandId.Location = new System.Drawing.Point(23, 83);
+            this.cmbCommandId.Location = new System.Drawing.Point(24, 83);
             this.cmbCommandId.Name = "cmbCommandId";
-            this.cmbCommandId.Size = new System.Drawing.Size(133, 21);
+            this.cmbCommandId.Size = new System.Drawing.Size(132, 21);
             this.cmbCommandId.TabIndex = 0;
             this.cmbCommandId.SelectedIndexChanged += new System.EventHandler(this.cmbCommandId_SelectedIndexChanged);
             // 
@@ -6487,6 +6491,23 @@
             this.lblJoinCreatureGroupTooltip.Text = "The source Creature joins the target Creature\'s group. If the target is not in a " +
     "group, then a new group is created with the target as leader.";
             // 
+            // txtCommandPriority
+            // 
+            this.txtCommandPriority.Location = new System.Drawing.Point(91, 42);
+            this.txtCommandPriority.Name = "txtCommandPriority";
+            this.txtCommandPriority.Size = new System.Drawing.Size(65, 20);
+            this.txtCommandPriority.TabIndex = 15;
+            this.txtCommandPriority.Leave += new System.EventHandler(this.txtCommandPriority_Leave);
+            // 
+            // lblPriority
+            // 
+            this.lblPriority.AutoSize = true;
+            this.lblPriority.Location = new System.Drawing.Point(88, 26);
+            this.lblPriority.Name = "lblPriority";
+            this.lblPriority.Size = new System.Drawing.Size(41, 13);
+            this.lblPriority.TabIndex = 16;
+            this.lblPriority.Text = "Priority:";
+            // 
             // FormScriptEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -7254,6 +7275,8 @@
         private System.Windows.Forms.Button btnTargetParam1;
         private System.Windows.Forms.ComboBox cmbEmoteTargeted;
         private System.Windows.Forms.Label lblEmoteTargeted;
+        private System.Windows.Forms.Label lblPriority;
+        private System.Windows.Forms.TextBox txtCommandPriority;
     }
 }
 

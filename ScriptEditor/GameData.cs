@@ -865,28 +865,6 @@ namespace ScriptEditor
         {
             // Add update field ids to a list.
             UpdateFieldsList.Add(new ComboboxPair("OBJECT_FIELD_SCALE_X", 4));
-            UpdateFieldsList.Add(new ComboboxPair("ITEM_FIELD_OWNER", 6));
-            UpdateFieldsList.Add(new ComboboxPair("ITEM_FIELD_CONTAINED", 8));
-            UpdateFieldsList.Add(new ComboboxPair("ITEM_FIELD_CREATOR", 10));
-            UpdateFieldsList.Add(new ComboboxPair("ITEM_FIELD_GIFTCREATOR", 12));
-            UpdateFieldsList.Add(new ComboboxPair("ITEM_FIELD_STACK_COUNT", 14));
-            UpdateFieldsList.Add(new ComboboxPair("ITEM_FIELD_DURATION", 15));
-            UpdateFieldsList.Add(new ComboboxPair("ITEM_FIELD_SPELL_CHARGES", 16));
-            UpdateFieldsList.Add(new ComboboxPair("ITEM_FIELD_SPELL_CHARGES_01", 17));
-            UpdateFieldsList.Add(new ComboboxPair("ITEM_FIELD_SPELL_CHARGES_02", 18));
-            UpdateFieldsList.Add(new ComboboxPair("ITEM_FIELD_SPELL_CHARGES_03", 19));
-            UpdateFieldsList.Add(new ComboboxPair("ITEM_FIELD_SPELL_CHARGES_04", 20));
-            UpdateFieldsList.Add(new ComboboxPair("ITEM_FIELD_FLAGS", 21));
-            UpdateFieldsList.Add(new ComboboxPair("ITEM_FIELD_ENCHANTMENT", 22));
-            UpdateFieldsList.Add(new ComboboxPair("ITEM_FIELD_PROPERTY_SEED", 43));
-            UpdateFieldsList.Add(new ComboboxPair("ITEM_FIELD_RANDOM_PROPERTIES_ID", 44));
-            UpdateFieldsList.Add(new ComboboxPair("ITEM_FIELD_ITEM_TEXT_ID", 45));
-            UpdateFieldsList.Add(new ComboboxPair("ITEM_FIELD_DURABILITY", 46));
-            UpdateFieldsList.Add(new ComboboxPair("ITEM_FIELD_MAXDURABILITY", 47));
-            UpdateFieldsList.Add(new ComboboxPair("CONTAINER_FIELD_NUM_SLOTS", 48));
-            UpdateFieldsList.Add(new ComboboxPair("CONTAINER_ALIGN_PAD", 49));
-            UpdateFieldsList.Add(new ComboboxPair("CONTAINER_FIELD_SLOT_1", 50));
-            UpdateFieldsList.Add(new ComboboxPair("CONTAINER_FIELD_SLOT_LAST", 104));
             UpdateFieldsList.Add(new ComboboxPair("UNIT_FIELD_CHARM", 6));
             UpdateFieldsList.Add(new ComboboxPair("UNIT_FIELD_SUMMON", 8));
             UpdateFieldsList.Add(new ComboboxPair("UNIT_FIELD_CHARMEDBY", 10));

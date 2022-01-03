@@ -1823,7 +1823,9 @@ namespace ScriptEditor
                     // Get the associated ConditionInfo.
                     ConditionInfo currentCondition = (ConditionInfo)currentItem.Tag;
 
+                    dontUpdate = true;
                     ShowConditionSpecificForm(currentCondition);
+                    dontUpdate = false;
                 }
             }
             else

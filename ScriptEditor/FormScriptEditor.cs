@@ -279,14 +279,18 @@ namespace ScriptEditor
         private string GenerateScriptQuery()
         {
             string query = "DELETE FROM `" + currentScriptTable + "` WHERE `id`=" + currentScriptId.ToString() + ";\n";
-            foreach (ListViewItem lvi in lstActions.Items)
+            query += "INSERT INTO `" + currentScriptTable + "` (`id`, `delay`, `priority`, `command`, `datalong`, `datalong2`, `datalong3`, `datalong4`, `target_param1`, `target_param2`, `target_type`, `data_flags`, `dataint`, `dataint2`, `dataint3`, `dataint4`, `x`, `y`, `z`, `o`, `condition_id`, `comments`) VALUES\n";
+            for (int i = 0; i < lstActions.Items.Count; i++)
             {
                 // Get the associated ScriptAction.
+                ListViewItem lvi = lstActions.Items[i];
                 ScriptAction currentAction = (ScriptAction)lvi.Tag;
 
-                query += "INSERT INTO `" + currentScriptTable + "` (`id`, `delay`, `command`, `datalong`, `datalong2`, `datalong3`, `datalong4`, `target_param1`, `target_param2`, `target_type`, `data_flags`, `dataint`, `dataint2`, `dataint3`, `dataint4`, `x`, `y`, `z`, `o`, `condition_id`, `comments`) VALUES (" + currentAction.Id.ToString() + ", " + currentAction.Delay.ToString() + ", " + currentAction.Command.ToString() + ", " + currentAction.Datalong.ToString() + ", " + currentAction.Datalong2.ToString() + ", " + currentAction.Datalong3.ToString() + ", " + currentAction.Datalong4.ToString() + ", " + currentAction.TargetParam1.ToString() + ", " + currentAction.TargetParam2.ToString() + ", " + currentAction.TargetType.ToString() + ", " + currentAction.DataFlags.ToString() + ", " + currentAction.Dataint.ToString() + ", " + currentAction.Dataint2.ToString() + ", " + currentAction.Dataint3.ToString() + ", " + currentAction.Dataint4.ToString() + ", " + currentAction.X.ToString().Replace(',', '.') + ", " + currentAction.Y.ToString().Replace(',', '.') + ", " + currentAction.Z.ToString().Replace(',', '.') + ", " + currentAction.O.ToString().Replace(',', '.') + ", " + currentAction.ConditionId.ToString() + ", '" + Helpers.MySQLEscape(currentAction.Comments) + "');\n";
+                if (i > 0)
+                    query += ",\n";
+                query += "(" + currentAction.Id.ToString() + ", " + currentAction.Delay.ToString() + ", " + currentAction.Priority.ToString() + ", " + currentAction.Command.ToString() + ", " + currentAction.Datalong.ToString() + ", " + currentAction.Datalong2.ToString() + ", " + currentAction.Datalong3.ToString() + ", " + currentAction.Datalong4.ToString() + ", " + currentAction.TargetParam1.ToString() + ", " + currentAction.TargetParam2.ToString() + ", " + currentAction.TargetType.ToString() + ", " + currentAction.DataFlags.ToString() + ", " + currentAction.Dataint.ToString() + ", " + currentAction.Dataint2.ToString() + ", " + currentAction.Dataint3.ToString() + ", " + currentAction.Dataint4.ToString() + ", " + currentAction.X.ToString().Replace(',', '.') + ", " + currentAction.Y.ToString().Replace(',', '.') + ", " + currentAction.Z.ToString().Replace(',', '.') + ", " + currentAction.O.ToString().Replace(',', '.') + ", " + currentAction.ConditionId.ToString() + ", '" + Helpers.MySQLEscape(currentAction.Comments) + "')";
             }
-            return query;
+            return query + ";\n";
         }
 
         private void ResetEditorForm()
@@ -349,7 +353,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(Program.connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT id, delay, command, datalong, datalong2, datalong3, datalong4, target_param1, target_param2, target_type, data_flags, dataint, dataint2, dataint3, dataint4, x, y, z, o, condition_id, comments FROM " + table_name + " WHERE id=" + script_id.ToString() + " ORDER BY delay";
+            command.CommandText = "SELECT id, delay, priority, command, datalong, datalong2, datalong3, datalong4, target_param1, target_param2, target_type, data_flags, dataint, dataint2, dataint3, dataint4, x, y, z, o, condition_id, comments FROM " + table_name + " WHERE id=" + script_id.ToString() + " ORDER BY delay, priority";
             try
             {
                 conn.Open();
@@ -359,7 +363,7 @@ namespace ScriptEditor
                 {
                     ListViewItem lvi = new ListViewItem();
 
-                    ScriptAction action = new ScriptAction(reader.GetUInt32(0), reader.GetUInt32(1), reader.GetUInt32(2), reader.GetUInt32(3), reader.GetUInt32(4), reader.GetUInt32(5), reader.GetUInt32(6), reader.GetUInt32(7), reader.GetUInt32(8), reader.GetUInt32(9), reader.GetUInt32(10), reader.GetInt32(11), reader.GetInt32(12), reader.GetInt32(13), reader.GetInt32(14), reader.GetFloat(15), reader.GetFloat(16), reader.GetFloat(17), reader.GetFloat(18), reader.GetUInt32(19), reader[20].ToString());
+                    ScriptAction action = new ScriptAction(reader.GetUInt32(0), reader.GetUInt32(1), reader.GetUInt32(2), reader.GetUInt32(3), reader.GetUInt32(4), reader.GetUInt32(5), reader.GetUInt32(6), reader.GetUInt32(7), reader.GetUInt32(8), reader.GetUInt32(9), reader.GetUInt32(10), reader.GetUInt32(11), reader.GetInt32(12), reader.GetInt32(13), reader.GetInt32(14), reader.GetInt32(15), reader.GetFloat(16), reader.GetFloat(17), reader.GetFloat(18), reader.GetFloat(19), reader.GetUInt32(20), reader[21].ToString());
 
                     // We show only delay, command id and comment in the listview.
                     lvi.Text = action.Delay.ToString();
@@ -439,6 +443,7 @@ namespace ScriptEditor
 
             // Text Boxes.
             txtCommandDelay.Text = "";
+            txtCommandPriority.Text = "";
             txtCommandComment.Text = "";
             txtTargetParam1.Text = "";
             txtTargetParam2.Text = "";
@@ -2190,6 +2195,7 @@ namespace ScriptEditor
             ScriptAction selectedAction = (ScriptAction)selectedItem.Tag;
             
             txtCommandDelay.Text = selectedAction.Delay.ToString();
+            txtCommandPriority.Text = selectedAction.Priority.ToString();
             txtCommandComment.Text = selectedAction.Comments;
             txtTargetParam1.Text = selectedAction.TargetParam1.ToString();
             txtTargetParam2.Text = selectedAction.TargetParam2.ToString();
@@ -2613,6 +2619,27 @@ namespace ScriptEditor
                 lstActions.Sort();
             }
         }
+        private void txtCommandPriority_Leave(object sender, EventArgs e)
+        {
+            if (lstActions.SelectedItems.Count > 0)
+            {
+                // Get the selected item in the listview.
+                ListViewItem currentItem = lstActions.SelectedItems[0];
+
+                // Get the associated ScriptAction.
+                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
+
+                uint priority;
+                if (!UInt32.TryParse(txtCommandPriority.Text, out priority))
+                    txtCommandPriority.Text = "0";
+
+                // Updating priority.
+                currentAction.Priority = priority;
+
+                // Update priority in listview.
+                lstActions.Sort();
+            }
+        }
 
         private void btnTargetParam1_Click(object sender, EventArgs e)
         {
@@ -2719,7 +2746,7 @@ namespace ScriptEditor
                 ListViewItem newItem = new ListViewItem();
 
                 // Copy values of selected action.
-                ScriptAction newAction = new ScriptAction(currentScriptId, currentAction.Delay, currentAction.Command, currentAction.Datalong, currentAction.Datalong2, currentAction.Datalong3, currentAction.Datalong4, currentAction.TargetParam1, currentAction.TargetParam2, currentAction.TargetType, currentAction.DataFlags, currentAction.Dataint, currentAction.Dataint2, currentAction.Dataint3, currentAction.Dataint4, currentAction.X, currentAction.Y, currentAction.Z, currentAction.O, currentAction.ConditionId, currentAction.Comments + " - Copy");
+                ScriptAction newAction = new ScriptAction(currentScriptId, currentAction.Delay, currentAction.Priority, currentAction.Command, currentAction.Datalong, currentAction.Datalong2, currentAction.Datalong3, currentAction.Datalong4, currentAction.TargetParam1, currentAction.TargetParam2, currentAction.TargetType, currentAction.DataFlags, currentAction.Dataint, currentAction.Dataint2, currentAction.Dataint3, currentAction.Dataint4, currentAction.X, currentAction.Y, currentAction.Z, currentAction.O, currentAction.ConditionId, currentAction.Comments + " - Copy");
 
                 // We show only delay, command id and comment in the listview.
                 newItem.Text = newAction.Delay.ToString();
@@ -3155,7 +3182,7 @@ namespace ScriptEditor
                 {
                     chkModifyFlags1.Text = "UNK_0";
                     chkModifyFlags1.Visible = true;
-                    chkModifyFlags2.Text = "NON_ATTACKABLE";
+                    chkModifyFlags2.Text = "SPAWNING";
                     chkModifyFlags2.Visible = true;
                     chkModifyFlags4.Text = "DISABLE_MOVE";
                     chkModifyFlags4.Visible = true;
@@ -4813,8 +4840,6 @@ namespace ScriptEditor
     // Sorts items in the script actions listbox by delay.
     class ActionSorter : System.Collections.IComparer
     {
-        public int Column = 0;
-        public System.Windows.Forms.SortOrder Order = SortOrder.Ascending;
         public int Compare(object x, object y) // IComparer Member
         {
             if (!(x is ListViewItem))
@@ -4825,20 +4850,13 @@ namespace ScriptEditor
             ListViewItem l1 = (ListViewItem)x;
             ListViewItem l2 = (ListViewItem)y;
 
-            int value1;
-            int value2;
+            ScriptAction action1 = (ScriptAction)l1.Tag;
+            ScriptAction action2 = (ScriptAction)l2.Tag;
 
-            Int32.TryParse(l1.SubItems[Column].Text, out value1);
-            Int32.TryParse(l2.SubItems[Column].Text, out value2);
+            if (action1.Delay == action2.Delay)
+                return action1.Priority.CompareTo(action2.Priority);
 
-            if (Order == SortOrder.Ascending)
-            {
-                return value1.CompareTo(value2);
-            }
-            else
-            {
-                return value2.CompareTo(value1);
-            }
+            return action1.Delay.CompareTo(action2.Delay);
         }
     }
 }
