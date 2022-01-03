@@ -118,6 +118,7 @@ namespace ScriptEditor
         "Send AI Event",            // 85
         "Set PvP",                  // 86
         "Reset Door or Button",     // 87
+        "Set Command State",        // 88
         };
 
         // Options for combo boxes.
@@ -130,6 +131,7 @@ namespace ScriptEditor
         public string[] CommandSetSheathState_ComboOptions = { "Unarmed", "Melee", "Ranged" };
         public string[] CommandSendScriptedMapEvent_ComboOptions = { "Main Targets Only", "Additional Targets Only", "All Targets" };
         public string[] CommandSetGOState_ComboOptions = { "Active", "Ready", "Active Alternative" };
+        public string[] CommandSetCommandState_ComboOptions = { "Stay", "Follow", "Attack", "Dismiss" };
         public FormScriptEditor()
         {
             InitializeComponent();
@@ -782,6 +784,9 @@ namespace ScriptEditor
             // Flee (47)
             // Combat Pulse (49)
             // Set Sheath State (51)
+            // Respawn Creature (71)
+            // Set GO State (80)
+            // Set Command State (88)
             cmbFleeMode.SelectedIndex = 0;
             frmCommandFlee.Visible = false;
 
@@ -1835,6 +1840,7 @@ namespace ScriptEditor
                 case 51: // Set Sheath State
                 case 71: // Respawn Creature
                 case 80: // Set GO State
+                case 88: // Set Command State
                 {
                     switch (selectedAction.Command)
                     {
@@ -1871,6 +1877,13 @@ namespace ScriptEditor
                             lblFleeTooltip.Text = "Changes the source GameObject's current state.";
                             lblFleeMode.Text = "State:";
                             cmbFleeMode.DataSource = CommandSetGOState_ComboOptions;
+                            break;
+                        }
+                        case 88: // Set Command State
+                        {
+                            lblFleeTooltip.Text = "The source Creature is given a pet command. Only works on charmed units.";
+                            lblFleeMode.Text = "State:";
+                            cmbFleeMode.DataSource = CommandSetCommandState_ComboOptions;
                             break;
                         }
                     }
