@@ -691,6 +691,11 @@ namespace ScriptEditor
             txtEscortDistance.Text = "";
             frmConditionEscort.Visible = false;
 
+            // CONDITION_HAS_FLAG (31)
+            cmbHasFlagFieldIndex.SelectedIndex = 0;
+            btnHasFlagFlags.Text = "-NONE-";
+            frmConditionHasFlag.Visible = false;
+
             // CONDITION_INSTANCE_DATA (34)
             txtInstanceDataIndex.Text = "";
             txtInstanceDataValue.Text = "";
@@ -1014,7 +1019,6 @@ namespace ScriptEditor
                 }
                 case 7: // CONDITION_SKILL
                 case 29: // CONDITION_SKILL_BELOW
-                case 31: // CONDITION_HAS_FLAG
                 {
                     switch (selectedCondition.Type)
                     {
@@ -1032,14 +1036,6 @@ namespace ScriptEditor
                             cmbSkillId.DataSource = GameData.SkillsList;
                             lblSkillId.Text = "Skill Id:";
                             lblSkillLevel.Text = "Skill Level:";
-                            break;
-                        }
-                        case 31: // CONDITION_HAS_FLAG
-                        {
-                            lblConditionSkillTooltip.Text = "Returns true if the source WorldObject has the specified flag.";
-                            cmbSkillId.DataSource = GameData.FlagFieldsList;
-                            lblSkillId.Text = "Field:";
-                            lblSkillLevel.Text = "Flag:";
                             break;
                         }
                     }
@@ -1247,6 +1243,15 @@ namespace ScriptEditor
                     frmConditionEscort.Visible = true;
                     break;
                 }
+                case 31: // CONDITION_HAS_FLAG
+                {
+                    cmbHasFlagFieldIndex.SelectedIndex = GameData.FindIndexOfFlagsField((uint)selectedCondition.Value1);
+                    List<Tuple<string, uint>> valuesList = GetValuesListFromHasFlagsComboBox();
+                    if (valuesList != null && selectedCondition.Value2 != 0)
+                        btnHasFlagFlags.Text = Helpers.GetStringFromFlags((uint)selectedCondition.Value2, valuesList);
+                    frmConditionHasFlag.Visible = true;
+                    break;
+                }
                 case 34: // CONDITION_INSTANCE_DATA
                 {
                     txtInstanceDataIndex.Text = selectedCondition.Value1.ToString();
@@ -1366,6 +1371,7 @@ namespace ScriptEditor
             cmbConditionType.SelectedIndex = -1;
             cmbTeamId.DataSource = ConditionTeam_ComboOptions;
             cmbSkillId.DataSource = GameData.SkillsList;
+            cmbHasFlagFieldIndex.DataSource = GameData.FlagFieldsList;
             dontUpdate = false;
         }
 
@@ -1615,6 +1621,11 @@ namespace ScriptEditor
         private void SetScriptFieldFromDataFinderForm<TFinderForm>(Button btn, TextBox txtbox, NameFinder finder, string fieldname) where TFinderForm : FormDataFinder, new()
         {
             Helpers.SetScriptFieldFromDataFinderForm<ConditionInfo, TFinderForm>(lstData, btn, txtbox, finder, fieldname);
+            UpdateSelectedItem();
+        }
+        private void SetScriptFieldFromFlagsForm(Button btn, List<Tuple<string, uint>> valuesList, string windowtitle, string fieldname)
+        {
+            Helpers.SetScriptFieldFromFlagsForm<ConditionInfo>(lstData, btn, valuesList, windowtitle, fieldname);
             UpdateSelectedItem();
         }
         // Generic function for getting int value in field.
@@ -2189,6 +2200,42 @@ namespace ScriptEditor
         private void cmbInstanceDataComparison_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbInstanceDataComparison, "Value3", false);
+        }
+        // CONDITION_HAS_FLAG
+        private List<Tuple<string, uint>> GetValuesListFromHasFlagsComboBox()
+        {
+            switch (cmbHasFlagFieldIndex.SelectedIndex)
+            {
+                case 0: // GAMEOBJECT_FLAGS
+                    return GameData.GameObjectFlagsList;
+                case 1: // GAMEOBJECT_DYN_FLAGS
+                    return GameData.GameObjectDynFlagsList;
+                case 2: // UNIT_FIELD_FLAGS
+                    return GameData.UnitFieldFlagsList;
+                case 3: // UNIT_DYNAMIC_FLAGS
+                    return GameData.UnitDynamicFlagsList;
+                case 4: // UNIT_NPC_FLAGS
+                    return GameData.UnitNpcFlagsList;
+                case 5: // PLAYER_FLAGS
+                    return GameData.PlayerFlagsList;
+            }
+            return null;
+        }
+        private void cmbHasFlagFieldIndex_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (dontUpdate)
+                return;
+
+            SetScriptFieldFromCombobox(cmbHasFlagFieldIndex, "Value1", true);
+            btnHasFlagFlags.Text = "-NONE-";
+            SetScriptFieldFromValue(0, "Value2");
+        }
+
+        private void btnHasFlagFlags_Click(object sender, EventArgs e)
+        {
+            List<Tuple<string, uint>> valuesList = GetValuesListFromHasFlagsComboBox();
+            if (valuesList != null)
+                SetScriptFieldFromFlagsForm(btnHasFlagFlags, valuesList, "Select Flags", "Value2");
         }
         // CONDITION_MAP_EVENT_DATA
         private void txtMapEventDataEventId_Leave(object sender, EventArgs e)

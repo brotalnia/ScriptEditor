@@ -204,6 +204,12 @@
             this.lblLocalTimeStartTime = new System.Windows.Forms.Label();
             this.lblConditionLocalTimeTooltip = new System.Windows.Forms.Label();
             this.btnDescribe = new System.Windows.Forms.Button();
+            this.frmConditionHasFlag = new System.Windows.Forms.Panel();
+            this.cmbHasFlagFieldIndex = new System.Windows.Forms.ComboBox();
+            this.lblHasFlagFlags = new System.Windows.Forms.Label();
+            this.lblHasFlagFieldIndex = new System.Windows.Forms.Label();
+            this.frmConditionHasFlagTooltip = new System.Windows.Forms.Label();
+            this.btnHasFlagFlags = new System.Windows.Forms.Button();
             this.frmConditionNot.SuspendLayout();
             this.frmConditionAura.SuspendLayout();
             this.frmConditionItem.SuspendLayout();
@@ -227,6 +233,7 @@
             this.frmConditionAnd.SuspendLayout();
             this.frmConditionDbGuid.SuspendLayout();
             this.frmConditionLocalTime.SuspendLayout();
+            this.frmConditionHasFlag.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstData
@@ -2018,10 +2025,72 @@
             this.btnDescribe.Visible = false;
             this.btnDescribe.Click += new System.EventHandler(this.btnDescribe_Click);
             // 
+            // frmConditionHasFlag
+            // 
+            this.frmConditionHasFlag.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmConditionHasFlag.Controls.Add(this.btnHasFlagFlags);
+            this.frmConditionHasFlag.Controls.Add(this.cmbHasFlagFieldIndex);
+            this.frmConditionHasFlag.Controls.Add(this.lblHasFlagFlags);
+            this.frmConditionHasFlag.Controls.Add(this.lblHasFlagFieldIndex);
+            this.frmConditionHasFlag.Controls.Add(this.frmConditionHasFlagTooltip);
+            this.frmConditionHasFlag.Location = new System.Drawing.Point(12, 212);
+            this.frmConditionHasFlag.Name = "frmConditionHasFlag";
+            this.frmConditionHasFlag.Size = new System.Drawing.Size(650, 150);
+            this.frmConditionHasFlag.TabIndex = 43;
+            this.frmConditionHasFlag.Visible = false;
+            // 
+            // cmbHasFlagFieldIndex
+            // 
+            this.cmbHasFlagFieldIndex.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbHasFlagFieldIndex.FormattingEnabled = true;
+            this.cmbHasFlagFieldIndex.Location = new System.Drawing.Point(100, 68);
+            this.cmbHasFlagFieldIndex.Name = "cmbHasFlagFieldIndex";
+            this.cmbHasFlagFieldIndex.Size = new System.Drawing.Size(536, 21);
+            this.cmbHasFlagFieldIndex.TabIndex = 6;
+            this.cmbHasFlagFieldIndex.SelectedIndexChanged += new System.EventHandler(this.cmbHasFlagFieldIndex_SelectedIndexChanged);
+            // 
+            // lblHasFlagFlags
+            // 
+            this.lblHasFlagFlags.AutoSize = true;
+            this.lblHasFlagFlags.Location = new System.Drawing.Point(11, 106);
+            this.lblHasFlagFlags.Name = "lblHasFlagFlags";
+            this.lblHasFlagFlags.Size = new System.Drawing.Size(35, 13);
+            this.lblHasFlagFlags.TabIndex = 2;
+            this.lblHasFlagFlags.Text = "Flags:";
+            // 
+            // lblHasFlagFieldIndex
+            // 
+            this.lblHasFlagFieldIndex.AutoSize = true;
+            this.lblHasFlagFieldIndex.Location = new System.Drawing.Point(11, 73);
+            this.lblHasFlagFieldIndex.Name = "lblHasFlagFieldIndex";
+            this.lblHasFlagFieldIndex.Size = new System.Drawing.Size(61, 13);
+            this.lblHasFlagFieldIndex.TabIndex = 1;
+            this.lblHasFlagFieldIndex.Text = "Field Index:";
+            // 
+            // frmConditionHasFlagTooltip
+            // 
+            this.frmConditionHasFlagTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.frmConditionHasFlagTooltip.Location = new System.Drawing.Point(12, 8);
+            this.frmConditionHasFlagTooltip.Name = "frmConditionHasFlagTooltip";
+            this.frmConditionHasFlagTooltip.Size = new System.Drawing.Size(624, 42);
+            this.frmConditionHasFlagTooltip.TabIndex = 0;
+            this.frmConditionHasFlagTooltip.Text = "Returns true if the source WorldObject has any of the specified flags.";
+            // 
+            // btnHasFlagFlags
+            // 
+            this.btnHasFlagFlags.Location = new System.Drawing.Point(100, 101);
+            this.btnHasFlagFlags.Name = "btnHasFlagFlags";
+            this.btnHasFlagFlags.Size = new System.Drawing.Size(536, 23);
+            this.btnHasFlagFlags.TabIndex = 8;
+            this.btnHasFlagFlags.Text = "-NONE-";
+            this.btnHasFlagFlags.UseVisualStyleBackColor = true;
+            this.btnHasFlagFlags.Click += new System.EventHandler(this.btnHasFlagFlags_Click);
+            // 
             // FormConditionFinder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(674, 395);
+            this.Controls.Add(this.frmConditionHasFlag);
             this.Controls.Add(this.btnDescribe);
             this.Controls.Add(this.frmConditionLocalTime);
             this.Controls.Add(this.frmConditionDbGuid);
@@ -2100,6 +2169,7 @@
             this.Controls.SetChildIndex(this.frmConditionDbGuid, 0);
             this.Controls.SetChildIndex(this.frmConditionLocalTime, 0);
             this.Controls.SetChildIndex(this.btnDescribe, 0);
+            this.Controls.SetChildIndex(this.frmConditionHasFlag, 0);
             this.frmConditionNot.ResumeLayout(false);
             this.frmConditionNot.PerformLayout();
             this.frmConditionAura.ResumeLayout(false);
@@ -2146,6 +2216,8 @@
             this.frmConditionDbGuid.PerformLayout();
             this.frmConditionLocalTime.ResumeLayout(false);
             this.frmConditionLocalTime.PerformLayout();
+            this.frmConditionHasFlag.ResumeLayout(false);
+            this.frmConditionHasFlag.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2328,5 +2400,11 @@
         private System.Windows.Forms.Label lblLocalTimeStartTime;
         private System.Windows.Forms.Label lblConditionLocalTimeTooltip;
         private System.Windows.Forms.Button btnDescribe;
+        private System.Windows.Forms.Panel frmConditionHasFlag;
+        private System.Windows.Forms.ComboBox cmbHasFlagFieldIndex;
+        private System.Windows.Forms.Label lblHasFlagFlags;
+        private System.Windows.Forms.Label lblHasFlagFieldIndex;
+        private System.Windows.Forms.Label frmConditionHasFlagTooltip;
+        private System.Windows.Forms.Button btnHasFlagFlags;
     }
 }
