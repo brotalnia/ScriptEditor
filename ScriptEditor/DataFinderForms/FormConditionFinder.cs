@@ -1579,7 +1579,7 @@ namespace ScriptEditor
         }
 
         // Generic function for setting script field to specified value;
-        private void SetScriptFieldFromValue(float fieldvalue, string fieldname)
+        private void SetScriptFieldFromValue(double fieldvalue, string fieldname)
         {
             if (lstData.SelectedItems.Count > 0)
             {
@@ -1602,8 +1602,8 @@ namespace ScriptEditor
         private void SetScriptFieldFromTextbox(TextBox ctrl, string fieldname)
         {
             // Get the value from the textbox.
-            float fieldValue;
-            float.TryParse(ctrl.Text, out fieldValue);
+            double fieldValue;
+            double.TryParse(ctrl.Text, out fieldValue);
 
             // Set the field value.
             SetScriptFieldFromValue(fieldValue, fieldname);

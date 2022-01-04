@@ -82,6 +82,66 @@ namespace ScriptEditor
             return result;
         }
 
+        public static DialogResult ShowFlagInputDialog(ref uint flags, string name, List<Tuple<string, uint>> valuesList)
+        {
+            System.Drawing.Size size = new System.Drawing.Size(10 + 120 + 120 + 10, 10 + 24 + (valuesList.Count / 2) * 24 + 30 + 10);
+            Form inputBox = new Form();
+
+            inputBox.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            inputBox.ClientSize = size;
+            inputBox.Text = name;
+            inputBox.MaximizeBox = false;
+            inputBox.MinimizeBox = false;
+            inputBox.StartPosition = FormStartPosition.CenterParent;
+
+            List<CheckBox> checkBoxes = new List<CheckBox>();
+            for (int i = 0; i < valuesList.Count; i++)
+            {
+                int x = (i & 1) != 0 ? 120 : 10;
+                int y = 10 + (i / 2) * 24;
+                CheckBox checkBox = new CheckBox();
+                checkBox.Location = new System.Drawing.Point(x, y);
+                checkBox.Text = valuesList[i].Item1;
+                checkBox.Tag = valuesList[i].Item2;
+                checkBox.AutoSize = true;
+                if ((flags & valuesList[i].Item2) != 0)
+                    checkBox.Checked = true;
+                checkBoxes.Add(checkBox);
+                inputBox.Controls.Add(checkBox);
+            }
+
+            Button okButton = new Button();
+            okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            okButton.Name = "okButton";
+            okButton.Size = new System.Drawing.Size(75, 23);
+            okButton.Text = "&OK";
+            okButton.Location = new System.Drawing.Point(inputBox.Size.Width / 2 - 5 - okButton.Size.Width, 10 + 24 + (valuesList.Count / 2) * 24 + 10);
+            inputBox.Controls.Add(okButton);
+
+            Button cancelButton = new Button();
+            cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            cancelButton.Name = "cancelButton";
+            cancelButton.Size = new System.Drawing.Size(75, 23);
+            cancelButton.Text = "&Cancel";
+            cancelButton.Location = new System.Drawing.Point(inputBox.Size.Width / 2 + 5, 10 + 24 + (valuesList.Count / 2) * 24 + 10);
+            inputBox.Controls.Add(cancelButton);
+
+            inputBox.AcceptButton = okButton;
+            inputBox.CancelButton = cancelButton;
+
+            DialogResult result = inputBox.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                flags = 0;
+                foreach (CheckBox checkBox in checkBoxes)
+                {
+                    if (checkBox.Checked)
+                        flags |= (uint)checkBox.Tag;
+                }
+            }
+            return result;
+        }
+
         // Shows a dialog with the query.
         public static DialogResult ShowSaveDialog(ref string query)
         {
@@ -125,6 +185,35 @@ namespace ScriptEditor
             DialogResult result = saveBox.ShowDialog();
             query = textBox.Text;
             return result;
+        }
+
+        public static string GetValueNameFromList(uint value, List<Tuple<string, uint>> valuesList)
+        {
+            if (valuesList != null)
+            {
+                foreach (var pair in valuesList)
+                    if (pair.Item2 == value)
+                        return pair.Item1;
+            }
+            
+            return value.ToString();
+        }
+
+        public static string GetStringFromFlags(uint flags, List<Tuple<string, uint>> valuesList = null)
+        {
+            string str = "";
+            for (uint i = 0; i < 32; i++)
+            {
+                uint flag = (uint)Math.Pow(2, i);
+                if ((flags & flag) != 0)
+                {
+                    if (str.Length > 0)
+                        str += ", ";
+
+                    str += GetValueNameFromList(flag, valuesList);
+                }
+            }
+            return str;
         }
     }
 }

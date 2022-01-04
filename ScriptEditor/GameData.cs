@@ -40,6 +40,13 @@ namespace ScriptEditor
         public static readonly List<ComboboxPair> GenderNamesList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> LootStateNamesList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> GOStateNamesList = new List<ComboboxPair>();
+        public static readonly List<Tuple<string, uint>> GameObjectFlagsList = new List<Tuple<string, uint>>();
+        public static readonly List<Tuple<string, uint>> GameObjectDynFlagsList = new List<Tuple<string, uint>>();
+        public static readonly List<Tuple<string, uint>> UnitFieldFlagsList = new List<Tuple<string, uint>>();
+        public static readonly List<Tuple<string, uint>> UnitDynamicFlagsList = new List<Tuple<string, uint>>();
+        public static readonly List<Tuple<string, uint>> UnitNpcFlagsList = new List<Tuple<string, uint>>();
+        public static readonly List<Tuple<string, uint>> PlayerFlagsList = new List<Tuple<string, uint>>();
+
         public static int FindIndexOfMap(uint id)
         {
             for (int i = 0; i < MapsList.Count; i++)
@@ -2271,6 +2278,100 @@ namespace ScriptEditor
             GOStateNamesList.Add(new ComboboxPair("Active", 0));
             GOStateNamesList.Add(new ComboboxPair("Ready", 1));
             GOStateNamesList.Add(new ComboboxPair("Alternative", 2));
+
+            // GameObject Flags from Update Fields
+            GameObjectFlagsList.Add(new Tuple<string, uint>("InUse", 1));
+            GameObjectFlagsList.Add(new Tuple<string, uint>("Locked", 2));
+            GameObjectFlagsList.Add(new Tuple<string, uint>("InteractCondition", 4));
+            GameObjectFlagsList.Add(new Tuple<string, uint>("Transport", 8));
+            GameObjectFlagsList.Add(new Tuple<string, uint>("NoInteract", 16));
+            GameObjectFlagsList.Add(new Tuple<string, uint>("NoDespawn", 32));
+            GameObjectFlagsList.Add(new Tuple<string, uint>("Triggered", 64));
+
+            // GameObject Dynamic Flags from Update Fields
+            GameObjectDynFlagsList.Add(new Tuple<string, uint>("Activate", 1));
+            GameObjectDynFlagsList.Add(new Tuple<string, uint>("Animate", 2));
+            GameObjectDynFlagsList.Add(new Tuple<string, uint>("NoInteract", 4));
+
+            // Unit Flags from Update Fields
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("Unk0", 1));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("Spawning", 2));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("DisableMove", 4));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("PlayerControlled", 8));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("PetRename", 16));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("PetAbandon", 32));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("Unk6", 64));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("NotAttackable1", 128));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("ImmuneToPlayer", 256));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("ImmuneToNPC", 512));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("Looting", 1024));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("PetInCombat", 2048));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("PvP", 4096));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("Silenced", 8192));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("Unk14", 16384));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("UseSwimAnimation", 32768));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("NotAttackable2", 65536));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("Pacified", 131072));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("Stunned", 262144));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("InCombat", 524288));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("TaxiFlight", 1048576));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("Disarmed", 2097152));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("Confused", 4194304));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("Fleeing", 8388608));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("Possessed", 16777216));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("NotSelectable", 33554432));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("Skinnable", 67108864));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("AurasVisible", 134217728));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("Unk28", 268435456));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("PreventAnim", 536870912));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("Sheathe", 1073741824));
+            UnitFieldFlagsList.Add(new Tuple<string, uint>("Immune", 2147483648));
+
+            // Unit Dynamic Flags from Update Fields
+            UnitDynamicFlagsList.Add(new Tuple<string, uint>("Lootable", 1));
+            UnitDynamicFlagsList.Add(new Tuple<string, uint>("TrackUnit", 2));
+            UnitDynamicFlagsList.Add(new Tuple<string, uint>("Tapped", 4));
+            UnitDynamicFlagsList.Add(new Tuple<string, uint>("TappedByPlayer", 8));
+            UnitDynamicFlagsList.Add(new Tuple<string, uint>("SpecialInfo", 16));
+            UnitDynamicFlagsList.Add(new Tuple<string, uint>("Dead", 32));
+
+            // Unit NPC Flags from Update Fields
+            UnitNpcFlagsList.Add(new Tuple<string, uint>("Gossip", 1));
+            UnitNpcFlagsList.Add(new Tuple<string, uint>("QuestGiver", 2));
+            UnitNpcFlagsList.Add(new Tuple<string, uint>("Vendor", 4));
+            UnitNpcFlagsList.Add(new Tuple<string, uint>("FlightMaster", 8));
+            UnitNpcFlagsList.Add(new Tuple<string, uint>("Trainer", 16));
+            UnitNpcFlagsList.Add(new Tuple<string, uint>("SpiritHealer", 32));
+            UnitNpcFlagsList.Add(new Tuple<string, uint>("SpiritGuid", 64));
+            UnitNpcFlagsList.Add(new Tuple<string, uint>("Innkeeper", 128));
+            UnitNpcFlagsList.Add(new Tuple<string, uint>("Banker", 256));
+            UnitNpcFlagsList.Add(new Tuple<string, uint>("Petitioner", 512));
+            UnitNpcFlagsList.Add(new Tuple<string, uint>("TabardDesigner", 1024));
+            UnitNpcFlagsList.Add(new Tuple<string, uint>("Battlemaster", 2048));
+            UnitNpcFlagsList.Add(new Tuple<string, uint>("Auctioneer", 4096));
+            UnitNpcFlagsList.Add(new Tuple<string, uint>("Stablemaster", 8192));
+            UnitNpcFlagsList.Add(new Tuple<string, uint>("Repair", 16384));
+
+            // Player Flags from Update Fields
+            PlayerFlagsList.Add(new Tuple<string, uint>("GroupLeader", 1));
+            PlayerFlagsList.Add(new Tuple<string, uint>("AFK", 2));
+            PlayerFlagsList.Add(new Tuple<string, uint>("DND", 4));
+            PlayerFlagsList.Add(new Tuple<string, uint>("GM", 8));
+            PlayerFlagsList.Add(new Tuple<string, uint>("Ghost", 16));
+            PlayerFlagsList.Add(new Tuple<string, uint>("Resting", 32));
+            PlayerFlagsList.Add(new Tuple<string, uint>("Unk7", 64));
+            PlayerFlagsList.Add(new Tuple<string, uint>("FFA", 128));
+            PlayerFlagsList.Add(new Tuple<string, uint>("ContestedPvP", 256));
+            PlayerFlagsList.Add(new Tuple<string, uint>("InPvP", 512));
+            PlayerFlagsList.Add(new Tuple<string, uint>("HideHelm", 1024));
+            PlayerFlagsList.Add(new Tuple<string, uint>("HideCloak", 2048));
+            PlayerFlagsList.Add(new Tuple<string, uint>("PartialPlayTime", 4096));
+            PlayerFlagsList.Add(new Tuple<string, uint>("NoPlayTime", 8192));
+            PlayerFlagsList.Add(new Tuple<string, uint>("Unk15", 16384));
+            PlayerFlagsList.Add(new Tuple<string, uint>("Unk16", 32768));
+            PlayerFlagsList.Add(new Tuple<string, uint>("Sanctuary", 65536));
+            PlayerFlagsList.Add(new Tuple<string, uint>("TaxiBenchmark", 131072));
+            PlayerFlagsList.Add(new Tuple<string, uint>("PvPTimer", 262144));
         }
     }
     public struct BroadcastText

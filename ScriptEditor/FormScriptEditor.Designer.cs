@@ -38,6 +38,8 @@
             this.btnFind = new System.Windows.Forms.Button();
             this.txtScriptId = new System.Windows.Forms.TextBox();
             this.grpGeneral = new System.Windows.Forms.GroupBox();
+            this.lblPriority = new System.Windows.Forms.Label();
+            this.txtCommandPriority = new System.Windows.Forms.TextBox();
             this.lblCommandCondition = new System.Windows.Forms.Label();
             this.btnCommandCondition = new System.Windows.Forms.Button();
             this.lblComment = new System.Windows.Forms.Label();
@@ -286,36 +288,8 @@
             this.lblSetRunMode = new System.Windows.Forms.Label();
             this.lblSetRunTooltip = new System.Windows.Forms.Label();
             this.frmCommandModifyFlags = new System.Windows.Forms.Panel();
-            this.chkModifyFlags536870912 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags268435456 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags134217728 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags67108864 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags33554432 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags16777216 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags8388608 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags4194304 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags2097152 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags1048576 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags524288 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags262144 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags131072 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags65536 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags32768 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags16384 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags8192 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags4096 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags2048 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags1024 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags512 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags256 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags128 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags64 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags32 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags16 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags8 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags4 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags2 = new System.Windows.Forms.CheckBox();
-            this.chkModifyFlags1 = new System.Windows.Forms.CheckBox();
+            this.btnModifyFlagsFlags = new System.Windows.Forms.Button();
+            this.lblModifyFlagsFlags = new System.Windows.Forms.Label();
             this.cmbModifyFlagsMode = new System.Windows.Forms.ComboBox();
             this.lblModifyFlagsMode = new System.Windows.Forms.Label();
             this.cmbModifyFlagsFieldId = new System.Windows.Forms.ComboBox();
@@ -588,8 +562,6 @@
             this.txtJoinCreatureGroupAngle = new System.Windows.Forms.TextBox();
             this.txtJoinCreatureGroupDistance = new System.Windows.Forms.TextBox();
             this.lblJoinCreatureGroupTooltip = new System.Windows.Forms.Label();
-            this.txtCommandPriority = new System.Windows.Forms.TextBox();
-            this.lblPriority = new System.Windows.Forms.Label();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -755,6 +727,23 @@
             this.grpGeneral.TabIndex = 5;
             this.grpGeneral.TabStop = false;
             this.grpGeneral.Text = "Command Data";
+            // 
+            // lblPriority
+            // 
+            this.lblPriority.AutoSize = true;
+            this.lblPriority.Location = new System.Drawing.Point(88, 26);
+            this.lblPriority.Name = "lblPriority";
+            this.lblPriority.Size = new System.Drawing.Size(41, 13);
+            this.lblPriority.TabIndex = 16;
+            this.lblPriority.Text = "Priority:";
+            // 
+            // txtCommandPriority
+            // 
+            this.txtCommandPriority.Location = new System.Drawing.Point(91, 42);
+            this.txtCommandPriority.Name = "txtCommandPriority";
+            this.txtCommandPriority.Size = new System.Drawing.Size(65, 20);
+            this.txtCommandPriority.TabIndex = 15;
+            this.txtCommandPriority.Leave += new System.EventHandler(this.txtCommandPriority_Leave);
             // 
             // lblCommandCondition
             // 
@@ -3330,36 +3319,8 @@
             // frmCommandModifyFlags
             // 
             this.frmCommandModifyFlags.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags536870912);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags268435456);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags134217728);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags67108864);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags33554432);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags16777216);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags8388608);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags4194304);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags2097152);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags1048576);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags524288);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags262144);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags131072);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags65536);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags32768);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags16384);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags8192);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags4096);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags2048);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags1024);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags512);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags256);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags128);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags64);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags32);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags16);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags8);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags4);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags2);
-            this.frmCommandModifyFlags.Controls.Add(this.chkModifyFlags1);
+            this.frmCommandModifyFlags.Controls.Add(this.btnModifyFlagsFlags);
+            this.frmCommandModifyFlags.Controls.Add(this.lblModifyFlagsFlags);
             this.frmCommandModifyFlags.Controls.Add(this.cmbModifyFlagsMode);
             this.frmCommandModifyFlags.Controls.Add(this.lblModifyFlagsMode);
             this.frmCommandModifyFlags.Controls.Add(this.cmbModifyFlagsFieldId);
@@ -3371,335 +3332,24 @@
             this.frmCommandModifyFlags.TabIndex = 31;
             this.frmCommandModifyFlags.Visible = false;
             // 
-            // chkModifyFlags536870912
+            // btnModifyFlagsFlags
             // 
-            this.chkModifyFlags536870912.AutoSize = true;
-            this.chkModifyFlags536870912.Location = new System.Drawing.Point(327, 303);
-            this.chkModifyFlags536870912.Name = "chkModifyFlags536870912";
-            this.chkModifyFlags536870912.Size = new System.Drawing.Size(141, 17);
-            this.chkModifyFlags536870912.TabIndex = 34;
-            this.chkModifyFlags536870912.Text = "CHK_FLAG_536870912";
-            this.chkModifyFlags536870912.UseVisualStyleBackColor = true;
-            this.chkModifyFlags536870912.CheckedChanged += new System.EventHandler(this.chkModifyFlags536870912_CheckedChanged);
+            this.btnModifyFlagsFlags.Location = new System.Drawing.Point(72, 87);
+            this.btnModifyFlagsFlags.Name = "btnModifyFlagsFlags";
+            this.btnModifyFlagsFlags.Size = new System.Drawing.Size(401, 23);
+            this.btnModifyFlagsFlags.TabIndex = 7;
+            this.btnModifyFlagsFlags.Text = "-NONE-";
+            this.btnModifyFlagsFlags.UseVisualStyleBackColor = true;
+            this.btnModifyFlagsFlags.Click += new System.EventHandler(this.btnModifyFlagsFlags_Click);
             // 
-            // chkModifyFlags268435456
+            // lblModifyFlagsFlags
             // 
-            this.chkModifyFlags268435456.AutoSize = true;
-            this.chkModifyFlags268435456.Location = new System.Drawing.Point(327, 279);
-            this.chkModifyFlags268435456.Name = "chkModifyFlags268435456";
-            this.chkModifyFlags268435456.Size = new System.Drawing.Size(141, 17);
-            this.chkModifyFlags268435456.TabIndex = 33;
-            this.chkModifyFlags268435456.Text = "CHK_FLAG_268435456";
-            this.chkModifyFlags268435456.UseVisualStyleBackColor = true;
-            this.chkModifyFlags268435456.CheckedChanged += new System.EventHandler(this.chkModifyFlags268435456_CheckedChanged);
-            // 
-            // chkModifyFlags134217728
-            // 
-            this.chkModifyFlags134217728.AutoSize = true;
-            this.chkModifyFlags134217728.Location = new System.Drawing.Point(327, 255);
-            this.chkModifyFlags134217728.Name = "chkModifyFlags134217728";
-            this.chkModifyFlags134217728.Size = new System.Drawing.Size(141, 17);
-            this.chkModifyFlags134217728.TabIndex = 32;
-            this.chkModifyFlags134217728.Text = "CHK_FLAG_134217728";
-            this.chkModifyFlags134217728.UseVisualStyleBackColor = true;
-            this.chkModifyFlags134217728.CheckedChanged += new System.EventHandler(this.chkModifyFlags134217728_CheckedChanged);
-            // 
-            // chkModifyFlags67108864
-            // 
-            this.chkModifyFlags67108864.AutoSize = true;
-            this.chkModifyFlags67108864.Location = new System.Drawing.Point(327, 231);
-            this.chkModifyFlags67108864.Name = "chkModifyFlags67108864";
-            this.chkModifyFlags67108864.Size = new System.Drawing.Size(135, 17);
-            this.chkModifyFlags67108864.TabIndex = 31;
-            this.chkModifyFlags67108864.Text = "CHK_FLAG_67108864";
-            this.chkModifyFlags67108864.UseVisualStyleBackColor = true;
-            this.chkModifyFlags67108864.CheckedChanged += new System.EventHandler(this.chkModifyFlags67108864_CheckedChanged);
-            // 
-            // chkModifyFlags33554432
-            // 
-            this.chkModifyFlags33554432.AutoSize = true;
-            this.chkModifyFlags33554432.Location = new System.Drawing.Point(327, 207);
-            this.chkModifyFlags33554432.Name = "chkModifyFlags33554432";
-            this.chkModifyFlags33554432.Size = new System.Drawing.Size(135, 17);
-            this.chkModifyFlags33554432.TabIndex = 30;
-            this.chkModifyFlags33554432.Text = "CHK_FLAG_33554432";
-            this.chkModifyFlags33554432.UseVisualStyleBackColor = true;
-            this.chkModifyFlags33554432.CheckedChanged += new System.EventHandler(this.chkModifyFlags33554432_CheckedChanged);
-            // 
-            // chkModifyFlags16777216
-            // 
-            this.chkModifyFlags16777216.AutoSize = true;
-            this.chkModifyFlags16777216.Location = new System.Drawing.Point(327, 183);
-            this.chkModifyFlags16777216.Name = "chkModifyFlags16777216";
-            this.chkModifyFlags16777216.Size = new System.Drawing.Size(135, 17);
-            this.chkModifyFlags16777216.TabIndex = 29;
-            this.chkModifyFlags16777216.Text = "CHK_FLAG_16777216";
-            this.chkModifyFlags16777216.UseVisualStyleBackColor = true;
-            this.chkModifyFlags16777216.CheckedChanged += new System.EventHandler(this.chkModifyFlags16777216_CheckedChanged);
-            // 
-            // chkModifyFlags8388608
-            // 
-            this.chkModifyFlags8388608.AutoSize = true;
-            this.chkModifyFlags8388608.Location = new System.Drawing.Point(327, 159);
-            this.chkModifyFlags8388608.Name = "chkModifyFlags8388608";
-            this.chkModifyFlags8388608.Size = new System.Drawing.Size(129, 17);
-            this.chkModifyFlags8388608.TabIndex = 28;
-            this.chkModifyFlags8388608.Text = "CHK_FLAG_8388608";
-            this.chkModifyFlags8388608.UseVisualStyleBackColor = true;
-            this.chkModifyFlags8388608.CheckedChanged += new System.EventHandler(this.chkModifyFlags8388608_CheckedChanged);
-            // 
-            // chkModifyFlags4194304
-            // 
-            this.chkModifyFlags4194304.AutoSize = true;
-            this.chkModifyFlags4194304.Location = new System.Drawing.Point(327, 135);
-            this.chkModifyFlags4194304.Name = "chkModifyFlags4194304";
-            this.chkModifyFlags4194304.Size = new System.Drawing.Size(129, 17);
-            this.chkModifyFlags4194304.TabIndex = 27;
-            this.chkModifyFlags4194304.Text = "CHK_FLAG_4194304";
-            this.chkModifyFlags4194304.UseVisualStyleBackColor = true;
-            this.chkModifyFlags4194304.CheckedChanged += new System.EventHandler(this.chkModifyFlags4194304_CheckedChanged);
-            // 
-            // chkModifyFlags2097152
-            // 
-            this.chkModifyFlags2097152.AutoSize = true;
-            this.chkModifyFlags2097152.Location = new System.Drawing.Point(327, 111);
-            this.chkModifyFlags2097152.Name = "chkModifyFlags2097152";
-            this.chkModifyFlags2097152.Size = new System.Drawing.Size(129, 17);
-            this.chkModifyFlags2097152.TabIndex = 26;
-            this.chkModifyFlags2097152.Text = "CHK_FLAG_2097152";
-            this.chkModifyFlags2097152.UseVisualStyleBackColor = true;
-            this.chkModifyFlags2097152.CheckedChanged += new System.EventHandler(this.chkModifyFlags2097152_CheckedChanged);
-            // 
-            // chkModifyFlags1048576
-            // 
-            this.chkModifyFlags1048576.AutoSize = true;
-            this.chkModifyFlags1048576.Location = new System.Drawing.Point(327, 87);
-            this.chkModifyFlags1048576.Name = "chkModifyFlags1048576";
-            this.chkModifyFlags1048576.Size = new System.Drawing.Size(129, 17);
-            this.chkModifyFlags1048576.TabIndex = 25;
-            this.chkModifyFlags1048576.Text = "CHK_FLAG_1048576";
-            this.chkModifyFlags1048576.UseVisualStyleBackColor = true;
-            this.chkModifyFlags1048576.CheckedChanged += new System.EventHandler(this.chkModifyFlags1048576_CheckedChanged);
-            // 
-            // chkModifyFlags524288
-            // 
-            this.chkModifyFlags524288.AutoSize = true;
-            this.chkModifyFlags524288.Location = new System.Drawing.Point(177, 303);
-            this.chkModifyFlags524288.Name = "chkModifyFlags524288";
-            this.chkModifyFlags524288.Size = new System.Drawing.Size(123, 17);
-            this.chkModifyFlags524288.TabIndex = 24;
-            this.chkModifyFlags524288.Text = "CHK_FLAG_524288";
-            this.chkModifyFlags524288.UseVisualStyleBackColor = true;
-            this.chkModifyFlags524288.CheckedChanged += new System.EventHandler(this.chkModifyFlags524288_CheckedChanged);
-            // 
-            // chkModifyFlags262144
-            // 
-            this.chkModifyFlags262144.AutoSize = true;
-            this.chkModifyFlags262144.Location = new System.Drawing.Point(177, 279);
-            this.chkModifyFlags262144.Name = "chkModifyFlags262144";
-            this.chkModifyFlags262144.Size = new System.Drawing.Size(123, 17);
-            this.chkModifyFlags262144.TabIndex = 23;
-            this.chkModifyFlags262144.Text = "CHK_FLAG_262144";
-            this.chkModifyFlags262144.UseVisualStyleBackColor = true;
-            this.chkModifyFlags262144.CheckedChanged += new System.EventHandler(this.chkModifyFlags262144_CheckedChanged);
-            // 
-            // chkModifyFlags131072
-            // 
-            this.chkModifyFlags131072.AutoSize = true;
-            this.chkModifyFlags131072.Location = new System.Drawing.Point(177, 255);
-            this.chkModifyFlags131072.Name = "chkModifyFlags131072";
-            this.chkModifyFlags131072.Size = new System.Drawing.Size(123, 17);
-            this.chkModifyFlags131072.TabIndex = 22;
-            this.chkModifyFlags131072.Text = "CHK_FLAG_131072";
-            this.chkModifyFlags131072.UseVisualStyleBackColor = true;
-            this.chkModifyFlags131072.CheckedChanged += new System.EventHandler(this.chkModifyFlags131072_CheckedChanged);
-            // 
-            // chkModifyFlags65536
-            // 
-            this.chkModifyFlags65536.AutoSize = true;
-            this.chkModifyFlags65536.Location = new System.Drawing.Point(177, 231);
-            this.chkModifyFlags65536.Name = "chkModifyFlags65536";
-            this.chkModifyFlags65536.Size = new System.Drawing.Size(117, 17);
-            this.chkModifyFlags65536.TabIndex = 21;
-            this.chkModifyFlags65536.Text = "CHK_FLAG_65536";
-            this.chkModifyFlags65536.UseVisualStyleBackColor = true;
-            this.chkModifyFlags65536.CheckedChanged += new System.EventHandler(this.chkModifyFlags65536_CheckedChanged);
-            // 
-            // chkModifyFlags32768
-            // 
-            this.chkModifyFlags32768.AutoSize = true;
-            this.chkModifyFlags32768.Location = new System.Drawing.Point(177, 207);
-            this.chkModifyFlags32768.Name = "chkModifyFlags32768";
-            this.chkModifyFlags32768.Size = new System.Drawing.Size(117, 17);
-            this.chkModifyFlags32768.TabIndex = 20;
-            this.chkModifyFlags32768.Text = "CHK_FLAG_32768";
-            this.chkModifyFlags32768.UseVisualStyleBackColor = true;
-            this.chkModifyFlags32768.CheckedChanged += new System.EventHandler(this.chkModifyFlags32768_CheckedChanged);
-            // 
-            // chkModifyFlags16384
-            // 
-            this.chkModifyFlags16384.AutoSize = true;
-            this.chkModifyFlags16384.Location = new System.Drawing.Point(177, 183);
-            this.chkModifyFlags16384.Name = "chkModifyFlags16384";
-            this.chkModifyFlags16384.Size = new System.Drawing.Size(117, 17);
-            this.chkModifyFlags16384.TabIndex = 19;
-            this.chkModifyFlags16384.Text = "CHK_FLAG_16384";
-            this.chkModifyFlags16384.UseVisualStyleBackColor = true;
-            this.chkModifyFlags16384.CheckedChanged += new System.EventHandler(this.chkModifyFlags16384_CheckedChanged);
-            // 
-            // chkModifyFlags8192
-            // 
-            this.chkModifyFlags8192.AutoSize = true;
-            this.chkModifyFlags8192.Location = new System.Drawing.Point(177, 159);
-            this.chkModifyFlags8192.Name = "chkModifyFlags8192";
-            this.chkModifyFlags8192.Size = new System.Drawing.Size(111, 17);
-            this.chkModifyFlags8192.TabIndex = 18;
-            this.chkModifyFlags8192.Text = "CHK_FLAG_8192";
-            this.chkModifyFlags8192.UseVisualStyleBackColor = true;
-            this.chkModifyFlags8192.CheckedChanged += new System.EventHandler(this.chkModifyFlags8192_CheckedChanged);
-            // 
-            // chkModifyFlags4096
-            // 
-            this.chkModifyFlags4096.AutoSize = true;
-            this.chkModifyFlags4096.Location = new System.Drawing.Point(177, 135);
-            this.chkModifyFlags4096.Name = "chkModifyFlags4096";
-            this.chkModifyFlags4096.Size = new System.Drawing.Size(111, 17);
-            this.chkModifyFlags4096.TabIndex = 17;
-            this.chkModifyFlags4096.Text = "CHK_FLAG_4096";
-            this.chkModifyFlags4096.UseVisualStyleBackColor = true;
-            this.chkModifyFlags4096.CheckedChanged += new System.EventHandler(this.chkModifyFlags4096_CheckedChanged);
-            // 
-            // chkModifyFlags2048
-            // 
-            this.chkModifyFlags2048.AutoSize = true;
-            this.chkModifyFlags2048.Location = new System.Drawing.Point(177, 111);
-            this.chkModifyFlags2048.Name = "chkModifyFlags2048";
-            this.chkModifyFlags2048.Size = new System.Drawing.Size(111, 17);
-            this.chkModifyFlags2048.TabIndex = 16;
-            this.chkModifyFlags2048.Text = "CHK_FLAG_2048";
-            this.chkModifyFlags2048.UseVisualStyleBackColor = true;
-            this.chkModifyFlags2048.CheckedChanged += new System.EventHandler(this.chkModifyFlags2048_CheckedChanged);
-            // 
-            // chkModifyFlags1024
-            // 
-            this.chkModifyFlags1024.AutoSize = true;
-            this.chkModifyFlags1024.Location = new System.Drawing.Point(177, 87);
-            this.chkModifyFlags1024.Name = "chkModifyFlags1024";
-            this.chkModifyFlags1024.Size = new System.Drawing.Size(111, 17);
-            this.chkModifyFlags1024.TabIndex = 15;
-            this.chkModifyFlags1024.Text = "CHK_FLAG_1024";
-            this.chkModifyFlags1024.UseVisualStyleBackColor = true;
-            this.chkModifyFlags1024.CheckedChanged += new System.EventHandler(this.chkModifyFlags1024_CheckedChanged);
-            // 
-            // chkModifyFlags512
-            // 
-            this.chkModifyFlags512.AutoSize = true;
-            this.chkModifyFlags512.Location = new System.Drawing.Point(26, 303);
-            this.chkModifyFlags512.Name = "chkModifyFlags512";
-            this.chkModifyFlags512.Size = new System.Drawing.Size(105, 17);
-            this.chkModifyFlags512.TabIndex = 14;
-            this.chkModifyFlags512.Text = "CHK_FLAG_512";
-            this.chkModifyFlags512.UseVisualStyleBackColor = true;
-            this.chkModifyFlags512.CheckedChanged += new System.EventHandler(this.chkModifyFlags512_CheckedChanged);
-            // 
-            // chkModifyFlags256
-            // 
-            this.chkModifyFlags256.AutoSize = true;
-            this.chkModifyFlags256.Location = new System.Drawing.Point(27, 279);
-            this.chkModifyFlags256.Name = "chkModifyFlags256";
-            this.chkModifyFlags256.Size = new System.Drawing.Size(105, 17);
-            this.chkModifyFlags256.TabIndex = 13;
-            this.chkModifyFlags256.Text = "CHK_FLAG_256";
-            this.chkModifyFlags256.UseVisualStyleBackColor = true;
-            this.chkModifyFlags256.CheckedChanged += new System.EventHandler(this.chkModifyFlags256_CheckedChanged);
-            // 
-            // chkModifyFlags128
-            // 
-            this.chkModifyFlags128.AutoSize = true;
-            this.chkModifyFlags128.Location = new System.Drawing.Point(27, 255);
-            this.chkModifyFlags128.Name = "chkModifyFlags128";
-            this.chkModifyFlags128.Size = new System.Drawing.Size(105, 17);
-            this.chkModifyFlags128.TabIndex = 12;
-            this.chkModifyFlags128.Text = "CHK_FLAG_128";
-            this.chkModifyFlags128.UseVisualStyleBackColor = true;
-            this.chkModifyFlags128.CheckedChanged += new System.EventHandler(this.chkModifyFlags128_CheckedChanged);
-            // 
-            // chkModifyFlags64
-            // 
-            this.chkModifyFlags64.AutoSize = true;
-            this.chkModifyFlags64.Location = new System.Drawing.Point(27, 231);
-            this.chkModifyFlags64.Name = "chkModifyFlags64";
-            this.chkModifyFlags64.Size = new System.Drawing.Size(99, 17);
-            this.chkModifyFlags64.TabIndex = 11;
-            this.chkModifyFlags64.Text = "CHK_FLAG_64";
-            this.chkModifyFlags64.UseVisualStyleBackColor = true;
-            this.chkModifyFlags64.CheckedChanged += new System.EventHandler(this.chkModifyFlags64_CheckedChanged);
-            // 
-            // chkModifyFlags32
-            // 
-            this.chkModifyFlags32.AutoSize = true;
-            this.chkModifyFlags32.Location = new System.Drawing.Point(27, 207);
-            this.chkModifyFlags32.Name = "chkModifyFlags32";
-            this.chkModifyFlags32.Size = new System.Drawing.Size(99, 17);
-            this.chkModifyFlags32.TabIndex = 10;
-            this.chkModifyFlags32.Text = "CHK_FLAG_32";
-            this.chkModifyFlags32.UseVisualStyleBackColor = true;
-            this.chkModifyFlags32.CheckedChanged += new System.EventHandler(this.chkModifyFlags32_CheckedChanged);
-            // 
-            // chkModifyFlags16
-            // 
-            this.chkModifyFlags16.AutoSize = true;
-            this.chkModifyFlags16.Location = new System.Drawing.Point(27, 183);
-            this.chkModifyFlags16.Name = "chkModifyFlags16";
-            this.chkModifyFlags16.Size = new System.Drawing.Size(99, 17);
-            this.chkModifyFlags16.TabIndex = 9;
-            this.chkModifyFlags16.Text = "CHK_FLAG_16";
-            this.chkModifyFlags16.UseVisualStyleBackColor = true;
-            this.chkModifyFlags16.CheckedChanged += new System.EventHandler(this.chkModifyFlags16_CheckedChanged);
-            // 
-            // chkModifyFlags8
-            // 
-            this.chkModifyFlags8.AutoSize = true;
-            this.chkModifyFlags8.Location = new System.Drawing.Point(27, 159);
-            this.chkModifyFlags8.Name = "chkModifyFlags8";
-            this.chkModifyFlags8.Size = new System.Drawing.Size(93, 17);
-            this.chkModifyFlags8.TabIndex = 8;
-            this.chkModifyFlags8.Text = "CHK_FLAG_8";
-            this.chkModifyFlags8.UseVisualStyleBackColor = true;
-            this.chkModifyFlags8.CheckedChanged += new System.EventHandler(this.chkModifyFlags8_CheckedChanged);
-            // 
-            // chkModifyFlags4
-            // 
-            this.chkModifyFlags4.AutoSize = true;
-            this.chkModifyFlags4.Location = new System.Drawing.Point(27, 135);
-            this.chkModifyFlags4.Name = "chkModifyFlags4";
-            this.chkModifyFlags4.Size = new System.Drawing.Size(93, 17);
-            this.chkModifyFlags4.TabIndex = 7;
-            this.chkModifyFlags4.Text = "CHK_FLAG_4";
-            this.chkModifyFlags4.UseVisualStyleBackColor = true;
-            this.chkModifyFlags4.CheckedChanged += new System.EventHandler(this.chkModifyFlags4_CheckedChanged);
-            // 
-            // chkModifyFlags2
-            // 
-            this.chkModifyFlags2.AutoSize = true;
-            this.chkModifyFlags2.Location = new System.Drawing.Point(27, 111);
-            this.chkModifyFlags2.Name = "chkModifyFlags2";
-            this.chkModifyFlags2.Size = new System.Drawing.Size(93, 17);
-            this.chkModifyFlags2.TabIndex = 6;
-            this.chkModifyFlags2.Text = "CHK_FLAG_2";
-            this.chkModifyFlags2.UseVisualStyleBackColor = true;
-            this.chkModifyFlags2.CheckedChanged += new System.EventHandler(this.chkModifyFlags2_CheckedChanged);
-            // 
-            // chkModifyFlags1
-            // 
-            this.chkModifyFlags1.AutoSize = true;
-            this.chkModifyFlags1.Location = new System.Drawing.Point(27, 87);
-            this.chkModifyFlags1.Name = "chkModifyFlags1";
-            this.chkModifyFlags1.Size = new System.Drawing.Size(93, 17);
-            this.chkModifyFlags1.TabIndex = 5;
-            this.chkModifyFlags1.Text = "CHK_FLAG_1";
-            this.chkModifyFlags1.UseVisualStyleBackColor = true;
-            this.chkModifyFlags1.CheckedChanged += new System.EventHandler(this.chkModifyFlags1_CheckedChanged);
+            this.lblModifyFlagsFlags.AutoSize = true;
+            this.lblModifyFlagsFlags.Location = new System.Drawing.Point(35, 90);
+            this.lblModifyFlagsFlags.Name = "lblModifyFlagsFlags";
+            this.lblModifyFlagsFlags.Size = new System.Drawing.Size(35, 13);
+            this.lblModifyFlagsFlags.TabIndex = 6;
+            this.lblModifyFlagsFlags.Text = "Flags:";
             // 
             // cmbModifyFlagsMode
             // 
@@ -3709,7 +3359,7 @@
             "Toggle Flags",
             "Add Flags",
             "Remove Flags"});
-            this.cmbModifyFlagsMode.Location = new System.Drawing.Point(303, 51);
+            this.cmbModifyFlagsMode.Location = new System.Drawing.Point(303, 55);
             this.cmbModifyFlagsMode.Name = "cmbModifyFlagsMode";
             this.cmbModifyFlagsMode.Size = new System.Drawing.Size(169, 21);
             this.cmbModifyFlagsMode.TabIndex = 4;
@@ -3718,7 +3368,7 @@
             // lblModifyFlagsMode
             // 
             this.lblModifyFlagsMode.AutoSize = true;
-            this.lblModifyFlagsMode.Location = new System.Drawing.Point(262, 54);
+            this.lblModifyFlagsMode.Location = new System.Drawing.Point(262, 58);
             this.lblModifyFlagsMode.Name = "lblModifyFlagsMode";
             this.lblModifyFlagsMode.Size = new System.Drawing.Size(37, 13);
             this.lblModifyFlagsMode.TabIndex = 3;
@@ -3728,7 +3378,7 @@
             // 
             this.cmbModifyFlagsFieldId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbModifyFlagsFieldId.FormattingEnabled = true;
-            this.cmbModifyFlagsFieldId.Location = new System.Drawing.Point(72, 51);
+            this.cmbModifyFlagsFieldId.Location = new System.Drawing.Point(72, 55);
             this.cmbModifyFlagsFieldId.Name = "cmbModifyFlagsFieldId";
             this.cmbModifyFlagsFieldId.Size = new System.Drawing.Size(184, 21);
             this.cmbModifyFlagsFieldId.TabIndex = 2;
@@ -3737,7 +3387,7 @@
             // lblModifyFlagsField
             // 
             this.lblModifyFlagsField.AutoSize = true;
-            this.lblModifyFlagsField.Location = new System.Drawing.Point(26, 54);
+            this.lblModifyFlagsField.Location = new System.Drawing.Point(26, 58);
             this.lblModifyFlagsField.Name = "lblModifyFlagsField";
             this.lblModifyFlagsField.Size = new System.Drawing.Size(44, 13);
             this.lblModifyFlagsField.TabIndex = 1;
@@ -6491,23 +6141,6 @@
             this.lblJoinCreatureGroupTooltip.Text = "The source Creature joins the target Creature\'s group. If the target is not in a " +
     "group, then a new group is created with the target as leader.";
             // 
-            // txtCommandPriority
-            // 
-            this.txtCommandPriority.Location = new System.Drawing.Point(91, 42);
-            this.txtCommandPriority.Name = "txtCommandPriority";
-            this.txtCommandPriority.Size = new System.Drawing.Size(65, 20);
-            this.txtCommandPriority.TabIndex = 15;
-            this.txtCommandPriority.Leave += new System.EventHandler(this.txtCommandPriority_Leave);
-            // 
-            // lblPriority
-            // 
-            this.lblPriority.AutoSize = true;
-            this.lblPriority.Location = new System.Drawing.Point(88, 26);
-            this.lblPriority.Name = "lblPriority";
-            this.lblPriority.Size = new System.Drawing.Size(41, 13);
-            this.lblPriority.TabIndex = 16;
-            this.lblPriority.Text = "Priority:";
-            // 
             // FormScriptEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -6937,36 +6570,6 @@
         private System.Windows.Forms.Panel frmCommandModifyFlags;
         private System.Windows.Forms.Label lblModifyFlagsTooltip;
         private System.Windows.Forms.Label lblModifyFlagsField;
-        private System.Windows.Forms.CheckBox chkModifyFlags536870912;
-        private System.Windows.Forms.CheckBox chkModifyFlags268435456;
-        private System.Windows.Forms.CheckBox chkModifyFlags134217728;
-        private System.Windows.Forms.CheckBox chkModifyFlags67108864;
-        private System.Windows.Forms.CheckBox chkModifyFlags33554432;
-        private System.Windows.Forms.CheckBox chkModifyFlags16777216;
-        private System.Windows.Forms.CheckBox chkModifyFlags8388608;
-        private System.Windows.Forms.CheckBox chkModifyFlags4194304;
-        private System.Windows.Forms.CheckBox chkModifyFlags2097152;
-        private System.Windows.Forms.CheckBox chkModifyFlags1048576;
-        private System.Windows.Forms.CheckBox chkModifyFlags524288;
-        private System.Windows.Forms.CheckBox chkModifyFlags262144;
-        private System.Windows.Forms.CheckBox chkModifyFlags131072;
-        private System.Windows.Forms.CheckBox chkModifyFlags65536;
-        private System.Windows.Forms.CheckBox chkModifyFlags32768;
-        private System.Windows.Forms.CheckBox chkModifyFlags16384;
-        private System.Windows.Forms.CheckBox chkModifyFlags8192;
-        private System.Windows.Forms.CheckBox chkModifyFlags4096;
-        private System.Windows.Forms.CheckBox chkModifyFlags2048;
-        private System.Windows.Forms.CheckBox chkModifyFlags1024;
-        private System.Windows.Forms.CheckBox chkModifyFlags512;
-        private System.Windows.Forms.CheckBox chkModifyFlags256;
-        private System.Windows.Forms.CheckBox chkModifyFlags128;
-        private System.Windows.Forms.CheckBox chkModifyFlags64;
-        private System.Windows.Forms.CheckBox chkModifyFlags32;
-        private System.Windows.Forms.CheckBox chkModifyFlags16;
-        private System.Windows.Forms.CheckBox chkModifyFlags8;
-        private System.Windows.Forms.CheckBox chkModifyFlags4;
-        private System.Windows.Forms.CheckBox chkModifyFlags2;
-        private System.Windows.Forms.CheckBox chkModifyFlags1;
         private System.Windows.Forms.ComboBox cmbModifyFlagsMode;
         private System.Windows.Forms.Label lblModifyFlagsMode;
         private System.Windows.Forms.ComboBox cmbModifyFlagsFieldId;
@@ -7277,6 +6880,8 @@
         private System.Windows.Forms.Label lblEmoteTargeted;
         private System.Windows.Forms.Label lblPriority;
         private System.Windows.Forms.TextBox txtCommandPriority;
+        private System.Windows.Forms.Button btnModifyFlagsFlags;
+        private System.Windows.Forms.Label lblModifyFlagsFlags;
     }
 }
 

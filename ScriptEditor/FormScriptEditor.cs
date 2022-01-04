@@ -552,7 +552,7 @@ namespace ScriptEditor
             // Modify Flags (4)
             cmbModifyFlagsFieldId.SelectedIndex = 0;
             cmbModifyFlagsMode.SelectedIndex = 0;
-            Command4ResetAllCheckboxes();
+            btnModifyFlagsFlags.Text = "-NONE-";
             frmCommandModifyFlags.Visible = false;
 
             // Interrupt Casts (5)
@@ -1024,8 +1024,9 @@ namespace ScriptEditor
                 {
                     cmbModifyFlagsFieldId.SelectedIndex = GameData.FindIndexOfFlagsField(selectedAction.Datalong);
                     cmbModifyFlagsMode.SelectedIndex = (int)selectedAction.Datalong3;
-                    Command4SetCheckboxesBasedOnFlags(selectedAction.Datalong2);
-                    Command4SetCheckboxNamesBasedOnFieldIndex(cmbModifyFlagsFieldId.SelectedIndex);
+                    List<Tuple<string, uint>> valuesList = GetValuesListFromModifyFlagsComboBox();
+                    if (valuesList != null && selectedAction.Datalong2 != 0)
+                        btnModifyFlagsFlags.Text = Helpers.GetStringFromFlags(selectedAction.Datalong2, valuesList);
                     frmCommandModifyFlags.Visible = true;
                     break;
                 }
@@ -2283,7 +2284,7 @@ namespace ScriptEditor
         private void btnCommandCondition_Click(object sender, EventArgs e)
         {
             FormConditionFinder frm = new FormConditionFinder();
-            if (frm.ShowDialog(GetScriptFieldValue("ConditionId")) == System.Windows.Forms.DialogResult.OK)
+            if (frm.ShowDialog(GetScriptFieldValue<int>("ConditionId")) == System.Windows.Forms.DialogResult.OK)
             {
                 int returnId = frm.ReturnValue;
 
@@ -2313,7 +2314,7 @@ namespace ScriptEditor
         }
 
         // Generic function for setting script field to specified value;
-        private void SetScriptFieldFromValue(float fieldvalue, string fieldname)
+        private void SetScriptFieldFromValue(double fieldvalue, string fieldname)
         {
             if (lstActions.SelectedItems.Count > 0)
             {
@@ -2334,8 +2335,8 @@ namespace ScriptEditor
         private void SetScriptFieldFromTextbox(TextBox ctrl, string fieldname)
         {
             // Get the value from the textbox.
-            float fieldValue;
-            float.TryParse(ctrl.Text, out fieldValue);
+            double fieldValue;
+            double.TryParse(ctrl.Text, out fieldValue);
 
             // Set the field value.
             SetScriptFieldFromValue(fieldValue, fieldname);
@@ -2384,7 +2385,7 @@ namespace ScriptEditor
         private void SetScriptFieldFromDataFinderForm<TFinderForm>(Button btn, TextBox txtbox, NameFinder finder, string fieldname) where TFinderForm : FormDataFinder, new()
         {
             FormDataFinder frm = new TFinderForm();
-            if (frm.ShowDialog(GetScriptFieldValue(fieldname)) == System.Windows.Forms.DialogResult.OK)
+            if (frm.ShowDialog(GetScriptFieldValue<int>(fieldname)) == System.Windows.Forms.DialogResult.OK)
             {
                 int returnId = frm.ReturnValue;
 
@@ -2422,8 +2423,26 @@ namespace ScriptEditor
                 SetScriptFieldFromValue(returnId, fieldname);
             }
         }
+        private void SetScriptFieldFromFlagsForm(Button btn, List<Tuple<string, uint>> valuesList, string windowtitle, string fieldname)
+        {
+            uint flags = GetScriptFieldValue<uint>(fieldname);
+            if (Helpers.ShowFlagInputDialog(ref flags, windowtitle, valuesList) == System.Windows.Forms.DialogResult.OK)
+            {
+                if (flags > 0)
+                {
+                    btn.Text = Helpers.GetStringFromFlags(flags, valuesList);
+                }
+                else
+                {
+                    btn.Text = "-NONE-";
+                }
+
+                // Set the field value.
+                SetScriptFieldFromValue(flags, fieldname);
+            }
+        }
         // Generic function for getting int value in field.
-        private int GetScriptFieldValue(string fieldname)
+        private T GetScriptFieldValue<T>(string fieldname) where T : struct, IComparable<T>
         {
             if (lstActions.SelectedItems.Count > 0)
             {
@@ -2437,12 +2456,12 @@ namespace ScriptEditor
                 FieldInfo prop = typeof(ScriptAction).GetField(fieldname, BindingFlags.Instance | BindingFlags.Public);
 
                 // Get the value in this field.
-                int currentValue = (int)Convert.ChangeType(prop.GetValue(currentAction), typeof(int));
+                T currentValue = (T)Convert.ChangeType(prop.GetValue(currentAction), typeof(T));
 
                 return currentValue;
             }
 
-            return 0;
+            return default(T);
         }
         private void txtCommandComment_Leave(object sender, EventArgs e)
         {
@@ -2650,7 +2669,7 @@ namespace ScriptEditor
                 case 4: // Random
                 case 5: // Random Not Top
                 {
-                    FormTargetSelectFlags frm = new FormTargetSelectFlags((uint)GetScriptFieldValue("TargetParam1"));
+                    FormTargetSelectFlags frm = new FormTargetSelectFlags(GetScriptFieldValue<uint>("TargetParam1"));
                     if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
                         uint selectFlags = frm.ReturnValue;
@@ -3020,321 +3039,24 @@ namespace ScriptEditor
         }
 
         // SCRIPT_COMMAND_MODIFY_FLAGS (4)
-        private void Command4ResetAllCheckboxes()
+        private List<Tuple<string, uint>> GetValuesListFromModifyFlagsComboBox()
         {
-            chkModifyFlags1.Checked = false;
-            chkModifyFlags2.Checked = false;
-            chkModifyFlags4.Checked = false;
-            chkModifyFlags8.Checked = false;
-            chkModifyFlags16.Checked = false;
-            chkModifyFlags32.Checked = false;
-            chkModifyFlags64.Checked = false;
-            chkModifyFlags128.Checked = false;
-            chkModifyFlags256.Checked = false;
-            chkModifyFlags512.Checked = false;
-            chkModifyFlags1024.Checked = false;
-            chkModifyFlags2048.Checked = false;
-            chkModifyFlags4096.Checked = false;
-            chkModifyFlags8192.Checked = false;
-            chkModifyFlags16384.Checked = false;
-            chkModifyFlags32768.Checked = false;
-            chkModifyFlags65536.Checked = false;
-            chkModifyFlags131072.Checked = false;
-            chkModifyFlags262144.Checked = false;
-            chkModifyFlags524288.Checked = false;
-            chkModifyFlags1048576.Checked = false;
-            chkModifyFlags2097152.Checked = false;
-            chkModifyFlags4194304.Checked = false;
-            chkModifyFlags8388608.Checked = false;
-            chkModifyFlags16777216.Checked = false;
-            chkModifyFlags33554432.Checked = false;
-            chkModifyFlags67108864.Checked = false;
-            chkModifyFlags134217728.Checked = false;
-            chkModifyFlags268435456.Checked = false;
-            chkModifyFlags536870912.Checked = false;
-            chkModifyFlags1.Visible = false;
-            chkModifyFlags2.Visible = false;
-            chkModifyFlags4.Visible = false;
-            chkModifyFlags8.Visible = false;
-            chkModifyFlags16.Visible = false;
-            chkModifyFlags32.Visible = false;
-            chkModifyFlags64.Visible = false;
-            chkModifyFlags128.Visible = false;
-            chkModifyFlags256.Visible = false;
-            chkModifyFlags512.Visible = false;
-            chkModifyFlags1024.Visible = false;
-            chkModifyFlags2048.Visible = false;
-            chkModifyFlags4096.Visible = false;
-            chkModifyFlags8192.Visible = false;
-            chkModifyFlags16384.Visible = false;
-            chkModifyFlags32768.Visible = false;
-            chkModifyFlags65536.Visible = false;
-            chkModifyFlags131072.Visible = false;
-            chkModifyFlags262144.Visible = false;
-            chkModifyFlags524288.Visible = false;
-            chkModifyFlags1048576.Visible = false;
-            chkModifyFlags2097152.Visible = false;
-            chkModifyFlags4194304.Visible = false;
-            chkModifyFlags8388608.Visible = false;
-            chkModifyFlags16777216.Visible = false;
-            chkModifyFlags33554432.Visible = false;
-            chkModifyFlags67108864.Visible = false;
-            chkModifyFlags134217728.Visible = false;
-            chkModifyFlags268435456.Visible = false;
-            chkModifyFlags536870912.Visible = false;
-        }
-        private void Command4SetCheckboxesBasedOnFlags(uint flags)
-        {
-            if ((flags & 1) != 0)
-                chkModifyFlags1.Checked = true;
-            if ((flags & 2) != 0)
-                chkModifyFlags2.Checked = true;
-            if ((flags & 4) != 0)
-                chkModifyFlags4.Checked = true;
-            if ((flags & 8) != 0)
-                chkModifyFlags8.Checked = true;
-            if ((flags & 16) != 0)
-                chkModifyFlags16.Checked = true;
-            if ((flags & 32) != 0)
-                chkModifyFlags32.Checked = true;
-            if ((flags & 64) != 0)
-                chkModifyFlags64.Checked = true;
-            if ((flags & 128) != 0)
-                chkModifyFlags128.Checked = true;
-            if ((flags & 256) != 0)
-                chkModifyFlags256.Checked = true;
-            if ((flags & 512) != 0)
-                chkModifyFlags512.Checked = true;
-            if ((flags & 1024) != 0)
-                chkModifyFlags1024.Checked = true;
-            if ((flags & 2048) != 0)
-                chkModifyFlags2048.Checked = true;
-            if ((flags & 4096) != 0)
-                chkModifyFlags4096.Checked = true;
-            if ((flags & 8192) != 0)
-                chkModifyFlags8192.Checked = true;
-            if ((flags & 16384) != 0)
-                chkModifyFlags16384.Checked = true;
-            if ((flags & 32768) != 0)
-                chkModifyFlags32768.Checked = true;
-            if ((flags & 65536) != 0)
-                chkModifyFlags65536.Checked = true;
-            if ((flags & 131072) != 0)
-                chkModifyFlags131072.Checked = true;
-            if ((flags & 262144) != 0)
-                chkModifyFlags262144.Checked = true;
-            if ((flags & 524288) != 0)
-                chkModifyFlags524288.Checked = true;
-            if ((flags & 1048576) != 0)
-                chkModifyFlags1048576.Checked = true;
-            if ((flags & 2097152) != 0)
-                chkModifyFlags2097152.Checked = true;
-            if ((flags & 4194304) != 0)
-                chkModifyFlags4194304.Checked = true;
-            if ((flags & 8388608) != 0)
-                chkModifyFlags8388608.Checked = true;
-            if ((flags & 16777216) != 0)
-                chkModifyFlags16777216.Checked = true;
-            if ((flags & 33554432) != 0)
-                chkModifyFlags33554432.Checked = true;
-            if ((flags & 67108864) != 0)
-                chkModifyFlags67108864.Checked = true;
-            if ((flags & 134217728) != 0)
-                chkModifyFlags134217728.Checked = true;
-            if ((flags & 268435456) != 0)
-                chkModifyFlags268435456.Checked = true;
-            if ((flags & 536870912) != 0)
-                chkModifyFlags536870912.Checked = true;
-        }
-        private void Command4SetCheckboxNamesBasedOnFieldIndex(int field)
-        {
-            switch (field)
+            switch (cmbModifyFlagsFieldId.SelectedIndex)
             {
                 case 0: // GAMEOBJECT_FLAGS
-                {
-                    chkModifyFlags1.Text = "IN_USE";
-                    chkModifyFlags1.Visible = true;
-                    chkModifyFlags2.Text = "LOCKED";
-                    chkModifyFlags2.Visible = true;
-                    chkModifyFlags4.Text = "INTERACT_COND";
-                    chkModifyFlags4.Visible = true;
-                    chkModifyFlags8.Text = "TRANSPORT";
-                    chkModifyFlags8.Visible = true;
-                    chkModifyFlags16.Text = "NO_INTERACT";
-                    chkModifyFlags16.Visible = true;
-                    chkModifyFlags32.Text = "NODESPAWN";
-                    chkModifyFlags32.Visible = true;
-                    chkModifyFlags64.Text = "TRIGGERED";
-                    chkModifyFlags64.Visible = true;
-                    break;
-                }
+                    return GameData.GameObjectFlagsList;
                 case 1: // GAMEOBJECT_DYN_FLAGS
-                {
-                    chkModifyFlags1.Text = "ACTIVATE";
-                    chkModifyFlags1.Visible = true;
-                    chkModifyFlags2.Text = "ANIMATE";
-                    chkModifyFlags2.Visible = true;
-                    chkModifyFlags4.Text = "NO_INTERACT";
-                    chkModifyFlags4.Visible = true;
-                    break;
-                }
+                    return GameData.GameObjectDynFlagsList;
                 case 2: // UNIT_FIELD_FLAGS
-                {
-                    chkModifyFlags1.Text = "UNK_0";
-                    chkModifyFlags1.Visible = true;
-                    chkModifyFlags2.Text = "SPAWNING";
-                    chkModifyFlags2.Visible = true;
-                    chkModifyFlags4.Text = "DISABLE_MOVE";
-                    chkModifyFlags4.Visible = true;
-                    chkModifyFlags8.Text = "PVP_ATTACKABLE";
-                    chkModifyFlags8.Visible = true;
-                    chkModifyFlags16.Text = "PET_RENAME";
-                    chkModifyFlags16.Visible = true;
-                    chkModifyFlags32.Text = "PET_ABANDON";
-                    chkModifyFlags32.Visible = true;
-                    chkModifyFlags64.Text = "UNK_6";
-                    chkModifyFlags64.Visible = true;
-                    chkModifyFlags128.Text = "NOT_ATTACKABLE_1";
-                    chkModifyFlags128.Visible = true;
-                    chkModifyFlags256.Text = "IMMUNE_TO_PLAYER";
-                    chkModifyFlags256.Visible = true;
-                    chkModifyFlags512.Text = "IMMUNE_TO_NPC";
-                    chkModifyFlags512.Visible = true;
-                    chkModifyFlags1024.Text = "LOOTING";
-                    chkModifyFlags1024.Visible = true;
-                    chkModifyFlags2048.Text = "PET_IN_COMBAT";
-                    chkModifyFlags2048.Visible = true;
-                    chkModifyFlags4096.Text = "PVP";
-                    chkModifyFlags4096.Visible = true;
-                    chkModifyFlags8192.Text = "SILENCED";
-                    chkModifyFlags8192.Visible = true;
-                    chkModifyFlags16384.Text = "UNK_14";
-                    chkModifyFlags16384.Visible = true;
-                    chkModifyFlags32768.Text = "USE_SWIM_ANIMATION";
-                    chkModifyFlags32768.Visible = true;
-                    chkModifyFlags65536.Text = "UNK_16";
-                    chkModifyFlags65536.Visible = true;
-                    chkModifyFlags131072.Text = "PACIFIED";
-                    chkModifyFlags131072.Visible = true;
-                    chkModifyFlags262144.Text = "DISABLE_ROTATE";
-                    chkModifyFlags262144.Visible = true;
-                    chkModifyFlags524288.Text = "IN_COMBAT";
-                    chkModifyFlags524288.Visible = true;
-                    chkModifyFlags1048576.Text = "TAXI_FLIGHT";
-                    chkModifyFlags1048576.Visible = true;
-                    chkModifyFlags2097152.Text = "DISARMED";
-                    chkModifyFlags2097152.Visible = true;
-                    chkModifyFlags4194304.Text = "CONFUSED";
-                    chkModifyFlags4194304.Visible = true;
-                    chkModifyFlags8388608.Text = "FLEEING";
-                    chkModifyFlags8388608.Visible = true;
-                    chkModifyFlags16777216.Text = "PLAYER_CONTROLLED";
-                    chkModifyFlags16777216.Visible = true;
-                    chkModifyFlags33554432.Text = "NOT_SELECTABLE";
-                    chkModifyFlags33554432.Visible = true;
-                    chkModifyFlags67108864.Text = "SKINNABLE";
-                    chkModifyFlags67108864.Visible = true;
-                    chkModifyFlags134217728.Text = "AURAS_VISIBLE";
-                    chkModifyFlags134217728.Visible = true;
-                    chkModifyFlags268435456.Text = "UNK_28";
-                    chkModifyFlags268435456.Visible = true;
-                    chkModifyFlags536870912.Text = "UNK_29";
-                    chkModifyFlags536870912.Visible = true;
-                    break;
-                }
+                    return GameData.UnitFieldFlagsList;
                 case 3: // UNIT_DYNAMIC_FLAGS
-                {
-                    chkModifyFlags1.Text = "LOOTABLE";
-                    chkModifyFlags1.Visible = true;
-                    chkModifyFlags2.Text = "TRACK_UNIT";
-                    chkModifyFlags2.Visible = true;
-                    chkModifyFlags4.Text = "TAPPED";
-                    chkModifyFlags4.Visible = true;
-                    chkModifyFlags8.Text = "TAPPED_BY_PLAYER";
-                    chkModifyFlags8.Visible = true;
-                    chkModifyFlags16.Text = "SPECIALINFO";
-                    chkModifyFlags16.Visible = true;
-                    chkModifyFlags32.Text = "DEAD";
-                    chkModifyFlags32.Visible = true;
-                    break;
-                }
+                    return GameData.UnitDynamicFlagsList;
                 case 4: // UNIT_NPC_FLAGS
-                {
-                    chkModifyFlags1.Text = "GOSSIP";
-                    chkModifyFlags1.Visible = true;
-                    chkModifyFlags2.Text = "QUESTGIVER";
-                    chkModifyFlags2.Visible = true;
-                    chkModifyFlags4.Text = "VENDOR";
-                    chkModifyFlags4.Visible = true;
-                    chkModifyFlags8.Text = "FLIGHTMASTER";
-                    chkModifyFlags8.Visible = true;
-                    chkModifyFlags16.Text = "TRAINER";
-                    chkModifyFlags16.Visible = true;
-                    chkModifyFlags32.Text = "SPIRITHEALER";
-                    chkModifyFlags32.Visible = true;
-                    chkModifyFlags64.Text = "SPIRITGUIDE";
-                    chkModifyFlags64.Visible = true;
-                    chkModifyFlags128.Text = "INNKEEPER";
-                    chkModifyFlags128.Visible = true;
-                    chkModifyFlags256.Text = "BANKER";
-                    chkModifyFlags256.Visible = true;
-                    chkModifyFlags512.Text = "PETITIONER";
-                    chkModifyFlags512.Visible = true;
-                    chkModifyFlags1024.Text = "TABARDDESIGNER";
-                    chkModifyFlags1024.Visible = true;
-                    chkModifyFlags2048.Text = "BATTLEMASTER";
-                    chkModifyFlags2048.Visible = true;
-                    chkModifyFlags4096.Text = "AUCTIONEER";
-                    chkModifyFlags4096.Visible = true;
-                    chkModifyFlags8192.Text = "STABLEMASTER";
-                    chkModifyFlags8192.Visible = true;
-                    chkModifyFlags16384.Text = "REPAIR";
-                    chkModifyFlags16384.Visible = true;
-                    break;
-                }
+                    return GameData.UnitNpcFlagsList;
                 case 5: // PLAYER_FLAGS
-                {
-                    chkModifyFlags1.Text = "GROUP_LEADER";
-                    chkModifyFlags1.Visible = true;
-                    chkModifyFlags2.Text = "AFK";
-                    chkModifyFlags2.Visible = true;
-                    chkModifyFlags4.Text = "DND";
-                    chkModifyFlags4.Visible = true;
-                    chkModifyFlags8.Text = "GM";
-                    chkModifyFlags8.Visible = true;
-                    chkModifyFlags16.Text = "GHOST";
-                    chkModifyFlags16.Visible = true;
-                    chkModifyFlags32.Text = "RESTING";
-                    chkModifyFlags32.Visible = true;
-                    chkModifyFlags64.Text = "UNK7";
-                    chkModifyFlags64.Visible = true;
-                    chkModifyFlags128.Text = "FFA_PVP";
-                    chkModifyFlags128.Visible = true;
-                    chkModifyFlags256.Text = "CONTESTED_PVP";
-                    chkModifyFlags256.Visible = true;
-                    chkModifyFlags512.Text = "IN_PVP";
-                    chkModifyFlags512.Visible = true;
-                    chkModifyFlags1024.Text = "HIDE_HELM";
-                    chkModifyFlags1024.Visible = true;
-                    chkModifyFlags2048.Text = "HIDE_CLOAK";
-                    chkModifyFlags2048.Visible = true;
-                    chkModifyFlags4096.Text = "PARTIAL_PLAY_TIME";
-                    chkModifyFlags4096.Visible = true;
-                    chkModifyFlags8192.Text = "NO_PLAY_TIME";
-                    chkModifyFlags8192.Visible = true;
-                    chkModifyFlags16384.Text = "UNK15";
-                    chkModifyFlags16384.Visible = true;
-                    chkModifyFlags32768.Text = "UNK16";
-                    chkModifyFlags32768.Visible = true;
-                    chkModifyFlags65536.Text = "SANCTUARY";
-                    chkModifyFlags65536.Visible = true;
-                    chkModifyFlags131072.Text = "TAXI_BENCHMARK";
-                    chkModifyFlags131072.Visible = true;
-                    chkModifyFlags262144.Text = "PVP_TIMER";
-                    chkModifyFlags262144.Visible = true;
-                    break;
-                }
+                    return GameData.PlayerFlagsList;
             }
+            return null;
         }
         private void cmbModifyFlagsFieldId_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -3342,133 +3064,18 @@ namespace ScriptEditor
                 return;
 
             SetScriptFieldFromCombobox(cmbModifyFlagsFieldId, "Datalong", true);
-            Command4ResetAllCheckboxes();
-            Command4SetCheckboxNamesBasedOnFieldIndex(cmbModifyFlagsFieldId.SelectedIndex);
+            btnModifyFlagsFlags.Text = "-NONE-";
             SetScriptFieldFromValue(0, "Datalong2");
         }
         private void cmbModifyFlagsMode_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetScriptFieldFromCombobox(cmbModifyFlagsMode, "Datalong3", false);
         }
-        private void chkModifyFlags1_CheckedChanged(object sender, EventArgs e)
+        private void btnModifyFlagsFlags_Click(object sender, EventArgs e)
         {
-            SetScriptFlagsFromCheckbox(chkModifyFlags1, "Datalong2", 1);
-        }
-        private void chkModifyFlags2_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags2, "Datalong2", 2);
-        }
-        private void chkModifyFlags4_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags4, "Datalong2", 4);
-        }
-        private void chkModifyFlags8_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags8, "Datalong2", 8);
-        }
-        private void chkModifyFlags16_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags16, "Datalong2", 16);
-        }
-        private void chkModifyFlags32_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags32, "Datalong2", 32);
-        }
-        private void chkModifyFlags64_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags64, "Datalong2", 64);
-        }
-        private void chkModifyFlags128_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags128, "Datalong2", 128);
-        }
-        private void chkModifyFlags256_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags256, "Datalong2", 256);
-        }
-        private void chkModifyFlags512_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags512, "Datalong2", 512);
-        }
-        private void chkModifyFlags1024_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags1024, "Datalong2", 1024);
-        }
-        private void chkModifyFlags2048_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags2048, "Datalong2", 2048);
-        }
-        private void chkModifyFlags4096_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags4096, "Datalong2", 4096);
-        }
-        private void chkModifyFlags8192_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags8192, "Datalong2", 8192);
-        }
-        private void chkModifyFlags16384_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags16384, "Datalong2", 16384);
-        }
-        private void chkModifyFlags32768_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags32768, "Datalong2", 32768);
-        }
-        private void chkModifyFlags65536_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags65536, "Datalong2", 65536);
-        }
-        private void chkModifyFlags131072_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags131072, "Datalong2", 131072);
-        }
-        private void chkModifyFlags262144_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags262144, "Datalong2", 262144);
-        }
-        private void chkModifyFlags524288_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags524288, "Datalong2", 524288);
-        }
-        private void chkModifyFlags1048576_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags1048576, "Datalong2", 1048576);
-        }
-        private void chkModifyFlags2097152_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags2097152, "Datalong2", 2097152);
-        }
-        private void chkModifyFlags4194304_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags4194304, "Datalong2", 4194304);
-        }
-        private void chkModifyFlags8388608_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags8388608, "Datalong2", 8388608);
-        }
-        private void chkModifyFlags16777216_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags16777216, "Datalong2", 16777216);
-        }
-        private void chkModifyFlags33554432_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags33554432, "Datalong2", 33554432);
-        }
-        private void chkModifyFlags67108864_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags67108864, "Datalong2", 67108864);
-        }
-        private void chkModifyFlags134217728_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags134217728, "Datalong2", 134217728);
-        }
-        private void chkModifyFlags268435456_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags268435456, "Datalong2", 268435456);
-        }
-        private void chkModifyFlags536870912_CheckedChanged(object sender, EventArgs e)
-        {
-            SetScriptFlagsFromCheckbox(chkModifyFlags536870912, "Datalong2", 536870912);
+            List<Tuple<string, uint>> valuesList = GetValuesListFromModifyFlagsComboBox();
+            if (valuesList != null)
+                SetScriptFieldFromFlagsForm(btnModifyFlagsFlags, valuesList, "Select Flags", "Datalong2");
         }
 
         // SCRIPT_COMMAND_INTERRUPT_CASTS (5)
@@ -4124,7 +3731,7 @@ namespace ScriptEditor
         private void btnTerminateConditionId_Click(object sender, EventArgs e)
         {
             FormConditionFinder frm = new FormConditionFinder();
-            if (frm.ShowDialog(GetScriptFieldValue("Datalong")) == System.Windows.Forms.DialogResult.OK)
+            if (frm.ShowDialog(GetScriptFieldValue<int>("Datalong")) == System.Windows.Forms.DialogResult.OK)
             {
                 int returnId = frm.ReturnValue;
 
@@ -4542,7 +4149,7 @@ namespace ScriptEditor
         {
             FormConditionFinder frm = new FormConditionFinder();
             bool has_ignore = GetSelectedCommandType() == 69 ? true : false;
-            if (frm.ShowDialog(GetScriptFieldValue("Dataint"), has_ignore) == System.Windows.Forms.DialogResult.OK)
+            if (frm.ShowDialog(GetScriptFieldValue<int>("Dataint"), has_ignore) == System.Windows.Forms.DialogResult.OK)
             {
                 int returnId = frm.ReturnValue;
 
@@ -4558,7 +4165,7 @@ namespace ScriptEditor
         {
             FormConditionFinder frm = new FormConditionFinder();
             bool has_ignore = GetSelectedCommandType() == 69 ? true : false;
-            if (frm.ShowDialog(GetScriptFieldValue("Dataint3"), has_ignore) == System.Windows.Forms.DialogResult.OK)
+            if (frm.ShowDialog(GetScriptFieldValue<int>("Dataint3"), has_ignore) == System.Windows.Forms.DialogResult.OK)
             {
                 int returnId = frm.ReturnValue;
 
@@ -4613,7 +4220,7 @@ namespace ScriptEditor
         private void btnRemoveScriptedMapEventTargetCondition_Click(object sender, EventArgs e)
         {
             FormConditionFinder frm = new FormConditionFinder();
-            if (frm.ShowDialog(GetScriptFieldValue("Datalong2")) == System.Windows.Forms.DialogResult.OK)
+            if (frm.ShowDialog(GetScriptFieldValue<int>("Datalong2")) == System.Windows.Forms.DialogResult.OK)
             {
                 int returnId = frm.ReturnValue;
 
