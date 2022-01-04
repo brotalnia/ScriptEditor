@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -214,6 +215,151 @@ namespace ScriptEditor
                 }
             }
             return str;
+        }
+
+        // Generic function for getting the object represented by the currently selected list view item.
+        public static TScriptField GetCurrentlySelectedItem<TScriptField>(ListView listView) where TScriptField : class
+        {
+            if (listView.SelectedItems.Count > 0)
+            {
+                // Get the selected item in the listview.
+                ListViewItem currentItem = listView.SelectedItems[0];
+
+                // Get the associated script field.
+                return (TScriptField)currentItem.Tag;
+            }
+            return null;
+        }
+        // Generic function for setting script field to specified value;
+        public static void SetScriptFieldFromValue<TScriptField>(ListView listView, double fieldvalue, string fieldname) where TScriptField : class
+        {
+            TScriptField currentItem = GetCurrentlySelectedItem<TScriptField>(listView);
+            if (currentItem != null)
+            {
+                // Get the field we need to change.
+                FieldInfo prop = typeof(TScriptField).GetField(fieldname, BindingFlags.Instance | BindingFlags.Public);
+
+                // Updating the value in the field.
+                prop.SetValue(currentItem, Convert.ChangeType(fieldvalue, prop.FieldType));
+            }
+        }
+        // Generic function for setting field value from a textbox.
+        public static void SetScriptFieldFromTextbox<TScriptField>(ListView listView, TextBox ctrl, string fieldname) where TScriptField : class
+        {
+            // Get the value from the textbox.
+            double fieldValue;
+            double.TryParse(ctrl.Text, out fieldValue);
+
+            // Set the field value.
+            SetScriptFieldFromValue<TScriptField>(listView, fieldValue, fieldname);
+        }
+        // Generic function for setting field value from a checkbox.
+        public static void SetScriptFieldFromCombobox<TScriptField>(ListView listView, ComboBox cmbbox, string fieldname, bool usePairValue) where TScriptField : class
+        {
+            // We can use either selected index or the pair value.
+            int selectedValue = usePairValue ? (cmbbox.SelectedItem as ComboboxPair).Value : cmbbox.SelectedIndex;
+
+            // Set the field value.
+            SetScriptFieldFromValue<TScriptField>(listView, selectedValue, fieldname);
+        }
+        // Generic function for updating flags based on checkbox.
+        public static void SetScriptFlagsFromCheckbox<TScriptField>(ListView listView, CheckBox chkbox, string fieldname, uint value) where TScriptField : class
+        {
+            TScriptField currentItem = GetCurrentlySelectedItem<TScriptField>(listView);
+            if (currentItem != null)
+            {
+                // Get the field we need to change.
+                FieldInfo prop = typeof(TScriptField).GetField(fieldname, BindingFlags.Instance | BindingFlags.Public);
+
+                // Get the old value in this field.
+                uint currentValue = (uint)Convert.ChangeType(prop.GetValue(currentItem), typeof(uint));
+
+                if (chkbox.Checked)
+                    currentValue += value;
+                else
+                    currentValue -= value;
+
+                prop.SetValue(currentItem, Convert.ChangeType(currentValue, prop.FieldType));
+            }
+        }
+        // Generic function for setting a value from another form.
+        public static void SetScriptFieldFromDataFinderForm<TScriptField, TFinderForm>(ListView listView, Button btn, TextBox txtbox, NameFinder finder, string fieldname) where TFinderForm : FormDataFinder, new()  
+                                                                                                                                                                            where TScriptField : class
+        {
+            FormDataFinder frm = new TFinderForm();
+            if (frm.ShowDialog(GetScriptFieldValue<TScriptField, int>(listView, fieldname)) == System.Windows.Forms.DialogResult.OK)
+            {
+                int returnId = frm.ReturnValue;
+
+                if (returnId > 0)
+                {
+                    // If there is no textbox provided the text is shown on the button.
+                    if (txtbox == null)
+                    {
+                        if (finder == null)
+                            btn.Text = returnId.ToString();
+                        else
+                            btn.Text = finder((uint)returnId) + " (" + returnId.ToString() + ")";
+                    }
+                    else
+                    {
+                        btn.Text = returnId.ToString();
+                        if (finder == null)
+                            txtbox.Text = returnId.ToString();
+                        else
+                            txtbox.Text = finder((uint)returnId);
+                    }
+                }
+                else if (returnId < 0)
+                {
+                    btn.Text = "-IGNORE-";
+                }
+                else
+                {
+                    btn.Text = "-NONE-";
+                    if (txtbox != null)
+                        txtbox.Text = "";
+                }
+
+                // Set the field value.
+                SetScriptFieldFromValue<TScriptField>(listView, returnId, fieldname);
+            }
+        }
+        public static void SetScriptFieldFromFlagsForm<TScriptField>(ListView listView, Button btn, List<Tuple<string, uint>> valuesList, string windowtitle, string fieldname) where TScriptField : class
+        {
+            uint flags = GetScriptFieldValue<TScriptField, uint>(listView, fieldname);
+            if (Helpers.ShowFlagInputDialog(ref flags, windowtitle, valuesList) == System.Windows.Forms.DialogResult.OK)
+            {
+                if (flags > 0)
+                {
+                    btn.Text = Helpers.GetStringFromFlags(flags, valuesList);
+                }
+                else
+                {
+                    btn.Text = "-NONE-";
+                }
+
+                // Set the field value.
+                SetScriptFieldFromValue<TScriptField>(listView, flags, fieldname);
+            }
+        }
+        // Generic function for getting int value in field.
+        public static TNumber GetScriptFieldValue<TScriptField, TNumber>(ListView listView, string fieldname) where TNumber : struct, IComparable<TNumber>
+                                                                                                               where TScriptField : class
+        {
+            TScriptField currentItem = GetCurrentlySelectedItem<TScriptField>(listView);
+            if (currentItem != null)
+            {
+                // Get the field by name.
+                FieldInfo prop = typeof(TScriptField).GetField(fieldname, BindingFlags.Instance | BindingFlags.Public);
+
+                // Get the value in this field.
+                TNumber currentValue = (TNumber)Convert.ChangeType(prop.GetValue(currentItem), typeof(TNumber));
+
+                return currentValue;
+            }
+
+            return default(TNumber);
         }
     }
 }

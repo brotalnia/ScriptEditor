@@ -1581,32 +1581,17 @@ namespace ScriptEditor
         // Generic function for setting script field to specified value;
         private void SetScriptFieldFromValue(double fieldvalue, string fieldname)
         {
-            if (lstData.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstData.SelectedItems[0];
-
-                // Get the associated ConditionInfo.
-                ConditionInfo currentEvent = (ConditionInfo)currentItem.Tag;
-
-                // Get the field we need to change.
-                FieldInfo prop = typeof(ConditionInfo).GetField(fieldname, BindingFlags.Instance | BindingFlags.Public);
-
-                // Updating the value in the field.
-                prop.SetValue(currentEvent, Convert.ChangeType(fieldvalue, prop.FieldType));
-
-                UpdateSelectedItem();
-            }
+            Helpers.SetScriptFieldFromValue<ConditionInfo>(lstData, fieldvalue, fieldname);
+            UpdateSelectedItem();
         }
         // Generic function for setting field value from a textbox.
         private void SetScriptFieldFromTextbox(TextBox ctrl, string fieldname)
         {
-            // Get the value from the textbox.
-            double fieldValue;
-            double.TryParse(ctrl.Text, out fieldValue);
+            if (dontUpdate)
+                return;
 
-            // Set the field value.
-            SetScriptFieldFromValue(fieldValue, fieldname);
+            Helpers.SetScriptFieldFromTextbox<ConditionInfo>(lstData, ctrl, fieldname);
+            UpdateSelectedItem();
         }
         // Generic function for setting field value from a checkbox.
         private void SetScriptFieldFromCombobox(ComboBox cmbbox, string fieldname, bool usePairValue)
@@ -1614,11 +1599,8 @@ namespace ScriptEditor
             if (dontUpdate)
                 return;
 
-            // We can use either selected index or the pair value.
-            int selectedValue = usePairValue ? (cmbbox.SelectedItem as ComboboxPair).Value : cmbbox.SelectedIndex;
-
-            // Set the field value.
-            SetScriptFieldFromValue(selectedValue, fieldname);
+            Helpers.SetScriptFieldFromCombobox<ConditionInfo>(lstData, cmbbox, fieldname, usePairValue);
+            UpdateSelectedItem();
         }
         // Generic function for updating flags based on checkbox.
         private void SetScriptFlagsFromCheckbox(CheckBox chkbox, string fieldname, uint value)
@@ -1626,84 +1608,19 @@ namespace ScriptEditor
             if (dontUpdate)
                 return;
 
-            if (lstData.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstData.SelectedItems[0];
-
-                // Get the associated ConditionInfo.
-                ConditionInfo currentEvent = (ConditionInfo)currentItem.Tag;
-
-                // Get the field we need to change.
-                FieldInfo prop = typeof(ConditionInfo).GetField(fieldname, BindingFlags.Instance | BindingFlags.Public);
-
-                // Get the old value in this field.
-                uint currentValue = (uint)prop.GetValue(currentEvent);
-
-                if (chkbox.Checked)
-                    currentValue += value;
-                else
-                    currentValue -= value;
-
-                prop.SetValue(currentEvent, Convert.ChangeType(currentValue, prop.FieldType));
-
-                UpdateSelectedItem();
-            }
+            Helpers.SetScriptFlagsFromCheckbox<ConditionInfo>(lstData, chkbox, fieldname, value);
+            UpdateSelectedItem();
         }
         // Generic function for setting a value from another form.
         private void SetScriptFieldFromDataFinderForm<TFinderForm>(Button btn, TextBox txtbox, NameFinder finder, string fieldname) where TFinderForm : FormDataFinder, new()
         {
-            FormDataFinder frm = new TFinderForm();
-            if (frm.ShowDialog(GetScriptFieldValue(fieldname)) == System.Windows.Forms.DialogResult.OK)
-            {
-                int returnId = frm.ReturnValue;
-
-                if (returnId > 0)
-                {
-                    // If there is no textbox provided the text is shown on the button.
-                    if (txtbox == null)
-                        btn.Text = finder((uint)returnId) + " (" + returnId.ToString() + ")";
-                    else
-                    {
-                        btn.Text = returnId.ToString();
-                        txtbox.Text = finder((uint)returnId);
-                    }
-                }
-                else if (returnId < 0)
-                {
-                    btn.Text = "-IGNORE-";
-                }
-                else
-                {
-                    btn.Text = "-NONE-";
-                    if (txtbox != null)
-                        txtbox.Text = "";
-                }
-
-                // Set the field value.
-                SetScriptFieldFromValue(returnId, fieldname);
-            }
+            Helpers.SetScriptFieldFromDataFinderForm<ConditionInfo, TFinderForm>(lstData, btn, txtbox, finder, fieldname);
+            UpdateSelectedItem();
         }
         // Generic function for getting int value in field.
         private int GetScriptFieldValue(string fieldname)
         {
-            if (lstData.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstData.SelectedItems[0];
-
-                // Get the associated ConditionInfo.
-                ConditionInfo currentAction = (ConditionInfo)currentItem.Tag;
-
-                // Get the field by name.
-                FieldInfo prop = typeof(ConditionInfo).GetField(fieldname, BindingFlags.Instance | BindingFlags.Public);
-
-                // Get the value in this field.
-                int currentValue = (int)Convert.ChangeType(prop.GetValue(currentAction), typeof(int));
-
-                return currentValue;
-            }
-            return 0;
+            return Helpers.GetScriptFieldValue<ConditionInfo, int>(lstData, fieldname);
         }
         private bool IsAvailableConditionId(uint conditionId)
         {

@@ -2316,30 +2316,15 @@ namespace ScriptEditor
         // Generic function for setting script field to specified value;
         private void SetScriptFieldFromValue(double fieldvalue, string fieldname)
         {
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                // Get the field we need to change.
-                FieldInfo prop = typeof(ScriptAction).GetField(fieldname, BindingFlags.Instance | BindingFlags.Public);
-
-                // Updating the value in the field.
-                prop.SetValue(currentAction, Convert.ChangeType(fieldvalue, prop.FieldType));
-            }
+            Helpers.SetScriptFieldFromValue<ScriptAction>(lstActions, fieldvalue, fieldname);
         }
         // Generic function for setting field value from a textbox.
         private void SetScriptFieldFromTextbox(TextBox ctrl, string fieldname)
         {
-            // Get the value from the textbox.
-            double fieldValue;
-            double.TryParse(ctrl.Text, out fieldValue);
+            if (dontUpdate)
+                return;
 
-            // Set the field value.
-            SetScriptFieldFromValue(fieldValue, fieldname);
+            Helpers.SetScriptFieldFromTextbox<ScriptAction>(lstActions, ctrl, fieldname);
         }
         // Generic function for setting field value from a checkbox.
         private void SetScriptFieldFromCombobox(ComboBox cmbbox, string fieldname, bool usePairValue)
@@ -2347,11 +2332,7 @@ namespace ScriptEditor
             if (dontUpdate)
                 return;
 
-            // We can use either selected index or the pair value.
-            int selectedValue = usePairValue ? (cmbbox.SelectedItem as ComboboxPair).Value : cmbbox.SelectedIndex;
-
-            // Set the field value.
-            SetScriptFieldFromValue(selectedValue, fieldname);
+            Helpers.SetScriptFieldFromCombobox<ScriptAction>(lstActions, cmbbox, fieldname, usePairValue);
         }
         // Generic function for updating flags based on checkbox.
         private void SetScriptFlagsFromCheckbox(CheckBox chkbox, string fieldname, uint value)
@@ -2359,109 +2340,21 @@ namespace ScriptEditor
             if (dontUpdate)
                 return;
 
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                // Get the field we need to change.
-                FieldInfo prop = typeof(ScriptAction).GetField(fieldname, BindingFlags.Instance | BindingFlags.Public);
-
-                // Get the old value in this field.
-                uint currentValue = (uint)Convert.ChangeType(prop.GetValue(currentAction), typeof(uint));
-
-                if (chkbox.Checked)
-                    currentValue += value;
-                else
-                    currentValue -= value;
-
-                prop.SetValue(currentAction, Convert.ChangeType(currentValue, prop.FieldType));
-            }
+            Helpers.SetScriptFlagsFromCheckbox<ScriptAction>(lstActions, chkbox, fieldname, value);
         }
         // Generic function for setting a value from another form.
         private void SetScriptFieldFromDataFinderForm<TFinderForm>(Button btn, TextBox txtbox, NameFinder finder, string fieldname) where TFinderForm : FormDataFinder, new()
         {
-            FormDataFinder frm = new TFinderForm();
-            if (frm.ShowDialog(GetScriptFieldValue<int>(fieldname)) == System.Windows.Forms.DialogResult.OK)
-            {
-                int returnId = frm.ReturnValue;
-
-                if (returnId > 0)
-                {
-                    // If there is no textbox provided the text is shown on the button.
-                    if (txtbox == null)
-                    {
-                        if (finder == null)
-                            btn.Text = returnId.ToString();
-                        else
-                            btn.Text = finder((uint)returnId) + " (" + returnId.ToString() + ")";
-                    }
-                    else
-                    {
-                        btn.Text = returnId.ToString();
-                        if (finder == null)
-                            txtbox.Text = returnId.ToString();
-                        else
-                            txtbox.Text = finder((uint)returnId);
-                    }
-                }
-                else if (returnId < 0)
-                {
-                    btn.Text = "-IGNORE-";
-                }
-                else
-                {
-                    btn.Text = "-NONE-";
-                    if (txtbox != null)
-                        txtbox.Text = "";
-                }
-
-                // Set the field value.
-                SetScriptFieldFromValue(returnId, fieldname);
-            }
+            Helpers.SetScriptFieldFromDataFinderForm<ScriptAction, TFinderForm>(lstActions, btn, txtbox, finder, fieldname);
         }
         private void SetScriptFieldFromFlagsForm(Button btn, List<Tuple<string, uint>> valuesList, string windowtitle, string fieldname)
         {
-            uint flags = GetScriptFieldValue<uint>(fieldname);
-            if (Helpers.ShowFlagInputDialog(ref flags, windowtitle, valuesList) == System.Windows.Forms.DialogResult.OK)
-            {
-                if (flags > 0)
-                {
-                    btn.Text = Helpers.GetStringFromFlags(flags, valuesList);
-                }
-                else
-                {
-                    btn.Text = "-NONE-";
-                }
-
-                // Set the field value.
-                SetScriptFieldFromValue(flags, fieldname);
-            }
+            Helpers.SetScriptFieldFromFlagsForm<ScriptAction>(lstActions, btn, valuesList, windowtitle, fieldname);
         }
         // Generic function for getting int value in field.
         private T GetScriptFieldValue<T>(string fieldname) where T : struct, IComparable<T>
         {
-            if (lstActions.SelectedItems.Count > 0)
-            {
-                // Get the selected item in the listview.
-                ListViewItem currentItem = lstActions.SelectedItems[0];
-
-                // Get the associated ScriptAction.
-                ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                // Get the field by name.
-                FieldInfo prop = typeof(ScriptAction).GetField(fieldname, BindingFlags.Instance | BindingFlags.Public);
-
-                // Get the value in this field.
-                T currentValue = (T)Convert.ChangeType(prop.GetValue(currentAction), typeof(T));
-
-                return currentValue;
-            }
-
-            return default(T);
+            return Helpers.GetScriptFieldValue<ScriptAction, T>(lstActions, fieldname);
         }
         private void txtCommandComment_Leave(object sender, EventArgs e)
         {
