@@ -629,7 +629,6 @@ namespace ScriptEditor
 
             // CONDITION_SKILL (7)
             // CONDITION_SKILL_BELOW (29)
-            // CONDITION_HAS_FLAG (31)
             cmbSkillId.SelectedIndex = 0;
             txtSkillLevel.Text = "";
             frmConditionSkill.Visible = false;
