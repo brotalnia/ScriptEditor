@@ -121,6 +121,16 @@ namespace ScriptEditor
             // Add options to Hit By Aura combo box.
             cmbHitByAuraType.DataSource = GameData.SpellAuraNamesList;
 
+            //Add tooltips to controls.
+            ToolTip toolTip1 = new ToolTip();
+            toolTip1.AutoPopDelay = 5000;
+            toolTip1.InitialDelay = 1000;
+            toolTip1.ReshowDelay = 500;
+            toolTip1.SetToolTip(this.lblEventId, "Event Ids should start from CreatureId * 100 + 1");
+            toolTip1.SetToolTip(this.lblEventPhaseMask, "In which phases the event will NOT trigger.");
+            toolTip1.SetToolTip(this.lblEventCondition, "Event will only trigger if the specified condition is satisfied.");
+            toolTip1.SetToolTip(this.lblEventComment, "Creature Name - Action Description on Event Type (Phases)");
+
             dontUpdate = false;
         }
 

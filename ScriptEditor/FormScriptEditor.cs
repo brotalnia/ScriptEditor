@@ -271,6 +271,22 @@ namespace ScriptEditor
             cmbTable.SelectedIndex = 0;
             cmbSetMovementType.SelectedIndex = 0;
 
+            //Add tooltips to controls.
+            ToolTip toolTip1 = new ToolTip();
+            toolTip1.AutoPopDelay = 5000;
+            toolTip1.InitialDelay = 1000;
+            toolTip1.ReshowDelay = 500;
+            toolTip1.SetToolTip(this.chkSwapInitial, "Swaps the original source and target, before buddy is checked.");
+            toolTip1.SetToolTip(this.chkSwapFinal, "Swaps the final source and target, after buddy is assigned.");
+            toolTip1.SetToolTip(this.chkTargetSelf, "Replaces the final target with the final source.");
+            toolTip1.SetToolTip(this.chkAbortScript, "Terminates the whole script if the command fails.");
+            toolTip1.SetToolTip(this.chkSkipMissingTargets, "Command is skipped if source or target is not found, without printing an error.");
+            toolTip1.SetToolTip(this.lblDelay, "Delay in seconds before the command runs.");
+            toolTip1.SetToolTip(this.lblPriority, "Defines the order of execution of commands with the same delay. Lower priority runs first.");
+            toolTip1.SetToolTip(this.lblCommandCondition, "Command will only be executed if the specified condition is satisfied. Checked after targets are assigned.");
+            toolTip1.SetToolTip(this.lblComment, "Script Name: Source Name - Command Name");
+            toolTip1.SetToolTip(this.lblTargetType, "Allows you to replace the original target that's provided to the script.\r\nBe aware that it's the source that executes the action, while target is only used as an additional argument for some commands.\r\nFor example if you use the Cast Spell command, its the source that will cast the spell at the target.\r\nTo make another object perform the action, use the flag to swap the source and target.");
+
             //MessageBox.Show((cmbCommandId.SelectedItem as ComboboxPair).Value.ToString());
             dontUpdate = false;
         }
@@ -457,6 +473,7 @@ namespace ScriptEditor
             cmbCommandId.Text = "";
 
             // Check Boxes.
+            chkSkipMissingTargets.Checked = false;
             chkAbortScript.Checked = false;
             chkSwapFinal.Checked = false;
             chkSwapInitial.Checked = false;
@@ -2223,6 +2240,8 @@ namespace ScriptEditor
                 chkTargetSelf.Checked = true;
             if ((selectedAction.DataFlags & 8) != 0)
                 chkAbortScript.Checked = true;
+            if ((selectedAction.DataFlags & 16) != 0)
+                chkSkipMissingTargets.Checked = true;
 
             if (Program.highlight)
             {
@@ -2619,6 +2638,11 @@ namespace ScriptEditor
         private void chkAbortScript_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkAbortScript, "DataFlags", 8);
+        }
+
+        private void chkSkipMissingTargets_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkSkipMissingTargets, "DataFlags", 16);
         }
 
         private void btnActionAdd_Click(object sender, EventArgs e)
@@ -4255,6 +4279,17 @@ namespace ScriptEditor
                     SetScriptFieldFromDataFinderForm<FormCreatureFinder>(btnStartScriptForAllObjectEntry, null, GameData.FindCreatureName, "Datalong3");
                     break;
                 }
+            }
+        }
+        private void btnStartScriptForAllEdit_Click(object sender, EventArgs e)
+        {
+            uint script_id = 0;
+            uint.TryParse(txtStartScriptForAllScriptId.Text, out script_id);
+            if (script_id > 0)
+            {
+                FormScriptEditor formEditor = new FormScriptEditor();
+                formEditor.Show();
+                formEditor.LoadScript(script_id, "generic_scripts");
             }
         }
 

@@ -45,6 +45,7 @@
             this.lblComment = new System.Windows.Forms.Label();
             this.txtCommandComment = new System.Windows.Forms.TextBox();
             this.grpDataFlags = new System.Windows.Forms.GroupBox();
+            this.chkSkipMissingTargets = new System.Windows.Forms.CheckBox();
             this.chkAbortScript = new System.Windows.Forms.CheckBox();
             this.chkTargetSelf = new System.Windows.Forms.CheckBox();
             this.chkSwapFinal = new System.Windows.Forms.CheckBox();
@@ -498,6 +499,7 @@
             this.lblSetDefaultMovementType = new System.Windows.Forms.Label();
             this.lblSetDefaultMovementTooltip = new System.Windows.Forms.Label();
             this.frmCommandStartScriptForAll = new System.Windows.Forms.Panel();
+            this.btnStartScriptForAllEdit = new System.Windows.Forms.Button();
             this.btnStartScriptForAllObjectEntry = new System.Windows.Forms.Button();
             this.txtStartScriptForAllDistance = new System.Windows.Forms.TextBox();
             this.lblStartScriptForAllDistance = new System.Windows.Forms.Label();
@@ -783,6 +785,7 @@
             // 
             // grpDataFlags
             // 
+            this.grpDataFlags.Controls.Add(this.chkSkipMissingTargets);
             this.grpDataFlags.Controls.Add(this.chkAbortScript);
             this.grpDataFlags.Controls.Add(this.chkTargetSelf);
             this.grpDataFlags.Controls.Add(this.chkSwapFinal);
@@ -794,10 +797,21 @@
             this.grpDataFlags.TabStop = false;
             this.grpDataFlags.Text = "Data Flags";
             // 
+            // chkSkipMissingTargets
+            // 
+            this.chkSkipMissingTargets.AutoSize = true;
+            this.chkSkipMissingTargets.Location = new System.Drawing.Point(6, 103);
+            this.chkSkipMissingTargets.Name = "chkSkipMissingTargets";
+            this.chkSkipMissingTargets.Size = new System.Drawing.Size(124, 17);
+            this.chkSkipMissingTargets.TabIndex = 4;
+            this.chkSkipMissingTargets.Text = "Skip Missing Targets";
+            this.chkSkipMissingTargets.UseVisualStyleBackColor = true;
+            this.chkSkipMissingTargets.CheckedChanged += new System.EventHandler(this.chkSkipMissingTargets_CheckedChanged);
+            // 
             // chkAbortScript
             // 
             this.chkAbortScript.AutoSize = true;
-            this.chkAbortScript.Location = new System.Drawing.Point(6, 90);
+            this.chkAbortScript.Location = new System.Drawing.Point(6, 82);
             this.chkAbortScript.Name = "chkAbortScript";
             this.chkAbortScript.Size = new System.Drawing.Size(132, 17);
             this.chkAbortScript.TabIndex = 3;
@@ -808,7 +822,7 @@
             // chkTargetSelf
             // 
             this.chkTargetSelf.AutoSize = true;
-            this.chkTargetSelf.Location = new System.Drawing.Point(6, 69);
+            this.chkTargetSelf.Location = new System.Drawing.Point(6, 61);
             this.chkTargetSelf.Name = "chkTargetSelf";
             this.chkTargetSelf.Size = new System.Drawing.Size(78, 17);
             this.chkTargetSelf.TabIndex = 2;
@@ -819,7 +833,7 @@
             // chkSwapFinal
             // 
             this.chkSwapFinal.AutoSize = true;
-            this.chkSwapFinal.Location = new System.Drawing.Point(6, 48);
+            this.chkSwapFinal.Location = new System.Drawing.Point(6, 40);
             this.chkSwapFinal.Name = "chkSwapFinal";
             this.chkSwapFinal.Size = new System.Drawing.Size(117, 17);
             this.chkSwapFinal.TabIndex = 1;
@@ -830,7 +844,7 @@
             // chkSwapInitial
             // 
             this.chkSwapInitial.AutoSize = true;
-            this.chkSwapInitial.Location = new System.Drawing.Point(6, 26);
+            this.chkSwapInitial.Location = new System.Drawing.Point(6, 19);
             this.chkSwapInitial.Name = "chkSwapInitial";
             this.chkSwapInitial.Size = new System.Drawing.Size(119, 17);
             this.chkSwapInitial.TabIndex = 0;
@@ -5493,6 +5507,7 @@
             // frmCommandStartScriptForAll
             // 
             this.frmCommandStartScriptForAll.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandStartScriptForAll.Controls.Add(this.btnStartScriptForAllEdit);
             this.frmCommandStartScriptForAll.Controls.Add(this.btnStartScriptForAllObjectEntry);
             this.frmCommandStartScriptForAll.Controls.Add(this.txtStartScriptForAllDistance);
             this.frmCommandStartScriptForAll.Controls.Add(this.lblStartScriptForAllDistance);
@@ -5507,6 +5522,16 @@
             this.frmCommandStartScriptForAll.Size = new System.Drawing.Size(495, 332);
             this.frmCommandStartScriptForAll.TabIndex = 62;
             this.frmCommandStartScriptForAll.Visible = false;
+            // 
+            // btnStartScriptForAllEdit
+            // 
+            this.btnStartScriptForAllEdit.Location = new System.Drawing.Point(429, 58);
+            this.btnStartScriptForAllEdit.Name = "btnStartScriptForAllEdit";
+            this.btnStartScriptForAllEdit.Size = new System.Drawing.Size(44, 22);
+            this.btnStartScriptForAllEdit.TabIndex = 17;
+            this.btnStartScriptForAllEdit.Text = "Edit";
+            this.btnStartScriptForAllEdit.UseVisualStyleBackColor = true;
+            this.btnStartScriptForAllEdit.Click += new System.EventHandler(this.btnStartScriptForAllEdit_Click);
             // 
             // btnStartScriptForAllObjectEntry
             // 
@@ -5539,7 +5564,7 @@
             // 
             this.txtStartScriptForAllScriptId.Location = new System.Drawing.Point(99, 59);
             this.txtStartScriptForAllScriptId.Name = "txtStartScriptForAllScriptId";
-            this.txtStartScriptForAllScriptId.Size = new System.Drawing.Size(374, 20);
+            this.txtStartScriptForAllScriptId.Size = new System.Drawing.Size(316, 20);
             this.txtStartScriptForAllScriptId.TabIndex = 13;
             this.txtStartScriptForAllScriptId.Leave += new System.EventHandler(this.txtStartScriptForAllScriptId_Leave);
             // 
@@ -6882,6 +6907,8 @@
         private System.Windows.Forms.TextBox txtCommandPriority;
         private System.Windows.Forms.Button btnModifyFlagsFlags;
         private System.Windows.Forms.Label lblModifyFlagsFlags;
+        private System.Windows.Forms.CheckBox chkSkipMissingTargets;
+        private System.Windows.Forms.Button btnStartScriptForAllEdit;
     }
 }
 
