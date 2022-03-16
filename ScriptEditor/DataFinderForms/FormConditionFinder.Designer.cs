@@ -86,12 +86,12 @@
             this.lblQuestState = new System.Windows.Forms.Label();
             this.lblQuestId = new System.Windows.Forms.Label();
             this.lblConditionQuestTooltip = new System.Windows.Forms.Label();
-            this.frmConditionWarEffort = new System.Windows.Forms.Panel();
-            this.txtWarEffortStage = new System.Windows.Forms.TextBox();
-            this.cmbWarEffortComparison = new System.Windows.Forms.ComboBox();
-            this.lblWarEffortComparison = new System.Windows.Forms.Label();
-            this.lblWarEffortStage = new System.Windows.Forms.Label();
-            this.lblConditionWarEffortTooltip = new System.Windows.Forms.Label();
+            this.frmConditionComparison = new System.Windows.Forms.Panel();
+            this.txtComparisonValue = new System.Windows.Forms.TextBox();
+            this.cmbComparisonComparison = new System.Windows.Forms.ComboBox();
+            this.lblComparisonComparison = new System.Windows.Forms.Label();
+            this.lblComparisonValue = new System.Windows.Forms.Label();
+            this.lblConditionComparisonTooltip = new System.Windows.Forms.Label();
             this.frmConditionGameEvent = new System.Windows.Forms.Panel();
             this.btnGameEventId = new System.Windows.Forms.Button();
             this.lvlGameEventId = new System.Windows.Forms.Label();
@@ -218,7 +218,7 @@
             this.frmConditionTeam.SuspendLayout();
             this.frmConditionSkill.SuspendLayout();
             this.frmConditionQuest.SuspendLayout();
-            this.frmConditionWarEffort.SuspendLayout();
+            this.frmConditionComparison.SuspendLayout();
             this.frmConditionGameEvent.SuspendLayout();
             this.frmConditionRaceClass.SuspendLayout();
             this.frmConditionInstanceScript.SuspendLayout();
@@ -818,68 +818,68 @@
             this.lblConditionQuestTooltip.TabIndex = 0;
             this.lblConditionQuestTooltip.Text = "Returns true if the target Player has previously completed the specified quest.";
             // 
-            // frmConditionWarEffort
+            // frmConditionComparison
             // 
-            this.frmConditionWarEffort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.frmConditionWarEffort.Controls.Add(this.txtWarEffortStage);
-            this.frmConditionWarEffort.Controls.Add(this.cmbWarEffortComparison);
-            this.frmConditionWarEffort.Controls.Add(this.lblWarEffortComparison);
-            this.frmConditionWarEffort.Controls.Add(this.lblWarEffortStage);
-            this.frmConditionWarEffort.Controls.Add(this.lblConditionWarEffortTooltip);
-            this.frmConditionWarEffort.Location = new System.Drawing.Point(12, 212);
-            this.frmConditionWarEffort.Name = "frmConditionWarEffort";
-            this.frmConditionWarEffort.Size = new System.Drawing.Size(650, 150);
-            this.frmConditionWarEffort.TabIndex = 27;
-            this.frmConditionWarEffort.Visible = false;
+            this.frmConditionComparison.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmConditionComparison.Controls.Add(this.txtComparisonValue);
+            this.frmConditionComparison.Controls.Add(this.cmbComparisonComparison);
+            this.frmConditionComparison.Controls.Add(this.lblComparisonComparison);
+            this.frmConditionComparison.Controls.Add(this.lblComparisonValue);
+            this.frmConditionComparison.Controls.Add(this.lblConditionComparisonTooltip);
+            this.frmConditionComparison.Location = new System.Drawing.Point(12, 212);
+            this.frmConditionComparison.Name = "frmConditionComparison";
+            this.frmConditionComparison.Size = new System.Drawing.Size(650, 150);
+            this.frmConditionComparison.TabIndex = 27;
+            this.frmConditionComparison.Visible = false;
             // 
-            // txtWarEffortStage
+            // txtComparisonValue
             // 
-            this.txtWarEffortStage.Location = new System.Drawing.Point(100, 68);
-            this.txtWarEffortStage.Name = "txtWarEffortStage";
-            this.txtWarEffortStage.Size = new System.Drawing.Size(536, 20);
-            this.txtWarEffortStage.TabIndex = 8;
-            this.txtWarEffortStage.Leave += new System.EventHandler(this.txtWarEffortStage_Leave);
+            this.txtComparisonValue.Location = new System.Drawing.Point(100, 68);
+            this.txtComparisonValue.Name = "txtComparisonValue";
+            this.txtComparisonValue.Size = new System.Drawing.Size(536, 20);
+            this.txtComparisonValue.TabIndex = 8;
+            this.txtComparisonValue.Leave += new System.EventHandler(this.txtComparisonValue_Leave);
             // 
-            // cmbWarEffortComparison
+            // cmbComparisonComparison
             // 
-            this.cmbWarEffortComparison.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbWarEffortComparison.FormattingEnabled = true;
-            this.cmbWarEffortComparison.Items.AddRange(new object[] {
+            this.cmbComparisonComparison.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbComparisonComparison.FormattingEnabled = true;
+            this.cmbComparisonComparison.Items.AddRange(new object[] {
             "==",
             ">=",
             "<="});
-            this.cmbWarEffortComparison.Location = new System.Drawing.Point(100, 101);
-            this.cmbWarEffortComparison.Name = "cmbWarEffortComparison";
-            this.cmbWarEffortComparison.Size = new System.Drawing.Size(536, 21);
-            this.cmbWarEffortComparison.TabIndex = 6;
-            this.cmbWarEffortComparison.SelectedIndexChanged += new System.EventHandler(this.cmbWarEffortComparison_SelectedIndexChanged);
+            this.cmbComparisonComparison.Location = new System.Drawing.Point(100, 101);
+            this.cmbComparisonComparison.Name = "cmbComparisonComparison";
+            this.cmbComparisonComparison.Size = new System.Drawing.Size(536, 21);
+            this.cmbComparisonComparison.TabIndex = 6;
+            this.cmbComparisonComparison.SelectedIndexChanged += new System.EventHandler(this.cmbComparisonComparison_SelectedIndexChanged);
             // 
-            // lblWarEffortComparison
+            // lblComparisonComparison
             // 
-            this.lblWarEffortComparison.AutoSize = true;
-            this.lblWarEffortComparison.Location = new System.Drawing.Point(11, 106);
-            this.lblWarEffortComparison.Name = "lblWarEffortComparison";
-            this.lblWarEffortComparison.Size = new System.Drawing.Size(65, 13);
-            this.lblWarEffortComparison.TabIndex = 2;
-            this.lblWarEffortComparison.Text = "Comparison:";
+            this.lblComparisonComparison.AutoSize = true;
+            this.lblComparisonComparison.Location = new System.Drawing.Point(11, 106);
+            this.lblComparisonComparison.Name = "lblComparisonComparison";
+            this.lblComparisonComparison.Size = new System.Drawing.Size(65, 13);
+            this.lblComparisonComparison.TabIndex = 2;
+            this.lblComparisonComparison.Text = "Comparison:";
             // 
-            // lblWarEffortStage
+            // lblComparisonValue
             // 
-            this.lblWarEffortStage.AutoSize = true;
-            this.lblWarEffortStage.Location = new System.Drawing.Point(11, 73);
-            this.lblWarEffortStage.Name = "lblWarEffortStage";
-            this.lblWarEffortStage.Size = new System.Drawing.Size(38, 13);
-            this.lblWarEffortStage.TabIndex = 1;
-            this.lblWarEffortStage.Text = "Stage:";
+            this.lblComparisonValue.AutoSize = true;
+            this.lblComparisonValue.Location = new System.Drawing.Point(11, 73);
+            this.lblComparisonValue.Name = "lblComparisonValue";
+            this.lblComparisonValue.Size = new System.Drawing.Size(38, 13);
+            this.lblComparisonValue.TabIndex = 1;
+            this.lblComparisonValue.Text = "Stage:";
             // 
-            // lblConditionWarEffortTooltip
+            // lblConditionComparisonTooltip
             // 
-            this.lblConditionWarEffortTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblConditionWarEffortTooltip.Location = new System.Drawing.Point(12, 8);
-            this.lblConditionWarEffortTooltip.Name = "lblConditionWarEffortTooltip";
-            this.lblConditionWarEffortTooltip.Size = new System.Drawing.Size(624, 42);
-            this.lblConditionWarEffortTooltip.TabIndex = 0;
-            this.lblConditionWarEffortTooltip.Text = "Returns true if the War Effort event is at the specified stage.";
+            this.lblConditionComparisonTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblConditionComparisonTooltip.Location = new System.Drawing.Point(12, 8);
+            this.lblConditionComparisonTooltip.Name = "lblConditionComparisonTooltip";
+            this.lblConditionComparisonTooltip.Size = new System.Drawing.Size(624, 42);
+            this.lblConditionComparisonTooltip.TabIndex = 0;
+            this.lblConditionComparisonTooltip.Text = "Returns true if the War Effort event is at the specified stage.";
             // 
             // frmConditionGameEvent
             // 
@@ -2106,7 +2106,7 @@
             this.Controls.Add(this.frmConditionInstanceScript);
             this.Controls.Add(this.frmConditionRaceClass);
             this.Controls.Add(this.frmConditionGameEvent);
-            this.Controls.Add(this.frmConditionWarEffort);
+            this.Controls.Add(this.frmConditionComparison);
             this.Controls.Add(this.frmConditionQuest);
             this.Controls.Add(this.frmConditionSkill);
             this.Controls.Add(this.frmConditionTeam);
@@ -2150,7 +2150,7 @@
             this.Controls.SetChildIndex(this.frmConditionTeam, 0);
             this.Controls.SetChildIndex(this.frmConditionSkill, 0);
             this.Controls.SetChildIndex(this.frmConditionQuest, 0);
-            this.Controls.SetChildIndex(this.frmConditionWarEffort, 0);
+            this.Controls.SetChildIndex(this.frmConditionComparison, 0);
             this.Controls.SetChildIndex(this.frmConditionGameEvent, 0);
             this.Controls.SetChildIndex(this.lstData, 0);
             this.Controls.SetChildIndex(this.btnSelectNone, 0);
@@ -2186,8 +2186,8 @@
             this.frmConditionSkill.PerformLayout();
             this.frmConditionQuest.ResumeLayout(false);
             this.frmConditionQuest.PerformLayout();
-            this.frmConditionWarEffort.ResumeLayout(false);
-            this.frmConditionWarEffort.PerformLayout();
+            this.frmConditionComparison.ResumeLayout(false);
+            this.frmConditionComparison.PerformLayout();
             this.frmConditionGameEvent.ResumeLayout(false);
             this.frmConditionGameEvent.PerformLayout();
             this.frmConditionRaceClass.ResumeLayout(false);
@@ -2282,12 +2282,12 @@
         private System.Windows.Forms.Label lblQuestState;
         private System.Windows.Forms.Label lblQuestId;
         private System.Windows.Forms.Label lblConditionQuestTooltip;
-        private System.Windows.Forms.Panel frmConditionWarEffort;
-        private System.Windows.Forms.TextBox txtWarEffortStage;
-        private System.Windows.Forms.ComboBox cmbWarEffortComparison;
-        private System.Windows.Forms.Label lblWarEffortComparison;
-        private System.Windows.Forms.Label lblWarEffortStage;
-        private System.Windows.Forms.Label lblConditionWarEffortTooltip;
+        private System.Windows.Forms.Panel frmConditionComparison;
+        private System.Windows.Forms.TextBox txtComparisonValue;
+        private System.Windows.Forms.ComboBox cmbComparisonComparison;
+        private System.Windows.Forms.Label lblComparisonComparison;
+        private System.Windows.Forms.Label lblComparisonValue;
+        private System.Windows.Forms.Label lblConditionComparisonTooltip;
         private System.Windows.Forms.Panel frmConditionGameEvent;
         private System.Windows.Forms.Button btnGameEventId;
         private System.Windows.Forms.Label lvlGameEventId;

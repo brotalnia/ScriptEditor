@@ -1751,7 +1751,7 @@ namespace ScriptEditor
             ConditionNamesList.Add(new ComboboxPair("QUESTREWARDED", 8));
             ConditionNamesList.Add(new ComboboxPair("QUESTTAKEN", 9));
             ConditionNamesList.Add(new ComboboxPair("AD_COMMISSION_AURA", 10));
-            ConditionNamesList.Add(new ComboboxPair("WAR_EFFORT_STAGE", 11));
+            ConditionNamesList.Add(new ComboboxPair("SAVED_VARIABLE", 11));
             ConditionNamesList.Add(new ComboboxPair("ACTIVE_GAME_EVENT", 12));
             ConditionNamesList.Add(new ComboboxPair("CANT_PATH_TO_VICTIM", 13));
             ConditionNamesList.Add(new ComboboxPair("RACE_CLASS", 14));

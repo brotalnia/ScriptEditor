@@ -28,7 +28,7 @@ namespace ScriptEditor
             conditionFormsList.Add(frmConditionTeam);
             conditionFormsList.Add(frmConditionSkill);
             conditionFormsList.Add(frmConditionQuest);
-            conditionFormsList.Add(frmConditionWarEffort);
+            conditionFormsList.Add(frmConditionComparison);
             conditionFormsList.Add(frmConditionGameEvent);
             conditionFormsList.Add(frmConditionRaceClass);
             conditionFormsList.Add(frmConditionInstanceScript);
@@ -52,7 +52,7 @@ namespace ScriptEditor
             conditionTooltipsList.Add(lblConditionTeamTooltip);
             conditionTooltipsList.Add(lblConditionSkillTooltip);
             conditionTooltipsList.Add(lblConditionQuestTooltip);
-            conditionTooltipsList.Add(lblConditionWarEffortTooltip);
+            conditionTooltipsList.Add(lblConditionComparisonTooltip);
             conditionTooltipsList.Add(lblConditionGameEventTooltip);
             conditionTooltipsList.Add(lblConditionRaceClassTooltip);
             conditionTooltipsList.Add(lblConditionInstanceScriptTooltip);
@@ -282,9 +282,9 @@ namespace ScriptEditor
                     description += targetName + " Has Argent Dawn Commission";
                     break;
                 }
-                case 11: // War Effort Stage
+                case 11: // Saved Variable
                 {
-                    description += "War Effort Stage Is " + GetComparisonOperatorName(condition.Value2) + " " + condition.Value1;
+                    description += "Saved Variable In Index " + condition.Value1 + " Is " + GetComparisonOperatorName(condition.Value3) + " " + condition.Value2;
                     break;
                 }
                 case 12: // Active Game Event
@@ -641,7 +641,6 @@ namespace ScriptEditor
             cmbQuestState.SelectedIndex = 0;
             frmConditionQuest.Visible = false;
 
-            // CONDITION_WAR_EFFORT_STAGE (11)
             // CONDITION_LEVEL (15)
             // CONDITION_LAST_WAYPOINT (32)
             // CONDITION_MAP_EVENT_ACTIVE (36)
@@ -649,9 +648,9 @@ namespace ScriptEditor
             // CONDITION_HEALTH_PERCENT (41)
             // CONDITION_MANA_PERCENT (42)
             // CONDITION_PVP_RANK (51)
-            txtWarEffortStage.Text = "";
-            cmbWarEffortComparison.SelectedIndex = 0;
-            frmConditionWarEffort.Visible = false;
+            txtComparisonValue.Text = "";
+            cmbComparisonComparison.SelectedIndex = 0;
+            frmConditionComparison.Visible = false;
 
             // CONDITION_ACTIVE_GAME_EVENT (12)
             btnGameEventId.Text = "-NONE-";
@@ -695,6 +694,7 @@ namespace ScriptEditor
             btnHasFlagFlags.Text = "-NONE-";
             frmConditionHasFlag.Visible = false;
 
+            // CONDITION_SAVED_VARIABLE (11)
             // CONDITION_INSTANCE_DATA (34)
             txtInstanceDataIndex.Text = "";
             txtInstanceDataValue.Text = "";
@@ -1087,7 +1087,6 @@ namespace ScriptEditor
                     frmConditionQuest.Visible = true;
                     break;
                 }
-                case 11: // CONDITION_WAR_EFFORT_STAGE
                 case 15: // CONDITION_LEVEL
                 case 26: // CONDITION_ACTIVE_HOLIDAY
                 case 32: // CONDITION_LAST_WAYPOINT
@@ -1099,88 +1098,79 @@ namespace ScriptEditor
                 {
                     switch (selectedCondition.Type)
                     {
-                        case 11: // CONDITION_WAR_EFFORT_STAGE
-                        {
-                            lblConditionWarEffortTooltip.Text = "Returns true if the War Effort event is at the specified stage.";
-                            cmbWarEffortComparison.Visible = true;
-                            cmbWarEffortComparison.SelectedIndex = (int)selectedCondition.Value2;
-                            lblWarEffortComparison.Visible = true;
-                            lblWarEffortStage.Text = "Stage:";
-                            break;
-                        }
                         case 15: // CONDITION_LEVEL
                         {
-                            lblConditionWarEffortTooltip.Text = "Returns true if the target Player fits the specified level requirement.";
-                            cmbWarEffortComparison.Visible = true;
-                            cmbWarEffortComparison.SelectedIndex = (int)selectedCondition.Value2;
-                            lblWarEffortComparison.Visible = true;
-                            lblWarEffortStage.Text = "Level:";
+                            lblConditionComparisonTooltip.Text = "Returns true if the target Player fits the specified level requirement.";
+                            cmbComparisonComparison.Visible = true;
+                            cmbComparisonComparison.SelectedIndex = (int)selectedCondition.Value2;
+                            lblComparisonComparison.Visible = true;
+                            lblComparisonValue.Text = "Level:";
                             break;
                         }
                         case 26: // CONDITION_ACTIVE_HOLIDAY
                         {
-                            lblConditionWarEffortTooltip.Text = "Returns true if the specified holiday is currently active.";
-                            cmbWarEffortComparison.Visible = false;
-                            lblWarEffortComparison.Visible = false;
-                            lblWarEffortStage.Text = "Holiday Id:";
+                            lblConditionComparisonTooltip.Text = "Returns true if the specified holiday is currently active.";
+                            cmbComparisonComparison.Visible = false;
+                            lblComparisonComparison.Visible = false;
+                            lblComparisonValue.Text = "Holiday Id:";
                             break;
                         }
                         case 32: // CONDITION_LAST_WAYPOINT
                         {
-                            lblConditionWarEffortTooltip.Text = "Returns true if the source Creature's last reached waypoint matches the one specified.";
-                            cmbWarEffortComparison.Visible = true;
-                            cmbWarEffortComparison.SelectedIndex = (int)selectedCondition.Value2;
-                            lblWarEffortComparison.Visible = true;
-                            lblWarEffortStage.Text = "Waypoint:";
+                            lblConditionComparisonTooltip.Text = "Returns true if the source Creature's last reached waypoint matches the one specified.";
+                            cmbComparisonComparison.Visible = true;
+                            cmbComparisonComparison.SelectedIndex = (int)selectedCondition.Value2;
+                            lblComparisonComparison.Visible = true;
+                            lblComparisonValue.Text = "Waypoint:";
                             break;
                         }
                         case 36: // CONDITION_MAP_EVENT_ACTIVE
                         {
-                            lblConditionWarEffortTooltip.Text = "Returns true if a scripted map event with the specified Id is currently running.";
-                            cmbWarEffortComparison.Visible = false;
-                            lblWarEffortComparison.Visible = false;
-                            lblWarEffortStage.Text = "Event Id:";
+                            lblConditionComparisonTooltip.Text = "Returns true if a scripted map event with the specified Id is currently running.";
+                            cmbComparisonComparison.Visible = false;
+                            lblComparisonComparison.Visible = false;
+                            lblComparisonValue.Text = "Event Id:";
                             break;
                         }
                         case 38: // CONDITION_DISTANCE
                         {
-                            lblConditionWarEffortTooltip.Text = "Returns true if the source and target WorldObjects are within a specified distance of each other.";
-                            cmbWarEffortComparison.Visible = true;
-                            cmbWarEffortComparison.SelectedIndex = (int)selectedCondition.Value2;
-                            lblWarEffortComparison.Visible = true;
-                            lblWarEffortStage.Text = "Distance:";
+                            lblConditionComparisonTooltip.Text = "Returns true if the source and target WorldObjects are within a specified distance of each other.";
+                            cmbComparisonComparison.Visible = true;
+                            cmbComparisonComparison.SelectedIndex = (int)selectedCondition.Value2;
+                            lblComparisonComparison.Visible = true;
+                            lblComparisonValue.Text = "Distance:";
                             break;
                         }
                         case 41: // CONDITION_HEALTH_PERCENT
                         {
-                            lblConditionWarEffortTooltip.Text = "Returns true if the target Unit's remaining health percent matches the specified criteria.";
-                            cmbWarEffortComparison.Visible = true;
-                            cmbWarEffortComparison.SelectedIndex = (int)selectedCondition.Value2;
-                            lblWarEffortComparison.Visible = true;
-                            lblWarEffortStage.Text = "Health:";
+                            lblConditionComparisonTooltip.Text = "Returns true if the target Unit's remaining health percent matches the specified criteria.";
+                            cmbComparisonComparison.Visible = true;
+                            cmbComparisonComparison.SelectedIndex = (int)selectedCondition.Value2;
+                            lblComparisonComparison.Visible = true;
+                            lblComparisonValue.Text = "Health:";
                             break;
                         }
                         case 42: // CONDITION_MANA_PERCENT
                         {
-                            lblConditionWarEffortTooltip.Text = "Returns true if the target Unit's remaining mana percent matches the specified criteria.";
-                            cmbWarEffortComparison.Visible = true;
-                            cmbWarEffortComparison.SelectedIndex = (int)selectedCondition.Value2;
-                            lblWarEffortComparison.Visible = true;
-                            lblWarEffortStage.Text = "Mana:";
+                            lblConditionComparisonTooltip.Text = "Returns true if the target Unit's remaining mana percent matches the specified criteria.";
+                            cmbComparisonComparison.Visible = true;
+                            cmbComparisonComparison.SelectedIndex = (int)selectedCondition.Value2;
+                            lblComparisonComparison.Visible = true;
+                            lblComparisonValue.Text = "Mana:";
                             break;
                         }
                         case 51: // CONDITION_PVP_RANK
                         {
-                            lblConditionWarEffortTooltip.Text = "Returns true if the target Player's honor rank matches the specified criteria.";
-                            cmbWarEffortComparison.Visible = true;
-                            cmbWarEffortComparison.SelectedIndex = (int)selectedCondition.Value2;
-                            lblWarEffortComparison.Visible = true;
-                            lblWarEffortStage.Text = "Rank:";
+                            lblConditionComparisonTooltip.Text = "Returns true if the target Player's honor rank matches the specified criteria.";
+                            cmbComparisonComparison.Visible = true;
+                            cmbComparisonComparison.SelectedIndex = (int)selectedCondition.Value2;
+                            lblComparisonComparison.Visible = true;
+                            lblComparisonValue.Text = "Rank:";
                             break;
                         }
                     }
-                    txtWarEffortStage.Text = selectedCondition.Value1.ToString();
-                    frmConditionWarEffort.Visible = true;
+                    txtComparisonValue.Text = selectedCondition.Value1.ToString();
+                    frmConditionComparison.Visible = true;
                     break;
                 }
                 case 12: // CONDITION_ACTIVE_GAME_EVENT
@@ -1251,8 +1241,22 @@ namespace ScriptEditor
                     frmConditionHasFlag.Visible = true;
                     break;
                 }
+                case 11: // CONDITION_SAVED_VARIABLE
                 case 34: // CONDITION_INSTANCE_DATA
                 {
+                    switch (selectedCondition.Type)
+                    {
+                        case 11: // CONDITION_SAVED_VARIABLE
+                        {
+                            lblConditionInstanceDataTooltip.Text = "Returns true if the value of the specified global saved variable fits the required criteria.";
+                            break;
+                        }
+                        case 34: // CONDITION_INSTANCE_DATA
+                        {
+                            lblConditionInstanceDataTooltip.Text = "Returns true if the value in the specified instance data field fits the required criteria.";
+                            break;
+                        }
+                    }
                     txtInstanceDataIndex.Text = selectedCondition.Value1.ToString();
                     txtInstanceDataValue.Text = selectedCondition.Value2.ToString();
                     cmbInstanceDataComparison.SelectedIndex = (int)selectedCondition.Value3;
@@ -2095,14 +2099,20 @@ namespace ScriptEditor
         {
             SetScriptFieldFromCombobox(cmbQuestState, "Value2", false);
         }
-        // CONDITION_WAR_EFFORT_STAGE
-        private void txtWarEffortStage_Leave(object sender, EventArgs e)
+        // CONDITION_LEVEL
+        // CONDITION_LAST_WAYPOINT
+        // CONDITION_MAP_EVENT_ACTIVE
+        // CONDITION_DISTANCE
+        // CONDITION_HEALTH_PERCENT
+        // CONDITION_MANA_PERCENT
+        // CONDITION_PVP_RANK
+        private void txtComparisonValue_Leave(object sender, EventArgs e)
         {
-            SetScriptFieldFromTextbox(txtWarEffortStage, "Value1");
+            SetScriptFieldFromTextbox(txtComparisonValue, "Value1");
         }
-        private void cmbWarEffortComparison_SelectedIndexChanged(object sender, EventArgs e)
+        private void cmbComparisonComparison_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SetScriptFieldFromCombobox(cmbWarEffortComparison, "Value2", false);
+            SetScriptFieldFromCombobox(cmbComparisonComparison, "Value2", false);
         }
         // CONDITION_ACTIVE_GAME_EVENT
         private void btnGameEventId_Click(object sender, EventArgs e)
@@ -2187,6 +2197,7 @@ namespace ScriptEditor
         {
             SetScriptFieldFromTextbox(txtEscortDistance, "Value2");
         }
+        // CONDITION_SAVED_VARIABLE
         // CONDITION_INSTANCE_DATA
         private void txtInstanceDataIndex_Leave(object sender, EventArgs e)
         {
