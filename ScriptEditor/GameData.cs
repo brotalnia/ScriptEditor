@@ -447,10 +447,19 @@ namespace ScriptEditor
 
                 while (reader.Read())
                 {
-                    string txt = reader.GetString(1); // Get MaleText
+                    string txt = null;
 
-                    if (string.IsNullOrEmpty(txt)) // If MaleText is empty get FemaleText
+                    // Get MaleText
+                    if (!reader.IsDBNull(1))
+                        reader.GetString(1);
+
+                    // If MaleText is empty get FemaleText
+                    if (string.IsNullOrEmpty(txt) && !reader.IsDBNull(2))
                         txt = reader.GetString(2);
+
+                    // useless entry
+                    if (string.IsNullOrEmpty(txt))
+                        continue;
 
                     // Add the new broadcast text entry to the list.
                     BroadcastTextsList.Add(new BroadcastText(reader.GetUInt32(0), txt, reader.GetUInt32(3), reader.GetUInt32(4)));
@@ -469,7 +478,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT `entry`, `MinLevel`, `QuestLevel`, `Title` FROM `quest_template` t1 WHERE `patch`=(SELECT max(`patch`) FROM `quest_template` t2 WHERE t1.`entry`=t2.`entry`) ORDER BY `entry`";
+            command.CommandText = "SELECT `entry`, `MinLevel`, `QuestLevel`, `Title` FROM `quest_template` ORDER BY `entry`";
             try
             {
                 conn.Open();
@@ -494,7 +503,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT `entry`, `type`, `displayId`, `name` FROM `gameobject_template` t1 WHERE `patch`=(SELECT max(`patch`) FROM `gameobject_template` t2 WHERE t1.`entry`=t2.`entry`) ORDER BY `entry`";
+            command.CommandText = "SELECT `entry`, `type`, `displayId`, `name` FROM `gameobject_template` ORDER BY `entry`";
             try
             {
                 conn.Open();
@@ -519,7 +528,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT `entry`, `level_min`, `level_max`, `rank`, `name`, `spell_list_id` FROM `creature_template` t1 WHERE `patch`=(SELECT max(`patch`) FROM `creature_template` t2 WHERE t1.`entry`=t2.`entry`) ORDER BY `entry`";
+            command.CommandText = "SELECT `entry`, `level_min`, `level_max`, `rank`, `name`, `spell_list_id` FROM `creature_template` ORDER BY `entry`";
             try
             {
                 conn.Open();
@@ -667,7 +676,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT `entry`, `effect1`, `effect2`, `effect3`, `name`, `description` FROM `spell_template` t1 WHERE `build`=(SELECT max(`build`) FROM `spell_template` t2 WHERE t1.`entry`=t2.`entry` && `build` <= 5875) ORDER BY `entry`";
+            command.CommandText = "SELECT `entry`, `effect1`, `effect2`, `effect3`, `name`, `description` FROM `spell_template` ORDER BY `entry`";
             try
             {
                 conn.Open();
@@ -692,7 +701,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT `entry`, `required_level`, `item_level`, `inventory_type`, `display_id`, `name` FROM `item_template` t1 WHERE `patch`=(SELECT max(`patch`) FROM `item_template` t2 WHERE t1.`entry`=t2.`entry`) ORDER BY `entry`";
+            command.CommandText = "SELECT `entry`, `required_level`, `item_level`, `inventory_type`, `display_id`, `name` FROM `item_template` ORDER BY `entry`";
             try
             {
                 conn.Open();
@@ -799,7 +808,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT `id`, `reputation_list_id`, `team`, `name`, `description` FROM `faction` t1 WHERE `build`=(SELECT max(`build`) FROM `faction` t2 WHERE t1.`id`=t2.`id` && `build` <= 5875) ORDER BY `id`";
+            command.CommandText = "SELECT `id`, `reputation_list_id`, `team`, `name1`, `description1` FROM `faction` ORDER BY `id`";
             try
             {
                 conn.Open();
@@ -824,7 +833,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT `id`, `faction_id`, `faction_flags` FROM `faction_template` t1 WHERE `build`=(SELECT max(`build`) FROM `faction_template` t2 WHERE t1.`id`=t2.`id` && `build` <= 5875) ORDER BY `id`";
+            command.CommandText = "SELECT `id`, `faction_id`, `faction_flags` FROM `faction_template` ORDER BY `id`";
             try
             {
                 conn.Open();
@@ -849,7 +858,7 @@ namespace ScriptEditor
 
             MySqlConnection conn = new MySqlConnection(connString);
             MySqlCommand command = conn.CreateCommand();
-            command.CommandText = "SELECT `entry`, `occurence`, `length`, `description`, `patch_min`, `patch_max` FROM `game_event` ORDER BY `entry`";
+            command.CommandText = "SELECT `entry`, `occurence`, `length`, `description` FROM `game_event` ORDER BY `entry`";
             try
             {
                 conn.Open();
@@ -858,7 +867,7 @@ namespace ScriptEditor
                 while (reader.Read())
                 {
                     // Add the new game event entry to the list.
-                    GameEventInfoList.Add(new GameEventInfo(reader.GetUInt32(0), reader.GetUInt32(1), reader.GetUInt32(2), reader.GetString(3), reader.GetUInt32(4), reader.GetUInt32(5)));
+                    GameEventInfoList.Add(new GameEventInfo(reader.GetUInt32(0), reader.GetUInt64(1), reader.GetUInt64(2), reader.GetString(3), 0, 10));
                 }
                 reader.Close();
             }
@@ -2560,12 +2569,12 @@ namespace ScriptEditor
     public struct GameEventInfo
     {
         public uint ID;
-        public uint Occurrence;
-        public uint Length;
+        public ulong Occurrence;
+        public ulong Length;
         public string Name;
         public uint PatchMin;
         public uint PatchMax;
-        public GameEventInfo(uint id, uint occurrence, uint length, string name, uint patchmin, uint patchmax)
+        public GameEventInfo(uint id, ulong occurrence, ulong length, string name, uint patchmin, uint patchmax)
         {
             ID = id;
             Occurrence = occurrence;
