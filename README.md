@@ -1,4 +1,4 @@
-# ScriptEditor
+# ScriptEditor (Turtle)
 Database scripts editor for the VMaNGOS emulator.
 
 Preview:
