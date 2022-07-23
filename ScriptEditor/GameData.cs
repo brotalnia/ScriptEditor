@@ -451,7 +451,7 @@ namespace ScriptEditor
 
                     // Get MaleText
                     if (!reader.IsDBNull(1))
-                        reader.GetString(1);
+                        txt = reader.GetString(1);
 
                     // If MaleText is empty get FemaleText
                     if (string.IsNullOrEmpty(txt) && !reader.IsDBNull(2))
