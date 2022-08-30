@@ -119,6 +119,7 @@ namespace ScriptEditor
         "Set PvP",                  // 86
         "Reset Door or Button",     // 87
         "Set Command State",        // 88
+        "Play Custom Anim",         // 89
         };
 
         // Options for combo boxes.
@@ -132,6 +133,8 @@ namespace ScriptEditor
         public string[] CommandSendScriptedMapEvent_ComboOptions = { "Main Targets Only", "Additional Targets Only", "All Targets" };
         public string[] CommandSetGOState_ComboOptions = { "Active", "Ready", "Active Alternative" };
         public string[] CommandSetCommandState_ComboOptions = { "Stay", "Follow", "Attack", "Dismiss" };
+        public string[] CommandPlayCustomAnim_ComboOptions = { "Anim 0", "Anim 1", "Anim 2", "Anim 3" };
+
         public FormScriptEditor()
         {
             InitializeComponent();
@@ -1864,6 +1867,7 @@ namespace ScriptEditor
                 case 71: // Respawn Creature
                 case 80: // Set GO State
                 case 88: // Set Command State
+                case 89: // Play Custom Anim
                 {
                     switch (selectedAction.Command)
                     {
@@ -1907,6 +1911,13 @@ namespace ScriptEditor
                             lblFleeTooltip.Text = "The source Creature is given a pet command. Only works on charmed units.";
                             lblFleeMode.Text = "State:";
                             cmbFleeMode.DataSource = CommandSetCommandState_ComboOptions;
+                            break;
+                        }
+                        case 89: // Play Custom Anim
+                        {
+                            lblFleeTooltip.Text = "The source GameObject plays one of four possible animations tied to its model.";
+                            lblFleeMode.Text = "Anim:";
+                            cmbFleeMode.DataSource = CommandPlayCustomAnim_ComboOptions;
                             break;
                         }
                     }

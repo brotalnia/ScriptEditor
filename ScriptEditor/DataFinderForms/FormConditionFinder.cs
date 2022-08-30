@@ -101,6 +101,13 @@ namespace ScriptEditor
             new ComboboxPair("Including Player Pets", 1)
         };
 
+        private ComboboxPair[] ConditionNearbyPlayer_ComboOptions =
+        {
+            new ComboboxPair("Any", 0),
+            new ComboboxPair("Hostile", 1),
+            new ComboboxPair("Friendly", 2)
+        };
+
         public void ShowStandalone()
         {
             this.ControlBox = true;
@@ -567,6 +574,11 @@ namespace ScriptEditor
                     description += targetName + " GameObject's GO State Is " + GameData.FindGOStateName((uint)condition.Value1);
                     break;
                 }
+                case 56: // Nearby Player
+                {
+                    description += ConditionNearbyPlayer_ComboOptions[condition.Value1].Text + " Player Within " + condition.Value2 + " Yards Of The " + targetName;
+                    break;
+                }
             }
 
             return description + (((condition.Flags & 1) != 0) ? ")" : "");
@@ -1018,6 +1030,7 @@ namespace ScriptEditor
                 }
                 case 7: // CONDITION_SKILL
                 case 29: // CONDITION_SKILL_BELOW
+                case 56: // CONDITION_NEARBY_PLAYER
                 {
                     switch (selectedCondition.Type)
                     {
@@ -1035,6 +1048,14 @@ namespace ScriptEditor
                             cmbSkillId.DataSource = GameData.SkillsList;
                             lblSkillId.Text = "Skill Id:";
                             lblSkillLevel.Text = "Skill Level:";
+                            break;
+                        }
+                        case 56: // CONDITION_NEARBY_PLAYER
+                        {
+                            lblConditionSkillTooltip.Text = "Returns true if there is a player within a given distance of the target.";
+                            cmbSkillId.DataSource = ConditionNearbyPlayer_ComboOptions;
+                            lblSkillId.Text = "Reaction:";
+                            lblSkillLevel.Text = "Distance:";
                             break;
                         }
                     }

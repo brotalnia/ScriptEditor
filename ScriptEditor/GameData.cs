@@ -1796,6 +1796,7 @@ namespace ScriptEditor
             ConditionNamesList.Add(new ComboboxPair("LOCAL_TIME", 53));
             ConditionNamesList.Add(new ComboboxPair("DISTANCE_TO_POSITION", 54));
             ConditionNamesList.Add(new ComboboxPair("OBJECT_GO_STATE", 55));
+            ConditionNamesList.Add(new ComboboxPair("NEARBY_PLAYER", 56));
 
             // Add skill names.
             SkillsList.Add(new ComboboxPair("Frost", 6));
