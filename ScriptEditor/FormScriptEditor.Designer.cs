@@ -226,6 +226,7 @@
             this.frmCommandPlaySound = new System.Windows.Forms.Panel();
             this.btnPlaySoundId = new System.Windows.Forms.Button();
             this.grpPlaySoundFlags = new System.Windows.Forms.GroupBox();
+            this.chkPlaySoundFlags4 = new System.Windows.Forms.CheckBox();
             this.chkPlaySoundFlags2 = new System.Windows.Forms.CheckBox();
             this.chkPlaySoundFlags1 = new System.Windows.Forms.CheckBox();
             this.lblPlaySoundId = new System.Windows.Forms.Label();
@@ -236,10 +237,6 @@
             this.btnCreateItemId = new System.Windows.Forms.Button();
             this.lblCreateItemId = new System.Windows.Forms.Label();
             this.lblCreateItemTooltip = new System.Windows.Forms.Label();
-            this.frmCommandDespawnCreature = new System.Windows.Forms.Panel();
-            this.lblDespawnCreatureDelay = new System.Windows.Forms.Label();
-            this.txtDespawnCreatureDelay = new System.Windows.Forms.TextBox();
-            this.lblDespawnCreatureTooltip = new System.Windows.Forms.Label();
             this.frmCommandSetEquipment = new System.Windows.Forms.Panel();
             this.lblSetEquipmentRanged = new System.Windows.Forms.Label();
             this.lblSetEquipmentOffHand = new System.Windows.Forms.Label();
@@ -587,7 +584,6 @@
             this.frmCommandPlaySound.SuspendLayout();
             this.grpPlaySoundFlags.SuspendLayout();
             this.frmCommandCreateItem.SuspendLayout();
-            this.frmCommandDespawnCreature.SuspendLayout();
             this.frmCommandSetEquipment.SuspendLayout();
             this.frmCommandSetMovement.SuspendLayout();
             this.frmCommandActiveObject.SuspendLayout();
@@ -2668,6 +2664,7 @@
             // 
             // grpPlaySoundFlags
             // 
+            this.grpPlaySoundFlags.Controls.Add(this.chkPlaySoundFlags4);
             this.grpPlaySoundFlags.Controls.Add(this.chkPlaySoundFlags2);
             this.grpPlaySoundFlags.Controls.Add(this.chkPlaySoundFlags1);
             this.grpPlaySoundFlags.Location = new System.Drawing.Point(26, 88);
@@ -2676,6 +2673,17 @@
             this.grpPlaySoundFlags.TabIndex = 3;
             this.grpPlaySoundFlags.TabStop = false;
             this.grpPlaySoundFlags.Text = "Flags";
+            // 
+            // chkPlaySoundFlags4
+            // 
+            this.chkPlaySoundFlags4.AutoSize = true;
+            this.chkPlaySoundFlags4.Location = new System.Drawing.Point(244, 21);
+            this.chkPlaySoundFlags4.Name = "chkPlaySoundFlags4";
+            this.chkPlaySoundFlags4.Size = new System.Drawing.Size(93, 17);
+            this.chkPlaySoundFlags4.TabIndex = 2;
+            this.chkPlaySoundFlags4.Text = "To All In Zone";
+            this.chkPlaySoundFlags4.UseVisualStyleBackColor = true;
+            this.chkPlaySoundFlags4.CheckedChanged += new System.EventHandler(this.chkPlaySoundFlags4_CheckedChanged);
             // 
             // chkPlaySoundFlags2
             // 
@@ -2775,44 +2783,6 @@
             this.lblCreateItemTooltip.Size = new System.Drawing.Size(453, 32);
             this.lblCreateItemTooltip.TabIndex = 0;
             this.lblCreateItemTooltip.Text = "Adds the specified item to the target Player\'s inventory.";
-            // 
-            // frmCommandDespawnCreature
-            // 
-            this.frmCommandDespawnCreature.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.frmCommandDespawnCreature.Controls.Add(this.lblDespawnCreatureDelay);
-            this.frmCommandDespawnCreature.Controls.Add(this.txtDespawnCreatureDelay);
-            this.frmCommandDespawnCreature.Controls.Add(this.lblDespawnCreatureTooltip);
-            this.frmCommandDespawnCreature.Location = new System.Drawing.Point(410, 252);
-            this.frmCommandDespawnCreature.Name = "frmCommandDespawnCreature";
-            this.frmCommandDespawnCreature.Size = new System.Drawing.Size(495, 332);
-            this.frmCommandDespawnCreature.TabIndex = 24;
-            this.frmCommandDespawnCreature.Visible = false;
-            // 
-            // lblDespawnCreatureDelay
-            // 
-            this.lblDespawnCreatureDelay.AutoSize = true;
-            this.lblDespawnCreatureDelay.Location = new System.Drawing.Point(59, 61);
-            this.lblDespawnCreatureDelay.Name = "lblDespawnCreatureDelay";
-            this.lblDespawnCreatureDelay.Size = new System.Drawing.Size(37, 13);
-            this.lblDespawnCreatureDelay.TabIndex = 2;
-            this.lblDespawnCreatureDelay.Text = "Delay:";
-            // 
-            // txtDespawnCreatureDelay
-            // 
-            this.txtDespawnCreatureDelay.Location = new System.Drawing.Point(99, 58);
-            this.txtDespawnCreatureDelay.Name = "txtDespawnCreatureDelay";
-            this.txtDespawnCreatureDelay.Size = new System.Drawing.Size(374, 20);
-            this.txtDespawnCreatureDelay.TabIndex = 1;
-            this.txtDespawnCreatureDelay.Leave += new System.EventHandler(this.txtDespawnCreatureDelay_Leave);
-            // 
-            // lblDespawnCreatureTooltip
-            // 
-            this.lblDespawnCreatureTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblDespawnCreatureTooltip.Location = new System.Drawing.Point(20, 10);
-            this.lblDespawnCreatureTooltip.Name = "lblDespawnCreatureTooltip";
-            this.lblDespawnCreatureTooltip.Size = new System.Drawing.Size(453, 32);
-            this.lblDespawnCreatureTooltip.TabIndex = 0;
-            this.lblDespawnCreatureTooltip.Text = "Despawns the source Creature after the specified delay.";
             // 
             // frmCommandSetEquipment
             // 
@@ -6210,7 +6180,6 @@
             this.Controls.Add(this.frmCommandActiveObject);
             this.Controls.Add(this.frmCommandSetMovement);
             this.Controls.Add(this.frmCommandSetEquipment);
-            this.Controls.Add(this.frmCommandDespawnCreature);
             this.Controls.Add(this.frmCommandCreateItem);
             this.Controls.Add(this.frmCommandPlaySound);
             this.Controls.Add(this.frmCommandCastSpell);
@@ -6289,8 +6258,6 @@
             this.grpPlaySoundFlags.PerformLayout();
             this.frmCommandCreateItem.ResumeLayout(false);
             this.frmCommandCreateItem.PerformLayout();
-            this.frmCommandDespawnCreature.ResumeLayout(false);
-            this.frmCommandDespawnCreature.PerformLayout();
             this.frmCommandSetEquipment.ResumeLayout(false);
             this.frmCommandSetEquipment.PerformLayout();
             this.frmCommandSetMovement.ResumeLayout(false);
@@ -6545,10 +6512,6 @@
         private System.Windows.Forms.Button btnCreateItemId;
         private System.Windows.Forms.Label lblCreateItemId;
         private System.Windows.Forms.Label lblCreateItemTooltip;
-        private System.Windows.Forms.Panel frmCommandDespawnCreature;
-        private System.Windows.Forms.Label lblDespawnCreatureDelay;
-        private System.Windows.Forms.TextBox txtDespawnCreatureDelay;
-        private System.Windows.Forms.Label lblDespawnCreatureTooltip;
         private System.Windows.Forms.Panel frmCommandSetEquipment;
         private System.Windows.Forms.Label lblSetEquipmentTooltip;
         private System.Windows.Forms.Label lblSetEquipmentRanged;
@@ -6909,6 +6872,7 @@
         private System.Windows.Forms.Label lblModifyFlagsFlags;
         private System.Windows.Forms.CheckBox chkSkipMissingTargets;
         private System.Windows.Forms.Button btnStartScriptForAllEdit;
+        private System.Windows.Forms.CheckBox chkPlaySoundFlags4;
     }
 }
 

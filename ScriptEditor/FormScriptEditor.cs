@@ -120,6 +120,7 @@ namespace ScriptEditor
         "Reset Door or Button",     // 87
         "Set Command State",        // 88
         "Play Custom Anim",         // 89
+        "Start Script on Group",    // 90
         };
 
         // Options for combo boxes.
@@ -663,17 +664,13 @@ namespace ScriptEditor
             btnPlaySoundId.Text = "-NONE-";
             chkPlaySoundFlags1.Checked = false;
             chkPlaySoundFlags2.Checked = false;
+            chkPlaySoundFlags4.Checked = false;
             frmCommandPlaySound.Visible = false;
 
             // Create Item and Remove Item (17, 40)
             btnCreateItemId.Text = "-NONE-";
             txtCreateItemAmount.Text = "";
             frmCommandCreateItem.Visible = false;
-
-            // Despawn Creature (18)
-            // Set Gossip Menu (84)
-            txtDespawnCreatureDelay.Text = "";
-            frmCommandDespawnCreature.Visible = false;
 
             // Set Equipment (19)
             btnSetEquipmentMainHand.Text = "-NONE-";
@@ -778,6 +775,7 @@ namespace ScriptEditor
             frmCommandSetData.Visible = false;
 
             // Start Script (39)
+            // Start Script on Group (90)
             txtStartScriptId1.Text = "";
             txtStartScriptId2.Text = "";
             txtStartScriptId3.Text = "";
@@ -796,9 +794,11 @@ namespace ScriptEditor
             cmbSetPhaseMode.SelectedIndex = 0;
             frmCommandSetPhase.Visible = false;
 
+            // Despawn Creature (18)
             // Set Random AI Phase (45)
             // Set Range AI Phase (46)
             // Set Server Variable (54)
+            // Set Gossip Menu (84)
             // Send AI Event (85)
             txtSetRandomPhase1.Text = "";
             txtSetRandomPhase2.Text = "";
@@ -1342,6 +1342,8 @@ namespace ScriptEditor
                         chkPlaySoundFlags1.Checked = true;
                     if ((selectedAction.Datalong2 & 2) != 0)
                         chkPlaySoundFlags2.Checked = true;
+                    if ((selectedAction.Datalong2 & 4) != 0)
+                        chkPlaySoundFlags4.Checked = true;
                     frmCommandPlaySound.Visible = true;
                     break;
                 }
@@ -1357,29 +1359,6 @@ namespace ScriptEditor
                     else
                         lblCreateItemTooltip.Text = "Removes the specified item from the target or source Player\'s inventory.";
                     frmCommandCreateItem.Visible = true;
-                    break;
-                }
-                case 18: // Despawn Creature
-                case 84: // Set Gossip Menu
-                {
-                    switch (selectedAction.Command)
-                    {
-                        case 18: // Despawn Creature
-                        {
-                            lblDespawnCreatureTooltip.Text = "Despawns the source Creature after the specified delay.";
-                            lblDespawnCreatureDelay.Text = "Delay:";
-                            break;
-                        }
-                        case 84: // Set Gossip Menu
-                        {
-                            lblDespawnCreatureTooltip.Text = "Changes the source Creature's default gossip menu to the one specified.";
-                            lblDespawnCreatureDelay.Text = "Menu:";
-                            break;
-                        }
-                    }
-
-                    txtDespawnCreatureDelay.Text = selectedAction.Datalong.ToString();
-                    frmCommandDespawnCreature.Visible = true;
                     break;
                 }
                 case 19: // Set Equipment
@@ -1741,6 +1720,7 @@ namespace ScriptEditor
                     break;
                 }
                 case 39: // Start Script
+                case 90: // Start Script on Group
                 {
                     txtStartScriptId1.Text = selectedAction.Datalong.ToString();
                     txtStartScriptId2.Text = selectedAction.Datalong2.ToString();
@@ -1800,9 +1780,11 @@ namespace ScriptEditor
                     frmCommandSetPhase.Visible = true;
                     break;
                 }
+                case 18: // Despawn Creature
                 case 45: // Set Random AI Phase
                 case 46: // Set Range AI Phase
                 case 54: // Set Server Variable
+                case 84: // Set Gossip Menu
                 case 85: // Send AI Event
                 {
                     txtSetRandomPhase1.Text = selectedAction.Datalong.ToString();
@@ -1811,11 +1793,26 @@ namespace ScriptEditor
                     txtSetRandomPhase4.Text = selectedAction.Datalong4.ToString();
                     switch (selectedAction.Command)
                     {
+                        case 18: // Despawn Creature
+                        {
+                            lblSetRandomPhaseTooltip.Text = "Despawns the source Creature after the specified delay. Respawn delay starts ticking after despawning. Default respawn time is not permanently overriden.";
+                            lblSetRandomPhase2.Visible = true;
+                            lblSetRandomPhase3.Visible = false;
+                            lblSetRandomPhase4.Visible = false;
+                            txtSetRandomPhase2.Visible = true;
+                            txtSetRandomPhase3.Visible = false;
+                            txtSetRandomPhase4.Visible = false;
+                            lblSetRandomPhase1.Text = "Despawn Ms:";
+                            lblSetRandomPhase2.Text = "Respawn Secs:";
+                            break;
+                        }
                         case 45: // Set Random AI Phase
                         {
                             lblSetRandomPhaseTooltip.Text = "Randomly chooses one of the provided values and sets the Creature's AI phase to it. Can only be used on creatures with EventAI.";
+                            lblSetRandomPhase2.Visible = true;
                             lblSetRandomPhase3.Visible = true;
                             lblSetRandomPhase4.Visible = true;
+                            txtSetRandomPhase2.Visible = true;
                             txtSetRandomPhase3.Visible = true;
                             txtSetRandomPhase4.Visible = true;
                             lblSetRandomPhase1.Text = "Phase 1:";
@@ -1825,8 +1822,10 @@ namespace ScriptEditor
                         case 46: // Set Range AI Phase
                         {
                             lblSetRandomPhaseTooltip.Text = "Randomly chooses a value in the provided range and sets the Creature's AI phase to it. Can only be used on creatures with EventAI.";
+                            lblSetRandomPhase2.Visible = true;
                             lblSetRandomPhase3.Visible = false;
                             lblSetRandomPhase4.Visible = false;
+                            txtSetRandomPhase2.Visible = true;
                             txtSetRandomPhase3.Visible = false;
                             txtSetRandomPhase4.Visible = false;
                             lblSetRandomPhase1.Text = "Minimum:";
@@ -1836,19 +1835,35 @@ namespace ScriptEditor
                         case 54: // Set Server Variable
                         {
                             lblSetRandomPhaseTooltip.Text = "Sets the chosen server variable to the provided value.";
+                            lblSetRandomPhase2.Visible = true;
                             lblSetRandomPhase3.Visible = false;
                             lblSetRandomPhase4.Visible = false;
+                            txtSetRandomPhase2.Visible = true;
                             txtSetRandomPhase3.Visible = false;
                             txtSetRandomPhase4.Visible = false;
                             lblSetRandomPhase1.Text = "Index:";
                             lblSetRandomPhase2.Text = "Value:";
                             break;
                         }
+                        case 84: // Set Gossip Menu
+                        {
+                            lblSetRandomPhaseTooltip.Text = "Changes the source Creature's default gossip menu to the one specified.";
+                            lblSetRandomPhase2.Visible = false;
+                            lblSetRandomPhase3.Visible = false;
+                            lblSetRandomPhase4.Visible = false;
+                            txtSetRandomPhase2.Visible = false;
+                            txtSetRandomPhase3.Visible = false;
+                            txtSetRandomPhase4.Visible = false;
+                            lblSetRandomPhase1.Text = "Menu:";
+                            break;
+                        }
                         case 85: // Send AI Event
                         {
                             lblSetRandomPhaseTooltip.Text = "Notifies the source Creature's AI that an event took place.";
+                            lblSetRandomPhase2.Visible = true;
                             lblSetRandomPhase3.Visible = false;
                             lblSetRandomPhase4.Visible = false;
+                            txtSetRandomPhase2.Visible = true;
                             txtSetRandomPhase3.Visible = false;
                             txtSetRandomPhase4.Visible = false;
                             lblSetRandomPhase1.Text = "Event Id:";
@@ -3313,10 +3328,26 @@ namespace ScriptEditor
         private void chkPlaySoundFlags1_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkPlaySoundFlags1, "Datalong2", 1);
+
+            if (chkPlaySoundFlags1.Checked && chkPlaySoundFlags4.Checked)
+                chkPlaySoundFlags4.Checked = false;
         }
         private void chkPlaySoundFlags2_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkPlaySoundFlags2, "Datalong2", 2);
+
+            if (chkPlaySoundFlags2.Checked && chkPlaySoundFlags4.Checked)
+                chkPlaySoundFlags4.Checked = false;
+        }
+
+        private void chkPlaySoundFlags4_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkPlaySoundFlags4, "Datalong2", 4);
+
+            if (chkPlaySoundFlags4.Checked && chkPlaySoundFlags1.Checked)
+                chkPlaySoundFlags1.Checked = false;
+            if (chkPlaySoundFlags4.Checked && chkPlaySoundFlags2.Checked)
+                chkPlaySoundFlags2.Checked = false;
         }
 
         // SCRIPT_COMMAND_CREATE_ITEM (17)
@@ -3327,12 +3358,6 @@ namespace ScriptEditor
         private void txtCreateItemAmount_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtCreateItemAmount, "Datalong2");
-        }
-
-        // SCRIPT_COMMAND_DESPAWN_CREATURE (18)
-        private void txtDespawnCreatureDelay_Leave(object sender, EventArgs e)
-        {
-            SetScriptFieldFromTextbox(txtDespawnCreatureDelay, "Datalong");
         }
 
         // SCRIPT_COMMAND_SET_EQUIPMENT (19)
@@ -3803,6 +3828,7 @@ namespace ScriptEditor
         }
 
         // SCRIPT_COMMAND_START_SCRIPT (39)
+        // SCRIPT_COMMAND_START_SCRIPT_ON_GROUP (90)
         private void txtStartScriptId1_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtStartScriptId1, "Datalong");
@@ -3890,7 +3916,12 @@ namespace ScriptEditor
             SetScriptFieldFromCombobox(cmbSetPhaseMode, "Datalong2", false);
         }
 
+        // SCRIPT_COMMAND_DESPAWN_CREATURE (18)
         // SCRIPT_COMMAND_SET_PHASE_RANDOM (45)
+        // SCRIPT_COMMAND_SET_PHASE_RANGE (46)
+        // SCRIPT_COMMAND_SET_SERVER_VARIABLE (54)
+        // SCRIPT_COMMAND_SET_GOSSIP_MENU (84)
+        // SCRIPT_COMMAND_SEND_SCRIPT_EVENT (85)
         private void txtSetRandomPhase1_Leave(object sender, EventArgs e)
         {
             SetScriptFieldFromTextbox(txtSetRandomPhase1, "Datalong");
