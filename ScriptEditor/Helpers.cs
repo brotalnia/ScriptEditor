@@ -85,7 +85,7 @@ namespace ScriptEditor
 
         public static DialogResult ShowFlagInputDialog(ref uint flags, string name, List<Tuple<string, uint>> valuesList)
         {
-            System.Drawing.Size size = new System.Drawing.Size(10 + 120 + 120 + 10, 10 + 24 + (valuesList.Count / 2) * 24 + 30 + 10);
+            System.Drawing.Size size = new System.Drawing.Size(10 + 120 + 120 + 10, 43 + 24 + (valuesList.Count / 2) * 24 + 30 + 10);
             Form inputBox = new Form();
 
             inputBox.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -99,7 +99,7 @@ namespace ScriptEditor
             for (int i = 0; i < valuesList.Count; i++)
             {
                 int x = (i & 1) != 0 ? 120 : 10;
-                int y = 10 + (i / 2) * 24;
+                int y = 43 + (i / 2) * 24;
                 CheckBox checkBox = new CheckBox();
                 checkBox.Location = new System.Drawing.Point(x, y);
                 checkBox.Text = valuesList[i].Item1;
@@ -111,12 +111,87 @@ namespace ScriptEditor
                 inputBox.Controls.Add(checkBox);
             }
 
+            Func<List<CheckBox>, uint> CalculateMaskFromCheckBoxes = delegate (List<CheckBox> checkBoxesList)
+            {
+                uint totalFlags = 0;
+                foreach (CheckBox checkBox in checkBoxesList)
+                {
+                    if (checkBox.Checked)
+                        totalFlags |= (uint)checkBox.Tag;
+                }
+
+                return totalFlags;
+            };
+
+            Func<List<CheckBox>, uint, bool> MarkCheckBoxesBasedOnMask = delegate (List<CheckBox> checkBoxesList, uint totalFlags)
+            {
+                foreach (CheckBox checkBox in checkBoxesList)
+                {
+                    checkBox.Checked = (totalFlags & (uint)checkBox.Tag) != 0;
+                }
+
+                return true;
+            };
+
+            Label lblRawMask = new Label();
+            lblRawMask.Name = "lblRawMask";
+            lblRawMask.Size = new System.Drawing.Size(75, 23);
+            lblRawMask.AutoSize = true;
+            lblRawMask.Text = "Raw Mask:";
+            lblRawMask.Location = new System.Drawing.Point(10, 15);
+            inputBox.Controls.Add(lblRawMask);
+
+            TextBox txtRawMask = new TextBox();
+            txtRawMask.Name = "txtRawMask";
+            txtRawMask.Size = new System.Drawing.Size(80, 20);
+            txtRawMask.Text = flags.ToString();
+            txtRawMask.Location = new System.Drawing.Point(lblRawMask.Location.X + lblRawMask.Size.Width + 5, 10);
+            txtRawMask.TextChanged += (sender, e) =>
+            {
+                if (inputBox.Tag != null)
+                    return;
+
+                inputBox.Tag = true;
+
+                uint totalFlags;
+                if (!UInt32.TryParse(txtRawMask.Text, out totalFlags))
+                    totalFlags = 0;
+
+                MarkCheckBoxesBasedOnMask(checkBoxes, totalFlags);
+
+                inputBox.Tag = null;
+            };
+            inputBox.Controls.Add(txtRawMask);
+
+            foreach (CheckBox checkBox in checkBoxes)
+            {
+                checkBox.CheckedChanged += (sender, e) =>
+                {
+                    if (inputBox.Tag != null)
+                        return;
+
+                    inputBox.Tag = true;
+
+                    uint totalFlags;
+                    if (!UInt32.TryParse(txtRawMask.Text, out totalFlags))
+                        totalFlags = 0;
+
+                    uint value = (uint)checkBox.Tag;
+                    if (checkBox.Checked)
+                        txtRawMask.Text = (totalFlags | value).ToString();
+                    else
+                        txtRawMask.Text = (totalFlags & ~value).ToString();
+
+                    inputBox.Tag = null;
+                };
+            }
+
             Button okButton = new Button();
             okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             okButton.Name = "okButton";
             okButton.Size = new System.Drawing.Size(75, 23);
             okButton.Text = "&OK";
-            okButton.Location = new System.Drawing.Point(inputBox.Size.Width / 2 - 5 - okButton.Size.Width, 10 + 24 + (valuesList.Count / 2) * 24 + 10);
+            okButton.Location = new System.Drawing.Point(inputBox.Size.Width / 2 - 5 - okButton.Size.Width, 43 + 24 + (valuesList.Count / 2) * 24 + 10);
             inputBox.Controls.Add(okButton);
 
             Button cancelButton = new Button();
@@ -124,7 +199,7 @@ namespace ScriptEditor
             cancelButton.Name = "cancelButton";
             cancelButton.Size = new System.Drawing.Size(75, 23);
             cancelButton.Text = "&Cancel";
-            cancelButton.Location = new System.Drawing.Point(inputBox.Size.Width / 2 + 5, 10 + 24 + (valuesList.Count / 2) * 24 + 10);
+            cancelButton.Location = new System.Drawing.Point(inputBox.Size.Width / 2 + 5, 43 + 24 + (valuesList.Count / 2) * 24 + 10);
             inputBox.Controls.Add(cancelButton);
 
             inputBox.AcceptButton = okButton;
@@ -133,12 +208,7 @@ namespace ScriptEditor
             DialogResult result = inputBox.ShowDialog();
             if (result == DialogResult.OK)
             {
-                flags = 0;
-                foreach (CheckBox checkBox in checkBoxes)
-                {
-                    if (checkBox.Checked)
-                        flags |= (uint)checkBox.Tag;
-                }
+                flags = CalculateMaskFromCheckBoxes(checkBoxes);
             }
             return result;
         }
