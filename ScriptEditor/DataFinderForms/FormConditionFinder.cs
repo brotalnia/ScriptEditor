@@ -2190,7 +2190,7 @@ namespace ScriptEditor
         // CONDITION_NEARBY_GAMEOBJECT
         private void btnNearbyObjectId_Click(object sender, EventArgs e)
         {
-            SetScriptFieldFromDataFinderForm<DataFinderForms.FormGameObjectFinder>(btnNearbyObjectId, null, GameData.FindGameObjectName, "Value1");
+            SetScriptFieldFromDataFinderForm<FormGameObjectFinder>(btnNearbyObjectId, null, GameData.FindGameObjectName, "Value1");
         }
         private void txtNearbyObjectDistance_Leave(object sender, EventArgs e)
         {

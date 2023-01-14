@@ -85,6 +85,15 @@ namespace ScriptEditor
 
         public static DialogResult ShowFlagInputDialog(ref uint flags, string name, List<Tuple<string, uint>> valuesList)
         {
+            if (valuesList == null)
+            {
+                valuesList = new List<Tuple<string, uint>>();
+                for (int i = 0; i < 32; i++)
+                {
+                    valuesList.Add(new Tuple<string, uint>(i + " - " + (1u << i).ToString("X8"), (1u << i)));
+                }
+            }
+
             System.Drawing.Size size = new System.Drawing.Size(10 + 120 + 120 + 10, 43 + 24 + (valuesList.Count / 2) * 24 + 30 + 10);
             Form inputBox = new Form();
 

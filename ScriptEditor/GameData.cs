@@ -46,6 +46,7 @@ namespace ScriptEditor
         public static readonly List<Tuple<string, uint>> UnitDynamicFlagsList = new List<Tuple<string, uint>>();
         public static readonly List<Tuple<string, uint>> UnitNpcFlagsList = new List<Tuple<string, uint>>();
         public static readonly List<Tuple<string, uint>> PlayerFlagsList = new List<Tuple<string, uint>>();
+        public static readonly List<Tuple<string, uint>> SpellMechanicMaskList = new List<Tuple<string, uint>>();
 
         public static int FindIndexOfMap(uint id)
         {
@@ -2373,6 +2374,39 @@ namespace ScriptEditor
             PlayerFlagsList.Add(new Tuple<string, uint>("Sanctuary", 65536));
             PlayerFlagsList.Add(new Tuple<string, uint>("TaxiBenchmark", 131072));
             PlayerFlagsList.Add(new Tuple<string, uint>("PvPTimer", 262144));
+
+            // Spell mechanic masks.
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Charm", 1));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Disorient", 2));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Disarm", 4));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Distract", 8));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Fear", 16));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Fumble", 32));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Root", 64));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Pacify", 128));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Silence", 256));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Sleep", 512));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Snare", 1024));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Stun", 2048));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Freeze", 4096));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Knockout", 8192));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Bleed", 16384));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Bandage", 32768));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Polymoprh", 65536));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Banish", 131072));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Shield", 262144));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Shackle", 524288));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Mount", 1048576));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Persuade", 2097152));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Turn", 4194304));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Horror", 8388608));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Invulnerability", 16777216));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Interrupt", 33554432));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Daze", 67108864));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Discovery", 134217728));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Immune Shield", 268435456));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Sapped", 536870912));
+            SpellMechanicMaskList.Add(new Tuple<string, uint>("Slow Cast Speed", 1073741824));
         }
     }
     public struct BroadcastText

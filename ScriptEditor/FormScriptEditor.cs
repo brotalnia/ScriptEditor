@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using ScriptEditor.DataFinderForms;
 
 namespace ScriptEditor
 {

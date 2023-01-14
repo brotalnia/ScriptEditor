@@ -1,4 +1,4 @@
-﻿namespace ScriptEditor.DataFinderForms
+﻿namespace ScriptEditor
 {
     partial class FormGameObjectFinder
     {
