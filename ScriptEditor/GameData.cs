@@ -1798,6 +1798,8 @@ namespace ScriptEditor
             ConditionNamesList.Add(new ComboboxPair("DISTANCE_TO_POSITION", 54));
             ConditionNamesList.Add(new ComboboxPair("OBJECT_GO_STATE", 55));
             ConditionNamesList.Add(new ComboboxPair("NEARBY_PLAYER", 56));
+            ConditionNamesList.Add(new ComboboxPair("CREATURE_GROUP_MEMBER", 57));
+            ConditionNamesList.Add(new ComboboxPair("CREATURE_GROUP_DEAD", 58));
 
             // Add skill names.
             SkillsList.Add(new ComboboxPair("Frost", 6));

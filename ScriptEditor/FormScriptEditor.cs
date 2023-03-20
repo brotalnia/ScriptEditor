@@ -111,7 +111,7 @@ namespace ScriptEditor
         "Leave Creature Group",     // 79
         "Set GO State",             // 80
         "Despawn GameObject",       // 81
-        "Load GameObject",          // 82
+        "Load GameObject Spawn",    // 82
         "Quest Credit",             // 83
         "Set Gossip Menu",          // 84
         "Send AI Event",            // 85
@@ -120,6 +120,7 @@ namespace ScriptEditor
         "Set Command State",        // 88
         "Play Custom Anim",         // 89
         "Start Script on Group",    // 90
+        "Load Creature Spawn",      // 91
         };
 
         // Options for combo boxes.
@@ -789,6 +790,7 @@ namespace ScriptEditor
             // Deal Damage (48)
             // Set Invincibility HP (52)
             // End Scripted Map Event (62)
+            // Load Creature Spawn (91)
             txtSetPhasePhase.Text = "";
             cmbSetPhaseMode.SelectedIndex = 0;
             frmCommandSetPhase.Visible = false;
@@ -1736,6 +1738,7 @@ namespace ScriptEditor
                 case 48: // Deal Damage
                 case 52: // Set Invincibility HP
                 case 62: // End Scripted Map Event
+                case 91: // Load Creature Spawn
                 {
                     switch (selectedAction.Command)
                     {
@@ -1768,6 +1771,14 @@ namespace ScriptEditor
                             lblSetPhaseTooltip.Text = "Ends the scripted map event with the given Id.";
                             lblSetPhasePhase.Text = "Event Id:";
                             lblSetPhaseMode.Text = "Success:";
+                            cmbSetPhaseMode.DataSource = CommandCombatPulse_ComboOptions;
+                            break;
+                        }
+                        case 91: // Load Creature Spawn
+                        {
+                            lblSetPhaseTooltip.Text = "Adds the Creature spawn with the specified GUID to the current map. Does not respawn already loaded spawns.";
+                            lblSetPhasePhase.Text = "GUID:";
+                            lblSetPhaseMode.Text = "With Group:";
                             cmbSetPhaseMode.DataSource = CommandCombatPulse_ComboOptions;
                             break;
                         }
@@ -2557,15 +2568,22 @@ namespace ScriptEditor
         {
             if (lstActions.SelectedItems.Count > 0)
             {
+                uint delay;
+                if (!UInt32.TryParse(txtCommandDelay.Text, out delay))
+                    txtCommandDelay.Text = "0";
+
+                if (delay != 0 && currentScriptTable.Equals("creature_ai_scripts"))
+                {
+                    MessageBox.Show("Using delay in this table is not supported, as the script commands are executed directly from EventAI, instead of being added to the scripts map for performance reasons. Start a generic script instead and set the delay in there.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtCommandDelay.Text = "0";
+                    return;
+                }
+
                 // Get the selected item in the listview.
                 ListViewItem currentItem = lstActions.SelectedItems[0];
 
                 // Get the associated ScriptAction.
                 ScriptAction currentAction = (ScriptAction)currentItem.Tag;
-
-                uint delay;
-                if (!UInt32.TryParse(txtCommandDelay.Text, out delay))
-                    txtCommandDelay.Text = "0";
 
                 // Updating delay.
                 currentAction.Delay = delay;

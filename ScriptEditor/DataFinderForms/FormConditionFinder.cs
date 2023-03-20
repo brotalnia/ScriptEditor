@@ -579,6 +579,18 @@ namespace ScriptEditor
                     description += ConditionNearbyPlayer_ComboOptions[condition.Value1].Text + " Player Within " + condition.Value2 + " Yards Of The " + targetName;
                     break;
                 }
+                case 57: // Creature Group Member
+                {
+                    description += sourceName + " Is Part Of Creature Group";
+                    if (condition.Value1 != 0)
+                        description += " With Leader Guid " + condition.Value1; 
+                    break;
+                }
+                case 58: // Creature Group Dead
+                {
+                    description += sourceName + "'s Creature Group Is Dead";
+                    break;
+                }
             }
 
             return description + (((condition.Flags & 1) != 0) ? ")" : "");
@@ -813,6 +825,7 @@ namespace ScriptEditor
                 case 45: // CONDITION_IS_IN_GROUP
                 case 46: // CONDITION_IS_ALIVE
                 case 48: // CONDITION_OBJECT_IS_SPAWNED
+                case 58: // CONDITION_CREATURE_GROUP_DEAD
                 {
                     switch (selectedCondition.Type)
                     {
@@ -869,6 +882,11 @@ namespace ScriptEditor
                         case 48: // CONDITION_OBJECT_IS_SPAWNED
                         {
                             lblConditionNotTooltip.Text = "Returns true if the target GameObject is currently spawned. This condition has no additional parameters.";
+                            break;
+                        }
+                        case 58: // CONDITION_CREATURE_GROUP_DEAD
+                        {
+                            lblConditionNotTooltip.Text = "Returns true if the source Creature's group is dead or it's not in a group. Does not check if source is dead. This condition has no additional parameters.";
                             break;
                         }
                     }
@@ -1116,6 +1134,7 @@ namespace ScriptEditor
                 case 41: // CONDITION_HEALTH_PERCENT
                 case 42: // CONDITION_MANA_PERCENT
                 case 51: // CONDITION_PVP_RANK
+                case 57: // CONDITION_CREATURE_GROUP_MEMBER
                 {
                     switch (selectedCondition.Type)
                     {
@@ -1187,6 +1206,14 @@ namespace ScriptEditor
                             cmbComparisonComparison.SelectedIndex = (int)selectedCondition.Value2;
                             lblComparisonComparison.Visible = true;
                             lblComparisonValue.Text = "Rank:";
+                            break;
+                        }
+                        case 57: // CONDITION_CREATURE_GROUP_MEMBER
+                        {
+                            lblConditionComparisonTooltip.Text = "Returns true if the source Creature is part of a group. Leader guid check is optional.";
+                            cmbComparisonComparison.Visible = false;
+                            lblComparisonComparison.Visible = false;
+                            lblComparisonValue.Text = "Leader Guid:";
                             break;
                         }
                     }
