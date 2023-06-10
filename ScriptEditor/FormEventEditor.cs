@@ -62,7 +62,8 @@ namespace ScriptEditor
         "Map Event Happened",       // 31
         "Group Member Died",        // 32
         "Victim Rooted",            // 33
-        "Hit By Aura"               // 34
+        "Hit By Aura",              // 34
+        "Stealth Alert"             // 35
         };
 
         private string GetEventTypeName(uint type)
@@ -204,6 +205,7 @@ namespace ScriptEditor
             // EVENT_T_TARGET_MANA (18)
             // EVENT_T_MAP_SCRIPT_EVENT (31)
             // EVENT_T_VICTIM_ROOTED (33)
+            // EVENT_T_STEALTH_ALERT (35)
             txtTimerInitialMin.Text = "";
             txtTimerInitialMax.Text = "";
             txtTimerRepeatMin.Text = "";
@@ -299,6 +301,7 @@ namespace ScriptEditor
                 case 18: // EVENT_T_TARGET_MANA
                 case 31: // EVENT_T_MAP_SCRIPT_EVENT
                 case 33: // EVENT_T_VICTIM_ROOTED
+                case 35: // EVENT_T_STEALTH_ALERT
                 {
                     switch (selectedEvent.Type)
                     {
@@ -426,6 +429,17 @@ namespace ScriptEditor
                         case 33: // EVENT_T_VICTIM_ROOTED
                         {
                             lblEventTimerCombatTooltip.Text = "Expires when the current victim becomes rooted.";
+                            lblTimerInitialMin.Text = "Repeat Min:";
+                            lblTimerInitialMax.Text = "Repeat Max:";
+                            lblTimerRepeatMin.Visible = false;
+                            lblTimerRepeatMax.Visible = false;
+                            txtTimerRepeatMin.Visible = false;
+                            txtTimerRepeatMax.Visible = false;
+                            break;
+                        }
+                        case 35: // EVENT_T_STEALTH_ALERT
+                        {
+                            lblEventTimerCombatTooltip.Text = "Expires when a nearby unit moves in stealth and causes an alert to trigger.";
                             lblTimerInitialMin.Text = "Repeat Min:";
                             lblTimerInitialMax.Text = "Repeat Max:";
                             lblTimerRepeatMin.Visible = false;
