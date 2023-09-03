@@ -498,7 +498,7 @@ namespace ScriptEditor
                 }
                 case 44: // Is Hostile To
                 {
-                    description += targetName + " Is Hostile To " +  sourceName;
+                    description += targetName + "'s Reaction To " + sourceName + " Is " + GetComparisonOperatorName(condition.Value2) + " " + GameData.FindReputationRankName((uint)condition.Value1);
                     break;
                 }
                 case 45: // Is In Group
@@ -703,6 +703,7 @@ namespace ScriptEditor
             frmConditionNearbyObject.Visible = false;
 
             // CONDITION_WOW_PATCH (24)
+            // CONDITION_REACTION (44)
             cmbContentPatch.SelectedIndex = 0;
             cmbContentPatchComparison.SelectedIndex = 0;
             frmConditionContentPatch.Visible = false;
@@ -821,7 +822,6 @@ namespace ScriptEditor
                 case 39: // CONDITION_IS_MOVING
                 case 40: // CONDITION_HAS_PET
                 case 43: // CONDITION_IS_IN_COMBAT
-                case 44: // CONDITION_IS_HOSTILE_TO
                 case 45: // CONDITION_IS_IN_GROUP
                 case 46: // CONDITION_IS_ALIVE
                 case 48: // CONDITION_OBJECT_IS_SPAWNED
@@ -862,11 +862,6 @@ namespace ScriptEditor
                         case 43: // CONDITION_IS_IN_COMBAT
                         {
                             lblConditionNotTooltip.Text = "Returns true if the target Unit is in combat. This condition has no additional parameters.";
-                            break;
-                        }
-                        case 44: // CONDITION_IS_HOSTILE_TO
-                        {
-                            lblConditionNotTooltip.Text = "Returns true if the source and target Units are hostile to each other. This condition has no additional parameters.";
                             break;
                         }
                         case 45: // CONDITION_IS_IN_GROUP
@@ -1264,7 +1259,25 @@ namespace ScriptEditor
                     break;
                 }
                 case 24: // CONDITION_WOW_PATCH
+                case 44: // CONDITION_REACTION
                 {
+                    switch (selectedCondition.Type)
+                    {
+                        case 24: // CONDITION_WOW_PATCH
+                        {
+                            lblConditionContentPatchTooltip.Text = "Returns true if the current content patch matches the one specified.";
+                            cmbContentPatch.DataSource = GameData.ContentPatchesList;
+                            lblContentPatch.Text = "Patch:";
+                            break;
+                        }
+                        case 44: // CONDITION_REACTION
+                        {
+                            lblConditionContentPatchTooltip.Text = "Returns true if the target WorldObject's reaction to the source WorldObject matches the criteria.";
+                            cmbContentPatch.DataSource = GameData.ReputationRankList;
+                            lblContentPatch.Text = "Reaction:";
+                            break;
+                        }
+                    }
                     cmbContentPatch.SelectedIndex = (int)selectedCondition.Value1;
                     cmbContentPatchComparison.SelectedIndex = (int)selectedCondition.Value2;
                     frmConditionContentPatch.Visible = true;

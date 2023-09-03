@@ -40,6 +40,7 @@ namespace ScriptEditor
         public static readonly List<ComboboxPair> GenderNamesList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> LootStateNamesList = new List<ComboboxPair>();
         public static readonly List<ComboboxPair> GOStateNamesList = new List<ComboboxPair>();
+        public static readonly List<ComboboxPair> ContentPatchesList = new List<ComboboxPair>();
         public static readonly List<Tuple<string, uint>> GameObjectFlagsList = new List<Tuple<string, uint>>();
         public static readonly List<Tuple<string, uint>> GameObjectDynFlagsList = new List<Tuple<string, uint>>();
         public static readonly List<Tuple<string, uint>> UnitFieldFlagsList = new List<Tuple<string, uint>>();
@@ -47,6 +48,11 @@ namespace ScriptEditor
         public static readonly List<Tuple<string, uint>> UnitNpcFlagsList = new List<Tuple<string, uint>>();
         public static readonly List<Tuple<string, uint>> PlayerFlagsList = new List<Tuple<string, uint>>();
         public static readonly List<Tuple<string, uint>> SpellMechanicMaskList = new List<Tuple<string, uint>>();
+        public static readonly List<Tuple<string, uint>> SpellAttributesList = new List<Tuple<string, uint>>();
+        public static readonly List<Tuple<string, uint>> SpellAttributesExList = new List<Tuple<string, uint>>();
+        public static readonly List<Tuple<string, uint>> SpellAttributesEx2List = new List<Tuple<string, uint>>();
+        public static readonly List<Tuple<string, uint>> SpellAttributesEx3List = new List<Tuple<string, uint>>();
+        public static readonly List<Tuple<string, uint>> SpellAttributesEx4List = new List<Tuple<string, uint>>();
 
         public static int FindIndexOfMap(uint id)
         {
@@ -358,6 +364,17 @@ namespace ScriptEditor
             {
                 if (state.Value == id)
                     return state.Text;
+            }
+
+            return id.ToString();
+        }
+
+        public static string FindContentPatchName(uint id)
+        {
+            foreach (ComboboxPair patch in ContentPatchesList)
+            {
+                if (patch.Value == id)
+                    return patch.Text;
             }
 
             return id.ToString();
@@ -1419,34 +1436,35 @@ namespace ScriptEditor
             MotionTypesList.Add(new ComboboxPair("IDLE_MOTION_TYPE", 0));
             MotionTypesList.Add(new ComboboxPair("RANDOM_MOTION_TYPE", 1));
             MotionTypesList.Add(new ComboboxPair("WAYPOINT_MOTION_TYPE", 2));
-            MotionTypesList.Add(new ComboboxPair("CONFUSED_MOTION_TYPE", 4));
-            MotionTypesList.Add(new ComboboxPair("CHASE_MOTION_TYPE", 5));
-            MotionTypesList.Add(new ComboboxPair("HOME_MOTION_TYPE", 6));
-            MotionTypesList.Add(new ComboboxPair("FLEEING_MOTION_TYPE", 9));
-            MotionTypesList.Add(new ComboboxPair("DISTRACT_MOTION_TYPE", 10));
-            MotionTypesList.Add(new ComboboxPair("FOLLOW_MOTION_TYPE", 14));
-            MotionTypesList.Add(new ComboboxPair("CHARGE_MOTION_TYPE", 17));
-            MotionTypesList.Add(new ComboboxPair("DISTANCING_MOTION_TYPE", 18));
+            MotionTypesList.Add(new ComboboxPair("CONFUSED_MOTION_TYPE", 5));
+            MotionTypesList.Add(new ComboboxPair("CHASE_MOTION_TYPE", 6));
+            MotionTypesList.Add(new ComboboxPair("HOME_MOTION_TYPE", 7));
+            MotionTypesList.Add(new ComboboxPair("FLEEING_MOTION_TYPE", 10));
+            MotionTypesList.Add(new ComboboxPair("DISTRACT_MOTION_TYPE", 11));
+            MotionTypesList.Add(new ComboboxPair("FOLLOW_MOTION_TYPE", 15));
+            MotionTypesList.Add(new ComboboxPair("CHARGE_MOTION_TYPE", 18));
+            MotionTypesList.Add(new ComboboxPair("DISTANCING_MOTION_TYPE", 19));
 
             // Add all motion types to list.
             MotionTypesFullList.Add(new ComboboxPair("IDLE_MOTION_TYPE", 0));
             MotionTypesFullList.Add(new ComboboxPair("RANDOM_MOTION_TYPE", 1));
             MotionTypesFullList.Add(new ComboboxPair("WAYPOINT_MOTION_TYPE", 2));
-            MotionTypesFullList.Add(new ComboboxPair("CONFUSED_MOTION_TYPE", 4));
-            MotionTypesFullList.Add(new ComboboxPair("CHASE_MOTION_TYPE", 5));
-            MotionTypesFullList.Add(new ComboboxPair("HOME_MOTION_TYPE", 6));
-            MotionTypesFullList.Add(new ComboboxPair("FLIGHT_MOTION_TYPE", 7));
-            MotionTypesFullList.Add(new ComboboxPair("POINT_MOTION_TYPE", 8));
-            MotionTypesFullList.Add(new ComboboxPair("FLEEING_MOTION_TYPE", 9));
-            MotionTypesFullList.Add(new ComboboxPair("DISTRACT_MOTION_TYPE", 10));
-            MotionTypesFullList.Add(new ComboboxPair("ASSISTANCE_MOTION_TYPE", 11));
-            MotionTypesFullList.Add(new ComboboxPair("ASSISTANCE_DISTRACT_MOTION_TYPE", 12));
-            MotionTypesFullList.Add(new ComboboxPair("TIMED_FLEEING_MOTION_TYPE", 13));
-            MotionTypesFullList.Add(new ComboboxPair("FOLLOW_MOTION_TYPE", 14));
-            MotionTypesFullList.Add(new ComboboxPair("EFFECT_MOTION_TYPE", 15));
-            MotionTypesFullList.Add(new ComboboxPair("PATROL_MOTION_TYPE", 16));
-            MotionTypesFullList.Add(new ComboboxPair("CHARGE_MOTION_TYPE", 17));
-            MotionTypesFullList.Add(new ComboboxPair("DISTANCING_MOTION_TYPE", 18));
+            MotionTypesFullList.Add(new ComboboxPair("CYCLIC_MOTION_TYPE", 3));
+            MotionTypesFullList.Add(new ComboboxPair("CONFUSED_MOTION_TYPE", 5));
+            MotionTypesFullList.Add(new ComboboxPair("CHASE_MOTION_TYPE", 6));
+            MotionTypesFullList.Add(new ComboboxPair("HOME_MOTION_TYPE", 7));
+            MotionTypesFullList.Add(new ComboboxPair("FLIGHT_MOTION_TYPE", 8));
+            MotionTypesFullList.Add(new ComboboxPair("POINT_MOTION_TYPE", 9));
+            MotionTypesFullList.Add(new ComboboxPair("FLEEING_MOTION_TYPE", 10));
+            MotionTypesFullList.Add(new ComboboxPair("DISTRACT_MOTION_TYPE", 11));
+            MotionTypesFullList.Add(new ComboboxPair("ASSISTANCE_MOTION_TYPE", 12));
+            MotionTypesFullList.Add(new ComboboxPair("ASSISTANCE_DISTRACT_MOTION_TYPE", 13));
+            MotionTypesFullList.Add(new ComboboxPair("TIMED_FLEEING_MOTION_TYPE", 14));
+            MotionTypesFullList.Add(new ComboboxPair("FOLLOW_MOTION_TYPE", 15));
+            MotionTypesFullList.Add(new ComboboxPair("EFFECT_MOTION_TYPE", 16));
+            MotionTypesFullList.Add(new ComboboxPair("PATROL_MOTION_TYPE", 17));
+            MotionTypesFullList.Add(new ComboboxPair("CHARGE_MOTION_TYPE", 18));
+            MotionTypesFullList.Add(new ComboboxPair("DISTANCING_MOTION_TYPE", 19));
 
             // Add taxi paths to list.
             TaxiInfoList.Add(new TaxiInfo(6, "Stormwind, Elwynn", "Sentinel Hill, Westfall"));
@@ -1785,7 +1803,7 @@ namespace ScriptEditor
             ConditionNamesList.Add(new ComboboxPair("HEALTH_PERCENT", 41));
             ConditionNamesList.Add(new ComboboxPair("MANA_PERCENT", 42));
             ConditionNamesList.Add(new ComboboxPair("IS_IN_COMBAT", 43));
-            ConditionNamesList.Add(new ComboboxPair("IS_HOSTILE_TO", 44));
+            ConditionNamesList.Add(new ComboboxPair("REACTION", 44));
             ConditionNamesList.Add(new ComboboxPair("IS_IN_GROUP", 45));
             ConditionNamesList.Add(new ComboboxPair("IS_ALIVE", 46));
             ConditionNamesList.Add(new ComboboxPair("MAP_EVENT_TARGETS", 47));
@@ -2283,6 +2301,19 @@ namespace ScriptEditor
             GOStateNamesList.Add(new ComboboxPair("Ready", 1));
             GOStateNamesList.Add(new ComboboxPair("Alternative", 2));
 
+            // Add content patch names.
+            ContentPatchesList.Add(new ComboboxPair("1.2 - Mysteries of Maraudon", 0));
+            ContentPatchesList.Add(new ComboboxPair("1.3 - Ruins of the Dire Maul", 1));
+            ContentPatchesList.Add(new ComboboxPair("1.4 - The Call to War", 2));
+            ContentPatchesList.Add(new ComboboxPair("1.5 - Battlegrounds", 3));
+            ContentPatchesList.Add(new ComboboxPair("1.6 - Assault on Blackwing Lair", 4));
+            ContentPatchesList.Add(new ComboboxPair("1.7 - Rise of the Blood God", 5));
+            ContentPatchesList.Add(new ComboboxPair("1.8 - Dragons of Nightmare", 6));
+            ContentPatchesList.Add(new ComboboxPair("1.9 - The Gates of Ahn\'Qiraj", 7));
+            ContentPatchesList.Add(new ComboboxPair("1.10 - Storms of Azeroth", 8));
+            ContentPatchesList.Add(new ComboboxPair("1.11 - Shadow of the Necropolis", 9));
+            ContentPatchesList.Add(new ComboboxPair("1.12 - Drums of War", 10));
+
             // GameObject Flags from Update Fields
             GameObjectFlagsList.Add(new Tuple<string, uint>("InUse", 1));
             GameObjectFlagsList.Add(new Tuple<string, uint>("Locked", 2));
@@ -2409,6 +2440,154 @@ namespace ScriptEditor
             SpellMechanicMaskList.Add(new Tuple<string, uint>("Immune Shield", 268435456));
             SpellMechanicMaskList.Add(new Tuple<string, uint>("Sapped", 536870912));
             SpellMechanicMaskList.Add(new Tuple<string, uint>("Slow Cast Speed", 1073741824));
+
+            // Spell Attributes
+            SpellAttributesList.Add(new Tuple<string, uint>("Proc Failure Burns Charge", 1));
+            SpellAttributesList.Add(new Tuple<string, uint>("Uses Ranged Slot", 2));
+            SpellAttributesList.Add(new Tuple<string, uint>("On Next Swing (No Damage)", 4));
+            SpellAttributesList.Add(new Tuple<string, uint>("Need Exotic Ammo", 8));
+            SpellAttributesList.Add(new Tuple<string, uint>("Is Ability", 16));
+            SpellAttributesList.Add(new Tuple<string, uint>("Is Tradeskill", 32));
+            SpellAttributesList.Add(new Tuple<string, uint>("Passive", 64));
+            SpellAttributesList.Add(new Tuple<string, uint>("Do Not Display (Spellbook, Aura Icon, Combat Log)", 128));
+            SpellAttributesList.Add(new Tuple<string, uint>("Do Not Log", 256));
+            SpellAttributesList.Add(new Tuple<string, uint>("Held Item Only", 512));
+            SpellAttributesList.Add(new Tuple<string, uint>("On Next Swing", 1024));
+            SpellAttributesList.Add(new Tuple<string, uint>("Wearer Casts Proc Trigger", 2048));
+            SpellAttributesList.Add(new Tuple<string, uint>("Daytime Only", 4096));
+            SpellAttributesList.Add(new Tuple<string, uint>("Night Only", 8192));
+            SpellAttributesList.Add(new Tuple<string, uint>("Only Indoors", 16384));
+            SpellAttributesList.Add(new Tuple<string, uint>("Only Outdoors", 32768));
+            SpellAttributesList.Add(new Tuple<string, uint>("Not Shapeshifted", 65536));
+            SpellAttributesList.Add(new Tuple<string, uint>("Only Stealthed", 131072));
+            SpellAttributesList.Add(new Tuple<string, uint>("Do Not Sheath", 262144));
+            SpellAttributesList.Add(new Tuple<string, uint>("Scales w/ Creature Level", 524288));
+            SpellAttributesList.Add(new Tuple<string, uint>("Cancels Auto Attack Combat", 1048576));
+            SpellAttributesList.Add(new Tuple<string, uint>("No Active Defense", 2097152));
+            SpellAttributesList.Add(new Tuple<string, uint>("Track Target in Cast (Player Only)", 4194304));
+            SpellAttributesList.Add(new Tuple<string, uint>("Allow Cast While Dead", 8388608));
+            SpellAttributesList.Add(new Tuple<string, uint>("Allow While Mounted", 16777216));
+            SpellAttributesList.Add(new Tuple<string, uint>("Cooldown On Event", 33554432));
+            SpellAttributesList.Add(new Tuple<string, uint>("Aura Is Debuff", 67108864));
+            SpellAttributesList.Add(new Tuple<string, uint>("Allow While Sitting", 134217728));
+            SpellAttributesList.Add(new Tuple<string, uint>("Not In Combat (Only Peaceful)", 268435456));
+            SpellAttributesList.Add(new Tuple<string, uint>("No Immunities", 536870912));
+            SpellAttributesList.Add(new Tuple<string, uint>("Heartbeat Resist", 1073741824));
+            SpellAttributesList.Add(new Tuple<string, uint>("No Aura Cancel", 2147483648));
+
+            // Spell AttributesEx
+            SpellAttributesExList.Add(new Tuple<string, uint>("Dismiss Pet First", 1));
+            SpellAttributesExList.Add(new Tuple<string, uint>("Use All Mana", 2));
+            SpellAttributesExList.Add(new Tuple<string, uint>("Is Channelled", 4));
+            SpellAttributesExList.Add(new Tuple<string, uint>("No Redirection", 8));
+            SpellAttributesExList.Add(new Tuple<string, uint>("No Skill Increase", 16));
+            SpellAttributesExList.Add(new Tuple<string, uint>("Allow While Stealthed", 32));
+            SpellAttributesExList.Add(new Tuple<string, uint>("Is Self Channelled", 64));
+            SpellAttributesExList.Add(new Tuple<string, uint>("No Reflection", 128));
+            SpellAttributesExList.Add(new Tuple<string, uint>("Only Peaceful Targets", 256));
+            SpellAttributesExList.Add(new Tuple<string, uint>("Initiates Combat (Enables Auto-Attack)", 512));
+            SpellAttributesExList.Add(new Tuple<string, uint>("No Threat", 1024));
+            SpellAttributesExList.Add(new Tuple<string, uint>("Aura Unique", 2048));
+            SpellAttributesExList.Add(new Tuple<string, uint>("Failure Breaks Stealth", 4096));
+            SpellAttributesExList.Add(new Tuple<string, uint>("Toggle Far Sight", 8192));
+            SpellAttributesExList.Add(new Tuple<string, uint>("Track Target in Channel", 16384));
+            SpellAttributesExList.Add(new Tuple<string, uint>("Immunity Purges Effect", 32768));
+            SpellAttributesExList.Add(new Tuple<string, uint>("Immunity to Hostile & Friendly Effects", 65536));
+            SpellAttributesExList.Add(new Tuple<string, uint>("No AutoCast (AI)", 131072));
+            SpellAttributesExList.Add(new Tuple<string, uint>("Prevents Anim", 262144));
+            SpellAttributesExList.Add(new Tuple<string, uint>("Exclude Caster", 524288));
+            SpellAttributesExList.Add(new Tuple<string, uint>("Finishing Move - Damage", 1048576));
+            SpellAttributesExList.Add(new Tuple<string, uint>("Threat only on Miss", 2097152));
+            SpellAttributesExList.Add(new Tuple<string, uint>("Finishing Move - Duration", 4194304));
+            SpellAttributesExList.Add(new Tuple<string, uint>("Ignore Caster & Target Restrictions", 8388608));
+            SpellAttributesExList.Add(new Tuple<string, uint>("Special Skillup", 16777216));
+            SpellAttributesExList.Add(new Tuple<string, uint>("Aura Stays After Combat", 33554432));
+            SpellAttributesExList.Add(new Tuple<string, uint>("Require All Targets", 67108864));
+            SpellAttributesExList.Add(new Tuple<string, uint>("Discount Power On Miss", 134217728));
+            SpellAttributesExList.Add(new Tuple<string, uint>("No Aura Icon", 268435456));
+            SpellAttributesExList.Add(new Tuple<string, uint>("Name in Channel Bar", 536870912));
+            SpellAttributesExList.Add(new Tuple<string, uint>("Combo on Block", 1073741824));
+            SpellAttributesExList.Add(new Tuple<string, uint>("Cast When Learned", 2147483648));
+
+            // Spell AttributesEx2
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("Allow Dead Target", 1));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("No shapeshift UI", 2));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("Ignore Line of Sight", 4));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("Allow Low Level Buff", 8));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("Use Shapeshift Bar", 16));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("Auto Repeat", 32));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("Cannot cast on tapped", 64));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("Do Not Report Spell Failure", 128));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("Include In Advanced Combat Log", 256));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("Always Cast As Unit", 512));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("Special Taming Flag", 1024));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("No Target Per-Second Costs", 2048));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("Chain From Caster", 4096));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("Enchant own item only", 8192));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("Allow While Invisible", 16384));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("Enable After Parry", 32768));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("No Active Pets", 65536));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("Do Not Reset Combat Timers", 131072));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("Requires Dead Pet", 262144));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("Allow While Not Shapeshifted (caster form)", 524288));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("Initiate Combat Post-Cast (Enables Auto-Attack)", 1048576));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("Fail on all targets immune", 2097152));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("No Initial Threat", 4194304));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("Proc Cooldown On Failure", 8388608));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("Item Cast With Owner Skill", 16777216));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("Don't Block Mana Regen", 33554432));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("No School Immunities", 67108864));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("Ignore Weaponskill", 134217728));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("Not an Action", 268435456));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("Can't Crit", 536870912));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("Active Threat", 1073741824));
+            SpellAttributesEx2List.Add(new Tuple<string, uint>("Retain Item Cast", 2147483648));
+
+            // Spell AttributesEx3
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("PvP Enabling", 1));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("No Proc Equip Requirement", 2));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("No Casting Bar Text", 4));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("Completely Blocked", 8));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("No Res Timer", 16));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("No Durability Loss", 32));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("No Avoidance", 64));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("DoT Stacking Rule", 128));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("Only On Player", 256));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("Not a Proc", 512));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("Requires Main-Hand Weapon", 1024));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("Only Battlegrounds", 2048));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("Only On Ghosts", 4096));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("Hide Channel Bar", 8192));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("Hide In Raid Filter", 16384));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("Normal Ranged Attack", 32768));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("Suppress Caster Procs", 65536));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("Suppress Target Procs", 131072));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("Always Hit", 262144));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("Instant Target Procs", 524288));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("Allow Aura While Dead", 1048576));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("Only Proc Outdoors", 2097152));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("Casting Cancels Autorepeat", 4194304));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("No Damage History", 8388608));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("Requires Off-Hand Weapon", 16777216));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("Treat As Periodic", 33554432));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("Can Proc From Procs", 67108864));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("Only Proc on Caster", 134217728));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("Ignore Caster & Target Restrictions", 268435456));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("Ignore Caster Modifiers", 536870912));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("Do Not Display Range", 1073741824));
+            SpellAttributesEx3List.Add(new Tuple<string, uint>("Not On AOE Immune", 2147483648));
+
+            // Spell AttributesEx4
+            SpellAttributesEx4List.Add(new Tuple<string, uint>("Ignore Resistances", 1));
+            SpellAttributesEx4List.Add(new Tuple<string, uint>("Class Trigger Only On Target", 2));
+            SpellAttributesEx4List.Add(new Tuple<string, uint>("Aura Expires Offline", 4));
+            SpellAttributesEx4List.Add(new Tuple<string, uint>("No Helpful Threat", 8));
+            SpellAttributesEx4List.Add(new Tuple<string, uint>("No Harmful Threat", 16));
+            SpellAttributesEx4List.Add(new Tuple<string, uint>("Allow Client Targeting", 32));
+            SpellAttributesEx4List.Add(new Tuple<string, uint>("Cannot Be Stolen", 64));
+            SpellAttributesEx4List.Add(new Tuple<string, uint>("Allow Cast While Casting", 128));
+            SpellAttributesEx4List.Add(new Tuple<string, uint>("Ignore Damage Taken Modifiers", 256));
+            SpellAttributesEx4List.Add(new Tuple<string, uint>("Combat Feedback When Usable", 512));
         }
     }
     public struct BroadcastText

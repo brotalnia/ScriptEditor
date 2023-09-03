@@ -1430,7 +1430,7 @@ namespace ScriptEditor
                             cmbSetMovementClearMotionMaster.SelectedIndex = (int)selectedAction.Datalong4;
                             break;
                         }
-                        case 5: // CHASE_MOTION_TYPE
+                        case 6: // CHASE_MOTION_TYPE
                         {
                             cmbSetMovementBoolParam.Enabled = true;
                             cmbSetMovementBoolParam.SelectedIndex = (int)selectedAction.Datalong2;
@@ -1441,7 +1441,7 @@ namespace ScriptEditor
                             txtSetMovementAngle.Text = selectedAction.O.ToString();
                             break;
                         }
-                        case 9: // FLEEING_MOTION_TYPE
+                        case 10: // FLEEING_MOTION_TYPE
                         {
                             cmbSetMovementBoolParam.Enabled = true;
                             cmbSetMovementBoolParam.SelectedIndex = (int)selectedAction.Datalong2;
@@ -1451,14 +1451,14 @@ namespace ScriptEditor
                             lblSetMovementIntParam.Text = "Time:";
                             break;
                         }
-                        case 10: // DISTRACT_MOTION_TYPE
+                        case 11: // DISTRACT_MOTION_TYPE
                         {
                             txtSetMovementIntParam.Enabled = true;
                             txtSetMovementIntParam.Text = selectedAction.Datalong3.ToString();
                             lblSetMovementIntParam.Text = "Time:";
                             break;
                         }
-                        case 14: // FOLLOW_MOTION_TYPE
+                        case 15: // FOLLOW_MOTION_TYPE
                         {
                             txtSetMovementDistance.Enabled = true;
                             txtSetMovementDistance.Text = selectedAction.X.ToString();
@@ -1466,7 +1466,7 @@ namespace ScriptEditor
                             txtSetMovementAngle.Text = selectedAction.O.ToString();
                             break;
                         }
-                        case 17: // CHARGE_MOTION_TYPE
+                        case 18: // CHARGE_MOTION_TYPE
                         {
                             cmbSetMovementBoolParam.Enabled = true;
                             cmbSetMovementBoolParam.SelectedIndex = (int)selectedAction.Datalong2;
@@ -1476,7 +1476,7 @@ namespace ScriptEditor
                             lblSetMovementIntParam.Text = "Delay:";
                             break;
                         }
-                        case 18: // DISTANCING_MOTION_TYPE
+                        case 19: // DISTANCING_MOTION_TYPE
                         {
                             txtSetMovementDistance.Enabled = true;
                             txtSetMovementDistance.Text = selectedAction.X.ToString();
@@ -3500,7 +3500,7 @@ namespace ScriptEditor
                         cmbSetMovementClearMotionMaster.Enabled = true;
                         break;
                     }
-                    case 5: // CHASE_MOTION_TYPE
+                    case 6: // CHASE_MOTION_TYPE
                     {
                         cmbSetMovementBoolParam.Enabled = true;
                         cmbSetMovementBoolParam.SelectedIndex = 0;
@@ -3511,7 +3511,7 @@ namespace ScriptEditor
                         txtSetMovementAngle.Text = "0";
                         break;
                     }
-                    case 9: // FLEEING_MOTION_TYPE
+                    case 10: // FLEEING_MOTION_TYPE
                     {
                         cmbSetMovementBoolParam.Enabled = true;
                         cmbSetMovementBoolParam.SelectedIndex = 0;
@@ -3521,14 +3521,14 @@ namespace ScriptEditor
                         lblSetMovementIntParam.Text = "Time:";
                         break;
                     }
-                    case 10: // DISTRACT_MOTION_TYPE
+                    case 11: // DISTRACT_MOTION_TYPE
                     {
                         txtSetMovementIntParam.Enabled = true;
                         txtSetMovementIntParam.Text = "0";
                         lblSetMovementIntParam.Text = "Time:";
                         break;
                     }
-                    case 14: // FOLLOW_MOTION_TYPE
+                    case 15: // FOLLOW_MOTION_TYPE
                     {
                         txtSetMovementDistance.Enabled = true;
                         txtSetMovementDistance.Text = "0";
@@ -3536,7 +3536,7 @@ namespace ScriptEditor
                         txtSetMovementAngle.Text = "0";
                         break;
                     }
-                    case 17: // CHARGE_MOTION_TYPE
+                    case 18: // CHARGE_MOTION_TYPE
                     {
                         cmbSetMovementBoolParam.Enabled = true;
                         cmbSetMovementBoolParam.SelectedIndex = 0;
@@ -3546,7 +3546,7 @@ namespace ScriptEditor
                         lblSetMovementIntParam.Text = "Delay:";
                         break;
                     }
-                    case 18: // DISTANCING_MOTION_TYPE
+                    case 19: // DISTANCING_MOTION_TYPE
                     {
                         txtSetMovementDistance.Enabled = true;
                         txtSetMovementDistance.Text = "0";

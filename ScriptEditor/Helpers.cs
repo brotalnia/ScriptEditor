@@ -85,6 +85,8 @@ namespace ScriptEditor
 
         public static DialogResult ShowFlagInputDialog(ref uint flags, string name, List<Tuple<string, uint>> valuesList)
         {
+            int columnSize = 120;
+
             if (valuesList == null)
             {
                 valuesList = new List<Tuple<string, uint>>();
@@ -93,8 +95,17 @@ namespace ScriptEditor
                     valuesList.Add(new Tuple<string, uint>(i + " - " + (1u << i).ToString("X8"), (1u << i)));
                 }
             }
+            else
+            {
+                foreach (var item in valuesList)
+                {
+                    int neededSize = 20 + item.Item1.Length * 6;
+                    if (neededSize > columnSize)
+                        columnSize = neededSize;
+                }
+            }
 
-            System.Drawing.Size size = new System.Drawing.Size(10 + 120 + 120 + 10, 43 + 24 + (valuesList.Count / 2) * 24 + 30 + 10);
+            System.Drawing.Size size = new System.Drawing.Size(10 + columnSize + columnSize + 10, 43 + 24 + (valuesList.Count / 2) * 24 + 30 + 10);
             Form inputBox = new Form();
 
             inputBox.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -107,13 +118,14 @@ namespace ScriptEditor
             List<CheckBox> checkBoxes = new List<CheckBox>();
             for (int i = 0; i < valuesList.Count; i++)
             {
-                int x = (i & 1) != 0 ? 120 : 10;
+                int x = (i & 1) != 0 ? columnSize : 10;
                 int y = 43 + (i / 2) * 24;
                 CheckBox checkBox = new CheckBox();
                 checkBox.Location = new System.Drawing.Point(x, y);
                 checkBox.Text = valuesList[i].Item1;
                 checkBox.Tag = valuesList[i].Item2;
                 checkBox.AutoSize = true;
+                checkBox.UseMnemonic = false;
                 if ((flags & valuesList[i].Item2) != 0)
                     checkBox.Checked = true;
                 checkBoxes.Add(checkBox);

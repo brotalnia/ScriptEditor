@@ -64,6 +64,12 @@
             this.tsmiFlagsNpcUF = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiFlagsPlayerUF = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiFlagsSpellMechanic = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmiFlagsSpellAttributes = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiFlagsSpellAttributesEx = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiFlagsSpellAttributesEx2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiFlagsSpellAttributesEx3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiFlagsSpellAttributesEx4 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.picScriptEditor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picEventEditor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picGitLink)).BeginInit();
@@ -299,9 +305,15 @@
             this.tsmiFlagsUnitDynamicUF,
             this.tsmiFlagsNpcUF,
             this.tsmiFlagsPlayerUF,
+            this.toolStripSeparator2,
+            this.tsmiFlagsSpellAttributes,
+            this.tsmiFlagsSpellAttributesEx,
+            this.tsmiFlagsSpellAttributesEx2,
+            this.tsmiFlagsSpellAttributesEx3,
+            this.tsmiFlagsSpellAttributesEx4,
             this.tsmiFlagsSpellMechanic});
             this.tsmiFlags.Name = "tsmiFlags";
-            this.tsmiFlags.Size = new System.Drawing.Size(99, 22);
+            this.tsmiFlags.Size = new System.Drawing.Size(152, 22);
             this.tsmiFlags.Text = "Flags";
             // 
             // tsmiFlagsGeneric
@@ -356,6 +368,41 @@
             this.tsmiFlagsSpellMechanic.Name = "tsmiFlagsSpellMechanic";
             this.tsmiFlagsSpellMechanic.Size = new System.Drawing.Size(203, 22);
             this.tsmiFlagsSpellMechanic.Text = "Spell Mechanic";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(200, 6);
+            // 
+            // tsmiFlagsSpellAttributes
+            // 
+            this.tsmiFlagsSpellAttributes.Name = "tsmiFlagsSpellAttributes";
+            this.tsmiFlagsSpellAttributes.Size = new System.Drawing.Size(203, 22);
+            this.tsmiFlagsSpellAttributes.Text = "Spell Attributes";
+            // 
+            // tsmiFlagsSpellAttributesEx
+            // 
+            this.tsmiFlagsSpellAttributesEx.Name = "tsmiFlagsSpellAttributesEx";
+            this.tsmiFlagsSpellAttributesEx.Size = new System.Drawing.Size(203, 22);
+            this.tsmiFlagsSpellAttributesEx.Text = "Spell AttributesEx";
+            // 
+            // tsmiFlagsSpellAttributesEx2
+            // 
+            this.tsmiFlagsSpellAttributesEx2.Name = "tsmiFlagsSpellAttributesEx2";
+            this.tsmiFlagsSpellAttributesEx2.Size = new System.Drawing.Size(203, 22);
+            this.tsmiFlagsSpellAttributesEx2.Text = "Spell AttributesEx2";
+            // 
+            // tsmiFlagsSpellAttributesEx3
+            // 
+            this.tsmiFlagsSpellAttributesEx3.Name = "tsmiFlagsSpellAttributesEx3";
+            this.tsmiFlagsSpellAttributesEx3.Size = new System.Drawing.Size(203, 22);
+            this.tsmiFlagsSpellAttributesEx3.Text = "Spell AttributesEx3";
+            // 
+            // tsmiFlagsSpellAttributesEx4
+            // 
+            this.tsmiFlagsSpellAttributesEx4.Name = "tsmiFlagsSpellAttributesEx4";
+            this.tsmiFlagsSpellAttributesEx4.Size = new System.Drawing.Size(203, 22);
+            this.tsmiFlagsSpellAttributesEx4.Text = "Spell AttributesEx4";
             // 
             // Form1
             // 
@@ -426,5 +473,11 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiFlagsNpcUF;
         private System.Windows.Forms.ToolStripMenuItem tsmiFlagsPlayerUF;
         private System.Windows.Forms.ToolStripMenuItem tsmiFlagsSpellMechanic;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem tsmiFlagsSpellAttributes;
+        private System.Windows.Forms.ToolStripMenuItem tsmiFlagsSpellAttributesEx;
+        private System.Windows.Forms.ToolStripMenuItem tsmiFlagsSpellAttributesEx2;
+        private System.Windows.Forms.ToolStripMenuItem tsmiFlagsSpellAttributesEx3;
+        private System.Windows.Forms.ToolStripMenuItem tsmiFlagsSpellAttributesEx4;
     }
 }

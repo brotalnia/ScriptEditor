@@ -126,11 +126,6 @@ namespace ScriptEditor
                 uint flags = 0;
                 Helpers.ShowFlagInputDialog(ref flags, "Player Flags (UF)", GameData.UnitNpcFlagsList);
             };
-            tsmiFlagsSpellMechanic.Click += (sender, e) =>
-            {
-                uint flags = 0;
-                Helpers.ShowFlagInputDialog(ref flags, "Spell Mechanic Mask", GameData.SpellMechanicMaskList);
-            };
             tsmiFlagsUnitDynamicUF.Click += (sender, e) =>
             {
                 uint flags = 0;
@@ -140,6 +135,37 @@ namespace ScriptEditor
             {
                 uint flags = 0;
                 Helpers.ShowFlagInputDialog(ref flags, "Unit Flags (UF)", GameData.UnitFieldFlagsList);
+            };
+
+            tsmiFlagsSpellAttributes.Click += (sender, e) =>
+            {
+                uint flags = 0;
+                Helpers.ShowFlagInputDialog(ref flags, "Spell Attributes", GameData.SpellAttributesList);
+            };
+            tsmiFlagsSpellAttributesEx.Click += (sender, e) =>
+            {
+                uint flags = 0;
+                Helpers.ShowFlagInputDialog(ref flags, "Spell AttributesEx", GameData.SpellAttributesExList);
+            };
+            tsmiFlagsSpellAttributesEx2.Click += (sender, e) =>
+            {
+                uint flags = 0;
+                Helpers.ShowFlagInputDialog(ref flags, "Spell AttributesEx2", GameData.SpellAttributesEx2List);
+            };
+            tsmiFlagsSpellAttributesEx3.Click += (sender, e) =>
+            {
+                uint flags = 0;
+                Helpers.ShowFlagInputDialog(ref flags, "Spell AttributesEx3", GameData.SpellAttributesEx3List);
+            };
+            tsmiFlagsSpellAttributesEx4.Click += (sender, e) =>
+            {
+                uint flags = 0;
+                Helpers.ShowFlagInputDialog(ref flags, "Spell AttributesEx4", GameData.SpellAttributesEx4List);
+            };
+            tsmiFlagsSpellMechanic.Click += (sender, e) =>
+            {
+                uint flags = 0;
+                Helpers.ShowFlagInputDialog(ref flags, "Spell Mechanic Mask", GameData.SpellMechanicMaskList);
             };
         }
 
