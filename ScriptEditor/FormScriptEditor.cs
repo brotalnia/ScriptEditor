@@ -194,6 +194,7 @@ namespace ScriptEditor
             cmbTargetType.Items.Add(new ComboboxPair("Nearest Friendly Player", 25));
             cmbTargetType.Items.Add(new ComboboxPair("Random Creature", 26));
             cmbTargetType.Items.Add(new ComboboxPair("Random Gameobject", 27));
+            cmbTargetType.Items.Add(new ComboboxPair("Farthest Hostile", 28));
             cmbTargetType.SelectedIndex = 0;
 
             // Add chat types to combo box.
@@ -242,6 +243,7 @@ namespace ScriptEditor
             cmbSummonCreatureAttackTarget.Items.Add(new ComboboxPair("Random Not Top", 5));
             cmbSummonCreatureAttackTarget.Items.Add(new ComboboxPair("Owner or Self", 6));
             cmbSummonCreatureAttackTarget.Items.Add(new ComboboxPair("Owner", 7));
+            cmbSummonCreatureAttackTarget.Items.Add(new ComboboxPair("Farthest Hostile", 28));
 
             // Add options to Summon Creature Despawn Type combo box.
             cmbSummonCreatureDespawnType.Items.Add(new ComboboxPair("Timer OOC or Disappear", 1));
@@ -2438,6 +2440,7 @@ namespace ScriptEditor
                 case 3: // Last Aggro
                 case 4: // Random
                 case 5: // Random Not Top
+                case 28: // Farthest Hostile
                 {
                     lblTargetParam1.Text = "Flags:";
                     lblTargetParam2.Text = "N/A:";
@@ -2623,6 +2626,7 @@ namespace ScriptEditor
                 case 3: // Last Aggro
                 case 4: // Random
                 case 5: // Random Not Top
+                case 28: // Farthest Hostile
                 {
                     FormTargetSelectFlags frm = new FormTargetSelectFlags(GetScriptFieldValue<uint>("TargetParam1"));
                     if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)

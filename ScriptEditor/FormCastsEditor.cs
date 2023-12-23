@@ -68,7 +68,8 @@ namespace ScriptEditor
                new ComboboxPair("Friendly In CC", 19),
                new ComboboxPair("Nearest Player", 23),
                new ComboboxPair("Hostile Player", 24),
-               new ComboboxPair("Friendly Player", 25)
+               new ComboboxPair("Friendly Player", 25),
+               new ComboboxPair("Farthest Hostile", 28)
              };
         }
         private void LoadControls()

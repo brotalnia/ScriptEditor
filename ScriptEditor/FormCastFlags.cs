@@ -29,6 +29,7 @@ namespace ScriptEditor
                 case 3: // Last Aggro
                 case 4: // Random
                 case 5: // Random Not Top
+                case 28: // Farthest Hostile
                 {
                     grpTargetParams.Enabled = true;
                     lblTargetParam1.Text = "Select Flags:";
