@@ -53,6 +53,8 @@ namespace ScriptEditor
         public static readonly List<Tuple<string, uint>> SpellAttributesEx2List = new List<Tuple<string, uint>>();
         public static readonly List<Tuple<string, uint>> SpellAttributesEx3List = new List<Tuple<string, uint>>();
         public static readonly List<Tuple<string, uint>> SpellAttributesEx4List = new List<Tuple<string, uint>>();
+        public static readonly List<Tuple<string, uint>> SpellProcFlagsList = new List<Tuple<string, uint>>();
+        public static readonly List<Tuple<string, uint>> SpellProcFlagsExList = new List<Tuple<string, uint>>();
 
         public static int FindIndexOfMap(uint id)
         {
@@ -2588,6 +2590,54 @@ namespace ScriptEditor
             SpellAttributesEx4List.Add(new Tuple<string, uint>("Allow Cast While Casting", 128));
             SpellAttributesEx4List.Add(new Tuple<string, uint>("Ignore Damage Taken Modifiers", 256));
             SpellAttributesEx4List.Add(new Tuple<string, uint>("Combat Feedback When Usable", 512));
+
+            // Spell Proc Flags
+            SpellProcFlagsList.Add(new Tuple<string, uint>("Heartbeat", 1));
+            SpellProcFlagsList.Add(new Tuple<string, uint>("Kill", 2));
+            SpellProcFlagsList.Add(new Tuple<string, uint>("Deal Melee Swing", 4));
+            SpellProcFlagsList.Add(new Tuple<string, uint>("Take Melee Swing", 8));
+            SpellProcFlagsList.Add(new Tuple<string, uint>("Deal Melee Ability", 16));
+            SpellProcFlagsList.Add(new Tuple<string, uint>("Take Melee Ability", 32));
+            SpellProcFlagsList.Add(new Tuple<string, uint>("Deal Ranged Attack", 64));
+            SpellProcFlagsList.Add(new Tuple<string, uint>("Take Ranged Attack", 128));
+            SpellProcFlagsList.Add(new Tuple<string, uint>("Deal Ranged Ability", 256));
+            SpellProcFlagsList.Add(new Tuple<string, uint>("Take Ranged Ability", 512));
+            SpellProcFlagsList.Add(new Tuple<string, uint>("Deal Helpful Ability", 1024));
+            SpellProcFlagsList.Add(new Tuple<string, uint>("Take Helpful Ability", 2048));
+            SpellProcFlagsList.Add(new Tuple<string, uint>("Deal Harmful Ability", 4096));
+            SpellProcFlagsList.Add(new Tuple<string, uint>("Take Harmful Ability", 8192));
+            SpellProcFlagsList.Add(new Tuple<string, uint>("Deal Helpful Spell", 16384));
+            SpellProcFlagsList.Add(new Tuple<string, uint>("Take Helpful Spell", 32768));
+            SpellProcFlagsList.Add(new Tuple<string, uint>("Deal Harmful Spell", 65536));
+            SpellProcFlagsList.Add(new Tuple<string, uint>("Take Harmful Spell", 131072));
+            SpellProcFlagsList.Add(new Tuple<string, uint>("Deal Harmful Periodic", 262144));
+            SpellProcFlagsList.Add(new Tuple<string, uint>("Take Harmful Periodic", 524288));
+            SpellProcFlagsList.Add(new Tuple<string, uint>("Taken Any Damage", 1048576));
+            SpellProcFlagsList.Add(new Tuple<string, uint>("On Trap Activation", 2097152));
+            SpellProcFlagsList.Add(new Tuple<string, uint>("Main Hand Weapon Swing", 4194304));
+            SpellProcFlagsList.Add(new Tuple<string, uint>("Off Hand Weapon Swing", 8388608));
+
+            // Spell Proc Flags Ex
+            SpellProcFlagsExList.Add(new Tuple<string, uint>("Normal Hit", 1));
+            SpellProcFlagsExList.Add(new Tuple<string, uint>("Critical Hit", 2));
+            SpellProcFlagsExList.Add(new Tuple<string, uint>("Miss", 4));
+            SpellProcFlagsExList.Add(new Tuple<string, uint>("Resist", 8));
+            SpellProcFlagsExList.Add(new Tuple<string, uint>("Dodge", 16));
+            SpellProcFlagsExList.Add(new Tuple<string, uint>("Parry", 32));
+            SpellProcFlagsExList.Add(new Tuple<string, uint>("Block", 64));
+            SpellProcFlagsExList.Add(new Tuple<string, uint>("Evade", 128));
+            SpellProcFlagsExList.Add(new Tuple<string, uint>("Immune", 256));
+            SpellProcFlagsExList.Add(new Tuple<string, uint>("Deflect", 512));
+            SpellProcFlagsExList.Add(new Tuple<string, uint>("Absorb", 1024));
+            SpellProcFlagsExList.Add(new Tuple<string, uint>("Reflect", 2048));
+            SpellProcFlagsExList.Add(new Tuple<string, uint>("Interrupt", 4096));
+            SpellProcFlagsExList.Add(new Tuple<string, uint>("Reserved1", 8192));
+            SpellProcFlagsExList.Add(new Tuple<string, uint>("Reserved2", 16384));
+            SpellProcFlagsExList.Add(new Tuple<string, uint>("Reserved3", 32768));
+            SpellProcFlagsExList.Add(new Tuple<string, uint>("Trigger Always", 65536));
+            SpellProcFlagsExList.Add(new Tuple<string, uint>("No Periodic", 131072));
+            SpellProcFlagsExList.Add(new Tuple<string, uint>("Periodic Positive", 262144));
+            SpellProcFlagsExList.Add(new Tuple<string, uint>("Cast End", 524288));
         }
     }
     public struct BroadcastText

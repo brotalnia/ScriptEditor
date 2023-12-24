@@ -59,7 +59,7 @@ namespace ScriptEditor
         "Target Missing Aura",      // 28
         "Movement Inform",          // 29
         "Leave Combat",             // 30
-        "Map Event Happened",       // 31
+        "Script Event Happened",    // 31
         "Group Member Died",        // 32
         "Victim Rooted",            // 33
         "Hit By Aura",              // 34
@@ -1063,20 +1063,20 @@ namespace ScriptEditor
         private void btnEventAdd_Click(object sender, EventArgs e)
         {
             // First we find the highest id in the event list.
-            uint max_id = 0;
+            uint maxId = currentCreatureId * 100;
             foreach (ListViewItem item in lstEvents.Items)
             {
-                CreatureEvent creature_event = (CreatureEvent)item.Tag;
+                CreatureEvent creatureEvent = (CreatureEvent)item.Tag;
 
-                if (creature_event.Id > max_id)
-                    max_id = creature_event.Id;
+                if (creatureEvent.Id > maxId)
+                    maxId = creatureEvent.Id;
             }
 
-            max_id++;
+            maxId++;
 
             ListViewItem newItem = new ListViewItem();
 
-            CreatureEvent newEvent= new CreatureEvent(max_id, currentCreatureId);
+            CreatureEvent newEvent= new CreatureEvent(maxId, currentCreatureId);
 
             // We show only id, event type, and comment in the listview.
             newItem.Text = newEvent.Id.ToString();
@@ -1184,13 +1184,23 @@ namespace ScriptEditor
                 query = "-- Removing unused script actions.\nDELETE FROM `creature_ai_scripts` WHERE `id` IN (" + unusedScripts + ");\n\n";
             }
             query += "-- Events list for " + GameData.FindCreatureName(currentCreatureId) + "\nDELETE FROM `creature_ai_events` WHERE `creature_id`=" + currentCreatureId.ToString() + ";\n";
-            foreach (ListViewItem lvi in lstEvents.Items)
+            if (lstEvents.Items.Count > 0)
             {
-                // Get the associated CreatureEvent.
-                CreatureEvent currentEvent = (CreatureEvent)lvi.Tag;
+                query += "INSERT INTO `creature_ai_events` (`id`, `creature_id`, `condition_id`, `event_type`, `event_inverse_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `action1_script`, `action2_script`, `action3_script`, `comment`) VALUES\n";
+                for (int i = 0; i < lstEvents.Items.Count; ++i)
+                {
+                    // Get the associated CreatureEvent.
+                    ListViewItem lvi = lstEvents.Items[i];
+                    CreatureEvent currentEvent = (CreatureEvent)lvi.Tag;
 
-                query += "INSERT INTO `creature_ai_events` (`id`, `creature_id`, `condition_id`, `event_type`, `event_inverse_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `action1_script`, `action2_script`, `action3_script`, `comment`) VALUES (" + currentEvent.Id.ToString() + ", " + currentEvent.CreatureId.ToString() + ", " + currentEvent.ConditionId.ToString() + ", " + currentEvent.Type.ToString() + ", " + currentEvent.InversePhaseMask.ToString() + ", " + currentEvent.Chance.ToString() + ", " + currentEvent.Flags.ToString() + ", " + currentEvent.Param1.ToString() + ", " + currentEvent.Param2.ToString() + ", " + currentEvent.Param3.ToString() + ", " + currentEvent.Param4.ToString() + ", " + currentEvent.ScriptId1.ToString() + ", " + currentEvent.ScriptId2.ToString() + ", " + currentEvent.ScriptId3.ToString() + ", '" + Helpers.MySQLEscape(currentEvent.Comment) + "');\n";
+                    if (i > 0)
+                        query += ",\n";
+
+                    query += "(" + currentEvent.Id.ToString() + ", " + currentEvent.CreatureId.ToString() + ", " + currentEvent.ConditionId.ToString() + ", " + currentEvent.Type.ToString() + ", " + currentEvent.InversePhaseMask.ToString() + ", " + currentEvent.Chance.ToString() + ", " + currentEvent.Flags.ToString() + ", " + currentEvent.Param1.ToString() + ", " + currentEvent.Param2.ToString() + ", " + currentEvent.Param3.ToString() + ", " + currentEvent.Param4.ToString() + ", " + currentEvent.ScriptId1.ToString() + ", " + currentEvent.ScriptId2.ToString() + ", " + currentEvent.ScriptId3.ToString() + ", '" + Helpers.MySQLEscape(currentEvent.Comment) + "')";
+                }
+                query += ";\n";
             }
+            
             return query;
         }
         private void btnSave_Click(object sender, EventArgs e)

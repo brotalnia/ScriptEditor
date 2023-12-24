@@ -34,14 +34,15 @@ namespace ScriptEditor
             languages[33] = "Gutterspeak";
 
             // Chat Type Names
-            chattypes = new string[7];
+            chattypes = new string[8];
             chattypes[0] = "Say";
             chattypes[1] = "Yell";
             chattypes[2] = "Emote";
-            chattypes[3] = "Zone Emote";
+            chattypes[3] = "Boss Emote";
             chattypes[4] = "Whisper";
             chattypes[5] = "Boss Whisper";
             chattypes[6] = "Zone Yell";
+            chattypes[7] = "Zone Emote";
         }
         protected override void AddAllData()
         {

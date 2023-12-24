@@ -99,7 +99,9 @@ namespace ScriptEditor
             {
                 foreach (var item in valuesList)
                 {
-                    int neededSize = 20 + item.Item1.Length * 6;
+                    int neededSize = 20;
+                    foreach (char chr in item.Item1)
+                        neededSize += (Char.IsUpper(chr) ? 9 : 6);
                     if (neededSize > columnSize)
                         columnSize = neededSize;
                 }

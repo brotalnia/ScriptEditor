@@ -167,6 +167,16 @@ namespace ScriptEditor
                 uint flags = 0;
                 Helpers.ShowFlagInputDialog(ref flags, "Spell Mechanic Mask", GameData.SpellMechanicMaskList);
             };
+            tsmiFlagsSpellProc.Click += (sender, e) =>
+            {
+                uint flags = 0;
+                Helpers.ShowFlagInputDialog(ref flags, "Spell Proc Flags", GameData.SpellProcFlagsList);
+            };
+            tsmiFlagsSpellProcEx.Click += (sender, e) =>
+            {
+                uint flags = 0;
+                Helpers.ShowFlagInputDialog(ref flags, "Spell Proc Flags Ex", GameData.SpellProcFlagsExList);
+            };
         }
 
         private void picScriptEditor_MouseEnter(object sender, EventArgs e)

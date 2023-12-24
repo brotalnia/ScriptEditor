@@ -63,13 +63,15 @@
             this.tsmiFlagsUnitDynamicUF = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiFlagsNpcUF = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiFlagsPlayerUF = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiFlagsSpellMechanic = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiFlagsSpellAttributes = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiFlagsSpellAttributesEx = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiFlagsSpellAttributesEx2 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiFlagsSpellAttributesEx3 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiFlagsSpellAttributesEx4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiFlagsSpellMechanic = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiFlagsSpellProc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiFlagsSpellProcEx = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.picScriptEditor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picEventEditor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picGitLink)).BeginInit();
@@ -311,7 +313,9 @@
             this.tsmiFlagsSpellAttributesEx2,
             this.tsmiFlagsSpellAttributesEx3,
             this.tsmiFlagsSpellAttributesEx4,
-            this.tsmiFlagsSpellMechanic});
+            this.tsmiFlagsSpellMechanic,
+            this.tsmiFlagsSpellProc,
+            this.tsmiFlagsSpellProcEx});
             this.tsmiFlags.Name = "tsmiFlags";
             this.tsmiFlags.Size = new System.Drawing.Size(152, 22);
             this.tsmiFlags.Text = "Flags";
@@ -363,12 +367,6 @@
             this.tsmiFlagsPlayerUF.Size = new System.Drawing.Size(203, 22);
             this.tsmiFlagsPlayerUF.Text = "Player (UF)";
             // 
-            // tsmiFlagsSpellMechanic
-            // 
-            this.tsmiFlagsSpellMechanic.Name = "tsmiFlagsSpellMechanic";
-            this.tsmiFlagsSpellMechanic.Size = new System.Drawing.Size(203, 22);
-            this.tsmiFlagsSpellMechanic.Text = "Spell Mechanic";
-            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -403,6 +401,24 @@
             this.tsmiFlagsSpellAttributesEx4.Name = "tsmiFlagsSpellAttributesEx4";
             this.tsmiFlagsSpellAttributesEx4.Size = new System.Drawing.Size(203, 22);
             this.tsmiFlagsSpellAttributesEx4.Text = "Spell AttributesEx4";
+            // 
+            // tsmiFlagsSpellMechanic
+            // 
+            this.tsmiFlagsSpellMechanic.Name = "tsmiFlagsSpellMechanic";
+            this.tsmiFlagsSpellMechanic.Size = new System.Drawing.Size(203, 22);
+            this.tsmiFlagsSpellMechanic.Text = "Spell Mechanic";
+            // 
+            // tsmiFlagsSpellProc
+            // 
+            this.tsmiFlagsSpellProc.Name = "tsmiFlagsSpellProc";
+            this.tsmiFlagsSpellProc.Size = new System.Drawing.Size(203, 22);
+            this.tsmiFlagsSpellProc.Text = "Spell Proc";
+            // 
+            // tsmiFlagsSpellProcEx
+            // 
+            this.tsmiFlagsSpellProcEx.Name = "tsmiFlagsSpellProcEx";
+            this.tsmiFlagsSpellProcEx.Size = new System.Drawing.Size(203, 22);
+            this.tsmiFlagsSpellProcEx.Text = "Spell Proc Ex";
             // 
             // Form1
             // 
@@ -479,5 +495,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiFlagsSpellAttributesEx2;
         private System.Windows.Forms.ToolStripMenuItem tsmiFlagsSpellAttributesEx3;
         private System.Windows.Forms.ToolStripMenuItem tsmiFlagsSpellAttributesEx4;
+        private System.Windows.Forms.ToolStripMenuItem tsmiFlagsSpellProc;
+        private System.Windows.Forms.ToolStripMenuItem tsmiFlagsSpellProcEx;
     }
 }

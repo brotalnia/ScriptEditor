@@ -335,9 +335,9 @@
             this.chkEventFlag4.AutoSize = true;
             this.chkEventFlag4.Location = new System.Drawing.Point(116, 20);
             this.chkEventFlag4.Name = "chkEventFlag4";
-            this.chkEventFlag4.Size = new System.Drawing.Size(82, 17);
+            this.chkEventFlag4.Size = new System.Drawing.Size(81, 17);
             this.chkEventFlag4.TabIndex = 2;
-            this.chkEventFlag4.Text = "Debug Only";
+            this.chkEventFlag4.Text = "Not Casting";
             this.chkEventFlag4.UseVisualStyleBackColor = true;
             this.chkEventFlag4.CheckedChanged += new System.EventHandler(this.chkEventFlag4_CheckedChanged);
             // 
