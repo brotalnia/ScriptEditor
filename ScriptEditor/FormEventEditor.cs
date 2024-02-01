@@ -63,7 +63,8 @@ namespace ScriptEditor
         "Group Member Died",        // 32
         "Victim Rooted",            // 33
         "Hit By Aura",              // 34
-        "Stealth Alert"             // 35
+        "Stealth Alert",            // 35
+        "Spell Hit Target"          // 36
         };
 
         private string GetEventTypeName(uint type)
@@ -168,6 +169,7 @@ namespace ScriptEditor
             chkEventFlag1.Checked = false;
             chkEventFlag2.Checked = false;
             chkEventFlag4.Checked = false;
+            chkEventFlag8.Checked = false;
 
             // Buttons.
             btnEventCondition.Text = "-NONE-";
@@ -230,7 +232,8 @@ namespace ScriptEditor
             // EVENT_T_AURA (23)
             // EVENT_T_TARGET_AURA (24)
             // EVENT_T_MISSING_AURA (27)
-            // EVENT_T_TARGET_MISSING_AURA (28(
+            // EVENT_T_TARGET_MISSING_AURA (28)
+            // EVENT_T_SPELL_HIT_TARGET (36)
             btnSpellHitSpellId.Text = "-NONE-";
             txtSpellHitSchoolMask.Text = "";
             txtSpellHitRepeatMin.Text = "";
@@ -517,6 +520,7 @@ namespace ScriptEditor
                 case 24: // EVENT_T_TARGET_AURA
                 case 27: // EVENT_T_MISSING_AURA
                 case 28: // EVENT_T_TARGET_MISSING_AURA
+                case 36: // EVENT_T_SPELL_HIT_TARGET
                 {
                     uint spellId = (uint)selectedEvent.Param1;
                     if (spellId > 0)
@@ -557,6 +561,12 @@ namespace ScriptEditor
                         {
                             lblEventSpellHitTooltip.Text = "Expires when the current victim does not have the minimum number of stacks from the specified spell aura.";
                             lblSpellHitSchoolMask.Text = "Min Stacks:";
+                            break;
+                        }
+                        case 36: // EVENT_T_SPELL_HIT_TARGET
+                        {
+                            lblEventSpellHitTooltip.Text = "Expires when another unit is hit by a spell casted by the creature. If a spell Id is set, it will only expire when hit by that spell. Same logic applies when a school mask is set.";
+                            lblSpellHitSchoolMask.Text = "School Mask:";
                             break;
                         }
                     }
@@ -764,6 +774,7 @@ namespace ScriptEditor
             chkEventFlag1.Checked = ((selectedEvent.Flags & 1) != 0);
             chkEventFlag2.Checked = ((selectedEvent.Flags & 2) != 0);
             chkEventFlag4.Checked = ((selectedEvent.Flags & 4) != 0);
+            chkEventFlag8.Checked = ((selectedEvent.Flags & 8) != 0);
 
             if (Program.highlight)
             {
@@ -996,6 +1007,11 @@ namespace ScriptEditor
         private void chkEventFlag4_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkEventFlag4, "Flags", 4);
+        }
+
+        private void chkEventFlag8_CheckedChanged(object sender, EventArgs e)
+        {
+            SetScriptFlagsFromCheckbox(chkEventFlag8, "Flags", 8);
         }
 
         private void txtEventChance_Leave(object sender, EventArgs e)

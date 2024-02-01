@@ -157,6 +157,7 @@
             this.lblHitByAuraType = new System.Windows.Forms.Label();
             this.lblHitByAuraUnused = new System.Windows.Forms.Label();
             this.lblHitByAuraTooltip = new System.Windows.Forms.Label();
+            this.chkEventFlag8 = new System.Windows.Forms.CheckBox();
             this.grpGeneral.SuspendLayout();
             this.grpEventFlags.SuspendLayout();
             this.frmEventTimerCombat.SuspendLayout();
@@ -320,6 +321,7 @@
             // 
             // grpEventFlags
             // 
+            this.grpEventFlags.Controls.Add(this.chkEventFlag8);
             this.grpEventFlags.Controls.Add(this.chkEventFlag4);
             this.grpEventFlags.Controls.Add(this.chkEventFlag2);
             this.grpEventFlags.Controls.Add(this.chkEventFlag1);
@@ -346,9 +348,9 @@
             this.chkEventFlag2.AutoSize = true;
             this.chkEventFlag2.Location = new System.Drawing.Point(6, 43);
             this.chkEventFlag2.Name = "chkEventFlag2";
-            this.chkEventFlag2.Size = new System.Drawing.Size(140, 17);
+            this.chkEventFlag2.Size = new System.Drawing.Size(96, 17);
             this.chkEventFlag2.TabIndex = 1;
-            this.chkEventFlag2.Text = "Chooses Random Script";
+            this.chkEventFlag2.Text = "Random Script";
             this.chkEventFlag2.UseVisualStyleBackColor = true;
             this.chkEventFlag2.CheckedChanged += new System.EventHandler(this.chkEventFlag2_CheckedChanged);
             // 
@@ -1443,6 +1445,17 @@
             this.lblHitByAuraTooltip.Text = "Expires when the creature is hit by a spell that applies an aura of a specific ty" +
     "pe.";
             // 
+            // chkEventFlag8
+            // 
+            this.chkEventFlag8.AutoSize = true;
+            this.chkEventFlag8.Location = new System.Drawing.Point(116, 43);
+            this.chkEventFlag8.Name = "chkEventFlag8";
+            this.chkEventFlag8.Size = new System.Drawing.Size(90, 17);
+            this.chkEventFlag8.TabIndex = 3;
+            this.chkEventFlag8.Text = "Check Result";
+            this.chkEventFlag8.UseVisualStyleBackColor = true;
+            this.chkEventFlag8.CheckedChanged += new System.EventHandler(this.chkEventFlag8_CheckedChanged);
+            // 
             // FormEventEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1638,5 +1651,6 @@
         private System.Windows.Forms.Label lblHitByAuraType;
         private System.Windows.Forms.Label lblHitByAuraUnused;
         private System.Windows.Forms.Label lblHitByAuraTooltip;
+        private System.Windows.Forms.CheckBox chkEventFlag8;
     }
 }
