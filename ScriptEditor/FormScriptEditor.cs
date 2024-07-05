@@ -121,6 +121,7 @@ namespace ScriptEditor
         "Play Custom Anim",         // 89
         "Start Script on Group",    // 90
         "Load Creature Spawn",      // 91
+        "Start Script on Zone",     // 92
         };
 
         // Options for combo boxes.
@@ -915,6 +916,12 @@ namespace ScriptEditor
             chkJoinCreatureGroup64.Checked = false;
             chkJoinCreatureGroup128.Checked = false;
             frmCommandJoinCreatureGroup.Visible = false;
+
+            // Start Script on Zone (92)
+            txtStartScriptOnZoneScriptId.Text = "";
+            btnStartScriptOnZoneZoneId.Text = "-NONE-";
+            cmbStartScriptOnZoneWithPets.SelectedIndex = 0;
+            frmCommandStartScriptOnZone.Visible = false;
 
             dontUpdate = false;
         }
@@ -2213,6 +2220,16 @@ namespace ScriptEditor
                     txtJoinCreatureGroupDistance.Text = selectedAction.X.ToString();
                     txtJoinCreatureGroupAngle.Text = selectedAction.O.ToString();
                     frmCommandJoinCreatureGroup.Visible = true;
+                    break;
+                }
+                case 92: // Start Script on Zone
+                {
+                    txtStartScriptOnZoneScriptId.Text = selectedAction.Datalong.ToString();
+                    uint areaId = selectedAction.Datalong2;
+                    if (areaId > 0)
+                        btnStartScriptOnZoneZoneId.Text = GameData.FindAreaName(areaId) + " (" + areaId.ToString() + ")";
+                    cmbStartScriptOnZoneWithPets.SelectedIndex = (int)selectedAction.Datalong3;
+                    frmCommandStartScriptOnZone.Visible = true;
                     break;
                 }
                 default: // Unsupported command
@@ -4352,7 +4369,7 @@ namespace ScriptEditor
             }
         }
 
-        //SCRIPT_COMMAND_SUMMON_OBJECT (76)
+        // SCRIPT_COMMAND_SUMMON_OBJECT (76)
         private void btnSummonObjectId_Click(object sender, EventArgs e)
         {
             SetScriptFieldFromDataFinderForm<FormGameObjectFinder>(btnSummonObjectId, null, GameData.FindGameObjectName, "Datalong");
@@ -4428,6 +4445,34 @@ namespace ScriptEditor
         private void chkJoinCreatureGroup128_CheckedChanged(object sender, EventArgs e)
         {
             SetScriptFlagsFromCheckbox(chkJoinCreatureGroup128, "Datalong", 128);
+        }
+
+        // SCRIPT_COMMAND_START_SCRIPT_ON_ZONE (92)
+        private void txtStartScriptOnZoneScriptId_Leave(object sender, EventArgs e)
+        {
+            SetScriptFieldFromTextbox(txtStartScriptOnZoneScriptId, "Datalong");
+        }
+
+        private void btnStartScriptOnZoneScriptIdEdit_Click(object sender, EventArgs e)
+        {
+            uint script_id = 0;
+            uint.TryParse(txtStartScriptOnZoneScriptId.Text, out script_id);
+            if (script_id > 0)
+            {
+                FormScriptEditor formEditor = new FormScriptEditor();
+                formEditor.Show();
+                formEditor.LoadScript(script_id, "generic_scripts");
+            }
+        }
+
+        private void btnStartScriptOnZoneZoneId_Click(object sender, EventArgs e)
+        {
+            SetScriptFieldFromDataFinderForm<FormAreaFinder>(btnStartScriptOnZoneZoneId, null, GameData.FindAreaName, "Datalong2");
+        }
+
+        private void cmbStartScriptOnZoneWithPets_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetScriptFieldFromCombobox(cmbStartScriptOnZoneWithPets, "Datalong3", false);
         }
     }
 

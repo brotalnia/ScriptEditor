@@ -561,6 +561,15 @@
             this.txtJoinCreatureGroupAngle = new System.Windows.Forms.TextBox();
             this.txtJoinCreatureGroupDistance = new System.Windows.Forms.TextBox();
             this.lblJoinCreatureGroupTooltip = new System.Windows.Forms.Label();
+            this.frmCommandStartScriptOnZone = new System.Windows.Forms.Panel();
+            this.btnStartScriptOnZoneScriptIdEdit = new System.Windows.Forms.Button();
+            this.lblStartScriptOnZoneWithPets = new System.Windows.Forms.Label();
+            this.cmbStartScriptOnZoneWithPets = new System.Windows.Forms.ComboBox();
+            this.btnStartScriptOnZoneZoneId = new System.Windows.Forms.Button();
+            this.lblStartScriptOnZoneZoneId = new System.Windows.Forms.Label();
+            this.lblStartScriptOnZoneScriptId = new System.Windows.Forms.Label();
+            this.txtStartScriptOnZoneScriptId = new System.Windows.Forms.TextBox();
+            this.lblStartScriptOnZoneTooltip = new System.Windows.Forms.Label();
             this.grpGeneral.SuspendLayout();
             this.grpDataFlags.SuspendLayout();
             this.grpBuddy.SuspendLayout();
@@ -622,6 +631,7 @@
             this.frmCommandSummonObject.SuspendLayout();
             this.frmCommandJoinCreatureGroup.SuspendLayout();
             this.joinCreatureGroupsFlagsGroupBox.SuspendLayout();
+            this.frmCommandStartScriptOnZone.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstActions
@@ -6136,11 +6146,106 @@
             this.lblJoinCreatureGroupTooltip.Text = "The source Creature joins the target Creature\'s group. If the target is not in a " +
     "group, then a new group is created with the target as leader.";
             // 
+            // frmCommandStartScriptOnZone
+            // 
+            this.frmCommandStartScriptOnZone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.frmCommandStartScriptOnZone.Controls.Add(this.btnStartScriptOnZoneScriptIdEdit);
+            this.frmCommandStartScriptOnZone.Controls.Add(this.lblStartScriptOnZoneWithPets);
+            this.frmCommandStartScriptOnZone.Controls.Add(this.cmbStartScriptOnZoneWithPets);
+            this.frmCommandStartScriptOnZone.Controls.Add(this.btnStartScriptOnZoneZoneId);
+            this.frmCommandStartScriptOnZone.Controls.Add(this.lblStartScriptOnZoneZoneId);
+            this.frmCommandStartScriptOnZone.Controls.Add(this.lblStartScriptOnZoneScriptId);
+            this.frmCommandStartScriptOnZone.Controls.Add(this.txtStartScriptOnZoneScriptId);
+            this.frmCommandStartScriptOnZone.Controls.Add(this.lblStartScriptOnZoneTooltip);
+            this.frmCommandStartScriptOnZone.Location = new System.Drawing.Point(410, 252);
+            this.frmCommandStartScriptOnZone.Name = "frmCommandStartScriptOnZone";
+            this.frmCommandStartScriptOnZone.Size = new System.Drawing.Size(495, 332);
+            this.frmCommandStartScriptOnZone.TabIndex = 66;
+            this.frmCommandStartScriptOnZone.Visible = false;
+            // 
+            // btnStartScriptOnZoneScriptIdEdit
+            // 
+            this.btnStartScriptOnZoneScriptIdEdit.Location = new System.Drawing.Point(429, 57);
+            this.btnStartScriptOnZoneScriptIdEdit.Name = "btnStartScriptOnZoneScriptIdEdit";
+            this.btnStartScriptOnZoneScriptIdEdit.Size = new System.Drawing.Size(44, 22);
+            this.btnStartScriptOnZoneScriptIdEdit.TabIndex = 9;
+            this.btnStartScriptOnZoneScriptIdEdit.Text = "Edit";
+            this.btnStartScriptOnZoneScriptIdEdit.UseVisualStyleBackColor = true;
+            this.btnStartScriptOnZoneScriptIdEdit.Click += new System.EventHandler(this.btnStartScriptOnZoneScriptIdEdit_Click);
+            // 
+            // lblStartScriptOnZoneWithPets
+            // 
+            this.lblStartScriptOnZoneWithPets.AutoSize = true;
+            this.lblStartScriptOnZoneWithPets.Location = new System.Drawing.Point(40, 125);
+            this.lblStartScriptOnZoneWithPets.Name = "lblStartScriptOnZoneWithPets";
+            this.lblStartScriptOnZoneWithPets.Size = new System.Drawing.Size(56, 13);
+            this.lblStartScriptOnZoneWithPets.TabIndex = 8;
+            this.lblStartScriptOnZoneWithPets.Text = "With Pets:";
+            // 
+            // cmbStartScriptOnZoneWithPets
+            // 
+            this.cmbStartScriptOnZoneWithPets.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbStartScriptOnZoneWithPets.FormattingEnabled = true;
+            this.cmbStartScriptOnZoneWithPets.Items.AddRange(new object[] {
+            "False",
+            "True"});
+            this.cmbStartScriptOnZoneWithPets.Location = new System.Drawing.Point(99, 122);
+            this.cmbStartScriptOnZoneWithPets.Name = "cmbStartScriptOnZoneWithPets";
+            this.cmbStartScriptOnZoneWithPets.Size = new System.Drawing.Size(374, 21);
+            this.cmbStartScriptOnZoneWithPets.TabIndex = 7;
+            this.cmbStartScriptOnZoneWithPets.SelectedIndexChanged += new System.EventHandler(this.cmbStartScriptOnZoneWithPets_SelectedIndexChanged);
+            // 
+            // btnStartScriptOnZoneZoneId
+            // 
+            this.btnStartScriptOnZoneZoneId.Location = new System.Drawing.Point(99, 90);
+            this.btnStartScriptOnZoneZoneId.Name = "btnStartScriptOnZoneZoneId";
+            this.btnStartScriptOnZoneZoneId.Size = new System.Drawing.Size(374, 23);
+            this.btnStartScriptOnZoneZoneId.TabIndex = 6;
+            this.btnStartScriptOnZoneZoneId.Text = "-NONE-";
+            this.btnStartScriptOnZoneZoneId.UseVisualStyleBackColor = true;
+            this.btnStartScriptOnZoneZoneId.Click += new System.EventHandler(this.btnStartScriptOnZoneZoneId_Click);
+            // 
+            // lblStartScriptOnZoneZoneId
+            // 
+            this.lblStartScriptOnZoneZoneId.AutoSize = true;
+            this.lblStartScriptOnZoneZoneId.Location = new System.Drawing.Point(49, 93);
+            this.lblStartScriptOnZoneZoneId.Name = "lblStartScriptOnZoneZoneId";
+            this.lblStartScriptOnZoneZoneId.Size = new System.Drawing.Size(47, 13);
+            this.lblStartScriptOnZoneZoneId.TabIndex = 4;
+            this.lblStartScriptOnZoneZoneId.Text = "Zone Id:";
+            // 
+            // lblStartScriptOnZoneScriptId
+            // 
+            this.lblStartScriptOnZoneScriptId.AutoSize = true;
+            this.lblStartScriptOnZoneScriptId.Location = new System.Drawing.Point(47, 61);
+            this.lblStartScriptOnZoneScriptId.Name = "lblStartScriptOnZoneScriptId";
+            this.lblStartScriptOnZoneScriptId.Size = new System.Drawing.Size(49, 13);
+            this.lblStartScriptOnZoneScriptId.TabIndex = 3;
+            this.lblStartScriptOnZoneScriptId.Text = "Script Id:";
+            // 
+            // txtStartScriptOnZoneScriptId
+            // 
+            this.txtStartScriptOnZoneScriptId.Location = new System.Drawing.Point(99, 58);
+            this.txtStartScriptOnZoneScriptId.Name = "txtStartScriptOnZoneScriptId";
+            this.txtStartScriptOnZoneScriptId.Size = new System.Drawing.Size(323, 20);
+            this.txtStartScriptOnZoneScriptId.TabIndex = 1;
+            this.txtStartScriptOnZoneScriptId.Leave += new System.EventHandler(this.txtStartScriptOnZoneScriptId_Leave);
+            // 
+            // lblStartScriptOnZoneTooltip
+            // 
+            this.lblStartScriptOnZoneTooltip.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblStartScriptOnZoneTooltip.Location = new System.Drawing.Point(20, 10);
+            this.lblStartScriptOnZoneTooltip.Name = "lblStartScriptOnZoneTooltip";
+            this.lblStartScriptOnZoneTooltip.Size = new System.Drawing.Size(453, 32);
+            this.lblStartScriptOnZoneTooltip.TabIndex = 0;
+            this.lblStartScriptOnZoneTooltip.Text = "Starts a generic script on all Players in the zone, and optionally their Pets.";
+            // 
             // FormScriptEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 620);
+            this.Controls.Add(this.frmCommandStartScriptOnZone);
             this.Controls.Add(this.frmCommandJoinCreatureGroup);
             this.Controls.Add(this.frmCommandSummonObject);
             this.Controls.Add(this.frmCommandUnknown);
@@ -6334,6 +6439,8 @@
             this.frmCommandJoinCreatureGroup.PerformLayout();
             this.joinCreatureGroupsFlagsGroupBox.ResumeLayout(false);
             this.joinCreatureGroupsFlagsGroupBox.PerformLayout();
+            this.frmCommandStartScriptOnZone.ResumeLayout(false);
+            this.frmCommandStartScriptOnZone.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -6873,6 +6980,15 @@
         private System.Windows.Forms.CheckBox chkSkipMissingTargets;
         private System.Windows.Forms.Button btnStartScriptForAllEdit;
         private System.Windows.Forms.CheckBox chkPlaySoundFlags4;
+        private System.Windows.Forms.Panel frmCommandStartScriptOnZone;
+        private System.Windows.Forms.Button btnStartScriptOnZoneScriptIdEdit;
+        private System.Windows.Forms.Label lblStartScriptOnZoneWithPets;
+        private System.Windows.Forms.ComboBox cmbStartScriptOnZoneWithPets;
+        private System.Windows.Forms.Button btnStartScriptOnZoneZoneId;
+        private System.Windows.Forms.Label lblStartScriptOnZoneZoneId;
+        private System.Windows.Forms.Label lblStartScriptOnZoneScriptId;
+        private System.Windows.Forms.TextBox txtStartScriptOnZoneScriptId;
+        private System.Windows.Forms.Label lblStartScriptOnZoneTooltip;
     }
 }
 
