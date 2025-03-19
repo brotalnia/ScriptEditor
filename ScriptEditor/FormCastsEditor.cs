@@ -58,17 +58,19 @@ namespace ScriptEditor
                new ComboboxPair("Last Aggro", 3),
                new ComboboxPair("Random", 4),
                new ComboboxPair("Random Not Top", 5),
-               new ComboboxPair("Owner or Self", 6),
-               new ComboboxPair("Owner", 7),
-               new ComboboxPair("Random Friendly", 14),
-               new ComboboxPair("Injured Friendly", 15),
-               new ComboboxPair("Injured Not Self", 16),
-               new ComboboxPair("No Buff Friendly", 17),
-               new ComboboxPair("No Buff Not Self", 18),
-               new ComboboxPair("Friendly In CC", 19),
-               new ComboboxPair("Nearest Player", 23),
-               new ComboboxPair("Hostile Player", 24),
-               new ComboboxPair("Friendly Player", 25)
+               new ComboboxPair("Nearest", 6),
+               new ComboboxPair("Farthest", 7),
+               new ComboboxPair("Owner or Self", 8),
+               new ComboboxPair("Owner", 9),
+               new ComboboxPair("Random Friendly", 16),
+               new ComboboxPair("Injured Friendly", 17),
+               new ComboboxPair("Injured Not Self", 18),
+               new ComboboxPair("No Buff Friendly", 19),
+               new ComboboxPair("No Buff Not Self", 20),
+               new ComboboxPair("Friendly In CC", 21),
+               new ComboboxPair("Nearest Player", 25),
+               new ComboboxPair("Hostile Player", 26),
+               new ComboboxPair("Friendly Player", 27)
              };
         }
         private void LoadControls()

@@ -29,6 +29,8 @@ namespace ScriptEditor
                 case 3: // Last Aggro
                 case 4: // Random
                 case 5: // Random Not Top
+                case 6: // Nearest
+                case 7: // Farthest
                 {
                     grpTargetParams.Enabled = true;
                     lblTargetParam1.Text = "Select Flags:";
@@ -39,7 +41,7 @@ namespace ScriptEditor
                     btnTargetParam1.Visible = true;
                     break;
                 }
-                case 14: // Friendly
+                case 16: // Friendly
                 {
                     grpTargetParams.Enabled = true;
                     lblTargetParam1.Text = "Radius:";
@@ -50,8 +52,8 @@ namespace ScriptEditor
                     txtTargetParam2.Text = targetparam2.ToString();
                     break;
                 }
-                case 15: // Friendly Injured
-                case 16: // Friendly Injured Not Self
+                case 17: // Friendly Injured
+                case 18: // Friendly Injured Not Self
                 {
                     grpTargetParams.Enabled = true;
                     lblTargetParam1.Text = "Radius:";
@@ -62,8 +64,8 @@ namespace ScriptEditor
                     txtTargetParam2.Text = targetparam2.ToString();
                     break;
                 }
-                case 17: // Friendly Missing Buff
-                case 18: // Friendly Missing Buff Not Self
+                case 19: // Friendly Missing Buff
+                case 20: // Friendly Missing Buff Not Self
                 {
                     grpTargetParams.Enabled = true;
                     lblTargetParam1.Text = "Radius:";
@@ -74,7 +76,7 @@ namespace ScriptEditor
                     txtTargetParam2.Text = targetparam2.ToString();
                     break;
                 }
-                case 19: // Friendly CC
+                case 21: // Friendly CC
                 {
                     grpTargetParams.Enabled = true;
                     lblTargetParam1.Text = "Radius:";
@@ -82,9 +84,9 @@ namespace ScriptEditor
                     txtTargetParam1.Text = targetparam1.ToString();
                     break;
                 }
-                case 23: // Nearest Player
-                case 24: // Nearest Hostile Player
-                case 25: // Nearest Friendly Player
+                case 25: // Nearest Player
+                case 26: // Nearest Hostile Player
+                case 27: // Nearest Friendly Player
                 {
                     grpTargetParams.Enabled = true;
                     lblTargetParam1.Text = "Radius:";

@@ -3596,6 +3596,8 @@
             "Last on Threat",
             "Random Attacker",
             "Random Not Top",
+            "Nearest",
+            "Farthest",
             "All Attackers"});
             this.cmbModifyThreatTarget.Location = new System.Drawing.Point(99, 58);
             this.cmbModifyThreatTarget.Name = "cmbModifyThreatTarget";
