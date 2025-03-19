@@ -72,6 +72,12 @@
             this.tsmiFlagsSpellMechanic = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiFlagsSpellProc = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiFlagsSpellProcEx = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiFlagsSpellSchool = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiFlagsShapeshiftMask = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmiFlagsNpcStatic1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiFlagsNpcStatic2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiFlagsNpcExtra = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.picScriptEditor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picEventEditor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picGitLink)).BeginInit();
@@ -315,9 +321,15 @@
             this.tsmiFlagsSpellAttributesEx4,
             this.tsmiFlagsSpellMechanic,
             this.tsmiFlagsSpellProc,
-            this.tsmiFlagsSpellProcEx});
+            this.tsmiFlagsSpellProcEx,
+            this.tsmiFlagsSpellSchool,
+            this.tsmiFlagsShapeshiftMask,
+            this.toolStripSeparator3,
+            this.tsmiFlagsNpcStatic1,
+            this.tsmiFlagsNpcStatic2,
+            this.tsmiFlagsNpcExtra});
             this.tsmiFlags.Name = "tsmiFlags";
-            this.tsmiFlags.Size = new System.Drawing.Size(152, 22);
+            this.tsmiFlags.Size = new System.Drawing.Size(99, 22);
             this.tsmiFlags.Text = "Flags";
             // 
             // tsmiFlagsGeneric
@@ -420,6 +432,41 @@
             this.tsmiFlagsSpellProcEx.Size = new System.Drawing.Size(203, 22);
             this.tsmiFlagsSpellProcEx.Text = "Spell Proc Ex";
             // 
+            // tsmiFlagsSpellSchool
+            // 
+            this.tsmiFlagsSpellSchool.Name = "tsmiFlagsSpellSchool";
+            this.tsmiFlagsSpellSchool.Size = new System.Drawing.Size(203, 22);
+            this.tsmiFlagsSpellSchool.Text = "Spell School";
+            // 
+            // tsmiFlagsShapeshiftMask
+            // 
+            this.tsmiFlagsShapeshiftMask.Name = "tsmiFlagsShapeshiftMask";
+            this.tsmiFlagsShapeshiftMask.Size = new System.Drawing.Size(203, 22);
+            this.tsmiFlagsShapeshiftMask.Text = "Spell Shapeshift Form";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(200, 6);
+            // 
+            // tsmiFlagsNpcStatic1
+            // 
+            this.tsmiFlagsNpcStatic1.Name = "tsmiFlagsNpcStatic1";
+            this.tsmiFlagsNpcStatic1.Size = new System.Drawing.Size(203, 22);
+            this.tsmiFlagsNpcStatic1.Text = "Creature Static Flags 1";
+            // 
+            // tsmiFlagsNpcStatic2
+            // 
+            this.tsmiFlagsNpcStatic2.Name = "tsmiFlagsNpcStatic2";
+            this.tsmiFlagsNpcStatic2.Size = new System.Drawing.Size(203, 22);
+            this.tsmiFlagsNpcStatic2.Text = "Creature Static Flags 2";
+            // 
+            // tsmiFlagsNpcExtra
+            // 
+            this.tsmiFlagsNpcExtra.Name = "tsmiFlagsNpcExtra";
+            this.tsmiFlagsNpcExtra.Size = new System.Drawing.Size(203, 22);
+            this.tsmiFlagsNpcExtra.Text = "Creature Extra Flags";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -497,5 +544,11 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiFlagsSpellAttributesEx4;
         private System.Windows.Forms.ToolStripMenuItem tsmiFlagsSpellProc;
         private System.Windows.Forms.ToolStripMenuItem tsmiFlagsSpellProcEx;
+        private System.Windows.Forms.ToolStripMenuItem tsmiFlagsSpellSchool;
+        private System.Windows.Forms.ToolStripMenuItem tsmiFlagsShapeshiftMask;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem tsmiFlagsNpcStatic1;
+        private System.Windows.Forms.ToolStripMenuItem tsmiFlagsNpcStatic2;
+        private System.Windows.Forms.ToolStripMenuItem tsmiFlagsNpcExtra;
     }
 }

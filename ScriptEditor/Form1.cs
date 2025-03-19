@@ -177,6 +177,31 @@ namespace ScriptEditor
                 uint flags = 0;
                 Helpers.ShowFlagInputDialog(ref flags, "Spell Proc Flags Ex", GameData.SpellProcFlagsExList);
             };
+            tsmiFlagsSpellSchool.Click += (sender, e) =>
+            {
+                uint flags = 0;
+                Helpers.ShowFlagInputDialog(ref flags, "Spell School Mask", GameData.SpellSchoolMaskList);
+            };
+            tsmiFlagsShapeshiftMask.Click += (sender, e) =>
+            {
+                uint flags = 0;
+                Helpers.ShowFlagInputDialog(ref flags, "Spell Shapeshift Form Mask", GameData.ShapeshiftMaskList);
+            };
+            tsmiFlagsNpcStatic1.Click += (sender, e) =>
+            {
+                uint flags = 0;
+                Helpers.ShowFlagInputDialog(ref flags, "Creature Static Flags 1", GameData.CreatureStaticFlags1List);
+            };
+            tsmiFlagsNpcStatic2.Click += (sender, e) =>
+            {
+                uint flags = 0;
+                Helpers.ShowFlagInputDialog(ref flags, "Creature Static Flags 2", GameData.CreatureStaticFlags2List);
+            };
+            tsmiFlagsNpcExtra.Click += (sender, e) =>
+            {
+                uint flags = 0;
+                Helpers.ShowFlagInputDialog(ref flags, "Creature Extra Flags", GameData.CreatureExtraFlagsList);
+            };
         }
 
         private void picScriptEditor_MouseEnter(object sender, EventArgs e)

@@ -55,6 +55,11 @@ namespace ScriptEditor
         public static readonly List<Tuple<string, uint>> SpellAttributesEx4List = new List<Tuple<string, uint>>();
         public static readonly List<Tuple<string, uint>> SpellProcFlagsList = new List<Tuple<string, uint>>();
         public static readonly List<Tuple<string, uint>> SpellProcFlagsExList = new List<Tuple<string, uint>>();
+        public static readonly List<Tuple<string, uint>> SpellSchoolMaskList = new List<Tuple<string, uint>>();
+        public static readonly List<Tuple<string, uint>> ShapeshiftMaskList = new List<Tuple<string, uint>>();
+        public static readonly List<Tuple<string, uint>> CreatureStaticFlags1List = new List<Tuple<string, uint>>();
+        public static readonly List<Tuple<string, uint>> CreatureStaticFlags2List = new List<Tuple<string, uint>>();
+        public static readonly List<Tuple<string, uint>> CreatureExtraFlagsList = new List<Tuple<string, uint>>();
 
         public static int FindIndexOfMap(uint id)
         {
@@ -2441,7 +2446,6 @@ namespace ScriptEditor
             SpellMechanicMaskList.Add(new Tuple<string, uint>("Discovery", 134217728));
             SpellMechanicMaskList.Add(new Tuple<string, uint>("Immune Shield", 268435456));
             SpellMechanicMaskList.Add(new Tuple<string, uint>("Sapped", 536870912));
-            SpellMechanicMaskList.Add(new Tuple<string, uint>("Slow Cast Speed", 1073741824));
 
             // Spell Attributes
             SpellAttributesList.Add(new Tuple<string, uint>("Proc Failure Burns Charge", 1));
@@ -2638,6 +2642,114 @@ namespace ScriptEditor
             SpellProcFlagsExList.Add(new Tuple<string, uint>("No Periodic", 131072));
             SpellProcFlagsExList.Add(new Tuple<string, uint>("Periodic Positive", 262144));
             SpellProcFlagsExList.Add(new Tuple<string, uint>("Cast End", 524288));
+
+            // Spell School Mask
+            SpellSchoolMaskList.Add(new Tuple<string, uint>("Physical", 1));
+            SpellSchoolMaskList.Add(new Tuple<string, uint>("Holy", 2));
+            SpellSchoolMaskList.Add(new Tuple<string, uint>("Fire", 4));
+            SpellSchoolMaskList.Add(new Tuple<string, uint>("Nature", 8));
+            SpellSchoolMaskList.Add(new Tuple<string, uint>("Frost", 16));
+            SpellSchoolMaskList.Add(new Tuple<string, uint>("Shadow", 32));
+            SpellSchoolMaskList.Add(new Tuple<string, uint>("Arcane", 64));
+
+            // Shapeshift Mask
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Cat Form", 1));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Tree Form", 2));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Travel Form", 4));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Aquatic Form", 8));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Bear Form", 16));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Ambient", 32));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Ghoul", 64));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Dire Bear Form", 128));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Unused", 256));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Unused", 512));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Unused", 1024));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Unused", 2048));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Unused", 4096));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Creature - Bear", 8192));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Creature - Cat", 16384));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Ghost Wolf", 32768));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Battle Stance", 65536));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Defensive Stance", 131072));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Berserker Stance", 262144));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Unused", 524288));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Unused", 1048576));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Unused", 2097152));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Unused", 4194304));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Unused", 8388608));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Unused", 16777216));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Unused", 33554432));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Unused", 67108864));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Shadowform", 134217728));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Unused", 268435456));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Stealth", 536870912));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Moonkin Form", 1073741824));
+            ShapeshiftMaskList.Add(new Tuple<string, uint>("Spirit of Redemption", 2147483648));
+
+            // Creature Static Flags 1
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("Mountable", 1));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("No XP", 2));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("No Loot", 4));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("Unkillable", 8));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("Tameable", 16));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("Immune to PC", 32));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("Immune to NPC", 64));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("Can Wield Loot", 128));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("Sessile", 256));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("Uninteractible", 512));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("No Automatic Regen", 1024));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("Despawn Instantly", 2048));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("Corspe Raid", 4096));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("Creator Loot", 8192));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("No Defense", 16384));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("No Spell Defense", 32768));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("Raid Boss Mob", 65536));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("Combat Ping", 131072));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("Aquatic", 262144));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("Amphibious", 524288));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("No Melee", 1048576));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("Visible to Ghosts", 2097152));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("PvP Enabling", 4194304));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("Do Not Play Wound Anim", 8388608));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("No Faction Tooltip", 16777216));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("Ignore Combat", 33554432));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("Only Attack PvP Enabling", 67108864));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("Calls Guards", 134217728));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("Can Swim", 268435456));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("Floating", 536870912));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("More Audible", 1073741824));
+            CreatureStaticFlags1List.Add(new Tuple<string, uint>("Large AOI", 2147483648));
+
+            // Creature Static Flags 2
+            CreatureStaticFlags2List.Add(new Tuple<string, uint>("No Pet Scaling", 1));
+            CreatureStaticFlags2List.Add(new Tuple<string, uint>("Force Raid Combat", 2));
+            CreatureStaticFlags2List.Add(new Tuple<string, uint>("Lock Tappers to Raid on Death", 4));
+            CreatureStaticFlags2List.Add(new Tuple<string, uint>("No Harmful Vertex Coloring", 8));
+            CreatureStaticFlags2List.Add(new Tuple<string, uint>("No Crushing Blows", 16));
+            CreatureStaticFlags2List.Add(new Tuple<string, uint>("No Owner Threat", 32));
+            CreatureStaticFlags2List.Add(new Tuple<string, uint>("No Wounded Slowdown", 64));
+
+            // Creature Extra Flags
+            CreatureExtraFlagsList.Add(new Tuple<string, uint>("No Leash Evade", 1));
+            CreatureExtraFlagsList.Add(new Tuple<string, uint>("No Aggro", 2));
+            CreatureExtraFlagsList.Add(new Tuple<string, uint>("No Parry", 4));
+            CreatureExtraFlagsList.Add(new Tuple<string, uint>("No Unreachable Evade", 8));
+            CreatureExtraFlagsList.Add(new Tuple<string, uint>("No Block", 16));
+            CreatureExtraFlagsList.Add(new Tuple<string, uint>("No Movement Pause", 32));
+            CreatureExtraFlagsList.Add(new Tuple<string, uint>("Always Run", 64));
+            CreatureExtraFlagsList.Add(new Tuple<string, uint>("Invisible", 128));
+            CreatureExtraFlagsList.Add(new Tuple<string, uint>("Gigantic AOI", 256));
+            CreatureExtraFlagsList.Add(new Tuple<string, uint>("Infinite AOI", 512));
+            CreatureExtraFlagsList.Add(new Tuple<string, uint>("Guard", 1024));
+            CreatureExtraFlagsList.Add(new Tuple<string, uint>("No Threat List", 2048));
+            CreatureExtraFlagsList.Add(new Tuple<string, uint>("Keep Positive Auras on Evade", 4096));
+            CreatureExtraFlagsList.Add(new Tuple<string, uint>("Always Crush", 8192));
+            CreatureExtraFlagsList.Add(new Tuple<string, uint>("Appear Dead", 16384));
+            CreatureExtraFlagsList.Add(new Tuple<string, uint>("Chase Gen No Backing", 32768));
+            CreatureExtraFlagsList.Add(new Tuple<string, uint>("No Assist", 65536));
+            CreatureExtraFlagsList.Add(new Tuple<string, uint>("No Target", 131072));
+            CreatureExtraFlagsList.Add(new Tuple<string, uint>("Only Visible to Friendly", 262144));
+            CreatureExtraFlagsList.Add(new Tuple<string, uint>("Can Assist", 524288));
         }
     }
     public struct BroadcastText
